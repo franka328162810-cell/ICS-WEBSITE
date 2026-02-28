@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI助手 | 星际文明学</title>
+    <meta name="description" content="星际文明学AI助手 - 基于完整知识库训练的智能助手，帮助您理解核心概念、规范原则和指标体系">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(1.8rem, 2.8vw, 2.3rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-zh-sans: 'Noto Sans SC', sans-serif;
+            --font-zh-serif: 'Noto Serif SC', serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-zh-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-contact {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-zh-serif);
+            font-size: clamp(4rem, 5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.5;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.0;
+            text-align: left;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .capabilities-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0 0 0;
+        }
+
+        .capabilities-list li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 2rem;
+            position: relative;
+            letter-spacing: 0.02em;
+        }
+
+        .capabilities-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-zh-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .usage-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .step-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .step-number {
+            font-family: var(--font-zh-serif);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-energy-gold);
+            margin-bottom: 1rem;
+        }
+
+        .step-text {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.02em;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .example-category {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .example-category:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .category-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .example-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .example-list li {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            letter-spacing: 0.02em;
+        }
+
+        .example-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-size: 1.2rem;
+        }
+
+        .chatbot-container {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-placeholder {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .chatbot-placeholder svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .chatbot-placeholder p {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .chatbot-placeholder small {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%);
+            border-left: 4px solid var(--color-energy-gold);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .warning-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .warning-list li {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            letter-spacing: 0.02em;
+        }
+
+        .warning-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-energy-gold);
+            font-size: 1.2rem;
+        }
+
+        .feedback-box {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .feedback-box p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .feedback-box a {
+            color: var(--color-nebula-cyan);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .feedback-box a:hover {
+            color: var(--color-nebula-cyan-light);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform 0.3s ease;
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .examples-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+            }
+
+            .zh-section-title {
+                font-size: 1.5rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .links-grid,
+            .examples-grid,
+            .usage-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-container {
+                padding: 2rem;
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="assistant" data-lang="zh">
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/AI Assistant.html" class="lang-btn">EN</a>
+                    <a href="AI助手.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">星际文明学AI助手</h1>
+                <div class="hero-intro-card">
+                    <p>欢迎使用星际文明学AI助手！</p>
+                    <p>我是基于星际文明学完整知识库训练的AI助手，可以帮助您：</p>
+                    <ul class="capabilities-list">
+                        <li>理解星际文明学的核心概念</li>
+                        <li>解释新三观的哲学内涵</li>
+                        <li>阐述规范原则的具体含义</li>
+                        <li>说明指标体系的应用方法</li>
+                        <li>探讨理论在现实中的应用</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section>
+                <h2 class="zh-section-title">如何使用</h2>
+
+                <div class="usage-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-text">在下方对话框中输入您的问题</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-text">AI助手会基于星际文明学知识库回答</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-text">您可以继续追问以深入了解</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">示例问题</h2>
+
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <div class="category-title">基础概念</div>
+                        <ul class="example-list">
+                            <li>什么是星际文明学？</li>
+                            <li>新三观包括哪些内容？</li>
+                            <li>什么是宇宙责任伦理学？</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-category">
+                        <div class="category-title">核心原则</div>
+                        <ul class="example-list">
+                            <li>什么是递归自由原则（RFP）？</li>
+                            <li>负熵责任原则如何理解？</li>
+                            <li>禁忌红线包括哪些内容？</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-category">
+                        <div class="category-title">指标体系</div>
+                        <ul class="example-list">
+                            <li>UCS是什么？如何测量？</li>
+                            <li>文明发展指数包含哪些维度？</li>
+                            <li>如何评估宇宙尺度影响？</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-category">
+                        <div class="category-title">应用问题</div>
+                        <ul class="example-list">
+                            <li>星际文明学如何应用于AI治理？</li>
+                            <li>对于AGI发展有什么建议？</li>
+                            <li>如何看待METI（主动向外星发送信息）？</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">对话区域</h2>
+
+                <div class="chatbot-container">
+                    <div class="chatbot-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <p>此处将嵌入Chatbase聊天窗口</p>
+                        <small>请联系管理员配置聊天机器人集成</small>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">注意事项</h2>
+
+                <div class="warning-box">
+                    <div class="warning-title">
+                        <span>⚠️</span>
+                        <span>请注意</span>
+                    </div>
+                    <ul class="warning-list">
+                        <li>AI助手的回答基于训练数据，可能不完全准确</li>
+                        <li>对于复杂学术问题，建议参考原著</li>
+                        <li>AI助手不代表作者的官方立场</li>
+                        <li>如发现错误，欢迎反馈</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">反馈</h2>
+
+                <div class="feedback-box">
+                    <p>如果您发现AI助手的回答有误，或有改进建议，请联系：</p>
+                    <p><a href="联系我们.html">franka@vip.sina.com</a></p>
+                </div>
+            </section>
+
+            <section class="related-links">
+                <h2 class="zh-section-title">相关链接</h2>
+                <div class="links-grid">
+                    <a href="首页.html" class="link-item">
+                        <span class="link-text">返回首页</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="关于星际文明学.html" class="link-item">
+                        <span class="link-text">学科介绍</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="资源.html" class="link-item">
+                        <span class="link-text">资源下载</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="资源.html" class="link-item">
+                        <span class="link-text">术语表</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
+            }
+        });
+    </script>
+</body>
+
+</html>

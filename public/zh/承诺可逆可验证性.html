@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>承诺可逆可验证性 | 星际文明学</title>
+    <meta name="description"
+        content="承诺可逆可验证性（CRV）评估承诺的可信度和可执行性。在AI安全承诺、国际协议、跨代际契约等场景中，关键不只是承诺的内容，更是承诺是否可验证、是否可执行、是否可以在必要时修订。CRV为这一核心问题提供评估框架。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-zh-title: 'Noto Serif SC', serif;
+            --font-zh-body: 'Noto Sans SC', sans-serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-zh-body);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-zh-title);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-zh-title);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-zh-title);
+            font-size: clamp(3.5rem, 4.5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            line-height: 1.5;
+        }
+
+        .zh-page-title .title-line-1,
+        .zh-page-title .title-line-2 {
+            display: block;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            letter-spacing: 0.03em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-zh-title);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.05em;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-zh-title);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ol {
+            list-style: none;
+            counter-reset: item;
+            padding-left: 0;
+        }
+
+        .content-card ol li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 2rem;
+            position: relative;
+            counter-increment: item;
+        }
+
+        .content-card ol li::before {
+            content: counter(item) ".";
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-weight: 600;
+        }
+
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-zh-title);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+            padding-left: 2.5rem;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-weight: 500;
+            color: var(--color-energy-gold);
+            padding-left: 2.5rem;
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        .formula-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            margin: 1rem 0;
+            letter-spacing: 0.05em;
+        }
+
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-label {
+            font-family: var(--font-zh-title);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-desc {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.03em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-zh-title);
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-zh-title);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+            }
+
+            .zh-section-title {
+                font-size: 1.75rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/CRV.html" class="lang-btn">EN</a>
+                    <a href="承诺可逆可验证性.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">
+                    <span class="title-line-1">承诺可逆可验证性：</span>
+                    <span class="title-line-2">让承诺值得信赖</span>
+                </h1>
+                <div class="hero-intro-card">
+                    <p>承诺可逆可验证性（CRV）评估承诺的可信度和可执行性。在AI安全承诺、国际协议、跨代际契约等场景中,关键不只是承诺的内容，更是承诺是否可验证、是否可执行、是否可以在必要时修订。CRV为这一核心问题提供评估框架。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section>
+                <h2 class="zh-section-title">为什么需要CRV？</h2>
+
+                <h3 class="zh-subsection-title">承诺的困境</h3>
+                <div class="content-card">
+                    <p>在星际文明学关注的领域中，承诺面临特殊挑战：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>场景</th>
+                                <th>挑战</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AI安全承诺</td>
+                                <td>谁来验证AI公司是否遵守了安全承诺？</td>
+                            </tr>
+                            <tr>
+                                <td>国际太空协议</td>
+                                <td>太空活动承诺如何在缺乏执法机构的情况下执行？</td>
+                            </tr>
+                            <tr>
+                                <td>代际契约</td>
+                                <td>如何让当代人对未来世代的承诺具有约束力？</td>
+                            </tr>
+                            <tr>
+                                <td>跨文明协议</td>
+                                <td>与未知文明的协议如何建立信任？</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">核心问题</h3>
+                <div class="content-card">
+                    <p>CRV回答三个核心问题：</p>
+                    <ol>
+                        <li>可验证：承诺的遵守/违反是否可以被检测到？</li>
+                        <li>可执行：违反承诺是否有后果？</li>
+                        <li>可修订：承诺是否可以在必要时合理修订？</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">CRV的定义</h2>
+                <div class="content-card">
+                    <p><strong>定义：</strong></p>
+                    <p>承诺可逆可验证性（Commitment Reversibility & Verifiability, CRV）是一个多维指标，评估承诺的可信度和可执行性。</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">评估维度</h2>
+                <div class="content-card">
+                    <p>CRV包含四个核心评估维度：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>维度</th>
+                                <th>英文</th>
+                                <th>测量内容</th>
+                                <th>分值</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>可验证性</td>
+                                <td>Verifiability</td>
+                                <td>承诺的遵守/违反是否可以被检测</td>
+                                <td>[0, 1]</td>
+                            </tr>
+                            <tr>
+                                <td>可执行性</td>
+                                <td>Enforceability</td>
+                                <td>违反承诺是否有机制确保后果</td>
+                                <td>[0, 1]</td>
+                            </tr>
+                            <tr>
+                                <td>可逆性</td>
+                                <td>Reversibility</td>
+                                <td>承诺是否可以在必要时合理修订</td>
+                                <td>[0, 1]</td>
+                            </tr>
+                            <tr>
+                                <td>透明度</td>
+                                <td>Transparency</td>
+                                <td>承诺的内容和执行是否清晰透明</td>
+                                <td>[0, 1]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">维度详解</h3>
+
+                <div class="content-card">
+                    <p><strong>可验证性（Verifiability）</strong></p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>描述</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>高</td>
+                                <td>承诺的遵守可以通过技术手段自动验证</td>
+                                <td>智能合约、区块链记录</td>
+                            </tr>
+                            <tr>
+                                <td>中</td>
+                                <td>可以通过第三方审查验证</td>
+                                <td>独立审计、检查机制</td>
+                            </tr>
+                            <tr>
+                                <td>低</td>
+                                <td>主要依赖自我报告</td>
+                                <td>自愿报告、信誉机制</td>
+                            </tr>
+                            <tr>
+                                <td>极低</td>
+                                <td>无法有效验证</td>
+                                <td>无监督的口头承诺</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p><strong>可执行性（Enforceability）</strong></p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>描述</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>高</td>
+                                <td>违反承诺有自动执行的后果</td>
+                                <td>技术强制、自动制裁</td>
+                            </tr>
+                            <tr>
+                                <td>中</td>
+                                <td>有制度化的执行机制</td>
+                                <td>法律诉讼、仲裁</td>
+                            </tr>
+                            <tr>
+                                <td>低</td>
+                                <td>主要依赖声誉和社会压力</td>
+                                <td>公开谴责、信誉损失</td>
+                            </tr>
+                            <tr>
+                                <td>极低</td>
+                                <td>无有效执行机制</td>
+                                <td>缺乏约束力的声明</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p><strong>可逆性（Reversibility）</strong></p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>描述</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>高</td>
+                                <td>承诺有明确的修订程序和条件</td>
+                                <td>版本化条约、日落条款</td>
+                            </tr>
+                            <tr>
+                                <td>中</td>
+                                <td>可以通过协商修订</td>
+                                <td>条约修正案</td>
+                            </tr>
+                            <tr>
+                                <td>低</td>
+                                <td>修订极为困难</td>
+                                <td>宪法性承诺</td>
+                            </tr>
+                            <tr>
+                                <td>极低</td>
+                                <td>事实上不可修订</td>
+                                <td>技术性锁定</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p><strong>透明度（Transparency）</strong></p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>描述</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>高</td>
+                                <td>承诺内容和执行情况完全公开</td>
+                                <td>开放数据、公开报告</td>
+                            </tr>
+                            <tr>
+                                <td>中</td>
+                                <td>主要内容公开，部分细节保密</td>
+                                <td>公开条约、保密附件</td>
+                            </tr>
+                            <tr>
+                                <td>低</td>
+                                <td>大部分内容不透明</td>
+                                <td>保密协议</td>
+                            </tr>
+                            <tr>
+                                <td>极低</td>
+                                <td>完全不透明</td>
+                                <td>秘密承诺</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">CRV综合评分</h2>
+
+                <h3 class="zh-subsection-title">计算方法</h3>
+                <div class="formula-card">
+                    <div class="formula">CRV = w₁·V + w₂·E + w₃·R + w₄·T</div>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-top: 1.5rem; font-size: 1rem; line-height: 1.8;">
+                        其中 V, E, R, T 分别为四个维度的评分，w<sub>i</sub> 为权重。
+                    </p>
+                </div>
+
+                <h3 class="zh-subsection-title">评分解读</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>CRV综合分</th>
+                                <th>含义</th>
+                                <th>建议</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0.8-1.0</td>
+                                <td>高度可信</td>
+                                <td>可以作为决策基础</td>
+                            </tr>
+                            <tr>
+                                <td>0.6-0.8</td>
+                                <td>较可信</td>
+                                <td>需要辅助保障机制</td>
+                            </tr>
+                            <tr>
+                                <td>0.4-0.6</td>
+                                <td>一般</td>
+                                <td>需要显著加强保障</td>
+                            </tr>
+                            <tr>
+                                <td>0.2-0.4</td>
+                                <td>较弱</td>
+                                <td>不应作为唯一保障</td>
+                            </tr>
+                            <tr>
+                                <td>0.0-0.2</td>
+                                <td>极弱</td>
+                                <td>承诺几乎没有约束力</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">应用场景</h2>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>场景</th>
+                                <th>CRV评估重点</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AI安全承诺</td>
+                                <td>重点评估可验证性——是否可以从外部验证AI行为</td>
+                            </tr>
+                            <tr>
+                                <td>国际太空条约</td>
+                                <td>重点评估可执行性——缺乏超国家执法机构</td>
+                            </tr>
+                            <tr>
+                                <td>代际承诺</td>
+                                <td>重点评估可逆性——允许未来世代根据新情况修订</td>
+                            </tr>
+                            <tr>
+                                <td>企业ESG承诺</td>
+                                <td>重点评估透明度——信息是否充分公开</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">与其他指标的关系</h2>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>相关指标</th>
+                                <th>关系</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>RFD</td>
+                                <td>CRV评估保护可能性空间的承诺是否可信</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA</td>
+                                <td>CSIA依赖CRV来评估风险缓解承诺的可信度</td>
+                            </tr>
+                            <tr>
+                                <td>CDI</td>
+                                <td>文明的CRV水平反映其治理成熟度</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="key-concepts-section">
+                <h2 class="zh-section-title">关键概念高亮</h2>
+                <div class="key-concepts-grid">
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">承诺可逆可验证性（CRV）</div>
+                            <div class="concept-desc">承诺可信度的评估框架</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">可验证性</div>
+                            <div class="concept-desc">承诺遵守是否可检测</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">可执行性</div>
+                            <div class="concept-desc">违反承诺是否有后果</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">可逆性</div>
+                            <div class="concept-desc">承诺是否可合理修订</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">透明度</div>
+                            <div class="concept-desc">承诺内容和执行是否公开</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-links">
+                <h3 class="zh-subsection-title">相关链接</h3>
+                <div class="links-grid">
+                    <a href="指标体系.html" class="link-item">
+                        <span class="link-text">返回指标体系概述</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="递归自由度.html" class="link-item">
+                        <span class="link-text">递归自由度（RFD）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="文明发展指数.html" class="link-item">
+                        <span class="link-text">文明发展指数（CDI）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="可逆性原则.html" class="link-item">
+                        <span class="link-text">可逆性原则</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="制度设计.html" class="link-item">
+                        <span class="link-text">制度设计</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        document.querySelector('.nav-search').addEventListener('click', () => {
+            alert('搜索功能即将推出');
+        });
+
+        let backToTopButton = null;
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                if (!backToTopButton) {
+                    backToTopButton = document.createElement('button');
+                    backToTopButton.innerHTML = '↑';
+                    backToTopButton.style.cssText = `
+                        position: fixed;
+                        bottom: 2rem;
+                        right: 2rem;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+                        color: white;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+                        z-index: 999;
+                        transition: all 0.3s ease;
+                        opacity: 0;
+                    `;
+                    backToTopButton.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    document.body.appendChild(backToTopButton);
+                }
+                backToTopButton.style.opacity = '1';
+            } else if (backToTopButton) {
+                backToTopButton.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+
+</html>

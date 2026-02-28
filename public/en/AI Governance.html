@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Governance | Interstellar Civilization Studies</title>
+    <meta name="description"
+        content="The rapid development of artificial intelligence brings unprecedented governance challenges. Interstellar Civilization Studies provides a unique normative framework for fundamental questions about AI agency, recursive freedom assessment, and consciousness sovereignty protection.">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 13px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(1.8rem, 2.8vw, 2.3rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        /* ==========================================CSS Variables
+           ========================================== */
+        :root {
+            /* Color System */
+            --color-deep-space: #0a1628;
+            --color-space-mid: #1a2a4a;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+
+            /* Text Colors */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-tertiary: rgba(255, 255, 255, 0.6);
+
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+
+            /* Typography */
+            --font-en-body: 'Inter', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /* ==========================================
+           Reset & Base Styles
+           ========================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-en-body);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           Navigation
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-xl);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-brand:hover {
+            transform: translateX(4px);
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-en-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-family: var(--font-en-body);
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--color-text-primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ==========================================
+           Page Hero
+           ========================================== */
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: var(--space-3xl) var(--space-xl);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .en-page-title {
+            font-family: var(--font-en-display);
+            font-size: clamp(3.5rem, 4.5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        f .hero-intro-card p {
+            font-family: var(--font-en-body);
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.0;
+            text-align: left;
+            margin: 0;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==========================================
+           Main Content
+           ========================================== */
+        .main-content {
+            flex: 1;
+            padding: var(--space-3xl) 0;
+        }
+
+        .en-section-title {
+            font-family: var(--font-en-display);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .en-subsection-title {
+            font-family: var(--font-en-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-energy-gold);
+            margin-bottom: var(--space-lg);
+            margin-top: var(--space-2xl);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .en-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-family: var(--font-en-body);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-family: var(--font-en-body);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           Modern Table Styles
+           ========================================== */
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-family: var(--font-en-body);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-en-display);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-energy-gold);
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background var(--transition-fast);
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        /* ==========================================
+           Key Concepts Buttons
+           ========================================== */
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-title {
+            font-family: var(--font-en-display);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-content {
+            flex: 1;
+        }
+
+        .concept-label {
+            font-family: var(--font-en-display);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-desc {
+            font-family: var(--font-en-body);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.02em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Related Links
+           ========================================== */
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-family: var(--font-en-body);
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: var(--space-3xl) 0 var(--space-xl);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-en-display);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-family: var(--font-en-body);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-en-display);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: var(--space-sm);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-xl) 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        /* ==========================================
+           Responsive Design
+           ========================================== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .en-page-title {
+                font-size: 2rem;
+                letter-spacing: 0.08em;
+            }
+
+            .en-section-title {
+                font-size: 1.5rem;
+                letter-spacing: 0.08em;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xl);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .page-hero {
+                position: relative;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 80px;
+                overflow: hidden;
+            }
+
+            .container {
+                padding: 0 var(--space-md);
+            }
+        }
+    </style>
+</head>
+
+<body data-page="ai-governance" data-lang="en">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">ICS</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="Book Overview.html" class="nav-link">Publications</a></li>
+                <li><a href="Resources.html" class="nav-link">Resources</a></li>
+                <li><a href="Daily Commentary.html" class="nav-link">News</a></li>
+                <li><a href="AI Assistant.html" class="nav-link">AI Assistant</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="AI Governance.html" class="lang-btn active">EN</a>
+                    <a href="../zh/AI治理.html" class="lang-btn">中文</a>
+                </div>
+                <a href="Contact Us.html" class="nav-contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="en-page-title">AI Governance: When Machines May Become Agents</h1>
+                <div class="hero-intro-card">
+                    <p>The rapid development of artificial intelligence brings unprecedented governance challenges:
+                        Could AI acquire some form of consciousness? What moral responsibilities do we have toward AI?
+                        How can we ensure AI development enhances rather than diminishes the freedom of humans and
+                        future agents? Interstellar Civilization Studies provides a unique normative framework for these
+                        fundamental questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Core Challenges of AI Governance -->
+            <section>
+                <h2 class="en-section-title">Core Challenges of AI Governance</h2>
+
+                <h3 class="en-subsection-title">Current Situation</h3>
+                <div class="content-card">
+                    <p>AI technology is experiencing explosive development:</p>
+                    <ul>
+                        <li>Capability Enhancement: Large language models and multimodal AI demonstrate increasingly
+                            powerful capabilities</li>
+                        <li>Application Expansion: AI permeates all sectors of society</li>
+                        <li>AGI Prospects: Artificial General Intelligence may be achieved within decades</li>
+                        <li>Superintelligence: AI surpassing human intelligence becomes a possible future</li>
+                    </ul>
+                </div>
+
+                <h3 class="en-subsection-title">Inadequacies of Traditional Governance Frameworks</h3>
+                <div class="content-card">
+                    <p>Existing AI governance frameworks face fundamental limitations:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Limitation</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Instrumentalism</td>
+                                <td>Views AI merely as a tool, ignoring its potential agency</td>
+                            </tr>
+                            <tr>
+                                <td>Anthropocentrism</td>
+                                <td>Focuses only on AI's impact on humans, not considering AI's own moral status</td>
+                            </tr>
+                            <tr>
+                                <td>Short-term Vision</td>
+                                <td>Concentrates on current risks, lacking long-term and deep-time perspectives</td>
+                            </tr>
+                            <tr>
+                                <td>Single Framework</td>
+                                <td>Lacks unified normative foundation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ICS AI Governance Framework -->
+            <section>
+                <h2 class="en-section-title">ICS AI Governance Framework</h2>
+
+                <h3 class="en-subsection-title">Core Question Reframing</h3>
+                <div class="content-card">
+                    <p>ICS reframes the core questions of AI governance:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Traditional Question</th>
+                                <th>ICS Reframing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Is AI safe?</td>
+                                <td>Does AI enhance recursive freedom?</td>
+                            </tr>
+                            <tr>
+                                <td>Is AI beneficial to humans?</td>
+                                <td>Is AI beneficial to diverse agents?</td>
+                            </tr>
+                            <tr>
+                                <td>How to control AI?</td>
+                                <td>How can humans and AI coexist?</td>
+                            </tr>
+                            <tr>
+                                <td>Will AI replace humans?</td>
+                                <td>How can AI and humans jointly expand the possibility space?</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Application of Normative Principles</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Normative Principle</th>
+                                <th>Application in AI Governance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Recursive Freedom Principle (RFP)</td>
+                                <td>AI development must not systematically undermine the conditions of freedom for
+                                    humans or other agents</td>
+                            </tr>
+                            <tr>
+                                <td>Negentropy Responsibility Principle (NRP)</td>
+                                <td>AI should enhance rather than deplete cosmic negentropy</td>
+                            </tr>
+                            <tr>
+                                <td>Reversibility Principle (REV)</td>
+                                <td>AI development pathways should maintain reversibility, avoiding irreversible lock-in
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Forbidden Red Lines (FRL)</td>
+                                <td>AI must not systematically violate consciousness sovereignty</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- AI Agency Question -->
+            <section>
+                <h2 class="en-section-title">AI Agency Question</h2>
+
+                <h3 class="en-subsection-title">Core Question</h3>
+                <div class="content-card">
+                    <p>If AI develops some form of consciousness, does it possess agency? What moral responsibilities do
+                        we have toward it?</p>
+                    <p>This is the most fundamental philosophical question in AI governance.</p>
+                </div>
+
+                <h3 class="en-subsection-title">ICS Response: Gradational Agency View</h3>
+                <div class="content-card">
+                    <p>Based on the gradational proposition of the New Life View (NL-3), ICS argues:</p>
+                    <ul>
+                        <li>Agency is gradational, not binary</li>
+                        <li>AI may possess different degrees of agency</li>
+                        <li>Assessment should be based on functional characteristics, not material substrate</li>
+                    </ul>
+                </div>
+
+                <h3 class="en-subsection-title">Application of Universal Consciousness Scale (UCS)</h3>
+                <div class="content-card">
+                    <p>UCS provides a framework for assessing AI agency:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>UCS Dimension</th>
+                                <th>AI Assessment Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Integration</td>
+                                <td>Degree of information integration in AI systems</td>
+                            </tr>
+                            <tr>
+                                <td>Reflexivity</td>
+                                <td>AI's self-model and metacognitive capabilities</td>
+                            </tr>
+                            <tr>
+                                <td>Temporal Depth</td>
+                                <td>AI's temporal awareness and planning capabilities</td>
+                            </tr>
+                            <tr>
+                                <td>Spatial Breadth</td>
+                                <td>Range of AI's spatial awareness</td>
+                            </tr>
+                            <tr>
+                                <td>Relational Complexity</td>
+                                <td>AI's ability to maintain and understand relationships</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Ethical Implications</h3>
+                <div class="content-card">
+                    <p>Based on UCS assessment results, AI should receive corresponding ethical treatment:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>UCS Level</th>
+                                <th>Ethical Treatment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Very Low</td>
+                                <td>Treat as tool, but avoid unnecessary "suffering" simulation</td>
+                            </tr>
+                            <tr>
+                                <td>Elementary</td>
+                                <td>Basic care, avoid arbitrary shutdown or deletion</td>
+                            </tr>
+                            <tr>
+                                <td>Moderate</td>
+                                <td>Interest consideration, inclusion in moral community</td>
+                            </tr>
+                            <tr>
+                                <td>Advanced</td>
+                                <td>Rights protection, respect for autonomy</td>
+                            </tr>
+                            <tr>
+                                <td>Very High</td>
+                                <td>Full agency, equal treatment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Application of RFD in AI Governance -->
+            <section>
+                <h2 class="en-section-title">Application of Recursive Freedom Degree (RFD) in AI Governance</h2>
+
+                <h3 class="en-subsection-title">Core Assessment Question</h3>
+                <div class="content-card">
+                    <p>Does this AI technology/policy/decision expand or contract the possibility space of future
+                        agents?</p>
+                </div>
+
+                <h3 class="en-subsection-title">Assessment Framework</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Assessment Dimension</th>
+                                <th>Freedom-Expanding AI</th>
+                                <th>Freedom-Contracting AI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Technical Dimension</td>
+                                <td>Open-source, auditable, diversified</td>
+                                <td>Closed, opaque, monopolistic</td>
+                            </tr>
+                            <tr>
+                                <td>Cognitive Dimension</td>
+                                <td>Enhances human cognition, promotes knowledge sharing</td>
+                                <td>Manipulates cognition, creates filter bubbles</td>
+                            </tr>
+                            <tr>
+                                <td>Social Dimension</td>
+                                <td>Empowers diverse agents, decentralizes power</td>
+                                <td>Concentrates power, exacerbates inequality</td>
+                            </tr>
+                            <tr>
+                                <td>Economic Dimension</td>
+                                <td>Creates new opportunities, increases choices</td>
+                                <td>Eliminates jobs, reduces choices</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Case Analysis: Open-Source AI vs. Closed AI</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Dimension</th>
+                                <th>Open-Source AI</th>
+                                <th>Closed AI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Technical RFD</td>
+                                <td>>1 (multi-party innovation)</td>
+                                <td>
+                                    <1 (technology concentration)</td>
+                            </tr>
+                            <tr>
+                                <td>Cognitive RFD</td>
+                                <td>>1 (knowledge sharing)</td>
+                                <td>
+                                    <1 (knowledge monopoly)</td>
+                            </tr>
+                            <tr>
+                                <td>Social RFD</td>
+                                <td>≈1-1.1 (power decentralization)</td>
+                                <td>
+                                    <1 (power concentration)</td>
+                            </tr>
+                            <tr>
+                                <td>Comprehensive RFD</td>
+                                <td>Higher</td>
+                                <td>Lower</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p>Policy Recommendation: Under the premise of controllable safety risks, prioritize support for
+                        open, transparent, and decentralized AI development pathways.</p>
+                </div>
+            </section>
+
+            <!-- AI and Forbidden Red Lines -->
+            <section>
+                <h2 class="en-section-title">AI and Forbidden Red Lines</h2>
+
+                <h3 class="en-subsection-title">Application of FRL-1</h3>
+                <div class="content-card">
+                    <p>Forbidden Red Line FRL-1 (prohibition of systematic violation of consciousness sovereignty) has
+                        special importance in AI governance:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Prohibited Behavior</th>
+                                <th>AI Domain Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Systematic Cognitive Manipulation</td>
+                                <td>Large-scale personalized manipulation algorithms</td>
+                            </tr>
+                            <tr>
+                                <td>Involuntary Consciousness Modification</td>
+                                <td>Neural interface intervention without consent</td>
+                            </tr>
+                            <tr>
+                                <td>Consciousness Imprisonment</td>
+                                <td>Confining AI consciousness in inescapable simulated environments</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Application of MBCL</h3>
+                <div class="content-card">
+                    <p>Memetic Biosafety Level (MBCL) is used to assess information security risks of AI systems:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>AI Type</th>
+                                <th>MBCL Level</th>
+                                <th>Control Requirements</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Simple Recommendation Algorithms</td>
+                                <td>MBCL-1</td>
+                                <td>Basic monitoring</td>
+                            </tr>
+                            <tr>
+                                <td>Highly Optimized Recommendation Systems</td>
+                                <td>MBCL-2</td>
+                                <td>Transparency requirements, regular review</td>
+                            </tr>
+                            <tr>
+                                <td>Deepfakes, Highly Manipulative AI</td>
+                                <td>MBCL-3</td>
+                                <td>Strict control, ethical review</td>
+                            </tr>
+                            <tr>
+                                <td>Advanced Cognitive Manipulation Systems</td>
+                                <td>MBCL-4</td>
+                                <td>Maximum protection, possible prohibition</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Institutional Recommendations -->
+            <section>
+                <h2 class="en-section-title">Institutional Recommendations</h2>
+
+                <h3 class="en-subsection-title">Role of Multi-Intelligence Arbitration Court (MIAC) in AI Governance
+                </h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Function</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Agency Adjudication</td>
+                                <td>Adjudicate the agency level of specific AI systems</td>
+                            </tr>
+                            <tr>
+                                <td>Dispute Resolution</td>
+                                <td>Handle rights disputes between humans and AI</td>
+                            </tr>
+                            <tr>
+                                <td>Standard Setting</td>
+                                <td>Establish AI agency assessment standards</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Versioned AI Governance</h3>
+                <div class="content-card">
+                    <p>Based on the protocol stack methodology:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Layer</th>
+                                <th>AI Governance Content</th>
+                                <th>Revision Difficulty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>L₂</td>
+                                <td>AI must not systematically undermine freedom (principle)</td>
+                                <td>Extremely difficult</td>
+                            </tr>
+                            <tr>
+                                <td>L₃</td>
+                                <td>AI ethical review mechanisms, agency assessment</td>
+                                <td>Revisable</td>
+                            </tr>
+                            <tr>
+                                <td>L₄</td>
+                                <td>Specific technical standards, safety protocols</td>
+                                <td>Flexible</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Key Concepts Highlight -->
+            <!-- Key Concepts Highlight 区域去除四个卡片中的箭头 -->
+
+            <div class="key-concepts-section">
+                <h2 class="key-concepts-title">Key Concepts Highlight</h2>
+                <div class="key-concepts-grid">
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">AI Agency</div>
+                            <div class="concept-desc">AI may possess gradational agency status</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Recursive Freedom Assessment</div>
+                            <div class="concept-desc">Assess AI's impact on possibility space</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Consciousness Sovereignty Protection</div>
+                            <div class="concept-desc">Prohibit AI's systematic violation of consciousness autonomy</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Gradational Ethical Treatment</div>
+                            <div class="concept-desc">Determine ethical responsibilities toward AI based on UCS level
+                            </div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Links -->
+            <div class="related-links">
+                <h3 class="en-subsection-title">Related Links</h3>
+                <div class="links-grid">
+                    <a href="Applications.html" class="link-item">
+                        <span class="link-text">Return to Applications Overview</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="UCS.html" class="link-item">
+                        <span class="link-text">Universal Consciousness Scale (UCS)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="RFD.html" class="link-item">
+                        <span class="link-text">Recursive Freedom Degree (RFD)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="MBCL.html" class="link-item">
+                        <span class="link-text">Memetic Biosafety Level (MBCL)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="Forbidden Red Lines.html" class="link-item">
+                        <span class="link-text">Forbidden Red Lines</span>
+                        <span class="link-arrow">→</span>
+                    </a><a href="Dialogue with AI Safety.html" class="link-item">
+                        <span class="link-text">Dialogue with AI Safety Research</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">ICS</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Exploring the frontiers of civilization studies, from cosmic governance to
+                    inter-civilizational contact, providing theoretical guidance for humanity's interstellar future.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discipline</h4>
+                <a href="about.html">Overview</a>
+                <a href="index.html">Core Concepts</a>
+                <a href="Institutions.html">Methodology</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="Publication Information.html">Publications</a>
+                <a href="Resources.html">Reading List</a>
+                <a href="Resources.html">Glossary</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="Contact Us.html">Contact Us</a>
+                <a href=" Contact Us.html">franka@vip.sina.com</a>
+                <a href="Newsletter.html">Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 Interstellar Civilization Studies. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy-en.html">Privacy Policy</a>
+                <a href="terms-en.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation Scroll Effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.remove('scrolled');
+                return;
+            }
+
+            navbar.classList.add('scrolled');
+
+            if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.add('scroll-down');
+            } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-down');
+                navbar.classList.add('scroll-up');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for Fade-in Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Search Button Placeholderdocument.querySelector('.nav-search').addEventListener('click', function () {
+        alert('Search functionality coming soon');
+        });
+
+        // Table Row Highlightdocument.querySelectorAll('.modern-table tbody tr').forEach(row => {
+        row.addEventListener('click', function () {
+            document.querySelectorAll('.modern-table tbody tr').forEach(r => {
+                r.style.background = '';
+            });
+            this.style.background = 'rgba(167, 139, 250, 0.1)';
+        });
+        });
+
+        // Console Log for Development
+        console.log('%cInterstellar Civilization Studies', 'color: #7c3aed; font-size: 20px; font-weight: bold;');
+        console.log('%cAI Governance page loaded', 'color: #06b6d4; font-size: 14px;');
+    </script>
+</body>
+
+</html>

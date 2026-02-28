@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇宙尺度影响评估 | 星际文明学</title>
+    <meta name="description"
+        content="宇宙尺度影响评估(CSIA)是星际文明学指标体系中最综合的评估工具，用于评估重大行动在宇宙尺度上的潜在影响。当我们的决策涉及存在风险、太空活动、AI发展等可能影响整个文明乃至宇宙负熵的议题时，CSIA提供系统的评估框架。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-zh-title: 'Noto Serif SC', serif;
+            --font-zh-body: 'Noto Sans SC', sans-serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-zh-body);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-zh-title);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-zh-title);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-zh-title);
+            font-size: clamp(3.5rem, 4.5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            line-height: 1.5;
+        }
+
+        .zh-page-title .title-line-1,
+        .zh-page-title .title-line-2 {
+            display: block;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            letter-spacing: 0.03em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-zh-title);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.05em;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-zh-title);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-zh-title);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+            padding-left: 2.5rem;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-weight: 500;
+            color: var(--color-energy-gold);
+            padding-left: 2.5rem;
+            white-space: nowrap;
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        .matrix-container {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .matrix-svg {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-label {
+            font-family: var(--font-zh-title);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-desc {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.03em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-zh-title);
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-zh-title);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+            }
+
+            .zh-section-title {
+                font-size: 1.75rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/CSIA.html" class="lang-btn">EN</a>
+                    <a href="宇宙尺度影响评估.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">
+                    <span class="title-line-1">宇宙尺度影响评估：</span>
+                    <span class="title-line-2">在最大尺度上衡量行动</span>
+                </h1>
+                <div class="hero-intro-card">
+                    <p>宇宙尺度影响评估（CSIA）是星际文明学指标体系中最综合的评估工具，用于评估重大行动在宇宙尺度上的潜在影响。当我们的决策涉及存在风险、太空活动、AI发展等可能影响整个文明乃至宇宙负熵的议题时，CSIA提供系统的评估框架。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section>
+                <h2 class="zh-section-title">为什么需要CSIA？</h2>
+
+                <h3 class="zh-subsection-title">尺度的转变</h3>
+                <div class="content-card">
+                    <p>人类正在获得影响宇宙尺度的能力：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>能力</th>
+                                <th>宇宙尺度影响</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>核技术</td>
+                                <td>可能终结人类文明</td>
+                            </tr>
+                            <tr>
+                                <td>AI技术</td>
+                                <td>可能创造超人类智能，影响不可逆</td>
+                            </tr>
+                            <tr>
+                                <td>太空扩展</td>
+                                <td>开始影响地球以外的环境</td>
+                            </tr>
+                            <tr>
+                                <td>基因工程</td>
+                                <td>可能改变生命的演化方向</td>
+                            </tr>
+                            <tr>
+                                <td>地球工程</td>
+                                <td>可能改变行星级气候系统</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">评估需求</h3>
+                <div class="content-card">
+                    <p>传统的环境影响评估（EIA）不足以应对这些挑战：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>维度</th>
+                                <th>传统EIA</th>
+                                <th>CSIA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>时间尺度</td>
+                                <td>数年到数十年</td>
+                                <td>数百年到数百万年</td>
+                            </tr>
+                            <tr>
+                                <td>空间尺度</td>
+                                <td>局部到全球</td>
+                                <td>行星到星际</td>
+                            </tr>
+                            <tr>
+                                <td>主体范围</td>
+                                <td>当代人类</td>
+                                <td>多元主体（含未来主体）</td>
+                            </tr>
+                            <tr>
+                                <td>不确定性</td>
+                                <td>可计算风险</td>
+                                <td>深不确定性</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">CSIA的定义</h2>
+                <div class="content-card">
+                    <p><strong>定义：</strong></p>
+                    <p>宇宙尺度影响评估（Cosmic-Scale Impact Assessment, CSIA）是评估重大行动在宇宙尺度上潜在影响的综合性框架，整合时间范围、空间范围、可逆性和级联风险等维度。
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">评估维度</h2>
+                <div class="content-card">
+                    <p>CSIA包含四个核心评估维度：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>维度</th>
+                                <th>英文</th>
+                                <th>评估内容</th>
+                                <th>分值</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>时间范围</td>
+                                <td>Temporal Scope</td>
+                                <td>影响持续的时间尺度</td>
+                                <td>对数尺度</td>
+                            </tr>
+                            <tr>
+                                <td>空间范围</td>
+                                <td>Spatial Scope</td>
+                                <td>影响扩散的空间尺度</td>
+                                <td>对数尺度</td>
+                            </tr>
+                            <tr>
+                                <td>可逆性</td>
+                                <td>Reversibility</td>
+                                <td>影响的可逆程度</td>
+                                <td>[0, 1]</td>
+                            </tr>
+                            <tr>
+                                <td>级联风险</td>
+                                <td>Cascade Risk</td>
+                                <td>引发级联效应的可能性</td>
+                                <td>[0, 1]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">维度详解</h3>
+
+                <h3 class="zh-subsection-title">时间范围（Temporal Scope）</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>时间尺度</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>T1</td>
+                                <td>1-10年</td>
+                                <td>普通政策决策</td>
+                            </tr>
+                            <tr>
+                                <td>T2</td>
+                                <td>10-100年</td>
+                                <td>基础设施建设</td>
+                            </tr>
+                            <tr>
+                                <td>T3</td>
+                                <td>100-1,000年</td>
+                                <td>气候变化影响</td>
+                            </tr>
+                            <tr>
+                                <td>T4</td>
+                                <td>1,000-100,000年</td>
+                                <td>核废料处置</td>
+                            </tr>
+                            <tr>
+                                <td>T5</td>
+                                <td>100,000年以上</td>
+                                <td>物种灭绝、基因改造</td>
+                            </tr>
+                            <tr>
+                                <td>T6</td>
+                                <td>文明尺度</td>
+                                <td>存在风险事件</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">空间范围（Spatial Scope）</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>空间尺度</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>S1</td>
+                                <td>局部</td>
+                                <td>局部环境影响</td>
+                            </tr>
+                            <tr>
+                                <td>S2</td>
+                                <td>区域</td>
+                                <td>区域性环境变化</td>
+                            </tr>
+                            <tr>
+                                <td>S3</td>
+                                <td>全球</td>
+                                <td>气候变化</td>
+                            </tr>
+                            <tr>
+                                <td>S4</td>
+                                <td>行星系</td>
+                                <td>太空碎片、行星改造</td>
+                            </tr>
+                            <tr>
+                                <td>S5</td>
+                                <td>恒星系</td>
+                                <td>恒星工程</td>
+                            </tr>
+                            <tr>
+                                <td>S6</td>
+                                <td>星际</td>
+                                <td>星际通信、星际旅行</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">可逆性（Reversibility）</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0.8-1.0</td>
+                                <td>高度可逆，可以完全恢复</td>
+                            </tr>
+                            <tr>
+                                <td>0.6-0.8</td>
+                                <td>大部分可逆，但有残留影响</td>
+                            </tr>
+                            <tr>
+                                <td>0.4-0.6</td>
+                                <td>部分可逆，需要大量努力</td>
+                            </tr>
+                            <tr>
+                                <td>0.2-0.4</td>
+                                <td>大部分不可逆</td>
+                            </tr>
+                            <tr>
+                                <td>0.0-0.2</td>
+                                <td>几乎完全不可逆</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">级联风险（Cascade Risk）</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>低</td>
+                                <td>影响基本局限于直接范围</td>
+                            </tr>
+                            <tr>
+                                <td>中</td>
+                                <td>可能引发相关领域的连锁反应</td>
+                            </tr>
+                            <tr>
+                                <td>高</td>
+                                <td>可能引发跨领域的系统性级联</td>
+                            </tr>
+                            <tr>
+                                <td>极高</td>
+                                <td>可能引发文明级的级联崩溃</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">CSIA综合评估</h2>
+
+                <h3 class="zh-subsection-title">影响矩阵</h3>
+                <div class="content-card">
+                    <p>CSIA的核心输出是一个影响矩阵：</p>
+                </div>
+
+                <div class="matrix-container">
+                    <svg class="matrix-svg" viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景网格 -->
+                        <defs>
+                            <pattern id="grid" width="80" height="60" patternUnits="userSpaceOnUse">
+                                <path d="M 80 0 L 0 0 0 60" fill="none" stroke="rgba(167,139,250,0.1)"
+                                    stroke-width="1" />
+                            </pattern>
+                        </defs>
+                        <rect width="600" height="450" fill="url(#grid)" />
+
+                        <!-- 坐标轴 -->
+                        <line x1="100" y1="380" x2="550" y2="380" stroke="rgba(167,139,250,0.5)" stroke-width="2" />
+                        <line x1="100" y1="380" x2="100" y2="50" stroke="rgba(167,139,250,0.5)" stroke-width="2" />
+
+                        <!-- X轴标签 (空间范围) -->
+                        <text x="120" y="410" fill="rgba(245,158,11,1)" font-size="14"
+                            font-family="Noto Sans SC">S1</text>
+                        <text x="190" y="410" fill="rgba(245,158,11,1)" font-size="14"
+                            font-family="Noto Sans SC">S2</text>
+                        <text x="260" y="410" fill="rgba(245,158,11,1)" font-size="14"
+                            font-family="Noto Sans SC">S3</text>
+                        <text x="330" y="410" fill="rgba(245,158,11,1)" font-size="14"
+                            font-family="Noto Sans SC">S4</text>
+                        <text x="400" y="410" fill="rgba(245,158,11,1)" font-size="14"
+                            font-family="Noto Sans SC">S5</text>
+                        <text x="470" y="410" fill="rgba(245,158,11,1)" font-size="14"
+                            font-family="Noto Sans SC">S6</text>
+                        <text x="300" y="440" fill="rgba(255,255,255,0.8)" font-size="16" font-family="Noto Serif SC"
+                            text-anchor="middle">空间范围</text>
+
+                        <!-- Y轴标签 (时间范围) -->
+                        <text x="70" y="370" fill="rgba(245,158,11,1)" font-size="14" font-family="Noto Sans SC"
+                            text-anchor="end">T1</text>
+                        <text x="70" y="315" fill="rgba(245,158,11,1)" font-size="14" font-family="Noto Sans SC"
+                            text-anchor="end">T2</text>
+                        <text x="70" y="260" fill="rgba(245,158,11,1)" font-size="14" font-family="Noto Sans SC"
+                            text-anchor="end">T3</text>
+                        <text x="70" y="205" fill="rgba(245,158,11,1)" font-size="14" font-family="Noto Sans SC"
+                            text-anchor="end">T4</text>
+                        <text x="70" y="150" fill="rgba(245,158,11,1)" font-size="14" font-family="Noto Sans SC"
+                            text-anchor="end">T5</text>
+                        <text x="70" y="95" fill="rgba(245,158,11,1)" font-size="14" font-family="Noto Sans SC"
+                            text-anchor="end">T6</text>
+                        <text x="30" y="220" fill="rgba(255,255,255,0.8)" font-size="16" font-family="Noto Serif SC"
+                            text-anchor="middle" transform="rotate(-90 30 220)">时间范围</text>
+
+                        <!-- 数据点 -->
+                        <!-- T1行 -->
+                        <circle cx="125" cy="365" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+                        <circle cx="195" cy="365" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+                        <circle cx="265" cy="365" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+
+                        <!-- T2行 -->
+                        <circle cx="125" cy="310" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+                        <circle cx="195" cy="310" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+                        <circle cx="265" cy="310" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="335" cy="310" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+
+                        <!-- T3行 -->
+                        <circle cx="125" cy="255" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+                        <circle cx="195" cy="255" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="265" cy="255" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="335" cy="255" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+
+                        <!-- T4行 -->
+                        <circle cx="195" cy="200" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="265" cy="200" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="335" cy="200" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="405" cy="200" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+
+                        <!-- T5行 -->
+                        <circle cx="195" cy="145" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+                        <circle cx="265" cy="145" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="335" cy="145" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="405" cy="145" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="475" cy="145" r="8" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+
+                        <!-- T6行 -->
+                        <circle cx="265" cy="90" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="335" cy="90" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="405" cy="90" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <circle cx="475" cy="90" r="12" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+
+                        <!-- 图例 -->
+                        <circle cx="120" cy="30" r="6" fill="rgba(6,182,212,0.6)" stroke="rgba(6,182,212,1)"
+                            stroke-width="2" />
+                        <text x="135" y="35" fill="rgba(255,255,255,0.8)" font-size="12"
+                            font-family="Noto Sans SC">可能影响</text>
+
+                        <circle cx="230" cy="30" r="8" fill="rgba(124,58,237,0.8)" stroke="rgba(124,58,237,1)"
+                            stroke-width="2" />
+                        <text x="245" y="35" fill="rgba(255,255,255,0.8)" font-size="12"
+                            font-family="Noto Sans SC">显著影响</text>
+                    </svg>
+                </div>
+
+                <h3 class="zh-subsection-title">风险等级</h3>
+                <div class="content-card">
+                    <p>根据综合评估结果，确定CSIA风险等级：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>CSIA等级</th>
+                                <th>条件</th>
+                                <th>要求</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CSIA-1</td>
+                                <td>影响局限于T1-T2/S1-S2，高可逆</td>
+                                <td>常规审查</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA-2</td>
+                                <td>影响达到T3/S3，可逆性中等</td>
+                                <td>加强评估</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA-3</td>
+                                <td>影响达到T4-T5/S3-S4，可逆性低</td>
+                                <td>严格审查</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA-4</td>
+                                <td>影响达到T5-T6/S4-S6，几乎不可逆</td>
+                                <td>最高级审查</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA-5</td>
+                                <td>可能触及禁忌红线</td>
+                                <td>原则禁止</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">与其他指标的整合</h2>
+                <div class="content-card">
+                    <p>CSIA是指标体系中的顶层评估工具，整合其他所有指标：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>输入指标</th>
+                                <th>CSIA中的角色</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>UCS</td>
+                                <td>确定受影响主体的意识水平，影响权重</td>
+                            </tr>
+                            <tr>
+                                <td>RFD</td>
+                                <td>评估对可能性空间的影响</td>
+                            </tr>
+                            <tr>
+                                <td>CRV</td>
+                                <td>评估风险缓解承诺的可信度</td>
+                            </tr>
+                            <tr>
+                                <td>CDI</td>
+                                <td>提供文明背景数据</td>
+                            </tr>
+                            <tr>
+                                <td>MBCL</td>
+                                <td>评估信息层面的风险</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">应用场景</h2>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>场景</th>
+                                <th>CSIA应用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AGI开发决策</td>
+                                <td>评估AGI对文明的潜在影响（CSIA-4到CSIA-5）</td>
+                            </tr>
+                            <tr>
+                                <td>METI决策</td>
+                                <td>评估向外星发送信号的风险（CSIA-4）</td>
+                            </tr>
+                            <tr>
+                                <td>行星改造</td>
+                                <td>评估火星改造的长期影响（CSIA-3到CSIA-4）</td>
+                            </tr>
+                            <tr>
+                                <td>地球工程</td>
+                                <td>评估大规模气候干预的影响（CSIA-3）</td>
+                            </tr>
+                            <tr>
+                                <td>基因驱动释放</td>
+                                <td>评估基因驱动的生态影响（CSIA-3）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">与制度的关系</h2>
+                <div class="content-card">
+                    <p>CSIA评估结果与制度设计直接相关：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>CSIA等级</th>
+                                <th>审查机构</th>
+                                <th>决策程序</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CSIA-1</td>
+                                <td>常规机构</td>
+                                <td>标准程序</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA-2</td>
+                                <td>专业委员会</td>
+                                <td>加强审查</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA-3</td>
+                                <td>宇宙级IRB</td>
+                                <td>严格审查</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA-4</td>
+                                <td>多智能审裁院</td>
+                                <td>最高级审查</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA-5</td>
+                                <td>—</td>
+                                <td>原则禁止</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="key-concepts-section">
+                <div class="key-concepts-section">
+                    <h2 class="zh-section-title">关键概念高亮</h2>
+                    <div class="key-concepts-grid">
+                        <div class="concept-button">
+                            <div class="concept-content">
+                                <div class="concept-label">宇宙尺度影响评估（CSIA）</div>
+                                <div class="concept-desc">最大尺度的综合影响评估</div>
+                            </div>
+                            <!-- <div class="concept-icon">→</div> -->
+                        </div>
+                        <div class="concept-button">
+                            <div class="concept-content">
+                                <div class="concept-label">时间范围</div>
+                                <div class="concept-desc">从年到文明尺度</div>
+                            </div>
+                            <!-- <div class="concept-icon">→</div> -->
+                        </div>
+                        <div class="concept-button">
+                            <div class="concept-content">
+                                <div class="concept-label">空间范围</div>
+                                <div class="concept-desc">从局部到星际</div>
+                            </div>
+                            <!-- <div class="concept-icon">→</div> -->
+                        </div>
+                        <div class="concept-button">
+                            <div class="concept-content">
+                                <div class="concept-label">级联风险</div>
+                                <div class="concept-desc">系统性连锁反应的可能性</div>
+                            </div>
+                            <!-- <div class="concept-icon">→</div> -->
+                        </div>
+                        <div class="concept-button">
+                            <div class="concept-content">
+                                <div class="concept-label">CSIA等级</div>
+                                <div class="concept-desc">从常规到原则禁止的五级分类</div>
+                            </div>
+                            <!-- <div class="concept-icon">→</div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="related-links">
+                    <h3 class="zh-subsection-title">相关链接</h3>
+                    <div class="links-grid">
+                        <a href="指标体系.html" class="link-item">
+                            <span class="link-text">返回指标体系概述</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="递归自由度.html" class="link-item">
+                            <span class="link-text">递归自由度（RFD）</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="模因生物安全等级.html" class="link-item">
+                            <span class="link-text">模因生物安全等级（MBCL）</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="禁忌红线.html" class="link-item">
+                            <span class="link-text">禁忌红线</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="制度设计.html" class="link-item">
+                            <span class="link-text">制度设计</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="存在风险管理.html" class="link-item">
+                            <span class="link-text">存在风险管理应用</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        document.querySelector('.nav-search').addEventListener('click', () => {
+            alert('搜索功能即将推出');
+        });
+
+        let backToTopButton = null;
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                if (!backToTopButton) {
+                    backToTopButton = document.createElement('button');
+                    backToTopButton.innerHTML = '↑';
+                    backToTopButton.style.cssText = `
+                        position: fixed;
+                        bottom: 2rem;
+                        right: 2rem;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+                        color: white;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+                        z-index: 999;
+                        transition: all 0.3s ease;
+                        opacity: 0;
+                    `;
+                    backToTopButton.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    document.body.appendChild(backToTopButton);
+                }
+                backToTopButton.style.opacity = '1';
+            } else if (backToTopButton) {
+                backToTopButton.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive Freedom Degree | Interstellar Civilization Studies</title>
+    <meta name="description"
+        content="The Recursive Freedom Degree (RFD) is an operationalized metric of the Recursive Freedom Principle, used to assess the impact of specific actions on the future space of possibilities. It answers a key question: Are our decisions expanding or contracting the conditions of freedom for future subjects? RFD provides a future-oriented quantitative reference for every major decision.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-en-title: 'Orbitron', sans-serif;
+            --font-en-body: 'Inter', sans-serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-en-body);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-en-title);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-en-title);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .en-page-title {
+            font-family: var(--font-en-title);
+            font-size: clamp(3.2rem, 4.2vw, 3.7rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            letter-spacing: 0.03em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        .en-section-title {
+            font-family: var(--font-en-title);
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .en-subsection-title {
+            font-family: var(--font-en-title);
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .en-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-weight: 600;
+        }
+
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-en-title);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-en-title);
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--color-energy-gold);
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        .formula-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            margin: 1rem 0;
+            letter-spacing: 0.05em;
+        }
+
+        .flowchart-container {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .flowchart-svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-label {
+            font-family: var(--font-en-title);
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .concept-desc {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.03em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-en-title);
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1.5rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-en-title);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .en-page-title {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
+            }
+
+            .en-section-title {
+                font-size: 1.75rem;
+                letter-spacing: 0.1em;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">ICS</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="Book Overview.html" class="nav-link">Publications</a></li>
+                <li><a href="Resources.html" class="nav-link">Resources</a></li>
+                <li><a href="Daily Commentary.html" class="nav-link">News</a></li>
+                <li><a href="AI Assistant.html" class="nav-link">AI Assistant</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="RFD.html" class="lang-btn active">EN</a>
+                    <a href="../zh/递归自由度.html" class="lang-btn">中文</a>
+                </div>
+                <a href="Contact Us.html" class="nav-contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="en-page-title">Recursive Freedom Degree: Guarding the Space of Possibilities</h1>
+                <div class="hero-intro-card">
+                    <p>The Recursive Freedom Degree (RFD) is an operationalized metric of the Recursive Freedom
+                        Principle, used to assess the impact of specific actions on the future space of possibilities.
+                        It answers a key question: Are our decisions expanding or contracting the conditions of freedom
+                        for future subjects? RFD provides a future-oriented quantitative reference for every major
+                        decision.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section>
+                <h2 class="en-section-title">Definition of RFD</h2>
+                <div class="content-card">
+                    <p><strong>Definition:</strong></p>
+                    <p>The Recursive Freedom Degree (RFD) is a metric that measures the degree to which a specific
+                        action, policy, or technology impacts the space of possibilities for future subjects.</p>
+                </div>
+
+                <div class="formula-card">
+                    <p><strong>Core Formula:</strong></p>
+                    <div class="formula">RFD(a) = |P<sub>t+Δt</sub><sup>a</sup>| / |P<sub>t</sub>|</div>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-top: 1.5rem; font-size: 1rem; line-height: 1.8;">
+                        Where:<br>
+                        - a: the action being evaluated<br>
+                        - P<sub>t</sub>: the space of possibilities before the action<br>
+                        - P<sub>t+Δt</sub><sup>a</sup>: the space of possibilities after executing action a<br>
+                        - Δt: the time span of evaluation
+                    </p>
+                </div>
+
+                <h3 class="en-subsection-title">Interpretation</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>RFD Value</th>
+                                <th>Meaning</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>RFD > 1</td>
+                                <td>Action expands the space of possibilities</td>
+                                <td>Universal education, open-source technology</td>
+                            </tr>
+                            <tr>
+                                <td>RFD = 1</td>
+                                <td>Action maintains the space of possibilities</td>
+                                <td>Reversible, retractable decisions</td>
+                            </tr>
+                            <tr>
+                                <td>RFD < 1 </td>
+                                <td>Action contracts the space of possibilities</td>
+                                <td>Irreversible resource consumption, technological lock-in</td>
+                            </tr>
+                            <tr>
+                                <td>RFD → 0</td>
+                                <td>Action severely contracts the space of possibilities</td>
+                                <td>Actions touching forbidden red lines</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">Understanding the Space of Possibilities</h2>
+
+                <h3 class="en-subsection-title">What is the Space of Possibilities?</h3>
+                <div class="content-card">
+                    <p>The Space of Possibilities refers to the set of actions, developmental paths, and modes of
+                        existence that future subjects can choose at a specific moment.</p>
+                    <p><strong>Figuratively speaking:</strong></p>
+                    <p>The space of possibilities is the "menu of future choices"—the more options on the menu, the
+                        richer they are, the greater the freedom of future subjects.</p>
+                </div>
+
+                <h3 class="en-subsection-title">Dimensions of the Space of Possibilities</h3>
+                <div class="content-card">
+                    <p>The space of possibilities is multidimensional, including but not limited to:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Dimension</th>
+                                <th>Content</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Material Dimension</td>
+                                <td>Available material resources and energy</td>
+                                <td>Minerals, energy, ecosystems</td>
+                            </tr>
+                            <tr>
+                                <td>Technological Dimension</td>
+                                <td>Available technological paths</td>
+                                <td>Technological diversity vs. technological lock-in</td>
+                            </tr>
+                            <tr>
+                                <td>Social Dimension</td>
+                                <td>Possible forms of social organization</td>
+                                <td>Institutional diversity vs. institutional lock-in</td>
+                            </tr>
+                            <tr>
+                                <td>Cognitive Dimension</td>
+                                <td>Accessible knowledge and information</td>
+                                <td>Knowledge diversity vs. information monopoly</td>
+                            </tr>
+                            <tr>
+                                <td>Biological Dimension</td>
+                                <td>Possible forms of life</td>
+                                <td>Biodiversity vs. species extinction</td>
+                            </tr>
+                            <tr>
+                                <td>Value Dimension</td>
+                                <td>Pursuable value orientations</td>
+                                <td>Value pluralism vs. value lock-in</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">RFD Assessment Methods</h2>
+
+                <h3 class="en-subsection-title">Assessment Framework</h3>
+                <div class="content-card">
+                    <p>RFD assessment includes four steps:</p>
+                </div>
+
+                <div class="flowchart-container">
+                    <svg class="flowchart-svg" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Step 1 -->
+                        <rect x="100" y="20" width="500" height="90" rx="12" fill="rgba(167,139,250,0.15)"
+                            stroke="rgba(167,139,250,0.5)" stroke-width="2" />
+                        <text x="350" y="55" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Orbitron"
+                            font-size="15" font-weight="600">STEP 1: DEFINE ACTION</text>
+                        <text x="350" y="80" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter"
+                            font-size="12" font-weight="300">Clarify the action, policy, or technology to be
+                            evaluated</text>
+
+                        <!-- Arrow 1 -->
+                        <line x1="350" y1="110" x2="350" y2="140" stroke="rgba(6,182,212,0.6)" stroke-width="2"
+                            marker-end="url(#arrowhead)" />
+
+                        <!-- Step 2 -->
+                        <rect x="100" y="140" width="500" height="90" rx="12" fill="rgba(167,139,250,0.15)"
+                            stroke="rgba(167,139,250,0.5)" stroke-width="2" />
+                        <text x="350" y="175" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Orbitron"
+                            font-size="15" font-weight="600">STEP 2: MAP CURRENT SPACE</text>
+                        <text x="350" y="200" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter"
+                            font-size="12" font-weight="300">Identify dimensions and size of current possibility
+                            space</text>
+
+                        <!-- Arrow 2 -->
+                        <line x1="350" y1="230" x2="350" y2="260" stroke="rgba(6,182,212,0.6)" stroke-width="2"
+                            marker-end="url(#arrowhead)" />
+
+                        <!-- Step 3 -->
+                        <rect x="100" y="260" width="500" height="90" rx="12" fill="rgba(167,139,250,0.15)"
+                            stroke="rgba(167,139,250,0.5)" stroke-width="2" />
+                        <text x="350" y="295" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Orbitron"
+                            font-size="15" font-weight="600">STEP 3: PROJECT POST-ACTION SPACE</text>
+                        <text x="350" y="320" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter"
+                            font-size="12" font-weight="300">Assess impact of action on each dimension</text>
+
+                        <!-- Arrow 3 -->
+                        <line x1="350" y1="350" x2="350" y2="380" stroke="rgba(6,182,212,0.6)" stroke-width="2"
+                            marker-end="url(#arrowhead)" />
+
+                        <!-- Step 4 -->
+                        <rect x="100" y="380" width="500" height="90" rx="12" fill="rgba(167,139,250,0.15)"
+                            stroke="rgba(167,139,250,0.5)" stroke-width="2" />
+                        <text x="350" y="415" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Orbitron"
+                            font-size="15" font-weight="600">STEP 4: CALCULATE RFD</text>
+                        <text x="350" y="440" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Inter"
+                            font-size="12" font-weight="300">Compare possibility space before and after action</text>
+
+                        <!-- Arrow 4 -->
+                        <line x1="350" y1="470" x2="350" y2="495" stroke="rgba(6,182,212,0.6)" stroke-width="2"
+                            marker-end="url(#arrowhead)" />
+
+                        <!-- Result -->
+                        <text x="350" y="512" text-anchor="middle" fill="rgba(245,158,11,1)" font-family="Orbitron"
+                            font-size="14" font-weight="600">RESULT: RFD VALUE + DIMENSIONAL ANALYSIS REPORT</text>
+
+                        <!-- Arrow marker definition -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                                <polygon points="0 0, 10 5, 0 10" fill="rgba(6,182,212,0.6)" />
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <h3 class="en-subsection-title">Dimensional Scoring</h3>
+                <div class="content-card">
+                    <p>Each dimension can be scored independently:</p>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula">RFD<sub>dimension i</sub>(a) = |P<sub>i,t+Δt</sub><sup>a</sup>| /
+                        |P<sub>i,t</sub>|</div>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-top: 1.5rem; font-size: 1rem;">Overall RFD is a
+                        weighted synthesis of dimensions:</p>
+                    <div class="formula" style="margin-top: 1rem;">RFD(a) = Σ w<sub>i</sub> · RFD<sub>dimension
+                            i</sub>(a)</div>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-top: 1rem; font-size: 1rem;">where w<sub>i</sub>
+                        is the weight of dimension i.</p>
+                </div>
+
+                <h3 class="en-subsection-title">Time Scales</h3>
+                <div class="content-card">
+                    <p>RFD assessment requires specifying a time scale:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Time Scale</th>
+                                <th>Applicable Scenarios</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Short-term (1-10 years)</td>
+                                <td>Specific policy assessment</td>
+                            </tr>
+                            <tr>
+                                <td>Medium-term (10-100 years)</td>
+                                <td>Technological pathway assessment</td>
+                            </tr>
+                            <tr>
+                                <td>Long-term (100-1000 years)</td>
+                                <td>Civilizational strategy assessment</td>
+                            </tr>
+                            <tr>
+                                <td>Deep Time (1000+ years)</td>
+                                <td>Existential risk assessment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">Case Studies (Conceptual)</h2>
+
+                <h3 class="en-subsection-title">Case 1: Open-Source AI vs. Closed AI</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Dimension</th>
+                                <th>Open-Source AI</th>
+                                <th>Closed AI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Technological Dimension</td>
+                                <td>RFD > 1 (multi-party innovation)</td>
+                                <td>RFD < 1 (technological concentration)</td>
+                            </tr>
+                            <tr>
+                                <td>Cognitive Dimension</td>
+                                <td>RFD > 1 (knowledge sharing)</td>
+                                <td>RFD < 1 (knowledge monopoly)</td>
+                            </tr>
+                            <tr>
+                                <td>Social Dimension</td>
+                                <td>RFD ≈ 1 (requires specific analysis)</td>
+                                <td>RFD < 1 (power concentration)</td>
+                            </tr>
+                            <tr>
+                                <td>Overall RFD</td>
+                                <td>Higher</td>
+                                <td>Lower</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Case 2: Fossil Fuels vs. Renewable Energy</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Dimension</th>
+                                <th>Fossil Fuels</th>
+                                <th>Renewable Energy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Material Dimension</td>
+                                <td>RFD < 1 (resource depletion)</td>
+                                <td>RFD ≈ 1 (sustainable)</td>
+                            </tr>
+                            <tr>
+                                <td>Biological Dimension</td>
+                                <td>RFD < 1 (climate impact)</td>
+                                <td>RFD ≈ 1 (minimal impact)</td>
+                            </tr>
+                            <tr>
+                                <td>Technological Dimension</td>
+                                <td>RFD < 1 (path lock-in)</td>
+                                <td>RFD > 1 (technological diversity)</td>
+                            </tr>
+                            <tr>
+                                <td>Overall RFD</td>
+                                <td>Lower</td>
+                                <td>Higher</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p><strong>Note:</strong> The above cases are simplified conceptual analyses. Actual assessments
+                        require more detailed data and modeling.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">Relationship with Other Metrics</h2>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Related Metric</th>
+                                <th>Relationship</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>UCS</td>
+                                <td>UCS determines which subjects' freedom needs to be included in RFD assessment</td>
+                            </tr>
+                            <tr>
+                                <td>CRV</td>
+                                <td>CRV assesses whether commitments to protect the space of possibilities are credible
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>CDI</td>
+                                <td>RFD is one of the core sub-dimensions of CDI</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA</td>
+                                <td>CSIA uses RFD at cosmic scales</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">Relationship with the Recursive Freedom Principle</h2>
+                <div class="content-card">
+                    <p>RFD is the operationalization of the Recursive Freedom Principle (RFP):</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Recursive Freedom Principle (Theory)</th>
+                                <th>Recursive Freedom Degree (Operation)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Must not systematically weaken others' conditions of freedom</td>
+                                <td>Actions with RFD < 1 require higher justification</td>
+                            </tr>
+                            <tr>
+                                <td>Protect the space of possibilities for future subjects</td>
+                                <td>RFD assessment covers long time scales</td>
+                            </tr>
+                            <tr>
+                                <td>Freedom is the stewardship of possibilities</td>
+                                <td>RFD quantifies the effect of "stewardship"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Decision Rules (Advisory)</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>RFD Result</th>
+                                <th>Recommended Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>RFD > 1</td>
+                                <td>Encourage, actively promote</td>
+                            </tr>
+                            <tr>
+                                <td>RFD ≈ 1</td>
+                                <td>Allow, routine review</td>
+                            </tr>
+                            <tr>
+                                <td>0.5 < RFD < 1</td>
+                                <td>Cautious, strengthen assessment and monitoring</td>
+                            </tr>
+                            <tr>
+                                <td>RFD < 0.5</td>
+                                <td>Highly cautious, requires full justification of necessity</td>
+                            </tr>
+                            <tr>
+                                <td>RFD → 0</td>
+                                <td>Approaching forbidden red lines, prohibited in principle</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="key-concepts-section">
+                <h2 class="en-section-title">Key Concepts Highlight</h2>
+                <div class="key-concepts-grid">
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Recursive Freedom Degree (RFD)</div>
+                            <div class="concept-desc">Quantitative metric for impact on space of possibilities</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Space of Possibilities</div>
+                            <div class="concept-desc">The set of choices available to future subjects</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Multidimensional Assessment</div>
+                            <div class="concept-desc">Six dimensions: material, technological, social, cognitive,
+                                biological, value</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Time Scales</div>
+                            <div class="concept-desc">Assessment span from short-term to deep time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-links">
+                <h3 class="en-subsection-title">Related Links</h3>
+                <div class="links-grid">
+                    <a href=" Metrics.html" class="link-item">
+                        <span class="link-text">Return to Metrics System Overview</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="UCS.html" class="link-item">
+                        <span class="link-text">Universal Consciousness Scale (UCS)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="CRV.html" class="link-item">
+                        <span class="link-text">Commitment Reversibility Verifiability (CRV)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href=" Recursive Freedom Principle.html" class="link-item">
+                        <span class="link-text">Recursive Freedom Principle</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="Applications.html" class="link-item">
+                        <span class="link-text">Application Domains</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">ICS</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Exploring the frontiers of civilization studies, from cosmic governance to
+                    inter-civilizational contact, providing theoretical guidance for humanity's interstellar future.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discipline</h4>
+                <a href="about.html">Overview</a>
+                <a href="index.html">Core Concepts</a>
+                <a href="Institutions.html">Methodology</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="Publication Information.html">Publications</a>
+                <a href="Resources.html">Reading List</a>
+                <a href="Resources.html">Glossary</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="Contact Us.html">Contact Us</a>
+                <a href=" Contact Us.html">franka@vip.sina.com</a>
+                <a href="Newsletter.html">Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 Interstellar Civilization Studies. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy-en.html">Privacy Policy</a>
+                <a href="terms-en.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        document.querySelector('.nav-search').addEventListener('click', () => {
+            alert('Search functionality coming soon');
+        });
+
+        let backToTopButton = null;
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                if (!backToTopButton) {
+                    backToTopButton = document.createElement('button');
+                    backToTopButton.innerHTML = '↑';
+                    backToTopButton.style.cssText = `
+                        position: fixed;
+                        bottom: 2rem;
+                        right: 2rem;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+                        color: white;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+                        z-index: 999;
+                        transition: all 0.3s ease;
+                        opacity: 0;
+                    `;
+                    backToTopButton.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    document.body.appendChild(backToTopButton);
+                }
+                backToTopButton.style.opacity = '1';
+            } else if (backToTopButton) {
+                backToTopButton.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+
+</html>

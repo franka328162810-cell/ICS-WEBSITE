@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 | 星际文明学</title>
+    <meta name="description" content="联系星际文明学团队，探讨学术合作、研究咨询或其他相关事宜">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-zh-sans: 'Noto Sans SC', sans-serif;
+            --font-zh-serif: 'Noto Serif SC', serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-zh-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-contact {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-zh-serif);
+            font-size: clamp(4rem, 5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.5;
+            letter-spacing: 0.3em
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.0;
+            text-align: left;
+            letter-spacing: 0.02em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-zh-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 12px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card-content {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+        }
+
+        .contact-card-content a {
+            color: var(--color-nebula-cyan);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .contact-card-content a:hover {
+            color: var(--color-nebula-cyan-light);
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-size: 1.2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(251, 191, 36, 0.08) 100%);
+            border-left: 4px solid var(--color-energy-gold);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            line-height: 1.9;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .contact-form {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            background: rgba(10, 22, 40, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-family: var(--font-zh-sans);
+            font-size: 1rem;
+            transition: all var(--transition-normal);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-quantum-purple-light);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            font-family: var(--font-zh-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.75rem;
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/Contact Us.html" class="lang-btn">EN</a>
+                    <a href="联系我们.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">联系我们</h1>
+                <div class="hero-intro-card">
+                    <p>欢迎与星际文明学团队取得联系。无论您是对学科理论感兴趣的研究者，希望探讨合作的机构，还是关注人类长期未来的思考者，我们都期待与您交流。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section id="contact-methods">
+                <h2 class="zh-section-title">联系方式</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <svg class="contact-icon" viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="32" r="30" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <path d="M16 22 L32 34 L48 22" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
+                            <rect x="16" y="22" width="32" height="20" rx="2" stroke="rgba(167,139,250,0.8)"
+                                stroke-width="2" fill="none" />
+                        </svg>
+                        <div class="contact-card-title">电子邮件</div>
+                        <div class="contact-card-content">
+                            <a href="mailto:franka@vip.sina.com">franka@vip.sina.com</a>
+                            <p style="margin-top: 1rem; font-size: 0.9375rem; color: rgba(255,255,255,0.6);">
+                                我们通常在48小时内回复邮件
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <svg class="contact-icon" viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="32" r="30" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <path d="M24 28 L32 36 L40 28" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
+                            <circle cx="32" cy="26" r="6" stroke="rgba(167,139,250,0.8)" stroke-width="2" fill="none" />
+                            <path d="M20 42 C20 36 24 32 32 32 C40 32 44 36 44 42" stroke="rgba(167,139,250,0.8)"
+                                stroke-width="2" fill="none" />
+                        </svg>
+                        <div class="contact-card-title">学术合作</div>
+                        <div class="contact-card-content">
+                            如您有意开展学术合作、联合研究或邀请讲座，请通过邮件详细说明合作意向和项目背景。
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <svg class="contact-icon" viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="32" r="30" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <rect x="20" y="24" width="24" height="16" rx="2" stroke="rgba(167,139,250,0.8)"
+                                stroke-width="2" fill="none" />
+                            <path d="M26 30 L38 30 M26 34 L34 34" stroke="rgba(6,182,212,1)" stroke-width="2" />
+                        </svg>
+                        <div class="contact-card-title">媒体咨询</div>
+                        <div class="contact-card-content">
+                            媒体采访、评论邀请或内容授权，请发送邮件说明具体需求和截稿时间。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="inquiry-types">
+                <h2 class="zh-section-title">咨询类型</h2>
+                <div class="content-card">
+                    <p><strong>我们欢迎以下类型的咨询：</strong></p>
+                    <ul>
+                        <li><strong>学术研究：</strong>关于星际文明学理论框架、方法论或具体应用的学术讨论</li>
+                        <li><strong>政策咨询：</strong>AI治理、太空治理、存在风险管理等领域的政策建议需求</li>
+                        <li><strong>教育培训：</strong>课程开发、教材编写、师资培训等教育合作</li>
+                        <li><strong>机构合作：</strong>研究机构、大学、智库、国际组织的合作意向</li>
+                        <li><strong>企业咨询：</strong>科技公司在长期影响评估、伦理审查方面的咨询需求</li>
+                        <li><strong>媒体合作：</strong>采访、专栏、内容授权等媒体相关事宜</li>
+                        <li><strong>公众交流：</strong>讲座邀请、科普活动、社区建设等</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="response-time">
+                <h2 class="zh-section-title">回复时效</h2>
+                <div class="content-card">
+                    <p>为了更好地服务每一位联系者，我们承诺：</p>
+                    <ul>
+                        <li><strong>一般咨询：</strong>48小时内回复</li>
+                        <li><strong>紧急事务：</strong>请在邮件主题中标注"紧急"，我们将优先处理</li>
+                        <li><strong>复杂项目：</strong>需要深入评估的合作项目，我们会在7个工作日内给予初步反馈</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem;">如果您在上述时间内未收到回复，可能是邮件被误判为垃圾邮件，请尝试重新发送或检查您的垃圾邮件文件夹。</p>
+                </div>
+            </section>
+
+            <section id="email-guidelines">
+                <h2 class="zh-section-title">邮件撰写建议</h2>
+                <div class="content-card">
+                    <p>为了帮助我们更快速、准确地理解您的需求，建议您在邮件中包含以下信息：</p>
+                    <ul>
+                        <li><strong>清晰的主题：</strong>简明扼要地说明邮件目的（如"学术合作咨询"、"政策建议需求"等）</li>
+                        <li><strong>自我介绍：</strong>您的姓名、所属机构、职位或身份</li>
+                        <li><strong>具体需求：</strong>详细描述您的咨询内容、合作意向或问题</li>
+                        <li><strong>背景信息：</strong>相关项目背景、时间安排、预期目标等</li>
+                        <li><strong>联系方式：</strong>除邮箱外的其他联系方式（可选）</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>提示：</strong>如果您的咨询涉及技术细节或需要参考文献，欢迎在邮件中附上相关材料。我们重视每一份认真的交流。</p>
+                </div>
+            </section>
+
+            <section id="contact-form">
+                <h2 class="zh-section-title">快速联系表单</h2>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">姓名 *</label>
+                        <input type="text" id="name" name="name" class="form-input" required placeholder="请输入您的姓名">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">电子邮箱 *</label>
+                        <input type="email" id="email" name="email" class="form-input" required
+                            placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="organization">所属机构</label>
+                        <input type="text" id="organization" name="organization" class="form-input"
+                            placeholder="大学、研究所、公司等（可选）">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="subject">咨询主题 *</label>
+                        <input type="text" id="subject" name="subject" class="form-input" required
+                            placeholder="简要说明您的咨询目的">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">详细信息 *</label>
+                        <textarea id="message" name="message" class="form-textarea" required
+                            placeholder="请详细描述您的需求、问题或合作意向..."></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">发送消息</button>
+                </form>
+
+                <div class="highlight-box" style="margin-top: 2rem;">
+                    <p><strong>注意：</strong>此表单将直接发送至 franka@vip.sina.com。提交前请确认信息准确无误。我们承诺保护您的个人信息，不会用于其他用途。</p>
+                </div>
+            </section>
+
+            <section id="faq">
+                <h2 class="zh-section-title">常见问题</h2>
+                <div class="content-card">
+                    <p><strong>Q: 我可以直接访问你们的办公室吗？</strong></p>
+                    <p>A: 目前我们主要通过电子邮件进行交流。如需面对面会议，请提前通过邮件预约。</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Q: 你们提供付费咨询服务吗？</strong></p>
+                    <p>A: 我们为学术机构、政府部门和非营利组织提供免费咨询。商业咨询服务请通过邮件详询。</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Q: 我是学生，可以申请实习或研究机会吗？</strong></p>
+                    <p>A: 我们欢迎优秀学生加入。请发送简历、研究兴趣说明和导师推荐信至邮箱。</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Q: 如何获取《星际文明学》著作？</strong></p>
+                    <p>A: 请访问我们的<a href="出版信息.html"
+                            style="color: var(--color-nebula-cyan); text-decoration: none;">出版物页面</a>
+                        了解购买渠道和电子版下载信息。
+                    </p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Q: 你们接受捐赠或资助吗？</strong></p>
+                    <p>A: 我们欢迎支持星际文明学发展的资助。具体事宜请通过邮件联系讨论。</p>
+                </div>
+            </section>
+
+            <section id="social-media">
+                <h2 class="zh-section-title">关注我们</h2>
+                <div class="content-card">
+                    <p>除了电子邮件，您还可以通过以下方式了解星际文明学的最新动态：</p>
+                    <ul>
+                        <li><strong>学术论文：</strong>关注我们在Nature、Science等期刊发表的研究成果</li>
+                        <li><strong>新闻动态：</strong>访问我们的<a href="每日热点评论.html"
+                                style="color: var(--color-nebula-cyan); text-decoration: none;">新闻页面</a>
+                            获取最新进展
+                        </li>
+                        <li><strong>AI助手：</strong>使用我们的<a href="AI助手.html"
+                                style="color: var(--color-nebula-cyan); text-decoration: none;">AI助手</a>
+                            进行即时咨询
+                        </li>
+                        <li><strong>学术会议：</strong>参加我们举办的国际星际文明学大会和研讨会</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const organization = document.getElementById('organization').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Construct mailto link
+            const mailtoLink = `mailto:franka@vip.sina.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+                `姓名: ${name}\n` +
+                `邮箱: ${email}\n` +
+                `机构: ${organization || '未提供'}\n\n` +
+                `详细信息:\n${message}`
+            )}`;
+
+            // Open default email client
+            window.location.href = mailtoLink;
+
+            // Show confirmation message
+            alert('正在打开您的邮件客户端...\n\n如果未自动打开，请手动发送邮件至：franka@vip.sina.com');
+        });
+
+        // Card hover animation
+        const cards = document.querySelectorAll('.contact-card, .content-card');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+
+</html>

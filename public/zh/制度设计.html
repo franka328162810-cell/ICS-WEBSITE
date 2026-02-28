@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>制度设计 | 星际文明学</title>
+    <meta name="description"
+        content="星际文明学发展了一套独特的制度设计方法论——协议栈方法论。它借鉴计算机网络协议的分层架构,将治理体系分为五个层次,既保持基础原则的稳定性,又允许操作层面的灵活演化。">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        /* ==========================================CSS Variables========================================== */
+        :root {
+            /* Color System */
+            --color-deep-space: #0a1628;
+            --color-space-mid: #1a2a4a;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+
+            /* Text Colors */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-tertiary: rgba(255, 255, 255, 0.6);
+
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+
+            /* Typography */
+            --font-cn-sans: 'Noto Sans SC', sans-serif;
+            --font-cn-serif: 'Noto Serif SC', serif;
+            --font-en-body: 'Inter', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /* ==========================================
+           Reset & Base Styles
+           ========================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-cn-sans);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           Navigation
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-xl);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-brand:hover {
+            transform: translateX(4px);
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-family: var(--font-en-body);
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-cn-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--color-text-primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ==========================================
+           Page Hero
+           ========================================== */
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: var(--space-3xl) var(--space-xl);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .zh-page-title {
+            font-family: var(--font-cn-serif);
+            font-size: clamp(4rem, 5vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-family: var(--font-cn-sans);
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            margin: 0;
+            letter-spacing: 0.03em;
+        }
+
+        /* ==========================================
+           Main Content
+           ========================================== */
+        .main-content {
+            flex: 1;
+            padding: var(--space-3xl) 0;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-cn-serif);
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--color-energy-gold);
+            margin-bottom: var(--space-lg);
+            margin-top: var(--space-2xl);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-family: var(--font-cn-sans);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 1.5rem 0;
+        }
+
+        .content-card li {
+            font-family: var(--font-cn-sans);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            text-align: left;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           Modern Table Styles
+           ========================================== */
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-cn-serif);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+            width: 30%;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-family: var(--font-cn-sans);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-cn-serif);
+            font-weight: 500;
+            color: var(--color-energy-gold);
+            padding-left: 2.5rem;
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background var(--transition-fast);
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        /* ==========================================
+           Protocol Stack Diagram (SVG)
+           ========================================== */
+        .protocol-stack-diagram {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+        }
+
+        .stack-layer {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            border: 2px solid;
+            transition: all var(--transition-normal);
+        }
+
+        .stack-layer:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 16px rgba(167, 139, 250, 0.3);
+        }
+
+        .stack-layer-l4 {
+            background: rgba(34, 211, 238, 0.1);
+            border-color: var(--color-nebula-cyan);
+        }
+
+        .stack-layer-l3 {
+            background: rgba(167, 139, 250, 0.1);
+            border-color: var(--color-quantum-purple-light);
+        }
+
+        .stack-layer-l2 {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: var(--color-energy-gold);
+        }
+
+        .stack-layer-l1 {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+        }
+
+        .stack-layer-l0 {
+            background: rgba(156, 163, 175, 0.1);
+            border-color: #9ca3af;
+        }
+
+        .stack-layer-label {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            min-width: 140px;
+            color: var(--color-text-primary);
+        }
+
+        .stack-layer-content {
+            flex: 1;
+            font-family: var(--font-cn-sans);
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0 1.5rem;
+        }
+
+        .stack-layer-stability {
+            font-family: var(--font-cn-sans);
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            min-width: 100px;
+            text-align: right;
+        }
+
+        /* ==========================================
+           Concept Highlights
+           ========================================== */
+        .concept-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .concept-item {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .concept-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-item-title {
+            font-family: var(--font-cn-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-item-desc {
+            font-family: var(--font-cn-sans);
+            font-size: 0.8125rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ==========================================
+           Related Links
+           ========================================== */
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-family: var(--font-cn-sans);
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: var(--space-3xl) 0 var(--space-xl);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-family: var(--font-en-body);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-cn-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: var(--space-sm);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-xl) 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        /* ==========================================
+           Responsive Design
+           ========================================== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
+            }
+
+            .zh-section-title {
+                font-size: 1.75rem;
+                letter-spacing: 0.1em;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xl);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+
+            .concept-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stack-layer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .stack-layer-label {
+                min-width: auto;
+            }
+
+            .stack-layer-content {
+                padding: 0;
+            }
+
+            .stack-layer-stability {
+                min-width: auto;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 4rem var(--space-md) 2rem;
+            }
+
+            .container {
+                padding: 0 var(--space-md);
+            }
+        }
+    </style>
+</head>
+
+<body data-page="institutional-design" data-lang="zh">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/Institutions.html" class="lang-btn">EN</a>
+                    <a href="制度设计.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">制度设计:协议栈方法论</h1>
+                <div class="hero-intro-card">
+                    <p>星际文明学发展了一套独特的制度设计方法论——协议栈方法论。它借鉴计算机网络协议的分层架构,将治理体系分为五个层次,既保持基础原则的稳定性,又允许操作层面的灵活演化,特别适合应对深不确定性和长时间尺度的治理挑战。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 协议栈方法论概述 -->
+            <section>
+                <h2 class="zh-section-title">协议栈方法论概述</h2>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">什么是协议栈方法论?</h3>
+                    <p>协议栈方法论借鉴了计算机网络协议(如TCP/IP)的分层架构思想,将治理体系设计为多层结构:</p>
+                    <ul>
+                        <li>不同层次有不同的稳定性要求</li>
+                        <li>高层依赖低层,低层独立于高层</li>
+                        <li>支持分层演化和版本管理</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">为什么需要协议栈?</h3>
+                    <p>传统治理体系面临的挑战:</p>
+                    <div class="modern-table-container">
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>挑战</th>
+                                    <th>传统问题</th>
+                                    <th>协议栈方案</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>刚性</td>
+                                    <td>难以适应变化</td>
+                                    <td>分层灵活性</td>
+                                </tr>
+                                <tr>
+                                    <td>脆弱性</td>
+                                    <td>局部变化影响整体</td>
+                                    <td>分层解耦</td>
+                                </tr>
+                                <tr>
+                                    <td>短期性</td>
+                                    <td>难以跨代际持续</td>
+                                    <td>版本化演进</td>
+                                </tr>
+                                <tr>
+                                    <td>不可逆性</td>
+                                    <td>错误难以纠正</td>
+                                    <td>回滚机制</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 五层架构 -->
+            <section>
+                <h2 class="zh-section-title">五层架构</h2>
+
+                <div class="content-card">
+                    <p>协议栈包含五个层次:</p>
+                    <div class="protocol-stack-diagram">
+                        <div class="stack-layer stack-layer-l4">
+                            <div class="stack-layer-label">L₄ 操作规程层</div>
+                            <div class="stack-layer-content">具体程序、技术标准</div>
+                            <div class="stack-layer-stability">灵活修订</div>
+                        </div>
+                        <div class="stack-layer stack-layer-l3">
+                            <div class="stack-layer-label">L₃ 制度框架层</div>
+                            <div class="stack-layer-content">审裁机制、评估体系</div>
+                            <div class="stack-layer-stability">可修订</div>
+                        </div>
+                        <div class="stack-layer stack-layer-l2">
+                            <div class="stack-layer-label">L₂ 规范原则层</div>
+                            <div class="stack-layer-content">RFP、NRP、REV</div>
+                            <div class="stack-layer-stability">高门槛修订</div>
+                        </div>
+                        <div class="stack-layer stack-layer-l1">
+                            <div class="stack-layer-label">L₁ 本体承诺层</div>
+                            <div class="stack-layer-content">新三观的核心命题</div>
+                            <div class="stack-layer-stability">极难修订</div>
+                        </div>
+                        <div class="stack-layer stack-layer-l0">
+                            <div class="stack-layer-label">L₀ 物理约束层</div>
+                            <div class="stack-layer-content">热力学定律、因果结构</div>
+                            <div class="stack-layer-stability">不可修订</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">层次说明</h3>
+                    <div class="modern-table-container">
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>层次</th>
+                                    <th>内容</th>
+                                    <th>修订难度</th>
+                                    <th>时间尺度</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>L₀ 物理约束层</td>
+                                    <td>热力学定律、因果结构、信息约束</td>
+                                    <td>不可修订</td>
+                                    <td>永恒</td>
+                                </tr>
+                                <tr>
+                                    <td>L₁ 本体承诺层</td>
+                                    <td>新三观的核心命题</td>
+                                    <td>极难修订</td>
+                                    <td>世纪</td>
+                                </tr>
+                                <tr>
+                                    <td>L₂ 规范原则层</td>
+                                    <td>递归自由原则、负熵责任原则、可逆性原则</td>
+                                    <td>高门槛</td>
+                                    <td>数十年</td>
+                                </tr>
+                                <tr>
+                                    <td>L₃ 制度框架层</td>
+                                    <td>多智能审裁院、跨代信托、指标体系</td>
+                                    <td>可修订</td>
+                                    <td>年度</td>
+                                </tr>
+                                <tr>
+                                    <td>L₄ 操作规程层</td>
+                                    <td>具体程序、技术标准、操作指南</td>
+                                    <td>灵活</td>
+                                    <td>随时</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心制度设计 -->
+            <section>
+                <h2 class="zh-section-title">核心制度设计</h2>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">多智能审裁院(MIAC)</h3>
+                    <p><strong>功能:</strong>跨基质主体争端的裁决机构</p>
+                    <p><strong>特点:</strong></p>
+                    <ul>
+                        <li>容纳人类、AI、可能的外星智慧代表</li>
+                        <li>基于规范原则进行裁决</li>
+                        <li>决定具有约束力</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">宇宙级IRB(CIRB)</h3>
+                    <p><strong>功能:</strong>重大行动的伦理审查机构</p>
+                    <p><strong>特点:</strong></p>
+                    <ul>
+                        <li>审查具有宇宙尺度影响的行动</li>
+                        <li>基于CSIA指标进行评估</li>
+                        <li>有权否决或要求修改</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">跨代信托(IGT)</h3>
+                    <p><strong>功能:</strong>代表未来主体利益的制度安排</p>
+                    <p><strong>特点:</strong></p>
+                    <ul>
+                        <li>为未来主体设立"代理人"</li>
+                        <li>保护长期利益不被短期利益牺牲</li>
+                        <li>管理跨代际资源和承诺</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 版本化治理与回滚 -->
+            <section>
+                <h2 class="zh-section-title">版本化治理与回滚</h2>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">版本化治理</h3>
+                    <p>协议栈支持制度的版本化管理:</p>
+                    <ul>
+                        <li>每次修订产生新版本</li>
+                        <li>保留版本历史</li>
+                        <li>清晰的版本号和变更日志</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">回滚机制</h3>
+                    <p>在必要时,可以回退到先前版本:</p>
+                    <ul>
+                        <li>明确的回滚条件和程序</li>
+                        <li>保留回滚所需的状态信息</li>
+                        <li>回滚后的过渡安排</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">向下兼容</h3>
+                    <p>高层修订不得违反低层约束:</p>
+                    <ul>
+                        <li>L₄修订不得违反L₃框架</li>
+                        <li>L₃修订不得违反L₂原则</li>
+                        <li>以此类推</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 方法论特征 -->
+            <section>
+                <h2 class="zh-section-title">方法论特征</h2>
+
+                <div class="content-card">
+                    <div class="modern-table-container">
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>特征</th>
+                                    <th>描述</th>
+                                    <th>优势</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>分层解耦</td>
+                                    <td>不同层次相对独立</td>
+                                    <td>降低系统复杂性</td>
+                                </tr>
+                                <tr>
+                                    <td>差异稳定性</td>
+                                    <td>不同层次有不同的稳定性要求</td>
+                                    <td>兼顾稳定与灵活</td>
+                                </tr>
+                                <tr>
+                                    <td>版本管理</td>
+                                    <td>支持制度的版本化演进</td>
+                                    <td>有序变化</td>
+                                </tr>
+                                <tr>
+                                    <td>回滚机制</td>
+                                    <td>允许必要时回退</td>
+                                    <td>可逆性保障</td>
+                                </tr>
+                                <tr>
+                                    <td>向下兼容</td>
+                                    <td>高层修订受低层约束</td>
+                                    <td>保护核心原则</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 关键概念高亮 -->
+            <section>
+                <h2 class="zh-section-title">关键概念高亮</h2>
+
+                <div class="concept-highlights">
+                    <div class="concept-item">
+                        <div class="concept-item-title">协议栈方法论</div>
+                        <div class="concept-item-desc">分层治理架构</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">五层架构</div>
+                        <div class="concept-item-desc">L₀到L₄的层次结构</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">版本化治理</div>
+                        <div class="concept-item-desc">制度的版本管理</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">回滚机制</div>
+                        <div class="concept-item-desc">可逆性的制度保障</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">多智能审裁院</div>
+                        <div class="concept-item-desc">跨基质争端裁决</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 相关链接 -->
+            <div class="related-links">
+                <h3 class="zh-subsection-title">相关链接</h3>
+                <div class="links-grid">
+                    <a href="规范原则.html" class="link-item">
+                        <span class="link-text">规范原则</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="指标体系.html" class="link-item">
+                        <span class="link-text">指标体系</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="应用领域概述.html" class="link-item">
+                        <span class="link-text">应用领域</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation Scroll Effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.remove('scrolled');
+                return;
+            }
+
+            navbar.classList.add('scrolled');
+
+            if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.add('scroll-down');
+            } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-down');
+                navbar.classList.add('scroll-up');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for Fade-in Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Search Button Placeholderdocument.querySelector('.nav-search').addEventListener('click', function () {
+        alert('搜索功能即将推出');
+        });
+
+        // Table Row Highlight
+        document.querySelectorAll('.modern-table tbody tr').forEach(row => {
+            row.addEventListener('click', function () {
+                document.querySelectorAll('.modern-table tbody tr').forEach(r => {
+                    r.style.background = '';
+                });
+                this.style.background = 'rgba(167, 139, 250, 0.1)';
+            });
+        });
+
+        // Protocol Stack Layer Hover Effect
+        document.querySelectorAll('.stack-layer').forEach(layer => {
+            layer.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateX(12px) scale(1.02)';
+            });
+            layer.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateX(0) scale(1)';
+            });
+        });
+
+        // Console Log for Development
+        console.log('%c星际文明学网站', 'color: #7c3aed; font-size: 20px; font-weight: bold;');
+        console.log('%c制度设计页面已加载', 'color: #06b6d4; font-size: 14px;');
+    </script>
+</body>
+
+</html>

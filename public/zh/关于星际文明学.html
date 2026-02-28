@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于星际文明学 | 星际文明学</title>
+    <meta name="description" content="星际文明学是一门面向宇宙尺度的跨学科学术领域。它不仅关注遥远的星际未来，更为当下人类面临的AI治理、太空探索、存在风险等紧迫问题提供规范性框架。">
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        /* ==========================================
+           CSS Variables
+           ========================================== */
+        :root {
+            /* Color System */
+            --color-deep-space: #0a1628;
+            --color-space-mid: #1a2a4a;
+            --color-deep-purple: #1e1b4b;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e2e8f0;
+            --color-text-muted: #94a3b8;
+
+            /* Transparency Variables */
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-bg-hover: rgba(255, 255, 255, 0.05);
+            --glass-border-hover: rgba(167, 139, 250, 0.3);
+
+            /* Chinese Fonts */
+            --font-cn-serif: 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif;
+            --font-cn-sans: 'Noto Sans SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+            /* English Fonts */
+            --font-en-display: 'Orbitron', sans-serif;
+            --font-en-title: 'Space Grotesk', sans-serif;
+            --font-en-body: 'Inter', sans-serif;
+            --font-en-quote: 'Playfair Display', serif;
+
+            /* Border Radius System */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+
+            /* Shadow System */
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 4px 20px rgba(124, 58, 237, 0.4);
+            --shadow-glow-hover: 0 8px 35px rgba(124, 58, 237, 0.5);
+
+            /* Animation Duration */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.4s ease;
+
+            /* Spacing System */
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 5rem;
+            --space-5xl: 6rem;
+        }
+
+        /* ==========================================
+           Reset Styles
+           ========================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-cn-sans);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==========================================
+           Layout Containers
+           ========================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        /* ==========================================
+           Navigation Styles
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+            transition: all var(--transition-slow);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.92);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-family: var(--font-en-body);
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: var(--font-cn-serif);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .nav-search {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .nav-search svg {
+            width: 18px;
+            height: 18px;
+            stroke: rgba(255, 255, 255, 0.7);
+        }
+
+        .lang-switch {
+            display: flex;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-md);
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .lang-btn {
+            font-family: var(--font-en-body);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn:hover {
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+        }
+
+        .nav-contact {
+            font-family: var(--font-en-body);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            height: 42px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow-hover);
+        }
+
+        /* ==========================================
+           Page Hero Section
+           ========================================== */
+        .page-hero {
+            position: relative;
+            padding: 9rem var(--space-xl) 6rem;
+            background: linear-gradient(180deg, var(--color-deep-space) 0%, var(--color-space-mid) 100%);
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-cn-serif);
+            font-size: clamp(4.5rem, 5.5vw, 5rem);
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-family: var(--font-cn-sans);
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            margin: 0;
+            letter-spacing: 0.03em;
+        }
+
+        /* ==========================================
+           Background Effects
+           ========================================== */
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: nebulaPulse 8s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: 4s;
+        }
+
+        @keyframes nebulaPulse {
+
+            0%,
+            100% {
+                opacity: 0.12;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.2;
+                transform: scale(1.1);
+            }
+        }
+
+        /* ==========================================
+           Main Content Area
+           ========================================== */
+        .main-content {
+            padding: var(--space-5xl) 0;
+        }
+
+        .section-title {
+            font-family: var(--font-cn-serif);
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subsection-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--color-energy-gold);
+            margin-bottom: var(--space-lg);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        /* ==========================================
+           Card Components
+           ========================================== */
+        .content-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(167, 139, 250, 0.3);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+        }
+
+        .content-card p {
+            font-family: var(--font-cn-sans);
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================
+           Modern Table Styles (世界顶级学术网站风格)
+           ========================================== */
+        .modern-table-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 0;
+            margin: var(--space-2xl) 0;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .modern-table-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table thead {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.1));
+        }
+
+        .modern-table th {
+            font-family: var(--font-cn-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-quantum-purple-light);
+            padding: var(--space-lg) var(--space-xl);
+            text-align: left;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid rgba(124, 58, 237, 0.3);
+            position: relative;
+        }
+
+        .modern-table th:first-child {
+            padding-left: var(--space-2xl);
+        }
+
+        .modern-table tbody tr {
+            transition: all var(--transition-normal);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(124, 58, 237, 0.08);
+            transform: translateX(4px);
+        }
+
+        .modern-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .modern-table td {
+            font-family: var(--font-cn-sans);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            padding: var(--space-lg) var(--space-xl);
+            text-align: left;
+            letter-spacing: 0.03em;
+            line-height: 1.8;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-cn-serif);
+            font-weight: 500;
+            color: var(--color-energy-gold);
+            padding-left: var(--space-2xl);
+        }
+
+        .modern-table tbody tr td:first-child::before {
+            content: '';
+            position: absolute;
+            left: var(--space-lg);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--color-quantum-purple-light);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .modern-table tbody tr:hover td:first-child::before {
+            opacity: 1;
+        }
+
+        /* ==========================================
+           Modern Framework Diagram (SVG图形化)
+           ========================================== */
+        .framework-visual-container {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(124, 58, 237, 0.05));
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-4xl) var(--space-3xl);
+            margin: var(--space-3xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .framework-visual-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-nebula-cyan), var(--color-quantum-purple));
+        }
+
+        .framework-visual {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .framework-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            position: relative;
+            transition: all var(--transition-normal);
+        }
+
+        .framework-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .framework-box:hover::before {
+            opacity: 1;
+        }
+
+        .framework-box:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.2);
+        }
+
+        .framework-box-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-quantum-purple-light);
+            margin-bottom: var(--space-md);
+            letter-spacing: 0.08em;
+            text-align: center;
+        }
+
+        .framework-box-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .framework-box-item {
+            font-family: var(--font-cn-sans);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.75);
+            padding-left: var(--space-lg);
+            position: relative;
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+        }
+
+        .framework-box-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 6px;
+            height: 6px;
+            background: var(--color-nebula-cyan);
+            border-radius: 50%;
+        }
+
+        .framework-scales {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+
+        .framework-scale {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.15);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .framework-scale:hover {
+            background: rgba(6, 182, 212, 0.1);
+            border-color: rgba(6, 182, 212, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .framework-scale-label {
+            font-family: var(--font-cn-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-nebula-cyan);
+            margin-bottom: var(--space-sm);
+            letter-spacing: 0.05em;
+        }
+
+        .framework-scale-value {
+            font-family: var(--font-cn-sans);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+        }
+
+        .framework-scale-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan-light);
+            margin: var(--space-sm) 0;
+        }
+
+        /* ==========================================
+           Mission Quote Card
+           ========================================== */
+        .mission-quote-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(124, 58, 237, 0.1));
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            margin: var(--space-3xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-quote-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-energy-gold), var(--color-energy-gold-light));
+        }
+
+        .mission-quote {
+            font-family: var(--font-cn-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            text-align: center;
+            margin-bottom: 0;
+            letter-spacing: 0.15em;
+            padding: 0 var(--space-xl);
+        }
+
+        /* ==========================================
+           Concept Highlights
+           ========================================== */
+        .concept-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .concept-item {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-lg);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .concept-item:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(6, 182, 212, 0.2));
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        .concept-item-title {
+            font-family: var(--font-cn-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-quantum-purple-light);
+            letter-spacing: 0.05em;
+        }
+
+        .concept-item-desc {
+            font-family: var(--font-cn-sans);
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: var(--space-xs);
+            font-weight: 300;
+            letter-spacing: 0.03em;
+        }
+
+        /* ==========================================
+           Related Links
+           ========================================== */
+        .related-links {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: var(--space-3xl);
+            margin-top: var(--space-4xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .related-links::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .link-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg) var(--space-xl);
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: all var(--transition-normal);
+            font-family: var(--font-cn-sans);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            gap: var(--space-xs);
+        }
+
+        .link-item:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.4);
+            transform: translateY(-2px);
+            color: var(--color-text-primary);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        .link-text {
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+        }
+
+        .link-arrow {
+            font-size: 1.2rem;
+            color: var(--color-quantum-purple-light);
+        }
+
+        /* ==========================================
+           Footer Styles
+           ========================================== */
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .footer-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-family: var(--font-en-body);
+            font-size: 0.625rem;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-desc {
+            font-family: var(--font-cn-sans);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 2.0;
+            max-width: 320px;
+            letter-spacing: 0.03em;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-cn-sans);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: var(--font-cn-sans);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            padding: var(--space-xs) 0;
+            transition: all var(--transition-normal);
+            letter-spacing: 0.03em;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: var(--space-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .footer-copyright {
+            font-family: var(--font-cn-sans);
+            font-size: 0.8125rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.03em;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-links a {
+            font-family: var(--font-cn-sans);
+            font-size: 0.8125rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            letter-spacing: 0.03em;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        /* ==========================================
+           Responsive Design
+           ========================================== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .framework-visual {
+                grid-template-columns: 1fr;
+            }
+
+            .framework-scales {
+                grid-template-columns: 1fr;
+            }
+
+            .concept-highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+
+            .navbar.scrolled {
+                height: 56px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-contact {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 8rem var(--space-lg) 4rem;
+                min-height: 60vh;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+            }
+
+            .hero-intro-card {
+                padding: var(--space-xl);
+            }
+
+            .hero-intro-card p {
+                font-size: 1.125rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .subsection-title {
+                font-size: 1.25rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: var(--space-md) var(--space-lg);
+                font-size: 0.875rem;
+            }
+
+            .modern-table th:first-child,
+            .modern-table td:first-child {
+                padding-left: var(--space-lg);
+            }
+
+            .framework-visual-container {
+                padding: var(--space-2xl) var(--space-lg);
+            }
+
+            .concept-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                align-items: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .container {
+                padding: 0 var(--space-lg);
+            }
+
+            .content-card,
+            .modern-table-container,
+            .framework-visual-container,
+            .mission-quote-card,
+            .related-links {
+                padding: var(--space-lg);
+            }
+
+            .mission-quote {
+                font-size: 1.25rem;
+                letter-spacing: 0.1em;
+                padding: 0 var(--space-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 6rem var(--space-md) 3rem;
+            }
+
+            .zh-page-title {
+                font-size: 1.75rem;
+                letter-spacing: 0.1em;
+            }
+
+            .hero-intro-card p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 var(--space-md);
+            }
+
+            .content-card,
+            .modern-table-container,
+            .framework-visual-container,
+            .mission-quote-card,
+            .related-links {
+                padding: var(--space-md);
+            }
+        }
+    </style>
+</head>
+
+<body data-page="about" data-lang="zh">
+    <!-- ========================================== 
+         Navigation
+         ========================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/about.html" class="lang-btn">EN</a>
+                    <a href="关于星际文明学.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================== 
+         Page Hero Section
+         ========================================== -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">关于星际文明学</h1>
+                <div class="hero-intro-card">
+                    <p>星际文明学是一门面向宇宙尺度的跨学科学术领域。它不仅关注遥远的星际未来，更为当下人类面临的AI治理、太空探索、存在风险等紧迫问题提供规范性框架。本页将系统介绍这门新兴学科的定义、背景与研究范围。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== 
+         Main Content Area
+         ========================================== -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 学科定义 -->
+            <section>
+                <h2 class="section-title">学科定义</h2>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">核心定义</h3>
+                    <p>星际文明学（Interstellar Civilization Studies, ICS）是一门研究智慧生命在宇宙尺度上的存在、发展、治理与规范性问题的跨学科学术领域。</p>
+                    <p>它以"新三观"（新宇宙观、新生命观、新认知观）为理论基础，以"宇宙责任伦理学"为规范框架，以"协议栈方法论"为制度设计工具，旨在为人类文明的长期存续、星际扩展以及可能的跨文明接触提供系统的理论指导和实践方案。
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">学科性质</h3>
+                    <div class="modern-table-container">
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>维度</th>
+                                    <th>界定</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>学科类型</td>
+                                    <td>跨学科综合性学科</td>
+                                </tr>
+                                <tr>
+                                    <td>知识性质</td>
+                                    <td>理论与应用并重</td>
+                                </tr>
+                                <tr>
+                                    <td>研究取向</td>
+                                    <td>规范性与描述性结合</td>
+                                </tr>
+                                <tr>
+                                    <td>时间尺度</td>
+                                    <td>长期主义取向（百年至万年）</td>
+                                </tr>
+                                <tr>
+                                    <td>空间尺度</td>
+                                    <td>行星至星际尺度</td>
+                                </tr>
+                                <tr>
+                                    <td>主体范围</td>
+                                    <td>多元主体（人类、AI、可能的外星智慧）</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">英文名称说明</h3>
+                    <p>"Interstellar Civilization Studies"作为标准英文译名，遵循学术命名规范：</p>
+                    <p>- Interstellar（星际的）：源自拉丁语 inter（之间）+ stellar（恒星的）</p>
+                    <p>- Civilization（文明）：源自拉丁语 civilis（公民的）</p>
+                    <p>- Studies（研究）：表明这是一个跨学科研究领域，而非单一学科</p>
+                </div>
+            </section>
+
+            <!-- 学科产生的背景 -->
+            <section>
+                <h2 class="section-title">学科产生的背景</h2>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">技术背景</h3>
+                    <p>人类正处于技术发展的关键转折点：</p>
+                    <p>- 人工智能正在快速发展，可能在本世纪内达到通用人工智能（AGI）</p>
+                    <p>- 太空技术使行星际旅行成为现实，星际旅行的可能性日益增加</p>
+                    <p>- 生物技术带来了改造生命的能力，包括基因编辑、合成生物学</p>
+                    <p>- 信息技术创造了全球互联的信息空间，深刻改变了人类的认知和社会组织</p>
+                    <p>这些技术发展不仅带来了前所未有的机遇，也带来了存在风险——可能导致人类文明终结或永久衰退的风险。</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">认知背景</h3>
+                    <p>人类的认知能力正面临深刻挑战：</p>
+                    <p>- 深不确定性：许多关键决策涉及结果、概率、效用均不可确定的情境</p>
+                    <p>- 时间尺度错配：人类进化形成的认知能力难以把握超越数十年的时间尺度</p>
+                    <p>- 复杂性爆炸：全球化和技术发展带来的系统复杂性超越了传统分析方法的能力</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">治理背景</h3>
+                    <p>现有治理体系面临根本性挑战：</p>
+                    <p>- 国际体系：以民族国家为单位的治理体系难以应对全球性和跨代际问题</p>
+                    <p>- 时间视野：政治周期的短期性与技术影响的长期性之间存在根本张力</p>
+                    <p>- 主体扩展：如何将AI和可能的外星智慧纳入治理框架缺乏理论资源</p>
+                </div>
+            </section>
+
+            <!-- 学科的研究范围 -->
+            <section>
+                <h2 class="section-title">学科的研究范围</h2>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">研究范围框架</h3>
+                    <p>星际文明学的研究范围涵盖三个层次：</p>
+                </div>
+
+                <div class="framework-visual-container">
+                    <div class="framework-visual">
+                        <div class="framework-box">
+                            <div class="framework-box-title">基础理论研究</div>
+                            <div class="framework-box-items">
+                                <div class="framework-box-item">本体论研究</div>
+                                <div class="framework-box-item">认识论研究</div>
+                                <div class="framework-box-item">规范性研究</div>
+                            </div>
+                        </div>
+                        <div class="framework-box">
+                            <div class="framework-box-title">应用研究</div>
+                            <div class="framework-box-items">
+                                <div class="framework-box-item">指标体系</div>
+                                <div class="framework-box-item">制度设计</div>
+                                <div class="framework-box-item">风险评估</div>
+                            </div>
+                        </div>
+                        <div class="framework-box">
+                            <div class="framework-box-title">实践指导</div>
+                            <div class="framework-box-items">
+                                <div class="framework-box-item">政策建议</div>
+                                <div class="framework-box-item">治理方案</div>
+                                <div class="framework-box-item">技术标准</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="framework-scales">
+                        <div class="framework-scale">
+                            <div class="framework-scale-label">时间尺度</div>
+                            <div class="framework-scale-arrow">←→</div>
+                            <div class="framework-scale-value">当代 至 万年尺度</div>
+                        </div>
+                        <div class="framework-scale">
+                            <div class="framework-scale-label">空间尺度</div>
+                            <div class="framework-scale-arrow">←→</div>
+                            <div class="framework-scale-value">地球 至 星际尺度</div>
+                        </div>
+                        <div class="framework-scale">
+                            <div class="framework-scale-label">主体范围</div>
+                            <div class="framework-scale-arrow">←→</div>
+                            <div class="framework-scale-value">人类 至 多元智慧主体</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">核心研究领域</h3>
+                    <p>- 基础理论研究：新三观的哲学论证、宇宙责任伦理学的规范性推导</p>
+                    <p>- 应用研究：AI治理框架、太空治理方案、存在风险评估</p>
+                    <p>- 制度设计：协议栈方法论、多智能审裁院、跨代信托机制</p>
+                    <p>- 指标体系：宇宙意识标度（UCS）、递归自由度（RFD）等六大指标</p>
+                </div>
+            </section>
+
+            <!-- 学科使命 -->
+            <section>
+                <h2 class="section-title">学科使命</h2>
+
+                <div class="content-card">
+                    <p>星际文明学的使命是：</p>
+                    <p>在深不确定性的条件下，为智慧生命在宇宙中的长期繁荣提供规范性指导，保护和扩展未来主体的可能性空间，促进多元智慧形式的和平共存，并为当代人类文明面临的重大治理挑战提供理论资源和实践方案。</p>
+                    <p>用一句格言概括：</p>
+                </div>
+
+                <div class="mission-quote-card">
+                    <p class="mission-quote">"自由是对可能性的看护"</p>
+                </div>
+            </section>
+
+            <!-- 关键概念高亮 -->
+            <section>
+                <h2 class="section-title">关键概念高亮</h2>
+
+                <div class="concept-highlights">
+                    <div class="concept-item">
+                        <div class="concept-item-title">星际文明学（ICS）</div>
+                        <div class="concept-item-desc">学科名称</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">新三观</div>
+                        <div class="concept-item-desc">理论基础</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">宇宙责任伦理学</div>
+                        <div class="concept-item-desc">规范框架</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">协议栈方法论</div>
+                        <div class="concept-item-desc">制度工具</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">深不确定性</div>
+                        <div class="concept-item-desc">核心认知挑战</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 相关链接 -->
+            <div class="related-links">
+                <h3 class="subsection-title">相关链接</h3>
+                <div class="links-grid">
+                    <a href="新三观概述.html" class="link-item">
+                        <span class="link-text">新三观详解</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="规范原则概述.html" class="link-item">
+                        <span class="link-text">规范原则</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="指标体系.html" class="link-item">
+                        <span class="link-text">指标体系</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="应用领域概述.html" class="link-item">
+                        <span class="link-text">应用领域</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <!-- ========================================== 
+         Footer
+         ========================================== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        function handleNavScroll() {
+            const navbar = document.getElementById('navbar');
+            if (!navbar) return;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Smooth scroll
+        function smoothScroll() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+
+                    ```javascript
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Card hover effects
+        function initCardHover() {
+            const cards = document.querySelectorAll('.content-card, .concept-item, .framework-box, .framework-scale');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Table row hover effects
+        function initTableHover() {
+            const tableRows = document.querySelectorAll('.modern-table tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.background = 'rgba(124, 58, 237, 0.08)';
+                    this.style.transform = 'translateX(4px)';
+                });
+                row.addEventListener('mouseleave', function() {
+                    this.style.background = '';
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        }
+
+        // Initialize all functions
+        document.addEventListener('DOMContentLoaded', function() {
+            handleNavScroll();
+            smoothScroll();
+            initCardHover();
+            initTableHover();
+            
+            // Add animation to elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+
+</html>

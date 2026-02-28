@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学术对话 | 星际文明学</title>
+    <meta name="description"
+        content="星际文明学不是孤立发展的学科，而是与多种学术传统进行持续对话。这里介绍ICS与长期主义、AI安全研究、国际空间法、环境伦理学等领域的关系，展示ICS独特的贡献、共同关切以及对话的空间与潜力。">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+
+        /* ==========================================CSS Variables========================================== */
+        :root {
+            /* Color System */
+            --color-deep-space: #0a1628;
+            --color-space-mid: #1a2a4a;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+
+            /* Text Colors */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-tertiary: rgba(255, 255, 255, 0.6);
+
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+
+            /* Typography */
+            --font-cn-sans: 'Noto Sans SC', sans-serif;
+            --font-cn-serif: 'Noto Serif SC', serif;
+            --font-en-body: 'Inter', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /* ==========================================
+           Reset & Base Styles
+           ========================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-cn-sans);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           Navigation
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-xl);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-brand:hover {
+            transform: translateX(4px);
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-family: var(--font-en-body);
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-cn-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--color-text-primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ==========================================
+           Page Hero
+           ========================================== */
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: var(--space-3xl) var(--space-xl);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .zh-page-title {
+            font-family: var(--font-cn-serif);
+            font-size: clamp(4rem, 5vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-family: var(--font-cn-sans);
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            margin: 0;
+            letter-spacing: 0.03em;
+        }
+
+        /* ==========================================
+           Main Content
+           ========================================== */
+        .main-content {
+            flex: 1;
+            padding: var(--space-3xl) 0;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-cn-serif);
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--color-energy-gold);
+            margin-bottom: var(--space-lg);
+            margin-top: var(--space-2xl);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-family: var(--font-cn-sans);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================
+           Modern Table Styles
+           ========================================== */
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-cn-serif);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-family: var(--font-cn-sans);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-cn-serif);
+            font-weight: 500;
+            color: var(--color-energy-gold);
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background var(--transition-fast);
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        /* ==========================================
+           Diagram Styles
+           ========================================== */
+        .diagram-container {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+        }
+
+        .diagram-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--color-quantum-purple-light);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .spectrum-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 2rem 0;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .spectrum-line {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+        }
+
+        .spectrum-points {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .spectrum-point {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .spectrum-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--color-nebula-cyan);
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .spectrum-label {
+            font-family: var(--font-cn-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .spectrum-desc {
+            font-family: var(--font-cn-sans);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            max-width: 120px;
+        }
+
+        .tree-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .tree-root {
+            background: rgba(124, 58, 237, 0.2);
+            border: 2px solid var(--color-quantum-purple);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .tree-root-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tree-root-subtitle {
+            font-family: var(--font-cn-sans);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .tree-branches {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .tree-branch {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--color-nebula-cyan);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .tree-branch:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-nebula-cyan-light);
+            box-shadow: 0 8px 24px rgba(6, 182, 212, 0.2);
+        }
+
+        .tree-branch-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-nebula-cyan);
+            margin-bottom: 0.75rem;
+        }
+
+        .tree-branch-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tree-branch-items li {
+            font-family: var(--font-cn-sans);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ==========================================
+           Key Concepts Buttons
+           ========================================== */
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-title {
+            font-family: var(--font-cn-serif);
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-content {
+            flex: 1;
+        }
+
+        .concept-label {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .concept-desc {
+            font-family: var(--font-cn-sans);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.03em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Related Links
+           ========================================== */
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-family: var(--font-cn-sans);
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: var(--space-3xl) 0 var(--space-xl);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-family: var(--font-en-body);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-cn-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: var(--space-sm);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-xl) 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        /* ==========================================
+           Responsive Design
+           ========================================== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tree-branches {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+                letter-spacing: 0.15em;
+            }
+
+            .zh-section-title {
+                font-size: 1.75rem;
+                letter-spacing: 0.15em;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xl);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .spectrum-points {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .spectrum-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 2rem var(--space-md);
+            }
+
+            .container {
+                padding: 0 var(--space-md);
+            }
+        }
+    </style>
+</head>
+
+<body data-page="dialogue" data-lang="zh">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/Academic Dialogue.html" class="lang-btn">EN</a>
+                    <a href="学术对话.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">学术对话：ICS与相关学术传统</h1>
+                <div class="hero-intro-card">
+                    <p>星际文明学不是孤立发展的学科，而是与多种学术传统进行持续对话。本节介绍ICS与长期主义、AI安全研究、国际空间法、环境伦理学等领域的关系，展示ICS独特的贡献、共同关切以及对话的空间与潜力。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 为什么需要学术对话？ -->
+            <section>
+                <h2 class="zh-section-title">为什么需要学术对话？</h2>
+
+                <h3 class="zh-subsection-title">对话的必要性</h3>
+                <div class="content-card">
+                    <p>星际文明学的跨学科性质决定了它必须与多种学术传统对话：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>原因</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>知识借鉴</td>
+                                <td>ICS建立在多学科知识基础之上</td>
+                            </tr>
+                            <tr>
+                                <td>批判完善</td>
+                                <td>来自其他传统的批评有助于完善ICS</td>
+                            </tr>
+                            <tr>
+                                <td>合作潜力</td>
+                                <td>共同关切领域存在合作可能</td>
+                            </tr>
+                            <tr>
+                                <td>影响扩展</td>
+                                <td>对话有助于扩大ICS的影响力</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">对话的姿态</h3>
+                <div class="content-card">
+                    <p>ICS在学术对话中保持以下姿态：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>姿态</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>开放性</td>
+                                <td>欢迎来自不同传统的批评和建议</td>
+                            </tr>
+                            <tr>
+                                <td>谦逊性</td>
+                                <td>承认自身的局限和待完善之处</td>
+                            </tr>
+                            <tr>
+                                <td>批判性</td>
+                                <td>对其他传统保持批判性审视</td>
+                            </tr>
+                            <tr>
+                                <td>建设性</td>
+                                <td>寻求互补和合作的可能性</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 主要对话领域 -->
+            <section>
+                <h2 class="zh-section-title">主要对话领域</h2>
+
+                <div class="content-card">
+                    <p>ICS目前与以下四个学术传统进行深度对话：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>传统</th>
+                                <th>共同关切</th>
+                                <th>ICS独特贡献</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>长期主义</td>
+                                <td>长期未来、存在风险</td>
+                                <td>跨基质主体、深不确定性框架</td>
+                            </tr>
+                            <tr>
+                                <td>AI安全研究</td>
+                                <td>AI风险、对齐问题</td>
+                                <td>主体资格框架、宇宙责任伦理</td>
+                            </tr>
+                            <tr>
+                                <td>国际空间法</td>
+                                <td>太空治理、资源分配</td>
+                                <td>宇宙负熵保护、深时视野</td>
+                            </tr>
+                            <tr>
+                                <td>环境伦理学</td>
+                                <td>可持续发展、代际责任</td>
+                                <td>负熵概念、宇宙尺度扩展</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 对话的模式 -->
+            <section>
+                <h2 class="zh-section-title">对话的模式</h2>
+
+                <div class="content-card">
+                    <p>ICS与其他传统的对话可以有多种模式：</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">对话模式谱系</div>
+                    <div class="spectrum-diagram">
+                        <div class="spectrum-line"></div>
+                        <div class="spectrum-points">
+                            <div class="spectrum-point">
+                                <div class="spectrum-dot"></div>
+                                <div class="spectrum-label">批判</div>
+                                <div class="spectrum-desc">指出对方的不足</div>
+                            </div>
+                            <div class="spectrum-point">
+                                <div class="spectrum-dot"></div>
+                                <div class="spectrum-label">互补</div>
+                                <div class="spectrum-desc">提供对方所缺的维度</div>
+                            </div>
+                            <div class="spectrum-point">
+                                <div class="spectrum-dot"></div>
+                                <div class="spectrum-label">整合</div>
+                                <div class="spectrum-desc">吸收对方的洞见</div>
+                            </div>
+                            <div class="spectrum-point">
+                                <div class="spectrum-dot"></div>
+                                <div class="spectrum-label">替代</div>
+                                <div class="spectrum-desc">提供更优的替代方案</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <p>不同传统与ICS的关系落在这一谱系的不同位置：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>传统</th>
+                                <th>主要模式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>长期主义</td>
+                                <td>批判-互补（规范基础不同，但关切相近）</td>
+                            </tr>
+                            <tr>
+                                <td>AI安全</td>
+                                <td>互补-整合（技术视角与规范视角互补）</td>
+                            </tr>
+                            <tr>
+                                <td>空间法</td>
+                                <td>互补（理论与实定法互补）</td>
+                            </tr>
+                            <tr>
+                                <td>环境伦理</td>
+                                <td>整合-扩展（概念扩展和深化）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 对话的开放性 -->
+            <section>
+                <h2 class="zh-section-title">对话的开放性</h2>
+
+                <div class="content-card">
+                    <p>ICS的学术对话是开放的，欢迎更多传统的参与：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>潜在对话传统</th>
+                                <th>对话主题</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>分析哲学</td>
+                                <td>概念分析、论证严格性</td>
+                            </tr>
+                            <tr>
+                                <td>大陆哲学</td>
+                                <td>存在论、现象学</td>
+                            </tr>
+                            <tr>
+                                <td>科学哲学</td>
+                                <td>跨学科方法论、理论评估</td>
+                            </tr>
+                            <tr>
+                                <td>政治哲学</td>
+                                <td>正义理论、全球治理</td>
+                            </tr>
+                            <tr>
+                                <td>比较哲学</td>
+                                <td>非西方传统的视角</td>
+                            </tr>
+                            <tr>
+                                <td>未来学</td>
+                                <td>预测方法、情景规划</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 学术生态中的定位 -->
+            <section>
+                <h2 class="zh-section-title">学术生态中的定位</h2>
+
+                <div class="content-card">
+                    <p>ICS在学术生态中的定位：</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">ICS作为跨界节点</div>
+                    <div class="tree-diagram">
+                        <div class="tree-root">
+                            <div class="tree-root-title">星际文明学 (ICS)</div>
+                            <div class="tree-root-subtitle">跨界节点，连接三大学术传统</div>
+                        </div>
+                        <div class="tree-branches">
+                            <div class="tree-branch">
+                                <div class="tree-branch-title">哲学传统</div>
+                                <ul class="tree-branch-items">
+                                    <li>伦理学</li>
+                                    <li>形而上学</li>
+                                    <li>认识论</li>
+                                </ul>
+                            </div>
+                            <div class="tree-branch">
+                                <div class="tree-branch-title">科学传统</div>
+                                <ul class="tree-branch-items">
+                                    <li>物理学</li>
+                                    <li>生物学</li>
+                                    <li>认知科学</li>
+                                </ul>
+                            </div>
+                            <div class="tree-branch">
+                                <div class="tree-branch-title">治理传统</div>
+                                <ul class="tree-branch-items">
+                                    <li>国际法</li>
+                                    <li>政策研究</li>
+                                    <li>风险管理</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 关键概念高亮 -->
+            <div class="key-concepts-section">
+                <h2 class="key-concepts-title">关键概念高亮</h2>
+                <div class="key-concepts-grid">
+                    <a href="学术对话.html" class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">学术对话</div>
+                            <div class="concept-desc">ICS与其他传统的互动</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </a>
+                    <a href="与长期主义的对话.html" class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">批判性盟友</div>
+                            <div class="concept-desc">ICS与长期主义的关系模式</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </a>
+                    <a href="与AI安全研究的对话.html" class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">互补性</div>
+                            <div class="concept-desc">ICS与AI安全、空间法的关系</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </a>
+                    <a href="关于星际文明学.html" class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">跨界节点</div>
+                            <div class="concept-desc">ICS在学术生态中的定位</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </a>
+                </div>
+            </div>
+
+            <!-- 相关链接 -->
+            <div class="related-links">
+                <h3 class="zh-subsection-title">相关链接</h3>
+                <div class="links-grid">
+                    <a href="与长期主义的对话.html" class="link-item">
+                        <span class="link-text">与长期主义的对话</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="与AI安全研究的对话.html" class="link-item">
+                        <span class="link-text">与AI安全研究的对话</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="与国际空间法的对话.html" class="link-item">
+                        <span class="link-text">与国际空间法的对话</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="与环境伦理学的对话.html" class="link-item">
+                        <span class="link-text">与环境伦理学的对话</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="关于星际文明学.html" class="link-item">
+                        <span class="link-text">关于星际文明学</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="研究议程.html" class="link-item">
+                        <span class="link-text">研究议程</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation Scroll Effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.remove('scrolled');
+                return;
+            }
+
+            navbar.classList.add('scrolled');
+
+            if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.add('scroll-down');
+            } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-down');
+                navbar.classList.add('scroll-up');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for Fade-in Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Search Button Placeholder
+        document.querySelector('.nav-search').addEventListener('click', function () {
+            alert('搜索功能即将推出');
+        });
+
+        // Table Row Highlight
+        document.querySelectorAll('.modern-table tbody tr').forEach(row => {
+            row.addEventListener('click', function () {
+                document.querySelectorAll('.modern-table tbody tr').forEach(r => {
+                    r.style.background = '';
+                });
+                this.style.background = 'rgba(167, 139, 250, 0.1)';
+            });
+        });
+
+        // Concept Button Click Effect
+        document.querySelectorAll('.concept-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                // 只在左键点击时处理动画和跳转
+                if (e.button === 0) {
+                    e.preventDefault();
+                    const ripple = document.createElement('span');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(167, 139, 250, 0.5)';
+                    ripple.style.width = '20px';
+                    ripple.style.height = '20px';
+                    ripple.style.animation = 'ripple 0.6s ease-out';
+
+                    const rect = this.getBoundingClientRect();
+                    ripple.style.left = (e.clientX - rect.left - 10) + 'px';
+                    ripple.style.top = (e.clientY - rect.top - 10) + 'px';
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                        // 动画结束后跳转
+                        window.location.href = this.getAttribute('href');
+                    }, 600);
+                }
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Diagram animations
+        const diagramObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.diagram-container').forEach(diagram => {
+            diagramObserver.observe(diagram);
+        });
+
+        // Add fadeInUp animation
+        const fadeInUpStyle = document.createElement('style');
+        fadeInUpStyle.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(fadeInUpStyle);
+
+        // Console Log for Development
+        console.log('%c星际文明学', 'color: #7c3aed; font-size: 20px; font-weight: bold;');
+        console.log('%c学术对话页面已加载', 'color: #06b6d4; font-size: 14px;');
+
+        // Performance monitoring
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`页面加载时间: ${loadTime.toFixed(2)}ms`);
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 's' || e.key === 'S') {
+                if (!e.target.matches('input, textarea')) {
+                    e.preventDefault();
+                    document.querySelector('.nav-search').click();
+                }
+            }
+        });
+
+        // Add accessibility improvements
+        document.querySelectorAll('.concept-button, .link-item').forEach(element => {
+            element.setAttribute('role', 'button');
+            element.setAttribute('tabindex', '0');
+
+            element.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    element.click();
+                }
+            });
+        });
+
+        // Table accessibility
+        document.querySelectorAll('.modern-table').forEach(table => {
+            table.setAttribute('role', 'table');
+            table.querySelectorAll('tr').forEach(row => {
+                row.setAttribute('role', 'row');
+            });
+            table.querySelectorAll('th').forEach(header => {
+                header.setAttribute('role', 'columnheader');
+            });
+            table.querySelectorAll('td').forEach(cell => {
+                cell.setAttribute('role', 'cell');
+            });
+        });
+
+        // Print optimization
+        window.addEventListener('beforeprint', () => {
+            document.body.classList.add('printing');
+        });
+
+        window.addEventListener('afterprint', () => {
+            document.body.classList.remove('printing');
+        });
+
+        // Add print styles
+        const printStyle = document.createElement('style');
+        printStyle.textContent = `
+            @media print {
+                .navbar, .footer, .nav-actions, .related-links {
+                    display: none !important;
+                }
+                .page-hero {
+                    margin-top: 0 !important;
+                }
+                .content-card, .modern-table-container, .diagram-container {
+                    break-inside: avoid;
+                }
+                body {
+                    background: white !important;
+                    color:
+
+
+black !important;
+                }
+            }
+        `;
+        document.head.appendChild(printStyle);
+
+        // Enhanced link item interactions
+        document.querySelectorAll('.link-item').forEach(item => {
+            item.addEventListener('mouseenter', function () {
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
+
+        // Enhanced concept button interactions
+        document.querySelectorAll('.concept-button').forEach(button => {
+            button.addEventListener('mouseenter', function () {
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
+
+        // Smooth reveal for tables on scroll
+        const tableContainers = document.querySelectorAll('.modern-table-container');
+        const tableObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        tableContainers.forEach(container => {
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            container.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            tableObserver.observe(container);
+        });
+
+        // Add hover effect to table rows
+        document.querySelectorAll('.modern-table tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function () {
+                this.style.transition = 'background 0.15s ease';
+            });
+        });
+
+        // Floating action for "back to top"
+        let backToTopButton = null;
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                if (!backToTopButton) {
+                    backToTopButton = document.createElement('button');
+                    backToTopButton.innerHTML = '↑';
+                    backToTopButton.style.cssText = `
+                        position: fixed;
+                        bottom: 2rem;
+                        right: 2rem;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+                        color: white;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+                        z-index: 999;
+                        transition: all 0.3s ease;
+                        opacity: 0;
+                    `;
+                    backToTopButton.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    backToTopButton.addEventListener('mouseenter', function () {
+                        this.style.transform = 'translateY(-4px)';
+                        this.style.boxShadow = '0 6px 20px rgba(124, 58, 237, 0.4)';
+                    });
+                    backToTopButton.addEventListener('mouseleave', function () {
+                        this.style.transform = 'translateY(0)';
+                        this.style.boxShadow = '0 4px 12px rgba(124, 58, 237, 0.3)';
+                    });
+                    document.body.appendChild(backToTopButton);
+                }
+                backToTopButton.style.opacity = '1';
+            } else if (backToTopButton) {
+                backToTopButton.style.opacity = '0';
+            }
+        });
+
+        // Enhanced console messages
+        console.log('%c学术对话框架', 'color: #f59e0b; font-size: 16px; font-weight: bold;');
+        console.log('%c• 与长期主义的对话', 'color: #a78bfa; font-size: 14px;');
+        console.log('%c• 与AI安全研究的对话', 'color: #22d3ee; font-size: 14px;');
+        console.log('%c• 与国际空间法的对话', 'color: #fbbf24; font-size: 14px;');
+        console.log('%c• 与环境伦理学的对话', 'color: #a78bfa; font-size: 14px;');
+
+        // Log page metadata
+        console.log('%c页面元数据:', 'color: #06b6d4; font-size: 12px; font-weight: bold;');
+        console.log(`标题: ${document.title}`);
+        console.log(`描述: ${document.querySelector('meta[name="description"]').content}`);
+        console.log(`语言: ${document.documentElement.lang}`);
+
+        // Accessibility announcement for screen readers
+        const srAnnouncement = document.createElement('div');
+        srAnnouncement.setAttribute('role', 'status');
+        srAnnouncement.setAttribute('aria-live', 'polite');
+        srAnnouncement.style.cssText = 'position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;';
+        srAnnouncement.textContent = '学术对话页面已加载完成';
+        document.body.appendChild(srAnnouncement);
+
+        // Animate spectrum points on scroll
+        const spectrumPoints = document.querySelectorAll('.spectrum-point');
+        const spectrumObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 150);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        spectrumPoints.forEach(point => {
+            point.style.opacity = '0';
+            point.style.transform = 'translateY(20px)';
+            point.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            spectrumObserver.observe(point);
+        });
+
+        // Animate tree branches on scroll
+        const treeBranches = document.querySelectorAll('.tree-branch');
+        const branchObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        treeBranches.forEach(branch => {
+            branch.style.opacity = '0';
+            branch.style.transform = 'translateY(30px)';
+            branch.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            branchObserver.observe(branch);
+        });
+
+        // Animate tree root
+        const treeRoot = document.querySelector('.tree-root');
+        if (treeRoot) {
+            const rootObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'scale(1)';
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            treeRoot.style.opacity = '0';
+            treeRoot.style.transform = 'scale(0.95)';
+            treeRoot.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            rootObserver.observe(treeRoot);
+        }
+    </script>
+</body>
+
+</html>page

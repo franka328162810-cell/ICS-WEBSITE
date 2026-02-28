@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>禁忌红线 | 星际文明学</title>
+    <meta name="description"
+        content="禁忌红线是宇宙责任伦理学中任何情况下不得逾越的绝对禁止。它们不是可权衡的偏好，而是不可商量的底线。三条禁忌红线分别保护意识主权、宇宙负熵和未来可能性——这是智慧生命在宇宙中存续的根本条件。">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        /* ==========================================CSS Variables========================================== */
+        :root {
+            /* Color System */
+            --color-deep-space: #0a1628;
+            --color-space-mid: #1a2a4a;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-negentropy-green: #10b981;
+            --color-negentropy-green-light: #34d399;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e2e8f0;
+            --color-danger-red: #ef4444;
+            --color-danger-red-light: #f87171;
+
+            /* Font System */
+            --font-heading-zh: 'Noto Serif SC', serif;
+            --font-body-zh: 'Noto Sans SC', sans-serif;
+
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 5rem;
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+
+            /* Shadows */
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 4px 20px rgba(16, 185, 129, 0.4);
+
+            /* Transitions */
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.4s ease;
+        }
+
+        /* ==========================================
+           Reset & Base Styles
+           ========================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body-zh);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           Navigation
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+            transition: all var(--transition-slow);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.92);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-heading-zh);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-family: var(--font-body-zh);
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-heading-zh);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-negentropy-green), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .nav-search {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+
+        .lang-switch {
+            display: flex;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-md);
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .lang-btn {
+            font-family: var(--font-heading-zh);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn:hover {
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--color-negentropy-green), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+        }
+
+        .nav-contact {
+            font-family: var(--font-heading-zh);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            height: 42px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-negentropy-green), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(16, 185, 129, 0.5);
+        }
+
+        /* ==========================================
+           Page Hero
+           ========================================== */
+        .page-hero {
+            position: relative;
+            padding: 7rem var(--space-xl) 5rem;
+            background: linear-gradient(180deg, var(--color-deep-space) 0%, var(--color-space-mid) 100%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: nebulaPulse 8s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-danger-red) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-energy-gold) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: 4s;
+        }
+
+        @keyframes nebulaPulse {
+
+            0%,
+            100% {
+                opacity: 0.12;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.2;
+                transform: scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .zh-page-title {
+            font-family: var(--font-heading-zh);
+            font-size: clamp(4rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            line-height: 1.4;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-danger-red-light) 50%, var(--color-energy-gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-intro-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-family: var(--font-body-zh);
+            font-size: 1.125rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.9;
+            text-align: left;
+            margin: 0;
+        }
+
+        /* ==========================================
+           Main Content
+           ========================================== */
+        .main-content {
+            padding: var(--space-4xl) 0;
+            flex: 1;
+        }
+
+        .section-title {
+            font-family: var(--font-heading-zh);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-danger-red-light) 50%, var(--color-energy-gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subsection-title {
+            font-family: var(--font-heading-zh);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: var(--space-lg);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-danger-red), var(--color-energy-gold));
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(239, 68, 68, 0.3);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.2);
+        }
+
+        .content-card p {
+            font-family: var(--font-body-zh);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-family: var(--font-body-zh);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            text-align: left;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-danger-red-light);
+            font-size: 1.2rem;
+        }
+
+        .content-card strong {
+            font-family: var(--font-body-zh);
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        /* ==========================================
+           Table
+           ========================================== */
+        .modern-table-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 0;
+            margin: var(--space-2xl) 0;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .modern-table-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-danger-red), var(--color-energy-gold));
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table thead {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(245, 158, 11, 0.1));
+        }
+
+        .modern-table th {
+            font-family: var(--font-heading-zh);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--color-danger-red-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .modern-table th:first-child {
+            padding-left: 2.5rem;
+            width: 30%;
+        }
+
+        .modern-table tbody tr {
+            transition: all var(--transition-normal);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(239, 68, 68, 0.08);
+            transform: translateX(4px);
+        }
+
+        .modern-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .modern-table td {
+            font-family: var(--font-body-zh);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-heading-zh);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            padding-left: 2.5rem;
+            white-space: nowrap;
+        }
+
+        /* ==========================================
+           Diagram Card - SVG Visualization
+           ========================================== */
+        .diagram-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: var(--space-3xl);
+            margin: var(--space-2xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diagram-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-danger-red), var(--color-energy-gold));
+        }
+
+        .diagram-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-2xl);
+        }
+
+        .diagram-svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ==========================================
+           Concept Highlights
+           ========================================== */
+        .concept-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .concept-item {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(245, 158, 11, 0.1));
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-lg);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .concept-item:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(245, 158, 11, 0.2));
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+        }
+
+        .concept-item-title {
+            font-family: var(--font-heading-zh);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-danger-red-light);
+        }
+
+        .concept-item-desc {
+            font-family: var(--font-body-zh);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: var(--space-xs);
+        }
+
+        /* ==========================================
+           Related Links
+           ========================================== */
+        .related-links {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: var(--space-3xl);
+            margin-top: var(--space-4xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .related-links::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-danger-red), var(--color-energy-gold));
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .link-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg) var(--space-xl);
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: all var(--transition-normal);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            gap: var(--space-xs);
+        }
+
+        .link-item:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: translateY(-2px);
+            color: var(--color-text-primary);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+        }
+
+        .link-text {
+            font-family: var(--font-body-zh);
+            font-size: 1.0625rem;
+        }
+
+        .link-arrow {
+            font-size: 1.2rem;
+            color: var(--color-danger-red-light);
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .footer-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-heading-zh);
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-family: var(--font-body-zh);
+            font-size: 0.625rem;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-desc {
+            font-family: var(--font-body-zh);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.8;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading-zh);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: var(--font-body-zh);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.55);
+            padding: var(--space-xs) 0;
+            transition: all var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-danger-red-light);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: var(--space-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .footer-copyright {
+            font-family: var(--font-body-zh);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-links a {
+            font-family: var(--font-body-zh);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-danger-red-light);
+        }
+
+        /* ==========================================
+           Responsive Design
+           ========================================== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .concept-highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+
+            .navbar.scrolled {
+                height: 56px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-contact {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 8rem var(--space-lg) 4rem;
+                min-height: 60vh;
+            }
+
+            .hero-intro-card {
+                padding: var(--space-xl);
+            }
+
+            .hero-intro-card p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .subsection-title {
+                font-size: 1.25rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem 1.25rem;
+                font-size: 0.9375rem;
+            }
+
+            .modern-table th:first-child,
+            .modern-table td:first-child {
+                padding-left: 1.5rem;
+            }
+
+            .concept-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                align-items: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .container {
+                padding: 0 var(--space-lg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 6rem var(--space-md) 3rem;
+            }
+
+            .zh-page-title {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 var(--space-md);
+            }
+
+            .content-card,
+            .modern-table-container,
+            .related-links,
+            .diagram-card {
+                padding: var(--space-lg);
+            }
+        }
+    </style>
+</head>
+
+<body data-page="red-lines" data-lang="zh">
+    <!-- ==========================================
+         Navigation
+         ========================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/Forbidden Red Lines.html" class="lang-btn">EN</a>
+                    <a href="禁忌红线.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- ==========================================
+         Page Hero
+         ========================================== -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">禁忌红线：不可逾越的绝对边界</h1>
+                <div class="hero-intro-card">
+                    <p>禁忌红线是宇宙责任伦理学中任何情况下不得逾越的绝对禁止。它们不是可权衡的偏好，而是不可商量的底线。三条禁忌红线分别保护意识主权、宇宙负熵和未来可能性——这是智慧生命在宇宙中存续的根本条件。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         Main Content
+         ========================================== -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- 一、三条禁忌红线 -->
+            <section>
+                <h2 class="section-title">三条禁忌红线</h2>
+
+                <div class="content-card">
+                    <p>禁忌红线（Forbidden Red Lines, FRL）是任何情况下不得逾越的绝对禁止：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>内容</th>
+                                <th>保护对象</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>FRL-1</td>
+                                <td>禁止意识主权的系统性侵犯</td>
+                                <td>意识主体的自主性</td>
+                            </tr>
+                            <tr>
+                                <td>FRL-2</td>
+                                <td>禁止宇宙负熵存量的不可逆大规模损耗</td>
+                                <td>宇宙负熵——生命的物质基础</td>
+                            </tr>
+                            <tr>
+                                <td>FRL-3</td>
+                                <td>禁止未来主体可能性空间的不可逆系统性收缩</td>
+                                <td>未来的可能性</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 二、FRL-1：意识主权的保护 -->
+            <section>
+                <h2 class="section-title">FRL-1：意识主权的保护</h2>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">红线陈述</h3>
+                    <p><strong>FRL-1：禁止意识主权的系统性侵犯</strong></p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">核心内容</h3>
+                    <p>"意识主权"是指意识主体对自身意识状态的自主权：</p>
+                    <ul>
+                        <li><strong>思想自由：</strong>自主决定相信什么</li>
+                        <li><strong>心理完整性：</strong>免于强制性心理操控</li>
+                        <li><strong>认知自主：</strong>自主决定注意力和认知资源的分配</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">禁止的行为</h3>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>禁止行为</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>强制性思想控制</td>
+                                <td>洗脑、强制灌输</td>
+                            </tr>
+                            <tr>
+                                <td>非自愿意识修改</td>
+                                <td>未经同意的神经干预</td>
+                            </tr>
+                            <tr>
+                                <td>系统性欺骗</td>
+                                <td>大规模、持续的认知操控</td>
+                            </tr>
+                            <tr>
+                                <td>意识监禁</td>
+                                <td>将意识困于不可逃脱的状态</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 三、FRL-2：宇宙负熵的保护 -->
+            <section>
+                <h2 class="section-title">FRL-2：宇宙负熵的保护</h2>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">红线陈述</h3>
+                    <p><strong>FRL-2：禁止宇宙负熵存量的不可逆大规模损耗</strong></p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">核心内容</h3>
+                    <p>宇宙负熵是生命和文明存在的物质基础。大规模不可逆损耗负熵将：</p>
+                    <ul>
+                        <li>削弱生命存续的物质条件</li>
+                        <li>减少未来的可能性空间</li>
+                        <li>违反负熵责任原则的底线</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">禁止的行为</h3>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>禁止行为</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>大规模不可逆资源消耗</td>
+                                <td>耗尽关键不可再生资源</td>
+                            </tr>
+                            <tr>
+                                <td>大规模生态破坏</td>
+                                <td>导致不可逆的生态系统崩溃</td>
+                            </tr>
+                            <tr>
+                                <td>大规模物种灭绝</td>
+                                <td>人为导致的大规模物种灭绝</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 四、FRL-3：未来可能性的保护 -->
+            <section>
+                <h2 class="section-title">FRL-3：未来可能性的保护</h2>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">红线陈述</h3>
+                    <p><strong>FRL-3：禁止未来主体可能性空间的不可逆系统性收缩</strong></p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">核心内容</h3>
+                    <p>未来主体的可能性空间是他们行使自由的前提。系统性收缩这一空间等于剥夺未来主体的自由。</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">禁止的行为</h3>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>禁止行为</th>
+                                <th>示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>技术锁定</td>
+                                <td>不可逆地锁定技术发展路径</td>
+                            </tr>
+                            <tr>
+                                <td>价值锁定</td>
+                                <td>不可逆地锁定社会价值取向</td>
+                            </tr>
+                            <tr>
+                                <td>路径锁定</td>
+                                <td>不可逆地锁定文明发展方向</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 五、禁忌红线的性质 -->
+            <section>
+                <h2 class="section-title">禁忌红线的性质</h2>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">绝对性</h3>
+                    <p>禁忌红线是绝对禁止，不是可权衡的偏好：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>可权衡原则（RFP, NRP, REV）</th>
+                                <th>禁忌红线（FRL）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>可以与其他价值权衡</td>
+                                <td>不可权衡</td>
+                            </tr>
+                            <tr>
+                                <td>可以在具体情境中调整</td>
+                                <td>在任何情境中都适用</td>
+                            </tr>
+                            <tr>
+                                <td>指导性原则</td>
+                                <td>绝对禁止</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">为什么需要绝对禁止?</h3>
+                    <p>某些伤害是如此根本,以至于:</p>
+                    <ul>
+                        <li>任何可能的收益都无法补偿</li>
+                        <li>一旦发生将无法挽回</li>
+                        <li>构成对根本价值的否定</li>
+                    </ul>
+                    <p>禁忌红线划定了这些根本界限。</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="subsection-title">与其他原则的关系</h3>
+                </div>
+
+                <div class="diagram-card">
+                    <div class="diagram-content">
+                        <svg class="diagram-svg" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 外层边界 (禁忌红线) -->
+                            <rect x="50" y="30" width="500" height="100" rx="12" fill="rgba(239, 68, 68, 0.1)"
+                                stroke="#ef4444" stroke-width="3" stroke-dasharray="8,4" />
+
+                            <!-- 禁忌红线标签 -->
+                            <text x="300" y="65" font-family="Noto Serif SC, serif" font-size="20" font-weight="700"
+                                fill="#f87171" text-anchor="middle">禁忌红线</text>
+
+                            <text x="300" y="95" font-family="Noto Sans SC, sans-serif" font-size="16" font-weight="300"
+                                fill="#e2e8f0" text-anchor="middle">(FRL-1, 2, 3)</text>
+
+                            <!-- 箭头指向 -->
+                            <path d="M 520 80 L 560 80" stroke="#f87171" stroke-width="2"
+                                marker-end="url(#arrowhead-red)" />
+
+                            <text x="570" y="85" font-family="Noto Sans SC, sans-serif" font-size="14" font-weight="300"
+                                fill="#e2e8f0">绝对边界</text>
+
+                            <!-- 内层区域 (核心原则) -->
+                            <rect x="100" y="170" width="400" height="100" rx="12" fill="rgba(16, 185, 129, 0.1)"
+                                stroke="#10b981" stroke-width="2" />
+
+                            <!-- 核心原则标签 -->
+                            <text x="300" y="205" font-family="Noto Serif SC, serif" font-size="20" font-weight="700"
+                                fill="#34d399" text-anchor="middle">核心原则</text>
+
+                            <text x="300" y="235" font-family="Noto Sans SC, sans-serif" font-size="16"
+                                font-weight="300" fill="#e2e8f0" text-anchor="middle">(RFP, NRP, REV)</text>
+
+                            <!-- 箭头指向 -->
+                            <path d="M 470 220 L 510 220" stroke="#34d399" stroke-width="2"
+                                marker-end="url(#arrowhead-green)" />
+
+                            <text x="520" y="225" font-family="Noto Sans SC, sans-serif" font-size="14"
+                                font-weight="300" fill="#e2e8f0">权衡空间</text>
+
+                            <!-- 箭头定义 -->
+                            <defs>
+                                <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3"
+                                    orient="auto">
+                                    <polygon points="0 0, 10 3, 0 6" fill="#f87171" />
+                                </marker>
+                                <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="9" refY="3"
+                                    orient="auto">
+                                    <polygon points="0 0, 10 3, 0 6" fill="#34d399" />
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <p>禁忌红线是规范原则的"外壳"，划定了权衡的边界。在禁忌红线内，三个核心原则可以相互权衡；但任何权衡都不能逾越禁忌红线。</p>
+                </div>
+            </section>
+
+            <!-- 关键概念高亮 -->
+            <section>
+                <h2 class="section-title">关键概念高亮</h2>
+
+                <div class="concept-highlights">
+                    <div class="concept-item">
+                        <div class="concept-item-title">禁忌红线（FRL）</div>
+                        <div class="concept-item-desc">不可逾越的绝对禁止</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">意识主权</div>
+                        <div class="concept-item-desc">FRL-1保护的对象</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">宇宙负熵</div>
+                        <div class="concept-item-desc">FRL-2保护的对象</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-item-title">可能性空间</div>
+                        <div class="concept-item-desc">FRL-3保护的对象</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 相关链接 -->
+            <div class="related-links">
+                <h3 class="subsection-title">相关链接</h3>
+                <div class="links-grid">
+                    <a href="规范原则.html" class="link-item">
+                        <span class="link-text">返回规范原则概述</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="递归自由原则.html" class="link-item">
+                        <span class="link-text">递归自由原则</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="负熵责任原则.html" class="link-item">
+                        <span class="link-text">负熵责任原则</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="可逆性原则.html" class="link-item">
+                        <span class="link-text">可逆性原则</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ==========================================Footer
+         ========================================== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation Scroll Effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Search Button
+        document.querySelector('.nav-search')?.addEventListener('click', function () {
+            alert('搜索功能即将推出');
+        });
+
+        // Console Log
+        console.log('%c星际文明学', 'color: #ef4444; font-size: 20px; font-weight: bold;');
+        console.log('%c禁忌红线页面已加载', 'color: #f59e0b; font-size: 14px;');
+    </script>
+</body>
+
+</html>

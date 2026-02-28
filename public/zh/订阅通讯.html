@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订阅通讯 | 星际文明学</title>
+    <meta name="description" content="订阅星际文明学通讯，获取最新研究进展、学术活动和前沿观点">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-zh-sans: 'Noto Sans SC', sans-serif;
+            --font-zh-serif: 'Noto Serif SC', serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-zh-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-contact {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-zh-serif);
+            font-size: clamp(4rem, 5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.5;
+            letter-spacing: 0.3em;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.0;
+            text-align: left;
+            letter-spacing: 0.02em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-zh-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-size: 1.2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border-left: 4px solid var(--color-nebula-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            line-height: 1.9;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .newsletter-form {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 2rem 0;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            background: rgba(10, 22, 40, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-family: var(--font-zh-sans);
+            font-size: 1rem;
+            transition: all var(--transition-normal);
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-quantum-purple-light);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .form-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: background var(--transition-normal);
+        }
+
+        .form-checkbox-label:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        .form-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .form-checkbox-text {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-submit {
+            font-family: var(--font-zh-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .newsletter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .newsletter-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .newsletter-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 12px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .newsletter-card-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-card-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-card-desc {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: left;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+        }
+
+        .stat-number {
+            font-family: var(--font-zh-serif);
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-quantum-purple-light), var(--color-nebula-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.75rem;
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message p {
+            color: rgba(34, 197, 94, 1);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+            }
+
+            .newsletter-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                padding: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/Newsletter.html" class="lang-btn">EN</a>
+                    <a href="订阅通讯.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">订阅通讯</h1>
+                <div class="hero-intro-card">
+                    <p>订阅星际文明学通讯，第一时间获取最新研究进展、学术活动、前沿观点和深度分析。我们承诺保护您的隐私，不会将您的信息用于其他用途。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section id="newsletter-benefits">
+                <h2 class="zh-section-title">为什么订阅</h2>
+                <div class="newsletter-grid">
+                    <div class="newsletter-card">
+                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <path d="M16 20 L24 28 L32 20" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
+                            <path d="M16 28 L24 36 L32 28" stroke="rgba(167,139,250,0.8)" stroke-width="2"
+                                fill="none" />
+                        </svg>
+                        <div class="newsletter-card-title">最新研究进展</div>
+                        <div class="newsletter-card-desc">
+                            获取星际文明学领域的最新研究成果、理论突破和学术发现，保持在学科前沿。
+                        </div>
+                    </div>
+
+                    <div class="newsletter-card">
+                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <rect x="14" y="16" width="20" height="16" rx="2" stroke="rgba(167,139,250,0.8)"
+                                stroke-width="2" fill="none" />
+                            <path d="M18 22 L30 22 M18 26 L26 26" stroke="rgba(6,182,212,1)" stroke-width="2" />
+                        </svg>
+                        <div class="newsletter-card-title">学术活动通知</div>
+                        <div class="newsletter-card-desc">
+                            提前了解国际会议、研讨会、讲座和工作坊等学术活动信息，不错过任何交流机会。
+                        </div>
+                    </div>
+
+                    <div class="newsletter-card">
+                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <path d="M24 12 L24 24 L32 28" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
+                            <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
+                                fill="none" />
+                        </svg>
+                        <div class="newsletter-card-title">前沿观点评论</div>
+                        <div class="newsletter-card-desc">
+                            阅读对AI治理、太空探索、SETI等热点话题的深度分析和专家评论。
+                        </div>
+                        <div class="newsletter-card">
+                            <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
+                                <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                    fill="rgba(167,139,250,0.1)" />
+                                <path d="M18 24 L22 28 L30 20" stroke="rgba(6,182,212,1)" stroke-width="2"
+                                    fill="none" />
+                                <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
+                                    fill="none" />
+                            </svg>
+                            <div class="newsletter-card-title">独家资源获取</div>
+                            <div class="newsletter-card-desc">
+                                优先获取研究报告、白皮书、教学资料等独家学术资源的下载链接。
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section id="newsletter-stats">
+                <h2 class="zh-section-title">通讯数据</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">15,000+</div>
+                        <div class="stat-label">全球订阅者</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">打开率</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2次/月</div>
+                        <div class="stat-label">发送频率</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">58国</div>
+                        <div class="stat-label">覆盖国家</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="newsletter-content">
+                <h2 class="zh-section-title">通讯内容</h2>
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">每期包含</h3>
+                    <ul>
+                        <li><strong>学术前沿：</strong>最新发表的论文摘要、研究方向和理论进展</li>
+                        <li><strong>热点评论：</strong>对当前AI、太空、生物技术等领域重大事件的深度分析</li>
+                        <li><strong>活动预告：</strong>即将举办的会议、讲座、研讨会和工作坊信息</li>
+                        <li><strong>资源推荐：</strong>精选书籍、报告、数据集和工具推荐</li>
+                        <li><strong>社区动态：</strong>全球星际文明学研究网络的最新消息</li>
+                        <li><strong>问答专栏：</strong>回答订阅者提出的学术问题</li>
+                    </ul>
+
+                    <h3 class="zh-subsection-title">特别专题</h3>
+                    <p>每季度我们会推出特别专题通讯，深入探讨某一重要议题：</p>
+                    <ul>
+                        <li>宇宙责任伦理学的最新发展</li>
+                        <li>AI治理的国际实践与挑战</li>
+                        <li>太空探索的文明学意义</li>
+                        <li>跨代治理的制度设计</li>
+                        <li>存在风险的评估与应对</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="subscribe-form">
+                <h2 class="zh-section-title">立即订阅</h2>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">姓名 *</label>
+                        <input type="text" id="name" name="name" class="form-input" required placeholder="请输入您的姓名">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">电子邮箱 *</label>
+                        <input type="email" id="email" name="email" class="form-input" required
+                            placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="organization">所属机构</label>
+                        <input type="text" id="organization" name="organization" class="form-input"
+                            placeholder="大学、研究所、公司等（可选）">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="role">身份 *</label>
+                        <select id="role" name="role" class="form-select" required>
+                            <option value="">请选择您的身份</option>
+                            <option value="researcher">研究人员</option>
+                            <option value="student">学生</option>
+                            <option value="educator">教育工作者</option>
+                            <option value="policymaker">政策制定者</option>
+                            <option value="industry">产业从业者</option>
+                            <option value="media">媒体工作者</option>
+                            <option value="enthusiast">爱好者</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">感兴趣的主题（可多选）</label>
+                        <div class="form-checkbox-group">
+                            <label class="form-checkbox-label">
+                                <input type="checkbox" name="topics" value="theory" class="form-checkbox"><span
+                                    class="form-checkbox-text">理论基础与新三观</span>
+                            </label>
+                            <label class="form-checkbox-label">
+                                <input type="checkbox" name="topics" value="ai-governance" class="form-checkbox">
+                                <span class="form-checkbox-text">AI治理</span>
+                            </label>
+                            <label class="form-checkbox-label">
+                                <input type="checkbox" name="topics" value="space-governance" class="form-checkbox">
+                                <span class="form-checkbox-text">太空治理</span>
+                            </label>
+                            <label class="form-checkbox-label">
+                                <input type="checkbox" name="topics" value="existential-risk" class="form-checkbox">
+                                <span class="form-checkbox-text">存在风险管理</span>
+                            </label>
+                            <label class="form-checkbox-label">
+                                <input type="checkbox" name="topics" value="seti-meti" class="form-checkbox">
+                                <span class="form-checkbox-text">SETI/METI</span>
+                            </label>
+                            <label class="form-checkbox-label">
+                                <input type="checkbox" name="topics" value="intergenerational" class="form-checkbox">
+                                <span class="form-checkbox-text">代际治理</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="frequency">接收频率 *</label>
+                        <select id="frequency" name="frequency" class="form-select" required>
+                            <option value="">请选择接收频率</option>
+                            <option value="biweekly" selected>每两周一次（推荐）</option>
+                            <option value="monthly">每月一次</option>
+                            <option value="quarterly">每季度一次</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="form-submit">订阅通讯</button>
+
+                    <div class="success-message" id="successMessage">
+                        <p>✓ 订阅成功！欢迎加入星际文明学社区。您将很快收到确认邮件。</p>
+                    </div>
+                </form>
+
+                <div class="highlight-box" style="margin-top: 2rem;">
+                    <p><strong>隐私承诺：</strong>我们严格遵守GDPR和相关隐私法规。您的个人信息仅用于发送通讯，不会与第三方共享。您可以随时取消订阅。</p>
+                </div>
+            </section>
+
+            <section id="past-issues">
+                <h2 class="zh-section-title">往期精选</h2>
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">2024年12月刊</h3>
+                    <p><strong>主题：</strong>AI安全治理的全球协调机制</p>
+                    <p>本期深入探讨了多智能审裁院（Multi-Intelligence Tribunal）的理论基础和实践路径，分析了当前AI治理面临的主要挑战，并提出了基于宇宙责任伦理学的解决方案。</p>
+
+                    <h3 class="zh-subsection-title">2024年11月刊</h3>
+                    <p><strong>主题：</strong>太空资源开发的文明学视角</p>
+                    <p>从星际文明学角度审视小行星采矿、月球基地建设等太空资源开发活动，讨论了递归自由原则（RFP）在太空治理中的应用。</p>
+
+                    <h3 class="zh-subsection-title">2024年10月刊</h3>
+                    <p><strong>主题：</strong>SETI信号检测的伦理准备</p>
+                    <p>回顾了近期SETI项目的进展，探讨了人类在接收到地外文明信号时应该如何响应，以及METI（主动向地外文明发送信息）的风险评估框架。</p>
+                </div>
+            </section>
+
+            <section id="faq">
+                <h2 class="zh-section-title">常见问题</h2>
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">订阅相关</h3>
+                    <p><strong>Q: 订阅是免费的吗？</strong></p>
+                    <p>A: 是的，星际文明学通讯完全免费，我们致力于推动学科知识的开放传播。</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Q: 多久会收到一次通讯？</strong></p>
+                    <p>A: 默认每两周发送一次。您可以在订阅时选择每月或每季度接收。</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Q: 如何取消订阅？</strong></p>
+                    <p>A: 每封通讯邮件底部都有"取消订阅"链接，点击即可随时退订。</p>
+
+                    <h3 class="zh-subsection-title">内容相关</h3>
+                    <p><strong>Q: 通讯内容是中英双语的吗？</strong></p>
+                    <p>A: 目前提供中文和英文两个版本，您可以在订阅时选择语言偏好。</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Q: 可以查看往期通讯吗？</strong></p>
+                    <p>A: 可以。订阅后您将获得往期通讯存档的访问权限。</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Q: 可以向通讯投稿吗？</strong></p>
+                    <p>A: 欢迎！如果您有高质量的研究成果或深度分析，请发送至 franka@vip.sina.com。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form submission
+        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                organization: formData.get('organization'),
+                role: formData.get('role'),
+                topics: formData.getAll('topics'),
+                frequency: formData.get('frequency')
+            };
+
+            // Simulate form submission
+            console.log('Newsletter subscription data:', data);
+
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+
+            // Reset form
+            this.reset();
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        });
+
+        // Card hover animation
+        const cards = document.querySelectorAll('.newsletter-card, .stat-card, .content-card');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+
+</html>

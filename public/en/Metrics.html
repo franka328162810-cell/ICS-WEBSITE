@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrics System | Interstellar Civilization Studies</title>
+    <meta name="description"
+        content="ICS has developed a systematic evaluation framework consisting of six major metrics, transforming abstract normative principles into operational assessment tools. These metrics cover six dimensions: consciousness development, freedom protection, commitment credibility, civilization level, information security, and cosmic impact, collectively forming the quantitative support for normative decision-making.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-en-title: 'Orbitron', sans-serif;
+            --font-en-body: 'Inter', sans-serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-en-body);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-en-title);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-en-title);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .en-page-title {
+            font-family: var(--font-en-title);
+            font-size: clamp(3.5rem, 4.5vw, 4rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            letter-spacing: 0.03em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        .en-section-title {
+            font-family: var(--font-en-title);
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .en-subsection-title {
+            font-family: var(--font-en-title);
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .en-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-weight: 600;
+        }
+
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-en-title);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-en-title);
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--color-energy-gold);
+            white-space: nowrap;
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        .diagram-container {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .diagram-svg {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+        }
+
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-label {
+            font-family: var(--font-en-title);
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .concept-desc {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.03em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-en-title);
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1.5rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-en-title);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .en-page-title {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
+            }
+
+            .en-section-title {
+                font-size: 1.75rem;
+                letter-spacing: 0.1em;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">ICS</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="Book Overview.html" class="nav-link">Publications</a></li>
+                <li><a href="Resources.html" class="nav-link">Resources</a></li>
+                <li><a href="Daily Commentary.html" class="nav-link">News</a></li>
+                <li><a href="AI Assistant.html" class="nav-link">AI Assistant</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="Metrics.html" class="lang-btn active">EN</a>
+                    <a href="../zh/指标体系.html" class="lang-btn">中文</a>
+                </div>
+                <a href="Contact Us.html" class="nav-contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="en-page-title">Metrics System: From Principles to Assessment</h1>
+                <div class="hero-intro-card">
+                    <p>ICS has developed a systematic evaluation framework consisting of six major metrics, transforming
+                        abstract normative principles into operational assessment tools. These metrics cover six
+                        dimensions: consciousness development, freedom protection, commitment credibility, civilization
+                        level, information security, and cosmic impact, collectively forming the quantitative support
+                        for normative decision-making.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section>
+                <h2 class="en-section-title">Why Do We Need a Metrics System?</h2>
+                <div class="content-card">
+                    <p>Normative principles provide direction, but practical decision-making requires more specific
+                        assessment tools. The functions of the metrics system are:</p>
+                    <ul>
+                        <li>Concretization: Transform abstract principles into measurable dimensions</li>
+                        <li>Operability: Provide decision-makers with executable assessment processes</li>
+                        <li>Comparability: Support comparison of different options and time periods</li>
+                        <li>Trackability: Support long-term trend monitoring</li>
+                        <li>Accountability: Make decision-making processes transparent and reviewable</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">Overview of Six Major Metrics</h2>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Full Name</th>
+                                <th>Abbreviation</th>
+                                <th>Core Function</th>
+                                <th>Corresponding Principle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Universal Consciousness Scale</td>
+                                <td>Universal Consciousness Scale</td>
+                                <td>UCS</td>
+                                <td>Assess the development level of consciousness systems</td>
+                                <td>Subject qualification determination</td>
+                            </tr>
+                            <tr>
+                                <td>Recursive Freedom Degree</td>
+                                <td>Recursive Freedom Degree</td>
+                                <td>RFD</td>
+                                <td>Assess the impact of actions on possibility space</td>
+                                <td>Recursive Freedom Principle (RFP)</td>
+                            </tr>
+                            <tr>
+                                <td>Commitment Reversibility & Verifiability</td>
+                                <td>Commitment Reversibility & Verifiability</td>
+                                <td>CRV</td>
+                                <td>Assess the credibility and enforceability of commitments</td>
+                                <td>Reversibility Principle (REV)</td>
+                            </tr>
+                            <tr>
+                                <td>Civilization Development Index</td>
+                                <td>Civilization Development Index</td>
+                                <td>CDI</td>
+                                <td>Assess the comprehensive development level of civilizations</td>
+                                <td>Negentropy Responsibility Principle (NRP)</td>
+                            </tr>
+                            <tr>
+                                <td>Memetic Biosafety Containment Level</td>
+                                <td>Memetic Biosafety Containment Level</td>
+                                <td>MBCL</td>
+                                <td>Assess the safety level of information entities</td>
+                                <td>Forbidden Red Lines (FRL)</td>
+                            </tr>
+                            <tr>
+                                <td>Cosmic-Scale Impact Assessment</td>
+                                <td>Cosmic-Scale Impact Assessment</td>
+                                <td>CSIA</td>
+                                <td>Assess the cosmic-scale impact of actions</td>
+                                <td>Integration of all principles</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">Logical Structure of the Metrics System</h2>
+                <div class="content-card">
+                    <p>The six major metrics are not isolated from each other, but form a hierarchical assessment
+                        network:</p>
+                </div>
+
+                <div class="diagram-container">
+                    <svg class="diagram-svg" viewBox="0 0 700 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Comprehensive Assessment Layer -->
+                        <rect x="200" y="20" width="300" height="80" rx="12" fill="rgba(167,139,250,0.15)"
+                            stroke="rgba(167,139,250,0.5)" stroke-width="2" /><text x="350" y="50" text-anchor="middle"
+                            fill="rgba(167,139,250,1)" font-family="Orbitron" font-size="18"
+                            font-weight="600">CSIA</text>
+                        <text x="350" y="75" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Inter"
+                            font-size="14" font-weight="300">Cosmic-Scale Impact Assessment</text>
+
+                        <!-- Connection lines to Domain Assessment Layer -->
+                        <line x1="350" y1="100" x2="120" y2="180" stroke="rgba(6,182,212,0.4)" stroke-width="2" />
+                        <line x1="350" y1="100" x2="350" y2="180" stroke="rgba(6,182,212,0.4)" stroke-width="2" />
+                        <line x1="350" y1="100" x2="580" y2="180" stroke="rgba(6,182,212,0.4)" stroke-width="2" />
+
+                        <!-- Domain Assessment Layer -->
+                        <rect x="10" y="180" width="220" height="80" rx="12" fill="rgba(6,182,212,0.15)"
+                            stroke="rgba(6,182,212,0.5)" stroke-width="2" />
+                        <text x="120" y="210" text-anchor="middle" fill="rgba(6,182,212,1)" font-family="Orbitron"
+                            font-size="18" font-weight="600">RFD</text>
+                        <text x="120" y="235" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Inter"
+                            font-size="14" font-weight="300">Recursive Freedom Degree</text>
+                        <rect x="250" y="180" width="200" height="80" rx="12" fill="rgba(6,182,212,0.15)"
+                            stroke="rgba(6,182,212,0.5)" stroke-width="2" />
+                        <text x="350" y="210" text-anchor="middle" fill="rgba(6,182,212,1)" font-family="Orbitron"
+                            font-size="18" font-weight="600">CDI</text>
+                        <text x="350" y="235" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Inter"
+                            font-size="14" font-weight="300">Civilization Development Index</text>
+
+                        <rect x="470" y="180" width="220" height="80" rx="12" fill="rgba(6,182,212,0.15)"
+                            stroke="rgba(6,182,212,0.5)" stroke-width="2" />
+                        <text x="580" y="210" text-anchor="middle" fill="rgba(6,182,212,1)" font-family="Orbitron"
+                            font-size="18" font-weight="600">MBCL</text>
+                        <text x="580" y="235" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Inter"
+                            font-size="14" font-weight="300">Memetic Biosafety Level</text>
+
+                        <!-- Connection lines to Foundation Assessment Layer -->
+                        <line x1="120" y1="260" x2="120" y2="340" stroke="rgba(245,158,11,0.4)" stroke-width="2" />
+                        <line x1="350" y1="260" x2="350" y2="340" stroke="rgba(245,158,11,0.4)" stroke-width="2" />
+                        <line x1="580" y1="260" x2="580" y2="340" stroke="rgba(245,158,11,0.4)" stroke-width="2" />
+
+                        <!-- Foundation Assessment Layer -->
+                        <rect x="10" y="340" width="220" height="80" rx="12" fill="rgba(245,158,11,0.15)"
+                            stroke="rgba(245,158,11,0.5)" stroke-width="2" />
+                        <text x="120" y="370" text-anchor="middle" fill="rgba(245,158,11,1)" font-family="Orbitron"
+                            font-size="18" font-weight="600">UCS</text>
+                        <text x="120" y="395" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Inter"
+                            font-size="14" font-weight="300">Consciousness Scale</text>
+
+                        <rect x="250" y="340" width="200" height="80" rx="12" fill="rgba(245,158,11,0.15)"
+                            stroke="rgba(245,158,11,0.5)" stroke-width="2" />
+                        <text x="350" y="370" text-anchor="middle" fill="rgba(245,158,11,1)" font-family="Orbitron"
+                            font-size="18" font-weight="600">CRV</text>
+                        <text x="350" y="395" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Inter"
+                            font-size="14" font-weight="300">Commitment Reversibility</text>
+
+                        <rect x="470" y="340" width="220" height="80" rx="12" fill="rgba(245,158,11,0.15)"
+                            stroke="rgba(245,158,11,0.5)" stroke-width="2" />
+                        <text x="580" y="370" text-anchor="middle" fill="rgba(245,158,11,1)" font-family="Orbitron"
+                            font-size="18" font-weight="600">FRL Check</text>
+                        <text x="580" y="395" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Inter"
+                            font-size="14" font-weight="300">Forbidden Red Lines Verification</text>
+                    </svg>
+                </div>
+
+                <div class="content-card">
+                    <p><strong>Layer Description:</strong></p>
+                    <ul>
+                        <li>Foundation Assessment Layer: UCS assesses subjects, CRV assesses commitments, FRL verifies
+                            bottom lines</li>
+                        <li>Domain Assessment Layer: RFD assesses freedom impact, CDI assesses civilization level, MBCL
+                            assesses information security</li>
+                        <li>Comprehensive Assessment Layer: CSIA integrates all the above metrics to provide a
+                            cosmic-scale comprehensive assessment</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">Relationship Between Metrics System and Protocol Stack</h2>
+                <div class="content-card">
+                    <p>Position of the metrics system in the protocol stack:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Protocol Stack Layer</th>
+                                <th>Role of Metrics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>L₂ Normative Principles Layer</td>
+                                <td>The normative foundation that metrics serve</td>
+                            </tr>
+                            <tr>
+                                <td>L₃ Institutional Framework Layer</td>
+                                <td>The metrics system itself belongs to this layer</td>
+                            </tr>
+                            <tr>
+                                <td>L₄ Operational Procedures Layer</td>
+                                <td>Specific calculation methods and standards for metrics</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p>This means:</p>
+                    <ul>
+                        <li>The metrics system is constrained by normative principles and must not contradict them</li>
+                        <li>The metrics system itself can be revised as scientific progress and practical experience
+                            evolve</li>
+                        <li>Specific calculation methods for metrics can be flexibly adjusted</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="en-section-title">Usage Principles and Limitations</h2>
+
+                <h3 class="en-subsection-title">Usage Principles</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Principle</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Comprehensive Use</td>
+                                <td>The six major metrics should be used comprehensively, not relying on any single
+                                    metric alone</td>
+                            </tr>
+                            <tr>
+                                <td>Context Sensitivity</td>
+                                <td>The weight of different metrics may vary in different contexts</td>
+                            </tr>
+                            <tr>
+                                <td>Auxiliary Not Substitute</td>
+                                <td>Metrics assist judgment, they do not replace normative reasoning</td>
+                            </tr>
+                            <tr>
+                                <td>Continuous Calibration</td>
+                                <td>Metrics need to be continuously calibrated based on new data and new understanding
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Limitations</h3>
+                <div class="content-card">
+                    <ul>
+                        <li>Quantification may lose important qualitative information</li>
+                        <li>Measurement of certain dimensions (such as consciousness) faces fundamental difficulties
+                        </li>
+                        <li>Metrics may be strategically manipulated</li>
+                        <li>The metrics system is currently at the conceptual prototype stage and requires further
+                            validation</li>
+                    </ul>
+                </div>
+
+                <h3 class="en-subsection-title">Concept Maturity</h3>
+                <div class="content-card">
+                    <p>According to ICS's Concept Readiness Level (CRL), the maturity of each metric is as follows:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>CRL Level</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>UCS</td>
+                                <td>CRL 3</td>
+                                <td>Theoretical integration stage</td>
+                            </tr>
+                            <tr>
+                                <td>RFD</td>
+                                <td>CRL 3-4</td>
+                                <td>Initial operationalization stage</td>
+                            </tr>
+                            <tr>
+                                <td>CRV</td>
+                                <td>CRL 4</td>
+                                <td>Initial operationalization stage</td>
+                            </tr>
+                            <tr>
+                                <td>CDI</td>
+                                <td>CRL 3-4</td>
+                                <td>Initial operationalization stage</td>
+                            </tr>
+                            <tr>
+                                <td>MBCL</td>
+                                <td>CRL 4</td>
+                                <td>Initial operationalization stage</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA</td>
+                                <td>CRL 3</td>
+                                <td>Theoretical integration stage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p>All metrics require further empirical validation (CRL 5) and widespread application (CRL 6).</p>
+                </div>
+            </section>
+
+            <div class="key-concepts-section">
+                <h2 class="en-section-title">Key Concepts Highlight</h2>
+                <div class="key-concepts-grid">
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Six Major Metrics System</div>
+                            <div class="concept-desc">ICS's assessment toolkit</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Conceptual Prototype</div>
+                            <div class="concept-desc">Current development stage of the metrics system</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Comprehensive Use</div>
+                            <div class="concept-desc">Metrics should be used jointly, not in isolation</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Auxiliary Judgment</div>
+                            <div class="concept-desc">Metrics serve normative reasoning, not replace it</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-links">
+                <h3 class="en-subsection-title">Related Links</h3>
+                <div class="links-grid">
+                    <a href="UCS.html" class="link-item">
+                        <span class="link-text">Universal Consciousness Scale (UCS)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href=" RFD.html" class="link-item">
+                        <span class="link-text">Recursive Freedom Degree (RFD)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="CRV.html" class="link-item">
+                        <span class="link-text">Commitment Reversibility & Verifiability (CRV)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="CDI.html" class="link-item">
+                        <span class="link-text">Civilization Development Index (CDI)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="MBCL.html" class="link-item">
+                        <span class="link-text">Memetic Biosafety Containment Level (MBCL)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="CSIA.html" class="link-item">
+                        <span class="link-text">Cosmic-Scale Impact Assessment (CSIA)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href=" Normative Principles.html" class="link-item">
+                        <span class="link-text">Normative Principles</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="Institutions.html" class="link-item">
+                        <span class="link-text">Institutional Design</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">ICS</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Exploring the frontiers of civilization studies, from cosmic governance to
+                    inter-civilizational contact, providing theoretical guidance for humanity's interstellar future.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discipline</h4>
+                <a href="about.html">Overview</a>
+                <a href="index.html">Core Concepts</a>
+                <a href="Institutions.html">Methodology</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="Publication Information.html">Publications</a>
+                <a href="Resources.html">Reading List</a>
+                <a href="Resources.html">Glossary</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="Contact Us.html">Contact Us</a>
+                <a href=" Contact Us.html">franka@vip.sina.com</a>
+                <a href="Newsletter.html">Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 Interstellar Civilization Studies. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy-en.html">Privacy Policy</a>
+                <a href="terms-en.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        }); document.querySelector('.nav-search').addEventListener('click', () => {
+            alert('Search functionality coming soon');
+        });
+
+        let backToTopButton = null;
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                if (!backToTopButton) {
+                    backToTopButton = document.createElement('button');
+                    backToTopButton.innerHTML = '↑';
+                    backToTopButton.style.cssText = `
+                        position: fixed;
+                        bottom: 2rem;
+                        right: 2rem;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+                        color: white;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+                        z-index: 999;
+                        transition: all 0.3s ease;
+                        opacity: 0;
+                    `;
+                    backToTopButton.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    document.body.appendChild(backToTopButton);
+                }
+                backToTopButton.style.opacity = '1';
+            } else if (backToTopButton) {
+                backToTopButton.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+
+</html>

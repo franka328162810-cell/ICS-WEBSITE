@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四卷：附录与资源 | 星际文明学</title>
+    <meta name="description"
+        content="《星际文明的规范性基础》第四卷是整个四卷本的技术支撑和资源宝库，为前三卷提供详尽的术语定义、论证细节、计算方法、对照分析和教学资源。本卷不是简单的附录汇编，而是经过精心设计的知识管理系统。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-zh-sans: 'Noto Sans SC', sans-serif;
+            --font-zh-serif: 'Noto Serif SC', serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-zh-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-contact {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-zh-serif);
+            font-size: clamp(3.5rem, 4.5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.5;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.0;
+            text-align: left;
+            letter-spacing: 0.02em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-zh-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border-left: 4px solid var(--color-nebula-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            line-height: 1.9;
+            letter-spacing: 0.02em;
+        }
+
+        .appendices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .appendix-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all var(--transition-normal);
+        }
+
+        .appendix-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .appendix-label {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .appendix-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .appendix-desc {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .structure-diagram {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .structure-svg {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .stat-number {
+            font-family: var(--font-zh-serif);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-energy-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-list li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            letter-spacing: 0.02em;
+        }
+
+        .info-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-size: 1.2rem;
+        }
+
+        .info-list li strong {
+            font-family: var(--font-zh-serif);
+            font-weight: 600;
+            color: var(--color-energy-gold);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-zh-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+            }
+
+            .zh-section-title {
+                font-size: 1.5rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .appendices-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body data-page="volume4" data-lang="zh">
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/Work Volume 4.html" class="lang-btn">EN</a>
+                    <a href="专著第四卷.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">第四卷：附录与资源<br>理论的技术支撑与扩展入口</h1>
+                <div class="hero-intro-card">
+                    <p>《星际文明的规范性基础》第四卷是整个四卷本的技术支撑和资源宝库，为前三卷提供详尽的术语定义、论证细节、计算方法、对照分析和教学资源。本卷不是简单的附录汇编，而是经过精心设计的知识管理系统，使读者能够深入理解理论细节、检验论证有效性、应用操作工具、开展教学研究。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section>
+                <h2 class="zh-section-title">核心使命</h2>
+
+                <div class="content-card">
+                    <p>本卷分为三大部分，系统地为前三卷提供技术支撑和扩展资源：</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p>技术附录（附录A-F）提供理论的技术基础；对照附录（附录G-J）将本著作置于国际学术语境中；资源附录（附录K-M）支持教学和研究。</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">技术附录（附录A-F）</h2>
+
+                <div class="content-card">
+                    <p>提供理论的技术基础，包含详尽的术语定义、论证细节、计算方法和技术规格：</p>
+                </div>
+
+                <div class="appendices-grid">
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 A</div>
+                        <div class="appendix-title">核心术语表</div>
+                        <div class="appendix-desc">收录300+核心术语，每个术语包含形式化定义、自然语言说明、首次出现位置、相关术语、应用示例和常见误解</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 B</div>
+                        <div class="appendix-title">论证节点汇总</div>
+                        <div class="appendix-desc">提取全书1000+论证节点，每个节点包含核心结论、论证依据、支持证据、潜在反驳和回应策略</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 C</div>
+                        <div class="appendix-title">指标计算指南</div>
+                        <div class="appendix-desc">提供六大指标系统的详细计算方法，包括公式推导、参数说明、数据需求、计算示例和误差分析</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 D</div>
+                        <div class="appendix-title">协议栈规则汇编</div>
+                        <div class="appendix-desc">提供制度设计的完整技术规格，包括L₀-L₄各层的详细规则、接口定义、异常处理和版本管理</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 E</div>
+                        <div class="appendix-title">仿真模型技术文档</div>
+                        <div class="appendix-desc">提供压力测试使用的仿真模型的完整代码、参数设定、运行说明和结果解释，研究者可以复现仿真实验</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 F</div>
+                        <div class="appendix-title">形式化证明汇编</div>
+                        <div class="appendix-desc">提供关键命题的形式化证明，使用一阶逻辑和模态逻辑，确保论证的逻辑严格性</div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <p>这些技术附录使读者能够追踪任何结论的论证链条，检验论证的有效性，应用指标体系，实施制度设计，复现仿真实验，验证逻辑严格性。</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">对照附录（附录G-J）</h2>
+
+                <div class="content-card">
+                    <p>将本著作置于国际学术语境中，明确理论的独特贡献和学术定位：</p>
+                </div>
+
+                <div class="appendices-grid">
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 G</div>
+                        <div class="appendix-title">与国际空间法的对照表</div>
+                        <div class="appendix-desc">逐条比较本著作的制度设计与现有国际空间法（外空条约、月球协定、行星保护政策）的异同，识别互补性和冲突点</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 H</div>
+                        <div class="appendix-title">与AI伦理文献的对照表</div>
+                        <div class="appendix-desc">将本著作的AI治理框架与主流AI伦理原则（IEEE、EU、OECD）进行对照，明确本著作的独特贡献</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 I</div>
+                        <div class="appendix-title">与长期主义文献的对照表</div>
+                        <div class="appendix-desc">详细比较本著作与MacAskill、Ord、Bostrom等长期主义学者的核心观点，澄清概念差异和规范性分歧</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 J</div>
+                        <div class="appendix-title">最小论证路径</div>
+                        <div class="appendix-desc">提供全书论证的简化版本，用约1万字呈现从问题到新三观、从新三观到规范原则、从规范原则到制度设计的核心论证链条</div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <p>附录J"最小论证路径"是快速理解全书逻辑的捷径，也是批判性检验的焦点。通过这些对照分析，读者可以清晰地看到本著作在国际学术前沿的位置和独特价值。</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">资源附录（附录K-M）</h2>
+
+                <div class="content-card">
+                    <p>支持教学和研究，为教育者和研究者提供丰富的实用资源：</p>
+                </div>
+
+                <div class="appendices-grid">
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 K</div>
+                        <div class="appendix-title">教学资源包</div>
+                        <div class="appendix-desc">包含三套完整的课程大纲（本科、研究生、短期培训）、20个教学案例、标准化的PPT模板和讲义模板、8个课堂练习和作业设计、推荐视频资源链接
+                        </div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 L</div>
+                        <div class="appendix-title">研究议程与开放问题</div>
+                        <div class="appendix-desc">
+                            系统梳理35个开放问题，按短期（1-5年）、中期（5-10年）、长期（10-20年）分类，每个问题包含问题陈述、研究意义、可能方法、预期困难和相关文献</div>
+                    </div>
+
+                    <div class="appendix-card">
+                        <div class="appendix-label">附录 M</div>
+                        <div class="appendix-title">扩展阅读指南</div>
+                        <div class="appendix-desc">按主题（AI伦理、代际正义、外星接触、环境伦理等）推荐300+文献，每个文献包含简要评注和与本著作的关联说明</div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">教学案例示例</h3>
+                    <p>每个教学案例都经过精心设计，包含情境描述、讨论问题、框架应用指南和参考答案。这使教育者能够快速开发星际文明学课程，将抽象理论转化为生动的教学实践。</p>
+
+                    <p>研究议程为研究者提供了丰富的研究选题，从概念澄清到经验检验，从理论完善到政策应用，涵盖星际文明学的各个方面。</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">知识管理系统</h2>
+
+                <div class="content-card">
+                    <p>本卷的设计体现了"知识工程"的理念：将学术知识视为可管理、可检索、可复用的资源。</p>
+                </div>
+
+                <div class="structure-diagram">
+                    <svg class="structure-svg" viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Central Hub -->
+                        <circle cx="450" cy="200" r="60" fill="rgba(167, 139, 250, 0.2)"
+                            stroke="rgba(167, 139, 250, 0.6)" stroke-width="2" /><text x="450" y="195"
+                            font-family="Noto Serif SC" font-size="14" font-weight="600" fill="#a78bfa"
+                            text-anchor="middle">知识管理</text>
+                        <text x="450" y="215" font-family="Noto Serif SC" font-size="14" font-weight="600"
+                            fill="#a78bfa" text-anchor="middle">系统</text>
+
+                        <!-- Index System -->
+                        <circle cx="200" cy="100" r="50" fill="rgba(6, 182, 212, 0.15)" stroke="rgba(6, 182, 212, 0.5)"
+                            stroke-width="2" />
+                        <text x="200" y="95" font-family="Noto Serif SC" font-size="12" font-weight="600" fill="#22d3ee"
+                            text-anchor="middle">索引系统</text>
+                        <text x="200" y="110" font-family="Noto Serif SC" font-size="10" fill="#22d3ee"
+                            text-anchor="middle">5大索引</text>
+                        <line x1="240" y1="120" x2="400" y2="170" stroke="rgba(6, 182, 212, 0.4)" stroke-width="2" />
+
+                        <!-- Structured Format -->
+                        <circle cx="700" cy="100" r="50" fill="rgba(245, 158, 11, 0.15)"
+                            stroke="rgba(245, 158, 11, 0.5)" stroke-width="2" />
+                        <text x="700" y="95" font-family="Noto Serif SC" font-size="12" font-weight="600" fill="#fbbf24"
+                            text-anchor="middle">结构化格式</text>
+                        <text x="700" y="110" font-family="Noto Serif SC" font-size="10" fill="#fbbf24"
+                            text-anchor="middle">可计算处理</text>
+                        <line x1="660" y1="120" x2="500" y2="170" stroke="rgba(245, 158, 11, 0.4)" stroke-width="2" />
+
+                        <!-- Cross-reference -->
+                        <circle cx="200" cy="300" r="50" fill="rgba(124, 58, 237, 0.15)"
+                            stroke="rgba(124, 58, 237, 0.5)" stroke-width="2" />
+                        <text x="200" y="295" font-family="Noto Serif SC" font-size="12" font-weight="600"
+                            fill="#7c3aed" text-anchor="middle">交叉引用</text>
+                        <text x="200" y="310" font-family="Noto Serif SC" font-size="10" fill="#7c3aed"
+                            text-anchor="middle">精确定位</text>
+                        <line x1="240" y1="280" x2="400" y2="230" stroke="rgba(124, 58, 237, 0.4)" stroke-width="2" />
+
+                        <!-- Knowledge Graph -->
+                        <circle cx="700" cy="300" r="50" fill="rgba(34, 197, 94, 0.15)" stroke="rgba(34, 197, 94, 0.5)"
+                            stroke-width="2" />
+                        <text x="700" y="295" font-family="Noto Serif SC" font-size="12" font-weight="600"
+                            fill="#22c55e" text-anchor="middle">知识图谱</text>
+                        <text x="700" y="310" font-family="Noto Serif SC" font-size="10" fill="#22c55e"
+                            text-anchor="middle">未来扩展</text>
+                        <line x1="660" y1="280" x2="500" y2="230" stroke="rgba(34, 197, 94, 0.4)" stroke-width="2" />
+                    </svg>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">完整索引系统</h3>
+                    <ul class="info-list">
+                        <li><strong>主题索引</strong> — 按主题分类组织所有内容</li>
+                        <li><strong>人名索引</strong> — 快速查找所有引用的学者和作者</li>
+                        <li><strong>术语索引</strong> — 定位所有术语的定义和使用</li>
+                        <li><strong>图表索引</strong> — 汇总所有图表和可视化内容</li>
+                        <li><strong>公式索引</strong> — 整理所有数学公式和计算方法</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="zh-subsection-title">未来发展</h3>
+                    <p>术语表、论证节点、指标计算、协议栈规则都采用结构化格式，便于计算机处理和知识图谱构建。未来可以开发基于本卷的知识库系统和智能问答系统，进一步提升知识的可访问性和可用性。</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">著作规模</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">18万</div>
+                        <div class="stat-label">字数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">300+</div>
+                        <div class="stat-label">核心术语</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">论证节点</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">13</div>
+                        <div class="stat-label">附录模块</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">教学案例</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">300+</div>
+                        <div class="stat-label">推荐文献</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">目标读者</h2>
+
+                <div class="content-card">
+                    <p>本卷适合以下读者：</p>
+                    <ul class="info-list">
+                        <li>需要深入理解理论细节的研究者</li>
+                        <li>希望应用指标和制度的实践者</li>
+                        <li>计划开展教学的教育者</li>
+                        <li>有志于批判性检验的批评者</li>
+                        <li>开发知识系统的工程师</li>
+                        <li>撰写相关论文的学生</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p>本卷是前三卷的技术支撑，也是星际文明学知识体系的基础设施。全卷包含大量表格、代码和技术文档，为理论的深入理解、严格检验、实际应用和教学传播提供了全方位的支持。</p>
+                </div>
+            </section>
+
+            <section class="related-links">
+                <h2 class="zh-section-title">相关链接</h2>
+                <div class="links-grid">
+                    <a href="著作概述.html" class="link-item">
+                        <span class="link-text">返回出版物总览</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="专著第一卷.html" class="link-item">
+                        <span class="link-text">第一卷：理论基础</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="专著第二卷.html" class="link-item">
+                        <span class="link-text">第二卷：操作框架</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="专著第三卷.html" class="link-item">
+                        <span class="link-text">第三卷：检验与展望</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="资源.html" class="link-item">
+                        <span class="link-text">在线术语表</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="资源.html" class="link-item">
+                        <span class="link-text">教学资源下载</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
+            }
+        });
+    </script>
+</body>
+
+</html>

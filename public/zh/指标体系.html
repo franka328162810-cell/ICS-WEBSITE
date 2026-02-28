@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指标体系 | 星际文明学</title>
+    <meta name="description"
+        content="星际文明学发展了一套由六大指标组成的系统评估体系，将抽象的规范原则转化为可操作的评估工具。这些指标分别覆盖意识发展、自由保护、承诺可信度、文明水平、信息安全和宇宙影响六个维度，共同构成规范性决策的量化支撑。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-cn-sans: 'Noto Sans SC', sans-serif;
+            --font-cn-serif: 'Noto Serif SC', serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-cn-sans);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-cn-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-cn-serif);
+            font-size: clamp(4rem, 5vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            letter-spacing: 0.03em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-cn-serif);
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-weight: 600;
+        }
+
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-cn-serif);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-cn-serif);
+            font-weight: 500;
+            color: var(--color-energy-gold);
+            white-space: nowrap;
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        .diagram-container {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .diagram-svg {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+        }
+
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-label {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .concept-desc {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.03em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1.5rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-cn-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+                letter-spacing: 0.15em;
+            }
+
+            .zh-section-title {
+                font-size: 1.75rem;
+                letter-spacing: 0.15em;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/Metrics.html" class="lang-btn">EN</a>
+                    <a href="指标体系.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">指标体系：从原则到评估</h1>
+                <div class="hero-intro-card">
+                    <p>星际文明学发展了一套由六大指标组成的系统评估体系，将抽象的规范原则转化为可操作的评估工具。这些指标分别覆盖意识发展、自由保护、承诺可信度、文明水平、信息安全和宇宙影响六个维度，共同构成规范性决策的量化支撑。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section>
+                <h2 class="zh-section-title">为什么需要指标体系？</h2>
+                <div class="content-card">
+                    <p>规范原则提供了方向，但在实际决策中，需要更具体的评估工具。指标体系的功能是：</p>
+                    <ul>
+                        <li>具体化：将抽象原则转化为可衡量的维度</li>
+                        <li>可操作：为决策者提供可执行的评估流程</li>
+                        <li>可比较：支持不同方案、不同时期的对比</li>
+                        <li>可追踪：支持长期趋势监测</li>
+                        <li>可问责：使决策过程透明、可审查</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">六大指标总览</h2>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>指标</th>
+                                <th>英文</th>
+                                <th>缩写</th>
+                                <th>核心功能</th>
+                                <th>对应原则</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>宇宙意识标度</td>
+                                <td>Universal Consciousness Scale</td>
+                                <td>UCS</td>
+                                <td>评估意识系统的发展水平</td>
+                                <td>主体资格认定</td>
+                            </tr>
+                            <tr>
+                                <td>递归自由度</td>
+                                <td>Recursive Freedom Degree</td>
+                                <td>RFD</td>
+                                <td>评估行动对可能性空间的影响</td>
+                                <td>递归自由原则（RFP）</td>
+                            </tr>
+                            <tr>
+                                <td>承诺可逆可验证性</td>
+                                <td>Commitment Reversibility & Verifiability</td>
+                                <td>CRV</td>
+                                <td>评估承诺的可信度与可执行性</td>
+                                <td>可逆性原则（REV）</td>
+                            </tr>
+                            <tr>
+                                <td>文明发展指数</td>
+                                <td>Civilization Development Index</td>
+                                <td>CDI</td>
+                                <td>评估文明的综合发展水平</td>
+                                <td>负熵责任原则（NRP）</td>
+                            </tr>
+                            <tr>
+                                <td>模因生物安全等级</td>
+                                <td>Memetic Biosafety Containment Level</td>
+                                <td>MBCL</td>
+                                <td>评估信息实体的安全等级</td>
+                                <td>禁忌红线（FRL）</td>
+                            </tr>
+                            <tr>
+                                <td>宇宙尺度影响评估</td>
+                                <td>Cosmic-Scale Impact Assessment</td>
+                                <td>CSIA</td>
+                                <td>评估行动的宇宙尺度影响</td>
+                                <td>全部原则综合</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">指标体系的逻辑结构</h2>
+                <div class="content-card">
+                    <p>六大指标并非彼此孤立，而是构成一个有层次的评估网络：</p>
+                </div>
+
+                <div class="diagram-container">
+                    <svg class="diagram-svg" viewBox="0 0 700 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 综合评估层 -->
+                        <rect x="200" y="20" width="300" height="80" rx="12" fill="rgba(167,139,250,0.15)"
+                            stroke="rgba(167,139,250,0.5)" stroke-width="2" />
+                        <text x="350" y="50" text-anchor="middle" fill="rgba(167,139,250,1)" font-family="Noto Serif SC"
+                            font-size="18" font-weight="600">CSIA</text>
+                        <text x="350" y="75" text-anchor="middle" fill="rgba(255,255,255,0.8)"
+                            font-family="Noto Sans SC" font-size="14">宇宙尺度影响评估</text>
+
+                        <!-- 连接线到领域评估层 -->
+                        <line x1="350" y1="100" x2="120" y2="180" stroke="rgba(6,182,212,0.4)" stroke-width="2" />
+                        <line x1="350" y1="100" x2="350" y2="180" stroke="rgba(6,182,212,0.4)" stroke-width="2" />
+                        <line x1="350" y1="100" x2="580" y2="180" stroke="rgba(6,182,212,0.4)" stroke-width="2" />
+
+                        <!-- 领域评估层 -->
+                        <rect x="10" y="180" width="220" height="80" rx="12" fill="rgba(6,182,212,0.15)"
+                            stroke="rgba(6,182,212,0.5)" stroke-width="2" />
+                        <text x="120" y="210" text-anchor="middle" fill="rgba(6,182,212,1)" font-family="Noto Serif SC"
+                            font-size="18" font-weight="600">RFD</text>
+                        <text x="120" y="235" text-anchor="middle" fill="rgba(255,255,255,0.8)"
+                            font-family="Noto Sans SC" font-size="14">递归自由度</text>
+
+                        <rect x="250" y="180" width="200" height="80" rx="12" fill="rgba(6,182,212,0.15)"
+                            stroke="rgba(6,182,212,0.5)" stroke-width="2" />
+                        <text x="350" y="210" text-anchor="middle" fill="rgba(6,182,212,1)" font-family="Noto Serif SC"
+                            font-size="18" font-weight="600">CDI</text>
+                        <text x="350" y="235" text-anchor="middle" fill="rgba(255,255,255,0.8)"
+                            font-family="Noto Sans SC" font-size="14">文明发展指数</text>
+                        <rect x="470" y="180" width="220" height="80" rx="12" fill="rgba(6,182,212,0.15)"
+                            stroke="rgba(6,182,212,0.5)" stroke-width="2" />
+                        <text x="580" y="210" text-anchor="middle" fill="rgba(6,182,212,1)" font-family="Noto Serif SC"
+                            font-size="18" font-weight="600">MBCL</text>
+                        <text x="580" y="235" text-anchor="middle" fill="rgba(255,255,255,0.8)"
+                            font-family="Noto Sans SC" font-size="14">模因生物安全等级</text>
+
+                        <!-- 连接线到基础评估层 -->
+                        <line x1="120" y1="260" x2="120" y2="340" stroke="rgba(245,158,11,0.4)" stroke-width="2" />
+                        <line x1="350" y1="260" x2="350" y2="340" stroke="rgba(245,158,11,0.4)" stroke-width="2" />
+                        <line x1="580" y1="260" x2="580" y2="340" stroke="rgba(245,158,11,0.4)" stroke-width="2" />
+
+                        <!-- 基础评估层 -->
+                        <rect x="10" y="340" width="220" height="80" rx="12" fill="rgba(245,158,11,0.15)"
+                            stroke="rgba(245,158,11,0.5)" stroke-width="2" />
+                        <text x="120" y="370" text-anchor="middle" fill="rgba(245,158,11,1)" font-family="Noto Serif SC"
+                            font-size="18" font-weight="600">UCS</text>
+                        <text x="120" y="395" text-anchor="middle" fill="rgba(255,255,255,0.8)"
+                            font-family="Noto Sans SC" font-size="14">宇宙意识标度</text>
+
+                        <rect x="250" y="340" width="200" height="80" rx="12" fill="rgba(245,158,11,0.15)"
+                            stroke="rgba(245,158,11,0.5)" stroke-width="2" />
+                        <text x="350" y="370" text-anchor="middle" fill="rgba(245,158,11,1)" font-family="Noto Serif SC"
+                            font-size="18" font-weight="600">CRV</text>
+                        <text x="350" y="395" text-anchor="middle" fill="rgba(255,255,255,0.8)"
+                            font-family="Noto Sans SC" font-size="14">承诺可逆可验证性</text>
+
+                        <rect x="470" y="340" width="220" height="80" rx="12" fill="rgba(245,158,11,0.15)"
+                            stroke="rgba(245,158,11,0.5)" stroke-width="2" />
+                        <text x="580" y="370" text-anchor="middle" fill="rgba(245,158,11,1)" font-family="Noto Serif SC"
+                            font-size="18" font-weight="600">FRL校验</text>
+                        <text x="580" y="395" text-anchor="middle" fill="rgba(255,255,255,0.8)"
+                            font-family="Noto Sans SC" font-size="14">禁忌红线核查</text>
+                    </svg>
+                </div>
+
+                <div class="content-card">
+                    <p><strong>层次说明：</strong></p>
+                    <ul>
+                        <li>基础评估层：UCS 评估主体、CRV 评估承诺、FRL 校验底线</li>
+                        <li>领域评估层：RFD 评估自由影响、CDI 评估文明水平、MBCL 评估信息安全</li>
+                        <li>综合评估层：CSIA 汇总以上各指标，给出宇宙尺度的综合评估</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">指标体系与协议栈的关系</h2>
+                <div class="content-card">
+                    <p>指标体系在协议栈中的位置：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>协议栈层次</th>
+                                <th>指标角色</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>L₂ 规范原则层</td>
+                                <td>指标所服务的规范性基础</td>
+                            </tr>
+                            <tr>
+                                <td>L₃ 制度框架层</td>
+                                <td>指标体系本身属于此层</td>
+                            </tr>
+                            <tr>
+                                <td>L₄ 操作规程层</td>
+                                <td>指标的具体计算方法和标准</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p>这意味着：</p>
+                    <ul>
+                        <li>指标体系受规范原则约束，不得与之矛盾</li>
+                        <li>指标体系本身可以修订，随科学进展和实践经验更新</li>
+                        <li>指标的具体计算方法灵活调整</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="zh-section-title">使用原则与局限</h2>
+
+                <h3 class="zh-subsection-title">使用原则</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>原则</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>综合使用</td>
+                                <td>六大指标应综合使用，而非单独依赖某一指标</td>
+                            </tr>
+                            <tr>
+                                <td>情境敏感</td>
+                                <td>不同情境下不同指标的权重可能不同</td>
+                            </tr>
+                            <tr>
+                                <td>辅助而非替代</td>
+                                <td>指标辅助判断，不替代规范性推理</td>
+                            </tr>
+                            <tr>
+                                <td>持续校准</td>
+                                <td>指标需要根据新数据和新认识持续校准</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">局限性</h3>
+                <div class="content-card">
+                    <ul>
+                        <li>量化可能遗失重要的质性信息</li>
+                        <li>某些维度（如意识）的测量面临根本性困难</li>
+                        <li>指标可能被策略性操纵</li>
+                        <li>指标体系目前处于概念原型阶段，需进一步验证</li>
+                    </ul>
+                </div>
+
+                <h3 class="zh-subsection-title">概念成熟度</h3>
+                <div class="content-card">
+                    <p>根据星际文明学的概念成熟度等级（CRL），各指标的成熟度如下：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>指标</th>
+                                <th>CRL等级</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>UCS</td>
+                                <td>CRL 3</td>
+                                <td>理论整合阶段</td>
+                            </tr>
+                            <tr>
+                                <td>RFD</td>
+                                <td>CRL 3-4</td>
+                                <td>初步操作化阶段</td>
+                            </tr>
+                            <tr>
+                                <td>CRV</td>
+                                <td>CRL 4</td>
+                                <td>初步操作化阶段</td>
+                            </tr>
+                            <tr>
+                                <td>CDI</td>
+                                <td>CRL 3-4</td>
+                                <td>初步操作化阶段</td>
+                            </tr>
+                            <tr>
+                                <td>MBCL</td>
+                                <td>CRL 4</td>
+                                <td>初步操作化阶段</td>
+                            </tr>
+                            <tr>
+                                <td>CSIA</td>
+                                <td>CRL 3</td>
+                                <td>理论整合阶段</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <p>所有指标都需要进一步的经验验证（CRL 5）和广泛应用（CRL 6）。</p>
+                </div>
+            </section>
+
+            <div class="key-concepts-section">
+                <h2 class="zh-section-title">关键概念高亮</h2>
+                <div class="key-concepts-grid">
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">六大指标体系</div>
+                            <div class="concept-desc">星际文明学的评估工具集</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">概念原型</div>
+                            <div class="concept-desc">指标体系的当前发展阶段</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">综合使用</div>
+                            <div class="concept-desc">指标应联合而非孤立使用</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">辅助判断</div>
+                            <div class="concept-desc">指标服务于规范性推理，不替代之</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-links">
+                <h3 class="zh-subsection-title">相关链接</h3>
+                <div class="links-grid">
+                    <a href="宇宙意识标度.html" class="link-item">
+                        <span class="link-text">宇宙意识标度（UCS）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="递归自由度.html" class="link-item">
+                        <span class="link-text">递归自由度（RFD）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="承诺可逆可验证性.html" class="link-item">
+                        <span class="link-text">承诺可逆可验证性（CRV）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="文明发展指数.html" class="link-item">
+                        <span class="link-text">文明发展指数（CDI）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="模因生物安全等级.html" class="link-item">
+                        <span class="link-text">模因生物安全等级（MBCL）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="宇宙尺度影响评估.html" class="link-item">
+                        <span class="link-text">宇宙尺度影响评估（CSIA）</span>
+                        <span class="link-arrow">→</span>
+                    </a><a href="规范原则.html" class="link-item">
+                        <span class="link-text">规范原则</span>
+                        <span class="link-arrow">→</span>
+                    </a><a href="制度设计.html" class="link-item">
+                        <span class="link-text">制度设计</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 0) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        }); document.querySelector('.nav-search').addEventListener('click', () => {
+            alert('搜索功能即将推出');
+        });
+
+        let backToTopButton = null;
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                if (!backToTopButton) {
+                    backToTopButton = document.createElement('button');
+                    backToTopButton.innerHTML = '↑';
+                    backToTopButton.style.cssText = `
+                        position: fixed;
+                        bottom: 2rem;
+                        right: 2rem;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+                        color: white;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+                        z-index: 999;
+                        transition: all 0.3s ease;
+                        opacity: 0;
+                    `;
+                    backToTopButton.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    document.body.appendChild(backToTopButton);
+                }
+                backToTopButton.style.opacity = '1';
+            } else if (backToTopButton) {
+                backToTopButton.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>存在风险管理 | 星际文明学</title>
+    <meta name="description"
+        content="存在风险是指可能导致人类文明灭绝或永久衰退的风险。核战争、不对齐的超级智能、工程化大流行病、气候崩溃——这些威胁可能终结人类故事。星际文明学为存在风险管理提供了禁忌红线和深不确定性决策框架。">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        /* ==========================================CSS Variables========================================== */
+        :root {
+            /* Color System */
+            --color-deep-space: #0a1628;
+            --color-space-mid: #1a2a4a;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+
+            /* Text Colors */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-tertiary: rgba(255, 255, 255, 0.6);
+
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+
+            /* Typography */
+            --font-cn-sans: 'Noto Sans SC', sans-serif;
+            --font-cn-serif: 'Noto Serif SC', serif;
+            --font-en-body: 'Inter', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /* ==========================================
+           Reset & Base Styles
+           ========================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-cn-sans);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           Navigation
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-xl);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-brand:hover {
+            transform: translateX(4px);
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-family: var(--font-en-body);
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-cn-serif);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--color-text-primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ==========================================
+           Page Hero
+           ========================================== */
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: var(--space-3xl) var(--space-xl);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .zh-page-title {
+            font-family: var(--font-cn-serif);
+            font-size: clamp(4em, 5vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-family: var(--font-cn-sans);
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.2;
+            text-align: left;
+            margin: 0;
+            letter-spacing: 0.03em;
+        }
+
+        /* ==========================================
+           Main Content
+           ========================================== */
+        .main-content {
+            flex: 1;
+            padding: var(--space-3xl) 0;
+        }
+
+        .zh-section-title {
+            font-family: var(--font-cn-serif);
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .zh-subsection-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--color-energy-gold);
+            margin-bottom: var(--space-lg);
+            margin-top: var(--space-2xl);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .zh-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-family: var(--font-cn-sans);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-family: var(--font-cn-sans);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           Modern Table Styles
+           ========================================== */
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-cn-serif);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-family: var(--font-cn-sans);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-cn-serif);
+            font-weight: 500;
+            color: var(--color-energy-gold);
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background var(--transition-fast);
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        /* ==========================================
+           Highlight Box
+           ========================================== */
+        .highlight-box {
+            background: rgba(124, 58, 237, 0.1);
+            border-left: 4px solid var(--color-quantum-purple);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-family: var(--font-cn-sans);
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            letter-spacing: 0.03em;
+            text-align: left;
+        }
+
+        .highlight-box strong {
+            color: var(--color-quantum-purple-light);
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           Key Concepts Buttons
+           ========================================== */
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-title {
+            font-family: var(--font-cn-serif);
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-content {
+            flex: 1;
+        }
+
+        .concept-label {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .concept-desc {
+            font-family: var(--font-cn-sans);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.03em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Related Links
+           ========================================== */
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-family: var(--font-cn-sans);
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: var(--space-3xl) 0 var(--space-xl);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-cn-serif);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-family: var(--font-en-body);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-cn-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: var(--space-sm);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-xl) 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        /* ==========================================
+           Responsive Design
+           ========================================== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .zh-page-title {
+                font-size: 2rem;
+                letter-spacing: 0.1em;
+            }
+
+            .zh-section-title {
+                font-size: 1.75rem;
+                letter-spacing: 0.1em;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xl);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 4rem var(--space-md) 2rem;
+            }
+
+            .container {
+                padding: 0 var(--space-md);
+            }
+        }
+    </style>
+</head>
+
+<body data-page="existential-risk" data-lang="zh">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">星际文明学</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link active">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="搜索">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="../en/Existential Risk Management.html" class="lang-btn">EN</a>
+                    <a href="存在风险管理.html" class="lang-btn active">中文</a>
+                </div>
+                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="zh-page-title">存在风险管理:守护文明的未来</h1>
+                <div class="hero-intro-card">
+                    <p>存在风险是指可能导致人类文明灭绝或永久衰退的风险。核战争、不对齐的超级智能、工程化大流行病、气候崩溃——这些威胁可能终结人类故事。星际文明学为存在风险管理提供了禁忌红线和深不确定性决策框架。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 什么是存在风险 -->
+            <section>
+                <h2 class="zh-section-title">什么是存在风险？</h2>
+
+                <h3 class="zh-subsection-title">定义</h3>
+                <div class="content-card">
+                    <p>存在风险（Existential Risk, X-risk）是指可能导致以下结果的风险：</p>
+                    <ul>
+                        <li>人类灭绝：智人物种的完全消失</li>
+                        <li>文明崩溃：文明的不可逆崩溃</li>
+                        <li>永久衰退：人类潜能被永久性地大幅削减</li>
+                    </ul>
+                </div>
+
+                <h3 class="zh-subsection-title">存在风险的独特性</h3>
+                <div class="content-card">
+                    <p>存在风险与普通风险有本质区别：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>特征</th>
+                                <th>普通风险</th>
+                                <th>存在风险</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>发生次数</td>
+                                <td>可能多次发生</td>
+                                <td>只能发生一次——没有第二次机会</td>
+                            </tr>
+                            <tr>
+                                <td>学习机会</td>
+                                <td>可从失败中学习</td>
+                                <td>没有学习机会</td>
+                            </tr>
+                            <tr>
+                                <td>影响范围</td>
+                                <td>局部或可恢复</td>
+                                <td>全局且不可逆</td>
+                            </tr>
+                            <tr>
+                                <td>概率评估</td>
+                                <td>通常可估计</td>
+                                <td>深不确定性</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">主要存在风险来源</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>风险类别</th>
+                                <th>具体风险</th>
+                                <th>时间尺度</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>技术风险</td>
+                                <td>不对齐的AGI/ASI</td>
+                                <td>数十年</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>工程化大流行病</td>
+                                <td>数十年</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>纳米技术滥用</td>
+                                <td>数十年至百年</td>
+                            </tr>
+                            <tr>
+                                <td>自然风险</td>
+                                <td>小行星/彗星撞击</td>
+                                <td>随机</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>超级火山喷发</td>
+                                <td>随机</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>伽马射线暴</td>
+                                <td>极低概率</td>
+                            </tr>
+                            <tr>
+                                <td>社会风险</td>
+                                <td>核战争升级</td>
+                                <td>持续</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>气候崩溃</td>
+                                <td>数十年至百年</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>全球极权主义</td>
+                                <td>持续</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ICS的存在风险框架 -->
+            <section>
+                <h2 class="zh-section-title">ICS的存在风险框架</h2>
+
+                <h3 class="zh-subsection-title">存在风险与禁忌红线</h3>
+                <div class="content-card">
+                    <p>存在风险直接关联禁忌红线：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>禁忌红线</th>
+                                <th>与存在风险的关系</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>FRL-1</td>
+                                <td>全球极权主义构成意识主权的系统性侵犯</td>
+                            </tr>
+                            <tr>
+                                <td>FRL-2</td>
+                                <td>核战争、气候崩溃造成宇宙负熵的大规模损耗</td>
+                            </tr>
+                            <tr>
+                                <td>FRL-3</td>
+                                <td>任何存在风险的实现都将系统性收缩未来可能性空间</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>核心洞见：</strong></p>
+                    <p>存在风险的实现，等于对未来所有潜在主体的自由条件的彻底剥夺。这是对递归自由原则最极端的违反。</p>
+                </div>
+
+                <h3 class="zh-subsection-title">规范原则的应用</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>原则</th>
+                                <th>在存在风险管理中的应用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>递归自由原则（RFP）</td>
+                                <td>避免任何可能导致未来主体可能性空间归零的行动</td>
+                            </tr>
+                            <tr>
+                                <td>负熵责任原则（NRP）</td>
+                                <td>保护人类文明作为宇宙负熵的重要承载者</td>
+                            </tr>
+                            <tr>
+                                <td>可逆性原则（REV）</td>
+                                <td>在存在风险领域，优先选择可逆路径至关重要</td>
+                            </tr>
+                            <tr>
+                                <td>禁忌红线（FRL）</td>
+                                <td>存在风险领域有最严格的禁忌红线应用</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 深不确定性与决策 -->
+            <section>
+                <h2 class="zh-section-title">深不确定性与决策</h2>
+
+                <h3 class="zh-subsection-title">深不确定性的挑战</h3>
+                <div class="content-card">
+                    <p>存在风险领域面临深不确定性：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>维度</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>结果不确定</td>
+                                <td>存在风险的具体后果难以完全预见</td>
+                            </tr>
+                            <tr>
+                                <td>概率不确定</td>
+                                <td>大多数存在风险的概率无法可靠估计</td>
+                            </tr>
+                            <tr>
+                                <td>模型不确定</td>
+                                <td>我们的风险模型可能存在根本性缺陷</td>
+                            </tr>
+                            <tr>
+                                <td>价值不确定</td>
+                                <td>如何权衡当代与未来的利益存在争议</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">ICS的决策框架</h3>
+                <div class="content-card">
+                    <p>面对深不确定性，ICS提供以下决策原则：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>原则</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>可逆性优先</td>
+                                <td>优先选择可逆的行动，保留纠错可能</td>
+                            </tr>
+                            <tr>
+                                <td>最大化生存</td>
+                                <td>将人类文明的长期存续作为最高优先</td>
+                            </tr>
+                            <tr>
+                                <td>多样性保护</td>
+                                <td>保护选项多样性，避免单点失败</td>
+                            </tr>
+                            <tr>
+                                <td>底线思维</td>
+                                <td>避免最坏情况，而非追求最优结果</td>
+                            </tr>
+                            <tr>
+                                <td>预警原则</td>
+                                <td>在证据不足时，对潜在存在风险保持警惕</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">存在风险决策矩阵</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>情境</th>
+                                <th>决策指导</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>高概率×高影响</td>
+                                <td>最高优先级应对，投入大量资源</td>
+                            </tr>
+                            <tr>
+                                <td>低概率×高影响（存在风险）</td>
+                                <td>高度重视，不应因概率低而忽视</td>
+                            </tr>
+                            <tr>
+                                <td>高概率×低影响</td>
+                                <td>常规风险管理</td>
+                            </tr>
+                            <tr>
+                                <td>低概率×低影响</td>
+                                <td>低优先级</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 递归自由度在存在风险中的应用 -->
+            <section>
+                <h2 class="zh-section-title">递归自由度（RFD）在存在风险中的应用</h2>
+
+                <h3 class="zh-subsection-title">核心评估</h3>
+                <div class="content-card">
+                    <p>对于存在风险相关决策，RFD评估至关重要：</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>存在风险⇔RFD→0</strong></p>
+                    <p>任何可能导致RFD趋近于零的行动，都构成存在风险。</p>
+                </div>
+
+                <h3 class="zh-subsection-title">技术发展路径的RFD评估</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>技术路径</th>
+                                <th>RFD评估</th>
+                                <th>建议</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>对齐的AGI</td>
+                                <td>RFD > 1（扩展可能性）</td>
+                                <td>支持，但需持续监控</td>
+                            </tr>
+                            <tr>
+                                <td>不对齐的AGI</td>
+                                <td>RFD → 0（存在风险）</td>
+                                <td>必须避免</td>
+                            </tr>
+                            <tr>
+                                <td>可控核聚变</td>
+                                <td>RFD > 1（清洁能源）</td>
+                                <td>积极支持</td>
+                            </tr>
+                            <tr>
+                                <td>攻击性生物技术</td>
+                                <td>RFD → 0（大流行风险）</td>
+                                <td>严格禁止</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 存在风险的分类管理 -->
+            <section>
+                <h2 class="zh-section-title">存在风险的分类管理</h2>
+
+                <h3 class="zh-subsection-title">风险分级</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>特征</th>
+                                <th>管理策略</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>一级</td>
+                                <td>可能导致灭绝</td>
+                                <td>最高优先，全球协调</td>
+                            </tr>
+                            <tr>
+                                <td>二级</td>
+                                <td>可能导致文明崩溃</td>
+                                <td>高优先，国际合作</td>
+                            </tr>
+                            <tr>
+                                <td>三级</td>
+                                <td>可能导致长期衰退</td>
+                                <td>中高优先，多边机制</td>
+                            </tr>
+                            <tr>
+                                <td>四级</td>
+                                <td>可能导致显著退步</td>
+                                <td>中优先，常规治理</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">风险应对矩阵</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>风险类型</th>
+                                <th>预防策略</th>
+                                <th>减缓策略</th>
+                                <th>适应策略</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AGI风险</td>
+                                <td>对齐研究、监管</td>
+                                <td>能力限制、暂停</td>
+                                <td>人类增强</td>
+                            </tr>
+                            <tr>
+                                <td>生物风险</td>
+                                <td>实验室安全、监测</td>
+                                <td>早期检测、隔离</td>
+                                <td>疫苗研发</td>
+                            </tr>
+                            <tr>
+                                <td>核风险</td>
+                                <td>军控条约、外交</td>
+                                <td>去警报状态</td>
+                                <td>掩体建设</td>
+                            </tr>
+                            <tr>
+                                <td>气候风险</td>
+                                <td>减排、转型</td>
+                                <td>碳捕获</td>
+                                <td>适应基础设施</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 制度建议 -->
+            <section>
+                <h2 class="zh-section-title">制度建议</h2>
+
+                <h3 class="zh-subsection-title">存在风险治理的协议栈</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>层次</th>
+                                <th>内容</th>
+                                <th>特点</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>L₂</td>
+                                <td>禁止导致存在风险实现的行动（原则）</td>
+                                <td>绝对优先</td>
+                            </tr>
+                            <tr>
+                                <td>L₃</td>
+                                <td>全球风险监测、预警、协调机制</td>
+                                <td>可修订</td>
+                            </tr>
+                            <tr>
+                                <td>L₄</td>
+                                <td>具体技术标准、应急预案</td>
+                                <td>灵活</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="zh-subsection-title">宇宙级IRB在存在风险中的角色</h3>
+                <div class="content-card">
+                    <p>宇宙级IRB（C-IRB）应对以下活动进行特别审查：</p>
+                    <ul>
+                        <li>可能创造人类级或超人类AI的研究</li>
+                        <li>可能增强病原体危险性的研究</li>
+                        <li>可能导致全球气候系统突变的活动</li>
+                        <li>其他可能触及禁忌红线的活动</li>
+                    </ul>
+                </div>
+
+                <h3 class="zh-subsection-title">全球协调需求</h3>
+                <div class="content-card">
+                    <p>存在风险的全球性要求全球性的协调：</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>需求</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>全球监测</td>
+                                <td>对存在风险的全球性监测和预警</td>
+                            </tr>
+                            <tr>
+                                <td>全球协议</td>
+                                <td>关键领域的国际协议和条约</td>
+                            </tr>
+                            <tr>
+                                <td>全球响应</td>
+                                <td>全球性风险事件的协调响应</td>
+                            </tr>
+                            <tr>
+                                <td>全球治理</td>
+                                <td>长期来看，可能需要全球治理机构</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 关键概念高亮 -->
+
+            <div class="key-concepts-section">
+                <h2 class="key-concepts-title">关键概念高亮</h2>
+                <div class="key-concepts-grid">
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">存在风险（X-risk）</div>
+                            <div class="concept-desc">可能终结人类文明的风险</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">深不确定性决策</div>
+                            <div class="concept-desc">面对不可计算风险的决策框架</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">禁忌红线</div>
+                            <div class="concept-desc">存在风险领域的绝对边界</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">最大化生存</div>
+                            <div class="concept-desc">将文明存续作为最高优先</div>
+                        </div>
+                        <!-- <div class="concept-icon">→</div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 相关链接 -->
+            <div class="related-links">
+                <h3 class="zh-subsection-title">相关链接</h3>
+                <div class="links-grid">
+                    <a href="应用领域概述.html" class="link-item">
+                        <span class="link-text">应用领域概述</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="禁忌红线.html" class="link-item">
+                        <span class="link-text">禁忌红线</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="可逆性原则.html" class="link-item">
+                        <span class="link-text">可逆性原则</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="递归自由度.html" class="link-item">
+                        <span class="link-text">递归自由度（RFD）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="宇宙尺度影响评估.html" class="link-item">
+                        <span class="link-text">宇宙尺度影响评估（CSIA）</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="与长期主义的对话.html" class="link-item">
+                        <span class="link-text">与长期主义的对话</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">星际文明学</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
+            </div>
+            <div class="footer-col">
+                <h4>学科</h4>
+                <a href="关于星际文明学.html">概述</a>
+                <a href="首页.html">核心概念</a>
+                <a href="制度设计.html">方法论</a>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <a href="出版信息.html">出版物</a>
+                <a href="资源.html">阅读清单</a>
+                <a href="资源.html">术语表</a>
+            </div>
+            <div class="footer-col">
+                <h4>联系</h4>
+                <a href="联系我们.html">联系我们</a>
+                <a href="联系我们.html">franka@vip.sina.com</a>
+                <a href="订阅通讯.html">订阅通讯</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <div class="footer-links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation Scroll Effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.remove('scrolled');
+                return;
+            }
+
+            navbar.classList.add('scrolled');
+
+            if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.add('scroll-down');
+            } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-down');
+                navbar.classList.add('scroll-up');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for Fade-in Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Search Button Placeholderdocument.querySelector('.nav-search').addEventListener('click', function () {
+        alert('搜索功能即将推出');
+        });
+
+        // Table Row Highlightdocument.querySelectorAll('.modern-table tbody tr').forEach(row => {
+        row.addEventListener('click', function () {
+            document.querySelectorAll('.modern-table tbody tr').forEach(r => {
+                r.style.background = '';
+            });
+            this.style.background = 'rgba(167, 139, 250, 0.1)';
+        });
+        });
+
+        // Concept Button Click Effect
+        document.querySelectorAll('.concept-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(167, 139, 250, 0.5)';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+
+                const rect = this.getBoundingClientRect();
+                ripple.style.left = (e.clientX - rect.left - 10) + 'px';
+                ripple.style.top = (e.clientY - rect.top - 10) + 'px';
+
+                this.appendChild(ripple);
+
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight box animation on scroll
+        const highlightBoxes = document.querySelectorAll('.highlight-box');
+        const highlightObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'pulse 1s ease-in-out';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        highlightBoxes.forEach(box => {
+            highlightObserver.observe(box);
+        });
+
+        // Add pulse animation
+        const pulseStyle = document.createElement('style');
+        pulseStyle.textContent = `
+            @keyframes pulse {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.02);
+                }
+            }
+        `;
+        document.head.appendChild(pulseStyle);
+
+        // Console Log for Development
+        console.log('%c星际文明学', 'color: #7c3aed; font-size: 20px; font-weight: bold;');
+        console.log('%c存在风险管理页面已加载', 'color: #06b6d4; font-size: 14px;');
+
+        // Performance monitoring
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`页面加载时间: ${loadTime.toFixed(2)}ms`);
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            // Press 'S' to focus search
+            if (e.key === 's' || e.key === 'S') {
+                if (!e.target.matches('input, textarea')) {
+                    e.preventDefault();
+                    document.querySelector('.nav-search').click();
+                }
+            }
+            // Press 'Escape' to close any modals (future feature)
+            if (e.key === 'Escape') {
+                // Close modal logic here
+            }
+        });
+
+        // Add accessibility improvementsdocument.querySelectorAll('.concept-button, .link-item').forEach(element => {
+        element.setAttribute('role', 'button');
+        element.setAttribute('tabindex', '0');
+
+        element.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                element.click();
+            }
+        });
+        });
+
+        // Table accessibility
+        document.querySelectorAll('.modern-table').forEach(table => {
+            table.setAttribute('role', 'table');
+            table.querySelectorAll('tr').forEach(row => {
+                row.setAttribute('role', 'row');
+            });
+            table.querySelectorAll('th').forEach(header => {
+                header.setAttribute('role', 'columnheader');
+            });
+            table.querySelectorAll('td').forEach(cell => {
+                cell.setAttribute('role', 'cell');
+            });
+        });
+
+        // Lazy loading for images (if any are added later)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            imageObserver.unobserve(img);
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Print optimization
+        window.addEventListener('beforeprint', () => {
+            document.body.classList.add('printing');
+        });
+
+        window.addEventListener('afterprint', () => {
+            document.body.classList.remove('printing');
+        });
+
+        // Add print styles
+        const printStyle = document.createElement('style');
+        printStyle.textContent = `
+            @media print {
+                .navbar, .footer, .nav-actions, .related-links {
+                    display: none !important;
+                }
+                .page-hero {
+                    margin-top: 0 !important;
+                }
+                .content-card, .modern-table-container {
+                    break-inside: avoid;
+                }
+                body {
+                    background: white !important;
+                    color: black !important;
+                }
+            }
+        `;
+        document.head.appendChild(printStyle);
+    </script>
+</body>
+
+</html>

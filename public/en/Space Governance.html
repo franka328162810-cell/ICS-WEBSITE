@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Governance | Interstellar Civilization Studies</title>
+    <meta name="description"
+        content="Humanity is becoming a spacefaring species. Commercial spaceflight, lunar programs, and Mars exploration are extending human activities beyond Earth. Interstellar Civilization Studies provides a cosmic responsibility perspective that transcends national sovereignty for space governance.">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        /* ==========================================CSS Variables========================================== */
+        :root {
+            /* Color System */
+            --color-deep-space: #0a1628;
+            --color-space-mid: #1a2a4a;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+
+            /* Text Colors */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-tertiary: rgba(255, 255, 255, 0.6);
+
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+
+            /* Typography */
+            --font-en-body: 'Inter', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /* ==========================================
+           Reset & Base Styles
+           ========================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-en-body);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           Navigation
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-xl);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-brand:hover {
+            transform: translateX(4px);
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-en-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-family: var(--font-en-body);
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.375rem 0.875rem;
+            border-radius: 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--color-text-primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-contact {
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ==========================================
+           Page Hero
+           ========================================== */
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: var(--space-3xl) var(--space-xl);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .en-page-title {
+            font-family: var(--font-en-display);
+            font-size: clamp(3.5em, 4.5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            /* 新增立体阴影 */
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            /* 初始无位移 */
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            /* 悬浮时更强阴影 */
+            transform: translateY(-12px) scale(1.03);
+            /* 悬浮时上移并微放大 */
+        }
+
+        .hero-intro-card p {
+            font-family: var(--font-en-body);
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2.0;
+            text-align: left;
+            margin: 0;
+            letter-spacing: 0.02em;
+        }
+
+        /* ==========================================
+           Main Content
+           ========================================== */
+        .main-content {
+            flex: 1;
+            padding: var(--space-3xl) 0;
+        }
+
+        .en-section-title {
+            font-family: var(--font-en-display);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .en-subsection-title {
+            font-family: var(--font-en-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-energy-gold);
+            margin-bottom: var(--space-lg);
+            margin-top: var(--space-2xl);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .en-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+        }
+
+        .content-card p {
+            font-family: var(--font-en-body);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            font-family: var(--font-en-body);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 2.0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           Modern Table Styles
+           ========================================== */
+        .modern-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modern-table th {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--color-quantum-purple-light);
+            padding: 1.25rem 1.75rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+            vertical-align: middle;
+        }
+
+        .modern-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .modern-table th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .modern-table td {
+            font-family: var(--font-en-body);
+            font-size: 1.0625rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            line-height: 1.9;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            vertical-align: middle;
+        }
+
+        .modern-table td:first-child {
+            font-family: var(--font-en-display);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-energy-gold);
+        }
+
+        .modern-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .modern-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+
+        .modern-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+
+        .modern-table tbody tr {
+            transition: background var(--transition-fast);
+        }
+
+        .modern-table tbody tr:hover {
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        /* ==========================================
+           Key Concepts Buttons
+           ========================================== */
+        .key-concepts-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .key-concepts-title {
+            font-family: var(--font-en-display);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .key-concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .concept-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .concept-content {
+            flex: 1;
+        }
+
+        .concept-label {
+            font-family: var(--font-en-display);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-desc {
+            font-family: var(--font-en-body);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.02em;
+        }
+
+        .concept-icon {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .concept-button:hover .concept-icon {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Related Links
+           ========================================== */
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-family: var(--font-en-body);
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: var(--space-3xl) 0 var(--space-xl);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-en-display);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-family: var(--font-en-body);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-en-display);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: var(--space-sm);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-xl) 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        /* ==========================================
+           Responsive Design
+           ========================================== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .en-page-title {
+                font-size: 2rem;
+                letter-spacing: 0.08em;
+            }
+
+            .en-section-title {
+                font-size: 1.5rem;
+                letter-spacing: 0.08em;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .modern-table th,
+            .modern-table td {
+                padding: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xl);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 4rem var(--space-md) 2rem;
+            }
+
+            .container {
+                padding: 0 var(--space-md);
+            }
+        }
+    </style>
+</head>
+
+<body data-page="space-governance" data-lang="en">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">ICS</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="Book Overview.html" class="nav-link">Publications</a></li>
+                <li><a href="Resources.html" class="nav-link">Resources</a></li>
+                <li><a href="Daily Commentary.html" class="nav-link">News</a></li>
+                <li><a href="AI Assistant.html" class="nav-link">AI Assistant</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a href="Space Governance.html" class="lang-btn active">EN</a>
+                    <a href="../zh/太空治理.html" class="lang-btn">中文</a>
+                </div>
+                <a href="Contact Us.html" class="nav-contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="en-page-title">Space Governance: Protecting Cosmic Negentropy</h1>
+                <div class="hero-intro-card">
+                    <p>Humanity is becoming a spacefaring species. Commercial spaceflight, lunar programs, and Mars
+                        exploration are extending human activities beyond Earth. But how should space activities be
+                        governed? How should space resources be allocated? How can we avoid bringing Earth's mistakes
+                        into the cosmos? Interstellar Civilization Studies provides a cosmic responsibility perspective
+                        that transcends national sovereignty for these questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Core Challenges of Space Governance -->
+            <section>
+                <h2 class="en-section-title">Core Challenges of Space Governance</h2>
+
+                <h3 class="en-subsection-title">The New Space Era</h3>
+                <div class="content-card">
+                    <p>The 21st century has witnessed fundamental transformations in space activities:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Change</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Actor Diversification</td>
+                                <td>From state-dominated to state + commercial + private multi-actor participation</td>
+                            </tr>
+                            <tr>
+                                <td>Activity Expansion</td>
+                                <td>From low Earth orbit to Moon, asteroids, Mars</td>
+                            </tr>
+                            <tr>
+                                <td>Objective Shift</td>
+                                <td>From exploration to development and utilization</td>
+                            </tr>
+                            <tr>
+                                <td>Scale Growth</td>
+                                <td>Explosive growth in satellite numbers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Inadequacies of Existing Governance Frameworks</h3>
+                <div class="content-card">
+                    <p>Existing frameworks such as the 1967 Outer Space Treaty face challenges:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Limitation</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sovereignty Framework</td>
+                                <td>Based on national sovereignty, difficult to address commercial and private
+                                    activities</td>
+                            </tr>
+                            <tr>
+                                <td>Resource Allocation</td>
+                                <td>Lacks clear provisions on space resource allocation</td>
+                            </tr>
+                            <tr>
+                                <td>Environmental Protection</td>
+                                <td>Insufficient provisions for space environment protection</td>
+                            </tr>
+                            <tr>
+                                <td>Temporal Horizon</td>
+                                <td>Lacks consideration of long-term and intergenerational impacts</td>
+                            </tr>
+                            <tr>
+                                <td>Actor Limitation</td>
+                                <td>Only considers humans, not AI or possible extraterrestrial intelligence</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ICS Space Governance Framework -->
+            <section>
+                <h2 class="en-section-title">ICS Space Governance Framework</h2>
+
+                <h3 class="en-subsection-title">Application of Core Principles</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Normative Principle</th>
+                                <th>Application in Space Governance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Recursive Freedom Principle (RFP)</td>
+                                <td>Space activities must not systematically undermine the ability of future agents to
+                                    utilize space</td>
+                            </tr>
+                            <tr>
+                                <td>Negentropy Responsibility Principle (NRP)</td>
+                                <td>Protect the negentropy of the space environment, avoid irreversible destruction</td>
+                            </tr>
+                            <tr>
+                                <td>Reversibility Principle (REV)</td>
+                                <td>Space activities should maintain reversibility as much as possible</td>
+                            </tr>
+                            <tr>
+                                <td>Forbidden Red Lines (FRL)</td>
+                                <td>Prohibit irreversible large-scale depletion of cosmic negentropy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Reframing Core Questions</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Traditional Question</th>
+                                <th>ICS Reframing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Who owns space resources?</td>
+                                <td>How to allocate space resources to protect recursive freedom?</td>
+                            </tr>
+                            <tr>
+                                <td>How to prevent conflict?</td>
+                                <td>How to establish a framework for multi-agent coexistence in space?</td>
+                            </tr>
+                            <tr>
+                                <td>How to promote development?</td>
+                                <td>How to sustainably utilize space negentropy?</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Space Resources and Negentropy Responsibility -->
+            <section>
+                <h2 class="en-section-title">Space Resources and Negentropy Responsibility</h2>
+
+                <h3 class="en-subsection-title">Unique Characteristics of Space Resources</h3>
+                <div class="content-card">
+                    <p>Space resources have unique characteristics:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Characteristic</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Scarcity</td>
+                                <td>Accessible space resources are limited</td>
+                            </tr>
+                            <tr>
+                                <td>Non-renewable</td>
+                                <td>Most space resources are non-renewable</td>
+                            </tr>
+                            <tr>
+                                <td>Intergenerational Impact</td>
+                                <td>Current use affects future generations' availability</td>
+                            </tr>
+                            <tr>
+                                <td>Negentropy Value</td>
+                                <td>Space resources are an important component of cosmic negentropy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Application of Negentropy Responsibility Principle</h3>
+                <div class="content-card">
+                    <p>Based on NRP, space resource use should follow:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Principle</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sustainability</td>
+                                <td>Resource use rate should not exceed sustainable thresholds</td>
+                            </tr>
+                            <tr>
+                                <td>Intergenerational Equity</td>
+                                <td>Reserve sufficient resource shares for future generations</td>
+                            </tr>
+                            <tr>
+                                <td>Multi-agent Equity</td>
+                                <td>Resource allocation should consider interests of diverse agents</td>
+                            </tr>
+                            <tr>
+                                <td>Negentropy Protection</td>
+                                <td>Prioritize protection of high negentropy value resources</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Space Resource Allocation Framework</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Resource Type</th>
+                                <th>Allocation Principle</th>
+                                <th>Control Mechanism</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Orbital Resources</td>
+                                <td>Fair use, avoid congestion</td>
+                                <td>Orbital allocation coordination mechanism</td>
+                            </tr>
+                            <tr>
+                                <td>Asteroid Resources</td>
+                                <td>First-come-first-served + intergenerational reserve</td>
+                                <td>Mining permits + reserve fund</td>
+                            </tr>
+                            <tr>
+                                <td>Planetary Resources</td>
+                                <td>International co-management, sustainable development</td>
+                                <td>International regulatory body</td>
+                            </tr>
+                            <tr>
+                                <td>Energy Resources</td>
+                                <td>Shared benefits, technology transfer</td>
+                                <td>International cooperation framework</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Space Environment Protection -->
+            <section>
+                <h2 class="en-section-title">Space Environment Protection</h2>
+
+                <h3 class="en-subsection-title">Core Issues</h3>
+                <div class="content-card">
+                    <p>The space environment faces multiple threats:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Threat</th>
+                                <th>Content</th>
+                                <th>Reversibility</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Space Debris</td>
+                                <td>Decommissioned satellites, debris accumulation</td>
+                                <td>Partially reversible</td>
+                            </tr>
+                            <tr>
+                                <td>Orbital Congestion</td>
+                                <td>Increasingly crowded low Earth orbit</td>
+                                <td>Reversible</td>
+                            </tr>
+                            <tr>
+                                <td>Planetary Contamination</td>
+                                <td>Earth biology/materials contaminating other celestial bodies</td>
+                                <td>Possibly irreversible</td>
+                            </tr>
+                            <tr>
+                                <td>Light Pollution</td>
+                                <td>Mega-constellations affecting astronomical observation</td>
+                                <td>Partially reversible</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Application of Reversibility Principle</h3>
+                <div class="content-card">
+                    <p>Based on REV, space environment protection should:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Domain</th>
+                                <th>Reversibility Requirements</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Satellite Design</td>
+                                <td>Safe disposal plan after end of design life</td>
+                            </tr>
+                            <tr>
+                                <td>Mission Planning</td>
+                                <td>Prioritize options with reversible environmental impact</td>
+                            </tr>
+                            <tr>
+                                <td>Planetary Protection</td>
+                                <td>Strictly prevent irreversible biological/chemical contamination</td>
+                            </tr>
+                            <tr>
+                                <td>Technology Selection</td>
+                                <td>Prioritize cleanable, recyclable technologies</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Application of CSIA in Space Activities</h3>
+                <div class="content-card">
+                    <p>Cosmic Scale Impact Assessment (CSIA) applied to major space activities:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>CSIA Level</th>
+                                <th>Review Requirements</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Regular Satellite Launch</td>
+                                <td>CSIA-1</td>
+                                <td>Routine review</td>
+                            </tr>
+                            <tr>
+                                <td>Mega-constellation Deployment</td>
+                                <td>CSIA-2</td>
+                                <td>Enhanced assessment</td>
+                            </tr>
+                            <tr>
+                                <td>Asteroid Mining</td>
+                                <td>CSIA-2~3</td>
+                                <td>Strict review</td>
+                            </tr>
+                            <tr>
+                                <td>Planetary Terraforming (Mars)</td>
+                                <td>CSIA-3~4</td>
+                                <td>Highest level review</td>
+                            </tr>
+                            <tr>
+                                <td>Active METI</td>
+                                <td>CSIA-4</td>
+                                <td>Special review</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Preparation for Cross-Civilization Contact -->
+            <section>
+                <h2 class="en-section-title">Preparation for Cross-Civilization Contact</h2>
+
+                <h3 class="en-subsection-title">Ethical Framework for SETI/METI</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Ethical Issues</th>
+                                <th>ICS Guidance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SETI (Search)</td>
+                                <td>Detection activity itself has relatively low risk</td>
+                                <td>Support, but need to prepare contact protocols</td>
+                            </tr>
+                            <tr>
+                                <td>METI (Messaging)</td>
+                                <td>Actively sending signals may bring risks</td>
+                                <td>Highly cautious, requires global consensus</td>
+                            </tr>
+                            <tr>
+                                <td>Post-Contact</td>
+                                <td>How to respond after contact with extraterrestrial intelligence?</td>
+                                <td>Need to establish protocols in advance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Cross-Civilization Contact Principles</h3>
+                <div class="content-card">
+                    <p>Based on the Recursive Freedom Principle and intersubjectivity principle:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Principle</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Equal Respect</td>
+                                <td>Treat extraterrestrial intelligence as potential equal agents</td>
+                            </tr>
+                            <tr>
+                                <td>Communication Priority</td>
+                                <td>Prioritize establishing communication over confrontation</td>
+                            </tr>
+                            <tr>
+                                <td>Reversibility</td>
+                                <td>Avoid irreversible contact actions</td>
+                            </tr>
+                            <tr>
+                                <td>Representativeness</td>
+                                <td>Contact decisions should represent all humanity</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Role of Multi-Intelligence Arbitration Court</h3>
+                <div class="content-card">
+                    <p>The Multi-Intelligence Arbitration Court (MIAC) can provide an institutional framework for
+                        cross-civilization contact:</p>
+                    <ul>
+                        <li>Establish contact protocols in advance</li>
+                        <li>Assess the agency status of extraterrestrial intelligence</li>
+                        <li>Coordinate cross-civilization communication and dispute resolution</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Institutional Recommendations -->
+            <section>
+                <h2 class="en-section-title">Institutional Recommendations</h2>
+
+                <h3 class="en-subsection-title">Protocol Stack for Space Governance</h3>
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Layer</th>
+                                <th>Content</th>
+                                <th>Revision Difficulty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>L₂</td>
+                                <td>Space activities must not systematically harm cosmic negentropy (principle)</td>
+                                <td>Extremely difficult</td>
+                            </tr>
+                            <tr>
+                                <td>L₃</td>
+                                <td>Space resource allocation mechanisms, environmental protection standards</td>
+                                <td>Revisable</td>
+                            </tr>
+                            <tr>
+                                <td>L₄</td>
+                                <td>Specific technical standards, licensing procedures</td>
+                                <td>Flexible</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="en-subsection-title">Integration with Existing Frameworks</h3>
+                <div class="content-card">
+                    <p>Relationship between ICS space governance framework and existing international space law:</p>
+                </div>
+
+                <div class="modern-table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Dimension</th>
+                                <th>Existing Framework</th>
+                                <th>ICS Supplement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Normative Basis</td>
+                                <td>International law tradition</td>
+                                <td>Cosmic responsibility ethics</td>
+                            </tr>
+                            <tr>
+                                <td>Agent Scope</td>
+                                <td>States</td>
+                                <td>Expanded to diverse agents</td>
+                            </tr>
+                            <tr>
+                                <td>Temporal Horizon</td>
+                                <td>Contemporary</td>
+                                <td>Deep time perspective</td>
+                            </tr>
+                            <tr>
+                                <td>Core Values</td>
+                                <td>Peaceful use, freedom of exploration</td>
+                                <td>Recursive freedom, negentropy protection</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Key Concepts Highlight -->
+            <div class="key-concepts-section">
+                <h2 class="key-concepts-title">Key Concepts Highlight</h2>
+                <div class="key-concepts-grid">
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Cosmic Negentropy Protection</div>
+                            <div class="concept-desc">Core responsibility of space governance</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Intergenerational Equity</div>
+                            <div class="concept-desc">Reserve space resources for future generations</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Planetary Protection</div>
+                            <div class="concept-desc">Prevent irreversible contamination</div>
+                        </div>
+                    </div>
+                    <div class="concept-button">
+                        <div class="concept-content">
+                            <div class="concept-label">Cross-Civilization Contact</div>
+                            <div class="concept-desc">Ethical framework for SETI/METI</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Links -->
+            <div class="related-links">
+                <h3 class="en-subsection-title">Related Links</h3>
+                <div class="links-grid">
+                    <a href="Applications.html" class="link-item">
+                        <span class="link-text">Return to Applications Overview</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href=" Negentropy Responsibility Principle.html" class="link-item">
+                        <span class="link-text">Negentropy Responsibility Principle</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="Reversibility Principle.html" class="link-item">
+                        <span class="link-text">Reversibility Principle</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href="CSIA.html" class="link-item">
+                        <span class="link-text">Cosmic Scale Impact Assessment (CSIA)</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    <a href=" Dialogue with Space Law.html" class="link-item">
+                        <span class="link-text">Dialogue with International Space Law</span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">ICS</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Exploring the frontiers of civilization studies, from cosmic governance to
+                    inter-civilizational contact, providing theoretical guidance for humanity's interstellar future.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discipline</h4>
+                <a href="about.html">Overview</a>
+                <a href="index.html">Core Concepts</a>
+                <a href="Institutions.html">Methodology</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="Publication Information.html">Publications</a>
+                <a href="Resources.html">Reading List</a>
+                <a href="Resources.html">Glossary</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="Contact Us.html">Contact Us</a>
+                <a href=" Contact Us.html">franka@vip.sina.com</a>
+                <a href="Newsletter.html">Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 Interstellar Civilization Studies. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="privacy-en.html">Privacy Policy</a>
+                <a href="terms-en.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation Scroll Effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.remove('scrolled');
+                return;
+            }
+
+            navbar.classList.add('scrolled');
+
+            if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.add('scroll-down');
+            } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-down');
+                navbar.classList.add('scroll-up');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for Fade-in Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Search Button Placeholderdocument.querySelector('.nav-search').addEventListener('click', function () {
+        alert('Search functionality coming soon');
+        });
+
+        // Table Row Highlight
+        document.querySelectorAll('.modern-table tbody tr').forEach(row => {
+            row.addEventListener('click', function () {
+                document.querySelectorAll('.modern-table tbody tr').forEach(r => {
+                    r.style.background = '';
+                });
+                this.style.background = 'rgba(167, 139, 250, 0.1)';
+            });
+        });
+
+        // Console Log for Development
+        console.log('%cInterstellar Civilization Studies', 'color: #7c3aed; font-size: 20px; font-weight: bold;');
+        console.log('%cSpace Governance page loaded', 'color: #06b6d4; font-size: 14px;');
+    </script>
+</body>
+
+</html>
