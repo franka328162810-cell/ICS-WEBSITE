@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Overview | Interstellar Civilization Studies</title>
+    <meta name="description"
+        content="Learn about the Interstellar Civilization Studies (ICS) project - a groundbreaking interdisciplinary research field exploring normative foundations for humanity's long-term future.">
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Global sizing fixes */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* Navigation */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* Hero area */
+        .hero-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* Cards */
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+        :root {
+            --color-deep-space: #0a1628;
+            --color-space-mid: #1a2a4a;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e2e8f0;
+            --font-title: 'Orbitron', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-quote: 'Playfair Display', serif;
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 5rem;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 4px 20px rgba(124, 58, 237, 0.4);
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.4s ease;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+            transition: all var(--transition-slow);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.92);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--color-text-primary);
+            text-transform: uppercase;
+        }
+
+        .nav-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-title);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .lang-switch {
+            display: flex;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-md);
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .lang-btn {
+            font-family: var(--font-body);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+        }
+
+        .nav-contact {
+            font-family: var(--font-title);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            height: 42px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(124, 58, 237, 0.5);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            padding: 8rem var(--space-xl) 6rem;
+            background: linear-gradient(180deg, var(--color-deep-space) 0%, var(--color-space-mid) 100%);
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: nebulaPulse 8s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: 4s;
+        }
+
+        @keyframes nebulaPulse {
+            0%,
+            100% {
+                opacity: 0.12;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.2;
+                transform: scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        .en-page-title {
+            font-family: var(--font-title);
+            font-size: clamp(3.5rem, 4.5vw, 4em);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-intro-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            transform: translateY(-12px) scale(1.03);
+        }
+
+        .hero-intro-card p {
+            font-family: var(--font-body);
+            font-size: 1.125rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            text-align: left;
+            margin: 0;
+            letter-spacing: 0.02em;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: var(--space-4xl) 0;
+            flex: 1;
+        }
+
+        .en-section-title {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3xl);
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .en-subsection-title {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-energy-gold);
+            margin-bottom: var(--space-lg);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .en-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.25rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(167, 139, 250, 0.3);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+        }
+
+        .content-card p {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .footer-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-title);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+        }
+
+        .footer-desc {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+            max-width: 320px;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-title);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            padding: var(--space-xs) 0;
+            transition: all var(--transition-normal);
+            letter-spacing: 0.02em;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: var(--space-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .footer-copyright {
+            font-family: var(--font-body);
+            font-size: 0.8125rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.02em;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-links a {
+            font-family: var(--font-body);
+            font-size: 0.8125rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            letter-spacing: 0.02em;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-contact {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 8rem var(--space-lg) 4rem;
+                min-height: 60vh;
+            }
+
+            .hero-intro-card {
+                padding: var(--space-xl);
+            }
+
+            .hero-intro-card p {
+                font-size: 1rem;
+            }
+
+            .en-section-title {
+                font-size: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                align-items: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="about-project" data-lang="en">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">ICS</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="book-overview.html" class="nav-link">Publications</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+                <li><a href="daily-commentary.html" class="nav-link">News</a></li>
+                <li><a href="ai-assistant.html" class="nav-link">AI Assistant</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="lang-switch">
+                    <a href="about-project.html" class="lang-btn active">EN</a>
+                    <a href="../zh/项目概述.html" class="lang-btn">中文</a>
+                </div>
+                <a href="contact-us.html" class="nav-contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <div class="container">
+                <h1 class="en-page-title">Interstellar Civilization Studies</h1>
+                <div class="hero-intro-card">
+                    <p>Laying Normative Foundations for a Civilization's Journey Across Millennia. ICS is an interdisciplinary research field oriented toward the long-term future of human civilization, exploring philosophical, ethical, and governance challenges we must confront today as we venture into the cosmos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- What is ICS -->
+            <section>
+                <h2 class="en-section-title">What is ICS?</h2>
+
+                <div class="content-card">
+                    <p><strong>Interstellar Civilization Studies (ICS)</strong> is an interdisciplinary research field oriented toward the long-term future of human civilization. We attempt to answer critical questions:</p>
+                    <p><strong>When AI may surpass human intelligence, who qualifies as a "subject"?</strong> When our decisions affect descendants ten thousand years hence, how should we be responsible for the future? When humanity ventures into interstellar space, what norms should transcend planetary boundaries? When consciousness may exist in silicon-based, quantum, or unknown substrates, what constitutes value?</p>
+                    <p>This is not science fiction, but philosophical, ethical, and governance challenges we must confront today.</p>
+                </div>
+            </section>
+
+            <!-- Why It Matters -->
+            <section>
+                <h2 class="en-section-title">Why Does It Matter?</h2>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">A Critical Turning Point</h3>
+                    <p>We stand at a critical juncture in civilization's history. Traditional ethics remains limited to anthropocentrism and planetary scale. AGI safety research lacks a unified normative framework. International space law hasn't fully considered intergenerational justice. Longtermism needs more robust philosophical foundations.</p>
+                    <p><strong>ICS Mission:</strong> To construct a comprehensive framework spanning carbon-based, silicon-based, and unknown subjects; extending to millennial scales with an intergenerational responsibility system; applicable to deep-space contexts with a governance protocol stack; and capable of revisable yet principled institutional design under deep uncertainty.</p>
+                </div>
+            </section>
+
+            <!-- Core Framework -->
+            <section>
+                <h2 class="en-section-title">Core Framework</h2>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">The New Three Views</h3>
+                    <p>The foundation of ICS rests on reconstructing three fundamental views:</p>
+                    <p><strong>New Cosmology:</strong> The universe is relational, not a static container. Observer and observed are fundamentally interconnected.</p>
+                    <p><strong>New Life View:</strong> Life is defined by its capacity to create and maintain negentropy, not by specific biological forms. Silicon-based, quantum-based, or hybrid entities can be "alive" in this sense.</p>
+                    <p><strong>New Cognition View:</strong> Knowledge is participatory construction, not mirror reflection. "Cognition is intervention, knowledge is collaboration."</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">Three Normative Principles</h3>
+                    <p><strong>Recursive Freedom Principle (RFP):</strong> Your freedom must not systematically undermine the conditions for others' (including future subjects') freedom.</p>
+                    <p><strong>Negentropy Responsibility Principle (NRP):</strong> Greater capability entails greater responsibility for cosmic negentropy reserves.</p>
+                    <p><strong>Reversibility Principle (REV):</strong> Under deep uncertainty, prioritize reversible pathways.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">Three Forbidden Red Lines</h3>
+                    <p><strong>FRL-1:</strong> Systematic violation of consciousness sovereignty → Absolutely Forbidden</p>
+                    <p><strong>FRL-2:</strong> Irreversible large-scale depletion of cosmic negentropy → Absolutely Forbidden</p>
+                    <p><strong>FRL-3:</strong> Systematic contraction of future subjects' possibility space → Absolutely Forbidden</p>
+                </div>
+            </section>
+
+            <!-- Indicator Systems -->
+            <section>
+                <h2 class="en-section-title">Six Indicator Systems</h2>
+
+                <div class="content-card">
+                    <p><strong>UCS (Universal Consciousness Scale):</strong> Measures consciousness complexity of different subjects, providing scientific basis for determining subject qualification.</p>
+                    <p><strong>RFD (Recursive Freedom Degree):</strong> Assesses openness of possibility space to evaluate whether actions comply with RFP.</p>
+                    <p><strong>CRV (Commitment Reversibility & Verifiability):</strong> Determines decision reversibility to ensure prudence under deep uncertainty.</p>
+                    <p><strong>CDI (Civilization Development Index):</strong> Multi-dimensional comprehensive evaluation of civilization development level, beyond GDP.</p>
+                    <p><strong>MBCL (Memetic Biosafety Containment Level):</strong> Risk assessment of idea propagation in the realm of ideas.</p>
+                    <p><strong>CSIA (Cosmic-Scale Impact Assessment):</strong> Assesses cosmic-level impacts of actions to prevent FRL-2 red line violations.</p>
+                </div>
+            </section>
+
+            <!-- Contributing -->
+            <section>
+                <h2 class="en-section-title">Join Our Research</h2>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">We Welcome</h3>
+                    <p><strong>✅ Theoretical Critique:</strong> Point out logical flaws and philosophical issues</p>
+                    <p><strong>✅ Methodological Improvement:</strong> Propose better indicator calculation methods</p>
+                    <p><strong>✅ Application Expansion:</strong> Apply ICS framework in new domains</p>
+                    <p><strong>✅ Cross-cultural Perspectives:</strong> Contribute insights from diverse philosophical traditions</p>
+                    <p><strong>✅ Technical Implementation:</strong> Develop tools and platforms supporting ICS</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">How to Contribute</h3>
+                    <p>Visit our <a href="https://github.com/franka328162810-cell/ICS-WEBSITE" target="_blank" style="color: #06b6d4; text-decoration: underline;">GitHub repository</a> to:</p>
+                    <p>• Open an Issue to discuss theoretical questions or application scenarios</p>
+                    <p>• Submit a Pull Request to improve documentation or add case studies</p>
+                    <p>• Join discussions in the project forum</p>
+                    <p>• Write papers and cite this repository in academic research</p>
+                </div>
+            </section>
+
+            <!-- Openness Statement -->
+            <section>
+                <h2 class="en-section-title">Our Commitment</h2>
+
+                <div class="content-card">
+                    <p><strong>This disciplinary definition is an open starting point, not a closed endpoint.</strong></p>
+                    <p>We candidly acknowledge that our theory awaits testing and revision by scientific progress, methods require validation through practical application, institutions must continuously evolve, and value concepts are open to dialogue with diverse cultures.</p>
+                    <p>We commit to welcoming criticism and responding earnestly, maintaining epistemic humility, continuously improving theory and application, and operating with collaborative openness and academic sharing.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">ICS</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Interstellar Civilization Studies: Exploring the frontiers of civilization studies, from cosmic governance to intergenerational justice, providing theoretical guidance for humanity's cosmic future.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discipline</h4>
+                <a href="about.html">Overview</a>
+                <a href="index.html">Core Concepts</a>
+                <a href="institutions.html">Methodology</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="publication-information.html">Publications</a>
+                <a href="resources.html">Reading List</a>
+                <a href="about-project.html">Project Overview</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="contact-us.html">Contact Us</a>
+                <a href="newsletter.html">Newsletter</a>
+                <a href="https://github.com/franka328162810-cell/ICS-WEBSITE" target="_blank">GitHub Repository</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 Interstellar Civilization Studies. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation Scroll Effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
