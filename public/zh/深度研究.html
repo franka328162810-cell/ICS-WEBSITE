@@ -5,7 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>深度研究 | 星际文明学</title>
-    <meta name="description" content="星际文明学视角下的深度研究与学术分析">
+    <meta name="description" content="星际文明学视角下的深度研究与学术分析。包含关于AI治理、太空治理、生命伦理等前沿学术研究。">
+    <meta name="keywords" content="深度研究, 星际文明学, AI治理, 太空治理, 学术分析, 伦理学">
+    <meta name="author" content="星际文明学">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="深度研究 | 星际文明学">
+    <meta property="og:description" content="探索星际文明学的前沿学术研究，涵盖AI治理、太空治理、生命伦理等多个领域。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ics-studies.org/zh/深度研究.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="深度研究 | 星际文明学">
+    <meta name="twitter:description" content="星际文明学的学术深度研究与分析。">
+    <link rel="canonical" href="https://ics-studies.org/zh/深度研究.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -509,7 +520,216 @@
                 text-align: center;
             }
         }
+
+        /* 学术搜索模块样式 */
+        .search-section {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(6, 182, 212, 0.08));
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1), transparent);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .search-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-header h3 {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .search-header p {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-controls {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-family: var(--font-zh-sans);
+            font-size: 0.9375rem;
+            outline: none;
+            transition: all var(--transition-normal);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--color-quantum-purple);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-btn {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-family: var(--font-zh-sans);
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-family: var(--font-zh-sans);
+            transition: all var(--transition-normal);
+        }
+
+        .filter-button:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--color-quantum-purple);
+            color: var(--color-text-primary);
+        }
+
+        .filter-button.active {
+            background: var(--color-quantum-purple);
+            border-color: var(--color-quantum-purple);
+            color: white;
+        }
+
+        .search-results {
+            display: none;
+            position: relative;
+            z-index: 2;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-results-info {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .search-input-group {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-section {
+                padding: 2rem 1.5rem;
+            }
+        }
     </style>
+    <!-- 结构化数据 JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "深度研究 | 星际文明学",
+        "description": "星际文明学视角下的深度研究与学术分析，涵盖AI治理、太空治理、生命伦理等领域",
+        "url": "https://ics-studies.org/zh/深度研究.html",
+        "mainEntity": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "首页",
+                    "item": "https://ics-studies.org/zh/首页.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "深度研究",
+                    "item": "https://ics-studies.org/zh/深度研究.html"
+                }
+            ]
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "星际文明学",
+            "url": "https://ics-studies.org",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://ics-studies.org/logo.png"
+            }
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "星际文明学研究团队"
+        }
+    }
+    </script>
 </head>
 
 <body data-page="research-deep" data-lang="zh">
@@ -572,6 +792,34 @@
 
     <main class="main-content">
         <div class="container">
+            <!-- 学术搜索模块 -->
+            <section class="search-section">
+                <div class="search-header">
+                    <h3>🔍 学术搜索</h3>
+                    <p>按关键词、分类或日期快速查找相关研究文章</p>
+                </div>
+                <div class="search-controls">
+                    <div class="search-input-group">
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            id="searchInput" 
+                            placeholder="输入关键词：AI治理、太空治理、生命伦理..."
+                            aria-label="搜索文章"
+                        >
+                        <button class="search-btn" id="searchBtn" onclick="performSearch()">搜索</button>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">🏷️ 按分类筛选：</span>
+                        <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">全部</button>
+                        <button class="filter-button" data-filter="AI治理" onclick="filterByCategory(this)">AI治理</button>
+                        <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
+                        <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
+                    </div>
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </section>
+
             <section style="margin-bottom: 5rem;">
                 <h2 class="zh-section-title">最新研究</h2>
                 <div class="related-grid">
@@ -676,14 +924,138 @@
     </footer>
 
     <script>
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 0) {
+        // 页面导航效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
                 navbar.style.background = 'rgba(10, 22, 40, 0.95)';
+                navbar.style.backdropFilter = 'blur(15px)';
             } else {
                 navbar.style.background = 'rgba(10, 22, 40, 0.8)';
+                navbar.style.backdropFilter = 'blur(10px)';
             }
         });
+
+        // 文章数据库
+        const articlesDatabase = [
+            {
+                title: "特朗普封杀Anthropic：AI伦理红线与军事需求的文明级博弈",
+                category: "AI治理",
+                date: "2026年3月4日",
+                reading_time: "25分钟",
+                description: "美国国防部将本土科技公司Anthropic标记为'国家安全供应链风险'，而Claude军用版本仍在美军实际行动中被广泛部署。从星际文明学的递归自由原则与可逆性原则视角看，这场博弈代表了一个文明级伦理临界点。",
+                tags: ["AI治理", "伦理学", "国防"],
+                href: "articles/trump-anthropic-ban-20250304.html",
+                featured: true
+            },
+            {
+                title: "通用人工智能的递归自由困境：从GPT-5看文明选择空间的锁定效应",
+                category: "AI治理",
+                date: "2025年1月15日",
+                reading_time: "30分钟",
+                description: "AGI的快速发展正在创造前所未有的'路径依赖锁定'效应，通过技术标准化、价值观嵌入和基础设施依赖三个维度，系统性地压缩未来智能体的选择空间。",
+                tags: ["AI治理", "自由"],
+                href: "articles/agi-recursive-freedom.html"
+            },
+            {
+                title: "跨基质生命的伦理地位：新生命观框架下的主体资格理论",
+                category: "伦理学",
+                date: "2025年2月10日",
+                reading_time: "28分钟",
+                description: "探讨硅基生命、数字生命等非碳基生命形式的道德地位问题，从星际文明学的新生命观出发建立包容性的伦理框架...",
+                tags: ["伦理学", "生命"],
+                href: "articles/research-deep-2.html"
+            },
+            {
+                title: "协议栈方法论在太空治理中的应用：火星殖民的制度设计",
+                category: "太空治理",
+                date: "2025年3月1日",
+                reading_time: "32分钟",
+                description: "运用分层、可演化的协议栈框架设计火星殖民地的治理结构，实现跨代正义与制度创新的统一...",
+                tags: ["太空治理", "制度设计"],
+                href: "articles/research-deep-3.html"
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        // 执行搜索
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const results = articlesDatabase.filter(article => {
+                const matchesSearch = article.title.toLowerCase().includes(searchInput) ||
+                                     article.description.toLowerCase().includes(searchInput) ||
+                                     article.tags.some(tag => tag.toLowerCase().includes(searchInput));
+                const matchesFilter = currentFilter === 'all' || article.category === currentFilter;
+                return matchesSearch && matchesFilter;
+            });
+            displayResults(results, searchInput);
+        }
+
+        // 按分类筛选
+        function filterByCategory(button) {
+            // 移除其他按钮的active类
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            currentFilter = button.getAttribute('data-filter');
+            
+            // 重新执行当前搜索
+            const searchInput = document.getElementById('searchInput').value;
+            const results = searchInput ? 
+                articlesDatabase.filter(article => {
+                    const matchesSearch = article.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+                                         article.description.toLowerCase().includes(searchInput.toLowerCase());
+                    const matchesFilter = currentFilter === 'all' || article.category === currentFilter;
+                    return matchesSearch && matchesFilter;
+                }) :
+                (currentFilter === 'all' ? [] : articlesDatabase.filter(a => a.category === currentFilter));
+            
+            displayResults(results, searchInput || '分类结果');
+        }
+
+        // 显示搜索结果
+        function displayResults(results, query) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="search-results-info">未找到匹配的结果。请尝试其他关键词。</div>';
+                resultsContainer.classList.add('active');
+                return;
+            }
+
+            let html = `<div class="search-results-info">🔎 找到 ${results.length} 篇相关文章</div>`;
+            html += '<div class="related-grid">';
+            
+            results.forEach(article => {
+                html += `
+                    <a href="${article.href}" class="related-card">
+                        <span class="related-card-tag">${article.featured ? '🔥 最新发布' : '深度研究'}</span>
+                        <h3 class="related-card-title">${article.title}</h3>
+                        <p class="related-card-desc">${article.description}</p>
+                        <div class="related-card-meta">
+                            <span>📅 ${article.date}</span>
+                            <span>⏱️ ${article.reading_time}阅读</span>
+                            <span>🏷️ ${article.category}</span>
+                        </div>
+                    </a>
+                `;
+            });
+            
+            html += '</div>';
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.add('active');
+        }
+
+        // 回车键触发搜索
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // 初始化：所有按钮中'全部'为激活状态
+        document.querySelector('[data-filter="all"]').classList.add('active');
     </script>
 </body>
 
