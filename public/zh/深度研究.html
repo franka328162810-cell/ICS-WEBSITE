@@ -1144,6 +1144,306 @@
             border-radius: 4px;
             background-color: rgba(167, 139, 250, 0.1);
         }
+
+        /* ==================== 代码块与数据表样式 ==================== */
+        code {
+            background-color: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 4px;
+            padding: 0.2em 0.4em;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: rgba(34, 197, 94, 1);
+            word-break: break-word;
+        }
+
+        pre {
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-left: 3px solid rgba(167, 139, 250, 0.8);
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+        }
+
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 数据表格增强 */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        table thead {
+            background: rgba(167, 139, 250, 0.15);
+            border-bottom: 2px solid rgba(167, 139, 250, 0.4);
+        }
+
+        table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--color-quantum-purple-light);
+            font-size: 0.95rem;
+        }
+
+        table td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            font-size: 0.9375rem;
+        }
+
+        table tbody tr:hover {
+            background-color: rgba(167, 139, 250, 0.08);
+        }
+
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 列表优化 */
+        ul, ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        /* 列表项视觉增强 */
+        ul > li::marker {
+            color: rgba(167, 139, 250, 0.8);
+            font-weight: 600;
+        }
+
+        ol > li::marker {
+            color: rgba(167, 139, 250, 0.8);
+            font-weight: 600;
+        }
+
+        /* ==================== 脚注与引用管理 ==================== */
+        /* 脚注参考链接 */
+        sup a,
+        .footnote-ref {
+            text-decoration: none;
+            color: rgba(167, 139, 250, 1);
+            border-bottom: 1px dotted rgba(167, 139, 250, 0.5);
+            font-size: 0.8em;
+            vertical-align: super;
+            cursor: help;
+            position: relative;
+        }
+
+        sup a:hover,
+        .footnote-ref:hover {
+            color: rgba(167, 139, 250, 1);
+            border-bottom: 1px solid rgba(167, 139, 250, 1);
+            text-decoration: none;
+        }
+
+        /* 脚注容器 */
+        .footnotes,
+        .citations {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(167, 139, 250, 0.2);
+            font-size: 0.9rem;
+        }
+
+        .footnotes h3,
+        .citations h3 {
+            font-size: 1.125rem;
+            color: rgba(167, 139, 250, 1);
+            margin-bottom: 1rem;
+        }
+
+        .footnote-item,
+        .citation-item {
+            margin: 0.75rem 0;
+            padding-left: 1.5rem;
+            list-style: none;
+        }
+
+        .footnote-item a,
+        .citation-item a {
+            color: rgba(167, 139, 250, 1);
+            text-decoration: underline;
+        }
+
+        .footnote-item::before {
+            content: attr(data-number);
+            display: inline-block;
+            width: 1.5rem;
+            margin-left: -1.5rem;
+            color: rgba(167, 139, 250, 0.7);
+            font-weight: 600;
+            text-align: right;
+            padding-right: 0.5rem;
+        }
+
+        /* 引用框 */
+        blockquote {
+            border-left: 4px solid rgba(167, 139, 250, 0.6);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background: rgba(167, 139, 250, 0.05);
+            border-radius: 4px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 0.75rem;
+            font-style: normal;
+            font-size: 0.875rem;
+            color: rgba(167, 139, 250, 0.8);
+        }
+
+        blockquote cite::before {
+            content: "— ";
+        }
+
+        /* 返回脚注链接 */
+        .footnote-backref {
+            margin-left: 0.5rem;
+            text-decoration: none;
+            color: rgba(167, 139, 250, 0.6);
+        }
+
+        .footnote-backref:hover {
+            color: rgba(167, 139, 250, 1);
+        }
+
+        /* ==================== 打印样式 ==================== */
+        @media print {
+            /* 隐藏非打印元素 */
+            .navbar,
+            .skip-to-main,
+            .article-actions,
+            .toc-section,
+            .search-section,
+            .footer,
+            button,
+            .related-research,
+            .nav-logo,
+            .nav-search {
+                display: none !important;
+            }
+
+            /* 打印优化 */
+            body {
+                color: #000;
+                background: #fff;
+                font-size: 12pt;
+                line-height: 1.5;
+            }
+
+            a {
+                text-decoration: underline;
+                color: #000;
+            }
+
+            /* 链接显示URL */
+            a[href]::after {
+                content: " (" attr(href) ")";
+                font-size: 10pt;
+                color: #666;
+            }
+
+            /* 表格打印优化 */
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            table, th, td {
+                border: 1px solid #000;
+            }
+
+            /* 分页管理 */
+            .article-meta,
+            .breadcrumb-nav,
+            h2 {
+                page-break-after: avoid;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            /* 标题样式 */
+            h1, h2, h3 {
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+
+            .zh-section-title,
+            .zh-subsection-title {
+                margin-top: 1cm;
+                font-weight: bold;
+                font-size: 14pt;
+            }
+
+            .breadcrumb-nav {
+                border-bottom: 2px solid #000;
+                padding: 0.5cm 0;
+                margin-bottom: 1cm;
+            }
+
+            .article-meta {
+                border: 1px solid #000;
+                padding: 0.5cm;
+                margin-bottom: 1cm;
+                background: #f5f5f5;
+            }
+
+            /* 打印时删除阴影和背景颜色 */
+            .content-card,
+            .warning-box,
+            .quote-box {
+                border: 1px solid #000 !important;
+                background: #fff !important;
+                padding: 0.5cm;
+                margin: 0.5cm 0;
+            }
+
+            /* 调整边距为打印友好 */
+            main {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .main-content {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            /* 打印时显示元数据 */
+            .meta-item::before {
+                content: "• ";
+            }
+
+            @page {
+                margin: 2cm;
+                size: A4;
+            }
+        }
     </style>
     <!-- ICS-SEO-START -->
     <meta property="og:type" content="article">
@@ -1207,8 +1507,8 @@
     
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="首页.html" class="nav-brand">
-                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+            <a href="首页.html" class="nav-brand" title="返回首页 - 星际文明学">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none" role="img" aria-label="星际文明学标志" title="星际文明学LOGO - 双圆轨道动画">
                     <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
@@ -1232,8 +1532,9 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="nav-search" aria-label="搜索" onclick="scrollToSearch()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button class="nav-search" aria-label="搜索" onclick="scrollToSearch()" title="打开搜索功能">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="搜索图标">
+                        <title>搜索</title>
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
@@ -1696,7 +1997,7 @@
                     <section class="related-research" aria-labelledby="section-8-related">
                         <h2 class="zh-section-title" id="section-8-related">相关研究</h2>
                         <div class="related-grid">
-                            <a href="research-deep-2.html" class="related-card related-card-high" title="详阅：跨基质生命的伦理地位 - 从星际文明学视角探讨硅基与数字生命的道德地位">
+                            <a href="research-deep-2.html" rel="prefetch" class="related-card related-card-high" title="详阅：跨基质生命的伦理地位 - 从星际文明学视角探讨硅基与数字生命的道德地位">
                                 <span class="related-card-tag">深度研究</span>
                                 <div class="related-card-relevance">
                                     <span class="relevance-score">匹配度: 87%</span>
@@ -1706,7 +2007,7 @@
                                 <p class="related-card-desc">探讨硅基生命、数字生命等非碳基生命形式的道德地位问题...</p>
                             </a>
                             
-                            <a href="research-deep-3.html" class="related-card related-card-medium" title="深度研究：协议栈方法论在太空治理中的应用 - 火星殖民的制度设计框架">
+                            <a href="research-deep-3.html" rel="prefetch" class="related-card related-card-medium" title="深度研究：协议栈方法论在太空治理中的应用 - 火星殖民的制度设计框架">
                                 <span class="related-card-tag">深度研究</span>
                                 <div class="related-card-relevance">
                                     <span class="relevance-score">匹配度: 72%</span>
@@ -1716,7 +2017,7 @@
                                 <p class="related-card-desc">运用分层、可演化的协议栈框架设计火星殖民地的治理结构...</p>
                             </a>
                             
-                            <a href="daily-commentary-archive/gpt5-20250115.html" class="related-card related-card-medium" title="往期研究：OpenAI发布GPT-5 - 从星际文明学视角看通用人工智能的深远影响">
+                            <a href="daily-commentary-archive/gpt5-20250115.html" rel="prefetch" class="related-card related-card-medium" title="往期研究：OpenAI发布GPT-5 - 从星际文明学视角看通用人工智能的深远影响">
                                 <span class="related-card-tag">往期研究</span>
                                 <div class="related-card-relevance">
                                     <span class="relevance-score">匹配度: 65%</span>
@@ -1738,7 +2039,8 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <svg viewBox="0 0 44 44" fill="none">
+                    <svg viewBox="0 0 44 44" fill="none" role="img" aria-label="星际文明学footer标志">
+                        <title>星际文明学标志</title>
                         <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                         <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
                         <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
