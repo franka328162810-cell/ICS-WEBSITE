@@ -2233,6 +2233,29 @@
             { title: 'Resources', category: 'Ethics', date: '2025-01-01', url: 'resources.html', keywords: ['reading', 'resources', 'glossary'] }
         ];
 
+        let runtimeSearchIndexEn = searchIndexEn;
+
+        async function loadSearchIndexEn() {
+            try {
+                const res = await fetch('/data/content-index.json', { cache: 'no-cache' });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data)) return;
+                const enItems = data
+                    .filter(item => item.lang === 'en')
+                    .map(item => ({
+                        title: item.title,
+                        category: item.category,
+                        date: item.date,
+                        url: item.url,
+                        keywords: Array.isArray(item.keywords) ? item.keywords : []
+                    }));
+                if (enItems.length > 0) runtimeSearchIndexEn = enItems;
+            } catch (_) {
+                // keep local fallback index
+            }
+        }
+
         function escapeHtml(text) {
             const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
             return String(text).replace(/[&<>"']/g, m => map[m]);
@@ -2266,7 +2289,7 @@
             const activeFilter = document.querySelector('.filter-button.active');
             const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
 
-            const results = searchIndexEn.filter(item => {
+            const results = runtimeSearchIndexEn.filter(item => {
                 const passFilter = filter === 'all' || item.category === filter;
                 if (!passFilter) return false;
                 if (!query) return true;
@@ -2303,6 +2326,8 @@
             input.value = q;
             performSearch();
         })();
+
+        loadSearchIndexEn();
     </script>
 </body>
 

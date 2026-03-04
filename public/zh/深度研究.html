@@ -2560,6 +2560,29 @@
             { title: '资源', category: '伦理学', date: '2025-01-01', url: '资源.html', keywords: ['阅读', '资源', '术语'] }
         ];
 
+        let runtimeSearchIndexZh = searchIndexZh;
+
+        async function loadSearchIndexZh() {
+            try {
+                const res = await fetch('/data/content-index.json', { cache: 'no-cache' });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data)) return;
+                const zhItems = data
+                    .filter(item => item.lang === 'zh')
+                    .map(item => ({
+                        title: item.title,
+                        category: item.category,
+                        date: item.date,
+                        url: item.url,
+                        keywords: Array.isArray(item.keywords) ? item.keywords : []
+                    }));
+                if (zhItems.length > 0) runtimeSearchIndexZh = zhItems;
+            } catch (_) {
+                // 保持本地回退索引
+            }
+        }
+
         function escapeHtml(text) {
             const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
             return String(text).replace(/[&<>"']/g, m => map[m]);
@@ -2594,7 +2617,7 @@
             const activeFilter = document.querySelector('.filter-button.active');
             const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
 
-            const results = searchIndexZh.filter(item => {
+            const results = runtimeSearchIndexZh.filter(item => {
                 const passFilter = filter === 'all' || item.category === filter;
                 if (!passFilter) return false;
                 if (!query) return true;
@@ -2633,6 +2656,8 @@
             input.value = q;
             performSearch();
         })();
+
+        loadSearchIndexZh();
     </script>
 </body>
 
