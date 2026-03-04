@@ -200,6 +200,32 @@
 
         bindImport();
         renderTable();
+        updateStats();
+    }
+
+    function updateStats() {
+        // 文章统计
+        const articles = getArticles();
+        const published = articles.filter(a => a.status === 'published').length;
+        document.getElementById('statTotalArticles').textContent = articles.length;
+        document.getElementById('statPublished').textContent = published;
+
+        // 订阅统计
+        try {
+            const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            document.getElementById('statSubscribers').textContent = subscribers.length;
+        } catch {
+            document.getElementById('statSubscribers').textContent = '0';
+        }
+
+        // 反馈统计
+        try {
+            const feedback = JSON.parse(localStorage.getItem('articleFeedback') || '[]');
+            const helpful = feedback.filter(f => f.helpful === true).length;
+            document.getElementById('statHelpful').textContent = `${helpful}/${feedback.length}`;
+        } catch {
+            document.getElementById('statHelpful').textContent = '0/0';
+        }
     }
 
     window.ICSCMS = { init, edit, remove };
