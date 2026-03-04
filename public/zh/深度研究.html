@@ -1891,10 +1891,22 @@
 
                     <!-- 文章目录导航 -->
                     <nav class="toc-section" id="toc">
-                        <h3 class="toc-title">📑 目录导航</h3>
+                        <div class="toc-header">
+                            <span class="toc-icon">📑</span>
+                            <h3 class="toc-title">目录导航</h3>
+                        </div>
                         <ul class="toc-list">
-                            <li><a href="#section-executive-summary" class="toc-link">执行摘要</a></li>
-                            <li><a href="#section-1-news" class="toc-link">一、新闻事实</a>
+                            <li class="toc-item">
+                                <a href="#section-executive-summary" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">执行摘要</span>
+                                </a>
+                            </li>
+                            <li class="toc-item has-children">
+                                <a href="#section-1-news" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">一、新闻事实</span>
+                                </a>
                                 <ul class="toc-sublist">
                                     <li><a href="#section-1-1" class="toc-sublink">1.1 封杀令出台</a></li>
                                     <li><a href="#section-1-2" class="toc-sublink">1.2 合作起点与红线划定</a></li>
@@ -1903,50 +1915,448 @@
                                     <li><a href="#section-1-5" class="toc-sublink">1.5 戏剧性反转</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#section-2-ics" class="toc-link">二、ICS视角分析</a></li>
-                            <li><a href="#section-3-metrics" class="toc-link">三、ICS六大指标</a></li>
-                            <li><a href="#section-4-longterm" class="toc-link">四、深时视角</a></li>
-                            <li><a href="#section-5-policy" class="toc-link">五、ICS政策建议</a></li>
-                            <li><a href="#section-6-questions" class="toc-link">六、思考问题</a></li>
-                            <li><a href="#section-7-checklist" class="toc-link">附：框架核查表</a></li>
-                            <li><a href="#section-8-related" class="toc-link">相关研究</a></li>
+                            <li class="toc-item">
+                                <a href="#section-2-ics" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">二、ICS视角分析</span>
+                                </a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#section-3-metrics" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">三、ICS六大指标</span>
+                                </a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#section-4-longterm" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">四、深时视角</span>
+                                </a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#section-5-policy" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">五、ICS政策建议</span>
+                                </a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#section-6-questions" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">六、思考问题</span>
+                                </a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#section-7-checklist" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">附：框架核查表</span>
+                                </a>
+                            </li>
+                            <li class="toc-item">
+                                <a href="#section-8-related" class="toc-link">
+                                    <span class="toc-bullet">•</span>
+                                    <span class="toc-text">相关研究</span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
 
                     <style>
+                        /* ==================== 目录导航卡片 ==================== */
                         .toc-section {
-                            background: rgba(167, 139, 250, 0.05);
-                            border-left: 4px solid rgba(167, 139, 250, 0.3);
-                            padding: 1.5rem;
-                            margin: 2rem 0;
-                            border-radius: 8px;
+                            background: linear-gradient(135deg, 
+                                rgba(15, 23, 42, 0.8) 0%, 
+                                rgba(15, 23, 42, 0.6) 100%);
+                            backdrop-filter: blur(12px);
+                            border: 1px solid rgba(167, 139, 250, 0.25);
+                            border-radius: 16px;
+                            padding: 2rem 2.5rem;
+                            margin: 2.5rem 0;
+                            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                            position: relative;
+                            overflow: hidden;
+                            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
                         }
+
+                        /* 左侧渐变装饰条 */
+                        .toc-section::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 5px;
+                            height: 100%;
+                            background: linear-gradient(180deg, 
+                                var(--color-quantum-purple) 0%, 
+                                var(--color-quantum-purple-light) 30%,
+                                var(--color-nebula-cyan) 70%,
+                                var(--color-nebula-cyan-light) 100%);
+                            box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+                        }
+
+                        /* 右上角光晕效果 */
+                        .toc-section::after {
+                            content: '';
+                            position: absolute;
+                            top: -50%;
+                            right: -50%;
+                            width: 200px;
+                            height: 200px;
+                            background: radial-gradient(circle, 
+                                rgba(167, 139, 250, 0.1) 0%, 
+                                transparent 70%);
+                            pointer-events: none;
+                            transition: all 0.6s ease;
+                        }
+
+                        .toc-section:hover {
+                            border-color: rgba(167, 139, 250, 0.45);
+                            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25),
+                                        0 0 0 1px rgba(167, 139, 250, 0.1);
+                            transform: translateY(-3px);
+                        }
+
+                        .toc-section:hover::after {
+                            top: -30%;
+                            right: -30%;
+                            opacity: 0.8;
+                        }
+
+                        /* 标题区域 */
+                        .toc-header {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.875rem;
+                            margin-bottom: 1.75rem;
+                            padding-bottom: 1.125rem;
+                            border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+                            position: relative;
+                        }
+
+                        .toc-header::after {
+                            content: '';
+                            position: absolute;
+                            bottom: -1px;
+                            left: 0;
+                            width: 60px;
+                            height: 2px;
+                            background: linear-gradient(90deg, 
+                                var(--color-quantum-purple) 0%, 
+                                transparent 100%);
+                        }
+
+                        .toc-icon {
+                            font-size: 1.625rem;
+                            line-height: 1;
+                            filter: drop-shadow(0 2px 6px rgba(167, 139, 250, 0.4));
+                            animation: iconFloat 3s ease-in-out infinite;
+                        }
+
+                        @keyframes iconFloat {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-3px); }
+                        }
+
                         .toc-title {
-                            font-size: 1.125rem;
+                            font-family: var(--font-zh-sans);
+                            font-size: 1.3rem;
                             font-weight: 600;
-                            color: rgba(167, 139, 250, 1);
-                            margin-bottom: 1rem;
+                            color: var(--color-text-primary);
+                            margin: 0;
+                            letter-spacing: 0.08em;
+                            text-shadow: 0 2px 8px rgba(167, 139, 250, 0.2);
                         }
+
+                        /* 列表容器 */
                         .toc-list {
                             list-style: none;
                             padding: 0;
+                            margin: 0;
                         }
-                        .toc-link, .toc-sublink {
-                            color: rgba(167, 139, 250, 0.85);
+
+                        .toc-item {
+                            margin-bottom: 0.375rem;
+                            position: relative;
+                        }
+
+                        /* 主链接样式 */
+                        .toc-link {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.875rem;
+                            padding: 0.75rem 1rem;
+                            color: rgba(255, 255, 255, 0.88);
                             text-decoration: none;
-                            transition: all 0.2s ease;
+                            border-radius: 10px;
+                            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                            font-family: var(--font-zh-sans);
+                            font-size: 1.0625rem;
+                            font-weight: 400;
+                            line-height: 1.6;
+                            letter-spacing: 0.02em;
+                            position: relative;
+                            overflow: hidden;
                         }
-                        .toc-link:hover, .toc-sublink:hover {
-                            color: rgba(167, 139, 250, 1);
-                            text-decoration: underline;
+
+                        .toc-link::before {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 0;
+                            height: 100%;
+                            background: linear-gradient(90deg, 
+                                rgba(167, 139, 250, 0.15) 0%, 
+                                rgba(167, 139, 250, 0.05) 100%);
+                            transition: width 0.3s ease;
+                            z-index: -1;
                         }
+
+                        .toc-link:hover {
+                            background: rgba(167, 139, 250, 0.12);
+                            color: var(--color-quantum-purple-light);
+                            transform: translateX(6px);
+                            box-shadow: 0 2px 8px rgba(167, 139, 250, 0.15);
+                        }
+
+                        .toc-link:hover::before {
+                            width: 100%;
+                        }
+
+                        .toc-link:active {
+                            transform: translateX(4px) scale(0.98);
+                        }
+
+                        .toc-link:hover .toc-bullet {
+                            color: var(--color-quantum-purple-light);
+                            transform: scale(1.25) rotate(90deg);
+                        }
+
+                        /* 项目符号 */
+                        .toc-bullet {
+                            color: var(--color-nebula-cyan);
+                            font-weight: 700;
+                            font-size: 1.3rem;
+                            line-height: 1;
+                            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                            display: inline-block;
+                            text-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+                        }
+
+                        /* 文本部分 */
+                        .toc-text {
+                            flex: 1;
+                            line-height: 1.6;
+                        }
+
+                        /* 子列表容器 */
                         .toc-sublist {
                             list-style: none;
-                            padding-left: 1.5rem;
-                            margin: 0.5rem 0;
+                            padding-left: 2.75rem;
+                            margin: 0.625rem 0 0.875rem 0;
+                            position: relative;
                         }
-                        .toc-list > li {
-                            margin-bottom: 0.5rem;
+
+                        .toc-sublist::before {
+                            content: '';
+                            position: absolute;
+                            left: 1.5rem;
+                            top: 0;
+                            bottom: 0.5rem;
+                            width: 1px;
+                            background: linear-gradient(180deg, 
+                                rgba(167, 139, 250, 0.3) 0%,
+                                rgba(167, 139, 250, 0.1) 100%);
+                        }
+
+                        .toc-sublist li {
+                            margin-bottom: 0.25rem;
+                        }
+
+                        /* 子链接样式 */
+                        .toc-sublink {
+                            display: block;
+                            padding: 0.5625rem 0.875rem;
+                            padding-left: 1.75rem;
+                            color: rgba(255, 255, 255, 0.72);
+                            text-decoration: none;
+                            border-radius: 8px;
+                            transition: all 0.2s ease;
+                            font-family: var(--font-zh-sans);
+                            font-size: 0.9375rem;
+                            font-weight: 300;
+                            line-height: 1.5;
+                            letter-spacing: 0.01em;
+                            position: relative;
+                        }
+
+                        .toc-sublink::before {
+                            content: '→';
+                            position: absolute;
+                            left: 0.625rem;
+                            color: rgba(167, 139, 250, 0.5);
+                            font-size: 0.875rem;
+                            transition: all 0.25s ease;
+                        }
+
+                        .toc-sublink:hover {
+                            background: rgba(167, 139, 250, 0.1);
+                            color: var(--color-nebula-cyan-light);
+                            padding-left: 2.25rem;
+                            box-shadow: inset 3px 0 0 var(--color-nebula-cyan);
+                        }
+
+                        .toc-sublink:hover::before {
+                            color: var(--color-nebula-cyan);
+                            transform: translateX(6px);
+                            text-shadow: 0 0 6px rgba(6, 182, 212, 0.6);
+                        }
+
+                        /* 焦点可访问性 */
+                        .toc-link:focus-visible,
+                        .toc-sublink:focus-visible {
+                            outline: 2px solid var(--color-quantum-purple);
+                            outline-offset: 3px;
+                            border-radius: 8px;
+                        }
+
+                        /* 响应式优化 */
+                        @media (max-width: 768px) {
+                            .toc-section {
+                                padding: 1.5rem 1.75rem;
+                                margin: 2rem 0;
+                                border-radius: 12px;
+                            }
+
+                            .toc-section::before {
+                                width: 4px;
+                            }
+
+                            .toc-header {
+                                margin-bottom: 1.5rem;
+                                padding-bottom: 1rem;
+                                gap: 0.75rem;
+                            }
+
+                            .toc-icon {
+                                font-size: 1.375rem;
+                            }
+
+                            .toc-title {
+                                font-size: 1.125rem;
+                                letter-spacing: 0.05em;
+                            }
+
+                            .toc-link {
+                                padding: 0.625rem 0.875rem;
+                                font-size: 1rem;
+                                gap: 0.75rem;
+                            }
+
+                            .toc-link:hover {
+                                transform: translateX(4px);
+                            }
+
+                            .toc-bullet {
+                                font-size: 1.125rem;
+                            }
+
+                            .toc-sublist {
+                                padding-left: 2.25rem;
+                                margin: 0.5rem 0 0.75rem 0;
+                            }
+
+                            .toc-sublist::before {
+                                left: 1.25rem;
+                            }
+
+                            .toc-sublink {
+                                font-size: 0.875rem;
+                                padding: 0.5rem 0.75rem;
+                                padding-left: 1.5rem;
+                            }
+
+                            .toc-sublink::before {
+                                left: 0.5rem;
+                                font-size: 0.8125rem;
+                            }
+
+                            .toc-sublink:hover {
+                                padding-left: 1.875rem;
+                            }
+                        }
+
+                        /* 打印样式 */
+                        @media print {
+                            .toc-section {
+                                background: #fff;
+                                border: 1px solid #333;
+                                box-shadow: none;
+                                page-break-inside: avoid;
+                            }
+
+                            .toc-section::before,
+                            .toc-section::after {
+                                display: none;
+                            }
+
+                            .toc-link,
+                            .toc-sublink {
+                                color: #000;
+                            }
+
+                            .toc-bullet {
+                                color: #666;
+                            }
+                        }
+                    </style>
+                            content: '→';
+                            position: absolute;
+                            left: 0.5rem;
+                            color: rgba(167, 139, 250, 0.5);
+                            transition: all 0.2s ease;
+                        }
+
+                        .toc-sublink:hover {
+                            background: rgba(167, 139, 250, 0.08);
+                            color: var(--color-nebula-cyan-light);
+                            padding-left: 2rem;
+                        }
+
+                        .toc-sublink:hover::before {
+                            color: var(--color-nebula-cyan);
+                            transform: translateX(4px);
+                        }
+
+                        /* 响应式优化 */
+                        @media (max-width: 768px) {
+                            .toc-section {
+                                padding: 1.5rem;
+                                margin: 2rem 0;
+                            }
+
+                            .toc-header {
+                                margin-bottom: 1.25rem;
+                                padding-bottom: 0.875rem;
+                            }
+
+                            .toc-title {
+                                font-size: 1.125rem;
+                            }
+
+                            .toc-link {
+                                padding: 0.5rem 0.75rem;
+                                font-size: 0.9375rem;
+                            }
+
+                            .toc-sublist {
+                                padding-left: 2rem;
+                            }
+
+                            .toc-sublink {
+                                font-size: 0.875rem;
+                                padding: 0.375rem 0.625rem;
+                                padding-left: 1.25rem;
+                            }
                         }
                     </style>
 
