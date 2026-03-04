@@ -1105,50 +1105,23 @@
             .article-layout {
                 grid-template-columns: 1fr;
             }
-            
-            .nav-container {
-                padding: 1rem 1.5rem;
-            }
-            
-            .section {
-                padding: 5rem 2rem;
-            }
         }
 
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-            
-            .nav-container {
-                padding: 0.875rem 1.25rem;
-            }
-            
-            .nav-logo {
-                width: 36px;
-                height: 36px;
-            }
-            
-            .nav-title {
-                font-size: 1.25rem;
-            }
 
             .zh-page-title {
-                font-size: 1.75rem;
-                line-height: 1.3;
+                font-size: 2rem;
             }
 
             .zh-section-title {
-                font-size: 1.375rem;
-                line-height: 1.4;
+                font-size: 1.5rem;
             }
 
             .content-card {
-                padding: 1.25rem;
-            }
-            
-            .section {
-                padding: 4rem 1.25rem;
+                padding: 1.5rem;
             }
 
             .footer-content {
@@ -2333,6 +2306,296 @@
 
                             .toc-bullet {
                                 color: #666;
+                            }
+                        }
+
+                        /* ==================== 卡片内标题宋体优化 ==================== */
+                        .content-card h3,
+                        .content-card h4,
+                        .content-card h5,
+                        .content-card h6 {
+                            font-family: 'Noto Serif SC', 宋体, serif;
+                            font-weight: 600;
+                        }
+
+                        .zh-subsection-title {
+                            font-family: 'Noto Serif SC', 宋体, serif;
+                        }
+
+                        /* ==================== TOC目录导航卡片样式 ==================== */
+                        .toc-section {
+                            background: linear-gradient(135deg, 
+                                rgba(15, 23, 42, 0.8) 0%, 
+                                rgba(15, 23, 42, 0.6) 100%);
+                            backdrop-filter: blur(12px);
+                            border: 1px solid rgba(167, 139, 250, 0.25);
+                            border-radius: 16px;
+                            padding: 2rem 2.5rem;
+                            margin: 2.5rem 0;
+                            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                            position: relative;
+                            overflow: hidden;
+                            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+                        }
+
+                        .toc-section::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 5px;
+                            height: 100%;
+                            background: linear-gradient(180deg, 
+                                var(--color-quantum-purple) 0%, 
+                                var(--color-quantum-purple-light) 30%,
+                                var(--color-nebula-cyan) 70%,
+                                var(--color-nebula-cyan-light) 100%);
+                            box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+                        }
+
+                        .toc-section::after {
+                            content: '';
+                            position: absolute;
+                            top: -50%;
+                            right: -50%;
+                            width: 200px;
+                            height: 200px;
+                            background: radial-gradient(circle, 
+                                rgba(167, 139, 250, 0.1) 0%, 
+                                transparent 70%);
+                            pointer-events: none;
+                            transition: all 0.6s ease;
+                        }
+
+                        .toc-section:hover {
+                            border-color: rgba(167, 139, 250, 0.45);
+                            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25),
+                                        0 0 0 1px rgba(167, 139, 250, 0.1);
+                            transform: translateY(-3px);
+                        }
+
+                        .toc-section:hover::after {
+                            top: -30%;
+                            right: -30%;
+                            opacity: 0.8;
+                        }
+
+                        .toc-header {
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+                            margin-bottom: 1.5rem;
+                            padding-bottom: 1rem;
+                            border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+                        }
+
+                        .toc-icon {
+                            font-size: 1.625rem;
+                            display: inline-block;
+                            animation: iconFloat 3s ease-in-out infinite;
+                        }
+
+                        @keyframes iconFloat {
+                            0%, 100% { transform: translateY(0); }
+                            50% { transform: translateY(-3px); }
+                        }
+
+                        .toc-title {
+                            font-size: 1.3rem;
+                            font-weight: 600;
+                            color: var(--color-text-primary);
+                            text-shadow: 0 2px 8px rgba(167, 139, 250, 0.3);
+                            letter-spacing: 0.05em;
+                        }
+
+                        .toc-list {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                        .toc-item {
+                            margin: 0;
+                        }
+
+                        .toc-link {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.875rem;
+                            padding: 0.75rem 1rem;
+                            font-size: 1.0625rem;
+                            font-weight: 400;
+                            color: var(--color-text-secondary);
+                            text-decoration: none;
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            border-radius: 8px;
+                            position: relative;
+                        }
+
+                        .toc-link:hover {
+                            color: var(--color-nebula-cyan-light);
+                            background: rgba(167, 139, 250, 0.08);
+                            transform: translateX(6px);
+                        }
+
+                        .toc-link:focus-visible {
+                            outline: 2px solid var(--color-quantum-purple-light);
+                            outline-offset: 2px;
+                        }
+
+                        .toc-bullet {
+                            font-size: 1.3rem;
+                            color: var(--color-nebula-cyan);
+                            transition: all 0.3s ease;
+                            display: inline-block;
+                        }
+
+                        .toc-link:hover .toc-bullet {
+                            transform: scale(1.25) rotate(90deg);
+                            color: var(--color-energy-gold);
+                        }
+
+                        .toc-text {
+                            flex: 1;
+                        }
+
+                        .toc-item.has-children > .toc-link::after {
+                            content: '▾';
+                            font-size: 0.75rem;
+                            opacity: 0.5;
+                            transition: all 0.3s ease;
+                        }
+
+                        .toc-item.has-children > .toc-link:hover::after {
+                            transform: rotate(-180deg);
+                            opacity: 1;
+                        }
+
+                        .toc-sublist {
+                            list-style: none;
+                            padding-left: 2.75rem;
+                            margin: 0.75rem 0 1rem 0;
+                            display: none;
+                            max-height: 0;
+                            overflow: hidden;
+                            opacity: 0;
+                            transition: all 0.4s ease;
+                            position: relative;
+                        }
+
+                        .toc-sublist::before {
+                            content: '';
+                            position: absolute;
+                            left: 1.375rem;
+                            top: 0;
+                            bottom: 0;
+                            width: 2px;
+                            background: linear-gradient(180deg, 
+                                rgba(6, 182, 212, 0.3) 0%, 
+                                transparent 100%);
+                        }
+
+                        .toc-item.has-children:hover .toc-sublist {
+                            display: block;
+                            max-height: 500px;
+                            opacity: 1;
+                            margin: 0.75rem 0 1rem 0;
+                        }
+
+                        .toc-sublink {
+                            display: block;
+                            padding: 0.75rem 1rem;
+                            padding-left: 2rem;
+                            font-size: 0.9375rem;
+                            font-weight: 300;
+                            color: rgba(255, 255, 255, 0.7);
+                            text-decoration: none;
+                            border-radius: 6px;
+                            transition: all 0.2s ease;
+                            position: relative;
+                        }
+
+                        .toc-sublink::before {
+                            content: '→';
+                            position: absolute;
+                            left: 0.5rem;
+                            color: rgba(167, 139, 250, 0.5);
+                            transition: all 0.2s ease;
+                        }
+
+                        .toc-sublink:hover {
+                            background: rgba(167, 139, 250, 0.08);
+                            color: var(--color-nebula-cyan-light);
+                            padding-left: 2rem;
+                        }
+
+                        .toc-sublink:hover::before {
+                            color: var(--color-nebula-cyan);
+                            transform: translateX(4px);
+                        }
+
+                        @media (max-width: 768px) {
+                            .toc-section {
+                                padding: 1.5rem 1.75rem;
+                                margin: 2rem 0;
+                                border-radius: 12px;
+                            }
+
+                            .toc-section::before {
+                                width: 4px;
+                            }
+
+                            .toc-header {
+                                margin-bottom: 1.5rem;
+                                padding-bottom: 1rem;
+                                gap: 0.75rem;
+                            }
+
+                            .toc-icon {
+                                font-size: 1.375rem;
+                            }
+
+                            .toc-title {
+                                font-size: 1.125rem;
+                                letter-spacing: 0.05em;
+                            }
+
+                            .toc-link {
+                                padding: 0.625rem 0.875rem;
+                                font-size: 1rem;
+                                gap: 0.75rem;
+                            }
+
+                            .toc-link:hover {
+                                transform: translateX(4px);
+                            }
+
+                            .toc-bullet {
+                                font-size: 1.125rem;
+                            }
+
+                            .toc-sublist {
+                                padding-left: 2.25rem;
+                                margin: 0.5rem 0 0.75rem 0;
+                            }
+
+                            .toc-sublist::before {
+                                left: 1.25rem;
+                            }
+
+                            .toc-sublink {
+                                font-size: 0.875rem;
+                                padding: 0.5rem 0.75rem;
+                                padding-left: 1.5rem;
+                            }
+
+                            .toc-sublink::before {
+                                left: 0.5rem;
+                                font-size: 0.8125rem;
+                            }
+
+                            .toc-sublink:hover {
+                                padding-left: 1.875rem;
                             }
                         }
                     </style>
