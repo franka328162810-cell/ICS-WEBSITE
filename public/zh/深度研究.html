@@ -835,6 +835,139 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Academic Search Section */
+        .search-section {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.12));
+            border: 2px solid rgba(167, 139, 250, 0.35);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .search-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1), transparent);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .search-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-header h3 {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .search-header p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-controls {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(167, 139, 250, 0.4);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-family: var(--font-zh-sans);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all var(--transition-normal);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--color-quantum-purple);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-btn {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all var(--transition-normal);
+        }
+
+        .filter-button:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--color-quantum-purple);
+        }
+
+        .filter-button.active {
+            background: var(--color-quantum-purple);
+            border-color: var(--color-quantum-purple);
+            color: white;
+        }
     </style>
     <!-- ICS-SEO-START -->
     <meta property="og:type" content="article">
@@ -910,6 +1043,33 @@
         <div class="container">
             <div class="article-layout">
                 <article class="article-content">
+                    <!-- 学术搜索模块 -->
+                    <section class="search-section">
+                        <div class="search-header">
+                            <h3>🔍 学术搜索</h3>
+                            <p>通过关键词、分类或日期快速查找相关研究文章</p>
+                        </div>
+                        <div class="search-controls">
+                            <div class="search-input-group">
+                                <input 
+                                    type="text" 
+                                    class="search-input" 
+                                    id="searchInput" 
+                                    placeholder="输入关键词：AI治理、太空治理、伦理学..."
+                                    aria-label="搜索文章"
+                                >
+                                <button class="search-btn" id="searchBtn" onclick="performSearch()">搜索</button>
+                            </div>
+                            <div class="filter-group">
+                                <span class="filter-label">🏷️ 按分类筛选：</span>
+                                <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">全部</button>
+                                <button class="filter-button" data-filter="AI治理" onclick="filterByCategory(this)">AI治理</button>
+                                <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
+                                <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
+                            </div>
+                        </div>
+                    </section>
+
                     <!-- 文章元信息 -->
                     <div class="article-meta">
                         <div class="meta-item">
@@ -1167,6 +1327,18 @@
                     alert('链接已复制到剪贴板！');
                 });
             }
+        }
+
+        // 执行搜索
+        function performSearch() {
+            alert('搜索功能即将上线！');
+        }
+
+        // 按分类筛选
+        function filterByCategory(button) {
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            alert('正在筛选：' + button.getAttribute('data-filter'));
         }
     </script>
 </body>
