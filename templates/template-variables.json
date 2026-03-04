@@ -1,0 +1,290 @@
+{
+  "daily-commentary": {
+    "description": "每日热点评论模板变量映射",
+    "variables": {
+      "{{DATE}}": {
+        "type": "string",
+        "description": "发布日期",
+        "example_zh": "2026年3月4日",
+        "example_en": "March 4, 2026",
+        "json_field": "date",
+        "required": true
+      },
+      "{{CATEGORY}}": {
+        "type": "string",
+        "description": "分类标签",
+        "example_zh": "AI治理",
+        "example_en": "AI Governance",
+        "json_field": "category",
+        "required": true
+      },
+      "{{HEADLINE}}": {
+        "type": "string",
+        "description": "新闻标题",
+        "example_zh": "特朗普封杀Anthropic：AI军事化道路上的第一个文明级伦理临界点",
+        "example_en": "Trump's Ban on Anthropic: The First Civilization-Level Ethical Inflection Point",
+        "json_field": "headline",
+        "required": true,
+        "max_length": 120
+      },
+      "{{SOURCE}}": {
+        "type": "string",
+        "description": "新闻来源",
+        "example_zh": "来源：综合报道",
+        "example_en": "Source: Comprehensive Reports",
+        "json_field": "source",
+        "required": true
+      },
+      "{{SOURCE_TIME}}": {
+        "type": "string",
+        "description": "来源发布时间",
+        "example_zh": "2026年3月4日 14:00",
+        "example_en": "March 4, 2026 14:00",
+        "json_field": "sourceTime",
+        "required": true
+      },
+      "{{SUMMARY}}": {
+        "type": "text",
+        "description": "新闻摘要（3-5句话）",
+        "example_zh": "美国国防部将Anthropic列为"国家安全供应链风险"——首次对本土企业使用此标签...",
+        "example_en": "The U.S. Department of Defense designates Anthropic as a 'national security supply chain risk'...",
+        "json_field": "summary",
+        "required": true,
+        "length_range": "150-300 chars"
+      },
+      "{{NEW_THREE_VIEWS}}": {
+        "type": "text",
+        "description": "新三观（NC/NL/NK）分析",
+        "example_zh": "从新宇宙观的参与性命题（NC-3）来看...",
+        "example_en": "From the New Cosmology's participatory mandate (NC-3)...",
+        "json_field": "newThreeViews",
+        "required": true,
+        "ics_elements": ["NC-3", "NL-2", "NK-3"]
+      },
+      "{{NORMATIVE}}": {
+        "type": "text",
+        "description": "规范原则（RFP/NRP/REV）分析",
+        "example_zh": "从递归自由原则（RFP）：国防部的"任何合法用途"条款...",
+        "example_en": "From the Recursive Freedom Principle (RFP)...",
+        "json_field": "normative",
+        "required": true,
+        "ics_elements": ["RFP", "NRP", "REV"]
+      },
+      "{{LONG_TERM_IMPACT}}": {
+        "type": "text",
+        "description": "长期影响分析（深时视角）",
+        "example_zh": "在T2时间尺度（10-100年）：这一先例将激励全球政府...",
+        "example_en": "Over T2 timeframes (10-100 years)...",
+        "json_field": "longTermImpact",
+        "required": true,
+        "time_scales": ["T2", "T3"]
+      },
+      "{{REFLECTION_Q1}}": {
+        "type": "text",
+        "description": "思考问题1",
+        "example_zh": "从递归自由度（RFD）框架评估...",
+        "example_en": "From the Recursive Freedom Degree (RFD) framework...",
+        "json_field": "reflectionQ1",
+        "required": true
+      },
+      "{{REFLECTION_Q2}}": {
+        "type": "text",
+        "description": "思考问题2",
+        "example_zh": "从可逆性原则（REV）：假设2125年的文明史学家...",
+        "example_en": "From the Reversibility Principle (REV)...",
+        "json_field": "reflectionQ2",
+        "required": true
+      },
+      "{{TAGS}}": {
+        "type": "array",
+        "description": "标签数组（3-7个）",
+        "example_zh": ["星际文明学", "AI治理", "RFP", "REV", "军事伦理"],
+        "example_en": ["ICS", "AI Governance", "RFP", "REV", "Military Ethics"],
+        "json_field": "tags",
+        "required": true,
+        "count_range": "3-7"
+      }
+    }
+  },
+  "in-depth-research": {
+    "description": "深度研究模板变量映射",
+    "variables": {
+      "{{PUBLICATION_WEEK}}": {
+        "type": "string",
+        "description": "发布周次",
+        "example_zh": "2026年3月 第1周",
+        "example_en": "Week 1, March 2026",
+        "json_field": "publicationWeek",
+        "required": true
+      },
+      "{{TITLE}}": {
+        "type": "string",
+        "description": "研究标题",
+        "example_zh": "特朗普封杀Anthropic：AI伦理红线与军事需求的文明级博弈",
+        "example_en": "Trump's Ban on Anthropic: AI Ethical Red Lines vs. Military Demands",
+        "json_field": "title",
+        "required": true,
+        "length_range": "50-120 chars"
+      },
+      "{{AUTHOR}}": {
+        "type": "string",
+        "description": "作者或团队",
+        "example_zh": "星际文明学研究所研究团队",
+        "example_en": "ICS Research Team",
+        "json_field": "author",
+        "required": true
+      },
+      "{{ABSTRACT}}": {
+        "type": "text",
+        "description": "研究摘要（3-5句话）",
+        "example_zh": "美国国防部采取了史无前例的举措...",
+        "example_en": "The U.S. Department of Defense designates...",
+        "json_field": "abstract",
+        "required": true,
+        "length_range": "150-300 chars"
+      },
+      "{{KEYWORDS}}": {
+        "type": "array",
+        "description": "关键词（5-7个）",
+        "example_zh": ["AI治理", "军事伦理", "RFP", "REV"],
+        "example_en": ["AI Governance", "Military Ethics", "RFP", "REV"],
+        "json_field": "keywords",
+        "required": true,
+        "count_range": "5-7"
+      },
+      "{{MAIN_SECTION_1_TITLE}}": {
+        "type": "string",
+        "description": "第一部分标题",
+        "example_zh": "一、新闻事实",
+        "example_en": "Part I: News Facts",
+        "json_field": "mainSection1Title",
+        "required": true
+      },
+      "{{MAIN_SECTION_1_CONTENT}}": {
+        "type": "text",
+        "description": "第一部分内容（通常为背景/导言）",
+        "json_field": "mainSection1Content",
+        "required": true,
+        "supports_markdown": true
+      },
+      "{{MAIN_SECTION_2_TITLE}}": {
+        "type": "string",
+        "description": "第二部分标题",
+        "example_zh": "二、ICS视角分析",
+        "example_en": "Part II: ICS Perspective Analysis",
+        "json_field": "mainSection2Title",
+        "required": true
+      },
+      "{{MAIN_SECTION_2_CONTENT}}": {
+        "type": "text",
+        "description": "第二部分内容（理论框架分析）",
+        "json_field": "mainSection2Content",
+        "required": true,
+        "supports_markdown": true,
+        "ics_elements": ["NC-3", "NL-2", "NK-3", "RFP", "NRP", "REV", "FRL"]
+      },
+      "{{MAIN_SECTION_3_TITLE}}": {
+        "type": "string",
+        "description": "第三部分标题",
+        "example_zh": "三、ICS六大指标概念估算",
+        "example_en": "Part III: ICS Six Indicators Assessment",
+        "json_field": "mainSection3Title",
+        "required": true
+      },
+      "{{MAIN_SECTION_3_CONTENT}}": {
+        "type": "text",
+        "description": "第三部分内容（关键发现）",
+        "json_field": "mainSection3Content",
+        "required": true,
+        "supports_markdown": true,
+        "ics_elements": ["RFD", "CRV", "MBCL", "CSIA", "CDI", "UCS"]
+      },
+      "{{CONCLUSION_TITLE}}": {
+        "type": "string",
+        "description": "结论标题",
+        "example_zh": "前进之路",
+        "example_en": "Pathways Forward",
+        "json_field": "conclusionTitle",
+        "required": true
+      },
+      "{{CONCLUSION_CONTENT}}": {
+        "type": "text",
+        "description": "结论与启示",
+        "json_field": "conclusionContent",
+        "required": true,
+        "supports_markdown": true
+      },
+      "{{RECOMMENDATIONS}}": {
+        "type": "array",
+        "description": "建议列表（4-6条）",
+        "example_zh": ["建立强调可逆性的国际AI治理框架...", "创建独立监督机制..."],
+        "example_en": ["Establish international AI governance frameworks...", "Create independent oversight mechanisms..."],
+        "json_field": "recommendations",
+        "required": true,
+        "count_range": "4-6"
+      },
+      "{{RELATED_TOPICS}}": {
+        "type": "array",
+        "description": "相关主题（3-5个）",
+        "example_zh": ["军事伦理", "自主武器系统", "AI治理"],
+        "example_en": ["Military Ethics", "Autonomous Weapons Systems", "AI Governance"],
+        "json_field": "relatedTopics",
+        "required": true,
+        "count_range": "3-5"
+      },
+      "{{CITATION_KEY}}": {
+        "type": "string",
+        "description": "引用密钥",
+        "example": "ICS2026-TrumpAnthropic-001",
+        "json_field": "citationKey",
+        "required": true,
+        "format": "ICS{YEAR}-{Topic}-{Number}"
+      },
+      "{{ACKNOWLEDGMENTS}}": {
+        "type": "text",
+        "description": "致谢",
+        "example_zh": "本研究受益于多家媒体的综合报道...",
+        "example_en": "This research benefited from comprehensive reporting...",
+        "json_field": "acknowledgments",
+        "required": true
+      }
+    }
+  },
+  "common_elements": {
+    "description": "中英文模板的共通元素",
+    "seo_tags": {
+      "og:type": "article",
+      "og:title": "从 {{TITLE}} 或 {{HEADLINE}} 生成",
+      "og:description": "从 {{ABSTRACT}} 或 {{SUMMARY}} 生成",
+      "article:published_time": "ISO 8601格式日期",
+      "article:author": "从 {{AUTHOR}} 生成"
+    },
+    "structured_data": {
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      "headline": "从模板变量生成",
+      "datePublished": "从日期变量生成",
+      "author": "从作者变量生成"
+    },
+    "ics_framework_elements": [
+      "新三观（NC-3, NL-2, NK-3）",
+      "规范原则（RFP, NRP, REV）",
+      "禁忌红线（FRL-2, FRL-3）",
+      "六大指标（RFD, CRV, MBCL, CSIA, CDI, UCS）",
+      "深时分析（T2, T3）",
+      "思考问题（Q1, Q2, Q3）"
+    ]
+  },
+  "template_files": {
+    "daily_commentary": {
+      "zh": "templates/daily-commentary-zh-template.html",
+      "en": "templates/daily-commentary-en-template.html"
+    },
+    "in_depth_research": {
+      "zh": "templates/in-depth-research-zh-template.html",
+      "en": "templates/in-depth-research-en-template.html"
+    }
+  },
+  "version": "1.0",
+  "last_updated": "2026-03-04"
+}
