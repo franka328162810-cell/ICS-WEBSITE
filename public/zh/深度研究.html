@@ -688,6 +688,47 @@
             line-height: 1.8;
         }
 
+        .related-card-relevance {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            background: rgba(167, 139, 250, 0.1);
+            border-left: 3px solid rgba(167, 139, 250, 0.5);
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .relevance-score {
+            font-weight: 600;
+            color: rgba(167, 139, 250, 1);
+            font-size: 0.9375rem;
+        }
+
+        .relevance-keywords {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+        }
+
+        .related-card-high .related-card-relevance {
+            border-left-color: rgba(34, 197, 94, 0.7);
+            background: rgba(34, 197, 94, 0.08);
+        }
+
+        .related-card-high .relevance-score {
+            color: rgba(34, 197, 94, 1);
+        }
+
+        .related-card-medium .related-card-relevance {
+            border-left-color: rgba(234, 179, 8, 0.7);
+            background: rgba(234, 179, 8, 0.08);
+        }
+
+        .related-card-medium .relevance-score {
+            color: rgba(234, 179, 8, 1);
+        }
+
         .footer {
             background: rgba(10, 22, 40, 0.95);
             border-top: 1px solid rgba(167, 139, 250, 0.1);
@@ -1022,6 +1063,23 @@
         .breadcrumb-list span {
             color: rgba(255, 255, 255, 0.7);
         }
+
+        /* 跳过导航链接 */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: rgba(167, 139, 250, 1);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-to-main:focus {
+            top: 0;
+        }
     </style>
     <!-- ICS-SEO-START -->
     <meta property="og:type" content="article">
@@ -1043,6 +1101,9 @@
 </head>
 
 <body data-page="research-deep" data-lang="zh">
+    <!-- 键盘导航跳过链接 -->
+    <a href="#main-content" class="skip-to-main">跳转到主要内容</a>
+    
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="首页.html" class="nav-brand">
@@ -1112,7 +1173,7 @@
         </div>
     </section>
 
-    <main class="main-content">
+    <main class="main-content" role="main" aria-label="文章内容" id="main-content">
         <div class="container">
             <div class="article-layout">
                 <article class="article-content">
@@ -1147,7 +1208,11 @@
                     <div class="article-meta">
                         <div class="meta-item">
                             <span class="meta-icon">📅</span>
-                            <span>2026年3月4日</span>
+                            <span>发布：2026年3月4日</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon">🔄</span>
+                            <span>更新：2026年3月4日</span>
                         </div>
                         <div class="meta-item">
                             <span class="meta-icon">✍️</span>
@@ -1248,7 +1313,7 @@
                     </style>
 
                     <!-- 执行摘要 -->
-                    <section>
+                    <section aria-labelledby="section-executive-summary">
                         <h2 class="zh-section-title" id="section-executive-summary">执行摘要</h2>
                         <div class="content-card">
                             <p>美国国防部采取了史无前例的举措，将一家本土科技公司Anthropic标记为"国家安全供应链风险"。然而，Claude军用版本仍在美军实际行动中被广泛部署，甚至在封杀令生效之际。从星际文明学的递归自由原则（RFP）与可逆性原则（REV）视角看，这场博弈代表了一个文明级伦理临界点——决定人类是否保留"AI是否应自主做出杀伤决策"的真正选择权。</p>
@@ -1256,7 +1321,7 @@
                     </section>
 
                     <!-- 第一部分：新闻事实 -->
-                    <section>
+                    <section aria-labelledby="section-1-news">
                         <h2 class="zh-section-title" id="section-1-news">一、新闻事实</h2>
                         
                         <h3 class="zh-subsection-title" id="section-1-1">1.1 封杀令出台</h3>
@@ -1292,7 +1357,7 @@
                     </section>
 
                     <!-- 第二部分：ICS视角分析 -->
-                    <section>
+                    <section aria-labelledby="section-2-ics">
                         <h2 class="zh-section-title" id="section-2-ics">二、ICS视角分析</h2>
                         
                         <h3 class="zh-subsection-title" id="section-2-1">2.1 新三观视角切入</h3>
@@ -1351,7 +1416,7 @@
                     </section>
 
                     <!-- ICS六大指标概念估算 -->
-                    <section>
+                    <section aria-labelledby="section-3-metrics">
                         <h2 class="zh-section-title" id="section-3-metrics">三、ICS六大指标概念估算</h2>
                         
                         <div class="warning-box">
@@ -1404,7 +1469,7 @@
                     </section>
 
                     <!-- 第四部分：深时视角 -->
-                    <section>
+                    <section aria-labelledby="section-4-longterm">
                         <h2 class="zh-section-title" id="section-4-longterm">四、深时视角</h2>
                         
                         <h3 class="zh-subsection-title" id="section-4-1-t2">3.1 T2视角（10—100年）：代际影响</h3>
@@ -1425,7 +1490,7 @@
                     </section>
 
                     <!-- 第五部分：ICS政策建议 -->
-                    <section>
+                    <section aria-labelledby="section-5-policy">
                         <h2 class="zh-section-title" id="section-5-policy">五、ICS政策建议</h2>
                         
                         <h3 class="zh-subsection-title" id="section-5-1-t1">立即行动（T1层级）</h3>
@@ -1445,7 +1510,7 @@
                     </section>
 
                     <!-- 第六部分：思考问题 -->
-                    <section>
+                    <section aria-labelledby="section-6-questions">
                         <h2 class="zh-section-title" id="section-6-questions">六、思考问题</h2>
                         
                         <h3 class="zh-subsection-title" id="section-6-1-q1">Q1（事实分析层）</h3>
@@ -1465,7 +1530,7 @@
                     </section>
 
                     <!-- 附：ICS框架要素核查表 -->
-                    <section>
+                    <section aria-labelledby="section-7-checklist">
                         <h2 class="zh-section-title" id="section-7-checklist">附：本文ICS框架要素核查表</h2>
                         <div class="content-card">
                             <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
@@ -1527,23 +1592,35 @@
                     </section>
 
                     <!-- 相关研究 -->
-                    <section class="related-research">
+                    <section class="related-research" aria-labelledby="section-8-related">
                         <h2 class="zh-section-title" id="section-8-related">相关研究</h2>
                         <div class="related-grid">
-                            <a href="research-deep-2.html" class="related-card">
+                            <a href="research-deep-2.html" class="related-card related-card-high">
                                 <span class="related-card-tag">深度研究</span>
+                                <div class="related-card-relevance">
+                                    <span class="relevance-score">匹配度: 87%</span>
+                                    <span class="relevance-keywords">关键词: 伦理、生命形式、主体资格</span>
+                                </div>
                                 <h3 class="related-card-title">跨基质生命的伦理地位：新生命观框架下的主体资格理论</h3>
                                 <p class="related-card-desc">探讨硅基生命、数字生命等非碳基生命形式的道德地位问题...</p>
                             </a>
                             
-                            <a href="research-deep-3.html" class="related-card">
+                            <a href="research-deep-3.html" class="related-card related-card-medium">
                                 <span class="related-card-tag">深度研究</span>
+                                <div class="related-card-relevance">
+                                    <span class="relevance-score">匹配度: 72%</span>
+                                    <span class="relevance-keywords">关键词: 治理、制度设计、未来</span>
+                                </div>
                                 <h3 class="related-card-title">协议栈方法论在太空治理中的应用：火星殖民的制度设计</h3>
                                 <p class="related-card-desc">运用分层、可演化的协议栈框架设计火星殖民地的治理结构...</p>
                             </a>
                             
-                            <a href="daily-commentary-archive/gpt5-20250115.html" class="related-card">
+                            <a href="daily-commentary-archive/gpt5-20250115.html" class="related-card related-card-medium">
                                 <span class="related-card-tag">往期研究</span>
+                                <div class="related-card-relevance">
+                                    <span class="relevance-score">匹配度: 65%</span>
+                                    <span class="relevance-keywords">关键词: AI安全、技术政策、智能体</span>
+                                </div>
                                 <h3 class="related-card-title">OpenAI发布GPT-5：通用人工智能的新里程碑</h3>
                                 <p class="related-card-desc">从星际文明学视角解读GPT-5发布的深远影响...</p>
                             </a>
