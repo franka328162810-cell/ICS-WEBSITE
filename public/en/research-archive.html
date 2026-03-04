@@ -200,6 +200,149 @@
             line-height: 1.8;
         }
         
+        /* Search Module Styles */
+        .search-section {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .search-header h3 {
+            font-size: 1.25rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .search-header p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-input-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: rgba(10, 22, 40, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-quantum-purple-light);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+        }
+        
+        .search-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--color-quantum-purple);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: var(--color-quantum-purple-light);
+            transform: translateY(-2px);
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-button:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--color-quantum-purple-light);
+        }
+        
+        .filter-button.active {
+            background: var(--color-quantum-purple);
+            border-color: var(--color-quantum-purple);
+            color: white;
+        }
+        
+        .search-results {
+            display: none;
+            margin-top: 1rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .search-result-item {
+            display: block;
+            padding: 1rem;
+            background: rgba(10, 22, 40, 0.4);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .search-result-item:hover {
+            border-color: var(--color-quantum-purple-light);
+            background: rgba(167, 139, 250, 0.1);
+            transform: translateX(4px);
+        }
+        
+        .search-result-title {
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .search-result-meta {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .search-empty {
+            padding: 1rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
         .research-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -335,6 +478,34 @@
                 <p>🔬 Explore ICS academic research on technology, governance, and civilization development. Each publication represents rigorous analysis from the interstellar civilization perspective.</p>
             </div>
 
+            <!-- Academic Search Module -->
+            <section class="search-section">
+                <div class="search-header">
+                    <h3>🔍 Academic Search</h3>
+                    <p>Quickly find relevant research articles by keywords, categories, or dates</p>
+                </div>
+                <div class="search-controls">
+                    <div class="search-input-group">
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            id="searchInput" 
+                            placeholder="Enter keywords: AI Governance, Space Governance, Ethics..."
+                            aria-label="Search articles"
+                        >
+                        <button class="search-btn" id="searchBtn" onclick="performSearch()">Search</button>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">🏷️ Filter by Category:</span>
+                        <button class="filter-button active" data-filter="all" onclick="filterByCategory(this)">All</button>
+                        <button class="filter-button" data-filter="AI Governance" onclick="filterByCategory(this)">AI Governance</button>
+                        <button class="filter-button" data-filter="Ethics" onclick="filterByCategory(this)">Ethics</button>
+                        <button class="filter-button" data-filter="Space Governance" onclick="filterByCategory(this)">Space Governance</button>
+                    </div>
+                    <div id="searchResults" class="search-results" aria-live="polite"></div>
+                </div>
+            </section>
+
             <div class="research-grid" id="researchGrid">
                 <div class="research-card" onclick="window.location.href='in-depth-research.html'">
                     <div class="research-week">Week 1, March 2026</div>
@@ -360,8 +531,135 @@
     </footer>
 
     <script>
-        // Archives will be populated during site generation
+        // Search index data
+        const searchIndexEn = [
+            { title: "In-Depth Research: Trump\\'s Ban on Anthropic", category: 'AI Governance', date: '2026-03-04', url: 'in-depth-research.html', keywords: ['Anthropic', 'AI Governance', 'Ethics', 'Trump'] },
+            { title: 'Daily Commentary', category: 'AI Governance', date: '2026-03-04', url: 'daily-commentary.html', keywords: ['Commentary', 'Policy', 'News'] },
+            { title: 'Space Governance', category: 'Space Governance', date: '2025-01-01', url: 'space-governance.html', keywords: ['Space', 'Governance', 'Mars'] },
+            { title: 'AI Governance', category: 'AI Governance', date: '2025-01-01', url: 'ai-governance.html', keywords: ['AI', 'Governance', 'Safety'] },
+            { title: 'Dialogue with Environmental Ethics', category: 'Ethics', date: '2025-01-01', url: 'dialogue-with-environmental-ethics.html', keywords: ['Ethics', 'Environment', 'Dialogue'] },
+            { title: 'Forbidden Red Lines', category: 'Ethics', date: '2025-01-01', url: 'forbidden-red-lines.html', keywords: ['FRL', 'Risk', 'Boundaries'] }
+        ];
+
+        let runtimeSearchIndexEn = searchIndexEn;
+
+        // Load shared search index
+        async function loadSearchIndexEn() {
+            try {
+                const res = await fetch('/data/content-index.json', { cache: 'no-cache' });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data)) return;
+                const enItems = data
+                    .filter(item => item.lang === 'en')
+                    .map(item => ({
+                        title: item.title,
+                        category: item.category,
+                        date: item.date,
+                        url: item.url,
+                        keywords: Array.isArray(item.keywords) ? item.keywords : []
+                    }));
+                if (enItems.length > 0) runtimeSearchIndexEn = enItems;
+            } catch (_) {
+                // Keep local fallback index
+            }
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function renderSearchResults(results, query, filter) {
+            const container = document.getElementById('searchResults');
+            if (!container) return;
+
+            if (results.length === 0) {
+                container.innerHTML = `<div class="search-empty">No matching content found. Try keywords: AI Governance, Ethics, Space Governance.</div>`;
+                container.classList.add('active');
+                return;
+            }
+
+            const header = `<div class="search-empty">Found ${results.length} result${results.length > 1 ? 's' : ''} ${query ? `(Keywords: ${escapeHtml(query)})` : ''} ${filter !== 'all' ? `(Category: ${escapeHtml(filter)})` : ''}</div>`;
+            const items = results.slice(0, 8).map(item => `
+                <a class="search-result-item" href="${item.url}">
+                    <div class="search-result-title">${escapeHtml(item.title)}</div>
+                    <div class="search-result-meta">${escapeHtml(item.category)} · ${escapeHtml(item.date)}</div>
+                </a>
+            `).join('');
+
+            container.innerHTML = header + items;
+            container.classList.add('active');
+        }
+
+        // Perform search
+        function performSearch() {
+            const input = document.getElementById('searchInput');
+            const query = (input?.value || '').trim().toLowerCase();
+            const activeFilter = document.querySelector('.filter-button.active');
+            const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+
+            if (!query && filter === 'all') {
+                const container = document.getElementById('searchResults');
+                if (container) {
+                    container.classList.remove('active');
+                }
+                return;
+            }
+
+            let results = runtimeSearchIndexEn;
+
+            if (filter !== 'all') {
+                results = results.filter(item => item.category === filter);
+            }
+
+            if (query) {
+                results = results.filter(item => {
+                    const titleMatch = item.title.toLowerCase().includes(query);
+                    const keywordMatch = item.keywords.some(kw => kw.toLowerCase().includes(query));
+                    return titleMatch || keywordMatch;
+                });
+            }
+
+            renderSearchResults(results, query, filter);
+        }
+
+        // Filter by category
+        function filterByCategory(button) {
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            performSearch();
+        }
+
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
+            loadSearchIndexEn();
+            
+            // Search on Enter key
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSearch();
+                    }
+                });
+            }
+
+            // Check URL parameters for direct search
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryParam = urlParams.get('q');
+            if (queryParam && searchInput) {
+                searchInput.value = queryParam;
+                performSearch();
+                // Scroll to search results
+                setTimeout(() => {
+                    const searchSection = document.querySelector('.search-section');
+                    if (searchSection) {
+                        searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 100);
+            }
+            
             const grid = document.getElementById('researchGrid');
             // Archive items will be dynamically populated
         });
