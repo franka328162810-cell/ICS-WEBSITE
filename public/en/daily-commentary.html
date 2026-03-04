@@ -916,6 +916,141 @@
                 gap: 1rem;
             }
         }
+
+        /* Academic Search Section */
+        .search-section {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.12));
+            border: 2px solid rgba(167, 139, 250, 0.35);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .search-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1), transparent);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .search-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-header h3 {
+            font-family: var(--font-en-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .search-header p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-controls {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(167, 139, 250, 0.4);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-family: var(--font-en-sans);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all var(--transition-normal);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--color-quantum-purple);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-btn {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all var(--transition-normal);
+        }
+
+        .filter-button:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--color-quantum-purple);
+        }
+
+        .filter-button.active {
+            background: var(--color-quantum-purple);
+            border-color: var(--color-quantum-purple);
+            color: white;
+        }
     </style>
         <!-- ICS-SEO-START -->
     <meta name="description" content="Daily AI governance commentary: Trump's Ban on Anthropic: The First Civilization-Level Ethical Inflection Point in AI Militarization">
@@ -991,6 +1126,33 @@
 
     <main class="main-content">
         <div class="container">
+            <!-- Academic Search Module -->
+            <section class="search-section">
+                <div class="search-header">
+                    <h3>🔍 Academic Search</h3>
+                    <p>Quickly find relevant commentary articles by keywords, category, or date</p>
+                </div>
+                <div class="search-controls">
+                    <div class="search-input-group">
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            id="searchInput" 
+                            placeholder="Enter keywords: AI Governance, Space Governance, Ethics..."
+                            aria-label="Search articles"
+                        >
+                        <button class="search-btn" id="searchBtn" onclick="performSearch()">Search</button>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">🏷️ Filter by Category:</span>
+                        <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">All</button>
+                        <button class="filter-button" data-filter="AI Governance" onclick="filterByCategory(this)">AI Governance</button>
+                        <button class="filter-button" data-filter="Ethics" onclick="filterByCategory(this)">Ethics</button>
+                        <button class="filter-button" data-filter="Space Governance" onclick="filterByCategory(this)">Space</button>
+                    </div>
+                </div>
+            </section>
+
             <div class="article-meta">
                 <div class="meta-item">
                     <span class="category-badge" data-field="category">AI Governance</span>
@@ -1186,6 +1348,16 @@
                 navbar.style.background = 'rgba(10, 22, 40, 0.8)';
             }
         });
+
+        function performSearch() {
+            alert('Search functionality coming soon!');
+        }
+
+        function filterByCategory(button) {
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            alert('Filtering by: ' + button.getAttribute('data-filter'));
+        }
     </script>
 </body>
 
