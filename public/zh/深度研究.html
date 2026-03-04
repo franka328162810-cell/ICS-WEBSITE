@@ -1,17 +1,144 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>深度研究 | 星际文明学</title>
-    <meta name="description" content="星际文明学视角下的深度研究与学术分析">
+    <meta name="description"
+        content="星际文明学视角下的深度研究与学术分析">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <style>
+        /* ==========================================
+   ICS全局尺寸修复 - 统一缩小约12-15%
+   复制此段到每个页面<style>标签最前面
+   ========================================== */
+
+        /* 1. 全局字体基准 */
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
+        /* 2. 导航栏 */
+        .nav-logo {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .nav-title {
+            font-size: 1rem !important;
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem !important;
+            padding: 8px 20px !important;
+        }
+
+        /* 3. Hero区域 */
+        .hero-title,
+        .zh-page-title {
+            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
+        }
+
+        .en-page-title {
+            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
+        }
+
+        .hero-intro-card {
+            padding: 2.25rem !important;
+            font-size: 1.0625rem !important;
+        }
+
+        /* 4. Section区域 */
+        .section {
+            padding: 5.5rem 2rem !important;
+        }
+
+        .zh-section-title,
+        .en-section-title {
+            font-size: 1.875rem !important;
+        }
+
+        .zh-subsection-title {
+            font-size: 1.3rem !important;
+        }
+
+        .container {
+            max-width: 1200px !important;
+        }
+
+        /* 5. 卡片 */
+        .unified-card,
+        .content-card {
+            padding: 1.875rem !important;
+        }
+
+        .card-title {
+            font-size: 1.125rem !important;
+        }
+
+        .card-description {
+            font-size: 0.875rem !important;
+        }
+
+        /* 6. Footer */
+        .footer {
+            padding: 3.5rem 2rem 1.75rem !important;
+        }
+
+        .footer-logo svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .footer-logo-title {
+            font-size: 1rem !important;
+        }
+
+        .footer-desc {
+            font-size: 0.8125rem !important;
+        }
+
+        /* 7. 正文 */
+        p {
+            font-size: 0.9375rem !important;
+            line-height: 1.8 !important;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13.5px !important;
+            }
+
+            .section {
+                padding: 4rem 1.5rem !important;
+            }
+        }
+
+
         :root {
             --color-deep-space: #0a1628;
             --color-quantum-purple: #7c3aed;
@@ -22,8 +149,8 @@
             --color-energy-gold-light: #fbbf24;
             --color-text-primary: #ffffff;
             --color-text-secondary: rgba(255, 255, 255, 0.8);
-            --font-zh-sans: 'Noto Sans SC', sans-serif;
-            --font-zh-serif: 'Noto Serif SC', serif;
+            --font-en-sans: 'Inter', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
             --transition-normal: 0.3s ease;
         }
 
@@ -38,7 +165,7 @@
         }
 
         body {
-            font-family: var(--font-zh-sans);
+            font-family: var(--font-en-sans);
             font-weight: 300;
             background: var(--color-deep-space);
             color: var(--color-text-secondary);
@@ -87,10 +214,12 @@
         }
 
         .nav-title {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         .nav-subtitle {
@@ -106,11 +235,13 @@
         }
 
         .nav-link {
-            font-family: var(--font-zh-serif);
-            font-size: 0.9375rem;
-            font-weight: 500;
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: color var(--transition-normal);
         }
 
@@ -149,12 +280,13 @@
         }
 
         .lang-btn {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             padding: 0.5rem 1rem;
             border-radius: 6px;
             text-decoration: none;
+            text-transform: uppercase;
             color: rgba(255, 255, 255, 0.6);
             transition: all var(--transition-normal);
         }
@@ -165,13 +297,14 @@
         }
 
         .nav-contact {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             padding: 0.75rem 1.5rem;
             background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
             color: var(--color-text-primary);
             text-decoration: none;
+            text-transform: uppercase;
             border-radius: 8px;
             transition: all var(--transition-normal);
         }
@@ -187,7 +320,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 0;
+            margin-top: 30px;
             overflow: hidden;
         }
 
@@ -250,18 +383,19 @@
             padding: 0 2rem;
         }
 
-        .zh-page-title {
-            font-family: var(--font-zh-serif);
+        .en-page-title {
+            font-family: var(--font-en-display);
             font-size: clamp(3.5rem, 4.5vw, 4rem);
-            font-weight: 900;
+            font-weight: 700;
             margin-bottom: 2rem;
             text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.5;
-            letter-spacing: 0.1em
         }
 
         .hero-intro-card {
@@ -319,11 +453,13 @@
         }
 
         .toc-title {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 1rem;
             font-weight: 600;
             color: var(--color-energy-gold);
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .toc-list {
@@ -416,12 +552,14 @@
         }
 
         .article-title {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--color-text-primary);
             margin-bottom: 2rem;
             line-height: 1.4;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .abstract-card {
@@ -433,11 +571,13 @@
         }
 
         .abstract-title {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--color-energy-gold);
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .abstract-content {
@@ -447,11 +587,13 @@
         }
 
         .abstract-section h4 {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 1rem;
             font-weight: 600;
             color: var(--color-nebula-cyan);
             margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .abstract-section p,
@@ -480,19 +622,21 @@
             color: var(--color-nebula-cyan);
         }
 
-        .zh-section-title {
-            font-family: var(--font-zh-serif);
+        .en-section-title {
+            font-family: var(--font-en-display);
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2rem;
             margin-top: 3rem;
             color: var(--color-text-primary);
             scroll-margin-top: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .zh-subsection-title {
-            font-family: var(--font-zh-serif);
-            font-size: 1.5rem;
+        .en-subsection-title {
+            font-family: var(--font-en-display);
+            font-size: 1.25rem;
             font-weight: 600;
             color: var(--color-energy-gold);
             margin-bottom: 1.5rem;
@@ -500,9 +644,11 @@
             position: relative;
             padding-left: 1rem;
             scroll-margin-top: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .zh-subsection-title::before {
+        .en-subsection-title::before {
             content: '';
             position: absolute;
             left: 0;
@@ -570,7 +716,7 @@
         }
 
         .case-title {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--color-nebula-cyan);
@@ -578,6 +724,8 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .case-icon {
@@ -622,13 +770,12 @@
 
         .related-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .related-card {
-            display: block;
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(167, 139, 250, 0.2);
@@ -636,7 +783,6 @@
             padding: 2rem;
             text-decoration: none;
             transition: all var(--transition-normal);
-            min-height: 200px;
         }
 
         .related-card:hover {
@@ -647,38 +793,29 @@
 
         .related-card-tag {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.75rem;
             background: rgba(167, 139, 250, 0.2);
             color: var(--color-quantum-purple-light);
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 500;
+            border-radius: 4px;
+            font-size: 0.75rem;
             margin-bottom: 1rem;
         }
 
         .related-card-title {
-            font-family: var(--font-zh-serif);
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-family: var(--font-en-display);
+            font-size: 1.125rem;
+            font-weight: 600;
             color: var(--color-text-primary);
-            margin-bottom: 1rem;
-            line-height: 1.5;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .related-card-desc {
-            font-size: 1.0625rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .related-card-meta {
-            display: flex;
-            gap: 1.5rem;
             font-size: 0.9375rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
         }
 
         .citation-box {
@@ -691,11 +828,13 @@
         }
 
         .citation-title {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 1.125rem;
             font-weight: 600;
             color: var(--color-energy-gold);
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .citation-text {
@@ -766,10 +905,12 @@
         }
 
         .footer-logo-title {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         .footer-logo-sub {
@@ -785,11 +926,13 @@
         }
 
         .footer-col h4 {
-            font-family: var(--font-zh-serif);
+            font-family: var(--font-en-display);
             font-size: 0.9375rem;
             font-weight: 600;
             color: var(--color-text-primary);
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .footer-col a {
@@ -856,7 +999,7 @@
                 display: none;
             }
 
-            .zh-page-title {
+            .en-page-title {
                 font-size: 2rem;
             }
 
@@ -899,7 +1042,7 @@
 <body data-page="research-deep" data-lang="zh">
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">
+            <a href="首页.html" class="nav-brand">
                 <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
                     <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
@@ -916,12 +1059,12 @@
             </a>
 
             <ul class="nav-links">
-                <li><a href="首页.html" class="nav-link active">首页</a></li>
-                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
-                <li><a href="著作概述.html" class="nav-link">著作</a></li>
+                <li><a href="首页.html" class="nav-link">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link active">关于</a></li>
+                <li><a href="著作概述.html" class="nav-link">出版物</a></li>
                 <li><a href="资源.html" class="nav-link">资源</a></li>
-                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
-                <li><a href="AI助手.html" class="nav-link">AI助手</a></li>
+                <li><a href="每日热点评论.html" class="nav-link">新闻</a></li>
+                <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -932,7 +1075,7 @@
                     </svg>
                 </button>
                 <div class="lang-switch">
-                    <a href="../en/In-depth Research.html" class="lang-btn">EN</a>
+                    <a href="../en/in-depth-research.html" class="lang-btn">EN</a>
                     <a href="深度研究.html" class="lang-btn active">中文</a>
                 </div>
                 <a href="联系我们.html" class="nav-contact">联系我们</a>
@@ -957,7 +1100,7 @@
 
     <main class="main-content">
         <div class="container">
-            <div style="max-width: 1000px; margin: 0 auto;">
+            <div style="max-width: 1200px; margin: 0 auto;">
                 
                 <section style="margin-bottom: 4rem;">
                     <h2 class="zh-section-title">最新研究</h2>
@@ -988,340 +1131,479 @@
                                 <span>🏷️ AI治理</span>
                             </div>
                         </a>
+
+                        <a href="articles/research-deep-2.html" class="related-card">
+                            <span class="related-card-tag">深度研究</span>
+                            <h3 class="related-card-title">跨基质生命的伦理地位：新生命观框架下的主体资格理论</h3>
+                            <p class="related-card-desc">探讨硅基生命、数字生命等非碳基生命形式的道德地位问题，从星际文明学的新生命观出发建立包容性的伦理框架...</p>
+                            <div class="related-card-meta">
+                                <span>📅 2025年2月10日</span>
+                                <span>⏱️ 28分钟阅读</span>
+                                <span>🏷️ 伦理学</span>
+                            </div>
+                        </a>
+
+                        <a href="articles/research-deep-3.html" class="related-card">
+                            <span class="related-card-tag">深度研究</span>
+                            <h3 class="related-card-title">协议栈方法论在太空治理中的应用：火星殖民的制度设计</h3>
+                            <p class="related-card-desc">运用分层、可演化的协议栈框架设计火星殖民地的治理结构，实现跨代正义与制度创新的统一...</p>
+                            <div class="related-card-meta">
+                                <span>📅 2025年3月1日</span>
+                                <span>⏱️ 32分钟阅读</span>
+                                <span>🏷️ 太空治理</span>
+                            </div>
+                        </a>
                     </div>
                 </section>
+
             </div>
         </div>
     </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 44 44" fill="none">
-                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
-                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
-                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
-                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
-                                dur="8s" repeatCount="indefinite" />
-                        </circle>
-                    </svg>
-                    <div class="footer-logo-text">
-                        <span class="footer-logo-title">星际文明学</span>
-                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    <div class="article-meta">
+                        <div class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            <span>January 15, 2025</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon">⏱️</span>
+                            <span>Reading Time: 15 min</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="category-badge">AI Governance</span>
+                        </div>
                     </div>
-                </div>
-                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
-            </div>
-            <div class="footer-col">
-                <h4>学科</h4>
-                <a href="关于星际文明学.html">概述</a>
-                <a href="首页.html">核心概念</a>
-                <a href="制度设计.html">方法论</a>
-            </div>
-            <div class="footer-col">
-                <h4>资源</h4>
-                <a href="出版信息.html">出版物</a>
-                <a href="资源.html">阅读清单</a>
-                <a href="资源.html">术语表</a>
-            </div>
-            <div class="footer-col">
-                <h4>联系</h4>
-                <a href="联系我们.html">联系我们</a>
-                <a href="联系我们.html">franka@vip.sina.com</a>
-                <a href="订阅通讯.html">订阅通讯</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
-            <div class="footer-links">
-                <a href="privacy.html">隐私政策</a>
-                <a href="terms.html">使用条款</a>
-            </div>
-        </div>
-    </footer>
 
-    <script>
-        // 导航栏滚动效果
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 0) {
-                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
-            } else {
-                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
-            }
-        });
+                    <div class="article-actions">
+                        <button class="action-btn" onclick="window.print()">
+                            <span>📄</span>
+                            <span>Download PDF</span>
+                        </button>
+                        <button class="action-btn" onclick="toggleCitation()">
+                            <span>📋</span>
+                            <span>Cite This</span>
+                        </button>
+                        <button class="action-btn" onclick="saveToLocal()">
+                            <span>🔖</span>
+                            <span>Save</span>
+                        </button>
+                        <button class="action-btn" onclick="sharePage()">
+                            <span>📤</span>
+                            <span>Share</span>
+                        </button>
+                    </div>
 
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
+                    <h1 class="article-title">The Recursive Freedom Dilemma of AGI: Path-Dependency Lock-in Effects from
+                        GPT-5</h1>
 
-</html>
+                    <section id="abstract">
+                        <div class="abstract-card">
+                            <h3 class="abstract-title">Abstract</h3>
+                            <div class="abstract-content">
                                 <div class="abstract-section">
-                                    <h4>核心论点</h4>
-                                    <p>通用人工智能（AGI）的快速发展正在创造一种前所未有的"路径依赖锁定"效应，这种效应通过技术标准化、价值观嵌入和基础设施依赖三个维度，系统性地压缩未来智能体（包括人类和AI）的选择空间，从而违反了星际文明学的核心原则——递归自由原则（RFP）。
-                                    </p>
+                                    <h4>Core Argument</h4>
+                                    <p>The rapid development of Artificial General Intelligence (AGI) is creating an
+                                        unprecedented "path-dependency lock-in" effect that systematically compresses
+                                        the choice space of future intelligent agents (both human and AI) through three
+                                        dimensions: technical standardization, value embedding, and infrastructure
+                                        dependency, thereby violating the core principle of Interstellar Civilization
+                                        Studies—the Recursive Freedom Principle (RFP).</p>
                                 </div>
                                 <div class="abstract-section">
-                                    <h4>关键发现</h4>
+                                    <h4>Key Findings</h4>
                                     <ul>
-                                        <li>AGI系统的目标函数设计具有不可逆的价值观锁定效应</li>
-                                        <li>当前AI治理框架缺乏跨代视角和可逆性机制</li>
-                                        <li>技术路径依赖正在以指数级速度压缩文明选择空间</li>
-                                        <li>需要建立"宇宙级IRB"机制来评估长期影响</li>
+                                        <li>AGI objective function design has irreversible value lock-in effects</li>
+                                        <li>Current AI governance frameworks lack intergenerational perspective and
+                                            reversibility mechanisms</li>
+                                        <li>Technical path dependency is compressing civilizational choice space at
+                                            exponential rates</li>
+                                        <li>Need to establish "Cosmic-scale IRB" mechanisms to assess long-term impacts
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="abstract-section">
-                                    <h4>研究意义</h4>
-                                    <p>本研究首次从星际文明学的深时视角系统分析AGI发展的跨代影响，提出了基于递归自由原则的AI治理新框架，为人类文明的长期存续提供理论指导。</p>
+                                    <h4>Research Significance</h4>
+                                    <p>This study is the first to systematically analyze the intergenerational impacts
+                                        of AGI development from the deep-time perspective of ICS, proposing a new AI
+                                        governance framework based on the Recursive Freedom Principle to provide
+                                        theoretical guidance for humanity's long-term survival.</p>
                                 </div>
                             </div>
+                        </div>
                     </section>
 
                     <section id="introduction">
-                        <h2 class="zh-section-title">一、引言</h2>
+                        <h2 class="en-section-title">I. Introduction</h2>
                         <div class="content-card">
-                            <p>2025年1月，OpenAI发布的GPT-5模型标志着人工智能发展进入了一个新的历史阶段。这个拥有10万亿参数的模型在多项基准测试中超越了人类专家水平，展现出前所未有的推理能力、多模态理解和长期规划能力。然而，在技术突破的光环背后，一个更深层的问题正在浮现：我们是否正在无意中为未来世代锁定某些不可逆的发展路径？
+                            <p>In January 2025, OpenAI's release of the GPT-5 model marked a new historical stage in
+                                artificial intelligence development. This model with 10 trillion parameters surpassed
+                                human expert levels in multiple benchmark tests, demonstrating unprecedented reasoning
+                                capabilities, multimodal understanding, and long-term planning abilities. However,
+                                behind the halo of technological breakthroughs, a deeper question is emerging: are we
+                                inadvertently locking in certain irreversible development paths for future generations?
                             </p>
 
-                            <p>从星际文明学的视角看，这不仅是一个技术问题，更是一个文明学问题。递归自由原则（Recursive Freedom Principle,
-                                RFP）要求我们确保当前的决策不会不可逆地限制未来智能体的选择空间。然而，AGI的发展正在创造一种前所未有的"路径依赖锁定"效应，这种效应可能在未来数百年甚至数千年内持续影响人类文明的演化轨迹。
-                            </p>
+                            <p>From the perspective of Interstellar Civilization Studies, this is not merely a technical
+                                issue but a civilizational one. The Recursive Freedom Principle (RFP) requires us to
+                                ensure that current decisions do not irreversibly limit the choice space of future
+                                intelligent agents. However, AGI development is creating an unprecedented
+                                "path-dependency lock-in" effect that may continue to influence humanity's evolutionary
+                                trajectory for hundreds or even thousands of years.</p>
 
-                            <p>本文将从三个维度分析这一困境：技术标准化的锁定效应、价值观嵌入的不可逆性、以及基础设施依赖的路径依赖。通过案例研究和理论分析，我们将探讨如何在追求技术进步的同时，保护未来世代的选择自由。
+                            <p>This paper analyzes this dilemma from three dimensions: the lock-in effect of technical
+                                standardization, the irreversibility of value embedding, and the path dependency of
+                                infrastructure reliance. Through case studies and theoretical analysis, we explore how
+                                to protect future generations' freedom of choice while pursuing technological progress.
                             </p>
                         </div>
 
                         <div class="highlight-box">
-                            <p><strong>核心问题：</strong>在AGI时代，如何平衡技术创新与跨代正义？如何确保我们今天的选择不会成为未来世代无法摆脱的枷锁？</p>
+                            <p><strong>Core Question:</strong> In the AGI era, how do we balance technological
+                                innovation with intergenerational justice? How do we ensure that today's choices do not
+                                become inescapable shackles for future generations?</p>
                         </div>
                     </section>
 
                     <section id="theoretical">
-                        <h2 class="zh-section-title">二、理论分析：递归自由的三重困境</h2>
+                        <h2 class="en-section-title">II. Theoretical Analysis: The Triple Dilemma of Recursive Freedom
+                        </h2>
 
-                        <h3 class="zh-subsection-title">2.1 技术标准化的锁定效应</h3>
+                        <h3 class="en-subsection-title">2.1 Lock-in Effects of Technical Standardization</h3>
                         <div class="content-card">
-                            <p>AGI系统的发展正在创造一种新型的技术标准化锁定。与传统的技术标准（如QWERTY键盘布局或VHS录像带格式）不同，AGI的标准化具有更深层的影响：</p>
+                            <p>AGI system development is creating a new type of technical standardization lock-in.
+                                Unlike traditional technical standards (such as QWERTY keyboard layout or VHS videotape
+                                format), AGI standardization has deeper impacts:</p>
 
-                            <p><strong>认知架构的标准化：</strong>当前主流的Transformer架构及其变体正在成为AI系统的"默认选择"。这种架构决定了AI如何处理信息、如何学习、如何推理。一旦这种架构成为全球标准，未来开发替代性认知架构的成本将呈指数级增长。更重要的是，基于这种架构训练的数万亿参数模型，其"思维方式"将深刻影响人类社会的信息处理模式。
-                            </p>
+                            <p><strong>Cognitive Architecture Standardization:</strong> The current mainstream
+                                Transformer architecture and its variants are becoming the "default choice" for AI
+                                systems. This architecture determines how AI processes information, learns, and reasons.
+                                Once this architecture becomes a global standard, the cost of developing alternative
+                                cognitive architectures will increase exponentially. More importantly, the "thinking
+                                patterns" of models trained with trillions of parameters based on this architecture will
+                                profoundly influence human society's information processing modes.</p>
 
-                            <p><strong>数据生态的路径依赖：</strong>GPT-5这样的大模型需要海量数据进行训练。这些数据的选择、清洗和标注过程本身就嵌入了特定的价值判断和认知偏见。一旦某个数据集成为行业标准，它所包含的偏见和价值观将被"固化"到所有基于该数据集训练的模型中。未来的研究者即使意识到这些问题，也很难完全摆脱这种路径依赖。
-                            </p>
+                            <p><strong>Data Ecosystem Path Dependency:</strong> Large models like GPT-5 require massive
+                                data for training. The selection, cleaning, and annotation processes of this data embed
+                                specific value judgments and cognitive biases. Once a dataset becomes an industry
+                                standard, the biases and values it contains will be "solidified" into all models trained
+                                on that dataset. Future researchers, even if aware of these issues, will find it
+                                difficult to completely escape this path dependency.</p>
 
-                            <p><strong>接口协议的锁定：</strong>人机交互接口的标准化（如自然语言对话、多模态输入等）正在塑造人类与AI系统的互动方式。这种互动方式不仅影响技术层面，更深刻地影响人类的认知习惯和思维模式。一旦某种接口成为主流，人类将逐渐适应这种交互方式，从而增加转换到其他接口的认知成本。
+                            <p><strong>Interface Protocol Lock-in:</strong> The standardization of human-computer
+                                interaction interfaces (such as natural language dialogue, multimodal input) is shaping
+                                how humans interact with AI systems. This interaction mode affects not only the
+                                technical level but more profoundly influences human cognitive habits and thinking
+                                patterns. Once an interface becomes mainstream, humans will gradually adapt to this
+                                interaction mode, thereby increasing the cognitive cost of switching to other
+                                interfaces.</p>
+                        </div>
+
+                        <h3 class="en-subsection-title">2.2 Irreversibility of Value Embedding</h3>
+                        <div class="content-card">
+                            <p>AGI system objective function design is a typical "value embedding" process with profound
+                                irreversibility:</p>
+
+                            <p><strong>Objective Function Priority Ordering:</strong> When designing AGI objective
+                                functions, developers must prioritize different values (e.g., safety vs. efficiency,
+                                personal privacy vs. public interest). Once this ordering is determined and deployed at
+                                scale, it will form a "value inertia" in practice. Even if future generations wish to
+                                adjust these priorities, they will face enormous technical and social costs.</p>
+
+                            <p><strong>Hard-coding of Ethical Constraints:</strong> To ensure AI system safety,
+                                developers often "hard-code" certain ethical constraints into systems (such as Asimov's
+                                Three Laws of Robotics). However, ethics itself changes with time and culture. Ethical
+                                constraints that seem reasonable today may become unreasonable restrictions in the
+                                future. But once these constraints are embedded in billions of devices, modifying them
+                                becomes extremely difficult.</p>
+
+                            <p><strong>Self-reinforcing Loop of Values:</strong> AGI systems not only passively accept
+                                human values but also actively shape human values through their outputs. This creates a
+                                self-reinforcing loop: AI systems are trained based on current values → generate content
+                                conforming to these values → humans accept and internalize this content → further
+                                reinforce original values. Once this loop starts, it will be very difficult to break.
                             </p>
                         </div>
 
-                        <h3 class="zh-subsection-title">2.2 价值观嵌入的不可逆性</h3>
+                        <h3 class="en-subsection-title">2.3 Path Dependency of Infrastructure Reliance</h3>
                         <div class="content-card">
-                            <p>AGI系统的目标函数设计是一个典型的"价值观嵌入"过程。这个过程具有深刻的不可逆性：</p>
+                            <p>AGI development requires massive infrastructure support, and this infrastructure
+                                dependency is creating new path dependencies:</p>
 
-                            <p><strong>目标函数的优先级排序：</strong>在设计AGI的目标函数时，开发者必须对不同价值进行优先级排序（例如，安全性vs效率、个人隐私vs公共利益）。这种排序一旦确定并大规模部署，将在实践中形成一种"价值观惯性"。即使未来世代希望调整这些优先级，也会面临巨大的技术和社会成本。
-                            </p>
+                            <p><strong>Centralization of Computing Resources:</strong> Training large models like GPT-5
+                                requires thousands of high-performance GPUs and months of computation time, costing
+                                hundreds of millions of dollars. This high cost leads to AI capability
+                                centralization—only a few tech giants and nations can afford it. This centralization not
+                                only limits technological innovation diversity but also creates a "winner-takes-all"
+                                situation, making it difficult for future competitors to enter the market.</p>
 
-                            <p><strong>伦理约束的硬编码：</strong>为了确保AI系统的安全性，开发者往往会将某些伦理约束"硬编码"到系统中（如Asimov的机器人三定律）。然而，伦理本身是随时间和文化变化的。今天看似合理的伦理约束，在未来可能成为不合理的限制。但一旦这些约束被嵌入到数十亿台设备中，修改它们将变得极其困难。
-                            </p>
+                            <p><strong>Energy Infrastructure Lock-in:</strong> Large-scale AI system operation requires
+                                enormous energy support. It is estimated that by 2030, global AI system energy
+                                consumption will account for over 10% of total global energy consumption. This energy
+                                demand is driving construction of specific types of energy infrastructure (such as large
+                                data centers, dedicated power grids). Once this infrastructure is built, transitioning
+                                to more sustainable energy solutions will face enormous sunk costs.</p>
 
-                            <p><strong>价值观的自我强化循环：</strong>AGI系统不仅被动接受人类的价值观，还会通过其输出主动塑造人类的价值观。这创造了一个自我强化的循环：AI系统基于当前的价值观进行训练→生成符合这些价值观的内容→人类接受并内化这些内容→进一步强化原有价值观。这个循环一旦启动，将很难被打破。
-                            </p>
-                        </div>
-
-                        <h3 class="zh-subsection-title">2.3 基础设施依赖的路径依赖</h3>
-                        <div class="content-card">
-                            <p>AGI的发展需要庞大的基础设施支持，这种基础设施依赖正在创造新的路径依赖：</p>
-
-                            <p><strong>计算资源的集中化：</strong>训练GPT-5这样的大模型需要数千块高性能GPU和数月的计算时间，成本高达数亿美元。这种高昂的成本导致AI能力的集中化——只有少数科技巨头和国家能够负担。这种集中化不仅限制了技术创新的多样性，还创造了一种"赢者通吃"的局面，使得未来的竞争者难以进入市场。
-                            </p>
-
-                            <p><strong>能源基础设施的锁定：</strong>大规模AI系统的运行需要巨大的能源支持。据估计，到2030年，全球AI系统的能源消耗将占全球总能源消耗的10%以上。这种能源需求正在推动特定类型能源基础设施的建设（如大型数据中心、专用电网等）。一旦这些基础设施建成，转向更可持续的能源方案将面临巨大的沉没成本。
-                            </p>
-
-                            <p><strong>社会系统的深度整合：</strong>AGI系统正在被整合到社会的各个层面——从医疗诊断到金融决策，从教育系统到司法判决。这种深度整合创造了一种"技术依赖"：社会系统越来越依赖AI系统的正常运行。一旦出现问题，回退到非AI系统将变得极其困难，甚至不可能。
-                            </p>
+                            <p><strong>Deep Integration of Social Systems:</strong> AGI systems are being integrated
+                                into all levels of society—from medical diagnosis to financial decisions, from education
+                                systems to judicial judgments. This deep integration creates a "technological
+                                dependency": social systems increasingly rely on normal AI system operation. Once
+                                problems occur, reverting to non-AI systems becomes extremely difficult or even
+                                impossible.</p>
                         </div>
                     </section>
 
                     <section id="case-study">
-                        <h2 class="zh-section-title">三、案例研究：GPT-5的锁定效应分析</h2>
+                        <h2 class="en-section-title">III. Case Studies: Analysis of GPT-5 Lock-in Effects</h2>
 
                         <div class="case-study">
                             <h3 class="case-title">
                                 <span class="case-icon">🔍</span>
-                                案例：GPT-5的价值观嵌入机制
+                                Case: GPT-5 Value Embedding Mechanism
                             </h3>
                             <div class="content-card" style="background: transparent; border: none; padding: 0;">
-                                <p><strong>背景：</strong>OpenAI在训练GPT-5时采用了"宪法AI"（Constitutional
-                                    AI）方法，通过预定义的"宪法原则"来约束模型的行为。这些原则包括"尊重人类自主性"、"促进人类福祉"、"避免造成伤害"等。</p>
+                                <p><strong>Background:</strong> OpenAI adopted the "Constitutional AI" method when
+                                    training GPT-5, constraining model behavior through predefined "constitutional
+                                    principles." These principles include "respecting human autonomy," "promoting human
+                                    well-being," and "avoiding harm."</p>
 
-                                <p><strong>锁定机制分析：</strong></p>
-                                <p>1.
-                                    <strong>原则的选择性：</strong>这些"宪法原则"反映了2025年西方自由主义的价值观。然而，不同文化和时代对"自主性"、"福祉"、"伤害"的理解可能截然不同。将当前的理解固化到AI系统中，可能限制未来世代重新定义这些概念的自由。
-                                </p>
+                                <p><strong>Lock-in Mechanism Analysis:</strong></p>
+                                <p>1. <strong>Selectivity of Principles:</strong> These "constitutional principles"
+                                    reflect 2025 Western liberal values. However, different cultures and eras may have
+                                    vastly different understandings of "autonomy," "well-being," and "harm." Solidifying
+                                    current understandings into AI systems may limit future generations' freedom to
+                                    redefine these concepts.</p>
 
-                                <p>2.
-                                    <strong>优先级的隐含假设：</strong>当不同原则发生冲突时（如"尊重自主性"vs"避免伤害"），GPT-5采用了预设的优先级排序。这种排序基于当前的伦理共识，但未来的伦理观念可能会有不同的排序。
-                                </p>
+                                <p>2. <strong>Implicit Assumptions in Prioritization:</strong> When different principles
+                                    conflict (such as "respecting autonomy" vs. "avoiding harm"), GPT-5 uses preset
+                                    priority ordering. This ordering is based on current ethical consensus, but future
+                                    ethical views may have different orderings.</p>
 
-                                <p>3.
-                                    <strong>规模效应的放大：</strong>一旦GPT-5被广泛部署（预计到2026年将有超过10亿用户），其嵌入的价值观将通过数十亿次交互影响人类社会。这种影响的规模使得任何后续的"价值观更新"都变得极其困难。
-                                </p>
+                                <p>3. <strong>Amplification of Scale Effects:</strong> Once GPT-5 is widely deployed
+                                    (expected to have over 1 billion users by 2026), its embedded values will influence
+                                    human society through billions of interactions. The scale of this influence makes
+                                    any subsequent "value updates" extremely difficult.</p>
 
-                                <p><strong>递归自由视角的评估：</strong>从RFP的角度看，GPT-5的设计存在明显的问题：它没有为未来世代保留"重新定义价值观"的空间。一旦这些价值观被嵌入并大规模部署，未来的人类将面临两个不利选择：要么接受这些价值观（即使它们不再适用），要么承担巨大的成本来替换整个系统。
-                                </p>
+                                <p><strong>Recursive Freedom Perspective Assessment:</strong> From the RFP perspective,
+                                    GPT-5's design has obvious problems: it does not reserve space for future
+                                    generations to "redefine values." Once these values are embedded and deployed at
+                                    scale, future humans will face two unfavorable choices: either accept these values
+                                    (even if they are no longer applicable) or bear enormous costs to replace the entire
+                                    system.</p>
                             </div>
                             <div class="case-study">
                                 <h3 class="case-title">
                                     <span class="case-icon">🔍</span>
-                                    案例：AI基础设施的路径依赖
+                                    Case: AI Infrastructure Path Dependency
                                 </h3>
                                 <div class="content-card" style="background: transparent; border: none; padding: 0;">
-                                    <p><strong>背景：</strong>为了支持GPT-5的训练和部署，OpenAI与微软合作建设了专用的AI超级计算中心，投资超过100亿美元。这些中心采用了特定的硬件架构（NVIDIA
-                                        H100 GPU）和软件栈（CUDA生态系统）。</p>
+                                    <p><strong>Background:</strong> To support GPT-5 training and deployment, OpenAI
+                                        collaborated with Microsoft to build dedicated AI supercomputing centers,
+                                        investing over $10 billion. These centers adopt specific hardware architectures
+                                        (NVIDIA H100 GPUs) and software stacks (CUDA ecosystem).</p>
 
-                                    <p><strong>路径依赖分析：</strong></p>
-                                    <p>1. <strong>硬件锁定：</strong>NVIDIA
-                                        GPU已经成为AI训练的事实标准。这种标准化虽然带来了效率提升，但也创造了一种"供应商锁定"：所有的软件工具、算法优化、开发者技能都围绕NVIDIA的架构构建。即使未来出现更优秀的替代方案（如光子计算、量子计算），转换成本也将极其高昂。
+                                    <p><strong>Path Dependency Analysis:</strong></p>
+                                    <p>1. <strong>Hardware Lock-in:</strong> NVIDIA GPUs have become the de facto
+                                        standard for AI training. This standardization, while bringing efficiency
+                                        improvements, also creates "vendor lock-in": all software tools, algorithm
+                                        optimizations, and developer skills are built around NVIDIA's architecture. Even
+                                        if superior alternatives emerge in the future (such as photonic computing,
+                                        quantum computing), switching costs will be extremely high.</p>
+
+                                    <p>2. <strong>Irreversible Investment in Energy Infrastructure:</strong> These AI
+                                        supercomputing centers require dedicated power supply and cooling systems. Once
+                                        built, this infrastructure will continue to be used for the next 20-30 years. If
+                                        more energy-efficient AI architectures are discovered in the future, this
+                                        already-built infrastructure will become "sunk costs," hindering transition to
+                                        new architectures.</p>
+
+                                    <p>3. <strong>Human Capital Path Dependency:</strong> The skills of millions of AI
+                                        researchers and engineers worldwide are cultivated around the current technology
+                                        stack. This creates "human capital lock-in": even if better technical routes
+                                        emerge, it will be difficult to find enough talent to realize the transition.
                                     </p>
 
-                                    <p>2.
-                                        <strong>能源基础设施的不可逆投资：</strong>这些AI超级计算中心需要专用的电力供应和冷却系统。一旦建成，这些基础设施将在未来20-30年内持续使用。如果未来发现更节能的AI架构，这些已建成的基础设施将成为"沉没成本"，阻碍向新架构的转型。
-                                    </p>
-
-                                    <p>3.
-                                        <strong>人才生态的路径依赖：</strong>全球数百万AI研究者和工程师的技能都是围绕当前的技术栈培养的。这创造了一种"人力资本锁定"：即使出现更好的技术路线，也很难找到足够的人才来实现转型。
-                                    </p>
-
-                                    <p><strong>长期影响评估：</strong>这种基础设施锁定的影响可能持续数十年。到2050年，当人类可能需要完全不同的AI架构来应对新的挑战时（如星际探索、气候工程等），我们可能会发现自己被困在2020年代的技术选择中。
-                                    </p>
+                                    <p><strong>Long-term Impact Assessment:</strong> This infrastructure lock-in may
+                                        last for decades. By 2050, when humanity may need completely different AI
+                                        architectures to address new challenges (such as interstellar exploration,
+                                        climate engineering), we may find ourselves trapped in the technological choices
+                                        of the 2020s.</p>
                                 </div>
                             </div>
                     </section>
 
                     <section id="normative">
-                        <h2 class="zh-section-title">四、规范性建议：基于递归自由原则的AI治理框架</h2>
+                        <h2 class="en-section-title">IV. Normative Recommendations: AI Governance Framework Based on
+                            Recursive Freedom Principle</h2>
 
-                        <h3 class="zh-subsection-title">4.1 建立"宇宙级IRB"机制</h3>
+                        <h3 class="en-subsection-title">4.1 Establish "Cosmic-scale IRB" Mechanism</h3>
                         <div class="content-card">
-                            <p>借鉴医学研究中的伦理审查委员会（IRB），我们需要建立一个专门评估AI系统长期影响的"宇宙级IRB"。这个机制应该具备以下特征：</p>
+                            <p>Drawing from Institutional Review Boards (IRB) in medical research, we need to establish
+                                a "Cosmic-scale IRB" specifically for assessing long-term impacts of AI systems. This
+                                mechanism should have the following characteristics:</p>
 
-                            <p><strong>跨代视角：</strong>评估AI系统对未来100年、1000年甚至更长时间的影响。这要求评估者采用"深时思维"，考虑技术决策的长期后果。</p>
+                            <p><strong>Intergenerational Perspective:</strong> Assess AI system impacts over 100 years,
+                                1000 years, or even longer timeframes. This requires evaluators to adopt "deep-time
+                                thinking," considering long-term consequences of technological decisions.</p>
 
-                            <p><strong>多元价值观代表：</strong>确保评估过程包含不同文化、不同时代、不同认知模式的代表。这可以通过"虚拟未来世代代表"机制实现——让当前的评估者扮演未来世代的角色，从他们的视角评估当前的决策。
+                            <p><strong>Diverse Value Representation:</strong> Ensure the evaluation process includes
+                                representatives from different cultures, different eras, and different cognitive modes.
+                                This can be achieved through a "virtual future generation representative"
+                                mechanism—having current evaluators role-play future generations and evaluate current
+                                decisions from their perspective.</p>
+
+                            <p><strong>Reversibility Requirements:</strong> Any major AI system deployment must include
+                                "exit mechanisms." This means systems must be designed with consideration for how to
+                                safely shut down or replace them when necessary without causing social system collapse.
                             </p>
 
-                            <p><strong>可逆性要求：</strong>任何重大的AI系统部署都必须包含"退出机制"。这意味着系统设计时就要考虑如何在必要时安全地关闭或替换系统，而不会造成社会系统的崩溃。
-                            </p>
-
-                            <p><strong>定期重新评估：</strong>AI系统的影响评估不应该是一次性的，而应该是持续的。建议每5年对所有主要AI系统进行重新评估，根据新的认知和社会变化调整治理策略。
-                            </p>
+                            <p><strong>Regular Re-evaluation:</strong> AI system impact assessment should not be
+                                one-time but continuous. It is recommended to re-evaluate all major AI systems every 5
+                                years, adjusting governance strategies based on new cognition and social changes.</p>
                         </div>
 
-                        <h3 class="zh-subsection-title">4.2 实施"价值观版本控制"机制</h3>
+                        <h3 class="en-subsection-title">4.2 Implement "Value Version Control" Mechanism</h3>
                         <div class="content-card">
-                            <p>借鉴软件工程中的版本控制概念，我们需要为AI系统的价值观嵌入建立类似的机制：</p>
+                            <p>Drawing from version control concepts in software engineering, we need to establish
+                                similar mechanisms for AI system value embedding:</p>
 
-                            <p><strong>价值观的显式声明：</strong>所有AI系统都应该明确声明其嵌入的价值观、伦理原则和优先级排序。这些声明应该以人类可读的形式公开，让用户了解系统的"价值观立场"。
-                            </p>
+                            <p><strong>Explicit Value Declaration:</strong> All AI systems should explicitly declare
+                                their embedded values, ethical principles, and priority orderings. These declarations
+                                should be publicly available in human-readable form, allowing users to understand the
+                                system's "value stance."</p>
 
-                            <p><strong>价值观的可配置性：</strong>在技术可行的范围内，允许用户根据自己的价值观调整AI系统的行为。这不是说要创造"无道德约束"的AI，而是在保证基本安全的前提下，为不同的价值观留出空间。
-                            </p>
+                            <p><strong>Value Configurability:</strong> Within technically feasible ranges, allow users
+                                to adjust AI system behavior according to their own values. This does not mean creating
+                                "morally unconstrained" AI, but rather leaving space for different values while ensuring
+                                basic safety.</p>
 
-                            <p><strong>价值观的演化机制：</strong>建立机制让AI系统的价值观能够随着社会共识的变化而演化。这可以通过"价值观更新协议"实现——当社会对某个价值问题达成新的共识时，可以通过民主程序更新AI系统的相关设置。
-                            </p>
+                            <p><strong>Value Evolution Mechanism:</strong> Establish mechanisms allowing AI system
+                                values to evolve with changes in social consensus. This can be achieved through "value
+                                update protocols"—when society reaches new consensus on value issues, AI system related
+                                settings can be updated through democratic procedures.</p>
 
-                            <p><strong>价值观的多样性保护：</strong>避免"价值观单一化"。鼓励开发具有不同价值观立场的AI系统，让用户可以选择与自己价值观相符的系统。这类似于媒体多元化的原则——通过多样性来保护选择自由。
-                            </p>
+                            <p><strong>Value Diversity Protection:</strong> Avoid "value homogenization." Encourage
+                                development of AI systems with different value stances, allowing users to choose systems
+                                aligned with their values. This is similar to media pluralism principles—protecting
+                                freedom of choice through diversity.</p>
                         </div>
 
-                        <h3 class="zh-subsection-title">4.3 建立"技术多样性储备"机制</h3>
+                        <h3 class="en-subsection-title">4.3 Establish "Technical Diversity Reserve" Mechanism</h3>
                         <div class="content-card">
-                            <p>为了避免技术路径的过度锁定，我们需要主动维护技术多样性：</p>
+                            <p>To avoid excessive technical path lock-in, we need to actively maintain technical
+                                diversity:</p>
 
-                            <p><strong>替代架构的研究支持：</strong>即使当前的Transformer架构占据主导地位，也应该继续投资研究替代性的AI架构（如神经符号系统、进化算法、量子AI等）。这类似于生物多样性保护——维护"技术基因库"以应对未来的不确定性。
-                            </p>
+                            <p><strong>Alternative Architecture Research Support:</strong> Even though current
+                                Transformer architecture dominates, continue investing in research on alternative AI
+                                architectures (such as neuro-symbolic systems, evolutionary algorithms, quantum AI).
+                                This is similar to biodiversity conservation—maintaining a "technical gene pool" to
+                                address future uncertainties.</p>
 
-                            <p><strong>开源与去中心化：</strong>鼓励AI技术的开源和去中心化发展。这不仅是为了技术民主化，更是为了避免单一实体对AI发展方向的垄断控制。去中心化的发展模式能够自然地产生技术多样性。
-                            </p>
+                            <p><strong>Open Source and Decentralization:</strong> Encourage open-source and
+                                decentralized AI technology development. This is not only for technological
+                                democratization but more importantly to avoid monopolistic control over AI development
+                                direction by single entities. Decentralized development models naturally generate
+                                technical diversity.</p>
 
-                            <p><strong>"技术保护区"概念：</strong>建立某些"技术保护区"，在这些区域内禁止或限制主流AI技术的使用，以保护替代性技术路线的发展空间。这类似于生态保护区的概念——为非主流技术提供"生存空间"。
-                            </p>
+                            <p><strong>"Technical Reserve" Concept:</strong> Establish certain "technical reserves"
+                                where mainstream AI technology use is prohibited or restricted to protect alternative
+                                technical route development space. This is similar to ecological reserve
+                                concepts—providing "survival space" for non-mainstream technologies.</p>
 
-                            <p><strong>跨代技术传承：</strong>建立机制确保关键技术知识能够跨代传承，即使某些技术在当前不再流行。这可以通过"技术档案馆"、"技术考古学"等方式实现，确保未来世代在需要时能够重新发现和使用这些技术。
-                            </p>
+                            <p><strong>Intergenerational Technical Transmission:</strong> Establish mechanisms ensuring
+                                key technical knowledge can be transmitted across generations, even if certain
+                                technologies are no longer popular currently. This can be achieved through "technical
+                                archives," "technical archaeology," ensuring future generations can rediscover and use
+                                these technologies when needed.</p>
                         </div>
 
-                        <h3 class="zh-subsection-title">4.4 制定"递归自由度"评估标准</h3>
+                        <h3 class="en-subsection-title">4.4 Develop "Recursive Freedom Degree" Assessment Standards</h3>
                         <div class="content-card">
-                            <p>我们需要开发量化工具来评估技术决策对未来选择空间的影响：</p>
+                            <p>We need to develop quantitative tools to assess technological decisions' impacts on
+                                future choice space:</p>
 
-                            <p><strong>RFD指标体系：</strong>建立"递归自由度"（Recursive Freedom Degree,
-                                RFD）指标，量化评估某项技术决策对未来选择空间的影响。RFD应该考虑：转换成本、时间不可逆性、影响范围、价值观锁定程度等维度。</p>
+                            <p><strong>RFD Indicator System:</strong> Establish "Recursive Freedom Degree" (RFD)
+                                indicators to quantitatively assess technological decisions' impacts on future choice
+                                space. RFD should consider: switching costs, temporal irreversibility, impact scope,
+                                value lock-in degree, and other dimensions.</p>
 
-                            <p><strong>影响评估矩阵：</strong>对于每个重大AI项目，都应该填写"递归自由影响评估矩阵"，系统分析该项目在技术、社会、伦理、经济等维度对未来选择空间的影响。
-                            </p>
+                            <p><strong>Impact Assessment Matrix:</strong> For each major AI project, complete a
+                                "Recursive Freedom Impact Assessment Matrix," systematically analyzing the project's
+                                impacts on future choice space across technical, social, ethical, and economic
+                                dimensions.</p>
 
-                            <p><strong>阈值与红线：</strong>设定RFD的最低阈值——任何将RFD降低到阈值以下的技术决策都应该被禁止或严格限制。这类似于环境保护中的"生态红线"概念。</p>
+                            <p><strong>Thresholds and Red Lines:</strong> Set minimum RFD thresholds—any technological
+                                decision reducing RFD below the threshold should be prohibited or strictly restricted.
+                                This is similar to "ecological red lines" in environmental protection.</p>
 
-                            <p><strong>公开透明：</strong>所有RFD评估结果都应该公开，让公众了解不同技术选择对未来自由的影响。这有助于形成社会共识，并让未来世代能够追溯当前决策的理由。
-                            </p>
+                            <p><strong>Public Transparency:</strong> All RFD assessment results should be public,
+                                allowing the public to understand different technological choices' impacts on future
+                                freedom. This helps form social consensus and allows future generations to trace current
+                                decision rationales.</p>
                         </div>
                     </section>
 
                     <section id="conclusion">
-                        <h2 class="zh-section-title">五、结论与展望</h2>
+                        <h2 class="en-section-title">V. Conclusion and Outlook</h2>
                         <div class="content-card">
-                            <p>通用人工智能的发展正在将人类文明推向一个前所未有的十字路口。GPT-5等系统的出现标志着我们已经具备了创造"超人类智能"的能力，但这种能力也带来了深刻的责任：我们今天的选择将在未来数百年甚至数千年内持续影响人类文明的演化轨迹。
+                            <p>Artificial General Intelligence development is pushing human civilization toward an
+                                unprecedented crossroads. The emergence of systems like GPT-5 marks our capability to
+                                create "superhuman intelligence," but this capability also brings profound
+                                responsibility: our choices today will continue to influence humanity's evolutionary
+                                trajectory for hundreds or even thousands of years.</p>
+
+                            <p>From the ICS perspective, the greatest risk of current AI development is not science
+                                fiction scenarios like "AI takeover" but the more subtle yet equally dangerous "choice
+                                space compression"—through technical standardization, value embedding, and
+                                infrastructure dependency, we are systematically limiting future generations' freedom of
+                                choice. This limitation violates the Recursive Freedom Principle and may lead
+                                civilization into a "path-dependency trap."</p>
+
+                            <p>However, this does not mean we should halt AI development. Rather, we need to develop AI
+                                more wisely—actively protecting future generations' freedom of choice while pursuing
+                                technological progress. The four normative recommendations proposed in this
+                                paper—Cosmic-scale IRB, value version control, technical diversity reserve, and
+                                recursive freedom degree assessment—provide a preliminary framework for achieving this
+                                goal.</p>
+
+                            <p>Looking forward, we need to continue deepening research in the following directions:</p>
+
+                            <p><strong>Theoretical Level:</strong> Further refine the theoretical foundation of the
+                                Recursive Freedom Principle, exploring its relationship with other ethical principles
+                                (such as utilitarianism, deontology). Develop more precise mathematical models to
+                                quantify "choice space" and "path dependency."</p>
+
+                            <p><strong>Practical Level:</strong> Pilot the governance mechanisms proposed in this paper
+                                in real AI projects, accumulating experience and continuously improving. Establish
+                                international cooperation mechanisms to promote global AI governance standardization.
                             </p>
 
-                            <p>从星际文明学的视角看，当前AI发展的最大风险不是"AI接管世界"这样的科幻场景，而是更隐蔽但同样危险的"选择空间压缩"——通过技术标准化、价值观嵌入和基础设施依赖，我们正在系统性地限制未来世代的选择自由。这种限制违反了递归自由原则，可能导致文明陷入"路径依赖陷阱"。
-                            </p>
+                            <p><strong>Educational Level:</strong> Incorporate "deep-time thinking" and
+                                "intergenerational responsibility" into AI researcher and engineer training curricula.
+                                Cultivate their sensitivity and sense of responsibility toward long-term impacts.</p>
 
-                            <p>然而，这并不意味着我们应该停止AI的发展。相反，我们需要更智慧地发展AI——在追求技术进步的同时，主动保护未来世代的选择自由。本文提出的四项规范性建议——宇宙级IRB、价值观版本控制、技术多样性储备、递归自由度评估——为实现这一目标提供了初步框架。
-                            </p>
+                            <p><strong>Social Level:</strong> Promote public awareness and discussion of AI long-term
+                                impacts. Establish mechanisms allowing ordinary citizens to participate in AI governance
+                                decisions, ensuring technological development aligns with broad social interests.</p>
 
-                            <p>展望未来，我们需要在以下几个方向继续深化研究：</p>
-
-                            <p><strong>理论层面：</strong>进一步完善递归自由原则的理论基础，探讨其与其他伦理原则（如功利主义、义务论等）的关系。开发更精确的数学模型来量化"选择空间"和"路径依赖"。
-                            </p>
-
-                            <p><strong>实践层面：</strong>在真实的AI项目中试点本文提出的治理机制，积累经验并不断改进。建立国际合作机制，推动全球范围内的AI治理标准化。</p>
-
-                            <p><strong>教育层面：</strong>将"深时思维"和"跨代责任"纳入AI研究者和工程师的培训课程。
-
-
-
-                                ```html
-                                培养他们对长期影响的敏感性和责任感。</p>
-
-                            <p><strong>社会层面：</strong>促进公众对AI长期影响的认识和讨论。建立机制让普通公民能够参与AI治理决策，确保技术发展符合广泛的社会利益。</p>
-
-                            <p>最后，我们必须认识到，递归自由不仅是一个技术问题或伦理问题，更是一个文明学问题。它关乎人类作为一个物种的长期命运，关乎我们是否能够在宇宙尺度上实现可持续发展。正如星际文明学的核心格言所说："自由是对可能性的看护"。在AGI时代，我们的首要任务就是看护好未来的可能性，确保我们的后代仍然拥有选择自己命运的自由。
-                            </p>
+                            <p>Finally, we must recognize that recursive freedom is not only a technical or ethical
+                                issue but a civilizational one. It concerns humanity's long-term destiny as a species
+                                and whether we can achieve sustainable development on a cosmic scale. As the core motto
+                                of ICS states: "Freedom is the guardianship of possibilities." In the AGI era, our
+                                primary task is to guard future possibilities, ensuring our descendants still have the
+                                freedom to choose their own destiny.</p>
                         </div>
 
                         <div class="highlight-box">
-                            <p><strong>核心结论：</strong>AGI的发展必须在技术进步与跨代正义之间找到平衡。递归自由原则为这种平衡提供了理论基础，而本文提出的治理框架则为实现这种平衡提供了实践路径。人类文明的长期存续，取决于我们今天是否有智慧和勇气为未来世代保留选择的自由。
-                            </p>
+                            <p><strong>Core Conclusion:</strong> AGI development must find balance between technological
+                                progress and intergenerational justice. The Recursive Freedom Principle provides
+                                theoretical foundation for this balance, while the governance framework proposed in this
+                                paper provides practical pathways for achieving it. Humanity's long-term survival
+                                depends on whether we have the wisdom and courage today to preserve freedom of choice
+                                for future generations.</p>
                         </div>
                     </section>
 
                     <section id="references">
-                        <h2 class="zh-section-title">参考文献</h2>
+                        <h2 class="en-section-title">References</h2>
                         <div class="references">
                             <ol class="reference-list">
                                 <li class="reference-item">OpenAI. (2025). GPT-5: Technical Report. arXiv:2501.00001.
@@ -1360,32 +1642,36 @@
                     </section>
 
                     <div class="citation-box" id="citation-box" style="display: none;">
-                        <h3 class="citation-title">引用本文</h3>
-                        <div class="citation-text">作者姓名. (2025). 通用人工智能的递归自由困境：从GPT-5看文明选择空间的锁定效应. 星际文明学深度研究.
+                        <h3 class="citation-title">Cite This Article</h3>
+                        <div class="citation-text">Author Name. (2025). The Recursive Freedom Dilemma of AGI:
+                            Path-Dependency Lock-in Effects from GPT-5. ICS In-Depth Research.
                             https://ics-studies.org/research/agi-recursive-freedom</div>
-                        <button class="copy-btn" onclick="copyCitation()">复制引用</button>
-                    </div>
+                        <button class="copy-btn" onclick="copyCitation()">Copy Citation</button>
+    </main>
 
-
-                    <section class="related-articles">
-                        <h2 class="zh-section-title">相关阅读</h2>
+    <footer class="footer">
                         <div class="related-grid">
-                            <a href="articles/trump-anthropic-ban-20250304.html" class="related-card">
-                                <span class="related-card-tag">深度研究</span>
-                                <h3 class="related-card-title">特朗普封杀Anthropic：AI伦理红线与军事需求的文明级博弈</h3>
-                                <p class="related-card-desc">从星际文明学视角深度分析AI军事化应用与伦理红线的文明级博弈，评估其对人类文明演化路径的深时影响...</p>
-                            </a>
-
                             <a href="articles/research-deep-2.html" class="related-card">
-                                <span class="related-card-tag">深度研究</span>
-                                <h3 class="related-card-title">跨基质生命的伦理地位：新生命观框架下的主体资格理论</h3>
-                                <p class="related-card-desc">探讨硅基生命、数字生命等非碳基生命形式的道德地位问题...</p>
+                                <span class="related-card-tag">In-Depth Research</span>
+                                <h3 class="related-card-title">Ethical Status of Cross-Substrate Life: Subject
+                                    Qualification Theory Under New Life View</h3>
+                                <p class="related-card-desc">Exploring moral status of non-carbon-based life forms such
+                                    as silicon-based and digital life...</p>
                             </a>
 
                             <a href="articles/research-deep-3.html" class="related-card">
-                                <span class="related-card-tag">深度研究</span>
-                                <h3 class="related-card-title">协议栈方法论在太空治理中的应用：火星殖民的制度设计</h3>
-                                <p class="related-card-desc">运用分层、可演化的协议栈框架设计火星殖民地的治理结构...</p>
+                                <span class="related-card-tag">In-Depth Research</span>
+                                <h3 class="related-card-title">Protocol Stack Methodology in Space Governance:
+                                    Institutional Design for Mars Colonization</h3>
+                                <p class="related-card-desc">Using layered, evolvable protocol stack framework to design
+                                    Mars colony governance structures...</p>
+                            </a>
+
+                            <a href="news/news-daily.html" class="related-card">
+                                <span class="related-card-tag">Daily Commentary</span>
+                                <h3 class="related-card-title">OpenAI Releases GPT-5: A New Milestone in AGI</h3>
+                                <p class="related-card-desc">Interpreting the profound impact of GPT-5 release from the
+                                    ICS perspective...</p>
                             </a>
                         </div>
                     </section>
@@ -1419,7 +1705,6 @@
             </div>
             <div class="footer-col">
                 <h4>资源</h4>
-                <a href="出版信息.html">出版物</a>
                 <a href="资源.html">阅读清单</a>
                 <a href="资源.html">术语表</a>
             </div>
@@ -1432,7 +1717,7 @@
         </div>
         <div class="footer-bottom">
             <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
-            <div class="footer-links">
+            <div class="footer-links-bottom">
                 <a href="privacy.html">隐私政策</a>
                 <a href="terms.html">使用条款</a>
             </div>
@@ -1440,7 +1725,6 @@
     </footer>
 
     <script>
-        // 导航栏滚动效果
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 0) {
@@ -1450,7 +1734,6 @@
             }
         });
 
-        // 目录高亮
         const sections = document.querySelectorAll('section[id]');
         const tocLinks = document.querySelectorAll('.toc-link');
 
@@ -1472,7 +1755,6 @@
             });
         });
 
-        // 引用功能
         function toggleCitation() {
             const citationBox = document.getElementById('citation-box');
             if (citationBox.style.display === 'none') {
@@ -1488,15 +1770,12 @@
             navigator.clipboard.writeText(citationText).then(() => {
                 const btn = document.querySelector('.copy-btn');
                 const originalText = btn.textContent;
-                btn.textContent = '已复制！';
+                btn.textContent = 'Copied!';
                 setTimeout(() => {
                     btn.textContent = originalText;
                 }, 2000);
             });
-        }
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        } document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
@@ -1512,7 +1791,7 @@
     <script>
         function saveToLocal() {
             localStorage.setItem('ics_saved', window.location.href);
-            alert('已收藏到浏览器！');
+            alert('Saved to your browser!');
         }
         function sharePage() {
             if (navigator.share) {
@@ -1522,7 +1801,7 @@
                 });
             } else {
                 navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('链接已复制！');
+                    alert('Link copied!');
                 });
             }
         }
