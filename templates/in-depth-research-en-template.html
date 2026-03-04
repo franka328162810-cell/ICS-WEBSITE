@@ -533,10 +533,10 @@
                             <span>📋</span>
                             <span>Cite</span>
                         </button>
-                        <a href="contact-us.html" class="action-btn" style="text-decoration: none; color: inherit;">
+                        <button class="action-btn" onclick="shareArticle()" style="cursor: pointer;">
                             <span>🔗</span>
                             <span>Share</span>
-                        </a>
+                        </button>
                     </div>
 
                     <!-- Citation Box -->
@@ -584,6 +584,28 @@
     </footer>
 
     <script>
+        // Scroll to search module
+        function scrollToSearch() {
+            const searchSection = document.querySelector('.search-section');
+            if (searchSection) {
+                searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Share article
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(err => console.log('Share failed', err));
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+
         function toggleCitation() {
             document.getElementById('citationBox').classList.toggle('active');
         }

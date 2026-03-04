@@ -591,6 +591,54 @@
             box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
         }
 
+        .search-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-header h3 {
+            font-family: var(--font-en-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .search-header p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all var(--transition-normal);
+        }
+
+        .filter-button:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--color-quantum-purple);
+        }
+
+        .filter-button.active {
+            background: var(--color-quantum-purple);
+            border-color: var(--color-quantum-purple);
+            color: white;
+        }
+
         .filter-group {
             display: flex;
             flex-wrap: wrap;
@@ -845,7 +893,7 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="nav-search" aria-label="Search">
+                <button class="nav-search" aria-label="Search" onclick="scrollToSearch()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
@@ -1122,6 +1170,15 @@
 
     <!-- JavaScript -->
     <script>
+        // Scroll to search module
+        function scrollToSearch() {
+            const searchSection = document.querySelector('.search-section');
+            if (searchSection) {
+                searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 0) {

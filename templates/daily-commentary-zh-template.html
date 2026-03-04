@@ -525,10 +525,10 @@
                             <span>🖨️</span>
                             <span>打印</span>
                         </button>
-                        <a href="联系我们.html" class="action-btn" style="text-decoration: none; color: inherit;">
+                        <button class="action-btn" onclick="shareArticle()" style="cursor: pointer;">
                             <span>🔗</span>
                             <span>分享</span>
-                        </a>
+                        </button>
                         <a href="每日热点评论.html" class="action-btn" style="text-decoration: none; color: inherit;">
                             <span>📚</span>
                             <span>往期回顾</span>
@@ -574,6 +574,21 @@
     </footer>
 
     <script>
+        // 分享文章
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(err => console.log('分享失败', err));
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('链接已复制到剩贴板！');
+                });
+            }
+        }
+
+        // 导航栏滚动效果
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 0) {

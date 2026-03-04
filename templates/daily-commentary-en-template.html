@@ -453,10 +453,10 @@
                             <span>🖨️</span>
                             <span>Print</span>
                         </button>
-                        <a href="contact-us.html" class="action-btn" style="text-decoration: none; color: inherit;">
+                        <button class="action-btn" onclick="shareArticle()" style="cursor: pointer;">
                             <span>🔗</span>
                             <span>Share</span>
-                        </a>
+                        </button>
                         <a href="daily-commentary.html" class="action-btn" style="text-decoration: none; color: inherit;">
                             <span>📚</span>
                             <span>Archive</span>
@@ -502,6 +502,20 @@
     </footer>
 
     <script>
+        // Share article
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(err => console.log('Share failed', err));
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 0) {
