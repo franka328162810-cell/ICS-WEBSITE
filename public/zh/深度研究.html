@@ -28,7 +28,7 @@ qk<!DOCTYPE html>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <!-- VERSION: 2026-03-05-v6 -->
+    <!-- VERSION: 2026-03-05-v7 -->
     <style>
         /* ==========================================
    ICS全局尺寸修复 - 统一缩小约12-15%
@@ -1614,13 +1614,73 @@ qk<!DOCTYPE html>
             color: rgba(167, 139, 250, 1);
         }
 
+        /* ==================== 目录导航样式 ==================== */
+        .toc-section {
+            display: block !important;
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.8) 0%, 
+                rgba(15, 23, 42, 0.6) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .toc-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                var(--color-quantum-purple) 0%, 
+                var(--color-quantum-purple-light) 30%,
+                var(--color-nebula-cyan) 70%,
+                var(--color-nebula-cyan-light) 100%);
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+        }
+
+        .toc-section:hover {
+            border-color: rgba(167, 139, 250, 0.45);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
+        }
+
+        .toc-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-link,
+        .toc-sublink {
+            color: var(--color-text-primary) !important;
+            text-decoration: none !important;
+            font-family: var(--font-zh-serif) !important;
+        }
+
+        .toc-link:hover {
+            color: var(--color-quantum-purple-light) !important;
+        }
+
         /* ==================== 打印样式 ==================== */
         @media print {
             /* 隐藏非打印元素 */
             .navbar,
             .skip-to-main,
             .article-actions,
-            .toc-section,
             .search-section,
             .footer,
             button,
@@ -1698,6 +1758,19 @@ qk<!DOCTYPE html>
                 background: #fff !important;
                 padding: 0.5cm;
                 margin: 0.5cm 0;
+            }
+
+            /* TOC打印样式 */
+            .toc-section {
+                background: #fff !important;
+                border: 1px solid #000 !important;
+                box-shadow: none !important;
+            }
+
+            .toc-link,
+            .toc-sublink {
+                color: #000 !important;
+            }
             }
 
             /* 调整边距为打印友好 */

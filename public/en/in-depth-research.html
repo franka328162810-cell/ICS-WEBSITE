@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- VERSION: 2026-03-05-v6 -->
+    <!-- VERSION: 2026-03-05-v7 -->
     <style>
         :root {
             --color-deep-space: #0a1628;
@@ -1590,13 +1590,247 @@
             color: rgba(167, 139, 250, 1);
         }
 
+        /* ==================== TOC目录导航卡片样式 ==================== */
+        .toc-section {
+            display: block !important;
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.8) 0%, 
+                rgba(15, 23, 42, 0.6) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .toc-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                var(--color-quantum-purple) 0%, 
+                var(--color-quantum-purple-light) 30%,
+                var(--color-nebula-cyan) 70%,
+                var(--color-nebula-cyan-light) 100%);
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+        }
+
+        .toc-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, 
+                rgba(167, 139, 250, 0.1) 0%, 
+                transparent 70%);
+            pointer-events: none;
+            transition: all 0.6s ease;
+        }
+
+        .toc-section:hover {
+            border-color: rgba(167, 139, 250, 0.45);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25),
+                        0 0 0 1px rgba(167, 139, 250, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .toc-section:hover::after {
+            top: -30%;
+            right: -30%;
+            opacity: 0.8;
+        }
+
+        .toc-title {
+            font-family: var(--font-en-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            text-shadow: 0 2px 8px rgba(167, 139, 250, 0.3);
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-family: var(--font-en-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-text-primary) !important;
+            text-decoration: none !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        nav.toc-section .toc-link {
+            color: var(--color-text-primary) !important;
+            text-decoration: none !important;
+        }
+
+        .toc-link:link,
+        .toc-link:visited,
+        .toc-link:active {
+            color: var(--color-text-primary) !important;
+        }
+
+        .toc-link:hover {
+            background: rgba(167, 139, 250, 0.12);
+            color: var(--color-text-primary) !important;
+            transform: translateX(6px);
+        }
+
+        .toc-link:focus-visible {
+            outline: 2px solid var(--color-quantum-purple-light);
+            outline-offset: 2px;
+        }
+
+        .toc-sublist {
+            list-style: none;
+            padding-left: 2.75rem;
+            margin: 0.75rem 0 1rem 0;
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .toc-sublist::before {
+            content: '';
+            position: absolute;
+            left: 1.375rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, 
+                rgba(6, 182, 212, 0.3) 0%, 
+                transparent 100%);
+        }
+
+        .toc-list > li:has(.toc-sublist):hover .toc-sublist {
+            display: block;
+            max-height: 500px;
+            opacity: 1;
+            margin: 0.75rem 0 1rem 0;
+        }
+
+        .toc-sublink {
+            display: block;
+            padding: 0.75rem 1rem;
+            padding-left: 2rem;
+            font-family: var(--font-en-display);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary) !important;
+            text-decoration: none !important;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        nav.toc-section .toc-sublink {
+            color: var(--color-text-primary) !important;
+            text-decoration: none !important;
+        }
+
+        .toc-sublink:link,
+        .toc-sublink:visited,
+        .toc-sublink:active {
+            color: var(--color-text-primary) !important;
+        }
+
+        .toc-sublink::before {
+            content: '→';
+            position: absolute;
+            left: 0.5rem;
+            color: rgba(167, 139, 250, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .toc-sublink:hover {
+            background: rgba(167, 139, 250, 0.12);
+            color: var(--color-text-primary) !important;
+            padding-left: 2rem;
+        }
+
+        .toc-sublink:hover::before {
+            color: var(--color-nebula-cyan);
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 768px) {
+            .toc-section {
+                padding: 1.5rem 1.75rem;
+                margin: 2rem 0;
+                border-radius: 12px;
+            }
+
+            .toc-section::before {
+                width: 4px;
+            }
+
+            .toc-title {
+                font-size: 1.125rem;
+                letter-spacing: 0.05em;
+            }
+
+            .toc-link {
+                padding: 0.625rem 0.875rem;
+                font-size: 0.9375rem;
+            }
+
+            .toc-link:hover {
+                transform: translateX(4px);
+            }
+
+            .toc-sublist {
+                padding-left: 2.25rem;
+                margin: 0.5rem 0 0.75rem 0;
+            }
+
+            .toc-sublist::before {
+                left: 1.25rem;
+            }
+
+            .toc-sublink {
+                font-size: 0.875rem;
+                padding: 0.5rem 0.75rem;
+                padding-left: 1.5rem;
+            }
+
+            .toc-sublink::before {
+                left: 0.5rem;
+                font-size: 0.8125rem;
+            }
+
+            .toc-sublink:hover {
+                padding-left: 1.875rem;
+            }
+        }
+
         /* ==================== Print Styles ==================== */
         @media print {
             /* Hide non-print elements */
             .navbar,
             .skip-to-main,
             .article-actions,
-            .toc-section,
             .search-section,
             .footer,
             button,
@@ -1704,252 +1938,16 @@
                 size: A4;
             }
 
-            /* ==================== 卡片内标题字体优化 ==================== */
-            .content-card h3,
-            .content-card h4,
-            .content-card h5,
-            .content-card h6 {
-                font-family: var(--font-en-display);
-                font-weight: 700;
-            }
-
-            .en-section-title {
-                font-family: var(--font-en-display);
-            }
-
-            /* ==================== TOC目录导航卡片样式 ==================== */
+            /* TOC print styles */
             .toc-section {
-                display: block !important;
-                background: linear-gradient(135deg, 
-                    rgba(15, 23, 42, 0.8) 0%, 
-                    rgba(15, 23, 42, 0.6) 100%);
-                backdrop-filter: blur(12px);
-                border: 1px solid rgba(167, 139, 250, 0.25);
-                border-radius: 16px;
-                padding: 2rem 2.5rem;
-                margin: 2.5rem 0;
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                position: relative;
-                overflow: hidden;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+                background: #fff !important;
+                border: 1px solid #000 !important;
+                box-shadow: none !important;
             }
 
-            .toc-section::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 5px;
-                height: 100%;
-                background: linear-gradient(180deg, 
-                    var(--color-quantum-purple) 0%, 
-                    var(--color-quantum-purple-light) 30%,
-                    var(--color-nebula-cyan) 70%,
-                    var(--color-nebula-cyan-light) 100%);
-                box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
-            }
-
-            .toc-section::after {
-                content: '';
-                position: absolute;
-                top: -50%;
-                right: -50%;
-                width: 200px;
-                height: 200px;
-                background: radial-gradient(circle, 
-                    rgba(167, 139, 250, 0.1) 0%, 
-                    transparent 70%);
-                pointer-events: none;
-                transition: all 0.6s ease;
-            }
-
-            .toc-section:hover {
-                border-color: rgba(167, 139, 250, 0.45);
-                box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25),
-                            0 0 0 1px rgba(167, 139, 250, 0.1);
-                transform: translateY(-3px);
-            }
-
-            .toc-section:hover::after {
-                top: -30%;
-                right: -30%;
-                opacity: 0.8;
-            }
-
-            .toc-title {
-                font-family: var(--font-en-display);
-                font-size: 1.3rem;
-                font-weight: 700;
-                color: var(--color-text-primary);
-                text-shadow: 0 2px 8px rgba(167, 139, 250, 0.3);
-                letter-spacing: 0.05em;
-                margin-bottom: 1.5rem;
-            }
-
-            .toc-list {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            .toc-link {
-                display: block;
-                padding: 0.75rem 1rem;
-                font-family: var(--font-en-display);
-                font-size: 1rem;
-                font-weight: 700;
-                color: var(--color-text-primary) !important;
-                text-decoration: none !important;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                border-radius: 8px;
-                position: relative;
-            }
-
-            nav.toc-section .toc-link {
-                color: var(--color-text-primary) !important;
-                text-decoration: none !important;
-            }
-
-            .toc-link:link,
-            .toc-link:visited,
-            .toc-link:active {
-                color: var(--color-text-primary) !important;
-            }
-
-            .toc-link:hover {
-                background: rgba(167, 139, 250, 0.12);
-                color: var(--color-text-primary) !important;
-                transform: translateX(6px);
-            }
-
-            .toc-link:focus-visible {
-                outline: 2px solid var(--color-quantum-purple-light);
-                outline-offset: 2px;
-            }
-
-            .toc-sublist {
-                list-style: none;
-                padding-left: 2.75rem;
-                margin: 0.75rem 0 1rem 0;
-                display: none;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 0;
-                transition: all 0.4s ease;
-                position: relative;
-            }
-
-            .toc-sublist::before {
-                content: '';
-                position: absolute;
-                left: 1.375rem;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                background: linear-gradient(180deg, 
-                    rgba(6, 182, 212, 0.3) 0%, 
-                    transparent 100%);
-            }
-
-            .toc-list > li:has(.toc-sublist):hover .toc-sublist {
-                display: block;
-                max-height: 500px;
-                opacity: 1;
-                margin: 0.75rem 0 1rem 0;
-            }
-
+            .toc-link,
             .toc-sublink {
-                display: block;
-                padding: 0.75rem 1rem;
-                padding-left: 2rem;
-                font-family: var(--font-en-display);
-                font-size: 0.9375rem;
-                font-weight: 600;
-                color: var(--color-text-primary) !important;
-                text-decoration: none !important;
-                border-radius: 6px;
-                transition: all 0.2s ease;
-                position: relative;
-            }
-
-            nav.toc-section .toc-sublink {
-                color: var(--color-text-primary) !important;
-                text-decoration: none !important;
-            }
-
-            .toc-sublink:link,
-            .toc-sublink:visited,
-            .toc-sublink:active {
-                color: var(--color-text-primary) !important;
-            }
-
-            .toc-sublink::before {
-                content: '→';
-                position: absolute;
-                left: 0.5rem;
-                color: rgba(167, 139, 250, 0.5);
-                transition: all 0.2s ease;
-            }
-
-            .toc-sublink:hover {
-                background: rgba(167, 139, 250, 0.12);
-                color: var(--color-text-primary) !important;
-                padding-left: 2rem;
-            }
-
-            .toc-sublink:hover::before {
-                color: var(--color-nebula-cyan);
-                transform: translateX(4px);
-            }
-
-            @media (max-width: 768px) {
-                .toc-section {
-                    padding: 1.5rem 1.75rem;
-                    margin: 2rem 0;
-                    border-radius: 12px;
-                }
-
-                .toc-section::before {
-                    width: 4px;
-                }
-
-                .toc-title {
-                    font-size: 1.125rem;
-                    letter-spacing: 0.05em;
-                }
-
-                .toc-link {
-                    padding: 0.625rem 0.875rem;
-                    font-size: 0.9375rem;
-                }
-
-                .toc-link:hover {
-                    transform: translateX(4px);
-                }
-
-                .toc-sublist {
-                    padding-left: 2.25rem;
-                    margin: 0.5rem 0 0.75rem 0;
-                }
-
-                .toc-sublist::before {
-                    left: 1.25rem;
-                }
-
-                .toc-sublink {
-                    font-size: 0.875rem;
-                    padding: 0.5rem 0.75rem;
-                    padding-left: 1.5rem;
-                }
-
-                .toc-sublink::before {
-                    left: 0.5rem;
-                    font-size: 0.8125rem;
-                }
-
-                .toc-sublink:hover {
-                    padding-left: 1.875rem;
-                }
+                color: #000 !important;
             }
         }
     </style>
