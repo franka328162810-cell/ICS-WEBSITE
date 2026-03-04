@@ -2548,7 +2548,26 @@
             initNewsTabs();
             initQuotesCarousel();
             smoothScroll();
+            initSearch();
         });
+
+        // Initialize search functionality
+        function initSearch() {
+            const searchBtn = document.querySelector('.nav-search');
+            if (!searchBtn) return;
+
+            searchBtn.addEventListener('click', function () {
+                const keyword = window.prompt('Enter search keywords 输入搜索关键词');
+                if (keyword === null) return;
+
+                const trimmed = keyword.trim();
+                // Detect language preference (default to English for homepage)
+                const target = '/en/in-depth-research.html';
+                const query = trimmed ? `?q=${encodeURIComponent(trimmed)}` : '';
+
+                window.location.href = `${target}${query}#main-content`;
+            });
+        }
 
         // Page load animation
         window.addEventListener('load', () => {
