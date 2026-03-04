@@ -139,10 +139,15 @@ function initSearch() {
     if (!searchBtn) return;
 
     searchBtn.addEventListener('click', function () {
-        // 这里可以添加搜索模态框或跳转到搜索页面
-        console.log('Search clicked');
-        // 临时实现：显示搜索提示
-        showNotification('搜索功能即将上线', 'info');
+        const keyword = window.prompt('请输入搜索关键词 / Enter search keywords');
+        if (keyword === null) return;
+
+        const trimmed = keyword.trim();
+        const isZh = window.location.pathname.includes('/zh/');
+        const target = isZh ? '/zh/深度研究.html' : '/en/in-depth-research.html';
+        const query = trimmed ? `?q=${encodeURIComponent(trimmed)}` : '';
+
+        window.location.href = `${target}${query}#main-content`;
     });
 }
 

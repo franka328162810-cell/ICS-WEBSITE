@@ -653,6 +653,52 @@
             color: white;
         }
 
+        .search-results {
+            margin-top: 1rem;
+            display: none;
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(10, 22, 40, 0.35);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            display: block;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.15);
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: rgba(167, 139, 250, 0.12);
+        }
+
+        .search-result-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .search-result-meta {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-empty {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.9rem;
+        }
+
         .filter-group {
             display: flex;
             flex-wrap: wrap;
@@ -1722,6 +1768,7 @@
                         <button class="filter-button" data-filter="Ethics" onclick="filterByCategory(this)">Ethics</button>
                         <button class="filter-button" data-filter="Space Governance" onclick="filterByCategory(this)">Space</button>
                     </div>
+                    <div id="searchResults" class="search-results" aria-live="polite"></div>
                 </div>
             </section>
 
@@ -1767,7 +1814,7 @@
                     <span>📋</span>
                     <span>Cite</span>
                 </button>
-                <button class="action-btn" onclick="shareArticle()">
+                <button class="action-btn" onclick="shareArticle('copy')">
                     <span>🔗</span>
                     <span>Share</span>
                 </button>
@@ -2174,15 +2221,87 @@
             alert('Thank you for subscribing! We\'ll send updates to your email regularly.');
         }
 
+        const searchIndexEn = [
+            { title: "In-Depth Research: Trump's Ban on Anthropic", category: 'AI Governance', date: '2026-03-04', url: 'in-depth-research.html', keywords: ['Anthropic', 'AI', 'ethics', 'Trump'] },
+            { title: 'Daily Commentary', category: 'AI Governance', date: '2026-03-04', url: 'daily-commentary.html', keywords: ['commentary', 'policy', 'AI'] },
+            { title: 'Space Governance', category: 'Space Governance', date: '2025-01-01', url: 'space-governance.html', keywords: ['space', 'governance', 'mars'] },
+            { title: 'AI Governance', category: 'AI Governance', date: '2025-01-01', url: 'ai-governance.html', keywords: ['ai', 'governance', 'safety'] },
+            { title: 'Dialogue with Environmental Ethics', category: 'Ethics', date: '2025-01-01', url: 'dialogue-with-environmental-ethics.html', keywords: ['ethics', 'environment', 'dialogue'] },
+            { title: 'Forbidden Red Lines', category: 'Ethics', date: '2025-01-01', url: 'forbidden-red-lines.html', keywords: ['frl', 'red lines', 'risk'] },
+            { title: 'Research Archive', category: 'AI Governance', date: '2025-01-01', url: 'research-archive.html', keywords: ['archive', 'research', 'history'] },
+            { title: 'Resources', category: 'Ethics', date: '2025-01-01', url: 'resources.html', keywords: ['reading', 'resources', 'glossary'] }
+        ];
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function renderSearchResults(results, query, filter) {
+            const container = document.getElementById('searchResults');
+            if (!container) return;
+
+            if (results.length === 0) {
+                container.innerHTML = `<div class="search-empty">No matching content found. Try: AI Governance, Ethics, Space Governance.</div>`;
+                container.classList.add('active');
+                return;
+            }
+
+            const header = `<div class="search-empty">${results.length} result(s) ${query ? `for "${escapeHtml(query)}"` : ''} ${filter !== 'all' ? `(category: ${escapeHtml(filter)})` : ''}</div>`;
+            const items = results.slice(0, 8).map(item => `
+                <a class="search-result-item" href="${item.url}">
+                    <div class="search-result-title">${escapeHtml(item.title)}</div>
+                    <div class="search-result-meta">${escapeHtml(item.category)} · ${escapeHtml(item.date)}</div>
+                </a>
+            `).join('');
+
+            container.innerHTML = header + items;
+            container.classList.add('active');
+        }
+
         function performSearch() {
-            alert('Search functionality will be implemented soon!');
+            const input = document.getElementById('searchInput');
+            const query = (input?.value || '').trim().toLowerCase();
+            const activeFilter = document.querySelector('.filter-button.active');
+            const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+
+            const results = searchIndexEn.filter(item => {
+                const passFilter = filter === 'all' || item.category === filter;
+                if (!passFilter) return false;
+                if (!query) return true;
+
+                const haystack = `${item.title} ${item.category} ${item.keywords.join(' ')}`.toLowerCase();
+                return haystack.includes(query);
+            });
+
+            renderSearchResults(results, query, filter);
         }
 
         function filterByCategory(button) {
             document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            alert('Filtering by: ' + button.getAttribute('data-filter'));
+            performSearch();
         }
+
+        document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
+
+        // Support auto-search from URL query parameter (?q=...)
+        (function initSearchFromQuery() {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q');
+            if (!q) return;
+
+            const input = document.getElementById('searchInput');
+            if (!input) return;
+
+            input.value = q;
+            performSearch();
+        })();
     </script>
 </body>
 

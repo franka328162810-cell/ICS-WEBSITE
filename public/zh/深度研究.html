@@ -1279,6 +1279,52 @@
             color: white;
         }
 
+        .search-results {
+            margin-top: 1rem;
+            display: none;
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(10, 22, 40, 0.35);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            display: block;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.15);
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: rgba(167, 139, 250, 0.12);
+        }
+
+        .search-result-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .search-result-meta {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-empty {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.9rem;
+        }
+
         /* 面包屑导航样式 */
         .breadcrumb-nav {
             background: rgba(167, 139, 250, 0.08);
@@ -1849,6 +1895,7 @@
                                 <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
                                 <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
                             </div>
+                            <div id="searchResults" class="search-results" aria-live="polite"></div>
                         </div>
                     </section>
 
@@ -1894,7 +1941,7 @@
                             <span>📋</span>
                             <span>引用</span>
                         </button>
-                        <button class="action-btn" onclick="shareArticle()" style="cursor: pointer;">
+                        <button class="action-btn" onclick="shareArticle('copy')" style="cursor: pointer;">
                             <span>🔗</span>
                             <span>分享</span>
                         </button>
@@ -2421,7 +2468,8 @@
                     shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
                     break;
                 case 'copy':
-                    navigator.clipboard.writeText(window.location.href).then(() => {\n                        alert('链接已复制到剪贴板！');
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        alert('链接已复制到剪贴板！');
                     });
                     return;
             }
@@ -2500,17 +2548,90 @@
             alert('感谢订阅！我们会定期发送最新内容到您的邮箱。');
         }
 
-        // 执行搜索
+        const searchIndexZh = [
+            { title: '深度研究：特朗普封杀Anthropic', category: 'AI治理', date: '2026-03-04', url: '深度研究.html', keywords: ['Anthropic', 'AI治理', '伦理红线', '特朗普'] },
+            { title: '每日热点评论', category: 'AI治理', date: '2026-03-04', url: '每日热点评论.html', keywords: ['热点', '评论', '政策'] },
+            { title: '太空治理', category: '太空治理', date: '2025-01-01', url: '太空治理.html', keywords: ['太空治理', '制度', '火星'] },
+            { title: '人工智能治理', category: 'AI治理', date: '2025-01-01', url: '人工智能治理.html', keywords: ['AI', '治理', '安全'] },
+            { title: '与环境伦理学的对话', category: '伦理学', date: '2025-01-01', url: '与环境伦理学的对话.html', keywords: ['伦理学', '环境', '对话'] },
+            { title: '禁忌红线', category: '伦理学', date: '2025-01-01', url: '禁忌红线.html', keywords: ['红线', 'FRL', '风险'] },
+            { title: '研究归档', category: 'AI治理', date: '2025-01-01', url: '研究归档.html', keywords: ['归档', '研究', '历史'] },
+            { title: '资源', category: '伦理学', date: '2025-01-01', url: '资源.html', keywords: ['阅读', '资源', '术语'] }
+        ];
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function renderSearchResults(results, query, filter) {
+            const container = document.getElementById('searchResults');
+            if (!container) return;
+
+            if (results.length === 0) {
+                container.innerHTML = `<div class="search-empty">未找到匹配内容。可尝试关键词：AI治理、伦理学、太空治理。</div>`;
+                container.classList.add('active');
+                return;
+            }
+
+            const header = `<div class="search-empty">找到 ${results.length} 条结果 ${query ? `（关键词：${escapeHtml(query)}）` : ''} ${filter !== 'all' ? `（分类：${escapeHtml(filter)}）` : ''}</div>`;
+            const items = results.slice(0, 8).map(item => `
+                <a class="search-result-item" href="${item.url}">
+                    <div class="search-result-title">${escapeHtml(item.title)}</div>
+                    <div class="search-result-meta">${escapeHtml(item.category)} · ${escapeHtml(item.date)}</div>
+                </a>
+            `).join('');
+
+            container.innerHTML = header + items;
+            container.classList.add('active');
+        }
+
+        // 执行搜索（P0搜索MVP）
         function performSearch() {
-            alert('搜索功能即将上线！');
+            const input = document.getElementById('searchInput');
+            const query = (input?.value || '').trim().toLowerCase();
+            const activeFilter = document.querySelector('.filter-button.active');
+            const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+
+            const results = searchIndexZh.filter(item => {
+                const passFilter = filter === 'all' || item.category === filter;
+                if (!passFilter) return false;
+                if (!query) return true;
+
+                const haystack = `${item.title} ${item.category} ${item.keywords.join(' ')}`.toLowerCase();
+                return haystack.includes(query);
+            });
+
+            renderSearchResults(results, query, filter);
         }
 
         // 按分类筛选
         function filterByCategory(button) {
             document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            alert('正在筛选：' + button.getAttribute('data-filter'));
+            performSearch();
         }
+
+        // 回车触发搜索
+        document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
+
+        // 支持从URL参数自动搜索（例如 ?q=AI治理）
+        (function initSearchFromQuery() {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q');
+            if (!q) return;
+
+            const input = document.getElementById('searchInput');
+            if (!input) return;
+
+            input.value = q;
+            performSearch();
+        })();
     </script>
 </body>
 
