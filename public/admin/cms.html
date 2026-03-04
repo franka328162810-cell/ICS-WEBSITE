@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ICS CMS 管理台</title>
+    <style>
+        body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: #0a1628; color: #fff; }
+        .top { padding: 14px 20px; border-bottom: 1px solid rgba(167,139,250,.25); display:flex; justify-content:space-between; align-items:center; gap:12px; }
+        .top .muted { color: rgba(255,255,255,.7); font-size: 13px; }
+        .container { padding: 18px; display:grid; grid-template-columns: 1.1fr 1fr; gap: 16px; }
+        .card { background: rgba(255,255,255,.05); border: 1px solid rgba(167,139,250,.25); border-radius: 12px; padding: 14px; }
+        h2 { margin: 0 0 12px; font-size: 18px; }
+        .actions { display:flex; flex-wrap:wrap; gap:8px; margin-bottom: 10px; }
+        button, .mini, input[type=file] { border-radius: 8px; border: 1px solid rgba(167,139,250,.35); background: rgba(255,255,255,.08); color: #fff; padding: 8px 10px; cursor: pointer; text-decoration:none; font-size: 13px; }
+        button.primary { background: linear-gradient(135deg,#7c3aed,#06b6d4); border: 0; }
+        button.danger, .mini.danger { border-color:#ef4444; color:#fecaca; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid rgba(167,139,250,.15); vertical-align: top; }
+        .mini { display:inline-block; margin-right:6px; }
+        label { display:block; margin: 8px 0 6px; font-size: 13px; color: rgba(255,255,255,.8); }
+        input, textarea, select { width:100%; box-sizing:border-box; border-radius:8px; border:1px solid rgba(167,139,250,.35); background: rgba(255,255,255,.08); color:#fff; padding: 9px 10px; }
+        textarea { min-height: 100px; resize: vertical; }
+        .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+        @media (max-width: 980px) { .container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div>
+            <strong>ICS CMS 管理台（MVP）</strong>
+            <div class="muted">已登录：<span id="adminUser"></span></div>
+        </div>
+        <div class="actions">
+            <a class="mini" href="/zh/深度研究.html" target="_blank" rel="noopener">查看站点</a>
+            <button id="logoutBtn" class="danger" type="button">退出登录</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="card">
+            <h2>内容列表</h2>
+            <div class="actions">
+                <button id="newBtn" type="button">新建</button>
+                <button id="exportBtn" type="button">导出JSON</button>
+                <label class="mini" for="importFile">导入JSON</label>
+                <input id="importFile" type="file" accept="application/json" />
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>标题</th>
+                        <th>语言</th>
+                        <th>分类</th>
+                        <th>状态</th>
+                        <th>更新时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="articleTableBody"></tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 id="formTitle">新建文章</h2>
+            <form id="articleForm" data-edit-id="">
+                <label>标题</label>
+                <input name="title" required />
+
+                <div class="grid2">
+                    <div>
+                        <label>Slug（不含.html）</label>
+                        <input name="slug" required />
+                    </div>
+                    <div>
+                        <label>语言</label>
+                        <select name="lang">
+                            <option value="zh">zh</option>
+                            <option value="en">en</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid2">
+                    <div>
+                        <label>分类</label>
+                        <input name="category" required />
+                    </div>
+                    <div>
+                        <label>状态</label>
+                        <select name="status">
+                            <option value="draft">draft</option>
+                            <option value="published">published</option>
+                            <option value="archived">archived</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label>标签（逗号分隔）</label>
+                <input name="tags" />
+
+                <label>摘要</label>
+                <textarea name="summary"></textarea>
+
+                <label>正文（MVP文本）</label>
+                <textarea name="content"></textarea>
+
+                <div class="actions">
+                    <button class="primary" type="submit">保存</button>
+                    <button type="button" onclick="document.getElementById('articleForm').reset()">清空</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+<script src="/js/cms-auth.js"></script>
+<script src="/js/cms-admin.js"></script>
+<script>
+    window.ICSCMS.init();
+</script>
+</body>
+</html>
