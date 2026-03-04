@@ -1321,14 +1321,30 @@
         });
 
         function performSearch() {
-            alert('搜索功能即将推出！');
+            const q = (document.getElementById('searchInput')?.value || '').trim();
+            const url = q
+                ? `/zh/深度研究.html?q=${encodeURIComponent(q)}#main-content`
+                : '/zh/深度研究.html#main-content';
+            window.location.href = url;
         }
 
         function filterByCategory(button) {
             document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            alert('筛选类别: ' + button.getAttribute('data-filter'));
+            const filter = button.getAttribute('data-filter');
+            const q = filter === 'all' ? '' : filter;
+            const url = q
+                ? `/zh/深度研究.html?q=${encodeURIComponent(q)}#main-content`
+                : '/zh/深度研究.html#main-content';
+            window.location.href = url;
         }
+
+        document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
     </script>
 </body>
 

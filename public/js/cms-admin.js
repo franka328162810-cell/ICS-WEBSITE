@@ -144,6 +144,32 @@
         URL.revokeObjectURL(a.href);
     }
 
+    function buildContentIndex(items) {
+        return items
+            .filter(x => x.status === 'published')
+            .map(x => ({
+                id: x.id,
+                lang: x.lang,
+                title: x.title,
+                category: x.category,
+                date: (x.updatedAt || new Date().toISOString()).slice(0, 10),
+                url: x.lang === 'zh' ? `/zh/${x.slug}.html` : `/en/${x.slug}.html`,
+                keywords: (x.tags || '').split(',').map(s => s.trim()).filter(Boolean)
+            }));
+    }
+
+    function exportContentIndex() {
+        const items = getArticles();
+        const index = buildContentIndex(items);
+        const blob = new Blob([JSON.stringify(index, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'content-index.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        alert('已导出 content-index.json。请将其覆盖到 public/data/content-index.json');
+    }
+
     function bindImport() {
         const input = document.getElementById('importFile');
         input.addEventListener('change', async (e) => {
@@ -169,6 +195,7 @@
         document.getElementById('articleForm').addEventListener('submit', save);
         document.getElementById('newBtn').addEventListener('click', resetForm);
         document.getElementById('exportBtn').addEventListener('click', exportJson);
+        document.getElementById('exportIndexBtn').addEventListener('click', exportContentIndex);
         document.getElementById('logoutBtn').addEventListener('click', () => window.ICSAuth.logout());
 
         bindImport();

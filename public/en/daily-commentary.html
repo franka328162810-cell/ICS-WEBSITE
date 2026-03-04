@@ -1350,14 +1350,30 @@
         });
 
         function performSearch() {
-            alert('Search functionality coming soon!');
+            const q = (document.getElementById('searchInput')?.value || '').trim();
+            const url = q
+                ? `/en/in-depth-research.html?q=${encodeURIComponent(q)}#main-content`
+                : '/en/in-depth-research.html#main-content';
+            window.location.href = url;
         }
 
         function filterByCategory(button) {
             document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            alert('Filtering by: ' + button.getAttribute('data-filter'));
+            const filter = button.getAttribute('data-filter');
+            const q = filter === 'all' ? '' : filter;
+            const url = q
+                ? `/en/in-depth-research.html?q=${encodeURIComponent(q)}#main-content`
+                : '/en/in-depth-research.html#main-content';
+            window.location.href = url;
         }
+
+        document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
     </script>
 </body>
 
