@@ -27,8 +27,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- VERSION: 2026-03-05-v11 -->
+    <!-- external shared stylesheet links needed for navbar/menu functionality -->
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style-en.css">
+    <!-- VERSION: 2026-03-05-v13-NAVBAR-FIX -->
     <style>
+        /* default navbar and root variables (matching other pages) */
         :root {
             --color-deep-space: #0a1628;
             --color-quantum-purple: #7c3aed;
@@ -94,18 +98,30 @@
             top: 0;
             left: 0;
             right: 0;
+            width: 100%;
             z-index: 1000;
+            /* normal desktop height matching other pages */
+            height: 80px;
+            overflow: hidden;
             background: rgba(10, 22, 40, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(167, 139, 250, 0.1);
             transition: all var(--transition-normal);
         }
 
+        /* shrink when user scrolls down */
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+        }
+
         .nav-container {
-            max-width: 1100px;
-            width: calc(100% - 64px);
+            max-width: none;
+            height: 100%;
+            width: 100%;
             margin: 0 auto;
-            padding: 0.4rem 0.75rem;
+            /* remove vertical padding, let height control spacing */
+            padding: 0 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -114,13 +130,13 @@
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
             text-decoration: none;
         }
 
         .nav-logo {
-            width: 32px !important;
-            height: 32px !important;
+            width: 40px !important;
+            height: 40px !important;
         }
 
         .nav-brand-text {
@@ -130,34 +146,36 @@
 
         .nav-title {
             font-family: var(--font-en-display);
-            font-size: 0.875rem !important;
+            font-size: 0.95rem !important;
             font-weight: 600;
             color: var(--color-text-primary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            line-height: 1;
         }
 
+        /* subtitle removed to conserve vertical space */
         .nav-subtitle {
-            font-size: 0.5625rem;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.05em;
+            display: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.25rem;
+            gap: 3rem;
             list-style: none;
+            flex-wrap: nowrap; /* prevent wrapping of items */
         }
 
         .nav-link {
             font-family: var(--font-en-display);
-            font-size: 0.875rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             transition: all var(--transition-normal);
+            white-space: nowrap; /* keep text on single line */
         }
 
         .nav-link:hover,
@@ -169,7 +187,7 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 0.9rem;
+            gap: 1.8rem;
         }
 
         .nav-search {
@@ -192,9 +210,9 @@
 
         .lang-btn {
             font-family: var(--font-en-display);
-            font-size: 0.875rem;
+            font-size: 1rem;
             font-weight: 600;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.1rem;
             border-radius: 6px;
             text-decoration: none;
             text-transform: uppercase;
@@ -215,9 +233,9 @@
 
         .nav-contact {
             font-family: var(--font-en-display);
-            font-size: 0.875rem;
+            font-size: 1rem;
             font-weight: 600;
-            padding: 0.75rem 1.5rem;
+            padding: 0.45rem 1.25rem;
             background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
             color: var(--color-text-primary);
             text-decoration: none;
@@ -239,7 +257,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 1.4cm;
+            margin-top: 0.9cm;
             overflow: hidden;
         }
 
@@ -1223,7 +1241,7 @@
             }
             
             .nav-container {
-                padding: 0.5rem 0.875rem;
+                padding: 0 0.875rem;
             }
             
             .section {
@@ -1239,7 +1257,7 @@
             .nav-links { display: none; }
             
             .nav-container {
-                padding: 0.4rem 0.75rem !important;
+                padding: 0 0.75rem !important;
             }
             
             .toc-section {
@@ -2032,7 +2050,7 @@
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="publications.html" class="nav-link">Publications</a></li>
+                <li><a href="book-overview.html" class="nav-link">Publications</a></li>
                 <li><a href="resources.html" class="nav-link">Resources</a></li>
                 <li><a href="daily-commentary.html" class="nav-link">News</a></li>
                 <li><a href="ai-assistant.html" class="nav-link">AI Assistant</a></li>
@@ -2400,7 +2418,7 @@
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
-                <a href="publications.html">Publications</a>
+                <a href="book-overview.html">Publications</a>
                 <a href="resources.html">Reading List</a>
                 <a href="resources.html">Glossary</a>
             </div>
@@ -2435,9 +2453,9 @@
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 0) {
-                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
+                navbar.classList.add('scrolled');
             } else {
-                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
+                navbar.classList.remove('scrolled');
             }
         });
 

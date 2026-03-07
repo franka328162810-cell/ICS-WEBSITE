@@ -44,6 +44,23 @@
             display: flex;
             flex-direction: column;
         }
+
+        /* 跳转到正文链接样式 */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: rgba(167, 139, 250, 1);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-to-main:focus {
+            top: 0;
+        }
         
         .navbar {
             position: fixed;
@@ -103,6 +120,56 @@
         
         .nav-link:hover, .nav-link.active {
             color: var(--color-quantum-purple-light);
+        }
+
+        /* Breadcrumb Navigation Styles */
+        .breadcrumb-nav {
+            display: none;
+            background: rgba(167, 139, 250, 0.08);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+        }
+
+        .breadcrumb-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .breadcrumb-list li {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-list li:not(:last-child)::after {
+            content: '/';
+            margin-left: 0.5rem;
+            color: rgba(167, 139, 250, 0.5);
+        }
+
+        .breadcrumb-list a {
+            color: var(--color-text-primary) !important;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .breadcrumb-list a:link,
+        .breadcrumb-list a:visited,
+        .breadcrumb-list a:active {
+            color: var(--color-text-primary) !important;
+        }
+
+        .breadcrumb-list a:hover {
+            color: var(--color-text-primary) !important;
+            text-decoration: underline;
+        }
+
+        .breadcrumb-list span {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         .page-hero {
@@ -440,6 +507,8 @@
 </head>
 
 <body>
+    <!-- 跳转到正文链接 -->
+    <a href="#main-content" class="skip-to-main">跳转到正文</a>
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="nav-brand">
@@ -463,12 +532,21 @@
             <div class="nebula nebula-1"></div>
             <div class="nebula nebula-2"></div>
         </div>
+        <!-- 面包屑导航 -->
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb-list">
+                    <li><a href="../index.html">首页</a></li>
+                    <li><span>研究归档</span></li>
+                </ol>
+            </div>
+        </nav>
         <div class="page-hero-content">
-            <h1 class="page-title">研究归档</h1>
+            <h1 class="page-title">研究归档</h1> 
         </div>
     </section>
 
-    <main class="main-content">
+    <main class="main-content" role="main" id="main-content">
         <div class="container">
             <div class="archive-intro">
                 <p>🔬 浏览星际文明研究所关于技术、治理和文明发展的学术研究。每一份出版物都代表从星际文明视角进行的严谨分析。</p>
@@ -627,6 +705,14 @@
             document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             performSearch();
+        }
+
+        // 滚动到搜索模块（导航搜索按钮使用）
+        function scrollToSearch() {
+            const searchSection = document.querySelector('.search-section');
+            if (searchSection) {
+                searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         // 页面加载完成后初始化

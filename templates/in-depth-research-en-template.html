@@ -4,15 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Interstellar Civilization Studies">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="Interstellar Civilization Studies Research Institute">
+    <meta name="publisher" content="Interstellar Civilization Studies">
+    <meta name="revisit-after" content="7 days">
+    <meta name="expires" content="">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>{{TITLE}} | Interstellar Civilization Studies</title>
     <meta name="description" content="{{DESCRIPTION}}">
     <link rel="canonical" href="https://ics-studies.org/en/{{FILENAME}}.html">
+    <link rel="alternate" hreflang="zh" href="https://ics-studies.org/zh/深度研究.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/in-depth-research.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/in-depth-research.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style-en.css">
     <style>
         :root {
             --color-deep-space: #0a1628;
@@ -57,16 +73,24 @@
             left: 0;
             right: 0;
             z-index: 1000;
+            /* fixed height for consistency */
+            height: 80px;
             background: rgba(10, 22, 40, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(167, 139, 250, 0.1);
             transition: all var(--transition-normal);
         }
 
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+        }
+
         .nav-container {
             max-width: 1400px;
+            height: 100%;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -91,25 +115,22 @@
 
         .nav-title {
             font-family: var(--font-en-display);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--color-text-primary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            line-height: 1;
         }
 
         .nav-subtitle {
-            font-size: 0.625rem;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
+            display: none;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
-            list-style: none;
-        }
+            list-style: none;            flex-wrap: nowrap; /* prevent items from wrapping */        }
 
         .nav-link {
             font-family: var(--font-en-sans);
@@ -118,6 +139,7 @@
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: all var(--transition-normal);
+            white-space: nowrap; /* keep link text on single line */
         }
 
         .nav-link:hover,
@@ -153,7 +175,7 @@
 
         .nav-contact {
             font-size: 0.875rem;
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 1.25rem;
             background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
             color: var(--color-text-primary);
             text-decoration: none;
@@ -504,7 +526,43 @@
 
     <main class="main-content">
         <div class="container">
-            <div class="article-layout">
+            <!-- Academic search and signup widget -->
+            <section class="search-section">
+                <div class="search-header">
+                    <h3>🔍 Academic Search</h3>
+                    <p>Quickly find relevant research articles by keywords, category, or date</p>
+                </div>
+                <div class="search-controls">
+                    <div class="search-input-group">
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            id="searchInput" 
+                            placeholder="Enter keywords: AI Governance, Space Governance, Ethics..."
+                            aria-label="Search articles"
+                        >
+                        <button class="search-btn" id="searchBtn" onclick="performSearch()">Search</button>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">🏷️ Filter by Category:</span>
+                        <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">All</button>
+                        <button class="filter-button" data-filter="AI Governance" onclick="filterByCategory(this)">AI Governance</button>
+                        <button class="filter-button" data-filter="Ethics" onclick="filterByCategory(this)">Ethics</button>
+                        <button class="filter-button" data-filter="Space Governance" onclick="filterByCategory(this)">Space</button>
+                    </div>
+                    <div id="searchResults" class="search-results" aria-live="polite"></div>
+                </div>
+            </section>
+            <div class="newsletter-widget" id="section-6-subscribe">
+                <h3>📬 Subscribe for Updates</h3>
+                <p>Get the latest in-depth research and academic insights delivered to your inbox</p>
+                <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
+                    <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+                    <input type="text" placeholder="Your name (optional)" aria-label="Name">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        <div class="article-layout">
                 <article class="article-content">
                     <!-- Article Meta -->
                     <div class="article-meta">
@@ -609,6 +667,125 @@
         function toggleCitation() {
             document.getElementById('citationBox').classList.toggle('active');
         }
+
+        // Navbar scroll effect (added globally in template)
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 0) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // === Search module functionality ===
+        const searchIndexEn = [
+            { title: "In-Depth Research: Trump's Ban on Anthropic", category: 'AI Governance', date: '2026-03-04', url: 'in-depth-research.html', keywords: ['Anthropic', 'AI', 'ethics', 'Trump'] },
+            { title: 'Daily Commentary', category: 'AI Governance', date: '2026-03-04', url: 'daily-commentary.html', keywords: ['commentary', 'policy', 'AI'] },
+            { title: 'Space Governance', category: 'Space Governance', date: '2025-01-01', url: 'space-governance.html', keywords: ['space', 'governance', 'mars'] },
+            { title: 'AI Governance', category: 'AI Governance', date: '2025-01-01', url: 'ai-governance.html', keywords: ['ai', 'governance', 'safety'] },
+            { title: 'Dialogue with Environmental Ethics', category: 'Ethics', date: '2025-01-01', url: 'dialogue-with-environmental-ethics.html', keywords: ['ethics', 'environment', 'dialogue'] },
+            { title: 'Forbidden Red Lines', category: 'Ethics', date: '2025-01-01', url: 'forbidden-red-lines.html', keywords: ['frl', 'red lines', 'risk'] },
+            { title: 'Research Archive', category: 'AI Governance', date: '2025-01-01', url: 'research-archive.html', keywords: ['archive', 'research', 'history'] },
+            { title: 'Resources', category: 'Ethics', date: '2025-01-01', url: 'resources.html', keywords: ['reading', 'resources', 'glossary'] }
+        ];
+
+        let runtimeSearchIndexEn = searchIndexEn;
+
+        async function loadSearchIndexEn() {
+            try {
+                const res = await fetch('/data/content-index.json', { cache: 'no-cache' });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data)) return;
+                const enItems = data
+                    .filter(item => item.lang === 'en')
+                    .map(item => ({
+                        title: item.title,
+                        category: item.category,
+                        date: item.date,
+                        url: item.url,
+                        keywords: Array.isArray(item.keywords) ? item.keywords : []
+                    }));
+                if (enItems.length > 0) runtimeSearchIndexEn = enItems;
+            } catch (_) {
+                // keep local fallback index
+            }
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>\"']/g, m => map[m]);
+        }
+
+        function renderSearchResults(results, query, filter) {
+            const container = document.getElementById('searchResults');
+            if (!container) return;
+
+            if (results.length === 0) {
+                container.innerHTML = `<div class="search-empty">No matching content found. Try: AI Governance, Ethics, Space Governance.</div>`;
+                container.classList.add('active');
+                return;
+            }
+
+            const header = `<div class="search-empty">${results.length} result(s) ${query ? `for "${escapeHtml(query)}"` : ''} ${filter !== 'all' ? `(category: ${escapeHtml(filter)})` : ''}</div>`;
+            const items = results.slice(0, 8).map(item => `
+                <a class="search-result-item" href="${item.url}">
+                    <div class="search-result-title">${escapeHtml(item.title)}</div>
+                    <div class="search-result-meta">${escapeHtml(item.category)} · ${escapeHtml(item.date)}</div>
+                </a>
+            `).join('');
+
+            container.innerHTML = header + items;
+            container.classList.add('active');
+        }
+
+        function performSearch() {
+            const input = document.getElementById('searchInput');
+            const query = (input?.value || '').trim().toLowerCase();
+            const activeFilter = document.querySelector('.filter-button.active');
+            const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+
+            const results = runtimeSearchIndexEn.filter(item => {
+                const passFilter = filter === 'all' || item.category === filter;
+                if (!passFilter) return false;
+                if (!query) return true;
+
+                const haystack = `${item.title} ${item.category} ${item.keywords.join(' ')}`.toLowerCase();
+                return haystack.includes(query);
+            });
+
+            renderSearchResults(results, query, filter);
+        }
+
+        function filterByCategory(button) {
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            performSearch();
+        }
+
+        document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
+
+        (function initSearchFromQuery() {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q');
+            if (!q) return;
+
+            const input = document.getElementById('searchInput');
+            if (!input) return;
+
+            input.value = q;
+            performSearch();
+        })();
+
+        loadSearchIndexEn();
     </script>
 </body>
 

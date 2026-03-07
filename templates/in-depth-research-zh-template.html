@@ -4,15 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="星际文明学">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="星际文明学研究所">
+    <meta name="publisher" content="星际文明学">
+    <meta name="revisit-after" content="7 days">
+    <meta name="expires" content="">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>{{TITLE}} | 星际文明学</title>
     <meta name="description" content="{{DESCRIPTION}}">
     <link rel="canonical" href="https://ics-studies.org/zh/{{FILENAME}}.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/in-depth-research.html">
+    <link rel="alternate" hreflang="zh" href="https://ics-studies.org/zh/深度研究.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/in-depth-research.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
     <style>
         /* ==========================================
    ICS全局尺寸修复 - 统一缩小约12-15%
@@ -37,11 +53,12 @@
         }
 
         .nav-title {
-            font-size: 1rem !important;
+            font-size: 0.95rem !important;
+            line-height: 1;
         }
 
         .nav-subtitle {
-            font-size: 0.5625rem !important;
+            display: none !important;
         }
 
         .nav-link {
@@ -50,7 +67,7 @@
 
         .nav-contact {
             font-size: 0.8125rem !important;
-            padding: 8px 20px !important;
+            padding: 6px 18px !important;
         }
 
         /* 3. Hero区域 */
@@ -181,16 +198,24 @@
             left: 0;
             right: 0;
             z-index: 1000;
+            height: 64px;
+            overflow: hidden;
             background: rgba(10, 22, 40, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(167, 139, 250, 0.1);
             transition: all var(--transition-normal);
         }
 
+        .navbar.scrolled {
+            height: 52px;
+            background: rgba(10, 22, 40, 0.95);
+        }
+
         .nav-container {
             max-width: 1400px;
+            height: 100%;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -230,6 +255,7 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            flex-wrap: nowrap; /* prevent nav items from wrapping */
         }
 
         .nav-link {
@@ -239,6 +265,7 @@
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: all var(--transition-normal);
+            white-space: nowrap; /* prevent link text from wrapping */
         }
 
         .nav-link:hover,
@@ -302,7 +329,7 @@
             font-family: var(--font-zh-serif);
             font-size: 0.875rem;
             font-weight: 500;
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 1.25rem;
             background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
             color: var(--color-text-primary);
             text-decoration: none;
@@ -756,29 +783,38 @@
 
     <main class="main-content">
         <div class="container">
+            <!-- 学术搜索模块 -->
+            <section class="search-section">
+                <div class="search-header">
+                    <h3>🔍 学术搜索</h3>
+                    <p>通过关键词、分类或日期快速查找相关研究文章</p>
+                </div>
+                <div class="search-controls">
+                    <div class="search-input-group">
+                        <input type="text" class="search-input" id="searchInput" placeholder="输入关键词：AI治理、太空治理、伦理学..." aria-label="搜索文章">
+                        <button class="search-btn" id="searchBtn" onclick="performSearch()">搜索</button>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">🏷️ 按分类筛选：</span>
+                        <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">全部</button>
+                        <button class="filter-button" data-filter="AI治理" onclick="filterByCategory(this)">AI治理</button>
+                        <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
+                        <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
+                    </div>
+                    <div id="searchResults" class="search-results" aria-live="polite"></div>
+                </div>
+            </section>
+            <div class="newsletter-widget" id="section-6-subscribe">
+                <h3>📬 订阅更新</h3>
+                <p>获取最新的深度研究和学术观点，直接送到您的邮箱</p>
+                <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
+                    <input type="email" placeholder="请输入您的邮箱地址" required aria-label="邮箱地址">
+                    <input type="text" placeholder="您的名字（可选）" aria-label="名字">
+                    <button type="submit">订阅</button>
+                </form>
+            </div>
             <div class="article-layout">
                 <article class="article-content">
-                    <!-- 学术搜索模块 -->
-                    <section class="search-section">
-                        <div class="search-header">
-                            <h3>🔍 学术搜索</h3>
-                            <p>通过关键词、分类或日期快速查找相关研究文章</p>
-                        </div>
-                        <div class="search-controls">
-                            <div class="search-input-group">
-                                <input type="text" class="search-input" id="searchInput" placeholder="输入关键词：AI治理、太空治理、伦理学..." aria-label="搜索文章">
-                                <button class="search-btn" id="searchBtn" onclick="performSearch()">搜索</button>
-                            </div>
-                            <div class="filter-group">
-                                <span class="filter-label">🏷️ 按分类筛选：</span>
-                                <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">全部</button>
-                                <button class="filter-button" data-filter="AI治理" onclick="filterByCategory(this)">AI治理</button>
-                                <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
-                                <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
-                            </div>
-                        </div>
-                    </section>
-
                     <!-- 文章元信息 -->
                     <div class="article-meta">
                         <div class="meta-item">
@@ -885,27 +921,160 @@
     </footer>
 
     <script>
+        // Navbar scroll effect using CSS class for height change
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 0) {
-                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
-            } else {
-                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
-            }
-        });
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 0) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
 
         function toggleCitation() {
             document.getElementById('citationBox').classList.toggle('active');
         }
 
-        function performSearch() {
-            alert('搜索功能即将上线！');
+        // 处理邮件订阅
+        function handleNewsletterSignup(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.querySelector('input[type="email"]').value;
+            const name = form.querySelector('input[type="text"]').value || '访客';
+
+            // 保存到localStorage
+            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            subscribers.push({
+                email: email,
+                name: name,
+                timestamp: new Date().toISOString(),
+                source: document.title
+            });
+            localStorage.setItem('subscribers', JSON.stringify(subscribers));
+
+            // 向服务器发送（可选）
+            fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, name, source: document.title })
+            }).catch(err => console.log('订阅发送失败，但已本地保存'));
+
+            // 清除表单
+            form.reset();
+            alert('感谢订阅！我们会定期发送最新内容到您的邮箱。');
         }
 
+        const searchIndexZh = [
+            { title: '深度研究：特朗普封杀Anthropic', category: 'AI治理', date: '2026-03-04', url: '深度研究.html', keywords: ['Anthropic', 'AI治理', '伦理红线', '特朗普'] },
+            { title: '每日热点评论', category: 'AI治理', date: '2026-03-04', url: '每日热点评论.html', keywords: ['热点', '评论', '政策'] },
+            { title: '太空治理', category: '太空治理', date: '2025-01-01', url: '太空治理.html', keywords: ['太空治理', '制度', '火星'] },
+            { title: '人工智能治理', category: 'AI治理', date: '2025-01-01', url: '人工智能治理.html', keywords: ['AI', '治理', '安全'] },
+            { title: '与环境伦理学的对话', category: '伦理学', date: '2025-01-01', url: '与环境伦理学的对话.html', keywords: ['伦理学', '环境', '对话'] },
+            { title: '禁忌红线', category: '伦理学', date: '2025-01-01', url: '禁忌红线.html', keywords: ['红线', 'FRL', '风险'] },
+            { title: '研究归档', category: 'AI治理', date: '2025-01-01', url: '研究归档.html', keywords: ['归档', '研究', '历史'] },
+            { title: '资源', category: '伦理学', date: '2025-01-01', url: '资源.html', keywords: ['阅读', '资源', '术语'] }
+        ];
+
+        let runtimeSearchIndexZh = searchIndexZh;
+
+        async function loadSearchIndexZh() {
+            try {
+                const res = await fetch('/data/content-index.json', { cache: 'no-cache' });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data)) return;
+                const zhItems = data
+                    .filter(item => item.lang === 'zh')
+                    .map(item => ({
+                        title: item.title,
+                        category: item.category,
+                        date: item.date,
+                        url: item.url,
+                        keywords: Array.isArray(item.keywords) ? item.keywords : []
+                    }));
+                if (zhItems.length > 0) runtimeSearchIndexZh = zhItems;
+            } catch (_) {
+                // 保持本地回退索引
+            }
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>\"']/g, m => map[m]);
+        }
+
+        function renderSearchResults(results, query, filter) {
+            const container = document.getElementById('searchResults');
+            if (!container) return;
+
+            if (results.length === 0) {
+                container.innerHTML = `<div class="search-empty">未找到匹配内容。可尝试关键词：AI治理、伦理学、太空治理。</div>`;
+                container.classList.add('active');
+                return;
+            }
+
+            const header = `<div class="search-empty">找到 ${results.length} 条结果 ${query ? `（关键词：${escapeHtml(query)}）` : ''} ${filter !== 'all' ? `（分类：${escapeHtml(filter)}）` : ''}</div>`;
+            const items = results.slice(0, 8).map(item => `
+                <a class="search-result-item" href="${item.url}">
+                    <div class="search-result-title">${escapeHtml(item.title)}</div>
+                    <div class="search-result-meta">${escapeHtml(item.category)} · ${escapeHtml(item.date)}</div>
+                </a>
+            `).join('');
+
+            container.innerHTML = header + items;
+            container.classList.add('active');
+        }
+
+        // 执行搜索（P0搜索MVP）
+        function performSearch() {
+            const input = document.getElementById('searchInput');
+            const query = (input?.value || '').trim().toLowerCase();
+            const activeFilter = document.querySelector('.filter-button.active');
+            const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+
+            const results = runtimeSearchIndexZh.filter(item => {
+                const passFilter = filter === 'all' || item.category === filter;
+                if (!passFilter) return false;
+                if (!query) return true;
+
+                const haystack = `${item.title} ${item.category} ${item.keywords.join(' ')}`.toLowerCase();
+                return haystack.includes(query);
+            });
+
+            renderSearchResults(results, query, filter);
+        }
+
+        // 按分类筛选
         function filterByCategory(button) {
             document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
+            performSearch();
         }
+
+        // 回车触发搜索
+        document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
+
+        // 支持从URL参数自动搜索（例如 ?q=AI治理）
+        (function initSearchFromQuery() {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q');
+            if (!q) return;
+
+            const input = document.getElementById('searchInput');
+            if (!input) return;
+
+            input.value = q;
+            performSearch();
+        })();
+
+        loadSearchIndexZh();
     </script>
 </body>
 

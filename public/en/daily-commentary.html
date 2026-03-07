@@ -177,6 +177,77 @@
             flex-direction: column;
         }
 
+        /* Skip-to-main link styles */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: rgba(167, 139, 250, 1);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-to-main:focus {
+            top: 0;
+        }
+
+        /* Breadcrumb Navigation Styles */
+        .breadcrumb-nav {
+            background: rgba(167, 139, 250, 0.08);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+        }
+
+        .breadcrumb-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .breadcrumb-list li {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-list li:not(:last-child)::after {
+            content: '/';
+            margin-left: 0.5rem;
+            color: rgba(167, 139, 250, 0.5);
+        }
+
+        .breadcrumb-list a {
+            color: var(--color-text-primary) !important;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .breadcrumb-list a:link,
+        .breadcrumb-list a:visited,
+        .breadcrumb-list a:active {
+            color: var(--color-text-primary) !important;
+        }
+
+        .breadcrumb-list a:hover {
+            color: var(--color-text-primary) !important;
+            text-decoration: underline;
+        }
+
+        .breadcrumb-list span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .breadcrumb-nav a:focus-visible {
+            outline: 2px solid var(--color-quantum-purple-light);
+            outline-offset: 2px;
+        }
+
         .navbar {
             position: fixed;
             top: 0;
@@ -1091,6 +1162,8 @@
 </head>
 
 <body data-page="news-daily" data-lang="en">
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
@@ -1119,7 +1192,7 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="nav-search" aria-label="Search">
+                <button class="nav-search" aria-label="Search" onclick="scrollToSearch()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
@@ -1139,6 +1212,15 @@
             <div class="nebula nebula-1"></div>
             <div class="nebula nebula-2"></div>
         </div>
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><span>Daily Commentary</span></li>
+                </ol>
+            </div>
+        </nav>
         <div class="page-hero-content">
             <div class="container">
                 <h1 class="en-page-title">ICS Perspective: Daily Commentary</h1>
@@ -1151,7 +1233,7 @@
         </div>
     </section>
 
-    <main class="main-content">
+    <main class="main-content" role="main" id="main-content">
         <div class="container">
             <!-- Academic Search Module -->
             <section class="search-section">
@@ -1375,6 +1457,15 @@
                 navbar.style.background = 'rgba(10, 22, 40, 0.8)';
             }
         });
+
+        function scrollToSearch() {
+            const section = document.querySelector('.search-section');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                const input = document.getElementById('searchInput');
+                if (input) input.focus();
+            }
+        }
 
         function performSearch() {
             const q = (document.getElementById('searchInput')?.value || '').trim();

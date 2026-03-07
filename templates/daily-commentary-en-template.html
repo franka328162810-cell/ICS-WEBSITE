@@ -4,15 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Interstellar Civilization Studies">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="Interstellar Civilization Studies Research Institute">
+    <meta name="publisher" content="Interstellar Civilization Studies">
+    <meta name="revisit-after" content="7 days">
+    <meta name="expires" content="">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>{{HEADLINE}} | Interstellar Civilization Studies</title>
     <meta name="description" content="{{SHORT_SUMMARY}}">
     <link rel="canonical" href="https://ics-studies.org/en/{{FILENAME}}.html">
+    <link rel="alternate" hreflang="zh" href="https://ics-studies.org/zh/每日热点评论.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/daily-commentary.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/daily-commentary.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style-en.css">
     <style>
         :root {
             --color-deep-space: #0a1628;
@@ -49,6 +65,77 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        /* Skip-to-main link styles */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: rgba(167, 139, 250, 1);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-to-main:focus {
+            top: 0;
+        }
+
+        /* Breadcrumb Navigation Styles */
+        .breadcrumb-nav {
+            background: rgba(167, 139, 250, 0.08);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+        }
+
+        .breadcrumb-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .breadcrumb-list li {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-list li:not(:last-child)::after {
+            content: '/';
+            margin-left: 0.5rem;
+            color: rgba(167, 139, 250, 0.5);
+        }
+
+        .breadcrumb-list a {
+            color: var(--color-text-primary) !important;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .breadcrumb-list a:link,
+        .breadcrumb-list a:visited,
+        .breadcrumb-list a:active {
+            color: var(--color-text-primary) !important;
+        }
+
+        .breadcrumb-list a:hover {
+            color: var(--color-text-primary) !important;
+            text-decoration: underline;
+        }
+
+        .breadcrumb-list span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .breadcrumb-nav a:focus-visible {
+            outline: 2px solid var(--color-quantum-purple-light);
+            outline-offset: 2px;
         }
 
         .navbar {
@@ -326,6 +413,187 @@
             margin: 2rem 0;
         }
 
+        /* Academic search section styles */
+        .search-section {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.12));
+            border: 2px solid rgba(167, 139, 250, 0.35);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .search-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1), transparent);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+        /* additional search-related selectors copied from in-depth template */
+        .search-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-header h3 {
+            font-family: var(--font-en-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .search-header p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-controls {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(167, 139, 250, 0.4);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-family: var(--font-en-sans);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all var(--transition-normal);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--color-quantum-purple);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-btn {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all var(--transition-normal);
+        }
+
+        .filter-button:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--color-quantum-purple);
+        }
+
+        .filter-button.active {
+            background: var(--color-quantum-purple);
+            border-color: var(--color-quantum-purple);
+            color: white;
+        }
+
+        .search-results {
+            margin-top: 1rem;
+            display: none;
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(10, 22, 40, 0.35);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            display: block;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.15);
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: rgba(167, 139, 250, 0.12);
+        }
+
+        .search-result-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .search-result-meta {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-empty {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.9rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+
         .related-section {
             margin-top: 4rem;
             padding-top: 3rem;
@@ -388,6 +656,8 @@
 </head>
 
 <body data-page="daily-commentary" data-lang="en">
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
@@ -415,6 +685,12 @@
             </ul>
 
             <div class="nav-actions">
+                <button class="nav-search" aria-label="Search" onclick="scrollToSearch()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
                 <div class="lang-switch">
                     <a href="{{FILENAME}}.html" class="lang-btn active">EN</a>
                     <a href="../zh/{{FILENAME_ZH}}.html" class="lang-btn">中文</a>
@@ -429,6 +705,15 @@
             <div class="nebula nebula-1"></div>
             <div class="nebula nebula-2"></div>
         </div>
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><span>Daily Commentary</span></li>
+                </ol>
+            </div>
+        </nav>
         <div class="page-hero-content">
             <div class="container">
                 <h1 class="en-page-title">{{HEADLINE}}</h1>
@@ -442,8 +727,45 @@
         </div>
     </section>
 
-    <main class="main-content">
+    <main class="main-content" role="main" id="main-content">
         <div class="container">
+            <!-- Academic Search Module -->
+            <section class="search-section">
+                <div class="search-header">
+                    <h3>🔍 Academic Search</h3>
+                    <p>Quickly find relevant commentary articles by keywords, category, or date</p>
+                </div>
+                <div class="search-controls">
+                    <div class="search-input-group">
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            id="searchInput" 
+                            placeholder="Enter keywords: AI Governance, Space Governance, Ethics..."
+                            aria-label="Search articles"
+                        >
+                        <button class="search-btn" id="searchBtn" onclick="performSearch()">Search</button>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">🏷️ Filter by Category:</span>
+                        <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">All</button>
+                        <button class="filter-button" data-filter="AI Governance" onclick="filterByCategory(this)">AI Governance</button>
+                        <button class="filter-button" data-filter="Ethics" onclick="filterByCategory(this)">Ethics</button>
+                        <button class="filter-button" data-filter="Space Governance" onclick="filterByCategory(this)">Space</button>
+                    </div>
+                    <div id="searchResults" class="search-results" aria-live="polite"></div>
+                </div>
+            </section>
+            <div class="newsletter-widget" id="section-6-subscribe">
+                <h3>📬 Subscribe for Updates</h3>
+                <p>Get the latest commentary and academic insights delivered to your inbox</p>
+                <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
+                    <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+                    <input type="text" placeholder="Your name (optional)" aria-label="Name">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <!-- Academic Search Module -->
             <div class="article-layout">
                 <article class="article-content">
                     
@@ -502,6 +824,14 @@
     </footer>
 
     <script>
+        // Scroll to search module
+        function scrollToSearch() {
+            const searchSection = document.querySelector('.search-section');
+            if (searchSection) {
+                searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
         // Share article
         function shareArticle() {
             if (navigator.share) {
@@ -516,14 +846,153 @@
             }
         }
 
+        function toggleCitation() {
+            document.getElementById('citationBox').classList.toggle('active');
+        }
+
+        function handleNewsletterSignup(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.querySelector('input[type="email"]').value;
+            const name = form.querySelector('input[type="text"]').value || 'Visitor';
+
+            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            subscribers.push({
+                email: email,
+                name: name,
+                timestamp: new Date().toISOString(),
+                source: document.title
+            });
+            localStorage.setItem('subscribers', JSON.stringify(subscribers));
+
+            fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, name, source: document.title })
+            }).catch(err => console.log('Subscribe send failed, but saved locally'));
+
+            form.reset();
+            alert('Thank you for subscribing! We\'ll send updates to your email regularly.');
+        }
+
+        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 0) {
-                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
-            } else {
-                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 0) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // === Search module functionality ===
+        const searchIndexEn = [
+            { title: "In-Depth Research: Trump's Ban on Anthropic", category: 'AI Governance', date: '2026-03-04', url: 'in-depth-research.html', keywords: ['Anthropic', 'AI', 'ethics', 'Trump'] },
+            { title: 'Daily Commentary', category: 'AI Governance', date: '2026-03-04', url: 'daily-commentary.html', keywords: ['commentary', 'policy', 'AI'] },
+            { title: 'Space Governance', category: 'Space Governance', date: '2025-01-01', url: 'space-governance.html', keywords: ['space', 'governance', 'mars'] },
+            { title: 'AI Governance', category: 'AI Governance', date: '2025-01-01', url: 'ai-governance.html', keywords: ['ai', 'governance', 'safety'] },
+            { title: 'Dialogue with Environmental Ethics', category: 'Ethics', date: '2025-01-01', url: 'dialogue-with-environmental-ethics.html', keywords: ['ethics', 'environment', 'dialogue'] },
+            { title: 'Forbidden Red Lines', category: 'Ethics', date: '2025-01-01', url: 'forbidden-red-lines.html', keywords: ['frl', 'red lines', 'risk'] },
+            { title: 'Research Archive', category: 'AI Governance', date: '2025-01-01', url: 'research-archive.html', keywords: ['archive', 'research', 'history'] },
+            { title: 'Resources', category: 'Ethics', date: '2025-01-01', url: 'resources.html', keywords: ['reading', 'resources', 'glossary'] }
+        ];
+
+        let runtimeSearchIndexEn = searchIndexEn;
+
+        async function loadSearchIndexEn() {
+            try {
+                const res = await fetch('/data/content-index.json', { cache: 'no-cache' });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data)) return;
+                const enItems = data
+                    .filter(item => item.lang === 'en')
+                    .map(item => ({
+                        title: item.title,
+                        category: item.category,
+                        date: item.date,
+                        url: item.url,
+                        keywords: Array.isArray(item.keywords) ? item.keywords : []
+                    }));
+                if (enItems.length > 0) runtimeSearchIndexEn = enItems;
+            } catch (_) {
+                // keep local fallback index
+            }
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>\"']/g, m => map[m]);
+        }
+
+        function renderSearchResults(results, query, filter) {
+            const container = document.getElementById('searchResults');
+            if (!container) return;
+
+            if (results.length === 0) {
+                container.innerHTML = `<div class="search-empty">No matching content found. Try: AI Governance, Ethics, Space Governance.</div>`;
+                container.classList.add('active');
+                return;
+            }
+
+            const header = `<div class="search-empty">${results.length} result(s) ${query ? `for "${escapeHtml(query)}"` : ''} ${filter !== 'all' ? `(category: ${escapeHtml(filter)})` : ''}</div>`;
+            const items = results.slice(0, 8).map(item => `
+                <a class="search-result-item" href="${item.url}">
+                    <div class="search-result-title">${escapeHtml(item.title)}</div>
+                    <div class="search-result-meta">${escapeHtml(item.category)} · ${escapeHtml(item.date)}</div>
+                </a>
+            `).join('');
+
+            container.innerHTML = header + items;
+            container.classList.add('active');
+        }
+
+        function performSearch() {
+            const input = document.getElementById('searchInput');
+            const query = (input?.value || '').trim().toLowerCase();
+            const activeFilter = document.querySelector('.filter-button.active');
+            const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+
+            const results = runtimeSearchIndexEn.filter(item => {
+                const passFilter = filter === 'all' || item.category === filter;
+                if (!passFilter) return false;
+                if (!query) return true;
+
+                const haystack = `${item.title} ${item.category} ${item.keywords.join(' ')}`.toLowerCase();
+                return haystack.includes(query);
+            });
+
+            renderSearchResults(results, query, filter);
+        }
+
+        function filterByCategory(button) {
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            performSearch();
+        }
+
+        document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
             }
         });
+
+        (function initSearchFromQuery() {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q');
+            if (!q) return;
+
+            const input = document.getElementById('searchInput');
+            if (!input) return;
+
+            input.value = q;
+            performSearch();
+        })();
+
+        loadSearchIndexEn();
     </script>
 </body>
 

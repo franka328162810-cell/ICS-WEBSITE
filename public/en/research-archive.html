@@ -44,6 +44,23 @@
             display: flex;
             flex-direction: column;
         }
+
+        /* Skip-to-main link styles */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: rgba(167, 139, 250, 1);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-to-main:focus {
+            top: 0;
+        }
         
         .navbar {
             position: fixed;
@@ -482,6 +499,8 @@
 </head>
 
 <body>
+    <!-- Skip to main content for keyboard users -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="nav-brand">
@@ -497,6 +516,12 @@
                 <li><a href="in-depth-research.html" class="nav-link">This Week</a></li>
                 <li><a href="research-archive.html" class="nav-link active">Archive</a></li>
             </ul>
+            <button class="nav-search" aria-label="Search" onclick="scrollToSearch()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
         </div>
     </nav>
 
@@ -505,12 +530,21 @@
             <div class="nebula nebula-1"></div>
             <div class="nebula nebula-2"></div>
         </div>
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><span>Research Archive</span></li>
+                </ol>
+            </div>
+        </nav>
         <div class="page-hero-content">
             <h1 class="page-title">Research Archive</h1>
         </div>
     </section>
 
-    <main class="main-content">
+    <main class="main-content" role="main" id="main-content">
         <div class="container">
             <div class="archive-intro">
                 <p>🔬 Explore ICS academic research on technology, governance, and civilization development. Each publication represents rigorous analysis from the interstellar civilization perspective.</p>
@@ -667,6 +701,14 @@
             document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             performSearch();
+        }
+
+        // Scroll to search module (used by navbar search button)
+        function scrollToSearch() {
+            const searchSection = document.querySelector('.search-section');
+            if (searchSection) {
+                searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         // Initialize on page load
