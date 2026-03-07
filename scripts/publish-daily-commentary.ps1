@@ -60,6 +60,17 @@ $zhFile = Join-Path $repoRoot 'public/zh/每日热点评论.html'
 $en = Get-Content -LiteralPath $enFile -Raw -Encoding UTF8
 $zh = Get-Content -LiteralPath $zhFile -Raw -Encoding UTF8
 
+function NormalizeHtml {
+    param([string]$html)
+    # make sure <!DOCTYPE html> is the very first token
+    $idx = $html.IndexOf('<!DOCTYPE')
+    if ($idx -gt 0) {
+        $html = $html.Substring($idx)
+    }
+    return $html
+}
+
+
 # ---------------- EN ----------------
 $en = Replace-ByPattern -Text $en -Pattern '(?<=<span class="category-badge"[^>]*>)(?<old>.*?)(?=</span>)' -NewValue $data.en.category -Label 'EN category'
 $en = Replace-ByPattern -Text $en -Pattern '(?<=<h3 class="news-title"[^>]*>)(?<old>.*?)(?=</h3>)' -NewValue $data.en.headline -Label 'EN headline'
@@ -94,11 +105,21 @@ $zh = Replace-ByPattern -Text $zh -Pattern '(?<=<div class="question-item"[^>]*d
 $zh = Replace-ByPattern -Text $zh -Pattern '(?<=<div class="question-item"[^>]*data-number="2\."[^>]*>)(?<old>.*?)(?=</div>)' -NewValue $data.zh.reflectionQ2 -Label 'ZH reflectionQ2'
 $zh = Replace-ByPattern -Text $zh -Pattern '(?<=<div class="tags-list"[^>]*>\s*)(?<old>.*?)(?=\s*</div>\s*</div>\s*</section>)' -NewValue (Join-Tags -Tags $data.zh.tags) -Label 'ZH tags'
 
+# strip any junk before DOCTYPE that may have appeared from previous edits
+$en = NormalizeHtml $en
+$zh = NormalizeHtml $zh
+
 Set-Content -LiteralPath $enFile -Value $en -Encoding UTF8
 Set-Content -LiteralPath $zhFile -Value $zh -Encoding UTF8
 
+# create ASCII alias for Chinese page so both paths work
+$zhAlias = Join-Path $repoRoot 'public/zh/daily-commentary.html'
+$aliasContent = "<!DOCTYPE html><html lang='zh-CN'><head><meta charset='UTF-8'><meta http-equiv='refresh' content='0; url=每日热点评论.html'><link rel='canonical' href='每日热点评论.html'></head><body></body></html>"
+Set-Content -LiteralPath $zhAlias -Value $aliasContent -Encoding UTF8
+
 Write-Host "Updated: public/en/daily-commentary.html"
 Write-Host "Updated: public/zh/每日热点评论.html"
+Write-Host "Created alias: public/zh/daily-commentary.html"
 
 if ($Deploy) {
     $headline = "$($data.en.headline)".Trim()
@@ -106,7 +127,7 @@ if ($Deploy) {
         $headline = 'daily commentary update'
     }
 
-    & git -C $repoRoot add "public/en/daily-commentary.html" "public/zh/每日热点评论.html"
+    & git -C $repoRoot add "public/en/daily-commentary.html" "public/zh/每日热点评论.html" "public/zh/daily-commentary.html"
     & git -C $repoRoot commit -m "publish: daily commentary - $headline"
     & git -C $repoRoot push
 

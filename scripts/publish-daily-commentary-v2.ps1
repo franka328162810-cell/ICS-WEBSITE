@@ -89,8 +89,14 @@ $zh = Replace-ByPattern -Text $zh -Pattern '(?<pre><div class="tags-list">\s*)(?
 Set-Content -LiteralPath $enFile -Value $en -Encoding UTF8
 Set-Content -LiteralPath $zhFile -Value $zh -Encoding UTF8
 
+# produce ascii alias for Chinese page
+$zhAlias = Join-Path $repoRoot 'public/zh/daily-commentary.html'
+$aliasContent = "<!DOCTYPE html><html lang='zh-CN'><head><meta charset='UTF-8'><meta http-equiv='refresh' content='0; url=每日热点评论.html'><link rel='canonical' href='每日热点评论.html'></head><body></body></html>"
+Set-Content -LiteralPath $zhAlias -Value $aliasContent -Encoding UTF8
+
 Write-Host "已更新：public/en/daily-commentary.html"
 Write-Host "已更新：public/zh/每日热点评论.html"
+Write-Host "已创建别名：public/zh/daily-commentary.html"
 
 if ($Deploy) {
     $headline = "$($data.en.headline)".Trim()
@@ -98,7 +104,7 @@ if ($Deploy) {
         $headline = 'daily commentary update'
     }
 
-    & git -C $repoRoot add "public/en/daily-commentary.html" "public/zh/每日热点评论.html"
+    & git -C $repoRoot add "public/en/daily-commentary.html" "public/zh/每日热点评论.html" "public/zh/daily-commentary.html"
     & git -C $repoRoot commit -m "publish: daily commentary - $headline"
     & git -C $repoRoot push
 

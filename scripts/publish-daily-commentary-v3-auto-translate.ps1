@@ -314,7 +314,13 @@ try {
     Write-ColorOutput "`n[Step 4/5] 💾 Writing updated pages..." "Magenta"
     Set-Content -Path $enFile -Value $enUpdated -Encoding UTF8 -NoNewline
     Set-Content -Path $zhFile -Value $zhUpdated -Encoding UTF8 -NoNewline
-    
+
+    # create ascii alias for Chinese daily commentary page
+    $zhAlias = Join-Path $WorkspaceRoot "public/zh/daily-commentary.html"
+    $aliasHtml = "<!DOCTYPE html><html lang='zh-CN'><head><meta charset='UTF-8'><meta http-equiv='refresh' content='0; url=每日热点评论.html'><link rel='canonical' href='每日热点评论.html'></head><body></body></html>"
+    Set-Content -Path $zhAlias -Value $aliasHtml -Encoding UTF8 -NoNewline
+    Write-ColorOutput "  ✓ Alias file created" "Green"
+
     Write-ColorOutput "  ✓ English page updated" "Green"
     Write-ColorOutput "  ✓ Chinese page updated" "Green"
     
@@ -337,7 +343,7 @@ try {
             Push-Location $gitDir
             
             # Stage changes
-            git add public/en/daily-commentary.html public/zh/每日热点评论.html public/en/news/ public/zh/news/ public/index.html public/zh/首页.html
+            git add public/en/daily-commentary.html public/zh/每日热点评论.html public/zh/daily-commentary.html public/en/news/ public/zh/news/ public/index.html public/zh/首页.html
             
             # Commit
             $commitMsg = "📰 Daily commentary - $publishDate"

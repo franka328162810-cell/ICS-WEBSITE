@@ -37,6 +37,7 @@ ics-website/
 │   │
 │   └── zh/
 │       ├── 每日热点评论.html                 # 中文当日页面
+│       ├── daily-commentary.html            # *alias* ASCII path redirect → 每日热点评论.html
 │       ├── 每日热点评论归档.html             # 中文归档索引
 │       └── news/
 │           └── news-daily-YYYYMMDD.html      # 历史备份（自动生成）
@@ -96,7 +97,7 @@ INPUT: daily-commentary-20250304.json
     ↓
 [Step 2] Update current pages
     → public/en/daily-commentary.html
-    → public/zh/每日热点评论.html
+    → public/zh/每日热点评论.html (and create ascii alias daily-commentary.html)
     ↓
 [Step 3] Update archive indexes
     → Scan news/ directory
