@@ -259,7 +259,9 @@ function Replace-ByPattern {
     
     try {
         $safeName = [regex]::Escape($Pattern)
-        $result = $Text -replace "(?<pre><span[^>]*data-field=""$safeName""[^>]*>)(.*?)(?<post></span>)", "`${pre}$([regex]::Replace($NewValue, '&', '&amp;') -replace '"', '""')`${post}"
+        # generic tag matcher so headline (<h3>), paragraphs, divs etc all update correctly
+        $regex = "(?<pre><(?<tag>[^ >]+)[^>]*data-field=\"$safeName\"[^>]*>)(.*?)(?<post></\k<tag>>)"
+        $result = $Text -replace $regex, "`${pre}$([regex]::Replace($NewValue, '&', '&amp;') -replace '"', '""')`${post}"
         return $result
     } catch {
         Write-ColorOutput "  ⚠ Warning: Failed to replace pattern '$Pattern': $_" "Yellow"

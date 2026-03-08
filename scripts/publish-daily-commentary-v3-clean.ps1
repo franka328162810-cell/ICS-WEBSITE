@@ -24,7 +24,9 @@ function Resolve-ZhPageByMarker {
 function Replace-ByPattern {
     param([string]$Text, [string]$Pattern, [string]$NewValue)
     $safeName = [regex]::Escape($Pattern)
-    return $Text -replace "(?<pre><span[^>]*data-field=\"$safeName\"[^>]*>)(.*?)(?<post></span>)", "`${pre}$([regex]::Replace($NewValue, '&', '&amp;') -replace '\"', '\"\"')`${post}"
+    # generic replacement matches any HTML tag that carries the data-field attribute
+    $regex = "(?<pre><(?<tag>[^ >]+)[^>]*data-field=\"$safeName\"[^>]*>)(.*?)(?<post></\k<tag>>)"
+    return $Text -replace $regex, "`${pre}$([regex]::Replace($NewValue, '&', '&amp;') -replace '\"', '\"\"')`${post}"
 }
 
 function Join-Tags {

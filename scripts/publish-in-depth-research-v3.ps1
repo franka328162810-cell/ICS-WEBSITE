@@ -54,7 +54,9 @@ function Replace-ByPattern {
     try {
         # Escape special regex characters in pattern
         $safeName = [regex]::Escape($Pattern)
-        $result = $Text -replace "(?<pre><span[^>]*data-field=""$safeName""[^>]*>)(.*?)(?<post></span>)", "`${pre}$([regex]::Replace($NewValue, '&', '&amp;') -replace '"', '""')`${post}"
+        # match any HTML tag with data-field attribute
+        $regex = "(?<pre><(?<tag>[^ >]+)[^>]*data-field=\"$safeName\"[^>]*>)(.*?)(?<post></\k<tag>>)"
+        $result = $Text -replace $regex, "`${pre}$([regex]::Replace($NewValue, '&', '&amp;') -replace '"', '""')`${post}"
         return $result
     } catch {
         Write-ColorOutput "  鈿?Warning: Failed to replace pattern '$Pattern': $_" "Yellow"
@@ -72,8 +74,9 @@ function Replace-ByPatternMultiLine {
     
     try {
         $safeName = [regex]::Escape($Pattern)
-        # For multi-line content, allow newlines
-        $result = $Text -replace "(?<pre><div[^>]*data-field=""$safeName""[^>]*>)(.*?)(?<post></div>)", "`${pre}$($NewValue -replace '"', '""')`${post}"
+        # For multi-line content, match any tag and include newlines
+        $regex = "(?<pre><(?<tag>[^ >]+)[^>]*data-field=\"$safeName\"[^>]*>)([\s\S]*?)(?<post></\k<tag>>)"
+        $result = $Text -replace $regex, "`${pre}$($NewValue -replace '"', '""')`${post}"
         return $result
     } catch {
         Write-ColorOutput "  鈿?Warning: Failed to replace multi-line pattern '$Pattern': $_" "Yellow"
