@@ -1,1473 +1,179 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>每日热点评论 | 星际文明学</title>
-    <meta name="description" content="从星际文明学视角解读前沿科技与文明发展的每日热点新闻">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
-        rel="stylesheet">
+    <title>每日热点评论 - 星际文明学视角</title>
+    <meta name="description" content="从星际文明学视角分析AI存在风险">
     <style>
-        /* ==========================================
-   ICS全局尺寸修复 - 统一缩小约12-15%
-   复制此段到每个页面<style>标签最前面
-   ========================================== */
-
-        /* 1. 全局字体基准 */
-        html {
-            font-size: 14px !important;
-        }
-
-        @media (min-width: 1200px) {
-            html {
-                font-size: 14px !important;
-            }
-        }
-
-        /* 2. 导航栏 */
-        .nav-logo {
-            width: 40px !important;
-            height: 40px !important;
-        }
-
-        .nav-title {
-            font-size: 1rem !important;
-        }
-
-        .nav-subtitle {
-            font-size: 0.5625rem !important;
-        }
-
-        .nav-link {
-            font-size: 0.875rem !important;
-        }
-
-        .nav-contact {
-            font-size: 0.8125rem !important;
-            padding: 8px 20px !important;
-        }
-
-        /* 3. Hero区域 */
-        .hero-title,
-        .zh-page-title {
-            font-size: clamp(2.5rem, 3.5vw, 3rem) !important;
-        }
-
-        .en-page-title {
-            font-size: clamp(2.3rem, 3.3vw, 2.8rem) !important;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(0.9375rem, 2.2vw, 1.125rem) !important;
-        }
-
-        .hero-intro-card {
-            padding: 2.25rem !important;
-            font-size: 1.0625rem !important;
-        }
-
-        /* 4. Section区域 */
-        .section {
-            padding: 5.5rem 2rem !important;
-        }
-
-        .zh-section-title,
-        .en-section-title {
-            font-size: 1.875rem !important;
-        }
-
-        .zh-subsection-title {
-            font-size: 1.3rem !important;
-        }
-
-        .container {
-            max-width: 1200px !important;
-        }
-
-        /* 5. 卡片 */
-        .unified-card,
-        .content-card {
-            padding: 1.875rem !important;
-        }
-
-        .card-title {
-            font-size: 1.125rem !important;
-        }
-
-        .card-description {
-            font-size: 0.875rem !important;
-        }
-
-        /* 6. Footer */
-        .footer {
-            padding: 3.5rem 2rem 1.75rem !important;
-        }
-
-        .footer-logo svg {
-            width: 40px !important;
-            height: 40px !important;
-        }
-
-        .footer-logo-title {
-            font-size: 1rem !important;
-        }
-
-        .footer-desc {
-            font-size: 0.8125rem !important;
-        }
-
-        /* 7. 正文 */
-        p {
-            font-size: 0.9375rem !important;
-            line-height: 1.8 !important;
-        }
-
-        /* 响应式 */
-        @media (max-width: 768px) {
-            html {
-                font-size: 13.5px !important;
-            }
-
-            .section {
-                padding: 4rem 1.5rem !important;
-            }
-        }
-
-        :root {
-            --color-deep-space: #0a1628;
-            --color-quantum-purple: #7c3aed;
-            --color-quantum-purple-light: #a78bfa;
-            --color-nebula-cyan: #06b6d4;
-            --color-nebula-cyan-light: #22d3ee;
-            --color-energy-gold: #f59e0b;
-            --color-energy-gold-light: #fbbf24;
-            --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255, 255, 255, 0.8);
-            --font-zh-sans: 'Noto Sans SC', sans-serif;
-            --font-zh-serif: 'Noto Serif SC', serif;
-            --transition-normal: 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: var(--font-zh-sans);
-            font-weight: 300;
-            background: var(--color-deep-space);
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* 跳转到正文链接样式 */
-        .skip-to-main {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: rgba(167, 139, 250, 1);
-            color: white;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            z-index: 100;
-            border-radius: 0 0 8px 0;
-        }
-
-        .skip-to-main:focus {
-            top: 0;
-        }
-
-        /* Breadcrumb Navigation Styles */
-        .breadcrumb-nav {
-            background: rgba(167, 139, 250, 0.08);
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
-        }
-
-        .breadcrumb-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .breadcrumb-list li {
-            display: flex;
-            align-items: center;
-        }
-
-        .breadcrumb-list li:not(:last-child)::after {
-            content: '/';
-            margin-left: 0.5rem;
-            color: rgba(167, 139, 250, 0.5);
-        }
-
-        .breadcrumb-list a {
-            color: var(--color-text-primary) !important;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .breadcrumb-list a:link,
-        .breadcrumb-list a:visited,
-        .breadcrumb-list a:active {
-            color: var(--color-text-primary) !important;
-        }
-
-        .breadcrumb-list a:hover {
-            color: var(--color-text-primary) !important;
-            text-decoration: underline;
-        }
-
-        .breadcrumb-list span {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .breadcrumb-nav a:focus-visible {
-            outline: 2px solid var(--color-quantum-purple-light);
-            outline-offset: 2px;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 22, 40, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
-            transition: all var(--transition-normal);
-        }
-
-        .nav-container {
-            max-width: 1400px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.9;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 20px;
+            background-color: #f5f5f5;
         }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-        }
-
-        .nav-logo {
-            width: 44px;
-            height: 44px;
-        }
-
-        .nav-brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .nav-title {
-            font-family: var(--font-zh-serif);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-text-primary);
-        }
-
-        .nav-subtitle {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.05em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            font-family: var(--font-zh-serif);
-            font-size: 0.9375rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color var(--transition-normal);
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--color-quantum-purple-light);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-search {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            padding: 0.5rem;
-            transition: color var(--transition-normal);
-        }
-
-        .nav-search:hover {
-            color: var(--color-quantum-purple-light);
-        }
-
-        .nav-search svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .lang-switch {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .lang-btn {
-            font-family: var(--font-zh-serif);
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.6);
-            transition: all var(--transition-normal);
-        }
-
-        .lang-btn.active {
-            background: rgba(167, 139, 250, 0.2);
-            color: var(--color-quantum-purple-light);
-        }
-
-        .nav-contact {
-            font-family: var(--font-zh-serif);
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
-            color: var(--color-text-primary);
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all var(--transition-normal);
-        }
-
-        .nav-contact:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
-        }
-
-        .page-hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 0;
-            overflow: hidden;
-        }
-        .breadcrumb-nav {
-            width: 100%;
-        }
-
-        .page-hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-        }
-
-        .nebula {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .nebula-1 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
-            top: -200px;
-            left: -100px;
-        }
-
-        .nebula-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
-            bottom: -150px;
-            right: -100px;
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(30px, -30px) scale(1.1);
-            }
-        }
-
-        .page-hero-content {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            padding: 4rem 2rem;
-        }
-
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .zh-page-title {
-            font-family: var(--font-zh-serif);
-            font-size: clamp(4rem, 5vw, 4.5rem);
-            font-weight: 900;
-            margin-bottom: 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.5;
-            letter-spacing: 0.15em;
-        }
-
-        .hero-intro-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
-            /* 新增立体阴影 */
-            transition: box-shadow 0.3s, transform 0.3s;
-            transform: translateY(0);
-            /* 初始无位移 */
-        }
-
-        .hero-intro-card:hover {
-            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
-            /* 悬浮时更强阴影 */
-            transform: translateY(-12px) scale(1.03);
-            /* 悬浮时上移并微放大 */
-        }
-
-        .hero-intro-card p {
-            font-size: 1.0625rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 2.0;
-            text-align: left;
-            letter-spacing: 0.02em;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 4rem 0;
-        }
-
-        section {
-            margin-bottom: 4rem;
-        }
-
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9375rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .meta-icon {
-            font-size: 1.2rem;
-        }
-
-        .category-badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(167, 139, 250, 0.2);
-            color: var(--color-quantum-purple-light);
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .news-header {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .news-title {
-            font-family: var(--font-zh-serif);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--color-text-primary);
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .news-source {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.9375rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 1rem;
-        }
-
-        .source-divider {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .zh-section-title {
-            font-family: var(--font-zh-serif);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--color-text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .section-icon {
-            font-size: 1.75rem;
-        }
-
-        .content-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            transition: all var(--transition-normal);
-        }
-
-        .content-card:hover {
-            border-color: rgba(167, 139, 250, 0.4);
-            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
-        }
-
-        .content-card p {
-            font-size: 1.0625rem;
-            font-weight: 300;
-            line-height: 1.9;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.02em;
-            text-align: left;
-        }
-
-        .content-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .zh-subsection-title {
-            font-family: var(--font-zh-serif);
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--color-energy-gold);
-            margin-bottom: 1.5rem;
-            margin-top: 2rem;
-            position: relative;
-            padding-left: 1rem;
-        }
-
-        .zh-subsection-title::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 1.5rem;
-            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
-            border-radius: 2px;
-        }
-
-        .concept-list {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 2rem 0;
-        }
-
-        .concept-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
-        }
-
-        .concept-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .concept-term {
-            font-family: var(--font-zh-serif);
-            font-size: 1.0625rem;
-            font-weight: 600;
-            color: var(--color-nebula-cyan);
-            margin-bottom: 0.5rem;
-        }
-
-        .concept-desc {
-            font-size: 1rem;
-            font-weight: 300;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 0.02em;
-        }
-
-        .concept-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(167, 139, 250, 0.1);
-            color: var(--color-quantum-purple-light);
-            text-decoration: none;
+            background: white;
+            padding: 40px;
             border-radius: 8px;
-            font-size: 0.9375rem;
-            transition: all var(--transition-normal);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
-        .concept-link:hover {
-            background: rgba(167, 139, 250, 0.2);
-            transform: translateX(4px);
+        h1 {
+            color: #1a1a2e;
+            font-size: 22px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #7c3aed;
+            padding-bottom: 15px;
         }
-
-        .thinking-questions {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 2rem 0;
+        .meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
         }
-
-        .question-item {
-            font-size: 1.0625rem;
-            font-weight: 300;
-            line-height: 1.9;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-            position: relative;
-            letter-spacing: 0.02em;
+        .original-news {
+            background: #f8f9fa;
+            border-left: 4px solid #7c3aed;
+            padding: 15px 20px;
+            margin-bottom: 30px;
         }
-
-        .question-item::before {
-            content: attr(data-number);
-            position: absolute;
-            left: 0;
-            color: var(--color-energy-gold);
-            font-family: var(--font-zh-serif);
-            font-weight: 600;
+        .original-news h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 16px;
         }
-
-        .question-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .cta-text {
-            text-align: center;
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 2rem;
-            font-style: italic;
-        }
-
-        .tags-container {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .tags-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .tag-item {
-            padding: 0.5rem 1rem;
-            background: rgba(167, 139, 250, 0.1);
-            color: var(--color-quantum-purple-light);
-            border-radius: 6px;
-            font-size: 0.875rem;
-            transition: all var(--transition-normal);
-        }
-
-        .tag-item:hover {
-            background: rgba(167, 139, 250, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .article-footer {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 3rem 0;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .footer-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(167, 139, 250, 0.1);
-            color: var(--color-quantum-purple-light);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9375rem;
-            transition: all var(--transition-normal);
-        }
-
-        .footer-link:hover {
-            background: rgba(167, 139, 250, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .disclaimer {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(239, 68, 68, 0.08) 100%);
-            border-left: 4px solid var(--color-energy-gold);
-            border-radius: 8px;
-            padding: 1.5rem 2rem;
-            margin: 3rem 0;
-        }
-
-        .disclaimer p {
-            font-size: 0.9375rem;
-            font-weight: 300;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
+        .original-news p {
             margin: 0;
-            letter-spacing: 0.02em;
+            color: #666;
+            font-size: 14px;
         }
-
-        .footer {
-            background: rgba(10, 22, 40, 0.95);
-            border-top: 1px solid rgba(167, 139, 250, 0.1);
-            padding: 3rem 0 1rem;
-            margin-top: auto;
+        .content {
+            font-size: 15px;
+            color: #333;
         }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
+        .content p {
+            margin-bottom: 22px;
+            text-align: justify;
         }
-
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .highlight {
+            background: linear-gradient(120deg, #e0d4fc 0%, #d4f1ec 100%);
+            padding: 2px 5px;
+            border-radius: 3px;
         }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .quote {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid #e94560;
+            padding-left: 15px;
+            margin: 25px 0;
         }
-
-        .footer-logo svg {
-            width: 44px;
-            height: 44px;
-        }
-
-        .footer-logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-logo-title {
-            font-family: var(--font-zh-serif);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-text-primary);
-        }
-
-        .footer-logo-sub {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.05em;
-        }
-
-        .footer-desc {
-            font-size: 0.875rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .footer-col h4 {
-            font-family: var(--font-zh-serif);
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-col a {
-            display: block;
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 0.5rem;
-            transition: color var(--transition-normal);
-            text-decoration: none;
-        }
-
-        .footer-col a:hover {
-            color: var(--color-quantum-purple-light);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem 2rem 0;
-            border-top: 1px solid rgba(167, 139, 250, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-copyright {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .footer-links-bottom {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links-bottom a {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.4);
-            transition: color var(--transition-normal);
-            text-decoration: none;
-        }
-
-        .footer-links-bottom a:hover {
-            color: var(--color-quantum-purple-light);
-        }
-
-        @media (max-width: 1024px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .nav-container {
-                padding: 1rem 1.5rem;
-            }
-            
-            .section {
-                padding: 5rem 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-container {
-                padding: 0.875rem 1.25rem;
-            }
-            
-            .nav-logo {
-                width: 36px;
-                height: 36px;
-            }
-            
-            .nav-title {
-                font-size: 1.25rem;
-            }
-
-            .zh-page-title {
-                font-size: 1.75rem;
-                line-height: 1.3;
-            }
-
-            .news-title {
-                font-size: 1.375rem;
-                line-height: 1.4;
-            }
-
-            .content-card {
-                padding: 1.25rem;
-            }
-            
-            .section {
-                padding: 4rem 1.25rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .article-meta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-        }
-
-        /* Academic Search Section */
-        .search-section {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.12));
-            border: 2px solid rgba(167, 139, 250, 0.35);
-            border-radius: 12px;
-            padding: 2.5rem 2rem;
-            margin-bottom: 4rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .search-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.1), transparent);
-            border-radius: 50%;
-            filter: blur(60px);
-            pointer-events: none;
-        }
-
-        .search-header {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .search-header h3 {
-            font-family: var(--font-zh-serif);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .search-header p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .search-controls {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .search-input-group {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 0.875rem 1.25rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1.5px solid rgba(167, 139, 250, 0.4);
-            border-radius: 8px;
-            color: var(--color-text-primary);
-            font-family: var(--font-zh-sans);
-            font-size: 0.9rem;
-            outline: none;
-            transition: all var(--transition-normal);
-        }
-
-        .search-input:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--color-quantum-purple);
-            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
-        }
-
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .search-btn {
-            padding: 0.875rem 1.5rem;
-            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+        .ics-tag {
+            display: inline-block;
+            background: #7c3aed;
             color: white;
-            border: none;
-            border-radius: 8px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-right: 4px;
+        }
+        .section-title {
+            font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            color: #1a1a2e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
         }
-
-        .search-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
-        }
-
-        .filter-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .filter-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .filter-button {
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(167, 139, 250, 0.3);
+        .thinking-q {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin-bottom: 15px;
             border-radius: 6px;
-            color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all var(--transition-normal);
+            font-size: 14px;
         }
-
-        .filter-button:hover {
-            background: rgba(167, 139, 250, 0.2);
-            border-color: var(--color-quantum-purple);
+        .thinking-q strong {
+            color: #7c3aed;
         }
-
-        .filter-button.active {
-            background: var(--color-quantum-purple);
-            border-color: var(--color-quantum-purple);
-            color: white;
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
         }
     </style>
-    <!-- ICS-SEO-START -->
-    <meta name="description" content="每日AI治理评论: 特朗普封杀Anthropic：AI军事化道路上的第一个文明级伦理临界点">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="特朗普封杀Anthropic：AI军事化道路上的第一个文明级伦理临界点">
-    <meta property="article:published_time" content="2026年3月8日">
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"特朗普封杀Anthropic：AI军事化道路上的第一个文明级伦理临界点","datePublished":"2026年3月8日","author":{"@type":"Organization","name":"宇宙管理研究所"}}
-    </script>
-    <!-- ICS-SEO-END -->
 </head>
+<body>
+    <div class="container">
+        <h1>当智能开始设计超越自己的未来</h1>
+        <div class="meta">
+            <span>发布时间：2026年3月8日</span> | 
+            <span>来源：AI安全研究</span> | 
+            <span>视角：星际文明学</span>
+        </div>
+        
+        <div class="original-news">
+            <h3>📰 原始新闻</h3>
+            <p>AI安全专家发出警告：随着AI模型接近通用人工智能（AGI），现有安全防护措施不足以应对风险。危险不仅来自恶意意图，更来自目标错位、意外行为和人类监督的潜在丧失。一旦AI系统达到超人类水平，重新获得控制可能变得不可能。</p>
+        </div>
+        
+        <div class="content">
+            <p>这不是一篇普通的科技新闻评论。在星际文明学的理论框架下，这条关于AI存在风险的警告，触及的是一个根本性的问题：当一个物种开始设计可能超越自身的存在时，它实际上在做什么？</p>
 
-<body data-page="news-daily" data-lang="zh">
-    <!-- 跳转到正文链接（键盘导航） -->
-    <a href="#main-content" class="skip-to-main">跳转到正文</a>
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
-                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
-                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
-                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
-                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
-                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
-                            repeatCount="indefinite" />
-                    </circle>
-                </svg>
-                <div class="nav-brand-text">
-                    <span class="nav-title">星际文明学</span>
-                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
-                </div>
-            </a>
+            <h3 class="section-title">一、新三观视角</h3>
 
-            <ul class="nav-links">
-                <li><a href="首页.html" class="nav-link active">首页</a></li>
-                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
-                <li><a href="著作概述.html" class="nav-link">著作</a></li>
-                <li><a href="资源.html" class="nav-link">资源</a></li>
-                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
-                <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
-            </ul>
+            <p>从<span class="ics-tag">NC-2</span>新宇宙观的过程性命题来看，AGI从来不是一个可以被"制造出来"的静态产品。AGI是一个持续演化的过程，是一段正在生成的轨迹。我们今天讨论的"AI安全性"问题，本质上是在问：这个正在生成的轨迹，最终会把我们带向哪里？</p>
 
-            <div class="nav-actions">
-                <button class="nav-search" aria-label="搜索" onclick="scrollToSearch()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                </button>
-                <div class="lang-switch">
-                    <a href="../en/daily-commentary.html " class="lang-btn">EN</a>
-                    <a href="每日热点评论.html" class="lang-btn active">中文</a>
-                </div>
-                <a href="联系我们.html" class="nav-contact">联系我们</a>
+            <p>从<span class="ics-tag">NL-1</span>新生命观的跨基质命题来看，我们需要追问的是：当AI的负熵组织能力和信息处理复杂度持续提升，它在何种意义上正在接近"生命"的门槛？即便我们不急于宣称"AI是生命"，也必须承认，某些AI系统正在展现出传统"工具"范畴无法容纳的复杂性。这种复杂性意味着，简单的"人-工具"关系图式正在失效。</p>
+
+            <p>从<span class="ics-tag">NK-3</span>新认知观的深不确定性命题来看，我们面对的不是"风险"，而是"深不确定性"——我们不知道可能的结果集，不知道概率分布，甚至不知道如何评估好坏。AGI可能带来的后果，其不确定性等级远超普通技术风险。这意味着常规的风险评估框架已经不够用了。</p>
+
+            <h3 class="section-title">二、规范原则分析</h3>
+
+            <p>在<span class="ics-tag">REV</span>可逆性原则的框架下，当前AI发展的核心问题变得清晰：我们正在快速压缩可供逆转的选项空间。每一次技术突破，每一个大模型发布，都在不可逆地塑造着AGI演化的轨迹。一旦某个技术路线被锁定为"主流"，即使后来发现路径错误，调整成本也将指数级上升。</p>
+
+            <p>当前RFD（递归自由度）估算显示，AGI发展路径的可能性空间正在被显著压缩。主要风险集中在技术路径锁定维度——特定算法架构、训练范式、硬件生态正在形成强耦合，一旦这些路径被广泛采用，未来世代"倒车"的可能性将大幅降低。当前RFD估算值约为<span class="highlight">0.40-0.50（红色，严重压缩可能性空间）</span>，接近FRL-2（不可逆锁定红线）的触发阈值。</p>
+
+            <p>从<span class="ics-tag">RFP</span>递归自由原则来看，当我们用上一代智能的产物（人类工程师）来设计下一代智能时，我们必须追问：这个设计行为本身，是否在系统性地削弱未来主体行使自由的条件？如果AGI的发展路径被少数机构或国家锁定，如果技术选项被专利和算力壁垒所封闭，那么未来世代的选择空间将被压缩。</p>
+
+            <h3 class="section-title">三、深时视角</h3>
+
+            <p>从T2层级（10-100年）审视：我们今天做出的关于AGI的每一个决策，都将在未来数十年内产生路径惯性。如果AGI在這段时间内被部署于关键基础设施（从武器系统到能源网格，从金融监管到司法辅助），那么人类社会的组织方式将被深刻锁定。这种锁定一旦形成，即使AGI表现出令人担忧的自主性特征，"退出"的成本也可能高到不可承受。</p>
+
+            <p>从T3层级（100-1000年）审视：我们正在讨论的不是一个技术问题，而是一个文明轨迹问题。AGI的出现，将是人类这个物种在地球上数十亿年演化史上的第一个真正的"分叉点"。在这个分叉点上选择哪条路径，将决定此后数百年乃至数千年人类文明的形态。选择不可逆的路径，需要承担极高的论证门槛——而我们目前显然还没有满足这个门槛。</p>
+
+            <h3 class="section-title">四、政策建议</h3>
+
+            <p><strong>立即行动</strong>：建立AI发展的"减速机制"，对可能触发FRL-2（不可逆锁定红线）的技术部署实行暂停令。除非能证明该部署是可逆的，否则不予放行。</p>
+
+            <p><strong>中期目标</strong>：建立<span class="ics-tag">CSIA</span>（宇宙尺度影响评估）框架，将AGI影响的时空尺度纳入正式评估。当前AI治理框架的时间视野太短——它们最多考虑十年内的影响。但AGI的影响将绵延数百年。</p>
+
+            <p><strong>长期视角</strong>：推动建立<span class="ics-tag">C-IRB</span>（宇宙级伦理审查委员会）机制，对CSIA-4及以上等级的行动进行跨代际伦理审查。AGI不是某一个国家或某一代人的事务，它是关乎此后数百年人类文明走向的集体决策。</p>
+
+            <div class="quote">
+                "我们正在用上一代智能的产物来设计下一代智能，而下一代智能很可能将在我们完全理解它们之前就已经超越我们。这不是科幻——这是正在发生的数学推论。"
+            </div>
+
+            <h3 class="section-title">思考问题</h3>
+
+            <div class="thinking-q">
+                <strong>Q1（事实分析层）：</strong>当前AI安全措施与AGI可能带来的文明级风险之间，存在怎样的规模和性质差距？
+            </div>
+            <div class="thinking-q">
+                <strong>Q2（规范价值层）：</strong>如果我们承认AGI的发展面对深不确定性，那么在不可逆与可逆路径之间，我们是否有道德义务选择后者？
+            </div>
+            <div class="thinking-q">
+                <strong>Q3（深时宇宙层）：</strong>从费米悖论视角看，那些未能成功跨越"智能超越"这个分叉点的文明，可能遭遇了什么？这对我们今天的选择意味着什么警示？
             </div>
         </div>
-    </nav>
-
-    <section class="page-hero">
-        <div class="page-hero-bg">
-            <div class="nebula nebula-1"></div>
-            <div class="nebula nebula-2"></div>
+        
+        <div class="footer">
+            <p>ICS星际文明研究中心 · 每日热点锐评</p>
+            <p>注：本文所有ICS指标均为概念估算，具有高度不确定性。本分析为"临时公约"性质，开放于批评和修订。</p>
         </div>
-        <!-- Breadcrumb Navigation -->
-        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
-            <div class="container">
-                <ol class="breadcrumb-list">
-                    <li><a href="首页.html">首页</a></li>
-                    <li><span>每日热点评论</span></li>
-                </ol>
-            </div>
-        </nav>
-        <div class="page-hero-content">
-            <div class="container">
-                <h1 class="zh-page-title">【星际文明学视角】<br>每日热点评论</h1>
-                <div class="hero-intro-card">
-                    <p>从星际文明学的深时视角，解读前沿科技与文明发展的每日热点新闻，探讨其对人类长期未来的深远影响。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <main class="main-content" role="main" id="main-content">
-        <div class="container">
-            <!-- 学术搜索模块 -->
-            <section class="search-section">
-                <div class="search-header">
-                    <h3>🔍 学术搜索</h3>
-                    <p>通过关键词、分类或日期快速查找相关评论文章</p>
-                </div>
-                <div class="search-controls">
-                    <div class="search-input-group">
-                        <input 
-                            type="text" 
-                            class="search-input" 
-                            id="searchInput" 
-                            placeholder="输入关键词：AI治理、太空治理、伦理学..."
-                            aria-label="搜索文章"
-                        >
-                        <button class="search-btn" id="searchBtn" onclick="performSearch()">搜索</button>
-                    </div>
-                    <div class="filter-group">
-                        <span class="filter-label">🏷️ 按分类筛选：</span>
-                        <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">全部</button>
-                        <button class="filter-button" data-filter="AI治理" onclick="filterByCategory(this)">AI治理</button>
-                        <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
-                        <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
-                    </div>
-                </div>
-            </section>
-
-            <div class="article-meta">
-                <div class="meta-item">
-                    <span class="meta-icon">📅</span>
-                    <span data-field="date">2026年3月8日</span>
-                </div>
-                <div class="meta-item">
-                    <span class="category-badge" data-field="category">AI治理</span>
-                </div>
-            </div>
-
-            <section class="news-header">
-                <h2 class="zh-section-title">
-                    <span class="section-icon">📰</span>
-                    今日热点
-                </h2>
-                <h3 class="news-title" data-field="headline">特朗普封杀Anthropic：AI军事化道路上的第一个文明级伦理临界点</h3>
-                <div class="news-source">
-                    <span data-field="source">来源：综合报道 | 日期：2025年7月 | 编辑：星际文明学编辑部</span>
-                    <span class="source-divider">|</span>
-                    <span data-field="sourceTime">2026年3月8日 14:00</span>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="zh-section-title">
-                    <span class="section-icon">📝</span>
-                    新闻摘要
-                </h2>
-                <div class="content-card">
-                    <p>美国国防部将Anthropic列为国家安全供应链风险首次对本土企业使用此标签。然而被封杀的Claude军用版本仍在深度嵌入美军系统，能在0.1秒内演算出上万种导弹飞行路径。这一矛盾揭示了人类AI军事化道路上的第一个真正意义的伦理临界点检验。</p>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="zh-section-title">
-                    <span class="section-icon">🔭</span>
-                    星际文明学视角
-                </h2>
-                <div class="content-card">
-                    <h3 class="zh-subsection-title">从新三观看</h3>
-                    <p data-field="newThreeViews">从新三观视角：Anthropic划定的两条红线禁止大规模监控、禁止全自主致命决策体现了新宇宙观的参与性命题（NC-3）与新生命观的负熵组织命题（NL-2）。通过拒绝特定军事应用，Anthropic主动参与并塑造AI军事化进程的走向。禁令与持续运营的矛盾揭示了深层不确定性（NK-3），构成优先适用可逆性原则（REV）的充分理由。</p>
-
-                    <h3 class="zh-subsection-title">规范性思考</h3>
-                    <p data-field="normative">从递归自由原则（RFP）：国防部的任何合法用途条款系统性地压缩了科技公司、普通公民乃至未来世代的递归自由空间。Anthropic保留人类在致命决策中的最终权限，实质上是在守护一个至关重要的撤退选项未来战争中恢复人类主导的条件。从可逆性原则（REV）：Claude深度嵌入军事决策链（六个月过渡期本身即为可逆性丧失的证据）显示L4-L5级不可逆路径锁定。从负熵责任原则（NRP）：900余名谷歌与OpenAI员工联署请愿反对分而治之策略，正是对集体负熵守护能力的自发响应。</p>
-
-                    <h3 class="zh-subsection-title">长期影响</h3>
-                    <p data-field="longTermImpact">在T2时间尺度（10-100年）：这一先例国家以国安理由打压坚守伦理红线的公司将激励全球政府将AI安全约束视为竞争劣势。Claude军用版的技术锁定将在数十年内形成强烈路径依赖。在T3时间尺度（100-1000年）：今天的政策决策正在将全球战争形态锁定于一条特定轨迹。一旦自主AI武器系统在主要军事力量中被制度化，人类重新主导的可能性将系统性退化。文明级后果：未来世代能否在生死攸关时刻行使真正的自由。</p>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="zh-section-title">
-                    <span class="section-icon">📚</span>
-                    相关概念
-                </h2>
-                <div class="concept-list">
-                    <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">本文涉及的星际文明学核心概念：
-                    </p>
-
-                    <div class="concept-item">
-                        <div class="concept-term">递归自由原则（RFP）</div>
-                        <div class="concept-desc">确保当前决策不会不可逆地限制未来智能体的选择空间，保护跨代自由度。</div>
-                    </div>
-
-                    <div class="concept-item">
-                        <div class="concept-term">负熵责任原则（NRP）</div>
-                        <div class="concept-desc">智能体有责任通过创造秩序、组织信息来对抗宇宙熵增，为文明的长期存续做出贡献。</div>
-                    </div>
-
-                    <div class="concept-item">
-                        <div class="concept-term">新三观（NC/NL/NK）</div>
-                        <div class="concept-desc">新宇宙观、新生命观、新认知观——星际文明学的哲学基础，从深时和宇宙尺度重新审视文明发展。</div>
-                    </div>
-
-                    <div class="concept-item">
-                        <div class="concept-term">大过滤器</div>
-                        <div class="concept-desc">费米悖论的一种解释，指文明发展过程中可能遇到的致命障碍，导致大多数文明无法达到星际阶段。</div>
-                    </div>
-
-                    <a href="资源.html" class="concept-link">
-                        <span>了解更多</span><span>→</span>
-                    </a>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="zh-section-title">
-                    <span class="section-icon">💭</span>
-                    思考问题
-                </h2>
-                <div class="thinking-questions">
-                    <div class="question-item" data-number="1.">从递归自由度（RFD）框架：国防部的任何合法用途条款在技术路径锁定、制度可逆性与价值嵌入三个维度上，各自如何压缩全球AI发展的可能性空间？哪一个维度的风险最难被后续政策纠正，为何？</div>
-                    <div class="question-item" data-number="2.">从可逆性原则（REV）：假设2125年的文明史学家回顾2025年的这场博弈，他们可能将哪一个具体决策节点认定为人类失去撤退选项的历史临界点是封杀令的签署、六个月过渡期的设定，还是Grok进入军方系统的那一刻？如果你是那位史学家，你会给今天的决策者留下什么警示？</div>
-                    <p class="cta-text">欢迎在评论区分享您的看法！</p>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="zh-section-title">
-                    <span class="section-icon">🏷️</span>
-                    标签
-                </h2>
-                <div class="tags-container">
-                    <div class="tags-list" data-field="tags">                        <span class="tag-item">星际文明学</span>
-                        <span class="tag-item">AI治理</span>
-                        <span class="tag-item">RFP</span>
-                        <span class="tag-item">REV</span>
-                        <span class="tag-item">军事伦理</span>
-                        <span class="tag-item">递归自由</span>
-                        <span class="tag-item">文明尺度影响</span>
-                    </div>
-                </div>
-            </section>
-
-            <div class="article-footer">
-                <div class="footer-links">
-                    <a href="每日热点评论归档.html " class="footer-link">
-                        <span>←</span>
-                        <span>往期回顾</span>
-                    </a>
-                    <a href="订阅通讯.html" class="footer-link">
-                        <span>订阅更新</span>
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="disclaimer">
-                <p>本评论由星际文明学AI助手生成，经人工审核发布。观点仅供参考，欢迎理性讨论。</p>
-            </div>
-        </div>
-    </main>
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 44 44" fill="none">
-                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
-                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
-                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
-                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
-                                dur="8s" repeatCount="indefinite" />
-                        </circle>
-                    </svg>
-                    <div class="footer-logo-text">
-                        <span class="footer-logo-title">星际文明学</span>
-                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
-                    </div>
-                </div>
-                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
-            </div>
-            <div class="footer-col">
-                <h4>学科</h4>
-                <a href="关于星际文明学.html">概述</a>
-                <a href="首页.html">核心概念</a>
-                <a href="制度设计.html">方法论</a>
-            </div>
-            <div class="footer-col">
-                <h4>资源</h4>
-                <a href="出版信息.html">出版物</a>
-                <a href="资源.html">阅读清单</a>
-                <a href="资源.html">术语表</a>
-            </div>
-            <div class="footer-col">
-                <h4>联系</h4>
-                <a href="联系我们.html">联系我们</a>
-                <a href="联系我们.html">franka328162810@gmail.com</a>
-                <a href="订阅通讯.html">订阅通讯</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
-            <div class="footer-links">
-                <a href="privacy.html">隐私政策</a>
-                <a href="terms.html">使用条款</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 0) {
-                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
-            } else {
-                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
-            }
-        });
-
-        function scrollToSearch() {
-            const section = document.querySelector('.search-section');
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-                const input = document.getElementById('searchInput');
-                if (input) input.focus();
-            }
-        }
-
-        function performSearch() {
-            const q = (document.getElementById('searchInput')?.value || '').trim();
-            const url = q
-                ? `/zh/深度研究.html?q=${encodeURIComponent(q)}#main-content`
-                : '/zh/深度研究.html#main-content';
-            window.location.href = url;
-        }
-
-        function filterByCategory(button) {
-            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            const filter = button.getAttribute('data-filter');
-            const q = filter === 'all' ? '' : filter;
-            const url = q
-                ? `/zh/深度研究.html?q=${encodeURIComponent(q)}#main-content`
-                : '/zh/深度研究.html#main-content';
-            window.location.href = url;
-        }
-
-        document.getElementById('searchInput')?.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                performSearch();
-            }
-        });
-    </script>
+    </div>
 </body>
-
 </html>
-
-
