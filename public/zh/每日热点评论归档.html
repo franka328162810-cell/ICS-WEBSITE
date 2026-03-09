@@ -34,6 +34,23 @@
             scroll-behavior: smooth;
         }
         
+        /* Skip‑to‑main link styles (accessibility) */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: rgba(167, 139, 250, 1);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-to-main:focus {
+            top: 0;
+        }
+        
         body {
             font-family: var(--font-zh-sans);
             font-weight: 300;
@@ -370,6 +387,8 @@
 </head>
 
 <body>
+    <!-- Skip to main content for keyboard users -->
+    <a href="#main-content" class="skip-to-main">跳转到正文</a>
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="nav-brand">
@@ -394,6 +413,15 @@
             <div class="nebula nebula-2"></div>
         </div>
         <div class="page-hero-content">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                <div class="container">
+                    <ol class="breadcrumb-list">
+                        <li><a href="../index.html">首页</a></li>
+                        <li><span>评论归档</span></li>
+                    </ol>
+                </div>
+            </nav>
             <h1 class="page-title">评论历史归档</h1>
         </div>
     </section>
