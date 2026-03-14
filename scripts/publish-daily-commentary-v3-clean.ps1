@@ -25,7 +25,7 @@ function Replace-ByPattern {
     param([string]$Text, [string]$Pattern, [string]$NewValue)
     $safeName = [regex]::Escape($Pattern)
     # generic replacement matches any HTML tag that carries the data-field attribute
-    $regex = "(?<pre><(?<tag>[^ >]+)[^>]*data-field=\"$safeName\"[^>]*>)(.*?)(?<post></\k<tag>>)"
+    $regex = "(?<pre><(?<tag>[^ >]+)[^>]*data-field=`"$safeName`"[^>]*>)(.*?)(?<post></\k<tag>>)"
     return $Text -replace $regex, "`${pre}$([regex]::Replace($NewValue, '&', '&amp;') -replace '\"', '\"\"')`${post}"
 }
 
@@ -33,7 +33,7 @@ function Join-Tags {
     param([object]$TagArray)
     if (!$TagArray) { return "" }
     $tags = @()
-    foreach ($tag in $TagArray) { $tags += "<span class=\"tag\">$tag</span>" }
+    foreach ($tag in $TagArray) { $tags += "<span class=`"tag`">$tag</span>" }
     return $tags -join " "
 }
 
@@ -57,7 +57,7 @@ function Get-DailySeoBlock {
 
     $jsonLd = '{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"' + $titleEsc + '","author":{"@type":"Person","name":"' + $authorEsc + '"},"datePublished":"' + $PublishedDate + '","publisher":{"@type":"Organization","name":"Interstellar Civilization Studies","logo":{"@type":"ImageObject","url":"https://ics-studies.org/images/logo/ics-logo.png"}},"description":"' + $descEsc + '","articleSection":"' + $catEsc + '","wordCount":"' + $wordCount + '","mainEntityOfPage":"' + $Url + '"}'
 
-    return "<!-- ICS-SEO-START (AUTO, DO NOT EDIT) -->`r`n<meta name=\"description\" content=\"$descEsc\">`r`n<meta property=\"og:type\" content=\"article\">`r`n<meta property=\"og:title\" content=\"$titleEsc\">`r`n<meta property=\"og:description\" content=\"$descEsc\">`r`n<meta property=\"og:url\" content=\"$Url\">`r`n<meta name=\"twitter:card\" content=\"summary_large_image\">`r`n<meta name=\"twitter:title\" content=\"$titleEsc\">`r`n<meta name=\"twitter:description\" content=\"$descEsc\">`r`n<script type=\"application/ld+json\">$jsonLd</script>`r`n<!-- ICS-SEO-END -->"
+    return "<!-- ICS-SEO-START (AUTO, DO NOT EDIT) -->`r`n<meta name=`"description`" content=`"$descEsc`">`r`n<meta property=`"og:type`" content=`"article`">`r`n<meta property=`"og:title`" content=`"$titleEsc`">`r`n<meta property=`"og:description`" content=`"$descEsc`">`r`n<meta property=`"og:url`" content=`"$Url`">`r`n<meta name=`"twitter:card`" content=`"summary_large_image`">`r`n<meta name=`"twitter:title`" content=`"$titleEsc`">`r`n<meta name=`"twitter:description`" content=`"$descEsc`">`r`n<script type=`"application/ld+json`">$jsonLd</script>`r`n<!-- ICS-SEO-END -->"
 }
 
 function Ensure-SeoBlock {
@@ -88,7 +88,7 @@ if (!$contentData.en.date) { Write-ColorOutput "Error: en.date is required" "Red
 
 try {
     $enFile = Join-Path $WorkspaceRoot "public/en/daily-commentary.html"
-    $zhFile = Resolve-ZhPageByMarker -Root $WorkspaceRoot -Marker 'data-page="news-daily"'
+    $zhFile = Resolve-ZhPageByMarker -Root $WorkspaceRoot -Marker 'data-page="daily-commentary"'
     $homepageEn = Join-Path $WorkspaceRoot "public/index.html"
     $homepageZh = Resolve-ZhPageByMarker -Root $WorkspaceRoot -Marker 'data-page="home"'
 

@@ -13,8 +13,8 @@ $content = Get-Content -Raw -Path $ContentJson -Encoding UTF8 | ConvertFrom-Json
 $readingTimeZh = '约6分钟'
 $readingTimeEn = 'approx 6 minutes'
 $filename = 'daily-commentary'
-$filenameEn = $content.meta.filenameEn
-$filenameZh = $content.meta.filenameZh
+$filenameEn = 'daily-commentary'
+$filenameZh = '每日热点评论'
 
 # Chinese page - use actual content from JSON
 $zhTemplate = Get-Content -Raw -Path "templates/daily-commentary-zh-template.html" -Encoding UTF8
@@ -32,42 +32,39 @@ $zhMain = @"
 </section>
 
 <section>
-  <h2 class="zh-section-title">$($content.zh.sectionTitles.newViews)</h2>
+  <h2 class="zh-section-title"><span class="section-icon">🔍</span> 三个新视角</h2>
   <div class="content-card">
     <p>$($content.zh.newThreeViews)</p>
   </div>
 </section>
 
 <section>
-  <h2 class="zh-section-title">$($content.zh.sectionTitles.normative)</h2>
+  <h2 class="zh-section-title"><span class="section-icon">⚖️</span> ICS框架规范性判断</h2>
   <div class="content-card">
     <p>$($content.zh.normative)</p>
   </div>
 </section>
 
 <section>
-  <h2 class="zh-section-title">$($content.zh.sectionTitles.impact)</h2>
+  <h2 class="zh-section-title"><span class="section-icon">🔮</span> 长期影响评估</h2>
   <div class="content-card">
     <p>$($content.zh.longTermImpact)</p>
   </div>
 </section>
 
 <section>
-  <h2 class="zh-section-title">$($content.zh.sectionTitles.reflection)</h2>
+  <h2 class="zh-section-title"><span class="section-icon">💭</span> 反思问题</h2>
   <div class="content-card">
-    <p>$($content.zh.reflectionQ1)</p>
-    <p>$($content.zh.reflectionQ2)</p>
+    <p><strong>问题1：</strong>$($content.zh.reflectionQ1)</p>
+    <p><strong>问题2：</strong>$($content.zh.reflectionQ2)</p>
   </div>
 </section>
 "@
 
 $related = ""
 $zhOut = $zhTemplate.Replace('{{HEADLINE}}',$content.zh.headline).Replace('{{SHORT_SUMMARY}}',$content.zh.summary).Replace('{{DATE}}',$content.zh.date).Replace('{{READING_TIME}}',$readingTimeZh).Replace('{{FILENAME}}',$filename).Replace('{{FILENAME_EN}}',$filenameEn).Replace('{{MAIN_CONTENT}}',$zhMain).Replace('{{RELATED_ARTICLES}}',$related)
-
-# Use .NET to write UTF-8 without BOM
-$utf8NoBom = New-Object System.Text.UTF8Encoding $false
-[System.IO.File]::WriteAllText("$PWD\public\zh\$filenameZh.html", $zhOut, $utf8NoBom)
-[System.IO.File]::WriteAllText("$PWD\public\zh\daily-commentary.html", $zhOut, $utf8NoBom)
+$zhOut | Set-Content -Path "public/zh/$filenameZh.html" -Encoding UTF8
+$zhOut | Set-Content -Path "public/zh/daily-commentary.html" -Encoding UTF8
 
 # English page - use actual content from JSON
 $enTemplate = Get-Content -Raw -Path "templates/daily-commentary-en-template.html" -Encoding UTF8
@@ -85,28 +82,28 @@ $enMain = @"
 </section>
 
 <section>
-  <h2 class="en-section-title">$($content.en.sectionTitles.newViews)</h2>
+  <h2 class="en-section-title"><span class="section-icon">🔍</span> Three New Perspectives</h2>
   <div class="content-card">
     <p>$($content.en.newThreeViews)</p>
   </div>
 </section>
 
 <section>
-  <h2 class="en-section-title">$($content.en.sectionTitles.normative)</h2>
+  <h2 class="en-section-title"><span class="section-icon">⚖️</span> ICS Normative Assessment</h2>
   <div class="content-card">
     <p>$($content.en.normative)</p>
   </div>
 </section>
 
 <section>
-  <h2 class="en-section-title">$($content.en.sectionTitles.impact)</h2>
+  <h2 class="en-section-title"><span class="section-icon">🔮</span> Long-term Impact</h2>
   <div class="content-card">
     <p>$($content.en.longTermImpact)</p>
   </div>
 </section>
 
 <section>
-  <h2 class="en-section-title">$($content.en.sectionTitles.reflection)</h2>
+  <h2 class="en-section-title"><span class="section-icon">💭</span> Reflection Questions</h2>
   <div class="content-card">
     <p><strong>Q1:</strong> $($content.en.reflectionQ1)</p>
     <p><strong>Q2:</strong> $($content.en.reflectionQ2)</p>
@@ -115,8 +112,6 @@ $enMain = @"
 "@
 
 $enOut = $enTemplate.Replace('{{HEADLINE}}',$content.en.headline).Replace('{{SHORT_SUMMARY}}',$content.en.summary).Replace('{{DATE}}',$content.en.date).Replace('{{READING_TIME}}',$readingTimeEn).Replace('{{FILENAME}}',$filename).Replace('{{FILENAME_EN}}',$filenameEn).Replace('{{FILENAME_ZH}}',$filenameZh).Replace('{{MAIN_CONTENT}}',$enMain).Replace('{{RELATED_ARTICLES}}',$related)
+$enOut | Set-Content -Path "public/en/daily-commentary.html" -Encoding UTF8
 
-# Use .NET to write UTF-8 without BOM
-[System.IO.File]::WriteAllText("$PWD\public\en\daily-commentary.html", $enOut, $utf8NoBom)
-
-Write-Host "Generated zh and en daily commentary pages from JSON content with UTF-8 (no BOM)." -ForegroundColor Green
+Write-Host "Generated zh and en daily commentary pages from JSON content." -ForegroundColor Green
