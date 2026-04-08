@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Interstellar Civilization Studies</title>
+    <meta name="description" content="The page you are looking for could not be found.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --font-en-sans: 'Inter', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
+            --font-zh-sans: 'Noto Sans SC', sans-serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 14px;
+        }
+
+        body {
+            font-family: var(--font-en-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            max-width: 700px;
+        }
+
+        .error-code {
+            font-family: var(--font-en-display);
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .error-title {
+            font-family: var(--font-en-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .error-message {
+            font-size: 1.125rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .error-message-zh {
+            font-family: var(--font-zh-sans);
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2.5rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-btn-primary {
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+        }
+
+        .nav-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .nav-btn-secondary {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            color: var(--color-quantum-purple-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn-secondary:hover {
+            border-color: rgba(167, 139, 250, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.15);
+        }
+
+        .orbit {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 50%;
+        }
+
+        .orbit-ring-1 {
+            width: 120px;
+            height: 120px;
+            top: 0;
+            left: 0;
+        }
+
+        .orbit-ring-2 {
+            width: 80px;
+            height: 80px;
+            top: 20px;
+            left: 20px;
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+
+        .orbit-center {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: rgba(167, 139, 250, 0.9);
+            border-radius: 50%;
+            top: 52px;
+            left: 52px;
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.5);
+        }
+
+        .orbit-planet {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--color-nebula-cyan);
+            border-radius: 50%;
+            top: -4px;
+            left: 56px;
+            animation: orbit-spin 6s linear infinite;
+            transform-origin: 4px 64px;
+        }
+
+        @keyframes orbit-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+
+            .error-title {
+                font-size: 1.125rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-layer">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+    </div>
+    <div class="stars" id="stars"></div>
+
+    <div class="content">
+        <div class="orbit">
+            <div class="orbit-ring orbit-ring-1"></div>
+            <div class="orbit-ring orbit-ring-2"></div>
+            <div class="orbit-center"></div>
+            <div class="orbit-planet"></div>
+        </div>
+
+        <div class="error-code">404</div>
+        <h1 class="error-title">Lost in Deep Space</h1>
+        <p class="error-message">The page you are looking for has drifted beyond our observable universe. It may have been moved, deleted, or never existed in this timeline.</p>
+        <p class="error-message-zh">您寻找的页面已漂流至可观测宇宙之外。该页面可能已被移动、删除，或从未存在于这条时间线上。</p>
+
+        <div class="nav-buttons">
+            <a href="/en/index.html" class="nav-btn nav-btn-primary">English Home</a>
+            <a href="/zh/首页.html" class="nav-btn nav-btn-secondary">中文首页</a>
+        </div>
+    </div>
+
+    <script>
+        // Generate random stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (2 + Math.random() * 3) + 's';
+            const size = Math.random() * 2 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+
+</html>
