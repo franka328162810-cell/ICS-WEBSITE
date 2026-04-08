@@ -1,23 +1,14 @@
 (function () {
     const AUTH_KEY = 'ics_admin_session_v1';
 
-    const DEMO_USERS = [
-        {
-            email: 'admin@ics-studies.org',
-            password: 'ICS2026!',
-            role: 'admin',
-            name: 'ICS Admin'
-        }
-    ];
+    // Authentication is handled server-side. This client module
+    // only manages the local session token returned by the server.
 
-    function setSession(user) {
-        const payload = {
-            email: user.email,
-            role: user.role,
-            name: user.name,
+    function setSession(payload) {
+        localStorage.setItem(AUTH_KEY, JSON.stringify({
+            ...payload,
             loginAt: new Date().toISOString()
-        };
-        localStorage.setItem(AUTH_KEY, JSON.stringify(payload));
+        }));
         return payload;
     }
 
@@ -35,9 +26,9 @@
     }
 
     function login(email, password) {
-        const user = DEMO_USERS.find(u => u.email === email && u.password === password);
-        if (!user) return null;
-        return setSession(user);
+        // TODO: Replace with real server-side authentication endpoint
+        console.warn('CMS authentication requires server-side setup. See admin docs.');
+        return null;
     }
 
     function logout() {
