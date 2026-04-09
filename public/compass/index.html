@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#a78bfa">
+    <title>ICS Compass — Governance Evaluation Toolkit | 星际罗盘 — 治理评估工具</title>
+    <meta name="description" content="ICS Compass: Four editions of the Interstellar Civilization Studies governance evaluation toolkit — Free, Pro, Academic, and Enterprise.">
+    <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1628;
+            --bg-card: rgba(255,255,255,0.03);
+            --purple: #a78bfa;
+            --purple-dark: #7c3aed;
+            --cyan: #06b6d4;
+            --cyan-light: #22d3ee;
+            --gold: #f59e0b;
+            --text-primary: #f1f5f9;
+            --text-secondary: rgba(255,255,255,0.7);
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(167,139,250,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(167,139,250,0.15);
+            color: var(--purple);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--cyan-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero h2 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .hero-desc {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Tier Grid */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0 4rem;
+        }
+        .tier-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(167,139,250,0.12);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .tier-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167,139,250,0.3);
+            box-shadow: 0 8px 32px rgba(167,139,250,0.1);
+        }
+        .tier-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .tier-name {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.25rem;
+        }
+        .tier-zh-name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        .tier-tagline {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .tier-price {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .tier-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .tier-features li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+        .tier-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--cyan-light);
+            font-weight: 700;
+        }
+        .tier-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+            color: #fff;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(124,58,237,0.4); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+
+        /* Color accents per tier */
+        .tier-free .tier-name { color: var(--cyan-light); }
+        .tier-free .tier-price { color: var(--cyan-light); }
+        .tier-pro .tier-name { color: var(--purple); }
+        .tier-pro .tier-price { color: var(--purple); }
+        .tier-academic .tier-name { color: var(--gold); }
+        .tier-academic .tier-price { color: var(--gold); }
+        .tier-enterprise .tier-name { color: #c084fc; }
+        .tier-enterprise .tier-price { color: #c084fc; }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(167,139,250,0.1);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .page-footer a {
+            color: var(--purple);
+            text-decoration: none;
+        }
+        .page-footer a:hover { text-decoration: underline; }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 1.5rem 0 0;
+        }
+        .back-link:hover { color: var(--purple); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/en/index.html" class="back-link">← Back to ICS Website</a>
+    </div>
+
+    <section class="hero">
+        <span class="hero-badge">Governance Evaluation Toolkit</span>
+        <h1>ICS COMPASS</h1>
+        <h2>星际罗盘 — 星际文明学治理评估工具</h2>
+        <p class="hero-desc">
+            Based on the ICS theoretical framework — 30 axioms, 3 principles, 5 forbidden red lines, 6 quantitative metrics — choose the edition that fits your needs.<br>
+            基于ICS理论框架 — 30条公理、3项原则、5条禁止红线、6项量化指标 — 选择适合您需求的版本。
+        </p>
+    </section>
+
+    <div class="container">
+        <div class="tier-grid">
+
+            <!-- Free -->
+            <div class="tier-card tier-free">
+                <span class="tier-icon">🧭</span>
+                <div class="tier-name">COMPASS FREE</div>
+                <div class="tier-zh-name">星际罗盘 免费版</div>
+                <div class="tier-tagline">Start Your ICS Journey / 开启星际文明学之旅</div>
+                <div class="tier-price">FREE / 免费</div>
+                <ul class="tier-features">
+                    <li>3 core metrics: UCS · RFD · CDI</li>
+                    <li>3 evaluation templates</li>
+                    <li>3 evaluations per day</li>
+                    <li>Simplified scoring (slider-based)</li>
+                    <li>Print export</li>
+                    <li>Bilingual EN/ZH interface</li>
+                </ul>
+                <div class="tier-actions">
+                    <a href="free/" class="btn btn-primary">Launch 启动 →</a>
+                    <a href="free/manual.html" class="btn btn-secondary">Manual 手册</a>
+                </div>
+            </div>
+
+            <!-- Pro -->
+            <div class="tier-card tier-pro">
+                <span class="tier-icon">🔬</span>
+                <div class="tier-name">COMPASS PRO</div>
+                <div class="tier-zh-name">星际罗盘 专业版</div>
+                <div class="tier-tagline">Deep Analysis for Professionals / 专业人士的深度分析</div>
+                <div class="tier-price">$19.99/mo · ¥128/月</div>
+                <ul class="tier-features">
+                    <li>All 6 metrics with sub-dimensions</li>
+                    <li>6 professional evaluation templates</li>
+                    <li>Unlimited evaluations</li>
+                    <li>Full calculation engine</li>
+                    <li>PDF + JSON export</li>
+                    <li>Historical comparison</li>
+                </ul>
+                <div class="tier-actions">
+                    <a href="pro/" class="btn btn-primary">Launch 启动 →</a>
+                    <a href="pro/manual.html" class="btn btn-secondary">Manual 手册</a>
+                </div>
+            </div>
+
+            <!-- Academic -->
+            <div class="tier-card tier-academic">
+                <span class="tier-icon">🎓</span>
+                <div class="tier-name">COMPASS ACADEMIC</div>
+                <div class="tier-zh-name">星际罗盘 学术版</div>
+                <div class="tier-tagline">Research-Grade Framework Tools / 研究级框架工具</div>
+                <div class="tier-price">$39.99/mo · ¥258/月</div>
+                <ul class="tier-features">
+                    <li>Custom metric weights</li>
+                    <li>Sensitivity analysis</li>
+                    <li>Stress test simulation</li>
+                    <li>Full formula display &amp; derivation</li>
+                    <li>LaTeX / BibTeX / CSV export</li>
+                    <li>Cross-reference to book volumes</li>
+                </ul>
+                <div class="tier-actions">
+                    <a href="academic/" class="btn btn-primary">Launch 启动 →</a>
+                    <a href="academic/manual.html" class="btn btn-secondary">Manual 手册</a>
+                </div>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="tier-card tier-enterprise">
+                <span class="tier-icon">🏛️</span>
+                <div class="tier-name">COMPASS ENTERPRISE</div>
+                <div class="tier-zh-name">星际罗盘 企业版</div>
+                <div class="tier-tagline">Governance at Civilizational Scale / 文明尺度的治理工具</div>
+                <div class="tier-price">Custom / 定制报价</div>
+                <ul class="tier-features">
+                    <li>Compliance assessment matrix</li>
+                    <li>CSIA risk dashboard (L1–L4)</li>
+                    <li>Governance gap analysis</li>
+                    <li>Batch evaluation (CSV upload)</li>
+                    <li>Full REST API + webhooks</li>
+                    <li>SSO · Team roles · Audit trail</li>
+                </ul>
+                <div class="tier-actions">
+                    <a href="enterprise/" class="btn btn-primary">Launch 启动 →</a>
+                    <a href="enterprise/manual.html" class="btn btn-secondary">Manual 手册</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <p>© 2026 <a href="https://ics-studies.org">Interstellar Civilization Studies</a>. All rights reserved.</p>
+        <p style="margin-top:0.5rem">Contact: <a href="mailto:franka328162810@gmail.com">franka328162810@gmail.com</a></p>
+    </footer>
+</body>
+</html>
