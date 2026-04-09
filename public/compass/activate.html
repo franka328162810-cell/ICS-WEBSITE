@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#a78bfa">
+    <title>Activate ICS Compass License | 激活星际罗盘许可</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1628;
+            --purple: #a78bfa;
+            --purple-dark: #7c3aed;
+            --cyan: #06b6d4;
+            --gold: #f59e0b;
+            --enterprise: #c084fc;
+            --text-primary: #f1f5f9;
+            --text-secondary: rgba(255,255,255,0.6);
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Logo */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .logo-section h1 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            letter-spacing: 0.08em;
+            margin-top: 1rem;
+        }
+        .logo-section p {
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+        }
+
+        /* Status cards */
+        .status-section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(167,139,250,0.15);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .status-section h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Tier selector */
+        .tier-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .tier-tab {
+            flex: 1;
+            padding: 0.6rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(167,139,250,0.15);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .tier-tab:hover { background: rgba(255,255,255,0.08); }
+        .tier-tab.active {
+            border-color: var(--purple);
+            color: var(--text-primary);
+            background: rgba(167,139,250,0.1);
+        }
+        .tier-tab[data-tier="pro"].active { border-color: var(--purple); }
+        .tier-tab[data-tier="academic"].active { border-color: var(--gold); }
+        .tier-tab[data-tier="enterprise"].active { border-color: var(--enterprise); }
+
+        /* Input */
+        .input-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 0.85rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(167,139,250,0.25);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.05em;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus {
+            border-color: var(--purple);
+        }
+        .input-group input::placeholder {
+            color: rgba(255,255,255,0.25);
+        }
+        .activate-btn {
+            padding: 0.85rem 2rem;
+            background: var(--purple);
+            color: #0a1628;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .activate-btn:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        /* Messages */
+        .msg { padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.9rem; margin-top: 0.75rem; display: none; }
+        .msg-error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+        .msg-success { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #86efac; }
+
+        /* Current status */
+        .license-status {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(167,139,250,0.1);
+        }
+        .license-status h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .badge-active { background: rgba(34,197,94,0.15); color: #86efac; }
+        .badge-inactive { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); }
+
+        /* Links */
+        .footer-links {
+            text-align: center;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--purple); }
+
+        @media (max-width: 540px) {
+            .input-group { flex-direction: column; }
+            .tier-tabs { flex-wrap: wrap; }
+            .tier-tab { flex: 1 1 calc(50% - 0.25rem); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <svg viewBox="0 0 44 44" fill="none" width="56" height="56">
+                <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.3)" stroke-width="1" fill="none"/>
+                <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.25)" stroke-width="1" fill="none"/>
+                <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)"/>
+            </svg>
+            <h1>ICS COMPASS</h1>
+            <p>License Activation / 许可激活</p>
+        </div>
+
+        <div class="status-section">
+            <h2>🔑 Enter License Key / 输入许可密钥</h2>
+            
+            <div class="tier-tabs">
+                <div class="tier-tab active" data-tier="pro">Pro 专业版</div>
+                <div class="tier-tab" data-tier="academic">Academic 学术版</div>
+                <div class="tier-tab" data-tier="enterprise">Enterprise 企业版</div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="key-input" placeholder="ICS-PRO-XXXXXXXX-XX" spellcheck="false" autocomplete="off">
+                <button class="activate-btn" id="activate-btn">Activate 激活</button>
+            </div>
+
+            <div class="msg msg-error" id="msg-error"></div>
+            <div class="msg msg-success" id="msg-success"></div>
+
+            <div class="license-status">
+                <h3>Current Status / 当前状态</h3>
+                <div class="status-row">
+                    <span>Pro 专业版</span>
+                    <span class="status-badge badge-inactive" id="status-pro">Not Activated 未激活</span>
+                </div>
+                <div class="status-row">
+                    <span>Academic 学术版</span>
+                    <span class="status-badge badge-inactive" id="status-academic">Not Activated 未激活</span>
+                </div>
+                <div class="status-row">
+                    <span>Enterprise 企业版</span>
+                    <span class="status-badge badge-inactive" id="status-enterprise">Not Activated 未激活</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="./">← Back to Editions / 版本选择</a>
+            <a href="free/">Try Free / 免费版</a>
+            <a href="mailto:franka328162810@gmail.com">Help / 帮助</a>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ─── Same validation logic as license-gate.js ───
+        function computeChecksum(prefix) {
+            var sum = 0;
+            for (var i = 0; i < prefix.length; i++) {
+                sum = ((sum << 5) - sum + prefix.charCodeAt(i)) & 0xFFFF;
+            }
+            return ((sum & 0xFF) ^ 0x5A).toString(16).toUpperCase().padStart(2, '0');
+        }
+
+        function validateLicenseKey(key, tier) {
+            if (!key || typeof key !== 'string') return false;
+            key = key.trim().toUpperCase();
+            var pattern = /^ICS-([A-Z]+)-([0-9A-F]{8})-([0-9A-F]{2})$/;
+            var match = key.match(pattern);
+            if (!match) return false;
+
+            var keyTier = match[1].toLowerCase();
+            var body = match[2];
+            var checksum = match[3];
+
+            var tierLevel = { pro: 1, academic: 2, enterprise: 3 };
+            var keyLevel = tierLevel[keyTier] || 0;
+            var requiredLevel = tierLevel[tier] || 99;
+            if (keyLevel < requiredLevel) return false;
+
+            var prefix = 'ICS-' + match[1] + '-' + body;
+            return checksum === computeChecksum(prefix);
+        }
+
+        function getStoredKey(tier) {
+            try { return localStorage.getItem('ics_license_' + tier) || ''; }
+            catch (e) { return ''; }
+        }
+
+        function storeKey(tier, key) {
+            try { localStorage.setItem('ics_license_' + tier, key.trim().toUpperCase()); }
+            catch (e) { /* silent */ }
+        }
+
+        // ─── DOM ───
+        var input = document.getElementById('key-input');
+        var btn = document.getElementById('activate-btn');
+        var errorEl = document.getElementById('msg-error');
+        var successEl = document.getElementById('msg-success');
+        var tabs = document.querySelectorAll('.tier-tab');
+        var currentTier = 'pro';
+
+        var tierPlaceholders = {
+            pro: 'ICS-PRO-XXXXXXXX-XX',
+            academic: 'ICS-ACADEMIC-XXXXXXXX-XX',
+            enterprise: 'ICS-ENTERPRISE-XXXXXXXX-XX'
+        };
+
+        // Tab switching
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                tabs.forEach(function(t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+                currentTier = tab.getAttribute('data-tier');
+                input.placeholder = tierPlaceholders[currentTier];
+                errorEl.style.display = 'none';
+                successEl.style.display = 'none';
+            });
+        });
+
+        // Refresh status display
+        function refreshStatus() {
+            ['pro', 'academic', 'enterprise'].forEach(function(tier) {
+                var el = document.getElementById('status-' + tier);
+                var key = getStoredKey(tier);
+                if (key && validateLicenseKey(key, tier)) {
+                    el.textContent = '✓ Activated 已激活';
+                    el.className = 'status-badge badge-active';
+                } else {
+                    el.textContent = 'Not Activated 未激活';
+                    el.className = 'status-badge badge-inactive';
+                }
+            });
+        }
+
+        // Activation
+        function tryActivate() {
+            var key = (input.value || '').trim();
+            errorEl.style.display = 'none';
+            successEl.style.display = 'none';
+
+            if (!key) {
+                errorEl.textContent = 'Please enter a license key. / 请输入许可密钥。';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (validateLicenseKey(key, currentTier)) {
+                // Determine which tier the key belongs to
+                var keyMatch = key.toUpperCase().match(/^ICS-([A-Z]+)-/);
+                var keyTier = keyMatch ? keyMatch[1].toLowerCase() : currentTier;
+                storeKey(keyTier, key);
+                successEl.innerHTML = '✓ License activated successfully! / 许可激活成功！<br><a href="' + currentTier + '/" style="color:#86efac;font-weight:600;">→ Launch ' + currentTier.charAt(0).toUpperCase() + currentTier.slice(1) + ' Edition</a>';
+                successEl.style.display = 'block';
+                refreshStatus();
+            } else {
+                errorEl.textContent = 'Invalid license key for ' + currentTier.toUpperCase() + '. Please check and try again. / 该许可密钥对 ' + currentTier.toUpperCase() + ' 版无效，请检查后重试。';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        btn.addEventListener('click', tryActivate);
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') tryActivate();
+        });
+        input.addEventListener('input', function() {
+            var pos = input.selectionStart;
+            input.value = input.value.toUpperCase();
+            input.setSelectionRange(pos, pos);
+        });
+
+        // Auto-activate from URL params
+        try {
+            var params = new URLSearchParams(window.location.search);
+            var urlKey = params.get('key');
+            var urlTier = params.get('tier');
+            if (urlKey) {
+                if (urlTier && tierPlaceholders[urlTier]) {
+                    currentTier = urlTier;
+                    tabs.forEach(function(t) {
+                        t.classList.toggle('active', t.getAttribute('data-tier') === urlTier);
+                    });
+                }
+                input.value = urlKey.toUpperCase();
+                setTimeout(tryActivate, 100);
+            }
+        } catch (e) { /* silent */ }
+
+        // Initial status
+        refreshStatus();
+    })();
+    </script>
+</body>
+</html>

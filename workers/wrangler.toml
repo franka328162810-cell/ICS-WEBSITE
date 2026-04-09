@@ -1,0 +1,23 @@
+# ICS Compass — Stripe Webhook Worker
+# https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "ics-compass-stripe"
+main = "stripe-webhook.js"
+compatibility_date = "2024-01-01"
+
+# KV Namespace for storing license records
+# After running: wrangler kv:namespace create "ICS_LICENSES"
+# Replace the id below with the actual KV namespace ID
+[[kv_namespaces]]
+binding = "ICS_LICENSES"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Route: receives webhooks at https://ics-studies.org/api/stripe-webhook
+# (or use a custom workers.dev domain)
+# [routes]
+# pattern = "ics-studies.org/api/stripe-webhook"
+# zone_name = "ics-studies.org"
+
+# Environment variables are set as secrets:
+# wrangler secret put STRIPE_WEBHOOK_SECRET
+# wrangler secret put STRIPE_SECRET_KEY
