@@ -697,6 +697,9 @@
       if (!isOpen) toggleOpen();
       setTimeout(function () { handleSend(text); }, 400);
     };
+
+    /* ───────── Expose engine for embedded chat pages ───────── */
+    window.__icsAI = { findAnswer: findAnswer, renderMd: renderMd };
   }
 
   /* ───────── Auto-Initialize ───────── */

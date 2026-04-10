@@ -525,35 +525,100 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(167, 139, 250, 0.2);
             border-radius: 16px;
-            padding: 3rem;
             margin: 3rem 0;
             min-height: 600px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        .chatbot-placeholder {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+        .embed-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(124,58,237,.4) transparent;
         }
+        .embed-chat-messages::-webkit-scrollbar { width: 6px; }
+        .embed-chat-messages::-webkit-scrollbar-thumb { background: rgba(124,58,237,.4); border-radius: 3px; }
 
-        .chatbot-placeholder svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1.5rem;
-            opacity: 0.5;
+        .embed-msg {
+            display: flex;
+            gap: .75rem;
+            max-width: 85%;
+            animation: embedFadeIn .3s ease;
         }
+        @keyframes embedFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .embed-msg-user { align-self: flex-end; flex-direction: row-reverse; }
+        .embed-msg-bot  { align-self: flex-start; }
 
-        .chatbot-placeholder p {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
+        .embed-msg-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            background: rgba(124, 58, 237, 0.2);
         }
+        .embed-msg-user .embed-msg-avatar { background: rgba(6, 182, 212, 0.2); }
 
-        .chatbot-placeholder small {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.4);
+        .embed-msg-body {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            border-radius: 12px;
+            padding: .875rem 1.125rem;
+            font-size: .9375rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,.88);
         }
+        .embed-msg-user .embed-msg-body {
+            background: rgba(124, 58, 237, 0.15);
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+        .embed-msg-body strong { color: var(--color-energy-gold); }
+        .embed-msg-body a { color: var(--color-nebula-cyan); text-decoration: underline; }
+        .embed-msg-body ul, .embed-msg-body ol { padding-left: 1.25rem; margin: .5rem 0; }
+        .embed-msg-body li { margin-bottom: .25rem; }
+        .embed-msg-body code { background: rgba(0,0,0,.3); padding: .15em .4em; border-radius: 4px; font-size: .85em; }
+
+        .embed-chat-input {
+            display: flex;
+            gap: .5rem;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(167, 139, 250, 0.15);
+            background: rgba(10, 22, 40, 0.6);
+        }
+        .embed-chat-input input {
+            flex: 1;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 8px;
+            padding: .75rem 1rem;
+            font-size: .9375rem;
+            color: #fff;
+            outline: none;
+            transition: border-color .2s;
+        }
+        .embed-chat-input input:focus { border-color: var(--color-quantum-purple); }
+        .embed-chat-input input::placeholder { color: rgba(255,255,255,.4); }
+        .embed-chat-input button {
+            width: 44px; height: 44px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: #fff;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity .2s, transform .2s;
+            flex-shrink: 0;
+        }
+        .embed-chat-input button:hover { opacity: .85; transform: scale(1.05); }
+
+        .example-list li { cursor: pointer; transition: color .2s; }
+        .example-list li:hover { color: var(--color-nebula-cyan); }
 
         .warning-box {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%);
@@ -921,36 +986,36 @@
                     <div class="example-category">
                         <div class="category-title">基础概念</div>
                         <ul class="example-list">
-                            <li>什么是星际文明学？</li>
-                            <li>新三观包括哪些内容？</li>
-                            <li>什么是宇宙责任伦理学？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">什么是星际文明学？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">新三观包括哪些内容？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">什么是宇宙责任伦理学？</li>
                         </ul>
                     </div>
 
                     <div class="example-category">
                         <div class="category-title">核心原则</div>
                         <ul class="example-list">
-                            <li>什么是递归自由原则（RFP）？</li>
-                            <li>负熵责任原则如何理解？</li>
-                            <li>禁忌红线包括哪些内容？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">什么是递归自由原则（RFP）？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">负熵责任原则如何理解？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">禁忌红线包括哪些内容？</li>
                         </ul>
                     </div>
 
                     <div class="example-category">
                         <div class="category-title">指标体系</div>
                         <ul class="example-list">
-                            <li>UCS是什么？如何测量？</li>
-                            <li>文明发展指数包含哪些维度？</li>
-                            <li>如何评估宇宙尺度影响？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">UCS是什么？如何测量？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">文明发展指数包含哪些维度？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">如何评估宇宙尺度影响？</li>
                         </ul>
                     </div>
 
                     <div class="example-category">
                         <div class="category-title">应用问题</div>
                         <ul class="example-list">
-                            <li>星际文明学如何应用于AI治理？</li>
-                            <li>对于AGI发展有什么建议？</li>
-                            <li>如何看待METI（主动向外星发送信息）？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">星际文明学如何应用于AI治理？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">对于AGI发展有什么建议？</li>
+                            <li onclick="icsEmbedAsk(this.textContent)">如何看待METI（主动向外星发送信息）？</li>
                         </ul>
                     </div>
                 </div>
@@ -959,13 +1024,22 @@
             <section>
                 <h2 class="zh-section-title">对话区域</h2>
 
-                <div class="chatbot-container">
-                    <div class="chatbot-placeholder">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                        <p>此处将嵌入Chatbase聊天窗口</p>
-                        <small>请联系管理员配置聊天机器人集成</small>
+                <div class="chatbot-container" id="ics-embed-chat">
+                    <!-- 内嵌 ICS AI 对话界面 -->
+                    <div class="embed-chat-messages" id="embed-messages">
+                        <div class="embed-msg embed-msg-bot">
+                            <div class="embed-msg-avatar">🤖</div>
+                            <div class="embed-msg-body">
+                                <strong>ICS 人工智能助手</strong><br>
+                                您好！我是星际文明学 AI 助手。您可以向我提问关于星际文明学的任何问题——包括核心概念、规范原则、指标体系、AI治理等。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="embed-chat-input">
+                        <input type="text" id="embed-input" placeholder="请输入您的问题..." autocomplete="off">
+                        <button id="embed-send" aria-label="发送">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -1083,6 +1157,80 @@
 
 <!-- ICS 人工智能助手 -->
 <script src="/js/ai-assistant.js"></script>
+<script>
+(function(){
+  /* ── 内嵌聊天引擎（复用 ai-assistant.js 知识库） ── */
+  var LANG = 'zh';
+  var msgBox  = document.getElementById('embed-messages');
+  var input   = document.getElementById('embed-input');
+  var sendBtn = document.getElementById('embed-send');
+  if(!msgBox || !input) return;
+
+  function getEngine(){
+    return window.__icsAI || null;
+  }
+
+  function scrollBottom(){ msgBox.scrollTop = msgBox.scrollHeight; }
+
+  function appendMsg(html, role){
+    var wrap = document.createElement('div');
+    wrap.className = 'embed-msg embed-msg-' + role;
+    var avatar = document.createElement('div');
+    avatar.className = 'embed-msg-avatar';
+    avatar.textContent = role === 'bot' ? '🤖' : '👤';
+    var body = document.createElement('div');
+    body.className = 'embed-msg-body';
+    body.innerHTML = html;
+    wrap.appendChild(avatar);
+    wrap.appendChild(body);
+    msgBox.appendChild(wrap);
+    scrollBottom();
+  }
+
+  function handleSend(){
+    var text = input.value.trim();
+    if(!text) return;
+    input.value = '';
+    appendMsg(text.replace(/</g,'&lt;'), 'user');
+
+    var typing = document.createElement('div');
+    typing.className = 'embed-msg embed-msg-bot';
+    typing.innerHTML = '<div class="embed-msg-avatar">🤖</div><div class="embed-msg-body" style="opacity:.6">思考中…</div>';
+    msgBox.appendChild(typing);
+    scrollBottom();
+
+    setTimeout(function(){
+      msgBox.removeChild(typing);
+      var engine = getEngine();
+      var answer;
+      if(engine && engine.findAnswer){
+        answer = engine.findAnswer(text, LANG);
+      } else {
+        answer = '当前为离线模式，请刷新页面重试。您也可以点击上方的示例问题进行探索！';
+      }
+      if(engine && engine.renderMd){
+        appendMsg(engine.renderMd(answer), 'bot');
+      } else {
+        appendMsg(answer.replace(/</g,'&lt;'), 'bot');
+      }
+    }, 400 + Math.random()*300);
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); handleSend(); }
+  });
+
+  window.icsEmbedAsk = function(text){
+    if(!text) return;
+    input.value = text.trim();
+    handleSend();
+    document.getElementById('ics-embed-chat').scrollIntoView({behavior:'smooth', block:'center'});
+  };
+
+  scrollBottom();
+})();
+</script>
 </body>
 
 </html>
