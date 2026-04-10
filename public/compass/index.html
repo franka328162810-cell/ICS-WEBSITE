@@ -100,9 +100,9 @@
             font-family: var(--font-en-body); font-size: 0.625rem;
             color: rgba(255,255,255,0.4); letter-spacing: 0.05em;
         }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; flex: 1; justify-content: center; }
         .nav-link {
-            font-family: var(--font-en-display); font-size: 0.8rem;
+            font-family: var(--font-en-display); font-size: 0.875rem;
             font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
             color: rgba(255,255,255,0.75); padding: 8px 0; position: relative;
             transition: color var(--transition-normal);
@@ -116,6 +116,21 @@
         }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .nav-actions { display: flex; align-items: center; gap: 12px; }
+        .nav-search {
+            background: none; border: none; color: rgba(255,255,255,0.6);
+            width: 20px; height: 20px; cursor: pointer; padding: 0;
+            transition: color var(--transition-fast);
+        }
+        .nav-search:hover { color: var(--color-quantum-purple-light); }
+        .nav-search svg { width: 20px; height: 20px; }
+        .nav-contact {
+            font-family: var(--font-en-title); font-size: 0.8125rem;
+            font-weight: 600; padding: 8px 20px; border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: #fff; transition: all var(--transition-fast); text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .nav-contact:hover { transform: translateY(-1px); box-shadow: var(--shadow-glow); }
         .lang-switch {
             display: flex; height: 42px;
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
@@ -180,18 +195,19 @@
         .hero h1 {
             font-family: var(--font-en-display);
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase;
-            margin-bottom: 0.75rem;
+            font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .hero h2 {
-            font-family: var(--font-zh-sans); font-size: 1.1rem;
-            font-weight: 300; color: rgba(255,255,255,0.55); margin-bottom: 1.5rem;
+            font-family: var(--font-zh-sans); font-size: 1.05rem;
+            font-weight: 400; color: rgba(255,255,255,0.5); margin-bottom: 2rem;
+            letter-spacing: 0.15em;
         }
         .hero-desc {
-            max-width: 700px; margin: 0 auto; color: rgba(255,255,255,0.6);
-            font-size: 1rem; line-height: 1.8;
+            max-width: 720px; margin: 0 auto; color: rgba(255,255,255,0.55);
+            font-size: 0.95rem; line-height: 1.9;
         }
 
         /* ── Tier Grid ── */
@@ -224,6 +240,11 @@
             position: relative; transition: all var(--transition-normal);
             display: flex; flex-direction: column;
         }
+        .tier-card::before {
+            content: ''; position: absolute; top: 0; left: 1.5rem; right: 1.5rem;
+            height: 2px; border-radius: 1px;
+            background: linear-gradient(90deg, var(--color-quantum-purple-light), var(--color-nebula-cyan-light));
+        }
         .tier-card:hover {
             transform: translateY(-4px);
             border-color: rgba(167, 139, 250, 0.3);
@@ -232,25 +253,28 @@
         .tier-icon { font-size: 2.5rem; margin-bottom: 1rem; }
         .tier-name {
             font-family: var(--font-en-display); font-size: 1.15rem;
-            font-weight: 700; letter-spacing: 0.04em;
+            font-weight: 700; letter-spacing: 0.06em;
+            color: var(--color-text-primary);
         }
         .tier-zh-name {
-            font-family: var(--font-zh-sans); font-size: 0.9rem;
-            color: rgba(255,255,255,0.5); margin-bottom: 0.5rem;
+            font-family: var(--font-zh-sans); font-size: 0.85rem;
+            color: rgba(255,255,255,0.45); margin-bottom: 0.75rem;
         }
         .tier-tagline {
-            font-family: var(--font-en-title); font-size: 0.85rem;
-            color: var(--color-energy-gold); font-weight: 500;
+            font-family: var(--font-en-title); font-size: 0.8rem;
+            color: rgba(255,255,255,0.5); font-weight: 500;
             margin-bottom: 1rem; font-style: italic;
+            letter-spacing: 0.02em;
         }
         .tier-price {
-            font-family: var(--font-en-display); font-size: 1.3rem;
-            font-weight: 700; margin-bottom: 1rem; color: var(--color-text-primary);
+            font-family: var(--font-en-display); font-size: 1.2rem;
+            font-weight: 700; margin-bottom: 1.25rem;
         }
         .tier-features { margin-bottom: 1.5rem; flex-grow: 1; }
         .tier-features li {
             font-size: 0.875rem; color: rgba(255,255,255,0.6);
-            padding: 0.3rem 0 0.3rem 1.4rem; position: relative;
+            padding: 0.35rem 0 0.35rem 1.4rem; position: relative;
+            line-height: 1.5;
         }
         .tier-features li::before {
             content: '✓'; position: absolute; left: 0;
@@ -287,17 +311,20 @@
         }
         .btn-subscribe:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
 
-        /* Tier color accents */
-        .tier-free .tier-name { color: var(--color-nebula-cyan-light); }
+        /* Tier color accents — unified name, accent via top-border + price */
+        .tier-free::before { background: linear-gradient(90deg, var(--color-nebula-cyan), var(--color-nebula-cyan-light)); }
         .tier-free .tier-price { color: var(--color-nebula-cyan-light); }
         .tier-free:hover { border-color: rgba(6, 182, 212, 0.3); }
-        .tier-pro .tier-name { color: var(--color-quantum-purple-light); }
+        .tier-pro::before { background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-quantum-purple-light)); }
         .tier-pro .tier-price { color: var(--color-quantum-purple-light); }
-        .tier-academic .tier-name { color: var(--color-energy-gold); }
+        .tier-pro:hover { border-color: rgba(167, 139, 250, 0.3); }
+        .tier-academic::before { background: linear-gradient(90deg, var(--color-energy-gold), var(--color-energy-gold-light)); }
         .tier-academic .tier-price { color: var(--color-energy-gold); }
+        .tier-academic:hover { border-color: rgba(245, 158, 11, 0.3); }
         .tier-academic .btn-subscribe { background: linear-gradient(135deg, var(--color-energy-gold), #d97706); }
-        .tier-enterprise .tier-name { color: #c084fc; }
+        .tier-enterprise::before { background: linear-gradient(90deg, #c084fc, var(--color-quantum-purple-light)); }
         .tier-enterprise .tier-price { color: #c084fc; }
+        .tier-enterprise:hover { border-color: rgba(192, 132, 252, 0.3); }
         .tier-enterprise .btn-subscribe { background: linear-gradient(135deg, #c084fc, var(--color-quantum-purple)); }
 
         /* ── Activate link ── */
@@ -367,7 +394,8 @@
         /* ── Responsive ── */
         @media (max-width: 1024px) {
             .nav-links { gap: 1.5rem; }
-            .nav-link { font-size: 0.7rem; }
+            .nav-link { font-size: 0.75rem; }
+            .nav-contact { display: none; }
             .footer-content { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
@@ -379,11 +407,13 @@
                 backdrop-filter: blur(20px);
             }
             .nav-links.active { display: flex; }
-            .nav-link { padding: 12px 0; width: 100%; }
+            .nav-link { padding: 12px 0; width: 100%; font-size: 0.875rem; }
             .nav-hamburger { display: flex; }
             .nav-actions .lang-switch { display: none; }
+            .nav-actions .nav-search { display: none; }
+            .nav-actions .nav-contact { display: none; }
             .hero { padding: 7rem 1.5rem 3rem; min-height: auto; }
-            .hero h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+            .hero h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); letter-spacing: 0.08em; }
             .tier-grid { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
@@ -425,10 +455,17 @@
             </ul>
 
             <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
                 <div class="lang-switch">
                     <a href="/en/index.html" class="lang-btn active">EN</a>
                     <a href="/zh/首页.html" class="lang-btn">中文</a>
                 </div>
+                <a href="/en/contact-us.html" class="nav-contact">Contact</a>
                 <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -502,9 +539,9 @@
                     <li>Historical comparison</li>
                 </ul>
                 <div class="tier-actions">
-                    <a href="pro/" class="btn btn-primary">Launch 启动 →</a>
+                    <a href="https://buy.stripe.com/REPLACE_WITH_PRO_LINK" class="btn btn-primary" target="_blank">Subscribe 订阅 →</a>
+                    <a href="pro/" class="btn btn-secondary">Launch 启动 →</a>
                     <a href="pro/manual.html" class="btn btn-secondary">Manual 手册</a>
-                    <a href="https://buy.stripe.com/REPLACE_WITH_PRO_LINK" class="btn-subscribe" target="_blank">Subscribe 订阅 →</a>
                 </div>
             </div>
 
@@ -524,9 +561,9 @@
                     <li>Cross-reference to book volumes</li>
                 </ul>
                 <div class="tier-actions">
-                    <a href="academic/" class="btn btn-primary">Launch 启动 →</a>
+                    <a href="https://buy.stripe.com/REPLACE_WITH_ACADEMIC_LINK" class="btn btn-primary" target="_blank">Subscribe 订阅 →</a>
+                    <a href="academic/" class="btn btn-secondary">Launch 启动 →</a>
                     <a href="academic/manual.html" class="btn btn-secondary">Manual 手册</a>
-                    <a href="https://buy.stripe.com/REPLACE_WITH_ACADEMIC_LINK" class="btn-subscribe" target="_blank">Subscribe 订阅 →</a>
                 </div>
             </div>
 
@@ -546,9 +583,9 @@
                     <li>SSO · Team roles · Audit trail</li>
                 </ul>
                 <div class="tier-actions">
-                    <a href="enterprise/" class="btn btn-primary">Launch 启动 →</a>
+                    <a href="mailto:franka328162810@gmail.com?subject=ICS%20Compass%20Enterprise%20Inquiry" class="btn btn-primary">Contact Sales 联系销售 →</a>
+                    <a href="enterprise/" class="btn btn-secondary">Launch 启动 →</a>
                     <a href="enterprise/manual.html" class="btn btn-secondary">Manual 手册</a>
-                    <a href="mailto:franka328162810@gmail.com?subject=ICS%20Compass%20Enterprise%20Inquiry" class="btn-subscribe">Contact Sales 联系销售 →</a>
                 </div>
             </div>
 
@@ -625,5 +662,6 @@
         }
     })();
     </script>
+    <script src="/js/search-redirect.js"></script>
 </body>
 </html>

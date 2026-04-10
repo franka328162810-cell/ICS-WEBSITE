@@ -76,9 +76,9 @@
         .nav-brand-text { display: flex; flex-direction: column; }
         .nav-title { font-family: var(--font-en-display); font-size: 1.25rem; font-weight: 700; letter-spacing: 0.1em; color: #fff; }
         .nav-subtitle { font-family: var(--font-en-body); font-size: 0.625rem; color: rgba(255,255,255,0.4); }
-        .nav-links { display: flex; gap: 2rem; align-items: center; list-style: none; margin: 0; padding: 0; }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; flex: 1; justify-content: center; list-style: none; margin: 0; padding: 0; }
         .nav-link {
-            font-family: var(--font-en-display) !important; font-size: 0.8rem !important;
+            font-family: var(--font-en-display) !important; font-size: 0.875rem !important;
             font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
             color: rgba(255,255,255,0.75) !important; padding: 8px 0; position: relative;
             transition: color var(--transition-normal); text-decoration: none !important;
@@ -92,6 +92,21 @@
         }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .nav-actions { display: flex; align-items: center; gap: 12px; }
+        .nav-search {
+            background: none; border: none; color: rgba(255,255,255,0.6);
+            width: 20px; height: 20px; cursor: pointer; padding: 0;
+            transition: color var(--transition-fast);
+        }
+        .nav-search:hover { color: var(--color-quantum-purple-light); }
+        .nav-search svg { width: 20px; height: 20px; }
+        .nav-contact {
+            font-family: var(--font-en-title); font-size: 0.8125rem;
+            font-weight: 600; padding: 8px 20px; border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: #fff; transition: all var(--transition-fast); text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .nav-contact:hover { transform: translateY(-1px); box-shadow: var(--shadow-glow); }
         .lang-switch {
             display: flex; height: 42px; background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-md);
@@ -172,7 +187,8 @@
         /* Responsive */
         @media (max-width: 1024px) {
             .nav-links { gap: 1.5rem; }
-            .nav-link { font-size: 0.7rem !important; }
+            .nav-link { font-size: 0.75rem !important; }
+            .nav-contact { display: none; }
         }
         @media (max-width: 768px) {
             .navbar { height: 64px; }
@@ -183,9 +199,11 @@
                 backdrop-filter: blur(20px);
             }
             .nav-links.active { display: flex; }
-            .nav-link { padding: 12px 0 !important; width: 100%; }
+            .nav-link { padding: 12px 0 !important; width: 100%; font-size: 0.875rem !important; }
             .nav-hamburger { display: flex; }
             .nav-actions .lang-switch { display: none; }
+            .nav-actions .nav-search { display: none; }
+            .nav-actions .nav-contact { display: none; }
             .container { padding-top: 5rem !important; }
         }
     </style>
@@ -220,10 +238,17 @@
                 <li><a href="/compass/" class="nav-link active">Compass</a></li>
             </ul>
             <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
                 <div class="lang-switch">
                     <a href="/en/index.html" class="lang-btn active">EN</a>
                     <a href="/zh/首页.html" class="lang-btn">中文</a>
                 </div>
+                <a href="/en/contact-us.html" class="nav-contact">Contact</a>
                 <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
                     <span></span><span></span><span></span>
                 </button>
