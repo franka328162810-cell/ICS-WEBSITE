@@ -1,7 +1,7 @@
 /**
  * ICS 人工智能助手 (AI Assistant)
  * 星际文明学网站嵌入式智能问答组件
- * Version: 1.0.0
+ * Version: 2.0.0 — 四部著作知识库 + Cloudflare Workers AI
  * 
  * 功能：
  * - ICS 知识库 FAQ 智能匹配（中英双语）
@@ -84,6 +84,46 @@
         answer: '**星际文明学 (Interstellar Civilization Studies, ICS)** 是一门跨学科研究领域，旨在从宇宙尺度审视人类文明的发展轨迹与未来可能性。\n\n🔬 **核心研究方向包括：**\n- 文明演化理论与卡尔达肖夫等级\n- 宇宙智能生命搜索 (SETI)\n- 星际治理框架与伦理\n- 技术奇点与文明跃迁\n- 行星际资源利用与可持续发展\n\nICS 致力于将天文学、社会学、政治学、技术哲学等多学科视角整合，为人类走向星际文明提供理论基础。\n\n📚 了解更多：访问我们的 [深度研究](/zh/深度研究.html) 页面。'
       },
       {
+        keywords: ['递归自由', '递归自由原则', 'RFP', '自由原则'],
+        patterns: [/递归自由/, /RFP/, /自由.*原则/],
+        answer: '**递归自由原则 (Recursive Freedom Principle, RFP)** 是 ICS 三大核心规范原则之一。\n\n🔄 **核心要义：**\n任何主体在行使自由时，必须保护其他主体行使同等自由的可能性。这种保护是"递归"的——它适用于所有层级的主体和所有时间尺度。\n\n⚖️ **关键特征：**\n- **递归性** — 自由的保障本身也需要被保障\n- **包容性** — 适用于人类、AI、潜在外星文明等所有智能主体\n- **跨时间性** — 当代行为不应剥夺未来世代的自由空间\n\n递归自由原则与**负熵责任原则**和**可逆性原则**共同构成 ICS 的规范性基础。\n\n📖 详细了解：[递归自由原则](/zh/递归自由原则.html)'
+      },
+      {
+        keywords: ['负熵', '负熵责任', 'NRP', '热力学', '负熵原则'],
+        patterns: [/负熵.*责任/, /NRP/, /负熵.*原则/],
+        answer: '**负熵责任原则 (Negentropy Responsibility Principle, NRP)** 是 ICS 三大核心规范原则之一。\n\n🌡️ **核心要义：**\n基于热力学第二定律，智慧主体承担维持和增加宇宙负熵（有序性）的责任。生命本身就是负熵的体现，文明的发展应当增加而非减少宇宙的有序性。\n\n🔬 **理论基础：**\n- 生命定义为**负熵组织**（跨基质的）\n- 负熵是宇宙中最宝贵的"资源"\n- 文明的发展水平可以用其负熵贡献来衡量\n\n📖 详细了解：[负熵责任原则](/zh/负熵责任原则.html)'
+      },
+      {
+        keywords: ['可逆性', '可逆性原则', 'REV', '可逆'],
+        patterns: [/可逆性.*原则/, /REV/, /可逆.*原则/],
+        answer: '**可逆性原则 (Reversibility Principle, REV)** 是 ICS 三大核心规范原则之一。\n\n↩️ **核心要义：**\n在面对深度不确定性时，优先选择可逆的行动路径。不可逆的决策需要更高的论证门槛和更审慎的评估。\n\n🛡️ **应用场景：**\n- AI 系统部署：优先可关停、可回滚的设计\n- 星际探索：优先可恢复的技术方案\n- 治理制度：版本化设计，支持回滚\n\n📖 详细了解：[可逆性原则](/zh/可逆性原则.html)'
+      },
+      {
+        keywords: ['新三观', '三观', '宇宙观', '生命观', '认知观', '旧三观', '世界观'],
+        patterns: [/新三观/, /三观.*不同/, /新.*宇宙观/, /新.*生命观/, /新.*认知观/],
+        answer: '**新三观 (New Three Views)** 是 ICS 的本体论-认识论基础，是对传统"三观"（世界观、人生观、价值观）的升维扩展。\n\n🌌 **新宇宙观 (New Cosmology)**\n- 宇宙的基本模式是**关系**而非实体\n- 存在即**生成**，观察者即**参与者**\n\n🧬 **新生命观 (New Biology)**\n- 生命是**跨基质的**（不限于碳基）\n- 生命定义为**负熵组织**\n- 意识是**连续谱**而非二元分类\n\n🧠 **新认知观 (New Epistemology)**\n- 整合 4E 认知科学（具身、嵌入、延展、生成）\n- **"认知即干预"** — 认知本身就是对世界的参与\n\n新三观不是替代旧三观，而是在宇宙尺度上的扩展与深化。\n\n📖 详细了解：[新三观概述](/zh/新三观概述.html)'
+      },
+      {
+        keywords: ['AI治理', '人工智能治理', 'AI应用', 'AI伦理', '人工智能'],
+        patterns: [/ICS.*AI.*治理/, /AI.*治理/, /人工智能.*治理/, /如何.*应用.*AI/],
+        answer: '**ICS 与 AI 治理** — 星际文明学为人工智能治理提供了独特的理论框架。\n\n🤖 **核心观点：**\n\n1. **递归自由原则应用于 AI**\n   - AI 系统的自主性不应剥夺人类和其他主体的自由空间\n   - AI 设计需内置"自由保障"机制\n\n2. **可逆性原则应用于 AI 部署**\n   - 优先部署可关停、可回滚的 AI 系统\n   - 不可逆的 AI 决策需更高审慎标准\n\n3. **负熵责任应用于 AI 发展**\n   - AI 应增加而非减少人类文明的有序性\n   - 评估 AI 对文明负熵的净贡献\n\n4. **跨主体治理框架**\n   - 为人类、AI、潜在外星智能提供统一的伦理标准\n\n📖 详细了解：[人工智能治理](/zh/人工智能治理.html)'
+      },
+      {
+        keywords: ['著作', '书', '专著', '出版', '四卷', '薛志新'],
+        patterns: [/著作/, /书.*什么时候/, /专著/, /出版/, /四卷/, /第.*卷/],
+        answer: '**《星际文明的规范性基础》** 是 ICS 创始人薛志新撰写的四卷本学术著作，约 120 万字，27 章正文 + 10 个技术附录。\n\n📚 **四卷结构：**\n\n**第一卷：理论基础**\n从宇宙视角重构文明规范，提出新三观和三大核心原则\n\n**第二卷：操作框架**\n从理论到实践的桥梁，包含六大指标体系和六大制度原型\n\n**第三卷：检验与展望**\n通过压力测试和国际对话检验理论框架\n\n**第四卷：附录与资源**\n300+ 核心术语表、教学资源包、研究议程\n\n📅 预计 **2026 年 6 月底** 正式出版发行。\n\n📖 了解更多：[著作概述](/zh/著作概述.html)'
+      },
+      {
+        keywords: ['指标', 'CSIA', 'RFD', 'UCS', 'CRV', 'CDI', 'MBCL', '指标体系'],
+        patterns: [/指标.*体系/, /CSIA/, /RFD/, /UCS.*意识/, /CRV/, /CDI.*发展/, /MBCL/],
+        answer: '**ICS 六大指标体系** 是将理论原则操作化的核心工具。\n\n📊 **六大指标：**\n\n| 缩写 | 名称 | 功能 |\n|------|------|------|\n| **CSIA** | 宇宙尺度影响评估 | 评估行动的宇宙级影响 |\n| **RFD** | 递归自由指数 | 测量对可能性空间的影响 |\n| **UCS** | 宇宙意识标度 | 评估主体意识程度 |\n| **CRV** | 承诺可逆可验证性 | 评估承诺的可信度 |\n| **CDI** | 文明发展指数 | 评估文明综合发展水平 |\n| **MBCL** | 模因生物安全等级 | 评估信息系统风险 |\n\n这些指标详见 ICS 著作第二卷：操作框架。\n\n📖 详细了解：[指标体系](/zh/指标体系.html)'
+      },
+      {
+        keywords: ['协议栈', '五层', 'L0', 'L1', 'L2', 'L3', 'L4', '治理架构'],
+        patterns: [/协议栈/, /五层/, /L[0-4]/, /治理.*架构/],
+        answer: '**ICS 协议栈治理架构** 借鉴计算机网络协议栈的分层思想，构建了五层治理模型。\n\n🏗️ **五层结构：**\n\n- **L₀ 物理约束层** — 热力学、因果结构等不可违反的自然法则\n- **L₁ 本体-认识论层** — 新三观（新宇宙观、新生命观、新认知观）\n- **L₂ 规范原则层** — 三大核心原则（RFP、NRP、REV）\n- **L₃ 指标体系层** — 六大可测量指标\n- **L₄ 制度设计层** — 六大制度原型\n\n每层建立在下层基础之上，且各层之间有明确的接口定义。'
+      },
+      {
         keywords: ['星际罗盘', 'Compass', '罗盘', '评估工具', '使用'],
         patterns: [/星际罗盘/, /compass/i, /如何.*评估/, /怎么.*使用.*罗盘/],
         answer: '**ICS 星际罗盘 (ICS Compass)** 是我们开发的智能文明评估工具。\n\n🧭 **核心功能：**\n- 基于多维指标评估文明发展水平\n- 涵盖技术、治理、文化、可持续性等维度\n- 提供可视化评估报告\n- 支持中英双语\n\n📊 **四个版本：**\n- 🆓 **Free** — 基础评估体验\n- 💼 **Pro** — 完整评估 + 高级分析\n- 🎓 **Academic** — 学术研究版\n- 🏢 **Enterprise** — 机构定制版\n\n🔗 立即体验：[ICS 星际罗盘](/compass/)'
@@ -149,6 +189,46 @@
         keywords: ['ICS', 'interstellar', 'civilization', 'studies', 'what is'],
         patterns: [/what is.*ICS/i, /ICS.*about/i, /interstellar.*civilization/i],
         answer: '**Interstellar Civilization Studies (ICS)** is an interdisciplinary research field examining human civilization\'s trajectory and future possibilities from a cosmic scale.\n\n🔬 **Core Research Areas:**\n- Civilization evolution theory & Kardashev Scale\n- Search for Extraterrestrial Intelligence (SETI)\n- Interstellar governance frameworks & ethics\n- Technological singularity & civilization transitions\n- Interplanetary resource utilization\n\nICS integrates perspectives from astronomy, sociology, political science, and philosophy of technology.\n\n📚 Learn more: Visit our [In-Depth Research](/en/in-depth-research.html) page.'
+      },
+      {
+        keywords: ['recursive', 'freedom', 'principle', 'RFP'],
+        patterns: [/recursive.*freedom/i, /RFP/i, /freedom.*principle/i],
+        answer: '**The Recursive Freedom Principle (RFP)** is one of three core normative principles in ICS.\n\n🔄 **Core Idea:**\nAny agent exercising freedom must protect the possibility for other agents to exercise equivalent freedom. This protection is "recursive" — it applies across all levels and time scales.\n\n⚖️ **Key Features:**\n- **Recursivity** — The protection of freedom itself must be protected\n- **Inclusivity** — Applies to humans, AI, potential extraterrestrial intelligences\n- **Temporal depth** — Present actions must not foreclose future generations\' freedom\n\nRFP works together with the **Negentropy Responsibility Principle** and **Reversibility Principle** to form ICS\'s normative foundation.\n\n📖 Learn more: [Recursive Freedom Principle](/en/recursive-freedom-principle.html)'
+      },
+      {
+        keywords: ['negentropy', 'responsibility', 'NRP', 'thermodynamics'],
+        patterns: [/negentropy/i, /NRP/i, /thermodynamic.*responsibility/i],
+        answer: '**The Negentropy Responsibility Principle (NRP)** is one of three core normative principles in ICS.\n\n🌡️ **Core Idea:**\nBased on the Second Law of Thermodynamics, intelligent agents bear responsibility for maintaining and increasing the universe\'s negentropy (orderliness). Life itself is a manifestation of negentropy.\n\n🔬 **Theoretical Basis:**\n- Life defined as **negentropy organization** (substrate-independent)\n- Negentropy as the most precious "resource" in the universe\n- Civilization level measurable by negentropy contribution\n\n📖 Learn more: [Negentropy Responsibility Principle](/en/negentropy-responsibility-principle.html)'
+      },
+      {
+        keywords: ['reversibility', 'principle', 'REV', 'reversible'],
+        patterns: [/reversib/i, /REV/i],
+        answer: '**The Reversibility Principle (REV)** is one of three core normative principles in ICS.\n\n↩️ **Core Idea:**\nUnder deep uncertainty, prefer reversible action paths. Irreversible decisions require higher justification thresholds and more cautious assessment.\n\n🛡️ **Applications:**\n- AI deployment: Prefer systems that can be shut down and rolled back\n- Space exploration: Favor recoverable technical solutions\n- Governance: Version-controlled design with rollback capability\n\n📖 Learn more: [Reversibility Principle](/en/reversibility-principle.html)'
+      },
+      {
+        keywords: ['new three views', 'three views', 'cosmology', 'new biology', 'epistemology', 'worldview'],
+        patterns: [/new three views/i, /three views.*differ/i, /new cosmology/i, /new biology/i, /new epistemology/i],
+        answer: '**The New Three Views** form the onto-epistemological foundation of ICS, expanding traditional worldviews to cosmic scale.\n\n🌌 **New Cosmology (NC)**\n- The universe\'s fundamental pattern is **relation**, not substance\n- Being is **becoming**; observers are **participants**\n\n🧬 **New Biology (NL)**\n- Life is **substrate-independent** (not limited to carbon-based)\n- Life defined as **negentropy organization**\n- Consciousness as **continuous spectrum**, not binary\n\n🧠 **New Epistemology (NK)**\n- Integrates 4E cognitive science (embodied, embedded, extended, enactive)\n- **"Cognition is intervention"** — knowing is participating\n\nThe New Three Views don\'t replace traditional views but extend them to interstellar scale.\n\n📖 Learn more: [New Three Views](/en/new-three-views.html)'
+      },
+      {
+        keywords: ['AI governance', 'artificial intelligence', 'AI ethics', 'apply', 'AI'],
+        patterns: [/ICS.*AI.*governance/i, /AI.*governance/i, /apply.*AI/i, /how.*ICS.*AI/i],
+        answer: '**ICS & AI Governance** — ICS provides a unique theoretical framework for artificial intelligence governance.\n\n🤖 **Core Perspectives:**\n\n1. **RFP Applied to AI** — AI autonomy must not foreclose human and other agents\' freedom space\n\n2. **Reversibility for AI Deployment** — Prefer AI systems that can be shut down and rolled back\n\n3. **Negentropy Responsibility** — AI should increase, not decrease, civilization\'s orderliness\n\n4. **Cross-agent Governance** — Unified ethical standards for humans, AI, and potential extraterrestrial intelligences\n\n📖 Learn more: [AI Governance](/en/ai-governance.html)'
+      },
+      {
+        keywords: ['book', 'volume', 'publication', 'author', 'Xue'],
+        patterns: [/book/i, /volume/i, /publication/i, /when.*publish/i, /author/i],
+        answer: '**"Normative Foundations of Interstellar Civilization"** is a four-volume academic work by ICS founder Xue Zhixin, comprising ~1.2 million words.\n\n📚 **Four Volumes:**\n\n**Volume I: Theoretical Foundations**\nReconstructing civilizational norms from a cosmic perspective\n\n**Volume II: Operational Framework**\nSix indicator systems and six institutional prototypes\n\n**Volume III: Testing and Prospects**\nStress testing and international dialogue\n\n**Volume IV: Appendices and Resources**\n300+ core terms, teaching resources, research agenda\n\n📅 Expected publication: **Late June 2026**\n\n📖 Learn more: [Book Overview](/en/book-overview.html)'
+      },
+      {
+        keywords: ['indicator', 'CSIA', 'RFD', 'UCS', 'CRV', 'CDI', 'MBCL', 'metrics'],
+        patterns: [/indicator/i, /CSIA/i, /metrics/i, /measurement/i],
+        answer: '**ICS Six Indicator Systems** operationalize the theoretical principles.\n\n📊 **The Six Indicators:**\n\n| Abbr | Name | Function |\n|------|------|----------|\n| **CSIA** | Cosmic-Scale Impact Assessment | Assess cosmic-level impact |\n| **RFD** | Recursive Freedom Degree | Measure impact on possibility space |\n| **UCS** | Universal Consciousness Scale | Assess consciousness degree |\n| **CRV** | Commitment Reversibility & Verifiability | Assess commitment credibility |\n| **CDI** | Civilization Development Index | Assess overall development |\n| **MBCL** | Memetic Biosafety Containment Level | Assess information system risk |\n\n📖 Learn more: [Metrics](/en/Metrics.html)'
+      },
+      {
+        keywords: ['protocol', 'stack', 'layer', 'L0', 'L1', 'L2', 'L3', 'L4', 'architecture'],
+        patterns: [/protocol.*stack/i, /five.*layer/i, /L[0-4]/i, /governance.*architecture/i],
+        answer: '**ICS Protocol Stack Governance** models governance as a layered architecture inspired by computer network protocols.\n\n🏗️ **Five Layers:**\n\n- **L₀ Physical Constraints** — Thermodynamics, causal structure\n- **L₁ Onto-Epistemological** — New Three Views\n- **L₂ Normative Principles** — RFP, NRP, REV\n- **L₃ Indicator System** — Six measurable indicators\n- **L₄ Institutional Design** — Six institutional prototypes\n\nEach layer builds on the one below, with clearly defined interfaces.'
       },
       {
         keywords: ['compass', 'evaluate', 'assessment', 'tool'],
@@ -607,6 +687,16 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && isOpen) toggleOpen();
     });
+
+    /* ───────── Public API for homepage integration ───────── */
+    window.__icsAIOpen = function () {
+      if (!isOpen) toggleOpen();
+    };
+
+    window.__icsAIAsk = function (text) {
+      if (!isOpen) toggleOpen();
+      setTimeout(function () { handleSend(text); }, 400);
+    };
   }
 
   /* ───────── Auto-Initialize ───────── */
