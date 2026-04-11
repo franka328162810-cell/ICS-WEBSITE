@@ -23,7 +23,8 @@
 
   /* ───────── Configuration ───────── */
   const CFG = Object.assign({
-    endpoint: null,
+    // Default endpoint: will be used if no window.ICS_AI_CONFIG is provided in the page
+    endpoint: 'https://ics-ai-assistant.franka328162810.workers.dev/chat',
     lang: 'auto',
     maxHistory: 20
   }, window.ICS_AI_CONFIG || {});

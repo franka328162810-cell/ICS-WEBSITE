@@ -57,6 +57,9 @@ export default {
     const ALLOWED_ORIGINS = [
       'https://interstellar-civilization-studies.pages.dev',
       'https://www.interstellar-civilization-studies.pages.dev',
+      // Add production site domains commonly used for ICS
+      'https://ics-studies.org',
+      'https://www.ics-studies.org',
       'http://localhost:8080',
       'http://127.0.0.1:8080'
     ];
