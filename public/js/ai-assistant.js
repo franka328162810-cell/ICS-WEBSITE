@@ -22,6 +22,10 @@
   'use strict';
 
   /* ───────── Configuration ───────── */
+  /**
+   * endpoint: AI后端接口地址（如需更换Cloudflare Workers AI服务，请在此处或通过window.ICS_AI_CONFIG.endpoint配置）
+   * 若AI服务不可用，请及时更新endpoint，避免影响AI助手功能。
+   */
   const CFG = Object.assign({
     // Default endpoint: will be used if no window.ICS_AI_CONFIG is provided in the page
     endpoint: 'https://ics-ai-assistant.franka328162810.workers.dev/chat',

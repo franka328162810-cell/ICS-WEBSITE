@@ -1,3 +1,15 @@
+# ⚠️ AI助手后端配置说明
+
+ICS网站AI助手依赖Cloudflare Workers AI后端服务，默认endpoint配置在 public/js/ai-assistant.js 文件中：
+
+```
+endpoint: 'https://ics-ai-assistant.franka328162810.workers.dev/chat'
+```
+
+如需更换AI后端服务，请同步修改此endpoint地址，或在页面中通过window.ICS_AI_CONFIG.endpoint进行覆盖配置。
+
+若AI服务不可用，AI助手功能将受影响。建议定期检查endpoint可用性。
+
 # 🌌 Interstellar Civilization Studies (ICS) | 星际文明学
 
 <div align="center">

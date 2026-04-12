@@ -910,7 +910,7 @@
                     <div id="searchResults" class="search-results" aria-live="polite"></div>
                 </div>
             </section>
-            <div class="newsletter-widget" id="section-6-subscribe">
+            <!-- <div class="newsletter-widget" id="section-6-subscribe">
                 <h3>📬 Subscribe for Updates</h3>
                 <p>Get the latest commentary and academic insights delivered to your inbox</p>
                 <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
@@ -918,7 +918,7 @@
                     <input type="text" placeholder="Your name (optional)" aria-label="Name">
                     <button type="submit">Subscribe</button>
                 </form>
-            </div>
+            </div> -->
             <!-- Academic Search Module -->
             <div class="article-layout">
                 <article class="article-content">
@@ -1313,30 +1313,30 @@
             document.getElementById('citationBox').classList.toggle('active');
         }
 
-        function handleNewsletterSignup(event) {
-            event.preventDefault();
-            const form = event.target;
-            const email = form.querySelector('input[type="email"]').value;
-            const name = form.querySelector('input[type="text"]').value || 'Visitor';
-
-            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
-            subscribers.push({
-                email: email,
-                name: name,
-                timestamp: new Date().toISOString(),
-                source: document.title
-            });
-            localStorage.setItem('subscribers', JSON.stringify(subscribers));
-
-            fetch('/api/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, name, source: document.title })
-            }).catch(err => console.log('Subscribe send failed, but saved locally'));
-
-            form.reset();
-            alert('Thank you for subscribing! We\'ll send updates to your email regularly.');
-        }
+        // function handleNewsletterSignup(event) {
+        //     event.preventDefault();
+        //     const form = event.target;
+        //     const email = form.querySelector('input[type="email"]').value;
+        //     const name = form.querySelector('input[type="text"]').value || 'Visitor';
+        //
+        //     let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+        //     subscribers.push({
+        //         email: email,
+        //         name: name,
+        //         timestamp: new Date().toISOString(),
+        //         source: document.title
+        //     });
+        //     localStorage.setItem('subscribers', JSON.stringify(subscribers));
+        //
+        //     fetch('/api/subscribe', {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify({ email, name, source: document.title })
+        //     }).catch(err => console.log('Subscribe send failed, but saved locally'));
+        //
+        //     form.reset();
+        //     alert('Thank you for subscribing! We\'ll send updates to your email regularly.');
+        // }
 
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
@@ -1395,7 +1395,7 @@
             if (!container) return;
 
             if (results.length === 0) {
-                container.innerHTML = `<div class="search-empty">No matching content found. Try: AI Governance, Ethics, Space Governance.</div>`;
+                container.innerHTML = `<div class="search-empty">No results found${query ? ` for "${escapeHtml(query)}"` : ''}${filter !== 'all' ? ` (category: ${escapeHtml(filter)})` : ''}. Try keywords: AI Governance, Ethics, Space Governance.</div>`;
                 container.classList.add('active');
                 return;
             }

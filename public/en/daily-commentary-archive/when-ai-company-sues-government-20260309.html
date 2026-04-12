@@ -725,9 +725,9 @@
         function renderSearchResults(results, query, filter) {
             const container = document.getElementById('searchResults');
             if (!container) return;
-            if (results.length === 0) {
-                container.innerHTML = `<div class="search-empty">No results found. Try keywords: AI Governance, Ethics, Space Governance.</div>`;
-                container.classList.add('active'); return;
+                if (results.length === 0) {
+                    container.innerHTML = `<div class=\"search-empty\">No results found${query ? ` for \"${escapeHtml(query)}\"` : ''}${filter !== 'all' ? ` (category: ${escapeHtml(filter)})` : ''}. Try keywords: AI Governance, Ethics, Space Governance.</div>`;
+                    container.classList.add('active'); return;
             }
             const header = `<div class="search-empty">Found ${results.length} results ${query ? `锛圞eywords: ${escapeHtml(query)}锛塦 : ''} ${filter !== 'all' ? `锛圕ategory: ${escapeHtml(filter)}锛塦 : ''}</div>`;
             const items = results.slice(0, 8).map(item => `<a class="search-result-item" href="${item.url}"><div class="search-result-title">${escapeHtml(item.title)}</div><div class="search-result-meta">${escapeHtml(item.category)} 路 ${escapeHtml(item.date)}</div></a>`).join('');

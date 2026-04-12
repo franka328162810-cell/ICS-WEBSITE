@@ -972,7 +972,7 @@
                     <div id="searchResults" class="search-results" aria-live="polite"></div>
                 </div>
             </section>
-            <div class="newsletter-widget" id="section-6-subscribe">
+            <!-- <div class="newsletter-widget" id="section-6-subscribe">
                 <h3>📬 订阅更新</h3>
                 <p>让最新评论和学术见解直接发送到您的邮箱</p>
                 <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
@@ -980,7 +980,7 @@
                     <input type="text" placeholder="您的姓名（可选）" aria-label="姓名">
                     <button type="submit">订阅</button>
                 </form>
-            </div>
+            </div> -->
             <!-- 学术搜索模块 -->
             <div class="article-layout">
                 <article class="article-content">
@@ -1294,30 +1294,30 @@
         }
 
         // 处理邮件订阅
-        function handleNewsletterSignup(event) {
-            event.preventDefault();
-            const form = event.target;
-            const email = form.querySelector('input[type="email"]').value;
-            const name = form.querySelector('input[type="text"]').value || '访客';
-
-            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
-            subscribers.push({
-                email: email,
-                name: name,
-                timestamp: new Date().toISOString(),
-                source: document.title
-            });
-            localStorage.setItem('subscribers', JSON.stringify(subscribers));
-
-            fetch('/api/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, name, source: document.title })
-            }).catch(err => console.log('订阅发送失败，但已本地保存'));
-
-            form.reset();
-            alert('感谢订阅！我们会定期发送最新内容到您的邮箱。');
-        }
+        // function handleNewsletterSignup(event) {
+        //     event.preventDefault();
+        //     const form = event.target;
+        //     const email = form.querySelector('input[type="email"]').value;
+        //     const name = form.querySelector('input[type="text"]').value || '访客';
+        //
+        //     let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+        //     subscribers.push({
+        //         email: email,
+        //         name: name,
+        //         timestamp: new Date().toISOString(),
+        //         source: document.title
+        //     });
+        //     localStorage.setItem('subscribers', JSON.stringify(subscribers));
+        //
+        //     fetch('/api/subscribe', {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify({ email, name, source: document.title })
+        //     }).catch(err => console.log('订阅发送失败，但已本地保存'));
+        //
+        //     form.reset();
+        //     alert('感谢订阅！我们会定期发送最新内容到您的邮箱。');
+        // }
 
         const searchIndexZh = [
             { title: '深度研究：特朗普封杀Anthropic', category: 'AI治理', date: '2026-03-04', url: '深度研究.html', keywords: ['Anthropic', 'AI治理', '伦理红线', '特朗普'] },

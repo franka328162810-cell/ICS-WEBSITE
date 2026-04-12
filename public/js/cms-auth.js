@@ -26,8 +26,8 @@
     }
 
     function login(email, password) {
-        // TODO: Replace with real server-side authentication endpoint
-        console.warn('CMS authentication requires server-side setup. See admin docs.');
+        // [已隐藏] 真实环境请实现服务端认证接口，演示环境已禁用后台入口。
+        // console.warn('CMS authentication requires server-side setup. See admin docs.');
         return null;
     }
 
@@ -36,7 +36,7 @@
         window.location.href = '/admin/login.html';
     }
 
-    function requireAuth() {
+    // function requireAuth() {
         const session = getSession();
         if (!session) {
             window.location.href = '/admin/login.html';
@@ -49,6 +49,6 @@
         login,
         logout,
         getSession,
-        requireAuth
+        // requireAuth
     };
 })();
