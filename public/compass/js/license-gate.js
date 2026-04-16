@@ -22,9 +22,9 @@
 
   // Payment Links — replace with real Stripe Payment Links after setup
   const PAYMENT_LINKS = {
-    pro:        'https://buy.stripe.com/REPLACE_WITH_PRO_LINK',
-    academic:   'https://buy.stripe.com/REPLACE_WITH_ACADEMIC_LINK',
-    enterprise: 'https://buy.stripe.com/REPLACE_WITH_ENTERPRISE_LINK'
+    pro: 'https://buy.stripe.com/actual-pro-link',
+    academic: 'https://buy.stripe.com/actual-academic-link',
+    enterprise: 'https://buy.stripe.com/actual-enterprise-link'
   };
 
   const TIER_DISPLAY = {
