@@ -1674,11 +1674,725 @@
     }
     </script>
 </head>
+========================================== -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="首页.html" class="nav-brand">
+            <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                    <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                        repeatCount="indefinite" />
+                </circle>
+            </svg>
+            <div class="nav-brand-text">
+                <span class="nav-title">星际文明学</span>
+                <span class="nav-subtitle">Interstellar Civilization Studies</span>
+            </div>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="首页.html" class="nav-link active">首页</a></li>
+            <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
+            <li><a href="著作概述.html" class="nav-link">著作</a></li>
+            <li><a href="资源.html" class="nav-link">资源</a></li>
+            <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+            <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
+            <li><a href="/compass/" class="nav-link">星际罗盘</a></li>
+        </ul>
+
+
+        <div class="nav-actions">
+            <button class="nav-search" aria-label="搜索">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
+            <div class="lang-switch">
+                <a href="../en/index.html" class="lang-btn">EN</a>
+                <a href="首页.html" class="lang-btn active">中文</a>
+            </div>
+            <a href="联系我们.html" class="nav-contact">联系我们</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ==========================================
+     首页Hero区 - 最终版（整体下移0.75cm）
+     ========================================== -->
+<section class="hero" id="hero">
+    <div class="hero-bg">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="starfield" id="starfield"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-rays"></div>
+    </div>
+    <div class="hero-content">
+        <!-- 创意徽章 -->
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>探索宇宙文明的规范性基础</span>
+        </div>
+        <!-- 主标题+光环 -->
+        <div class="hero-title-wrap">
+            <h1 class="hero-title">星际文明学</h1>
+            <div class="hero-halo"></div>
+        </div>
+        <!-- 副标题 -->
+        <p class="hero-subtitle">宇宙时代的新范式</p>
+        <!-- 金句标语 -->
+        <p class="hero-quote">"自由是对可能性的看护"</p>
+        <!-- 行动按钮组 -->
+        <div class="hero-buttons">
+            <a href="关于星际文明学.html" class="btn-primary">探索学科 →</a>
+            <a href="著作概述.html" class="btn-secondary">阅读著作 →</a>
+        </div>
+    </div>
+    <!-- 向下滚动指示 -->
+    <div class="scroll-indicator">
+        <span>向下滚动</span>
+        <div class="scroll-arrow"></div>
+    </div>
+</section>
+
+<style>
+    /* ==========================================
+       首页Hero区专用样式 - 最终版
+       
+       关键调整：整体下移0.75cm
+       ========================================== */
+
+    /* 导航栏字体缩小 */
+    #navbar .nav-link,
+    .navbar .nav-link {
+        font-size: 0.8125rem !important;
+    }
+
+    /* 左上角Logo文字缩小 */
+    #navbar .nav-title,
+    .navbar .nav-title {
+        font-size: 0.9rem !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    #navbar .nav-subtitle,
+    .navbar .nav-subtitle {
+        font-size: 0.5625rem !important;
+    }
+
+    /* Logo图标保持44px */
+    body #navbar .nav-logo,
+    body .navbar .nav-logo,
+    .navbar .nav-logo {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        max-width: 44px !important;
+        max-height: 44px !important;
+    }
+
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0d1f3c 100%);
+        z-index: 1;
+    }
+
+    .starfield,
+    .nebula,
+    .hero-glow,
+    .hero-rays {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .hero-glow {
+        background: radial-gradient(circle at 50% 40%, rgba(124, 58, 237, 0.18) 0%, transparent 70%);
+        z-index: 2;
+    }
+
+    .hero-rays {
+        background: repeating-conic-gradient(from 0deg, rgba(6, 182, 212, 0.08) 0deg 10deg, transparent 10deg 20deg);
+        opacity: 0.15;
+        z-index: 2;
+    }
+
+    /* ⭐⭐⭐ 关键修改：整体下移0.75cm */
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 0 2rem;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        transform: translateY(calc(2vh + 0.75cm));
+        /* ✅ 原2vh基础上 + 0.75cm */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 徽章 */
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(124, 58, 237, 0.12);
+        border: 1px solid rgba(124, 58, 237, 0.3);
+        border-radius: 9999px;
+        padding: 8px 24px;
+        margin-bottom: 2.5rem;
+        font-size: 0.8125rem;
+        color: #a78bfa;
+        box-shadow: 0 2px 18px rgba(124, 58, 237, 0.12);
+        white-space: nowrap;
+        align-self: center;
+    }
+
+    .badge-dot {
+        width: 8px;
+        height: 8px;
+        background: #06b6d4;
+        border-radius: 50%;
+        flex-shrink: 0;
+        animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    /* 主标题容器 */
+    .hero-title-wrap {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1.75rem;
+        align-self: center;
+    }
+
+    /* 主标题 */
+    .hero-title {
+        font-family: 'Noto Serif SC', serif;
+        font-size: clamp(3.1rem, 5.3vw, 4rem);
+        font-weight: 900;
+        line-height: 1.15;
+        letter-spacing: 0.48em;
+        background: linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 6px 32px rgba(124, 58, 237, 0.18);
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 主标题光环 */
+    .hero-halo {
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -50%);
+        width: 290px;
+        height: 50px;
+        background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.18) 0%, transparent 80%);
+        filter: blur(16px);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    /* 副标题 */
+    .hero-subtitle {
+        font-family: 'Noto Sans SC', sans-serif;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 1.75rem;
+        letter-spacing: 0.08em;
+        align-self: center;
+    }
+
+    /* 金句标语 */
+    .hero-quote {
+        font-family: 'Noto Serif SC', serif;
+        font-size: clamp(1rem, 1.6vw, 1.25rem);
+        font-weight: 400;
+        color: #fbbf24;
+        font-style: italic;
+        margin-bottom: 2.5rem;
+        letter-spacing: 0.12em;
+        text-shadow: 0 2px 15px rgba(245, 158, 11, 0.18);
+        align-self: center;
+    }
+
+    /* 按钮组 */
+    .hero-buttons {
+        display: flex;
+        gap: 1.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        align-self: center;
+    }
+
+    /* 主要按钮 */
+    .btn-primary {
+        font-family: 'Noto Sans SC', sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        padding: 14px 38px;
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+        color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.18);
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #06b6d4, #7c3aed);
+        transform: translateY(-4px) scale(1.04);
+    }
+
+    /* 次要按钮 */
+    .btn-secondary {
+        font-family: 'Noto Sans SC', sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        padding: 14px 38px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #a78bfa;
+        border-radius: 12px;
+        border: 1px solid #a78bfa;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+        background: rgba(124, 58, 237, 0.12);
+        color: #06b6d4;
+        border-color: #06b6d4;
+        transform: translateY(-4px) scale(1.04);
+    }
+
+    /* 滚动指示器 */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.625rem;
+        opacity: 0.75;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .scroll-indicator span {
+        font-family: 'Noto Sans SC', sans-serif;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.35);
+    }
+
+    .scroll-arrow {
+        width: 24px;
+        height: 24px;
+        border-right: 2px solid rgba(255, 255, 255, 0.35);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+        transform: rotate(45deg);
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        50% {
+            transform: translateX(-50%) translateY(-10px);
+        }
+    }
+
+    /* ==========================================
+       响应式设计
+       ========================================== */
+
+    @media (max-width: 1024px) {
+        .hero-content {
+            transform: translateY(calc(1vh + 0.75cm));
+            /* 平板略微调整 */
+        }
+
+        .hero-title {
+            font-size: clamp(2.7rem, 6.3vw, 3.6rem);
+            letter-spacing: 0.4em;
+        }
+
+        .hero-halo {
+            width: 230px;
+            height: 40px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-content {
+            padding: 0 1.5rem;
+            transform: translateY(0.75cm);
+            /* 手机端只保留0.75cm下移 */
+        }
+
+        .hero-badge {
+            padding: 7px 20px;
+            font-size: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.1rem, 7.5vw, 2.8rem);
+            letter-spacing: 0.3em;
+        }
+
+        .hero-halo {
+            width: 170px;
+            height: 30px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-quote {
+            font-size: clamp(0.9375rem, 2vw, 1.125rem);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            gap: 1.25rem;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 12px 32px;
+            font-size: 0.875rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-content {
+            padding: 0 1rem;
+            transform: translateY(0.5cm);
+            /* 小屏幕略微减少 */
+        }
+
+        .hero-badge {
+            padding: 6px 16px;
+            font-size: 0.6875rem;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            letter-spacing: 0.25em;
+        }
+
+        .hero-halo {
+            width: 115px;
+            height: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-quote {
+            font-size: 0.875rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 11px 26px;
+            font-size: 0.8125rem;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .hero-buttons {
+            gap: 1rem;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scroll-indicator {
+            bottom: 1.5rem;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.6875rem;
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+        }
+    }
+</style>
+
+<!-- ==========================================
+         关于区块
          ========================================== -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="首页.html" class="nav-brand">
-                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+<section class="section section-about" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="section-title-inline">什么是星际文明学？</h2>
+                <p>星际文明学（Interstellar Civilization Studies,
+                    ICS）是一门以"新三观"（新宇宙观、新生命观、新认识论）为本体论与认识论基础，以宇宙责任伦理为规范框架的跨学科学术领域。</p>
+                <p>它研究智慧生命在宇宙尺度上的存在、发展、治理与规范性问题。其核心使命是为人类的长期存续、星际拓展以及潜在的跨文明接触提供系统性的理论指导与实践方案。</p>
+                <a href="关于星际文明学.html" class="btn-primary">了解更多 →</a>
+            </div>
+            <div class="about-visual">
+                <div class="about-orb"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+         核心理念区块 - 统一卡片样式
+         ========================================== -->
+<section class="section section-concepts" id="concepts">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">核心理念</h2>
+            <p class="section-subtitle">构建星际文明学的理论基础与方法论</p>
+        </div>
+        <div class="concepts-grid">
+            <div class="unified-card">
+                <div class="card-header-bar"></div>
+                <div class="card-body">
+                    <h3 class="card-title">新三观</h3>
+                    <p class="card-text">新宇宙观、新生命观、新认知观——重新理解宇宙、生命与认知的本质</p>
+                    <a href="新三观概述.html" class="card-link">了解更多 →</a>
+                </div>
+            </div>
+
+            <div class="unified-card">
+                <div class="card-header-bar"></div>
+                <div class="card-body">
+                    <h3 class="card-title">宇宙责任伦理学</h3>
+                    <p class="card-text">递归自由原则、负熵责任原则、可逆性原则——为宇宙尺度的行动提供规范指导</p>
+                    <a href="规范原则概述.html" class="card-link">了解更多 →</a>
+                </div>
+            </div>
+
+            <div class="unified-card">
+                <div class="card-header-bar"></div>
+                <div class="card-body">
+                    <h3 class="card-title">协议栈方法论</h3>
+                    <p class="card-text">分层、可演化、可回滚的制度设计框架——应对深不确定性的治理工具</p>
+                    <a href="制度设计.html" class="card-link">了解更多 →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+         著作区块
+         ========================================== -->
+<section class="section section-book" id="book">
+    <div class="container">
+        <div class="book-showcase">
+            <div class="book-container">
+                <div class="book-3d">
+                    <div class="book-spine"></div>
+                    <div class="book-pages"></div>
+                    <div class="book-cover">
+                        <div class="book-inner-border"></div>
+                        <div class="book-content">
+                            <div class="book-series">跨学科奠基之作 · 四卷本</div>
+                            <div class="book-title-area">
+                                <div class="book-title-main">星际文明的<br>规范性基础</div>
+                                <div class="book-divider"></div>
+                                <div class="book-subtitle">新三观与深度不确定性下的治理</div>
+                            </div>
+                            <div class="book-author">
+                                <span class="book-author-name">薛志新 著</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-shadow"></div>
+                </div>
+            </div>
+            <div class="book-info">
+                <h2 class="section-title-inline">奠基之作</h2>
+                <p>一部开创性的跨学科学术巨著，四卷本。系统构建了面向深度时间尺度与多元智慧主体的规范性理论框架。提出"新三观"作为理论基础，推导出递归自由原则、负熵责任原则、可逆性原则三大核心规范，并确立禁忌红线作为绝对约束。
+                </p>
+                <div class="book-volumes">
+                    <a href="专著第一卷.html" class="volume-item"><span>第一卷：理论基础</span></a>
+                    <a href="专著第二卷.html" class="volume-item"><span>第二卷：制度框架</span></a>
+                    <a href="专著第三卷.html" class="volume-item"><span>第三卷：验证与展望</span></a>
+                    <a href="专著第四卷.html" class="volume-item"><span>第四卷：附录与资源</span></a>
+                </div>
+            </div>
+            <a href="著作概述.html" class="btn-primary">查看详情 →</a>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- ==========================================
+         新闻区块 - 统一卡片样式
+         ========================================== -->
+<section class="section section-news" id="news">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">前沿动态</h2>
+            <p class="section-subtitle">新闻评论与专业研究</p>
+        </div>
+        <div class="news-grid">
+            <a href="每日热点评论.html" class="unified-card">
+                <div class="card-header-bar"></div>
+                <div class="card-body">
+                    <span class="card-tag">评论</span>
+                    <h3 class="card-title">宇宙安全规程，终于想起来要更新了</h3>
+                    <p class="card-text">2026‑04‑10 SETI后检测协议分析，点击阅读全文。</p>
+                </div>
+            </a>
+
+            <a href="深度研究.html" class="unified-card">
+                <div class="card-header-bar"></div>
+                <div class="card-body">
+                    <span class="card-tag">研究</span>
+                    <h3 class="card-title">当AI开始自己做决定：智能体纪元的文明级拐点</h3>
+                    <p class="card-text">最新深度研究文章——点击阅读完整分析。</p>
+                </div>
+            </a>
+
+            <a href="#" class="unified-card">
+                <div class="card-header-bar"></div>
+                <div class="card-body">
+                    <span class="card-tag">年度报告</span>
+                    <h3 class="card-title">ICS发展报告2026</h3>
+                    <p class="card-text">学科建设、研究进展与未来方向...</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+         AI助手区块
+         ========================================== -->
+<section class="section section-ai" id="ai">
+    <div class="container">
+        <div class="ai-container">
+            <div class="ai-info">
+                <h2 class="section-title-inline">与AI助手对话</h2>
+                <p>对星际文明学有疑问？我们的AI助手基于完整的学科知识库训练，可以回答您关于新三观、规范性原则、指标体系等方面的问题。</p>
+                <div class="ai-questions">
+                    <h4>试着问这些问题：</h4>
+                    <div class="question-item" onclick="window.__icsAIAsk && window.__icsAIAsk(this.textContent)"
+                        style="cursor:pointer">什么是递归自由原则？</div>
+                    <div class="question-item" onclick="window.__icsAIAsk && window.__icsAIAsk(this.textContent)"
+                        style="cursor:pointer">新三观与传统世界观有何不同？</div>
+                    <div class="question-item" onclick="window.__icsAIAsk && window.__icsAIAsk(this.textContent)"
+                        style="cursor:pointer">ICS如何应用于AI治理？</div>
+                </div>
+                <button class="btn-primary" onclick="window.__icsAIOpen && window.__icsAIOpen()"
+                    style="border:none;cursor:pointer">开始对话 →</button>
+            </div>
+            <div class="ai-preview">
+                <div class="chat-window">
+                    <div class="chat-header">
+                        <div class="chat-avatar">
+                            <span>AI</span>
+                        </div>
+                        <div class="chat-info">
+                            <div class="chat-title">ICS AI助手</div>
+                            <div class="chat-status">在线</div>
+                        </div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="chat-bubble bot">您好！我是ICS AI助手，有什么可以帮您的吗？</div>
+                        <div class="chat-bubble user">什么是递归自由原则？</div>
+                        <div class="chat-bubble bot">递归自由原则是ICS的核心规范之一。它要求任何行使自由的主体必须保护其他主体行使同等自由的可能性...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+         格言区块 - 金色文字版
+         ========================================== -->
+<section class="section-quotes" id="quotes">
+    <div class="quotes-container">
+        <span class="quote-mark left">"</span>
+        <span class="quote-mark right">"</span>
+
+        <div class="quote-carousel">
+            <div class="quote-item active">
+                <p class="quote-text">认知即干预 知识即协作</p>
+            </div>
+            <div class="quote-item">
+                <p class="quote-text">正义是高维度的负熵</p>
+            </div>
+            <div class="quote-item">
+                <p class="quote-text">量子不只是隐喻 它是计算结构</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+         页脚
+         ========================================== -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <svg viewBox="0 0 44 44" fill="none">
                     <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
@@ -1687,782 +2401,72 @@
                             repeatCount="indefinite" />
                     </circle>
                 </svg>
-                <div class="nav-brand-text">
-                    <span class="nav-title">星际文明学</span>
-                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                <div class="footer-logo-text">
+                    <span class="footer-logo-title">星际文明学</span>
+                    <span class="footer-logo-sub">Interstellar Civilization Studies</span>
                 </div>
-            </a>
-
-            <ul class="nav-links">
-                <li><a href="首页.html" class="nav-link active">首页</a></li>
-                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
-                <li><a href="著作概述.html" class="nav-link">著作</a></li>
-                <li><a href="资源.html" class="nav-link">资源</a></li>
-                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
-                <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
-<li><a href="/compass/" class="nav-link">星际罗盘</a></li>
-            </ul>
-
-
-            <div class="nav-actions">
-                <button class="nav-search" aria-label="搜索">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                </button>
-                <div class="lang-switch">
-                    <a href="../en/index.html" class="lang-btn">EN</a>
-                    <a href="首页.html" class="lang-btn active">中文</a>
-                </div>
-                <a href="联系我们.html" class="nav-contact">联系我们</a>
             </div>
+            <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
         </div>
-    </nav>
-
-    <!-- ==========================================
-     首页Hero区 - 最终版（整体下移0.75cm）
-     ========================================== -->
-    <section class="hero" id="hero">
-        <div class="hero-bg">
-            <div class="nebula nebula-1"></div>
-            <div class="nebula nebula-2"></div>
-            <div class="starfield" id="starfield"></div>
-            <div class="hero-glow"></div>
-            <div class="hero-rays"></div>
+        <div class="footer-col">
+            <h4>学科</h4>
+            <a href="关于星际文明学.html">概述</a>
+            <a href="首页.html">核心概念</a>
+            <a href="制度设计.html">方法论</a>
         </div>
-        <div class="hero-content">
-            <!-- 创意徽章 -->
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                <span>探索宇宙文明的规范性基础</span>
-            </div>
-            <!-- 主标题+光环 -->
-            <div class="hero-title-wrap">
-                <h1 class="hero-title">星际文明学</h1>
-                <div class="hero-halo"></div>
-            </div>
-            <!-- 副标题 -->
-            <p class="hero-subtitle">宇宙时代的新范式</p>
-            <!-- 金句标语 -->
-            <p class="hero-quote">"自由是对可能性的看护"</p>
-            <!-- 行动按钮组 -->
-            <div class="hero-buttons">
-                <a href="关于星际文明学.html" class="btn-primary">探索学科 →</a>
-                <a href="著作概述.html" class="btn-secondary">阅读著作 →</a>
-            </div>
+        <div class="footer-col">
+            <h4>资源</h4>
+            <a href="出版信息.html">出版物</a>
+            <a href="资源.html">阅读清单</a>
+            <a href="资源.html">术语表</a>
         </div>
-        <!-- 向下滚动指示 -->
-        <div class="scroll-indicator">
-            <span>向下滚动</span>
-            <div class="scroll-arrow"></div>
+        <div class="footer-col">
+            <h4>联系</h4>
+            <a href="联系我们.html">联系我们</a>
+            <a href="联系我们.html">franka328162810@gmail.com</a>
+            <a href="订阅通讯.html">订阅通讯</a>
         </div>
-    </section>
-
-    <style>
-        /* ==========================================
-       首页Hero区专用样式 - 最终版
-       
-       关键调整：整体下移0.75cm
-       ========================================== */
-
-        /* 导航栏字体缩小 */
-        #navbar .nav-link,
-        .navbar .nav-link {
-            font-size: 0.8125rem !important;
-        }
-
-        /* 左上角Logo文字缩小 */
-        #navbar .nav-title,
-        .navbar .nav-title {
-            font-size: 0.9rem !important;
-            letter-spacing: 0.05em !important;
-        }
-
-        #navbar .nav-subtitle,
-        .navbar .nav-subtitle {
-            font-size: 0.5625rem !important;
-        }
-
-        /* Logo图标保持44px */
-        body #navbar .nav-logo,
-        body .navbar .nav-logo,
-        .navbar .nav-logo {
-            width: 44px !important;
-            height: 44px !important;
-            min-width: 44px !important;
-            min-height: 44px !important;
-            max-width: 44px !important;
-            max-height: 44px !important;
-        }
-
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0d1f3c 100%);
-            z-index: 1;
-        }
-
-        .starfield,
-        .nebula,
-        .hero-glow,
-        .hero-rays {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .hero-glow {
-            background: radial-gradient(circle at 50% 40%, rgba(124, 58, 237, 0.18) 0%, transparent 70%);
-            z-index: 2;
-        }
-
-        .hero-rays {
-            background: repeating-conic-gradient(from 0deg, rgba(6, 182, 212, 0.08) 0deg 10deg, transparent 10deg 20deg);
-            opacity: 0.15;
-            z-index: 2;
-        }
-
-        /* ⭐⭐⭐ 关键修改：整体下移0.75cm */
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 0 2rem;
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            transform: translateY(calc(2vh + 0.75cm));
-            /* ✅ 原2vh基础上 + 0.75cm */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* 徽章 */
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: rgba(124, 58, 237, 0.12);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 9999px;
-            padding: 8px 24px;
-            margin-bottom: 2.5rem;
-            font-size: 0.8125rem;
-            color: #a78bfa;
-            box-shadow: 0 2px 18px rgba(124, 58, 237, 0.12);
-            white-space: nowrap;
-            align-self: center;
-        }
-
-        .badge-dot {
-            width: 8px;
-            height: 8px;
-            background: #06b6d4;
-            border-radius: 50%;
-            flex-shrink: 0;
-            animation: pulseDot 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseDot {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        /* 主标题容器 */
-        .hero-title-wrap {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1.75rem;
-            align-self: center;
-        }
-
-        /* 主标题 */
-        .hero-title {
-            font-family: 'Noto Serif SC', serif;
-            font-size: clamp(3.1rem, 5.3vw, 4rem);
-            font-weight: 900;
-            line-height: 1.15;
-            letter-spacing: 0.48em;
-            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 6px 32px rgba(124, 58, 237, 0.18);
-            margin: 0;
-            padding: 0;
-        }
-
-        /* 主标题光环 */
-        .hero-halo {
-            position: absolute;
-            left: 50%;
-            top: 60%;
-            transform: translate(-50%, -50%);
-            width: 290px;
-            height: 50px;
-            background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.18) 0%, transparent 80%);
-            filter: blur(16px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* 副标题 */
-        .hero-subtitle {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.65);
-            margin-bottom: 1.75rem;
-            letter-spacing: 0.08em;
-            align-self: center;
-        }
-
-        /* 金句标语 */
-        .hero-quote {
-            font-family: 'Noto Serif SC', serif;
-            font-size: clamp(1rem, 1.6vw, 1.25rem);
-            font-weight: 400;
-            color: #fbbf24;
-            font-style: italic;
-            margin-bottom: 2.5rem;
-            letter-spacing: 0.12em;
-            text-shadow: 0 2px 15px rgba(245, 158, 11, 0.18);
-            align-self: center;
-        }
-
-        /* 按钮组 */
-        .hero-buttons {
-            display: flex;
-            gap: 1.75rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            align-self: center;
-        }
-
-        /* 主要按钮 */
-        .btn-primary {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            padding: 14px 38px;
-            background: linear-gradient(135deg, #7c3aed, #06b6d4);
-            color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.18);
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #06b6d4, #7c3aed);
-            transform: translateY(-4px) scale(1.04);
-        }
-
-        /* 次要按钮 */
-        .btn-secondary {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            padding: 14px 38px;
-            background: rgba(255, 255, 255, 0.06);
-            color: #a78bfa;
-            border-radius: 12px;
-            border: 1px solid #a78bfa;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(124, 58, 237, 0.12);
-            color: #06b6d4;
-            border-color: #06b6d4;
-            transform: translateY(-4px) scale(1.04);
-        }
-
-        /* 滚动指示器 */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.625rem;
-            opacity: 0.75;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .scroll-indicator span {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.35);
-        }
-
-        .scroll-arrow {
-            width: 24px;
-            height: 24px;
-            border-right: 2px solid rgba(255, 255, 255, 0.35);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.35);
-            transform: rotate(45deg);
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        /* ==========================================
-       响应式设计
-       ========================================== */
-
-        @media (max-width: 1024px) {
-            .hero-content {
-                transform: translateY(calc(1vh + 0.75cm));
-                /* 平板略微调整 */
-            }
-
-            .hero-title {
-                font-size: clamp(2.7rem, 6.3vw, 3.6rem);
-                letter-spacing: 0.4em;
-            }
-
-            .hero-halo {
-                width: 230px;
-                height: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-content {
-                padding: 0 1.5rem;
-                transform: translateY(0.75cm);
-                /* 手机端只保留0.75cm下移 */
-            }
-
-            .hero-badge {
-                padding: 7px 20px;
-                font-size: 0.75rem;
-                margin-bottom: 2rem;
-            }
-
-            .badge-dot {
-                width: 7px;
-                height: 7px;
-            }
-
-            .hero-title {
-                font-size: clamp(2.1rem, 7.5vw, 2.8rem);
-                letter-spacing: 0.3em;
-            }
-
-            .hero-halo {
-                width: 170px;
-                height: 30px;
-            }
-
-            .hero-subtitle {
-                font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
-                margin-bottom: 1.5rem;
-            }
-
-            .hero-quote {
-                font-size: clamp(0.9375rem, 2vw, 1.125rem);
-                margin-bottom: 2rem;
-            }
-
-            .hero-buttons {
-                gap: 1.25rem;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                padding: 12px 32px;
-                font-size: 0.875rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content {
-                padding: 0 1rem;
-                transform: translateY(0.5cm);
-                /* 小屏幕略微减少 */
-            }
-
-            .hero-badge {
-                padding: 6px 16px;
-                font-size: 0.6875rem;
-            }
-
-            .badge-dot {
-                width: 6px;
-                height: 6px;
-            }
-
-            .hero-title {
-                font-size: 1.8rem;
-                letter-spacing: 0.25em;
-            }
-
-            .hero-halo {
-                width: 115px;
-                height: 20px;
-            }
-
-            .hero-subtitle {
-                font-size: 0.875rem;
-                margin-bottom: 1.25rem;
-            }
-
-            .hero-quote {
-                font-size: 0.875rem;
-                margin-bottom: 1.75rem;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                padding: 11px 26px;
-                font-size: 0.8125rem;
-                width: 100%;
-                max-width: 280px;
-            }
-
-            .hero-buttons {
-                gap: 1rem;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .scroll-indicator {
-                bottom: 1.5rem;
-            }
-
-            .scroll-indicator span {
-                font-size: 0.6875rem;
-            }
-
-            .scroll-arrow {
-                width: 20px;
-                height: 20px;
-            }
-        }
-    </style>
-
-    <!-- ==========================================
-         关于区块
-         ========================================== -->
-    <section class="section section-about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title-inline">什么是星际文明学？</h2>
-                    <p>星际文明学（Interstellar Civilization Studies,
-                        ICS）是一门以"新三观"（新宇宙观、新生命观、新认识论）为本体论与认识论基础，以宇宙责任伦理为规范框架的跨学科学术领域。</p>
-                    <p>它研究智慧生命在宇宙尺度上的存在、发展、治理与规范性问题。其核心使命是为人类的长期存续、星际拓展以及潜在的跨文明接触提供系统性的理论指导与实践方案。</p>
-                    <a href="关于星际文明学.html" class="btn-primary">了解更多 →</a>
-                </div>
-                <div class="about-visual">
-                    <div class="about-orb"></div>
-                </div>
-            </div>
+    </div>
+    <div class="footer-bottom">
+        <span class="footer-copyright">© 2026 星际文明学. 保留所有权利.</span>
+        <div class="footer-links">
+            <a href="/"">隐私政策</a>
+                <a href=" /"">使用条款</a>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- ==========================================
-         核心理念区块 - 统一卡片样式
-         ========================================== -->
-    <section class="section section-concepts" id="concepts">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">核心理念</h2>
-                <p class="section-subtitle">构建星际文明学的理论基础与方法论</p>
-            </div>
-            <div class="concepts-grid">
-                <div class="unified-card">
-                    <div class="card-header-bar"></div>
-                    <div class="card-body">
-                        <h3 class="card-title">新三观</h3>
-                        <p class="card-text">新宇宙观、新生命观、新认知观——重新理解宇宙、生命与认知的本质</p>
-                        <a href="新三观概述.html" class="card-link">了解更多 →</a>
-                    </div>
-                </div>
-
-                <div class="unified-card">
-                    <div class="card-header-bar"></div>
-                    <div class="card-body">
-                        <h3 class="card-title">宇宙责任伦理学</h3>
-                        <p class="card-text">递归自由原则、负熵责任原则、可逆性原则——为宇宙尺度的行动提供规范指导</p>
-                        <a href="规范原则概述.html" class="card-link">了解更多 →</a>
-                    </div>
-                </div>
-
-                <div class="unified-card">
-                    <div class="card-header-bar"></div>
-                    <div class="card-body">
-                        <h3 class="card-title">协议栈方法论</h3>
-                        <p class="card-text">分层、可演化、可回滚的制度设计框架——应对深不确定性的治理工具</p>
-                        <a href="制度设计.html" class="card-link">了解更多 →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         著作区块
-         ========================================== -->
-    <section class="section section-book" id="book">
-        <div class="container">
-            <div class="book-showcase">
-                <div class="book-container">
-                    <div class="book-3d">
-                        <div class="book-spine"></div>
-                        <div class="book-pages"></div>
-                        <div class="book-cover">
-                            <div class="book-inner-border"></div>
-                            <div class="book-content">
-                                <div class="book-series">跨学科奠基之作 · 四卷本</div>
-                                <div class="book-title-area">
-                                    <div class="book-title-main">星际文明的<br>规范性基础</div>
-                                    <div class="book-divider"></div>
-                                    <div class="book-subtitle">新三观与深度不确定性下的治理</div>
-                                </div>
-                                <div class="book-author">
-                                    <span class="book-author-name">薛志新 著</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="book-shadow"></div>
-                    </div>
-                </div>
-                <div class="book-info">
-                    <h2 class="section-title-inline">奠基之作</h2>
-                    <p>一部开创性的跨学科学术巨著，四卷本。系统构建了面向深度时间尺度与多元智慧主体的规范性理论框架。提出"新三观"作为理论基础，推导出递归自由原则、负熵责任原则、可逆性原则三大核心规范，并确立禁忌红线作为绝对约束。
-                    </p>
-                    <div class="book-volumes">
-                        <a href="专著第一卷.html" class="volume-item"><span>第一卷：理论基础</span></a>
-                        <a href="专著第二卷.html" class="volume-item"><span>第二卷：制度框架</span></a>
-                        <a href="专著第三卷.html" class="volume-item"><span>第三卷：验证与展望</span></a>
-                        <a href="专著第四卷.html" class="volume-item"><span>第四卷：附录与资源</span></a>
-                    </div>
-                </div>
-                <a href="著作概述.html" class="btn-primary">查看详情 →</a>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         新闻区块 - 统一卡片样式
-         ========================================== -->
-    <section class="section section-news" id="news">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">前沿动态</h2>
-                <p class="section-subtitle">新闻评论与专业研究</p>
-            </div>
-            <div class="news-grid">
-                <a href="每日热点评论.html" class="unified-card">
-                    <div class="card-header-bar"></div>
-                    <div class="card-body">
-                        <span class="card-tag">评论</span>
-                        <h3 class="card-title">宇宙安全规程，终于想起来要更新了</h3>
-                        <p class="card-text">2026‑04‑10 SETI后检测协议分析，点击阅读全文。</p>
-                    </div>
-                </a>
-
-                <a href="深度研究.html" class="unified-card">
-                    <div class="card-header-bar"></div>
-                    <div class="card-body">
-                        <span class="card-tag">研究</span>
-                        <h3 class="card-title">当AI开始自己做决定：智能体纪元的文明级拐点</h3>
-                        <p class="card-text">最新深度研究文章——点击阅读完整分析。</p>
-                    </div>
-                </a>
-
-                <a href="#" class="unified-card">
-                    <div class="card-header-bar"></div>
-                    <div class="card-body">
-                        <span class="card-tag">年度报告</span>
-                        <h3 class="card-title">ICS发展报告2026</h3>
-                        <p class="card-text">学科建设、研究进展与未来方向...</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         AI助手区块
-         ========================================== -->
-    <section class="section section-ai" id="ai">
-        <div class="container">
-            <div class="ai-container">
-                <div class="ai-info">
-                    <h2 class="section-title-inline">与AI助手对话</h2>
-                    <p>对星际文明学有疑问？我们的AI助手基于完整的学科知识库训练，可以回答您关于新三观、规范性原则、指标体系等方面的问题。</p>
-                    <div class="ai-questions">
-                        <h4>试着问这些问题：</h4>
-                        <div class="question-item" onclick="window.__icsAIAsk && window.__icsAIAsk(this.textContent)" style="cursor:pointer">什么是递归自由原则？</div>
-                        <div class="question-item" onclick="window.__icsAIAsk && window.__icsAIAsk(this.textContent)" style="cursor:pointer">新三观与传统世界观有何不同？</div>
-                        <div class="question-item" onclick="window.__icsAIAsk && window.__icsAIAsk(this.textContent)" style="cursor:pointer">ICS如何应用于AI治理？</div>
-                    </div>
-                    <button class="btn-primary" onclick="window.__icsAIOpen && window.__icsAIOpen()" style="border:none;cursor:pointer">开始对话 →</button>
-                </div>
-                <div class="ai-preview">
-                    <div class="chat-window">
-                        <div class="chat-header">
-                            <div class="chat-avatar">
-                                <span>AI</span>
-                            </div>
-                            <div class="chat-info">
-                                <div class="chat-title">ICS AI助手</div>
-                                <div class="chat-status">在线</div>
-                            </div>
-                        </div>
-                        <div class="chat-messages">
-                            <div class="chat-bubble bot">您好！我是ICS AI助手，有什么可以帮您的吗？</div>
-                            <div class="chat-bubble user">什么是递归自由原则？</div>
-                            <div class="chat-bubble bot">递归自由原则是ICS的核心规范之一。它要求任何行使自由的主体必须保护其他主体行使同等自由的可能性...</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         格言区块 - 金色文字版
-         ========================================== -->
-    <section class="section-quotes" id="quotes">
-        <div class="quotes-container">
-            <span class="quote-mark left">"</span>
-            <span class="quote-mark right">"</span>
-
-            <div class="quote-carousel">
-                <div class="quote-item active">
-                    <p class="quote-text">认知即干预 知识即协作</p>
-                </div>
-                <div class="quote-item">
-                    <p class="quote-text">正义是高维度的负熵</p>
-                </div>
-                <div class="quote-item">
-                    <p class="quote-text">量子不只是隐喻 它是计算结构</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         页脚
-         ========================================== -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 44 44" fill="none">
-                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
-                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
-                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
-                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
-                                dur="8s" repeatCount="indefinite" />
-                        </circle>
-                    </svg>
-                    <div class="footer-logo-text">
-                        <span class="footer-logo-title">星际文明学</span>
-                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
-                    </div>
-                </div>
-                <p class="footer-desc">探索文明研究的前沿领域，从宇宙治理到跨文明接触，为人类的星际未来提供理论指导。</p>
-            </div>
-            <div class="footer-col">
-                <h4>学科</h4>
-                <a href="关于星际文明学.html">概述</a>
-                <a href="首页.html">核心概念</a>
-                <a href="制度设计.html">方法论</a>
-            </div>
-            <div class="footer-col">
-                <h4>资源</h4>
-                <a href="出版信息.html">出版物</a>
-                <a href="资源.html">阅读清单</a>
-                <a href="资源.html">术语表</a>
-            </div>
-            <div class="footer-col">
-                <h4>联系</h4>
-                <a href="联系我们.html">联系我们</a>
-                <a href="联系我们.html">franka328162810@gmail.com</a>
-                <a href="订阅通讯.html">订阅通讯</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span class="footer-copyright">© 2026 星际文明学. 保留所有权利.</span>
-            <div class="footer-links">
-                <a href="privacy.html">隐私政策</a>
-                <a href="terms.html">使用条款</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ==========================================
+<!-- ==========================================
          JavaScript
          ========================================== -->
-    <script>
-        // 生成星星和流星
-        function createStars() {
-            const starfield = document.getElementById('starfield');
-            if (!starfield) return;
+<script>
+    // 生成星星和流星
+    function createStars() {
+        const starfield = document.getElementById('starfield');
+        if (!starfield) return;
 
-            // 创建静态星星
-            for (let i = 0; i < 150; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.cssText = `
+        // 创建静态星星
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.cssText = `
                     left: ${Math.random() * 100}%;
                     top: ${Math.random() * 100}%;
                     width: ${Math.random() * 2 + 0.5}px;
                     height: ${Math.random() * 2 + 0.5}px;
                     opacity: ${Math.random() * 0.5 + 0.2};
                 `;
-                starfield.appendChild(star);
-            }
+            starfield.appendChild(star);
+        }
 
-            // 创建闪烁的星星
-            const colors = ['#ffffff', '#a78bfa', '#06b6d4', '#f59e0b'];
-            for (let i = 0; i < 40; i++) {
-                const star = document.createElement('div');
-                star.className = 'star-twinkle';
-                const size = Math.random() * 3 + 1;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                star.style.cssText = `
+        // 创建闪烁的星星
+        const colors = ['#ffffff', '#a78bfa', '#06b6d4', '#f59e0b'];
+        for (let i = 0; i < 40; i++) {
+            const star = document.createElement('div');
+            star.className = 'star-twinkle';
+            const size = Math.random() * 3 + 1;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            star.style.cssText = `
                     left: ${Math.random() * 100}%;
                     top: ${Math.random() * 100}%;
                     width: ${size}px;
@@ -2472,122 +2476,122 @@
                     --dur: ${Math.random() * 3 + 2}s;
                     --delay: ${Math.random() * 5}s;
                 `;
-                starfield.appendChild(star);
-            }
+            starfield.appendChild(star);
+        }
 
-            // 创建流星
-            for (let i = 0; i < 2; i++) {
-                const meteor = document.createElement('div');
-                meteor.className = 'meteor';
-                meteor.style.cssText = `
+        // 创建流星
+        for (let i = 0; i < 2; i++) {
+            const meteor = document.createElement('div');
+            meteor.className = 'meteor';
+            meteor.style.cssText = `
                     left: ${Math.random() * 50 + 20}%;
                     top: ${Math.random() * 20 + 5}%;
                     --dur: ${Math.random() * 1.5 + 1.5}s;
                     --delay: ${i * 8 + Math.random() * 5}s;
                 `;
-                starfield.appendChild(meteor);
-            }
+            starfield.appendChild(meteor);
         }
+    }
 
-        // 导航栏滚动效果
-        function handleNavScroll() {
-            const navbar = document.getElementById('navbar');
-            if (!navbar) return;
+    // 导航栏滚动效果
+    function handleNavScroll() {
+        const navbar = document.getElementById('navbar');
+        if (!navbar) return;
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // 新闻标签切换
+    function initNewsTabs() {
+        const tabs = document.querySelectorAll('.news-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+    }
+
+    // 格言轮播
+    function initQuotesCarousel() {
+        const quotes = document.querySelectorAll('.quote-item');
+        if (quotes.length === 0) return;
+
+        let currentIndex = 0;
+
+        function showQuote(index) {
+            quotes.forEach((quote, i) => {
+                if (i === index) {
+                    quote.classList.add('active');
                 } else {
-                    navbar.classList.remove('scrolled');
+                    quote.classList.remove('active');
                 }
             });
         }
 
-        // 新闻标签切换
-        function initNewsTabs() {
-            const tabs = document.querySelectorAll('.news-tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                });
+        // 每3秒切换一条格言
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % quotes.length;
+            showQuote(currentIndex);
+        }, 3000);
+    }
+
+    // 平滑滚动
+    function smoothScroll() {
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
-        }
-
-        // 格言轮播
-        function initQuotesCarousel() {
-            const quotes = document.querySelectorAll('.quote-item');
-            if (quotes.length === 0) return;
-
-            let currentIndex = 0;
-
-            function showQuote(index) {
-                quotes.forEach((quote, i) => {
-                    if (i === index) {
-                        quote.classList.add('active');
-                    } else {
-                        quote.classList.remove('active');
-                    }
-                });
-            }
-
-            // 每3秒切换一条格言
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % quotes.length;
-                showQuote(currentIndex);
-            }, 3000);
-        }
-
-        // 平滑滚动
-        function smoothScroll() {
-            const links = document.querySelectorAll('a[href^="#"]');
-            links.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-
-        // 初始化所有功能
-        document.addEventListener('DOMContentLoaded', () => {
-            createStars();
-            handleNavScroll();
-            initNewsTabs();
-            initQuotesCarousel();
-            smoothScroll();
-            initSearch();
         });
+    }
 
-        // 初始化搜索功能
-        function initSearch() {
-            const searchBtn = document.querySelector('.nav-search');
-            if (!searchBtn) return;
+    // 初始化所有功能
+    document.addEventListener('DOMContentLoaded', () => {
+        createStars();
+        handleNavScroll();
+        initNewsTabs();
+        initQuotesCarousel();
+        smoothScroll();
+        initSearch();
+    });
 
-            searchBtn.addEventListener('click', function () {
-                const keyword = window.prompt('请输入搜索关键词');
-                if (keyword === null) return;
+    // 初始化搜索功能
+    function initSearch() {
+        const searchBtn = document.querySelector('.nav-search');
+        if (!searchBtn) return;
 
-                const trimmed = keyword.trim();
-                const target = '/zh/深度研究.html';
-                const query = trimmed ? `?q=${encodeURIComponent(trimmed)}` : '';
+        searchBtn.addEventListener('click', function () {
+            const keyword = window.prompt('请输入搜索关键词');
+            if (keyword === null) return;
 
-                window.location.href = `${target}${query}#main-content`;
-            });
-        }
+            const trimmed = keyword.trim();
+            const target = '/zh/深度研究.html';
+            const query = trimmed ? `?q=${encodeURIComponent(trimmed)}` : '';
 
-        // 添加页面加载动画
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '1';
+            window.location.href = `${target}${query}#main-content`;
         });
-    </script>
-        <script src="/js/search-redirect.js"></script>
+    }
+
+    // 添加页面加载动画
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '1';
+    });
+</script>
+<script src="/js/search-redirect.js"></script>
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS 人工智能助手 -->
