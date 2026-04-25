@@ -23,7 +23,7 @@
 <div class="wrap">
     <form class="card" id="loginForm">
         <h1>ICS 内容管理后台</h1>
-        <p>根本性改进MVP：认证 + CMS（本地可运行）</p>
+        <p>安全优先：后台仅在服务端鉴权配置完成后启用。</p>
 
         <label for="email">邮箱</label>
         <input id="email" name="email" type="email" required placeholder="请输入管理员邮箱" />
@@ -32,26 +32,38 @@
         <input id="password" name="password" type="password" required placeholder="请输入密码" />
 
         <button type="submit">登录后台</button>
-        <div id="error" class="error">账号或密码错误</div>
-        <div class="hint">请联系管理员获取登录凭据。生产环境请迁移到服务端鉴权（Auth0/Firebase/自建）。</div>
+        <div id="error" class="error">当前部署未启用安全的服务端后台登录。</div>
+        <div class="hint">请在部署服务端鉴权后再开放后台入口。推荐 Auth0、Firebase Auth 或自建鉴权服务。</div>
         <div class="hint"><a href="/zh/深度研究.html">返回站点</a></div>
     </form>
 </div>
 
 <script src="/js/cms-auth.js"></script>
 <script>
+    if (!window.ICSAuth.isEnabled()) {
+        localStorage.removeItem('ics_admin_session_v1');
+    }
+
     const session = window.ICSAuth.getSession();
     if (session) {
         window.location.href = '/admin/cms.html';
+    }
+
+    if (!window.ICSAuth.isEnabled()) {
+        document.getElementById('email').disabled = true;
+        document.getElementById('password').disabled = true;
+        document.querySelector('button[type="submit"]').disabled = true;
     }
 
     document.getElementById('loginForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const email = e.target.email.value.trim();
         const password = e.target.password.value;
-        const ok = window.ICSAuth.login(email, password);
-        if (!ok) {
-            document.getElementById('error').style.display = 'block';
+        const result = window.ICSAuth.login(email, password);
+        if (!result?.ok) {
+            const errorEl = document.getElementById('error');
+            errorEl.textContent = result?.message || '当前部署未启用安全的服务端后台登录。';
+            errorEl.style.display = 'block';
             return;
         }
         window.location.href = '/admin/cms.html';

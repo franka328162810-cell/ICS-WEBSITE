@@ -12,7 +12,7 @@
         content="Subscribe to the ICS newsletter for the latest research, academic events, and frontier insights">
     <link rel="canonical" href="https://ics-studies.org/en/newsletter.html">
     <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/newsletter.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/%E9%80%9A%E8%AE%AF.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/%E8%AE%A2%E9%98%85%E9%80%9A%E8%AE%AF.html">
     <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/newsletter.html">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
@@ -936,38 +936,39 @@
                             Stay informed about international conferences, symposiums, lectures, and workshops. Never
                             miss an opportunity for exchange.
                         </div>
-                        <div class="newsletter-card">
-                            <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
-                                <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                    fill="rgba(167,139,250,0.1)" />
-                                <path d="M24 12 L24 24 L32 28" stroke="rgba(6,182,212,1)" stroke-width="2"
-                                    fill="none" />
-                                <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
-                                    fill="none" />
-                            </svg>
-                            <div class="newsletter-card-title">Frontier Insights</div>
-                            <div class="newsletter-card-desc">
-                                Read in-depth analysis and expert commentary on hot topics like AI governance, space
-                                exploration, and SETI.
-                            </div>
-                        </div>
-
-                        <div class="newsletter-card">
-                            <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
-                                <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                    fill="rgba(167,139,250,0.1)" />
-                                <path d="M18 24 L22 28 L30 20" stroke="rgba(6,182,212,1)" stroke-width="2"
-                                    fill="none" />
-                                <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
-                                    fill="none" />
-                            </svg>
-                            <div class="newsletter-card-title">Exclusive Resources</div>
-                            <div class="newsletter-card-desc">
-                                Priority access to research reports, white papers, teaching materials, and other
-                                exclusive academic resources.
-                            </div>
+                    </div>
+                    <div class="newsletter-card">
+                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <path d="M24 12 L24 24 L32 28" stroke="rgba(6,182,212,1)" stroke-width="2"
+                                fill="none" />
+                            <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
+                                fill="none" />
+                        </svg>
+                        <div class="newsletter-card-title">Frontier Insights</div>
+                        <div class="newsletter-card-desc">
+                            Read in-depth analysis and expert commentary on hot topics like AI governance, space
+                            exploration, and SETI.
                         </div>
                     </div>
+
+                    <div class="newsletter-card">
+                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <path d="M18 24 L22 28 L30 20" stroke="rgba(6,182,212,1)" stroke-width="2"
+                                fill="none" />
+                            <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
+                                fill="none" />
+                        </svg>
+                        <div class="newsletter-card-title">Exclusive Resources</div>
+                        <div class="newsletter-card-desc">
+                            Priority access to research reports, white papers, teaching materials, and other
+                            exclusive academic resources.
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section id="newsletter-stats">
@@ -1167,7 +1168,6 @@
     </main>
 
     <footer class="footer">
-        <footer class="footer">
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="footer-logo">
@@ -1216,7 +1216,7 @@
                     <a href="/en/terms.html">Terms of Service</a>
                 </div>
             </div>
-        </footer>
+    </footer>
 
         <script>
             // Navbar scroll effect
@@ -1244,7 +1244,7 @@
             });
 
             // Newsletter form submission
-            document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+            document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
                 e.preventDefault();
 
                 const formData = new FormData(this);
@@ -1257,15 +1257,24 @@
                     frequency: formData.get('frequency')
                 };
 
-                // Simulate form submission
-                console.log('Newsletter subscription data:', data);
-
-                // Show success message
                 const successMessage = document.getElementById('successMessage');
+                const messageBody = successMessage.querySelector('p');
+                const result = await window.ICSSubscribe.submit(Object.assign({}, data, {
+                    source: document.title,
+                    lang: 'en'
+                }), {
+                    lang: 'en'
+                });
+
+                messageBody.textContent = result.ok
+                    ? '\u2713 Subscription request submitted. Please check your inbox for confirmation.'
+                    : result.message;
                 successMessage.classList.add('show');
 
-                // Reset form
-                this.reset();
+                if (result.ok) {
+                    this.reset();
+                }
+
                 // Hide success message after 5 seconds
                 setTimeout(() => {
                     successMessage.classList.remove('show');
@@ -1295,6 +1304,7 @@
 
             cards.forEach(card => observer.observe(card));
         </script>
+        <script src="/js/subscription.js"></script>
         <script src="/js/search-redirect.js"></script>
 <script src="/js/mobile-nav.js"></script>
 

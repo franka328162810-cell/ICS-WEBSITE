@@ -790,7 +790,7 @@
 <body>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="/"" class="nav-brand">
+            <a href="/zh/首页.html" class="nav-brand">
                 <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
                     <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
@@ -892,21 +892,22 @@
                         <div class="newsletter-card-desc">
                             阅读对AI治理、太空探索、SETI等热点话题的深度分析和专家评论。
                         </div>
-                        <div class="newsletter-card">
-                            <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
-                                <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                    fill="rgba(167,139,250,0.1)" />
-                                <path d="M18 24 L22 28 L30 20" stroke="rgba(6,182,212,1)" stroke-width="2"
-                                    fill="none" />
-                                <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
-                                    fill="none" />
-                            </svg>
-                            <div class="newsletter-card-title">独家资源获取</div>
-                            <div class="newsletter-card-desc">
-                                优先获取研究报告、白皮书、教学资料等独家学术资源的下载链接。
-                            </div>
+                    </div>
+                    <div class="newsletter-card">
+                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
+                                fill="rgba(167,139,250,0.1)" />
+                            <path d="M18 24 L22 28 L30 20" stroke="rgba(6,182,212,1)" stroke-width="2"
+                                fill="none" />
+                            <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
+                                fill="none" />
+                        </svg>
+                        <div class="newsletter-card-title">独家资源获取</div>
+                        <div class="newsletter-card-desc">
+                            优先获取研究报告、白皮书、教学资料等独家学术资源的下载链接。
                         </div>
                     </div>
+                </div>
             </section>
 
             <section id="newsletter-stats">
@@ -1129,8 +1130,8 @@
         <div class="footer-bottom">
             <span class="footer-copyright">© 2026 星际文明学. 保留所有权利.</span>
             <div class="footer-links">
-                <a href="/"">隐私政策</a>
-                <a href="/"">使用条款</a>
+                <a href="/zh/privacy.html">隐私政策</a>
+                <a href="/zh/terms.html">使用条款</a>
             </div>
         </div>
     </footer>
@@ -1161,7 +1162,7 @@
         });
 
         // Newsletter form submission
-        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+        document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const formData = new FormData(this);
@@ -1174,15 +1175,24 @@
                 frequency: formData.get('frequency')
             };
 
-            // Simulate form submission
-            console.log('Newsletter subscription data:', data);
-
-            // Show success message
             const successMessage = document.getElementById('successMessage');
+            const messageBody = successMessage.querySelector('p');
+            const result = await window.ICSSubscribe.submit(Object.assign({}, data, {
+                source: document.title,
+                lang: 'zh'
+            }), {
+                lang: 'zh'
+            });
+
+            messageBody.textContent = result.ok
+                ? '\u2713 订阅请求已提交，请留意后续确认邮件。'
+                : result.message;
             successMessage.classList.add('show');
 
-            // Reset form
-            this.reset();
+            if (result.ok) {
+                this.reset();
+            }
+
             // Hide success message after 5 seconds
             setTimeout(() => {
                 successMessage.classList.remove('show');
@@ -1213,6 +1223,7 @@
 
         cards.forEach(card => observer.observe(card));
     </script>
+        <script src="/js/subscription.js"></script>
         <script src="/js/search-redirect.js"></script>
 <script src="/js/mobile-nav.js"></script>
 

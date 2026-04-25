@@ -170,8 +170,10 @@
         alert('已导出 content-index.json。请将其覆盖到 public/data/content-index.json');
     }
 
-    // function bindImport() {
-        // const input = document.getElementById('importFile');
+    function bindImport() {
+        const input = document.getElementById('importFile');
+        if (!input) return;
+
         input.addEventListener('change', async (e) => {
             const file = e.target.files?.[0];
             if (!file) return;
@@ -188,7 +190,7 @@
     }
 
     function init() {
-        // const session = window.ICSAuth?.requireAuth();
+        const session = window.ICSAuth?.requireAuth();
         if (!session) return;
 
         document.getElementById('adminUser').textContent = `${session.name} (${session.email})`;
@@ -198,7 +200,7 @@
         document.getElementById('exportIndexBtn').addEventListener('click', exportContentIndex);
         document.getElementById('logoutBtn').addEventListener('click', () => window.ICSAuth.logout());
 
-        // bindImport();
+        bindImport();
         renderTable();
         updateStats();
     }

@@ -1,18 +1,14 @@
 (function () {
     const AUTH_KEY = 'ics_admin_session_v1';
+    const DISABLED_MESSAGE = 'Secure CMS login is disabled until server-side authentication is configured.';
+    const adminConfig = window.ICS_ADMIN_CONFIG || {};
+    const isAdminEnabled = adminConfig.enabled === true;
 
     // Authentication is handled server-side. This client module
     // only manages the local session token returned by the server.
 
-    function setSession(payload) {
-        localStorage.setItem(AUTH_KEY, JSON.stringify({
-            ...payload,
-            loginAt: new Date().toISOString()
-        }));
-        return payload;
-    }
-
     function getSession() {
+        if (!isAdminEnabled) return null;
         try {
             const raw = localStorage.getItem(AUTH_KEY);
             return raw ? JSON.parse(raw) : null;
@@ -26,9 +22,14 @@
     }
 
     function login(email, password) {
-        // [已隐藏] 真实环境请实现服务端认证接口，演示环境已禁用后台入口。
-        // console.warn('CMS authentication requires server-side setup. See admin docs.');
-        return null;
+        void email;
+        void password;
+        clearSession();
+        return {
+            ok: false,
+            reason: 'disabled',
+            message: DISABLED_MESSAGE
+        };
     }
 
     function logout() {
@@ -36,7 +37,12 @@
         window.location.href = '/admin/login.html';
     }
 
-    // function requireAuth() {
+    function requireAuth() {
+        if (!isAdminEnabled) {
+            clearSession();
+            window.location.href = '/admin/login.html';
+            return null;
+        }
         const session = getSession();
         if (!session) {
             window.location.href = '/admin/login.html';
@@ -49,6 +55,7 @@
         login,
         logout,
         getSession,
-        // requireAuth
+        requireAuth,
+        isEnabled: () => isAdminEnabled
     };
 })();

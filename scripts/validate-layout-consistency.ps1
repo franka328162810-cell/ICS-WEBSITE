@@ -69,6 +69,41 @@ function Resolve-TargetFiles {
     )
 }
 
+function Test-BasicHtmlSafety {
+    param([string]$Root)
+
+    $publicDir = Join-Path $Root "public"
+    if (!(Test-Path $publicDir)) {
+        throw "Missing directory: public"
+    }
+
+    $htmlFiles = Get-ChildItem -Path $publicDir -Recurse -File -Filter "*.html"
+    $brokenHrefPattern = 'href="/""'
+    $jsHrefPattern = 'href\s*=\s*["'']\s*javascript:'
+    $findings = @()
+
+    foreach ($file in $htmlFiles) {
+        $raw = Get-Content -Raw -Path $file.FullName -Encoding UTF8
+        if ($raw -match $brokenHrefPattern) {
+            $findings += "Broken href quote in $($file.FullName.Replace($Root + '\', '').Replace('\', '/'))"
+        }
+        if ($raw -imatch $jsHrefPattern) {
+            $findings += "javascript: href found in $($file.FullName.Replace($Root + '\', '').Replace('\', '/'))"
+        }
+    }
+
+    return $findings
+}
+
+$htmlSafetyFindings = Test-BasicHtmlSafety -Root $WorkspaceRoot
+if ($htmlSafetyFindings.Count -gt 0) {
+    Write-ColorOutput "❌ HTML safety checks failed:" "Red"
+    foreach ($f in $htmlSafetyFindings) {
+        Write-ColorOutput "  - $f" "Red"
+    }
+    exit 3
+}
+
 $targets = Resolve-TargetFiles -Root $WorkspaceRoot
 
 $baselineFile = Join-Path $WorkspaceRoot "scripts/layout-baseline.hashes.json"

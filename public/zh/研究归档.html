@@ -18,6 +18,7 @@
     <meta property="og:site_name" content="星际文明学 | ICS">
     <meta property="og:title" content="研究归档 | 星际文明研究所">
     <meta property="og:description" content="ICS关于技术、治理和文明发展的学术研究存档">
+    <meta property="og:url" content="https://ics-studies.org/zh/%E7%A0%94%E7%A9%B6%E5%BD%92%E6%A1%A3.html">
     <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -530,7 +531,7 @@
     <a href="#main-content" class="skip-to-main">跳转到正文</a>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/"" class="nav-brand">
+            <a href="首页.html" class="nav-brand">
                 <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
                     <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
@@ -539,7 +540,7 @@
                 <span class="nav-title">ICS</span>
             </a>
             <ul class="nav-links">
-                <li><a href="/"" class="nav-link">首页</a></li>
+                <li><a href="首页.html" class="nav-link">首页</a></li>
                 <li><a href="深度研究.html" class="nav-link">本周</a></li>
                 <li><a href="研究归档.html" class="nav-link active">归档</a></li>
 <li><a href="/compass/" class="nav-link">星际罗盘</a></li>
@@ -556,7 +557,7 @@
         <nav class="breadcrumb-nav" aria-label="Breadcrumb">
             <div class="container">
                 <ol class="breadcrumb-list">
-                    <li><a href="/"">首页</a></li>
+                    <li><a href="首页.html">首页</a></li>
                     <li><span>研究归档</span></li>
                 </ol>
             </div>
@@ -584,7 +585,7 @@
                             type="text" 
                             class="search-input" 
                             id="searchInput" 
-                            placeholder="输入关键词：AI治理、太空治理、伦理学..."
+                            placeholder="输入关键词：AI治理、存在风险、气候变化..."
                             aria-label="搜索文章"
                         >
                         <button class="search-btn" id="searchBtn" onclick="performSearch()">搜索</button>
@@ -593,8 +594,10 @@
                         <span class="filter-label">🏷️ 按分类筛选：</span>
                         <button class="filter-button active" data-filter="all" onclick="filterByCategory(this)">全部</button>
                         <button class="filter-button" data-filter="AI治理" onclick="filterByCategory(this)">AI治理</button>
-                        <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
+                        <button class="filter-button" data-filter="存在风险" onclick="filterByCategory(this)">存在风险</button>
                         <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
+                        <button class="filter-button" data-filter="气候变化" onclick="filterByCategory(this)">气候变化</button>
+                        <button class="filter-button" data-filter="生命科学" onclick="filterByCategory(this)">生命科学</button>
                     </div>
                     <div id="searchResults" class="search-results" aria-live="polite"></div>
                 </div>
@@ -635,7 +638,9 @@
             { title: '当AI成为黑箱武器：Anthropic Mythos事件的星际文明学分析', category: 'AI治理', date: '2026-04-18', url: '深度研究.html', keywords: ['Anthropic', 'Mythos', 'AI治理', '递归自由度', '黑箱'] },
             { title: '当末日时钟停在89秒：AI存在风险的全球治理危机与文明可能性空间的正在收窄', category: '存在风险', date: '2026-04-12', url: 'research-archive/深度研究-存在风险-2026Q2.html', keywords: ['末日时钟', 'FRL-5', 'CSIA', '深时'] },
             { title: '深度研究：特朗普封杀Anthropic', category: 'AI治理', date: '2026-03-04', url: 'articles/trump-anthropic-ban-20250304.html', keywords: ['Anthropic', 'AI治理', '伦理红线', '特朗普'] },
-            { title: '研究归档', category: 'AI治理', date: '2025-01-01', url: '研究归档.html', keywords: ['归档', '研究', '历史'] }
+            { title: '我们欠了一笔没有人签字确认的账单', category: '气候变化', date: '2026-03-25', url: 'daily/20260325-climate-bill.html', keywords: ['气候', '全球变暖', '跨代债务'] },
+            { title: '太空治理', category: '太空治理', date: '2025-01-01', url: '太空治理.html', keywords: ['太空治理', '制度', '火星'] },
+            { title: '细菌的智慧，照见文明的命运', category: '生命科学', date: '2026-03-14', url: 'daily-commentary-archive/bacterial-intelligence-2026-03-14.html', keywords: ['Retron', '基因编辑', '生命科学'] }
         ];
 
         let runtimeSearchIndexZh = searchIndexZh;
@@ -672,7 +677,7 @@
             if (!container) return;
 
             if (results.length === 0) {
-                container.innerHTML = `<div class="search-empty">未找到结果${query ? `（关键词：${escapeHtml(query)}）` : ''}${filter !== 'all' ? `（分类：${escapeHtml(filter)}）` : ''}。可尝试关键词：AI治理、伦理学、太空治理。</div>`;
+                container.innerHTML = `<div class="search-empty">未找到结果${query ? `（关键词：${escapeHtml(query)}）` : ''}${filter !== 'all' ? `（分类：${escapeHtml(filter)}）` : ''}。可尝试关键词：AI治理、存在风险、气候变化。</div>`;
                 container.classList.add('active');
                 return;
             }

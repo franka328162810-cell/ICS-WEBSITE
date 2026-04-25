@@ -834,7 +834,7 @@
                 <li><a href="资源.html" class="nav-link">资源</a></li>
                 <li><a href="每日热点评论.html" class="nav-link">新闻</a></li>
                 <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
-                <li><a href="/compass/" class="nav-link">Compass</a></li>
+                <li><a href="/compass/" class="nav-link">星际罗盘</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -879,7 +879,7 @@
                 </div>
                 <div class="search-controls">
                     <div class="search-input-group">
-                        <input type="text" class="search-input" id="searchInput" placeholder="输入关键词：AI治理、太空治理、伦理学..."
+                        <input type="text" class="search-input" id="searchInput" placeholder="输入关键词：AI治理、存在风险、气候变化..."
                             aria-label="搜索文章">
                         <button class="search-btn" id="searchBtn" onclick="performSearch()">搜索</button>
                     </div>
@@ -887,8 +887,10 @@
                         <span class="filter-label">🏷️ 按分类筛选：</span>
                         <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">全部</button>
                         <button class="filter-button" data-filter="AI治理" onclick="filterByCategory(this)">AI治理</button>
-                        <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
+                        <button class="filter-button" data-filter="存在风险" onclick="filterByCategory(this)">存在风险</button>
                         <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
+                        <button class="filter-button" data-filter="气候变化" onclick="filterByCategory(this)">气候变化</button>
+                        <button class="filter-button" data-filter="生命科学" onclick="filterByCategory(this)">生命科学</button>
                     </div>
                     <div id="searchResults" class="search-results" aria-live="polite"></div>
                 </div>
@@ -1404,10 +1406,10 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span class="footer-copyright">© 2025 星际文明学. 保留所有权利.</span>
+            <span class="footer-copyright">© 2026 星际文明学. 保留所有权利.</span>
             <div class="footer-links-bottom">
-                <a href="privacy.html">隐私政策</a>
-                <a href="terms.html">使用条款</a>
+                <a href="/zh/privacy.html">隐私政策</a>
+                <a href="/zh/terms.html">使用条款</a>
             </div>
         </div>
     </footer>
@@ -1430,45 +1432,38 @@
         }
 
         // 处理邮件订阅
-        function handleNewsletterSignup(event) {
+        async function handleNewsletterSignup(event) {
             event.preventDefault();
             const form = event.target;
             const email = form.querySelector('input[type="email"]').value;
             const name = form.querySelector('input[type="text"]').value || '访客';
-
-            // 保存到localStorage
-            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
-            subscribers.push({
-                email: email,
+            const result = await window.ICSSubscribe.submit({
                 name: name,
-                timestamp: new Date().toISOString(),
-                source: document.title
+                email: email,
+                source: document.title,
+                lang: 'zh'
+            }, {
+                lang: 'zh'
             });
-            localStorage.setItem('subscribers', JSON.stringify(subscribers));
 
-            // 向服务器发送（可选）
-            fetch('/api/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, name, source: document.title })
-            }).catch(err => console.log('订阅发送失败，但已本地保存'));
+            if (result.ok) {
+                form.reset();
+            }
 
-            // 清除表单
-            form.reset();
-            alert('感谢订阅！我们会定期发送最新内容到您的邮箱。');
+            alert(result.message);
         }
 
         const searchIndexZh = [
             { title: '当AI成为黑箱武器：Anthropic Mythos事件的星际文明学分析', category: 'AI治理', date: '2026-04-18', url: '深度研究.html', keywords: ['Anthropic', 'Mythos', 'AI治理', '递归自由度', '黑箱'] },
             { title: '当末日时钟停在89秒：AI存在风险的全球治理危机与文明可能性空间的正在收窄', category: '存在风险', date: '2026-04-12', url: 'research-archive/深度研究-存在风险-2026Q2.html', keywords: ['末日时钟', 'FRL-5', 'CSIA', '存在风险', 'AI安全'] },
             { title: '深度研究：特朗普封杀Anthropic', category: 'AI治理', date: '2026-03-04', url: 'articles/trump-anthropic-ban-20250304.html', keywords: ['Anthropic', 'AI治理', '伦理红线', '特朗普'] },
-            { title: '每日热点评论', category: 'AI治理', date: '2026-03-04', url: '每日热点评论.html', keywords: ['热点', '评论', '政策'] },
+            { title: '我们欠了一笔没有人签字确认的账单', category: '气候变化', date: '2026-03-25', url: 'daily/20260325-climate-bill.html', keywords: ['气候', '全球变暖', '跨代债务'] },
             { title: '太空治理', category: '太空治理', date: '2025-01-01', url: '太空治理.html', keywords: ['太空治理', '制度', '火星'] },
             { title: '人工智能治理', category: 'AI治理', date: '2025-01-01', url: '人工智能治理.html', keywords: ['AI', '治理', '安全'] },
-            { title: '与环境伦理学的对话', category: '伦理学', date: '2025-01-01', url: '与环境伦理学的对话.html', keywords: ['伦理学', '环境', '对话'] },
-            { title: '禁忌红线', category: '伦理学', date: '2025-01-01', url: '禁忌红线.html', keywords: ['红线', 'FRL', '风险'] },
+            { title: '细菌的智慧，照见文明的命运', category: '生命科学', date: '2026-03-14', url: 'daily-commentary-archive/bacterial-intelligence-2026-03-14.html', keywords: ['Retron', '基因编辑', '生命科学'] },
+            { title: '禁忌红线', category: '存在风险', date: '2025-01-01', url: '禁忌红线.html', keywords: ['红线', 'FRL', '风险'] },
             { title: '研究归档', category: 'AI治理', date: '2025-01-01', url: '研究归档.html', keywords: ['归档', '研究', '历史'] },
-            { title: '资源', category: '伦理学', date: '2025-01-01', url: '资源.html', keywords: ['阅读', '资源', '术语'] }
+            { title: '资源', category: '太空治理', date: '2025-01-01', url: '资源.html', keywords: ['阅读', '资源', '术语'] }
         ];
 
         let runtimeSearchIndexZh = searchIndexZh;
@@ -1504,7 +1499,7 @@
             if (!container) return;
 
             if (results.length === 0) {
-                container.innerHTML = `<div class="search-empty">未找到匹配内容。可尝试关键词：AI治理、伦理学、太空治理。</div>`;
+                container.innerHTML = `<div class="search-empty">未找到匹配内容。可尝试关键词：AI治理、存在风险、气候变化。</div>`;
                 container.classList.add('active');
                 return;
             }
@@ -1570,6 +1565,8 @@
 
         loadSearchIndexZh();
     </script>
+    <script src="/js/subscription.js"></script>
+    <script src="/js/mobile-nav.js"></script>
 </body>
 
 </html>

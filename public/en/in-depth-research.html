@@ -637,7 +637,7 @@
                 <div class="search-controls">
                     <div class="search-input-group">
                         <input type="text" class="search-input" id="searchInput"
-                            placeholder="Enter keywords: AI Governance, Space Governance, Ethics..."
+                            placeholder="Enter keywords: AI Governance, Existential Risk, Climate Change..."
                             aria-label="Search articles">
                         <button class="search-btn" id="searchBtn" onclick="performSearch()">Search</button>
                     </div>
@@ -646,10 +646,14 @@
                         <button class="filter-button" data-filter="all" onclick="filterByCategory(this)">All</button>
                         <button class="filter-button" data-filter="AI Governance" onclick="filterByCategory(this)">AI
                             Governance</button>
-                        <button class="filter-button" data-filter="Ethics"
-                            onclick="filterByCategory(this)">Ethics</button>
+                        <button class="filter-button" data-filter="Existential Risk"
+                            onclick="filterByCategory(this)">Existential Risk</button>
                         <button class="filter-button" data-filter="Space Governance"
                             onclick="filterByCategory(this)">Space</button>
+                        <button class="filter-button" data-filter="Climate Change"
+                            onclick="filterByCategory(this)">Climate</button>
+                        <button class="filter-button" data-filter="Life Sciences"
+                            onclick="filterByCategory(this)">Life Sciences</button>
                     </div>
                     <div id="searchResults" class="search-results" aria-live="polite"></div>
                 </div>
@@ -1057,6 +1061,27 @@
             document.getElementById('citationBox').classList.toggle('active');
         }
 
+        async function handleNewsletterSignup(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.querySelector('input[type="email"]').value;
+            const name = form.querySelector('input[type="text"]').value || 'Visitor';
+            const result = await window.ICSSubscribe.submit({
+                name: name,
+                email: email,
+                source: document.title,
+                lang: 'en'
+            }, {
+                lang: 'en'
+            });
+
+            if (result.ok) {
+                form.reset();
+            }
+
+            alert(result.message);
+        }
+
         // Navbar scroll effect (added globally in template)
         const navbar = document.getElementById('navbar');
         if (navbar) {
@@ -1074,13 +1099,13 @@
             { title: 'When AI Becomes a Black-Box Weapon: ICS Analysis of the Anthropic Mythos Incident', category: 'AI Governance', date: '2026-04-18', url: 'in-depth-research.html', keywords: ['Anthropic', 'Mythos', 'AI governance', 'recursive freedom', 'black box'] },
             { title: 'When the Doomsday Clock Stops at 89 Seconds', category: 'Existential Risk', date: '2026-04-12', url: 'research-archive/in-depth-research-existential-risk-2026Q2.html', keywords: ['Doomsday Clock', 'FRL-5', 'CSIA', 'existential risk', 'AI safety'] },
             { title: "In-Depth Research: Trump's Ban on Anthropic", category: 'AI Governance', date: '2026-03-04', url: 'articles/trump-anthropic-ban-20250304.html', keywords: ['Anthropic', 'AI', 'ethics', 'Trump'] },
-            { title: 'Daily Commentary', category: 'AI Governance', date: '2026-03-04', url: 'daily-commentary.html', keywords: ['commentary', 'policy', 'AI'] },
+            { title: 'We Owe a Bill That No One Signed', category: 'Climate Change', date: '2026-03-25', url: 'daily/20260325-climate-bill.html', keywords: ['climate', 'WMO', 'global warming'] },
             { title: 'Space Governance', category: 'Space Governance', date: '2025-01-01', url: 'space-governance.html', keywords: ['space', 'governance', 'mars'] },
             { title: 'AI Governance', category: 'AI Governance', date: '2025-01-01', url: 'ai-governance.html', keywords: ['ai', 'governance', 'safety'] },
-            { title: 'Dialogue with Environmental Ethics', category: 'Ethics', date: '2025-01-01', url: 'dialogue-with-environmental-ethics.html', keywords: ['ethics', 'environment', 'dialogue'] },
-            { title: 'Forbidden Red Lines', category: 'Ethics', date: '2025-01-01', url: 'forbidden-red-lines.html', keywords: ['frl', 'red lines', 'risk'] },
+            { title: 'Bacterial Intelligence Reveals Civilization\'s Fate', category: 'Life Sciences', date: '2026-03-14', url: 'daily-commentary-archive/bacterial-intelligence-2026-03-14.html', keywords: ['retron', 'gene editing', 'life sciences'] },
+            { title: 'Forbidden Red Lines', category: 'Existential Risk', date: '2025-01-01', url: 'forbidden-red-lines.html', keywords: ['frl', 'red lines', 'risk'] },
             { title: 'Research Archive', category: 'AI Governance', date: '2025-01-01', url: 'research-archive.html', keywords: ['archive', 'research', 'history'] },
-            { title: 'Resources', category: 'Ethics', date: '2025-01-01', url: 'resources.html', keywords: ['reading', 'resources', 'glossary'] }
+            { title: 'Resources', category: 'Space Governance', date: '2025-01-01', url: 'resources.html', keywords: ['reading', 'resources', 'glossary'] }
         ];
 
         let runtimeSearchIndexEn = searchIndexEn;
@@ -1116,7 +1141,7 @@
             if (!container) return;
 
             if (results.length === 0) {
-                container.innerHTML = `<div class="search-empty">No matching content found. Try: AI Governance, Ethics, Space Governance.</div>`;
+                container.innerHTML = `<div class="search-empty">No matching content found. Try: AI Governance, Existential Risk, Climate Change.</div>`;
                 container.classList.add('active');
                 return;
             }
@@ -1178,6 +1203,10 @@
 
         loadSearchIndexEn();
     </script>
+    <script src="/js/subscription.js"></script>
+    <script src="/js/search-redirect.js"></script>
+    <script src="/js/mobile-nav.js"></script>
+    <script src="/js/ai-assistant.js"></script>
 </body>
 
 </html>
