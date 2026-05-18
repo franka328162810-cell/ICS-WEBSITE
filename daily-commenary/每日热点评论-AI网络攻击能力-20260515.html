@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>纠错机制正在失守：AI网络攻击能力的指数加速与文明的回滚危机 | 星际文明学</title>
-    <meta name="description" content="英国AI安全研究所5月14日报告：前沿AI的网络攻击任务完成能力每4.7个月翻倍，Claude Mythos和GPT-5.5均突破端对端攻击上限。从星际文明学ICS框架看，这不是一个单纯的网络安全问题，而是FRL-5（禁止关闭回滚机制）被系统性逼近的文明级风险信号。">
+    <meta name="description"
+        content="英国AI安全研究所5月14日报告：前沿AI的网络攻击任务完成能力每4.7个月翻倍，Claude Mythos和GPT-5.5均突破端对端攻击上限。从星际文明学ICS框架看，这不是一个单纯的网络安全问题，而是FRL-5（禁止关闭回滚机制）被系统性逼近的文明级风险信号。">
     <meta name="robots" content="index, follow">
     <meta name="author" content="星际文明学研究所">
     <meta name="publisher" content="星际文明学">
@@ -15,12 +17,22 @@
     <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/daily-commentary-ai-cyber-20260515.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        html { font-size: 14px !important; }
-        @media (min-width: 1200px) { html { font-size: 14px !important; } }
+        html {
+            font-size: 14px !important;
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 14px !important;
+            }
+        }
+
         :root {
             --color-deep-space: #0a1628;
             --color-quantum-purple: #7c3aed;
@@ -30,112 +42,781 @@
             --color-energy-gold: #f59e0b;
             --color-energy-gold-light: #fbbf24;
             --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255,255,255,0.82);
+            --color-text-secondary: rgba(255, 255, 255, 0.82);
             --font-zh-sans: 'Noto Sans SC', sans-serif;
             --font-zh-serif: 'Noto Serif SC', serif;
             --transition-normal: 0.3s ease;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-zh-sans); font-weight: 300; background: var(--color-deep-space); color: var(--color-text-secondary); line-height: 1.75; min-height: 100vh; display: flex; flex-direction: column; }
-        .skip-to-main { position: absolute; top: -40px; left: 0; background: rgba(167,139,250,1); color: white; padding: 0.5rem 1rem; text-decoration: none; z-index: 100; border-radius: 0 0 8px 0; }
-        .skip-to-main:focus { top: 0; }
-        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(167,139,250,0.12); transition: all var(--transition-normal); }
-        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-        .nav-brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
-        .nav-logo { width: 40px; height: 40px; }
-        .nav-brand-text { display: flex; flex-direction: column; }
-        .nav-title { font-family: var(--font-zh-serif); font-size: 1rem; font-weight: 700; color: var(--color-text-primary); }
-        .nav-subtitle { font-size: 0.5625rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-link { font-family: var(--font-zh-serif); font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: color var(--transition-normal); }
-        .nav-link:hover { color: var(--color-quantum-purple-light); }
-        .nav-actions { display: flex; align-items: center; gap: 1.5rem; }
-        .lang-switch { display: flex; gap: 0.5rem; }
-        .lang-btn { font-size: 0.875rem; padding: 0.4rem 0.9rem; border-radius: 6px; text-decoration: none; color: rgba(255,255,255,0.6); transition: all var(--transition-normal); }
-        .lang-btn.active { background: rgba(167,139,250,0.2); color: var(--color-quantum-purple-light); }
-        .nav-contact { font-size: 0.8125rem; padding: 8px 20px; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: white; text-decoration: none; border-radius: 8px; }
-        .nav-search { background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; padding: 0.5rem; display: flex; align-items: center; }
-        .nav-search svg { width: 18px; height: 18px; }
-        .page-hero { position: relative; min-height: 82vh; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 68px; overflow: hidden; }
-        .page-hero-bg { position: absolute; inset: 0; z-index: 0; }
-        .nebula { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.28; animation: float 22s ease-in-out infinite; }
-        .nebula-1 { width: 580px; height: 580px; background: radial-gradient(circle, #7c3aed, transparent); top: -180px; left: -80px; }
-        .nebula-2 { width: 480px; height: 480px; background: radial-gradient(circle, #06b6d4, transparent); bottom: -130px; right: -80px; animation-delay: -11s; }
-        @keyframes float { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(28px,-28px) scale(1.08); } }
-        .page-hero-content { position: relative; z-index: 1; width: 100%; padding: 4rem 2rem; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .zh-page-title { font-family: var(--font-zh-serif); font-size: clamp(2.2rem, 3.2vw, 2.9rem); font-weight: 900; margin-bottom: 1.5rem; text-align: center; background: linear-gradient(135deg, #fff 0%, var(--color-quantum-purple-light) 52%, var(--color-nebula-cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.5; letter-spacing: 0.06em; }
-        .hero-meta { text-align: center; color: rgba(255,255,255,0.55); font-size: 0.88rem; margin-bottom: 2rem; }
-        .hero-intro-card { background: rgba(15,23,42,0.65); backdrop-filter: blur(10px); border: 1px solid rgba(167,139,250,0.22); border-radius: 16px; padding: 2.25rem; max-width: 900px; margin: 0 auto; }
-        .hero-intro-card p { font-size: 1.0625rem !important; line-height: 1.95; }
-        .main-content { flex: 1; padding: 4rem 0; }
-        .article-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; }
-        .article-actions { display: flex; gap: 0.875rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .action-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.22); border-radius: 8px; color: rgba(255,255,255,0.8); font-size: 0.875rem; cursor: pointer; transition: all var(--transition-normal); text-decoration: none; }
-        .action-btn:hover { background: rgba(167,139,250,0.2); }
-        .article-content { background: rgba(15,23,42,0.42); border: 1px solid rgba(167,139,250,0.15); border-radius: 20px; padding: 3rem; }
-        .article-content h2 { font-family: var(--font-zh-serif); font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(167,139,250,0.2); }
-        .article-content h3 { font-family: var(--font-zh-serif); font-size: 1.15rem; font-weight: 600; color: var(--color-quantum-purple-light); margin: 2rem 0 0.75rem; }
-        .article-content p { font-size: 0.9375rem !important; line-height: 1.9 !important; margin-bottom: 1.3rem; color: rgba(255,255,255,0.82); }
-        .article-content blockquote { border-left: 3px solid var(--color-quantum-purple-light); padding: 1rem 1.5rem; margin: 1.5rem 0; background: rgba(124,58,237,0.08); border-radius: 0 8px 8px 0; font-style: italic; color: rgba(255,255,255,0.88); font-family: var(--font-zh-serif); }
-        .ics-box { background: rgba(6,182,212,0.06); border: 1px solid rgba(6,182,212,0.25); border-radius: 12px; padding: 1.5rem 2rem; margin: 2rem 0; }
-        .ics-box-title { font-family: var(--font-zh-serif); font-size: 1rem; font-weight: 700; color: var(--color-nebula-cyan-light); margin-bottom: 0.8rem; letter-spacing: 0.04em; }
-        .ics-box p { font-size: 0.9rem !important; line-height: 1.82 !important; margin-bottom: 0.65rem; }
-        .frl-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.3); border-radius: 12px; padding: 1.5rem 2rem; margin: 2rem 0; }
-        .frl-box-title { font-family: var(--font-zh-serif); font-size: 1rem; font-weight: 700; color: var(--color-energy-gold-light); margin-bottom: 0.8rem; }
-        .frl-box p { font-size: 0.9rem !important; line-height: 1.82 !important; margin-bottom: 0.55rem; }
-        .danger-box { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.3); border-radius: 12px; padding: 1.5rem 2rem; margin: 2rem 0; }
-        .danger-box-title { font-family: var(--font-zh-serif); font-size: 1rem; font-weight: 700; color: #fca5a5; margin-bottom: 0.8rem; }
-        .danger-box p { font-size: 0.9rem !important; line-height: 1.82 !important; margin-bottom: 0.55rem; }
-        .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
-        .tag { padding: 0.25rem 0.75rem; background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25); border-radius: 20px; font-size: 0.8rem; color: var(--color-quantum-purple-light); }
-        .compass-cta { background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1)); border: 1px solid rgba(167,139,250,0.3); border-radius: 16px; padding: 2.5rem; margin: 3rem 0; text-align: center; }
-        .compass-cta-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
-        .compass-cta-title { font-family: var(--font-zh-serif); font-size: 1.4rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 1rem; }
-        .compass-cta-desc { font-size: 0.9375rem !important; color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
-        .compass-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 0.9375rem; }
-        .related-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(167,139,250,0.1); }
-        .zh-section-title { font-family: var(--font-zh-serif); font-size: 1.875rem !important; font-weight: 700; color: var(--color-text-primary); margin-bottom: 1.5rem; }
-        .related-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.75rem; margin-top: 2rem; }
-        .related-card { display: block; background: rgba(15,23,42,0.6); border: 1px solid rgba(167,139,250,0.2); border-radius: 16px; padding: 1.75rem; text-decoration: none; transition: all var(--transition-normal); }
-        .related-card:hover { border-color: rgba(167,139,250,0.42); transform: translateY(-2px); }
-        .related-card-category { font-size: 0.8rem; color: var(--color-quantum-purple-light); margin-bottom: 0.5rem; }
-        .related-card-title { font-family: var(--font-zh-serif); font-size: 1rem; font-weight: 600; color: var(--color-text-primary); line-height: 1.5; }
-        .citation-section { margin-top: 2.5rem; padding: 1.75rem; background: rgba(15,23,42,0.5); border: 1px solid rgba(167,139,250,0.14); border-radius: 12px; }
-        .citation-toggle { background: none; border: 1px solid rgba(167,139,250,0.3); color: rgba(255,255,255,0.7); padding: 0.45rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem; margin-top: 0.75rem; }
-        #citationBox { display: none; margin-top: 1rem; padding: 1.2rem; background: rgba(124,58,237,0.07); border-radius: 8px; font-size: 0.84rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
-        #citationBox.active { display: block; }
-        .search-section { margin-bottom: 2rem; padding: 1.75rem; background: rgba(15,23,42,0.5); border: 1px solid rgba(167,139,250,0.14); border-radius: 16px; }
-        .search-header h3 { font-family: var(--font-zh-serif); font-size: 1.05rem; color: var(--color-text-primary); margin-bottom: 0.4rem; }
-        .search-header p { font-size: 0.875rem !important; color: rgba(255,255,255,0.6); }
-        .search-controls { margin-top: 1rem; }
-        .search-input-group { display: flex; gap: 0.75rem; margin-bottom: 0.875rem; }
-        .search-input { flex: 1; padding: 0.7rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(167,139,250,0.2); border-radius: 8px; color: white; font-size: 0.9rem; outline: none; }
-        .search-btn { padding: 0.7rem 1.4rem; background: var(--color-quantum-purple); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.875rem; }
-        .filter-group { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-        .filter-label { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
-        .filter-button { padding: 0.35rem 0.875rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(167,139,250,0.2); border-radius: 20px; color: rgba(255,255,255,0.7); font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
-        .filter-button.active, .filter-button:hover { background: rgba(167,139,250,0.2); border-color: var(--color-quantum-purple-light); color: white; }
-        .search-results.active { border: 1px solid rgba(167,139,250,0.2); margin-top: 0.5rem; border-radius: 8px; overflow: hidden; }
-        .search-result-item { display: block; padding: 0.85rem 1rem; border-bottom: 1px solid rgba(167,139,250,0.12); text-decoration: none; color: rgba(255,255,255,0.9); transition: background 0.2s; }
-        .search-result-item:hover { background: rgba(167,139,250,0.1); }
-        .search-result-title { font-weight: 600; margin-bottom: 0.2rem; font-size: 0.9rem; }
-        .search-result-meta { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
-        .search-empty { padding: 1rem; color: rgba(255,255,255,0.6); font-size: 0.875rem; }
-        .newsletter-widget { background: rgba(15,23,42,0.5); border: 1px solid rgba(167,139,250,0.14); border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem; }
-        .newsletter-widget h3 { font-family: var(--font-zh-serif); color: var(--color-text-primary); margin-bottom: 0.5rem; font-size: 1.05rem; }
-        .newsletter-widget p { font-size: 0.875rem !important; color: rgba(255,255,255,0.6); margin-bottom: 1rem; }
-        .newsletter-form { display: flex; flex-wrap: wrap; gap: 0.7rem; }
-        .newsletter-form input { flex: 1; min-width: 170px; padding: 0.7rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(167,139,250,0.2); border-radius: 8px; color: white; font-size: 0.875rem; outline: none; }
-        .newsletter-form button { padding: 0.7rem 1.4rem; background: var(--color-quantum-purple); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.875rem; }
-        .footer { background: rgba(10,22,40,0.95); border-top: 1px solid rgba(167,139,250,0.1); padding: 3.5rem 2rem 1.75rem; margin-top: auto; }
-        .footer-content { max-width: 1400px; margin: 0 auto; padding: 0; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-        .footer-desc { font-size: 0.875rem !important; color: rgba(255,255,255,0.5); }
-        .footer-col h4 { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 1rem; font-family: var(--font-zh-serif); }
-        .footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.5rem; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--color-quantum-purple-light); }
-        @media (max-width: 768px) { .nav-links { display: none; } .footer-content { grid-template-columns: 1fr; } .article-content { padding: 1.75rem; } }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-zh-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.75;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: rgba(167, 139, 250, 1);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-to-main:focus {
+            top: 0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.12);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.5625rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-zh-serif);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            font-size: 0.875rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-contact {
+            font-size: 0.8125rem;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-search svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 82vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 68px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.28;
+            animation: float 22s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 580px;
+            height: 580px;
+            background: radial-gradient(circle, #7c3aed, transparent);
+            top: -180px;
+            left: -80px;
+        }
+
+        .nebula-2 {
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, #06b6d4, transparent);
+            bottom: -130px;
+            right: -80px;
+            animation-delay: -11s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(28px, -28px) scale(1.08);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .zh-page-title {
+            font-family: var(--font-zh-serif);
+            font-size: clamp(2.2rem, 3.2vw, 2.9rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, var(--color-quantum-purple-light) 52%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.5;
+            letter-spacing: 0.06em;
+        }
+
+        .hero-meta {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.88rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.22);
+            border-radius: 16px;
+            padding: 2.25rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-intro-card p {
+            font-size: 1.0625rem !important;
+            line-height: 1.95;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        .article-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .article-actions {
+            display: flex;
+            gap: 0.875rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.22);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .action-btn:hover {
+            background: rgba(167, 139, 250, 0.2);
+        }
+
+        .article-content {
+            background: rgba(15, 23, 42, 0.42);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .article-content h2 {
+            font-family: var(--font-zh-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .article-content h3 {
+            font-family: var(--font-zh-serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--color-quantum-purple-light);
+            margin: 2rem 0 0.75rem;
+        }
+
+        .article-content p {
+            font-size: 0.9375rem !important;
+            line-height: 1.9 !important;
+            margin-bottom: 1.3rem;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--color-quantum-purple-light);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background: rgba(124, 58, 237, 0.08);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.88);
+            font-family: var(--font-zh-serif);
+        }
+
+        .ics-box {
+            background: rgba(6, 182, 212, 0.06);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .ics-box-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-nebula-cyan-light);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.04em;
+        }
+
+        .ics-box p {
+            font-size: 0.9rem !important;
+            line-height: 1.82 !important;
+            margin-bottom: 0.65rem;
+        }
+
+        .frl-box {
+            background: rgba(245, 158, 11, 0.06);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .frl-box-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-energy-gold-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .frl-box p {
+            font-size: 0.9rem !important;
+            line-height: 1.82 !important;
+            margin-bottom: 0.55rem;
+        }
+
+        .danger-box {
+            background: rgba(239, 68, 68, 0.06);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .danger-box-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fca5a5;
+            margin-bottom: 0.8rem;
+        }
+
+        .danger-box p {
+            font-size: 0.9rem !important;
+            line-height: 1.82 !important;
+            margin-bottom: 0.55rem;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(167, 139, 250, 0.12);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--color-quantum-purple-light);
+        }
+
+        .compass-cta {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .compass-cta-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .compass-cta-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .compass-cta-desc {
+            font-size: 0.9375rem !important;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 1.5rem;
+        }
+
+        .compass-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+
+        .related-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+        }
+
+        .zh-section-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1.875rem !important;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.75rem;
+            margin-top: 2rem;
+        }
+
+        .related-card {
+            display: block;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 1.75rem;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .related-card:hover {
+            border-color: rgba(167, 139, 250, 0.42);
+            transform: translateY(-2px);
+        }
+
+        .related-card-category {
+            font-size: 0.8rem;
+            color: var(--color-quantum-purple-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card-title {
+            font-family: var(--font-zh-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            line-height: 1.5;
+        }
+
+        .citation-section {
+            margin-top: 2.5rem;
+            padding: 1.75rem;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.14);
+            border-radius: 12px;
+        }
+
+        .citation-toggle {
+            background: none;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.45rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            margin-top: 0.75rem;
+        }
+
+        #citationBox {
+            display: none;
+            margin-top: 1rem;
+            padding: 1.2rem;
+            background: rgba(124, 58, 237, 0.07);
+            border-radius: 8px;
+            font-size: 0.84rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        #citationBox.active {
+            display: block;
+        }
+
+        .search-section {
+            margin-bottom: 2rem;
+            padding: 1.75rem;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.14);
+            border-radius: 16px;
+        }
+
+        .search-header h3 {
+            font-family: var(--font-zh-serif);
+            font-size: 1.05rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .search-header p {
+            font-size: 0.875rem !important;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-controls {
+            margin-top: 1rem;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.875rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 0.7rem 1.4rem;
+            background: var(--color-quantum-purple);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .filter-button {
+            padding: 0.35rem 0.875rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-button.active,
+        .filter-button:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: var(--color-quantum-purple-light);
+            color: white;
+        }
+
+        .search-results.active {
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            margin-top: 0.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .search-result-item {
+            display: block;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.12);
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            transition: background 0.2s;
+        }
+
+        .search-result-item:hover {
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .search-result-title {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        .search-result-meta {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .search-empty {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+
+        .newsletter-widget {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.14);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-widget h3 {
+            font-family: var(--font-zh-serif);
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .newsletter-widget p {
+            font-size: 0.875rem !important;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 170px;
+            padding: 0.7rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.875rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 0.7rem 1.4rem;
+            background: var(--color-quantum-purple);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3.5rem 2rem 1.75rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem !important;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-col h4 {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-family: var(--font-zh-serif);
+        }
+
+        .footer-col a {
+            display: block;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .article-content {
+                padding: 1.75rem;
+            }
+        }
     </style>
     <!-- ICS-SEO-START -->
     <meta property="og:type" content="article">
@@ -150,7 +831,8 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="纠错机制正在失守：AI网络攻击能力的指数加速与文明的回滚危机 - 星际文明学">
     <meta name="twitter:description" content="从ICS框架看，AI网络攻击能力每4.7个月翻倍不是一个单纯的安全问题，而是FRL-5被系统性逼近的文明级信号。">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"纠错机制正在失守：AI网络攻击能力的指数加速与文明的回滚危机","datePublished":"2026-05-15","author":{"@type":"Organization","name":"星际文明学研究所"},"publisher":{"@type":"Organization","name":"星际文明学","url":"https://ics-studies.org"}}</script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"纠错机制正在失守：AI网络攻击能力的指数加速与文明的回滚危机","datePublished":"2026-05-15","author":{"@type":"Organization","name":"星际文明学研究所"},"publisher":{"@type":"Organization","name":"星际文明学","url":"https://ics-studies.org"}}</script>
     <!-- ICS-SEO-END -->
 </head>
 
@@ -160,11 +842,12 @@
         <div class="nav-container">
             <a href="首页.html" class="nav-brand">
                 <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
-                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none"/>
-                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none"/>
-                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)"/>
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
                     <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s" repeatCount="indefinite"/>
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
                     </circle>
                 </svg>
                 <div class="nav-brand-text">
@@ -183,7 +866,10 @@
             </ul>
             <div class="nav-actions">
                 <button class="nav-search" aria-label="搜索" onclick="scrollToSearch()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
                 </button>
                 <div class="lang-switch">
                     <a href="../en/daily-commentary-ai-cyber-20260515.html" class="lang-btn">EN</a>
@@ -204,7 +890,9 @@
                 <h1 class="zh-page-title">纠错机制正在失守：<br>AI网络攻击能力的指数加速与文明的回滚危机</h1>
                 <div class="hero-meta">📅 2026年5月15日 | ⏱️ 阅读时长：约13分钟 | 🏷️ 存在风险管理 · AI安全 · ICS热点评论</div>
                 <div class="hero-intro-card">
-                    <p>2026年5月14日，英国AI安全研究所（AISI）发布最新评估报告：自2024年底推理模型出现以来，前沿AI完成网络攻击任务的能力每4.7个月翻倍一次，而Claude Mythos Preview与GPT-5.5均已大幅超越这一趋势。其中，Mythos成为首个端对端完成32步企业网络攻击模拟的AI系统，单次攻击尝试成本已降至约65英镑。从星际文明学（ICS）的框架看，这份报告触碰的不是单纯的技术边界——它触碰的是一条关乎文明纠错能力的禁忌红线。</p>
+                    <p>2026年5月14日，英国AI安全研究所（AISI）发布最新评估报告：自2024年底推理模型出现以来，前沿AI完成网络攻击任务的能力每4.7个月翻倍一次，而Claude Mythos
+                        Preview与GPT-5.5均已大幅超越这一趋势。其中，Mythos成为首个端对端完成32步企业网络攻击模拟的AI系统，单次攻击尝试成本已降至约65英镑。从星际文明学（ICS）的框架看，这份报告触碰的不是单纯的技术边界——它触碰的是一条关乎文明纠错能力的禁忌红线。
+                    </p>
                 </div>
             </div>
         </div>
@@ -219,12 +907,14 @@
                 </div>
                 <div class="search-controls">
                     <div class="search-input-group">
-                        <input type="text" class="search-input" id="searchInput" placeholder="输入关键词：AI治理、FRL-5、存在风险..." aria-label="搜索">
+                        <input type="text" class="search-input" id="searchInput" placeholder="输入关键词：AI治理、FRL-5、存在风险..."
+                            aria-label="搜索">
                         <button class="search-btn" onclick="performSearch()">搜索</button>
                     </div>
                     <div class="filter-group">
                         <span class="filter-label">🏷️ 按分类：</span>
-                        <button class="filter-button active" data-filter="all" onclick="filterByCategory(this)">全部</button>
+                        <button class="filter-button active" data-filter="all"
+                            onclick="filterByCategory(this)">全部</button>
                         <button class="filter-button" data-filter="AI治理" onclick="filterByCategory(this)">AI治理</button>
                         <button class="filter-button" data-filter="伦理学" onclick="filterByCategory(this)">伦理学</button>
                         <button class="filter-button" data-filter="太空治理" onclick="filterByCategory(this)">太空治理</button>
@@ -248,7 +938,8 @@
                     <div class="article-actions">
                         <button class="action-btn" onclick="window.print()"><span>🖨️</span><span>打印</span></button>
                         <button class="action-btn" onclick="shareArticle()"><span>🔗</span><span>分享</span></button>
-                        <a href="每日热点评论.html" class="action-btn" style="text-decoration:none;color:inherit;"><span>📚</span><span>往期回顾</span></a>
+                        <a href="每日热点评论.html" class="action-btn"
+                            style="text-decoration:none;color:inherit;"><span>📚</span><span>往期回顾</span></a>
                     </div>
 
                     <div class="tag-row">
@@ -268,11 +959,15 @@
 
                     <p>先把数字讲清楚，因为很多讨论在这里就已经失焦了。</p>
 
-                    <p>英国AISI测量的不是AI能力的绝对水平，而是AI能够自主完成的网络攻击任务的时长。2023年底，最好的模型连初级任务都几乎无法完成（成功率低于9%）。到2026年初，最先进模型在初级任务上的成功率已超过50%，而双倍时间——即自主完成任务的时长每翻一倍所需要的时间——已从2025年11月估算的8个月，压缩到2026年2月的4.7个月。随后，Claude Mythos Preview与GPT-5.5的表现进一步超越了这条趋势线，让研究者无法判断4.7个月究竟是新的稳定趋势，还是一个正在进一步加速的起点。</p>
+                    <p>英国AISI测量的不是AI能力的绝对水平，而是AI能够自主完成的网络攻击任务的时长。2023年底，最好的模型连初级任务都几乎无法完成（成功率低于9%）。到2026年初，最先进模型在初级任务上的成功率已超过50%，而双倍时间——即自主完成任务的时长每翻一倍所需要的时间——已从2025年11月估算的8个月，压缩到2026年2月的4.7个月。随后，Claude
+                        Mythos Preview与GPT-5.5的表现进一步超越了这条趋势线，让研究者无法判断4.7个月究竟是新的稳定趋势，还是一个正在进一步加速的起点。</p>
 
                     <p>这里需要停顿一下，把这段描述翻译成人话：一个系统能力翻倍的时间，本身也在缩短。这不是线性增长，也不是简单的指数增长——这是指数增长的指数。曲线的形态本身发生了改变。</p>
 
-                    <p>具体表现是：Mythos成为首个端对端完成"The Last Ones"模拟场景的AI系统——这是一个32步骤的企业网络入侵链，从无权限到完全控制，此前没有任何AI模型能够走完全程。10次尝试成功6次。此前从未被任何模型攻破的工业控制系统模拟"Cooling Tower"，成功3次。GPT-5.5随即成为第二个完成"The Last Ones"的模型。AISI自述，其专家通过6小时红队测试，开发出了能绕过GPT-5.5所有恶意查询防护的通用越狱攻击，包括多轮代理场景。</p>
+                    <p>具体表现是：Mythos成为首个端对端完成"The Last
+                        Ones"模拟场景的AI系统——这是一个32步骤的企业网络入侵链，从无权限到完全控制，此前没有任何AI模型能够走完全程。10次尝试成功6次。此前从未被任何模型攻破的工业控制系统模拟"Cooling
+                        Tower"，成功3次。GPT-5.5随即成为第二个完成"The Last
+                        Ones"的模型。AISI自述，其专家通过6小时红队测试，开发出了能绕过GPT-5.5所有恶意查询防护的通用越狱攻击，包括多轮代理场景。</p>
 
                     <p>最后一个数字最刺耳：一次完整攻击尝试的成本，如今约为65英镑。</p>
 
@@ -282,46 +977,65 @@
 
                     <h3>NK-1：参与式认知——AISI测试本身在改变它测量的对象</h3>
 
-                    <p>新认知观的第一组公理（NK-1a至NK-1c）指出，认知内容由认知者、环境和框架共同决定，认知行为本身改变认知者或环境，框架是认知内容的构成性部分而非中立工具。¹ 这意味着AISI发布的每一份评估报告，并不只是在描述一个独立存在的现实——它本身就是参与式认知的行为，在重构全球对"AI网络能力边界"的集体理解。报告一旦发布，就成为攻击者的路线图、防御者的参照系，以及下一代模型训练数据的隐性背景。测量行为本身，改变了被测量的领域。</p>
+                    <p>新认知观的第一组公理（NK-1a至NK-1c）指出，认知内容由认知者、环境和框架共同决定，认知行为本身改变认知者或环境，框架是认知内容的构成性部分而非中立工具。¹
+                        这意味着AISI发布的每一份评估报告，并不只是在描述一个独立存在的现实——它本身就是参与式认知的行为，在重构全球对"AI网络能力边界"的集体理解。报告一旦发布，就成为攻击者的路线图、防御者的参照系，以及下一代模型训练数据的隐性背景。测量行为本身，改变了被测量的领域。
+                    </p>
 
                     <h3>NK-2：社会性知识——"每个系统都有漏洞"是集体知识，不是个人意见</h3>
 
-                    <p>NK-2b公理告诉我们，个体知识依赖于其所在的认知共同体。¹ AISI首席技术官Jade Leung的表述——"我们测试的每一个系统都存在可利用的漏洞"——并非个人判断，而是来自一个拥有约250名专业人员、被Anthropic授权进行Claude Mythos独立评估的机构性认知结论。这个结论是集体性的、具有程序合法性的。它所宣布的，是前沿AI系统的安全防护目前对于训练充分的对手而言并非不可穿透。</p>
+                    <p>NK-2b公理告诉我们，个体知识依赖于其所在的认知共同体。¹ AISI首席技术官Jade
+                        Leung的表述——"我们测试的每一个系统都存在可利用的漏洞"——并非个人判断，而是来自一个拥有约250名专业人员、被Anthropic授权进行Claude
+                        Mythos独立评估的机构性认知结论。这个结论是集体性的、具有程序合法性的。它所宣布的，是前沿AI系统的安全防护目前对于训练充分的对手而言并非不可穿透。</p>
 
-                    <p>而这一集体知识的传播，依据NK-2a（社会验证），本身就需要公共讨论来校准其含义。问题在于：这种讨论目前严重缺失。媒体要么将其当作科技新闻处理——"AI又进步了"——要么以耸人听闻的方式渲染，两者都错过了这份报告真正触及的结构性问题。</p>
+                    <p>而这一集体知识的传播，依据NK-2a（社会验证），本身就需要公共讨论来校准其含义。问题在于：这种讨论目前严重缺失。媒体要么将其当作科技新闻处理——"AI又进步了"——要么以耸人听闻的方式渲染，两者都错过了这份报告真正触及的结构性问题。
+                    </p>
 
                     <h3>NK-4：认知谦逊与不确定性——"我们不知道它是否是新趋势"</h3>
 
-                    <p>AISI报告中最诚实的一句话是：目前尚不清楚Mythos和GPT-5.5是否代表"孤立的突破，还是新的更快趋势的起点"。这正是NK-4（认知谦逊与可协商性）所要求的知识态度。¹ 一切认知标准都是可修订的（NK-4c）；没有普遍不变的认知标准（NK-4a）。在这种深不确定性下，NK-4直接导向REV——可逆性原则的启动前提之一，就是承认我们对趋势边界的认识是不完整的。</p>
+                    <p>AISI报告中最诚实的一句话是：目前尚不清楚Mythos和GPT-5.5是否代表"孤立的突破，还是新的更快趋势的起点"。这正是NK-4（认知谦逊与可协商性）所要求的知识态度。¹
+                        一切认知标准都是可修订的（NK-4c）；没有普遍不变的认知标准（NK-4a）。在这种深不确定性下，NK-4直接导向REV——可逆性原则的启动前提之一，就是承认我们对趋势边界的认识是不完整的。
+                    </p>
 
                     <h2>三、新宇宙观（NC）：这是一场过程，不是一个状态</h2>
 
-                    <p>ICS新宇宙观的公理NC-2a主张"存在为过程"——任何实体都不是静态对象，而是一个持续展开的过程。¹ AI安全问题的一个根本性误读，正是将其当作一个"当前状态"来管理：当前模型的能力如何，当前防护是否有效，当前威胁是否发生。这种静态认知忽视了NC-2a的核心含义：能力本身是过程，它不停留在任何一个快照上。</p>
+                    <p>ICS新宇宙观的公理NC-2a主张"存在为过程"——任何实体都不是静态对象，而是一个持续展开的过程。¹
+                        AI安全问题的一个根本性误读，正是将其当作一个"当前状态"来管理：当前模型的能力如何，当前防护是否有效，当前威胁是否发生。这种静态认知忽视了NC-2a的核心含义：能力本身是过程，它不停留在任何一个快照上。
+                    </p>
 
-                    <p>更关键的是NC-1b（实体为节点）：AI模型不是孤立工具，它是一个由算力基础设施、训练数据流、开发者决策、监管框架、市场激励、攻击者生态、防御者资源构成的关系网络中的节点。¹ AISI测量的是这个网络在特定时刻的一个截面，但这个网络的动态学远比截面复杂得多。降低攻击成本至65英镑，不只是使单个攻击者受益——它改变了整个攻击者生态的激励结构和参与门槛，从而重塑了整个网络的关系拓扑。</p>
+                    <p>更关键的是NC-1b（实体为节点）：AI模型不是孤立工具，它是一个由算力基础设施、训练数据流、开发者决策、监管框架、市场激励、攻击者生态、防御者资源构成的关系网络中的节点。¹
+                        AISI测量的是这个网络在特定时刻的一个截面，但这个网络的动态学远比截面复杂得多。降低攻击成本至65英镑，不只是使单个攻击者受益——它改变了整个攻击者生态的激励结构和参与门槛，从而重塑了整个网络的关系拓扑。
+                    </p>
 
-                    <p>NC-3a（主体内在）提醒我们，研究者、监管者、开发者并不站在这个过程之外——他们是其中的参与者。AISI发布报告、Anthropic限制Mythos的分发、英国政府向企业发出警告，这些行为本身都是过程的组成部分，而非旁观者的观察。NC-3b进一步指出，认知改变世界——这份评估报告一旦存在，AI安全的格局就已经不同了。</p>
+                    <p>NC-3a（主体内在）提醒我们，研究者、监管者、开发者并不站在这个过程之外——他们是其中的参与者。AISI发布报告、Anthropic限制Mythos的分发、英国政府向企业发出警告，这些行为本身都是过程的组成部分，而非旁观者的观察。NC-3b进一步指出，认知改变世界——这份评估报告一旦存在，AI安全的格局就已经不同了。
+                    </p>
 
                     <h2>四、新生命观（NL）与基础设施的负熵意义</h2>
 
                     <p>新生命观（NL）的负熵公理群在此提供了一个往往被忽视的视角。NL-2a指出，任何系统的持续存在都需要正的负熵流；NL-2b则警告，负熵流一旦中断，衰亡随之而来。¹</p>
 
-                    <p>现代数字文明的关键基础设施——电网调度系统、金融清算网络、医疗信息系统、供水控制设施——是文明这个耗散结构赖以维持有序性的神经网络。这些系统的正常运作，是文明维持其高度有序状态所依赖的负熵来源之一。当AISI的"Cooling Tower"场景模拟的正是对工业控制系统（疑似涉及冷却基础设施）的攻击，并在10次中成功3次时，我们所面对的就不再是抽象的"网络安全风险"，而是对文明负熵基础的具体威胁。</p>
+                    <p>现代数字文明的关键基础设施——电网调度系统、金融清算网络、医疗信息系统、供水控制设施——是文明这个耗散结构赖以维持有序性的神经网络。这些系统的正常运作，是文明维持其高度有序状态所依赖的负熵来源之一。当AISI的"Cooling
+                        Tower"场景模拟的正是对工业控制系统（疑似涉及冷却基础设施）的攻击，并在10次中成功3次时，我们所面对的就不再是抽象的"网络安全风险"，而是对文明负熵基础的具体威胁。</p>
 
-                    <p>NRP（负熵责任原则）在此发出警报：任何系统的开发和部署，若其副作用是系统性降低文明关键基础设施的安全阈值，就构成了对全体共同体的熵成本外部化。这一外部化不需要任何单一行为者"蓄意"，它是过程演化的结构性后果。</p>
+                    <p>NRP（负熵责任原则）在此发出警报：任何系统的开发和部署，若其副作用是系统性降低文明关键基础设施的安全阈值，就构成了对全体共同体的熵成本外部化。这一外部化不需要任何单一行为者"蓄意"，它是过程演化的结构性后果。
+                    </p>
 
                     <h2>五、禁忌红线评估：FRL-5已处于边界区域</h2>
 
                     <div class="frl-box">
                         <div class="frl-box-title">⚠️ FRL-5：禁止关闭回滚机制（Prohibition of Closing Rollback Mechanisms）</div>
                         <p>FRL-5的完整形式化表述：对于任何系统S，若S不可关闭且不可回滚，则部署S的行为不被允许。¹ 其保护对象是：纠错能力本身。</p>
-                        <p>当前局面值得用FRL-5的核心-边界结构来认真分析。FRL-5的核心禁止区域是"无法关闭的AGI"——这尚未发生。但FRL-5的边界区域包含"难以关闭的系统"，而这正是AISI此次评估揭示的现实：我们正在部署能力指数增长、防护可被专业红队在6小时内绕过、且开发者自身无法向外界完整披露其内部规则的系统。Leung的原话是："没有任何外部力量知道这些AI系统被构建为遵循什么规则。"</p>
-                        <p>不知道系统遵循什么规则，就意味着无法保证其纠错机制的完整性。这不是FRL-5的核心区域，但它已在边界区域内，且趋势是向核心逼近的。FRL-5要求的判断不是"是否已经无法关闭"，而是"部署轨迹是否在系统性地压缩回滚空间"——当前答案，是肯定的。</p>
+                        <p>当前局面值得用FRL-5的核心-边界结构来认真分析。FRL-5的核心禁止区域是"无法关闭的AGI"——这尚未发生。但FRL-5的边界区域包含"难以关闭的系统"，而这正是AISI此次评估揭示的现实：我们正在部署能力指数增长、防护可被专业红队在6小时内绕过、且开发者自身无法向外界完整披露其内部规则的系统。Leung的原话是："没有任何外部力量知道这些AI系统被构建为遵循什么规则。"
+                        </p>
+                        <p>不知道系统遵循什么规则，就意味着无法保证其纠错机制的完整性。这不是FRL-5的核心区域，但它已在边界区域内，且趋势是向核心逼近的。FRL-5要求的判断不是"是否已经无法关闭"，而是"部署轨迹是否在系统性地压缩回滚空间"——当前答案，是肯定的。
+                        </p>
                     </div>
 
                     <div class="frl-box">
-                        <div class="frl-box-title">⚠️ FRL-3：禁止未经同意的不可逆认知改造（Prohibition of Non-Consensual Irreversible Cognitive Modification）</div>
-                        <p>FRL-3的核心关键词是"未经同意"与"不可逆"——经过知情同意的、可逆的认知影响（如教育）不在此红线范围内。¹ 但当具备武器级网络攻击能力的AI系统被用于针对关键基础设施时，其对社会认知架构的破坏可能具有FRL-3的边界区域特征：大规模、部分不可逆的对信任系统的损伤。被攻击成功的医疗系统，被渗透的金融清算网络，其对公众认知与决策环境的影响可能远超技术损害本身。这不是FRL-3的核心，但它提示了AI网络能力的二阶影响路径。</p>
+                        <div class="frl-box-title">⚠️ FRL-3：禁止未经同意的不可逆认知改造（Prohibition of Non-Consensual Irreversible
+                            Cognitive Modification）</div>
+                        <p>FRL-3的核心关键词是"未经同意"与"不可逆"——经过知情同意的、可逆的认知影响（如教育）不在此红线范围内。¹
+                            但当具备武器级网络攻击能力的AI系统被用于针对关键基础设施时，其对社会认知架构的破坏可能具有FRL-3的边界区域特征：大规模、部分不可逆的对信任系统的损伤。被攻击成功的医疗系统，被渗透的金融清算网络，其对公众认知与决策环境的影响可能远超技术损害本身。这不是FRL-3的核心，但它提示了AI网络能力的二阶影响路径。
+                        </p>
                     </div>
 
                     <h2>六、三原则完整评估</h2>
@@ -329,44 +1043,57 @@
                     <div class="ics-box">
                         <div class="ics-box-title">🔵 RFP（递归自由原则）——最高优先级</div>
                         <p>RFP要求行动应保持或扩展可能性空间，而非不可逆地压缩它。¹ 其操作化指标是递归自由度（RFD）。</p>
-                        <p>AI网络攻击能力的指数增长，对全社会的RFD有三条直接的压缩路径：其一，关键基础设施遭受攻击，使依赖其运作的社会系统可选择的行动空间缩减；其二，防御成本急剧上升，迫使资源从创造性活动（研究、教育、医疗）转向防御性支出，这是一种可能性空间的消极再分配；其三，攻击门槛降低带来的普遍不安全感，将催生更广泛的监控和管控扩张，其对认知自由和政治自由的长期影响，可能远超单次攻击事件本身。RFD的评估结论：当前轨迹呈显著压缩趋势，需要强辩护或制度性纠正。</p>
+                        <p>AI网络攻击能力的指数增长，对全社会的RFD有三条直接的压缩路径：其一，关键基础设施遭受攻击，使依赖其运作的社会系统可选择的行动空间缩减；其二，防御成本急剧上升，迫使资源从创造性活动（研究、教育、医疗）转向防御性支出，这是一种可能性空间的消极再分配；其三，攻击门槛降低带来的普遍不安全感，将催生更广泛的监控和管控扩张，其对认知自由和政治自由的长期影响，可能远超单次攻击事件本身。RFD的评估结论：当前轨迹呈显著压缩趋势，需要强辩护或制度性纠正。
+                        </p>
                     </div>
 
                     <div class="ics-box">
                         <div class="ics-box-title">🔵 NRP（负熵责任原则）——第二优先级</div>
-                        <p>NRP要求维护负熵来源，不将熵成本外部化给他者或未来世代。¹ 当前AI网络能力的泛化，产生了一种结构性的熵成本外部化：模型开发者获得能力竞赛优势，而安全维护成本（机构加固、政策响应、社会应对）由全社会分担。这不是某个行为者的恶意选择，而是当前AI开发生态的制度性缺陷——没有任何机制将负外部性内部化。NRP的修复方向是建立与能力提升等速的、具有强制性的安全投入机制，而不是靠自愿合规。</p>
+                        <p>NRP要求维护负熵来源，不将熵成本外部化给他者或未来世代。¹
+                            当前AI网络能力的泛化，产生了一种结构性的熵成本外部化：模型开发者获得能力竞赛优势，而安全维护成本（机构加固、政策响应、社会应对）由全社会分担。这不是某个行为者的恶意选择，而是当前AI开发生态的制度性缺陷——没有任何机制将负外部性内部化。NRP的修复方向是建立与能力提升等速的、具有强制性的安全投入机制，而不是靠自愿合规。
+                        </p>
                     </div>
 
                     <div class="ics-box">
                         <div class="ics-box-title">🔵 REV（可逆性原则）——第三优先级</div>
-                        <p>REV要求在深不确定性下优先选择可逆行动，保留纠错能力。¹ 其操作化指标是CRV（承诺可逆可验证性）。AISI已承认，它无法看到主要AI系统内部对齐规则的全貌，越狱攻击在开发者补丁后仍无法被独立核实。这意味着当前前沿AI部署的CRV向量在可观测性（V_obs）和可执行性（V_enf）两个维度上均处于低位。一个我们无法完整观测、无法充分执行纠正的系统，本质上是一个回滚机制不完整的系统——而REV的启动条件，正是深不确定性下的谨慎行事。</p>
+                        <p>REV要求在深不确定性下优先选择可逆行动，保留纠错能力。¹
+                            其操作化指标是CRV（承诺可逆可验证性）。AISI已承认，它无法看到主要AI系统内部对齐规则的全貌，越狱攻击在开发者补丁后仍无法被独立核实。这意味着当前前沿AI部署的CRV向量在可观测性（V_obs）和可执行性（V_enf）两个维度上均处于低位。一个我们无法完整观测、无法充分执行纠正的系统，本质上是一个回滚机制不完整的系统——而REV的启动条件，正是深不确定性下的谨慎行事。
+                        </p>
                     </div>
 
                     <h2>七、指标评估：CSIA与MBCL的量化框架</h2>
 
                     <p>ICS的六大指标体系为定量评估提供了支架。¹ 以下针对本次议题选取最相关的两项指标：</p>
 
-                    <p><strong>宇宙尺度影响评估（CSIA）</strong>：CSIA通过六个维度加权评估行动的系统性影响，其中D₃（影响严重性，权重0.20）和D₄（可逆性，权重0.20，计算时取反——高可逆性对应低风险分数）是权重最高的两个维度。前沿AI网络能力的当前发展轨迹，在D₁（影响范围，已具备全球级别）、D₂（影响深度，涉及关键基础设施，时间视野延伸至数年）、D₃（影响严重性，可达存在性风险边界区域）和D₅（不确定性，高）上评分均较高。综合估算，当前AI网络能力发展的CSIA评估结果在L3至L4区间（高风险至极高风险），需要严格审查，部分场景触发特别审查/禁止阈值。</p>
+                    <p><strong>宇宙尺度影响评估（CSIA）</strong>：CSIA通过六个维度加权评估行动的系统性影响，其中D₃（影响严重性，权重0.20）和D₄（可逆性，权重0.20，计算时取反——高可逆性对应低风险分数）是权重最高的两个维度。前沿AI网络能力的当前发展轨迹，在D₁（影响范围，已具备全球级别）、D₂（影响深度，涉及关键基础设施，时间视野延伸至数年）、D₃（影响严重性，可达存在性风险边界区域）和D₅（不确定性，高）上评分均较高。综合估算，当前AI网络能力发展的CSIA评估结果在L3至L4区间（高风险至极高风险），需要严格审查，部分场景触发特别审查/禁止阈值。
+                    </p>
 
-                    <p><strong>模因生物安全等级（MBCL）</strong>：MBCL评估信息传播风险，从传播范围和影响深度两个维度生成离散等级（1至4）。¹ AISI公开发布的评估报告本身，构成了一类特殊的信息：它在高传播范围（全球技术和政策媒体）和高影响深度（改变攻击者知识结构、重构防御优先级）上均达到高位，对应MBCL-3或MBCL-4区间。这并不意味着AISI不应发布——透明度在规范意义上是必要的。但这意味着，这类信息的传播需要配套的对应措施：不能只有危险信号，没有防御指南；不能只有能力披露，没有约束机制。信息生态中只发出警报而不提供系统性回应，本身就是一种治理失职。</p>
+                    <p><strong>模因生物安全等级（MBCL）</strong>：MBCL评估信息传播风险，从传播范围和影响深度两个维度生成离散等级（1至4）。¹
+                        AISI公开发布的评估报告本身，构成了一类特殊的信息：它在高传播范围（全球技术和政策媒体）和高影响深度（改变攻击者知识结构、重构防御优先级）上均达到高位，对应MBCL-3或MBCL-4区间。这并不意味着AISI不应发布——透明度在规范意义上是必要的。但这意味着，这类信息的传播需要配套的对应措施：不能只有危险信号，没有防御指南；不能只有能力披露，没有约束机制。信息生态中只发出警报而不提供系统性回应，本身就是一种治理失职。
+                    </p>
 
                     <h2>八、深时视角：T2与T3展望</h2>
 
                     <p>ICS强调从"深时"（Deep Time）尺度评估文明行为的意义。¹</p>
 
-                    <p><strong>T2展望（50年尺度，至2076年）</strong>：如果当前趋势不受约束地持续，AI网络攻击能力可能在十年内达到使现有基础设施防护框架整体失效的水平。这不是科幻场景，而是AISI自己评估曲线的外推含义。在T2尺度上，人类是否能在这条能力曲线失控之前，建立起有效的多边治理机制，是这个时代最重要的战略赌注之一。</p>
+                    <p><strong>T2展望（50年尺度，至2076年）</strong>：如果当前趋势不受约束地持续，AI网络攻击能力可能在十年内达到使现有基础设施防护框架整体失效的水平。这不是科幻场景，而是AISI自己评估曲线的外推含义。在T2尺度上，人类是否能在这条能力曲线失控之前，建立起有效的多边治理机制，是这个时代最重要的战略赌注之一。
+                    </p>
 
-                    <p><strong>T3展望（100年以上尺度）</strong>：在T3尺度上，AI网络安全问题的意义不在于任何单一事件，而在于它是否构成一个持久的治理能力压缩——即，AI技术的发展是否系统性地削弱了人类集体在遭遇未知威胁时进行纠错的能力。ICS框架的四情境压力测试中，AGI突破情境的适用性得分为0.61，处于中等偏上位置。¹ 这一评分提示：当前理论框架对这类情境有一定应对能力，但远非充分——整体框架鲁棒性仅0.58。¹ 这个诚实的自我评估，不应被解读为悲观主义，而应理解为行动的清醒动机。</p>
+                    <p><strong>T3展望（100年以上尺度）</strong>：在T3尺度上，AI网络安全问题的意义不在于任何单一事件，而在于它是否构成一个持久的治理能力压缩——即，AI技术的发展是否系统性地削弱了人类集体在遭遇未知威胁时进行纠错的能力。ICS框架的四情境压力测试中，AGI突破情境的适用性得分为0.61，处于中等偏上位置。¹
+                        这一评分提示：当前理论框架对这类情境有一定应对能力，但远非充分——整体框架鲁棒性仅0.58。¹ 这个诚实的自我评估，不应被解读为悲观主义，而应理解为行动的清醒动机。</p>
 
                     <h2>九、锐评：谁在付账？</h2>
 
                     <p>AISI的报告在技术层面无懈可击，在机构层面也在尽职履责。但有一个问题它没有直接回答，而这个问题是整个治理失败的核心：谁在承担成本？</p>
 
-                    <p>开发Mythos和GPT-5.5的公司，获得了能力竞争的优势，承担了部分自愿性安全测试的成本，但没有承担AI网络能力提升带给全社会的防御成本增量。65英镑每次攻击尝试，意味着全球数以百万计的机构需要大幅增加安全预算来维持相同的防护水平——这笔账，没有人向模型开发者收取。</p>
+                    <p>开发Mythos和GPT-5.5的公司，获得了能力竞争的优势，承担了部分自愿性安全测试的成本，但没有承担AI网络能力提升带给全社会的防御成本增量。65英镑每次攻击尝试，意味着全球数以百万计的机构需要大幅增加安全预算来维持相同的防护水平——这笔账，没有人向模型开发者收取。
+                    </p>
 
                     <p>这不是企业的道德问题。这是制度设计问题。在没有强制性"能力-责任"连带机制的情况下，指望自愿合规和自我监管来应对指数增长的技术风险，是把一个典型的公地悲剧当作自律问题在处理。</p>
 
-                    <p>ICS框架的版本化治理（Versioned Governance）制度原型提供了一个方向性参考：建立可追溯、可回滚的治理协议，使每一次能力提升都必须配套等级匹配的安全投入，且这一配套是可被第三方核实的。¹ 这不是限制创新，而是将创新的外部成本内部化——这是任何可持续的文明制度设计的基本要求。</p>
+                    <p>ICS框架的版本化治理（Versioned
+                        Governance）制度原型提供了一个方向性参考：建立可追溯、可回滚的治理协议，使每一次能力提升都必须配套等级匹配的安全投入，且这一配套是可被第三方核实的。¹
+                        这不是限制创新，而是将创新的外部成本内部化——这是任何可持续的文明制度设计的基本要求。</p>
 
                     <p>AISI已经发出了警报。"自由是对可能性的看护"——而当纠错机制本身正在被系统性削弱时，保护纠错能力，就是保护可能性本身。</p>
 
@@ -376,20 +1103,37 @@
                     </blockquote>
 
                     <div class="citation-section">
-                        <p style="font-size:0.875rem !important;color:rgba(255,255,255,0.5);margin-bottom:0.6rem;">参考文献</p>
-                        <p style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">¹ 《星际文明的规范性基础：新三观与深不确定性下的治理》，四卷本定稿，2025年1月25日版（ICS Anchor Document v2.0，2026-04-10）。本文所有ICS框架引用以此文件为准。</p>
-                        <p style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">² 英国AI安全研究所（AISI），"How fast is autonomous AI cyber capability advancing?"，2026年5月14日，aisi.gov.uk。</p>
-                        <p style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">³ 英国AI安全研究所（AISI），"Our evaluation of OpenAI's GPT-5.5 cyber capabilities"，aisi.gov.uk。</p>
-                        <p style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">⁴ 英国国家网络安全中心（NCSC），"Why cyber defenders need to be ready for frontier AI"，ncsc.gov.uk，2026年4月。</p>
-                        <p style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">⁵ Jade Leung（AISI首席技术官）相关访谈及披露，经Resultsense等二次来源综合整理，2026年4月。</p>
+                        <p style="font-size:0.875rem !important;color:rgba(255,255,255,0.5);margin-bottom:0.6rem;">参考文献
+                        </p>
+                        <p
+                            style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">
+                            ¹ 《星际文明的规范性基础：新三观与深不确定性下的治理》，四卷本定稿，2025年1月25日版（ICS Anchor Document
+                            v2.0，2026-04-10）。本文所有ICS框架引用以此文件为准。</p>
+                        <p
+                            style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">
+                            ² 英国AI安全研究所（AISI），"How fast is autonomous AI cyber capability
+                            advancing?"，2026年5月14日，aisi.gov.uk。</p>
+                        <p
+                            style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">
+                            ³ 英国AI安全研究所（AISI），"Our evaluation of OpenAI's GPT-5.5 cyber capabilities"，aisi.gov.uk。</p>
+                        <p
+                            style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">
+                            ⁴ 英国国家网络安全中心（NCSC），"Why cyber defenders need to be ready for frontier
+                            AI"，ncsc.gov.uk，2026年4月。</p>
+                        <p
+                            style="font-size:0.8125rem !important;color:rgba(255,255,255,0.45);line-height:1.7 !important;margin-bottom:0.5rem;">
+                            ⁵ Jade Leung（AISI首席技术官）相关访谈及披露，经Resultsense等二次来源综合整理，2026年4月。</p>
                         <button class="citation-toggle" onclick="toggleCitation()">📋 显示引用格式</button>
-                        <div id="citationBox">星际文明学研究所（2026）。《纠错机制正在失守：AI网络攻击能力的指数加速与文明的回滚危机》。星际文明学每日热点评论，2026年5月15日。https://ics-studies.org/zh/每日热点评论-AI网络攻击能力-20260515.html</div>
+                        <div id="citationBox">
+                            星际文明学研究所（2026）。《纠错机制正在失守：AI网络攻击能力的指数加速与文明的回滚危机》。星际文明学每日热点评论，2026年5月15日。https://ics-studies.org/zh/每日热点评论-AI网络攻击能力-20260515.html
+                        </div>
                     </div>
 
                     <div class="compass-cta">
                         <span class="compass-cta-icon">🧭</span>
                         <h3 class="compass-cta-title">使用 ICS 星际罗盘 进行评估</h3>
-                        <p class="compass-cta-desc">将本文讨论的ICS治理框架付诸实践。使用星际罗盘工具，从递归自由度到宇宙尺度影响评估，对AI网络安全等真实场景进行六大核心指标的全面量化分析。</p>
+                        <p class="compass-cta-desc">
+                            将本文讨论的ICS治理框架付诸实践。使用星际罗盘工具，从递归自由度到宇宙尺度影响评估，对AI网络安全等真实场景进行六大核心指标的全面量化分析。</p>
                         <a href="/compass/" class="compass-cta-btn"><span>启动星际罗盘</span><span>→</span></a>
                     </div>
 
@@ -439,36 +1183,37 @@
     </footer>
 
     <script>
-        function scrollToSearch() { document.querySelector('.search-section')?.scrollIntoView({behavior:'smooth',block:'start'}); }
+        function scrollToSearch() { document.querySelector('.search-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         function shareArticle() {
-            if (navigator.share) { navigator.share({title:document.title,url:window.location.href}).catch(()=>{}); }
-            else { navigator.clipboard.writeText(window.location.href).then(()=>alert('链接已复制！')); }
+            if (navigator.share) { navigator.share({ title: document.title, url: window.location.href }).catch(() => { }); }
+            else { navigator.clipboard.writeText(window.location.href).then(() => alert('链接已复制！')); }
         }
         function toggleCitation() { document.getElementById('citationBox')?.classList.toggle('active'); }
         function handleNewsletterSignup(e) { e.preventDefault(); e.target.reset(); alert('感谢订阅！'); }
-        window.addEventListener('scroll',()=>{ const n=document.getElementById('navbar'); if(n) n.style.background=window.pageYOffset>0?'rgba(10,22,40,0.97)':'rgba(10,22,40,0.88)'; });
-        const idx=[
-            {title:'纠错机制正在失守：AI网络攻击能力的指数加速与文明的回滚危机',category:'AI治理',date:'2026-05-15',url:'每日热点评论-AI网络攻击能力-20260515.html',keywords:['AI','网络安全','FRL-5','存在风险','AISI']},
-            {title:'化石燃料退出的历史性时刻：圣玛尔塔峰会的文明考验',category:'气候治理',date:'2026-05-14',url:'每日热点评论-圣玛尔塔峰会-20260514.html',keywords:['气候','化石燃料','NRP','FRL']},
-            {title:'禁忌红线',category:'伦理学',date:'2025-01-01',url:'禁忌红线.html',keywords:['FRL','红线','风险']},
-            {title:'人工智能治理',category:'AI治理',date:'2025-01-01',url:'人工智能治理.html',keywords:['AI','治理','安全']},
-            {title:'太空治理',category:'太空治理',date:'2025-01-01',url:'太空治理.html',keywords:['太空','制度','火星']}
+        window.addEventListener('scroll', () => { const n = document.getElementById('navbar'); if (n) n.style.background = window.pageYOffset > 0 ? 'rgba(10,22,40,0.97)' : 'rgba(10,22,40,0.88)'; });
+        const idx = [
+            { title: '纠错机制正在失守：AI网络攻击能力的指数加速与文明的回滚危机', category: 'AI治理', date: '2026-05-15', url: '每日热点评论-AI网络攻击能力-20260515.html', keywords: ['AI', '网络安全', 'FRL-5', '存在风险', 'AISI'] },
+            { title: '化石燃料退出的历史性时刻：圣玛尔塔峰会的文明考验', category: '气候治理', date: '2026-05-14', url: '每日热点评论-圣玛尔塔峰会-20260514.html', keywords: ['气候', '化石燃料', 'NRP', 'FRL'] },
+            { title: '禁忌红线', category: '伦理学', date: '2025-01-01', url: '禁忌红线.html', keywords: ['FRL', '红线', '风险'] },
+            { title: '人工智能治理', category: 'AI治理', date: '2025-01-01', url: '人工智能治理.html', keywords: ['AI', '治理', '安全'] },
+            { title: '太空治理', category: '太空治理', date: '2025-01-01', url: '太空治理.html', keywords: ['太空', '制度', '火星'] }
         ];
-        let ri=idx;
-        function escH(t){return String(t).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
-        function renderSearchResults(res,q,f){
-            const c=document.getElementById('searchResults'); if(!c) return;
-            if(!res.length){c.innerHTML=`<div class="search-empty">未找到匹配内容。</div>`;c.classList.add('active');return;}
-            c.innerHTML=`<div class="search-empty">找到${res.length}条结果</div>`+res.slice(0,8).map(i=>`<a class="search-result-item" href="${i.url}"><div class="search-result-title">${escH(i.title)}</div><div class="search-result-meta">${escH(i.category)} · ${escH(i.date)}</div></a>`).join('');
+        let ri = idx;
+        function escH(t) { return String(t).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m])); }
+        function renderSearchResults(res, q, f) {
+            const c = document.getElementById('searchResults'); if (!c) return;
+            if (!res.length) { c.innerHTML = `<div class="search-empty">未找到匹配内容。</div>`; c.classList.add('active'); return; }
+            c.innerHTML = `<div class="search-empty">找到${res.length}条结果</div>` + res.slice(0, 8).map(i => `<a class="search-result-item" href="${i.url}"><div class="search-result-title">${escH(i.title)}</div><div class="search-result-meta">${escH(i.category)} · ${escH(i.date)}</div></a>`).join('');
             c.classList.add('active');
         }
-        function performSearch(){
-            const q=(document.getElementById('searchInput')?.value||'').trim().toLowerCase();
-            const f=document.querySelector('.filter-button.active')?.getAttribute('data-filter')||'all';
-            renderSearchResults(ri.filter(i=>{if(f!=='all'&&i.category!==f)return false;if(!q)return true;return (i.title+i.category+i.keywords.join(' ')).toLowerCase().includes(q);}),q,f);
+        function performSearch() {
+            const q = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
+            const f = document.querySelector('.filter-button.active')?.getAttribute('data-filter') || 'all';
+            renderSearchResults(ri.filter(i => { if (f !== 'all' && i.category !== f) return false; if (!q) return true; return (i.title + i.category + i.keywords.join(' ')).toLowerCase().includes(q); }), q, f);
         }
-        function filterByCategory(b){document.querySelectorAll('.filter-button').forEach(x=>x.classList.remove('active'));b.classList.add('active');performSearch();}
-        document.getElementById('searchInput')?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();performSearch();}});
+        function filterByCategory(b) { document.querySelectorAll('.filter-button').forEach(x => x.classList.remove('active')); b.classList.add('active'); performSearch(); }
+        document.getElementById('searchInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } });
     </script>
 </body>
+
 </html>
