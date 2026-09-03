@@ -1,5 +1,5 @@
 /**
- * ICS Compass — License Key Generator (Admin Tool)
+ * ICS — License Key Generator (Admin Tool)
  * 
  * Run this script with Node.js to generate valid license keys:
  *   node generate-license.js pro
@@ -37,7 +37,7 @@ const count = parseInt(process.argv[3]) || 1;
 const validTiers = ['pro', 'academic', 'enterprise'];
 
 if (!validTiers.includes(tier)) {
-  console.log('ICS Compass — License Key Generator');
+  console.log('ICS — License Key Generator');
   console.log('====================================');
   console.log('');
   console.log('Usage:');
@@ -55,7 +55,7 @@ if (!validTiers.includes(tier)) {
   process.exit(1);
 }
 
-console.log(`\nICS Compass ${tier.toUpperCase()} License Key${count > 1 ? 's' : ''}:`);
+console.log(`\nICS ${tier.toUpperCase()} License Key${count > 1 ? 's' : ''}:`);
 console.log('─'.repeat(45));
 
 for (let i = 0; i < count; i++) {
@@ -64,10 +64,7 @@ for (let i = 0; i < count; i++) {
 }
 
 console.log('─'.repeat(45));
-console.log(`\nActivation URL format:`);
-console.log(`  https://ics-studies.org/compass/activate.html?tier=${tier}&key=<KEY>`);
-console.log(`  https://ics-studies.org/compass/${tier}/?key=<KEY>`);
-console.log('');
+// Activation URL removed (Compass functionality retired). Use internal admin workflows.
 
 if (tier === 'enterprise') {
   console.log('Note: Enterprise keys unlock ALL tiers (Pro + Academic + Enterprise).');

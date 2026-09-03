@@ -40,7 +40,7 @@ function Inject-SeoBlock {
     
     if ($IsEnglish) {
         $metaDesc = "Daily AI governance commentary: $Title"
-        $author = "Institute for Cosmic Stewardship"
+        $author = "ICS Research Institute"
     } else {
         $metaDesc = "姣忔棩AI娌荤悊璇勮: $Title"
         $author = "瀹囧畽绠＄悊鐮旂┒鎵€"

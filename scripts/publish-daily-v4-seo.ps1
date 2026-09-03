@@ -1,4 +1,4 @@
-param(
+﻿param(
     [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
     [string]$ContentFile,
     [Parameter(Mandatory=$false)][switch]$Deploy,
@@ -26,66 +26,16 @@ function Validate-LayoutConsistency {
     $zhStruct = [regex]::Replace($zhNorm, '>[^<]*<', '><')
     
     if ($enStruct -eq $zhStruct) {
-        Write-ColorOutput "✓ Layout 100% consistent EN/ZH" "Green"
+        Write-ColorOutput "Layout 100% consistent EN/ZH" "Green"
         return $true
     } else {
-        Write-ColorOutput "✗ Layout mismatch detected! Publish aborted." "Red"
+        Write-ColorOutput "鉁?Layout mismatch detected! Publish aborted." "Red"
         exit 1
     }
 }
 
-# ===== SEO: Mandatory Injection & Validation =====
-function Inject-SeoBlock {
-    param([string]$Html, [string]$Title, [string]$Date, [string]$IsEnglish)
-    
-    if ($IsEnglish) {
-        $metaDesc = "Daily AI governance commentary: $Title"
-        $author = "Institute for Cosmic Stewardship"
-    } else {
-        $metaDesc = "每日AI治理评论: $Title"
-        $author = "宇宙管理研究所"
-    }
-    
-    $seoBlock = @"
-    <!-- ICS-SEO-START -->
-    <meta name="description" content="$metaDesc">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="$Title">
-    <meta property="og:description" content="$metaDesc">
-    <meta property="article:published_time" content="$Date">
-    <meta property="article:author" content="$author">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="$Title">
-    <meta name="twitter:description" content="$metaDesc">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ScholarlyArticle",
-      "headline": "$Title",
-      "datePublished": "$Date",
-      "author": {"@type": "Organization", "name": "$author"},
-      "description": "$metaDesc"
-    }
-    </script>
-    <!-- ICS-SEO-END -->
-"@
-    
-    # Inject before </head>
-    if ($Html -match '</head>') {
-        $Html = $Html -replace '</head>', "$seoBlock`n</head>"
-    } else {
-        Write-ColorOutput "✗ SEO INJECTION FAILED: </head> tag not found! PUBLISH ABORTED." "Red"
-        exit 1
-    }
-    
-    # Validate injection
-    if ($Html -match '<!-- ICS-SEO-START -->') {
-        return $Html
-    } else {
-        Write-ColorOutput "✗ SEO VALIDATION FAILED: SEO block not found after injection! PUBLISH ABORTED." "Red"
-        exit 1
-    }
-}
+$scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
+. "$scriptRoot\seo_common.ps1"
 
 # ===== Simple Field Replacement =====
 function Replace-Field {
@@ -108,7 +58,7 @@ if (!(Test-Path $ContentFile)) {
 $contentData = Get-Content -Raw -Path $ContentFile | ConvertFrom-Json
 
 $enFile = Join-Path $WorkspaceRoot "public/en/daily-commentary.html"
-$zhFile = Join-Path $WorkspaceRoot "public/zh/每日热点评论.html"
+$zhFile = Join-Path $WorkspaceRoot "public/zh/姣忔棩鐑偣璇勮.html"
 
 # Step 1: Validate layout
 Validate-LayoutConsistency -EnFile $enFile -ZhFile $zhFile
@@ -136,7 +86,8 @@ $enUpdated = Replace-Field -Html $enUpdated -FieldName "tags" -Value $contentDat
 
 # Step 4: Inject SEO (MANDATORY)
 Write-ColorOutput "`n[Step 4] Injecting MANDATORY SEO block (EN)..." "Magenta"
-$enUpdated = Inject-SeoBlock -Html $enUpdated -Title $contentData.en.headline -Date $contentData.en.date -IsEnglish $true
+$enUpdated = Inject-SeoBlock -Html $enUpdated -Title $contentData.en.headline -Description $contentData.en.summary -Url "https://ics-studies.org/en/daily-commentary.html" -Locale "en" -AlternateLocale "zh" -AlternateUrl "https://ics-studies.org/zh/姣忔棩鐑偣璇勮.html" -SiteName "Interstellar Civilization Studies" -Author "ICS Research Institute" -PublishedTime $contentData.en.date
+Validate-SeoTags -Html $enUpdated -Path $enFile
 
 # Step 5: Update ZH content
 Write-ColorOutput "`n[Step 5] Updating ZH content..." "Magenta"
@@ -156,14 +107,15 @@ $zhUpdated = Replace-Field -Html $zhUpdated -FieldName "tags" -Value $contentDat
 
 # Step 6: Inject SEO (MANDATORY)
 Write-ColorOutput "`n[Step 6] Injecting MANDATORY SEO block (ZH)..." "Magenta"
-$zhUpdated = Inject-SeoBlock -Html $zhUpdated -Title $contentData.zh.headline -Date $contentData.zh.date -IsEnglish $false
+$zhUpdated = Inject-SeoBlock -Html $zhUpdated -Title $contentData.zh.headline -Description $contentData.zh.summary -Url "https://ics-studies.org/zh/每日热点评论.html" -Locale "zh" -AlternateLocale "en" -AlternateUrl "https://ics-studies.org/en/daily-commentary.html" -SiteName "星际文明学" -Author "星际文明研究所" -PublishedTime $contentData.zh.date
+Validate-SeoTags -Html $zhUpdated -Path $zhFile
 
 # Step 7: Write files
 Write-ColorOutput "`n[Step 7] Writing files..." "Magenta"
 Set-Content -Path $enFile -Value $enUpdated -Encoding UTF8 -NoNewline
 Set-Content -Path $zhFile -Value $zhUpdated -Encoding UTF8 -NoNewline
 
-Write-ColorOutput "`n✓ Daily Commentary published successfully with SEO!" "Green"
+Write-ColorOutput "`nDaily Commentary published successfully with SEO!" "Green"
 Write-ColorOutput "EN: $enFile" "Green"
 Write-ColorOutput "ZH: $zhFile" "Green"
 
@@ -174,7 +126,8 @@ if ($Deploy) {
     git commit -m "chore: update daily commentary with SEO optimization"
     git push
     Pop-Location
-    Write-ColorOutput "✓ Deployed!" "Green"
+    Write-ColorOutput "Deployed!" "Green"
 }
 
 exit 0
+

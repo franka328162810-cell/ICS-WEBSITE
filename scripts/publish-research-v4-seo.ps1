@@ -1,4 +1,4 @@
-param(
+﻿param(
     [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
     [string]$ContentFile,
     [Parameter(Mandatory=$false)][switch]$Deploy,
@@ -26,67 +26,16 @@ function Validate-LayoutConsistency {
     $zhStruct = [regex]::Replace($zhNorm, '>[^<]*<', '><')
     
     if ($enStruct -eq $zhStruct) {
-        Write-ColorOutput "✓ Layout 100% consistent EN/ZH" "Green"
+        Write-ColorOutput "Layout 100% consistent EN/ZH" "Green"
         return $true
     } else {
-        Write-ColorOutput "✗ Layout mismatch detected! Publish aborted." "Red"
+        Write-ColorOutput "鉁?Layout mismatch detected! Publish aborted." "Red"
         exit 1
     }
 }
 
-# ===== SEO: Mandatory Injection & Validation =====
-function Inject-SeoBlock {
-    param([string]$Html, [string]$Title, [string]$Date, [string]$Author, [string]$IsEnglish)
-    
-    if ($IsEnglish) {
-        $metaDesc = "In-depth research: $Title"
-        $publisher = "Institute for Cosmic Stewardship"
-    } else {
-        $metaDesc = "深度研究: $Title"
-        $publisher = "宇宙管理研究所"
-    }
-    
-    $seoBlock = @"
-    <!-- ICS-SEO-START -->
-    <meta name="description" content="$metaDesc">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="$Title">
-    <meta property="og:description" content="$metaDesc">
-    <meta property="article:published_time" content="$Date">
-    <meta property="article:author" content="$Author">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="$Title">
-    <meta name="twitter:description" content="$metaDesc">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ScholarlyArticle",
-      "headline": "$Title",
-      "datePublished": "$Date",
-      "author": {"@type": "Person", "name": "$Author"},
-      "publisher": {"@type": "Organization", "name": "$publisher"},
-      "description": "$metaDesc"
-    }
-    </script>
-    <!-- ICS-SEO-END -->
-"@
-    
-    # Inject before </head>
-    if ($Html -match '</head>') {
-        $Html = $Html -replace '</head>', "$seoBlock`n</head>"
-    } else {
-        Write-ColorOutput "✗ SEO INJECTION FAILED: </head> tag not found! PUBLISH ABORTED." "Red"
-        exit 1
-    }
-    
-    # Validate injection
-    if ($Html -match '<!-- ICS-SEO-START -->') {
-        return $Html
-    } else {
-        Write-ColorOutput "✗ SEO VALIDATION FAILED: SEO block not found after injection! PUBLISH ABORTED." "Red"
-        exit 1
-    }
-}
+$scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
+. "$scriptRoot\seo_common.ps1"
 
 # ===== Simple Field Replacement =====
 function Replace-Field {
@@ -109,7 +58,7 @@ if (!(Test-Path $ContentFile)) {
 $contentData = Get-Content -Raw -Path $ContentFile | ConvertFrom-Json
 
 $enFile = Join-Path $WorkspaceRoot "public/en/in-depth-research.html"
-$zhFile = Join-Path $WorkspaceRoot "public/zh/深度研究.html"
+$zhFile = Join-Path $WorkspaceRoot "public/zh/娣卞害鐮旂┒.html"
 
 if (!(Test-Path $zhFile)) {
     $zhFile = Join-Path $WorkspaceRoot "public/zh/research-deep-2.html"
@@ -145,7 +94,8 @@ $enUpdated = Replace-Field -Html $enUpdated -FieldName "citationKey" -Value $con
 
 # Step 4: Inject SEO (MANDATORY)
 Write-ColorOutput "`n[Step 4] Injecting MANDATORY SEO block (EN)..." "Magenta"
-$enUpdated = Inject-SeoBlock -Html $enUpdated -Title $contentData.en.title -Date $contentData.en.publicationWeek -Author $contentData.en.author -IsEnglish $true
+$enUpdated = Inject-SeoBlock -Html $enUpdated -Title $contentData.en.title -Description $contentData.en.abstract -Url "https://ics-studies.org/en/in-depth-research.html" -Locale "en" -AlternateLocale "zh" -AlternateUrl "https://ics-studies.org/zh/娣卞害鐮旂┒.html" -SiteName "Interstellar Civilization Studies" -Author $contentData.en.author -PublishedTime $contentData.en.publicationWeek
+Validate-SeoTags -Html $enUpdated -Path $enFile
 
 # Step 5: Update ZH content
 Write-ColorOutput "`n[Step 5] Updating ZH content..." "Magenta"
@@ -169,14 +119,16 @@ $zhUpdated = Replace-Field -Html $zhUpdated -FieldName "citationKey" -Value $con
 
 # Step 6: Inject SEO (MANDATORY)
 Write-ColorOutput "`n[Step 6] Injecting MANDATORY SEO block (ZH)..." "Magenta"
-$zhUpdated = Inject-SeoBlock -Html $zhUpdated -Title $contentData.zh.title -Date $contentData.zh.publicationWeek -Author $contentData.zh.author -IsEnglish $false
+$zhUrl = if ($zhFile -match '娣卞害鐮旂┒\.html$') { "https://ics-studies.org/zh/娣卞害鐮旂┒.html" } else { "https://ics-studies.org/zh/research-deep-2.html" }
+$zhUpdated = Inject-SeoBlock -Html $zhUpdated -Title $contentData.zh.title -Description $contentData.zh.abstract -Url $zhUrl -Locale "zh" -AlternateLocale "en" -AlternateUrl "https://ics-studies.org/en/in-depth-research.html" -SiteName "星际文明学" -Author $contentData.zh.author -PublishedTime $contentData.zh.publicationWeek
+Validate-SeoTags -Html $zhUpdated -Path $zhFile
 
 # Step 7: Write files
 Write-ColorOutput "`n[Step 7] Writing files..." "Magenta"
 Set-Content -Path $enFile -Value $enUpdated -Encoding UTF8 -NoNewline
 Set-Content -Path $zhFile -Value $zhUpdated -Encoding UTF8 -NoNewline
 
-Write-ColorOutput "`n✓ In-Depth Research published successfully with SEO!" "Green"
+Write-ColorOutput "`nIn-Depth Research published successfully with SEO!" "Green"
 Write-ColorOutput "EN: $enFile" "Green"
 Write-ColorOutput "ZH: $zhFile" "Green"
 
@@ -187,7 +139,8 @@ if ($Deploy) {
     git commit -m "chore: update in-depth research with SEO optimization"
     git push
     Pop-Location
-    Write-ColorOutput "✓ Deployed!" "Green"
+    Write-ColorOutput "Deployed!" "Green"
 }
 
 exit 0
+

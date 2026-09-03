@@ -671,6 +671,29 @@
             return String(text).replace(/[&<>"']/g, m => map[m]);
         }
 
+        function escapeRegExp(text) {
+            return String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function normalizeQuery(query) {
+            return String(query || '').trim().toLowerCase();
+        }
+
+        function highlightQuery(text, query) {
+            if (!query) return escapeHtml(text);
+            const escaped = escapeHtml(text);
+            const pattern = new RegExp(escapeRegExp(query), 'gi');
+            return escaped.replace(pattern, '<mark>$&</mark>');
+        }
+
+        function sortSearchResults(results) {
+            return results.slice().sort((a, b) => {
+                const da = new Date(a.date).getTime() || 0;
+                const db = new Date(b.date).getTime() || 0;
+                return db - da;
+            });
+        }
+
         function renderSearchResults(results, query, filter) {
             const container = document.getElementById('searchResults');
             if (!container) return;
@@ -681,10 +704,11 @@
                 return;
             }
 
-            const header = `<div class="search-empty">Found ${results.length} result${results.length > 1 ? 's' : ''} ${query ? `(Keywords: ${escapeHtml(query)})` : ''} ${filter !== 'all' ? `(Category: ${escapeHtml(filter)})` : ''}</div>`;
-            const items = results.slice(0, 8).map(item => `
+            const total = results.length;
+            const header = `<div class="search-empty">Found ${total} result${total > 1 ? 's' : ''}${query ? ` (Keywords: ${escapeHtml(query)})` : ''}${filter !== 'all' ? ` (Category: ${escapeHtml(filter)})` : ''}${total > 8 ? `, showing latest ${Math.min(8, total)}` : ''}</div>`;
+            const items = sortSearchResults(results).slice(0, 8).map(item => `
                 <a class="search-result-item" href="${item.url}">
-                    <div class="search-result-title">${escapeHtml(item.title)}</div>
+                    <div class="search-result-title">${highlightQuery(item.title, query)}</div>
                     <div class="search-result-meta">${escapeHtml(item.category)} · ${escapeHtml(item.date)}</div>
                 </a>
             `).join('');
@@ -693,10 +717,16 @@
             container.classList.add('active');
         }
 
+        function matchesSearch(item, query) {
+            if (!query) return true;
+            const haystack = `${item.title} ${item.category} ${item.keywords.join(' ')}`.toLowerCase();
+            return query.split(/\s+/).every(token => haystack.includes(token));
+        }
+
         // Perform search
         function performSearch() {
             const input = document.getElementById('searchInput');
-            const query = (input?.value || '').trim().toLowerCase();
+            const query = normalizeQuery(input?.value);
             const activeFilter = document.querySelector('.filter-button.active');
             const filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
 
@@ -708,19 +738,10 @@
                 return;
             }
 
-            let results = runtimeSearchIndexEn;
-
-            if (filter !== 'all') {
-                results = results.filter(item => item.category === filter);
-            }
-
-            if (query) {
-                results = results.filter(item => {
-                    const titleMatch = item.title.toLowerCase().includes(query);
-                    const keywordMatch = item.keywords.some(kw => kw.toLowerCase().includes(query));
-                    return titleMatch || keywordMatch;
-                });
-            }
+            const results = runtimeSearchIndexEn.filter(item => {
+                const passFilter = filter === 'all' || item.category === filter;
+                return passFilter && matchesSearch(item, query);
+            });
 
             renderSearchResults(results, query, filter);
         }

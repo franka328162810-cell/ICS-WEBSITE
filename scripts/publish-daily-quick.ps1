@@ -12,10 +12,10 @@ function Inject-SeoBlock {
     
     if ($IsEnglish) {
         $metaDesc = "Daily AI governance commentary: $Title"
-        $author = "Institute for Cosmic Stewardship"
+        $author = "ICS Research Institute"
     } else {
         $metaDesc = "每日AI治理评论: $Title"
-        $author = "宇宙管理研究所"
+        $author = "星际文明研究所"
     }
     
     $seoBlock = @"

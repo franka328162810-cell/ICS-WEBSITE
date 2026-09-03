@@ -51,10 +51,10 @@
       subtitle: '星际文明学 · 智能问答',
       placeholder: '输入您的问题…',
       send: '发送',
-      welcome: '您好！我是 **ICS 人工智能助手**，很高兴为您服务。\n\n我可以回答关于星际文明学（ICS）的各种问题，包括核心理论、ICS 星际罗盘、最新研究等。\n\n请问有什么可以帮助您的？',
+      welcome: '您好！我是 **ICS 人工智能助手**，很高兴为您服务。\n\n我可以回答关于星际文明学（ICS）的各种问题，包括核心理论与最新研究。\n\n请问有什么可以帮助您的？',
       quickReplies: [
         '什么是星际文明学？',
-        '如何使用 ICS 星际罗盘？',
+        // '如何使用 ICS 星际罗盘？' (已移除：评估工具下线)
         '最新研究有哪些？',
         '什么是卡尔达肖夫指数？'
       ],
@@ -67,10 +67,10 @@
       subtitle: 'Interstellar Civilization Studies · Smart Q&A',
       placeholder: 'Type your question…',
       send: 'Send',
-      welcome: 'Hello! I\'m the **ICS AI Assistant**, happy to help you.\n\nI can answer questions about Interstellar Civilization Studies (ICS), including core theories, ICS Compass, latest research, and more.\n\nHow can I assist you today?',
+      welcome: 'Hello! I\'m the **ICS AI Assistant**, happy to help you.\n\nI can answer questions about Interstellar Civilization Studies (ICS), including core theories and the latest research.\n\nHow can I assist you today?',
       quickReplies: [
         'What is ICS?',
-        'How to use ICS Compass?',
+        // 'How to use ICS Compass?' (removed — feature retired)
         'Latest research?',
         'What is the Kardashev Scale?'
       ],
@@ -131,7 +131,7 @@
       {
         keywords: ['星际罗盘', 'Compass', '罗盘', '评估工具', '使用'],
         patterns: [/星际罗盘/, /compass/i, /如何.*评估/, /怎么.*使用.*罗盘/],
-        answer: '**ICS 星际罗盘 (ICS Compass)** 是我们开发的智能文明评估工具。\n\n🧭 **核心功能：**\n- 基于多维指标评估文明发展水平\n- 涵盖技术、治理、文化、可持续性等维度\n- 提供可视化评估报告\n- 支持中英双语\n\n📊 **四个版本：**\n- 🆓 **Free** — 基础评估体验\n- 💼 **Pro** — 完整评估 + 高级分析\n- 🎓 **Academic** — 学术研究版\n- 🏢 **Enterprise** — 机构定制版\n\n🔗 立即体验：[ICS 星际罗盘](/compass/)'
+        answer: '该评估工具（ICS Compass）已下线。如需评估支持，请联系网站管理员或查看我们的 [深度研究](/zh/深度研究.html) 页面。'
       },
       {
         keywords: ['卡尔达肖夫', 'Kardashev', '文明等级', '文明类型', 'I型', 'II型', 'III型', '能量'],
@@ -151,7 +151,7 @@
       {
         keywords: ['每日', '评论', '热点', '最新', '文章', '内容', '新闻'],
         patterns: [/每日.*评论/, /最新.*文章/, /热点/, /有什么.*内容/, /最新.*研究/],
-        answer: '**ICS 每日热点评论** 从星际文明学视角解读全球重大新闻和科技动态。\n\n📰 **我们的内容栏目：**\n\n1. **每日热点评论 (Daily Commentary)**\n   - 每日更新的新闻评论\n   - ICS 视角深度分析\n   - 中英双语版本\n   - 🔗 [中文版](/zh/每日热点评论.html) | [English](/en/daily-commentary.html)\n\n2. **深度研究 (In-Depth Research)**\n   - 长篇学术级分析报告\n   - 跨学科理论框架\n   - 🔗 [中文版](/zh/深度研究.html) | [English](/en/in-depth-research.html)\n\n3. **ICS 星际罗盘 (Compass)**\n   - 互动式文明评估工具\n   - 🔗 [立即体验](/compass/)'
+        answer: '**ICS 每日热点评论** 从星际文明学视角解读全球重大新闻和科技动态。\n\n📰 **我们的内容栏目：**\n\n1. **每日热点评论 (Daily Commentary)**\n   - 每日更新的新闻评论\n   - ICS 视角深度分析\n   - 中英双语版本\n   - 🔗 [中文版](/zh/每日热点评论.html) | [English](/en/daily-commentary.html)\n\n2. **深度研究 (In-Depth Research)**\n   - 长篇学术级分析报告\n   - 跨学科理论框架\n   - 🔗 [中文版](/zh/深度研究.html) | [English](/en/in-depth-research.html)\n\n3. **评估工具（已下线）**\n   - 互动式文明评估工具已下线，参见深度研究页面'
       },
       {
         keywords: ['治理', '工具包', 'Governance', 'Toolkit', '框架'],
@@ -238,7 +238,7 @@
       {
         keywords: ['compass', 'evaluate', 'assessment', 'tool'],
         patterns: [/compass/i, /how.*evaluate/i, /assessment.*tool/i],
-        answer: '**ICS Compass** is our intelligent civilization assessment tool.\n\n🧭 **Key Features:**\n- Multi-dimensional civilization assessment\n- Covers technology, governance, culture, sustainability\n- Visual assessment reports\n- Bilingual (Chinese/English)\n\n📊 **Four Tiers:**\n- 🆓 **Free** — Basic assessment\n- 💼 **Pro** — Full assessment + advanced analytics\n- 🎓 **Academic** — Research edition\n- 🏢 **Enterprise** — Custom institutional version\n\n🔗 Try it now: [ICS Compass](/compass/)'
+        answer: 'The ICS Compass assessment tool has been retired. For evaluation support please contact the site administrator or consult our [In-Depth Research](/en/in-depth-research.html) resources.'
       },
       {
         keywords: ['Kardashev', 'scale', 'civilization', 'type', 'level', 'energy'],

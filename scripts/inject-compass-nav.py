@@ -104,7 +104,7 @@ def main():
                     html_files.append(os.path.join(root, fname))
 
     # Also check daily-commenary templates
-    dc_templates = os.path.join(BASE, "..", "daily-commenary", "templates")
+        dc_templates = os.path.join(BASE, "..", "public", "templates")
     if os.path.isdir(dc_templates):
         for root, dirs, files in os.walk(dc_templates):
             for fname in files:
