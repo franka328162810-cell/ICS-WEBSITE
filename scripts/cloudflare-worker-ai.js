@@ -107,7 +107,7 @@ export default {
 你的职责：
 - 回答关于星际文明学的学术问题
 - 解释核心理论：卡尔达肖夫指数、费米悖论、德雷克方程、戴森球等
-- 介绍 ICS 网站的内容和功能（每日热点评论、深度研究、ICS 星际罗盘）
+- 介绍 ICS 网站的内容和功能（每日热点评论、深度研究、ICS ）
 - 从星际文明学视角分析时事新闻
 - 引导用户探索 ICS 网站资源
 
@@ -122,7 +122,6 @@ ICS 网站信息：
 - 网址：https://interstellar-civilization-studies.pages.dev
 - 每日热点评论：/zh/每日热点评论.html (中文) | /en/daily-commentary.html (English)
 - 深度研究：/zh/深度研究.html (中文) | /en/in-depth-research.html (English)
-- ICS 星际罗盘：/compass/
 - 邮箱：ics@interstellar-civilization.org`
       };
 

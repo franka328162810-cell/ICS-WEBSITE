@@ -1,86 +1,4 @@
-/**
- * ICS 人工智能助手 (AI Assistant)
- * 星际文明学网站嵌入式智能问答组件
- * Version: 2.0.0 — 四部著作知识库 + Cloudflare Workers AI
- * 
- * 功能：
- * - ICS 知识库 FAQ 智能匹配（中英双语）
- * - 可选连接 Cloudflare Workers AI 后端
- * - ICS 太空主题设计系统
- * - 移动端完美适配
- * 
- * 使用方式：
- *   <script src="/js/ai-assistant.js"></script>
- * 
- * 可选配置（在 script 标签前定义）：
- *   window.ICS_AI_CONFIG = {
- *     endpoint: 'https://your-worker.workers.dev/ai',  // Cloudflare Worker URL
- *     lang: 'auto'  // 'zh', 'en', or 'auto'
- *   };
- */
-(function () {
-  'use strict';
 
-  /* ───────── Configuration ───────── */
-  /**
-   * endpoint: AI后端接口地址（如需更换Cloudflare Workers AI服务，请在此处或通过window.ICS_AI_CONFIG.endpoint配置）
-   * 若AI服务不可用，请及时更新endpoint，避免影响AI助手功能。
-   */
-  const CFG = Object.assign({
-    // Default endpoint: will be used if no window.ICS_AI_CONFIG is provided in the page
-    endpoint: 'https://ics-ai-assistant.franka328162810.workers.dev/chat',
-    lang: 'auto',
-    maxHistory: 20
-  }, window.ICS_AI_CONFIG || {});
-
-  /* ───────── Language Detection ───────── */
-  function detectLang() {
-    if (CFG.lang && CFG.lang !== 'auto') return CFG.lang;
-    const html = document.documentElement.lang || '';
-    if (/^zh/i.test(html)) return 'zh';
-    if (/^en/i.test(html)) return 'en';
-    if (location.pathname.includes('/zh/')) return 'zh';
-    if (location.pathname.includes('/en/')) return 'en';
-    return 'zh';
-  }
-
-  /* ───────── i18n Strings ───────── */
-  const I18N = {
-    zh: {
-      title: 'ICS 人工智能助手',
-      subtitle: '星际文明学 · 智能问答',
-      placeholder: '输入您的问题…',
-      send: '发送',
-      welcome: '您好！我是 **ICS 人工智能助手**，很高兴为您服务。\n\n我可以回答关于星际文明学（ICS）的各种问题，包括核心理论与最新研究。\n\n请问有什么可以帮助您的？',
-      quickReplies: [
-        '什么是星际文明学？',
-        // '如何使用 ICS 星际罗盘？' (已移除：评估工具下线)
-        '最新研究有哪些？',
-        '什么是卡尔达肖夫指数？'
-      ],
-      typing: '正在思考',
-      fallback: '感谢您的提问！这个问题超出了我目前的知识范围。\n\n您可以：\n- 浏览我们的 [深度研究](/zh/深度研究.html) 页面\n- 查看 [每日热点评论](/zh/每日热点评论.html)\n- 通过邮件联系我们：**ics@interstellar-civilization.org**\n\n或者尝试换个方式提问？',
-      poweredBy: 'Powered by ICS AI'
-    },
-    en: {
-      title: 'ICS AI Assistant',
-      subtitle: 'Interstellar Civilization Studies · Smart Q&A',
-      placeholder: 'Type your question…',
-      send: 'Send',
-      welcome: 'Hello! I\'m the **ICS AI Assistant**, happy to help you.\n\nI can answer questions about Interstellar Civilization Studies (ICS), including core theories and the latest research.\n\nHow can I assist you today?',
-      quickReplies: [
-        'What is ICS?',
-        // 'How to use ICS Compass?' (removed — feature retired)
-        'Latest research?',
-        'What is the Kardashev Scale?'
-      ],
-      typing: 'Thinking',
-      fallback: 'Thank you for your question! This is beyond my current knowledge base.\n\nYou can:\n- Browse our [In-Depth Research](/en/in-depth-research.html) page\n- Check the [Daily Commentary](/en/daily-commentary.html)\n- Contact us via email: **ics@interstellar-civilization.org**\n\nOr try rephrasing your question?',
-      poweredBy: 'Powered by ICS AI'
-    }
-  };
-
-  /* ───────── Knowledge Base ───────── */
   const KB = {
     zh: [
       {
@@ -129,9 +47,6 @@
         answer: '**ICS 协议栈治理架构** 借鉴计算机网络协议栈的分层思想，构建了五层治理模型。\n\n🏗️ **五层结构：**\n\n- **L₀ 物理约束层** — 热力学、因果结构等不可违反的自然法则\n- **L₁ 本体-认识论层** — 新三观（新宇宙观、新生命观、新认知观）\n- **L₂ 规范原则层** — 三大核心原则（RFP、NRP、REV）\n- **L₃ 指标体系层** — 六大可测量指标\n- **L₄ 制度设计层** — 六大制度原型\n\n每层建立在下层基础之上，且各层之间有明确的接口定义。'
       },
       {
-        keywords: ['星际罗盘', 'Compass', '罗盘', '评估工具', '使用'],
-        patterns: [/星际罗盘/, /compass/i, /如何.*评估/, /怎么.*使用.*罗盘/],
-        answer: '该评估工具（ICS Compass）已下线。如需评估支持，请联系网站管理员或查看我们的 [深度研究](/zh/深度研究.html) 页面。'
       },
       {
         keywords: ['卡尔达肖夫', 'Kardashev', '文明等级', '文明类型', 'I型', 'II型', 'III型', '能量'],
@@ -236,9 +151,6 @@
         answer: '**ICS Protocol Stack Governance** models governance as a layered architecture inspired by computer network protocols.\n\n🏗️ **Five Layers:**\n\n- **L₀ Physical Constraints** — Thermodynamics, causal structure\n- **L₁ Onto-Epistemological** — New Three Views\n- **L₂ Normative Principles** — RFP, NRP, REV\n- **L₃ Indicator System** — Six measurable indicators\n- **L₄ Institutional Design** — Six institutional prototypes\n\nEach layer builds on the one below, with clearly defined interfaces.'
       },
       {
-        keywords: ['compass', 'evaluate', 'assessment', 'tool'],
-        patterns: [/compass/i, /how.*evaluate/i, /assessment.*tool/i],
-        answer: 'The ICS Compass assessment tool has been retired. For evaluation support please contact the site administrator or consult our [In-Depth Research](/en/in-depth-research.html) resources.'
       },
       {
         keywords: ['Kardashev', 'scale', 'civilization', 'type', 'level', 'energy'],
@@ -258,7 +170,6 @@
       {
         keywords: ['daily', 'commentary', 'article', 'latest', 'content', 'news', 'research'],
         patterns: [/daily.*commentary/i, /latest.*article/i, /latest.*research/i, /what.*content/i],
-        answer: '**ICS Content Sections:**\n\n1. **Daily Commentary**\n   - Daily news analysis from ICS perspective\n   - Bilingual (CN/EN)\n   - 🔗 [English](/en/daily-commentary.html) | [中文](/zh/每日热点评论.html)\n\n2. **In-Depth Research**\n   - Academic-level analysis reports\n   - 🔗 [English](/en/in-depth-research.html) | [中文](/zh/深度研究.html)\n\n3. **ICS Compass**\n   - Interactive assessment tool\n   - 🔗 [Try it](/compass/)'
       },
       {
         keywords: ['hello', 'hi', 'hey', 'greetings'],

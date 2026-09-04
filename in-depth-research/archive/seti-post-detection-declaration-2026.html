@@ -18,158 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        :root {
-            --color-deep-space:#0a1628;--color-quantum-purple:#7c3aed;--color-quantum-purple-light:#a78bfa;
-            --color-nebula-cyan:#06b6d4;--color-nebula-cyan-light:#22d3ee;--color-energy-gold:#f59e0b;
-            --color-energy-gold-light:#fbbf24;--color-text-primary:#ffffff;--color-text-secondary:rgba(255,255,255,0.8);
-            --font-en-sans:'Inter',sans-serif;--font-en-serif:'Playfair Display',serif;--transition-normal:0.3s ease;
-        }
-        html{font-size:14px!important;scroll-behavior:smooth;}
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:var(--font-en-sans);font-weight:300;background:var(--color-deep-space);color:var(--color-text-secondary);line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
-        p{font-size:0.9375rem!important;line-height:1.85!important;}
-        .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;overflow:hidden;background:rgba(10,22,40,0.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(167,139,250,0.1);transition:all var(--transition-normal);}
-        .navbar.scrolled{height:52px;background:rgba(10,22,40,0.95);}
-        .nav-container{max-width:1400px;height:100%;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;}
-        .nav-brand{display:flex;align-items:center;gap:1rem;text-decoration:none;}
-        .nav-logo{width:40px;height:40px;}
-        .nav-brand-text{display:flex;flex-direction:column;}
-        .nav-title{font-family:var(--font-en-serif);font-size:0.95rem!important;font-weight:600;color:var(--color-text-primary);}
-        .nav-subtitle{font-size:0.7rem;color:rgba(255,255,255,0.4);display:none!important;}
-        .nav-links{display:flex;gap:2rem;list-style:none;}
-        .nav-link{font-family:var(--font-en-serif);font-size:0.875rem!important;font-weight:500;color:rgba(255,255,255,0.7);text-decoration:none;transition:all var(--transition-normal);white-space:nowrap;}
-        .nav-link:hover,.nav-link.active{color:var(--color-quantum-purple-light);transform:translateY(-2px);}
-        .nav-actions{display:flex;align-items:center;gap:1.5rem;}
-        .lang-switch{display:flex;gap:0.5rem;}
-        .lang-btn{font-size:0.875rem;font-weight:500;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;color:rgba(255,255,255,0.6);transition:all var(--transition-normal);}
-        .lang-btn:hover{background:rgba(167,139,250,0.15);color:var(--color-quantum-purple-light);}
-        .lang-btn.active{background:rgba(167,139,250,0.2);color:var(--color-quantum-purple-light);}
-        .nav-contact{font-size:0.8125rem!important;font-weight:500;padding:6px 18px!important;background:linear-gradient(135deg,var(--color-quantum-purple),var(--color-nebula-cyan));color:white;text-decoration:none;border-radius:8px;transition:all var(--transition-normal);}
-        .nav-contact:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(167,139,250,0.4);}
-        .page-hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:0.7cm;overflow:hidden;}
-        .page-hero-bg{position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;}
-        .nebula{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.3;animation:float 20s ease-in-out infinite;}
-        .nebula-1{width:600px;height:600px;background:radial-gradient(circle,var(--color-quantum-purple),transparent);top:-200px;left:-100px;}
-        .nebula-2{width:500px;height:500px;background:radial-gradient(circle,var(--color-nebula-cyan),transparent);bottom:-150px;right:-100px;animation-delay:-10s;}
-        @keyframes float{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-30px) scale(1.1);}}
-        .page-hero-content{position:relative;z-index:1;width:100%;padding:4rem 2rem;}
-        .container{max-width:1200px!important;margin:0 auto;padding:0 2rem;}
-        .en-page-title{font-family:var(--font-en-serif);font-size:clamp(2.2rem,3.3vw,2.8rem)!important;font-weight:900;margin-bottom:2rem;text-align:center;background:linear-gradient(135deg,#fff 0%,var(--color-quantum-purple-light) 50%,var(--color-nebula-cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.3;}
-        .hero-intro-card{background:rgba(255,255,255,0.03);border:1px solid rgba(167,139,250,0.15);border-radius:16px;padding:2.25rem!important;font-size:1.0625rem!important;color:var(--color-text-secondary);line-height:1.8;max-width:900px;margin:0 auto;}
-        .main-content{flex:1;padding:3rem 0;}
-        .article-layout{display:grid;grid-template-columns:1fr;gap:2rem;}
-        .article-content{background:rgba(255,255,255,0.02);border:1px solid rgba(167,139,250,0.1);border-radius:16px;padding:3rem;}
-        .article-meta{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(167,139,250,0.1);}
-        .meta-item{display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;color:rgba(255,255,255,0.5);}
-        .category-badge{background:linear-gradient(135deg,var(--color-quantum-purple),var(--color-nebula-cyan));color:white;padding:0.25rem 0.75rem;border-radius:20px;font-size:0.75rem;font-weight:600;}
-        .article-actions{display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
-        .action-btn{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);border-radius:8px;color:var(--color-quantum-purple-light);font-size:0.875rem;cursor:pointer;transition:all var(--transition-normal);text-decoration:none;font-family:var(--font-en-sans);}
-        .action-btn:hover{background:rgba(167,139,250,0.2);transform:translateY(-2px);}
-        .citation-box{display:none;background:rgba(167,139,250,0.05);border:1px solid rgba(167,139,250,0.2);border-radius:12px;padding:1.5rem;margin-bottom:2rem;}
-        .citation-box.active{display:block;}
-        .citation-text{font-size:0.875rem;color:rgba(255,255,255,0.7);font-style:italic;line-height:1.6;}
-        .article-body h2{font-family:var(--font-en-serif);font-size:1.55rem;font-weight:700;color:var(--color-text-primary);margin:3rem 0 1.2rem;padding-bottom:0.75rem;border-bottom:2px solid rgba(167,139,250,0.3);background:linear-gradient(90deg,var(--color-quantum-purple-light),var(--color-nebula-cyan-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-        .article-body h3{font-family:var(--font-en-serif);font-size:1.15rem;font-weight:600;color:var(--color-nebula-cyan-light);margin:2rem 0 0.8rem;}
-        .article-body p{color:var(--color-text-secondary);line-height:1.9;margin-bottom:1.2rem;}
-        .article-body strong{color:var(--color-text-primary);font-weight:600;}
-        .article-body em{color:var(--color-energy-gold-light);font-style:normal;}
-        .ics-highlight{background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(6,182,212,0.08));border-left:3px solid var(--color-quantum-purple-light);border-radius:0 12px 12px 0;padding:1.25rem 1.5rem;margin:1.5rem 0;}
-        .ics-highlight p{margin-bottom:0;color:rgba(255,255,255,0.85);}
-        .axiom-box{background:rgba(6,182,212,0.05);border:1px solid rgba(6,182,212,0.2);border-radius:12px;padding:1.5rem;margin:1.5rem 0;}
-        .axiom-box .axiom-label{font-size:0.7rem;font-weight:700;color:var(--color-nebula-cyan);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;}
-        .axiom-box p{margin-bottom:0;font-size:0.875rem;}
-        .warning-box{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
-        .warning-box .warning-label{font-size:0.7rem;font-weight:700;color:var(--color-energy-gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;}
-        .warning-box p{margin-bottom:0;color:rgba(255,255,255,0.8);}
-        .metric-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.875rem;}
-        .metric-table th{background:rgba(124,58,237,0.2);color:var(--color-quantum-purple-light);padding:0.75rem 1rem;text-align:left;font-weight:600;border-bottom:1px solid rgba(167,139,250,0.2);}
-        .metric-table td{padding:0.75rem 1rem;border-bottom:1px solid rgba(167,139,250,0.08);color:var(--color-text-secondary);}
-        .metric-table tr:hover td{background:rgba(167,139,250,0.05);}
-        .section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,0.3),transparent);margin:2.5rem 0;}
-        .compass-cta{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(6,182,212,0.1));border:1px solid rgba(167,139,250,0.2);border-radius:16px;padding:2rem;margin:3rem 0;text-align:center;}
-        .compass-cta-icon{font-size:2rem;display:block;margin-bottom:1rem;}
-        .compass-cta-title{font-family:var(--font-en-serif);font-size:1.25rem;color:var(--color-text-primary);margin-bottom:0.75rem;}
-        .compass-cta-desc{font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:1.5rem;}
-        .compass-cta-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 2rem;background:linear-gradient(135deg,var(--color-quantum-purple),var(--color-nebula-cyan));color:white;text-decoration:none;border-radius:10px;font-weight:600;transition:all var(--transition-normal);}
-        .compass-cta-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(167,139,250,0.4);}
-        .related-research{margin-top:3rem;}
-        .related-research h2{font-family:var(--font-en-serif);font-size:1.4rem;color:var(--color-text-primary);margin-bottom:1.5rem;background:none;-webkit-text-fill-color:var(--color-text-primary);border-bottom:none;padding-bottom:0;}
-        .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;}
-        .related-card{background:rgba(255,255,255,0.02);border:1px solid rgba(167,139,250,0.1);border-radius:12px;padding:1.25rem;text-decoration:none;transition:all var(--transition-normal);display:block;}
-        .related-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,0.3);}
-        .related-card-tag{font-size:0.7rem;color:var(--color-nebula-cyan);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;}
-        .related-card-title{font-family:var(--font-en-serif);font-size:0.9rem;color:var(--color-text-primary);line-height:1.5;}
-        .search-section{margin-bottom:2rem;}
-        .search-header h3{font-family:var(--font-en-serif);color:var(--color-text-primary);margin-bottom:0.5rem;}
-        .search-header p{font-size:0.875rem;color:rgba(255,255,255,0.5);margin-bottom:1rem;}
-        .search-controls{display:flex;flex-direction:column;gap:1rem;}
-        .search-input-group{display:flex;gap:0.5rem;}
-        .search-input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:0.75rem 1rem;color:var(--color-text-primary);font-family:var(--font-en-sans);font-size:0.875rem;outline:none;}
-        .search-btn{padding:0.75rem 1.5rem;background:var(--color-quantum-purple);color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;transition:all var(--transition-normal);}
-        .search-btn:hover{background:var(--color-quantum-purple-light);}
-        .filter-group{display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;}
-        .filter-label{font-size:0.8125rem;color:rgba(255,255,255,0.5);}
-        .filter-button{padding:0.375rem 0.875rem;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.15);border-radius:20px;color:rgba(255,255,255,0.6);font-size:0.8125rem;cursor:pointer;transition:all var(--transition-normal);font-family:var(--font-en-sans);}
-        .filter-button:hover,.filter-button.active{background:rgba(167,139,250,0.2);color:var(--color-quantum-purple-light);border-color:rgba(167,139,250,0.4);}
-        .search-results{display:none;background:rgba(10,22,40,0.95);border:1px solid rgba(167,139,250,0.2);border-radius:12px;overflow:hidden;}
-        .search-results.active{display:block;}
-        .search-result-item{display:block;padding:0.875rem 1.25rem;text-decoration:none;border-bottom:1px solid rgba(167,139,250,0.08);transition:background var(--transition-normal);}
-        .search-result-item:hover{background:rgba(167,139,250,0.08);}
-        .search-result-title{font-family:var(--font-en-serif);font-size:0.9rem;color:var(--color-text-primary);margin-bottom:0.25rem;}
-        .search-result-meta{font-size:0.75rem;color:rgba(255,255,255,0.4);}
-        .search-empty{padding:1rem 1.25rem;font-size:0.875rem;color:rgba(255,255,255,0.5);}
-        .newsletter-widget{background:rgba(124,58,237,0.05);border:1px solid rgba(167,139,250,0.15);border-radius:12px;padding:1.5rem;margin-bottom:2rem;}
-        .newsletter-widget h3{font-family:var(--font-en-serif);font-size:1rem;color:var(--color-text-primary);margin-bottom:0.5rem;}
-        .newsletter-widget p{font-size:0.8125rem;color:rgba(255,255,255,0.5);margin-bottom:1rem;}
-        .newsletter-form{display:flex;flex-direction:column;gap:0.5rem;}
-        .newsletter-form input{background:rgba(255,255,255,0.05);border:1px solid rgba(167,139,250,0.15);border-radius:8px;padding:0.625rem 1rem;color:var(--color-text-primary);font-family:var(--font-en-sans);font-size:0.875rem;outline:none;}
-        .newsletter-form button{padding:0.625rem;background:var(--color-quantum-purple);color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;}
-        .footer{background:rgba(10,22,40,0.95);border-top:1px solid rgba(167,139,250,0.1);padding:3.5rem 2rem 1.75rem!important;margin-top:auto;}
-        .footer-content{max-width:1400px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;}
-        .footer-logo{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;}
-        .footer-logo-text{display:flex;flex-direction:column;}
-        .footer-logo-title{font-family:var(--font-en-serif);font-size:1rem!important;font-weight:600;color:var(--color-text-primary);}
-        .footer-logo-sub{font-size:0.7rem;color:rgba(255,255,255,0.4);}
-        .footer-desc{font-size:0.8125rem!important;color:rgba(255,255,255,0.4);line-height:1.6;}
-        .footer-col h4{font-family:var(--font-en-serif);font-size:0.9rem;color:var(--color-text-primary);margin-bottom:1rem;}
-        .footer-col a{display:block;font-size:0.8125rem;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:0.5rem;transition:color var(--transition-normal);}
-        .footer-col a:hover{color:var(--color-quantum-purple-light);}
-        .footer-bottom{max-width:1400px;margin:2rem auto 0;padding:1rem 2rem 0;border-top:1px solid rgba(167,139,250,0.08);display:flex;justify-content:space-between;align-items:center;}
-        .footer-copyright{font-size:0.75rem;color:rgba(255,255,255,0.3);}
-        .footer-links-bottom{display:flex;gap:1.5rem;}
-        .footer-links-bottom a{font-size:0.75rem;color:rgba(255,255,255,0.3);text-decoration:none;}
-        @media(max-width:1024px){.footer-content{grid-template-columns:repeat(2,1fr);}}
-        @media(max-width:768px){.nav-links{display:none;}.footer-content{grid-template-columns:1fr;}}
-    </style>
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Legislating Before Contact: The IAA 2026 Declaration and an ICS Critique of First Contact Governance">
-    <meta property="og:description" content="On June 5, 2026, the IAA SETI Committee ratified an updated Declaration of Principles. This paper applies the ICS framework to offer a systematic critical analysis of humanity's first comprehensive First Contact governance framework.">
-    <meta property="og:url" content="https://ics-studies.org/en/seti-post-detection-declaration-2026.html">
-    <meta property="og:site_name" content="Interstellar Civilization Studies">
-    <meta property="article:published_time" content="2026-06-14">
-    <meta property="article:author" content="ICS Institute | Franka">
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Legislating Before Contact: The IAA 2026 Declaration and an ICS Critique of First Contact Governance","description":"On June 5, 2026, the IAA SETI Committee ratified an updated Declaration of Principles. This paper applies the ICS framework to offer a systematic critical analysis.","datePublished":"2026-06-14","author":{"@type":"Organization","name":"ICS Institute | Franka"},"publisher":{"@type":"Organization","name":"Interstellar Civilization Studies","url":"https://ics-studies.org"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ics-studies.org/en/seti-post-detection-declaration-2026.html"}}
-    </script>
-</head>
-
-<body data-page="research-deep" data-lang="en">
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
-                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
-                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none"/>
-                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none"/>
-                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)"/>
-                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s" repeatCount="indefinite"/>
-                    </circle>
-                </svg>
-                <div class="nav-brand-text">
-                    <span class="nav-title">Interstellar Civilization Studies</span>
-                    <span class="nav-subtitle">星际文明学</span>
-                </div>
+    
             </a>
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -177,7 +26,6 @@
                 <li><a href="publications.html" class="nav-link">Publications</a></li>
                 <li><a href="resources.html" class="nav-link">Resources</a></li>
                 <li><a href="news.html" class="nav-link">News</a></li>
-                <li><a href="/compass/" class="nav-link">Compass</a></li>
             </ul>
             <div class="nav-actions">
                 <div class="lang-switch">
@@ -280,7 +128,6 @@
 
                         <h3>2.1 Expansion of the Detection Scope</h3>
 
-                        <p>Compared with the 2010 version, the 2026 Declaration introduces a fundamental expansion of the detection object. The earlier framework was oriented primarily toward passive searches for radio signals. The 2026 version explicitly extends the scope to the full "technosignature spectrum," encompassing: narrow-band radio signals, laser emission, infrared excess attributable to large-scale energy usage (thermal signatures of megastructures), astronomical measurement anomalies caused by large artificial structures, and potential physical artifacts. This expansion reflects fifteen years of deep progress in technosignature research — including the debates triggered by 'Oumuamua's passage through the solar system in 2017 and Harvard professor Avi Loeb's sustained scrutiny of anomalous interstellar object properties.</p>
 
                         <h3>2.2 Institutionalization of the Verification Process</h3>
 
@@ -474,12 +321,7 @@
 
                     </div>
 
-                    <div class="compass-cta">
-                        <span class="compass-cta-icon">🧭</span>
-                        <h3 class="compass-cta-title">Apply the ICS Framework with ICS Compass</h3>
-                        <p class="compass-cta-desc">Put the ICS governance framework discussed in this article into practice. Use the ICS Compass tool to conduct a comprehensive six-metric assessment of First Contact scenarios, from Recursive Freedom Degree to Civilization Development Index.</p>
-                        <a href="/compass/" class="compass-cta-btn"><span>Launch ICS Compass</span><span>→</span></a>
-                    </div>
+                    
 
                     <section class="related-research">
                         <h2>Related Research</h2>

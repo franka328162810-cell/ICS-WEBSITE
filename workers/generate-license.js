@@ -64,7 +64,7 @@ for (let i = 0; i < count; i++) {
 }
 
 console.log('─'.repeat(45));
-// Activation URL removed (Compass functionality retired). Use internal admin workflows.
+// Activation URL removed ( functionality retired). Use internal admin workflows.
 
 if (tier === 'enterprise') {
   console.log('Note: Enterprise keys unlock ALL tiers (Pro + Academic + Enterprise).');

@@ -28,170 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        html { font-size: 14px !important; }
-        @media (min-width: 1200px) { html { font-size: 14px !important; } }
-        .nav-logo { width: 40px !important; height: 40px !important; }
-        .nav-title { font-size: 1rem !important; }
-        .nav-subtitle { font-size: 0.5625rem !important; }
-        .nav-link { font-size: 0.875rem !important; }
-        .nav-contact { font-size: 0.8125rem !important; padding: 8px 20px !important; }
-        .zh-page-title { font-size: clamp(2rem, 3.5vw, 2.8rem) !important; }
-        .hero-intro-card { padding: 2.25rem !important; font-size: 1.0625rem !important; }
-        .section { padding: 5.5rem 2rem !important; }
-        .zh-section-title { font-size: 1.875rem !important; }
-        .container { max-width: 1200px !important; }
-        .content-card { padding: 1.875rem !important; }
-        .footer { padding: 3.5rem 2rem 1.75rem !important; }
-        p { font-size: 0.9375rem !important; line-height: 1.8 !important; }
-        @media (max-width: 768px) { html { font-size: 13.5px !important; } .section { padding: 4rem 1.5rem !important; } }
-
-        :root {
-            --color-deep-space: #0a1628;
-            --color-quantum-purple: #7c3aed;
-            --color-quantum-purple-light: #a78bfa;
-            --color-nebula-cyan: #06b6d4;
-            --color-nebula-cyan-light: #22d3ee;
-            --color-energy-gold: #f59e0b;
-            --color-energy-gold-light: #fbbf24;
-            --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255, 255, 255, 0.8);
-            --font-zh-sans: 'Noto Sans SC', sans-serif;
-            --font-zh-serif: 'Noto Serif SC', serif;
-            --transition-normal: 0.3s ease;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-zh-sans);
-            font-weight: 300;
-            background: var(--color-deep-space);
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .skip-to-main { position: absolute; top: -40px; left: 0; background: rgba(167, 139, 250, 1); color: white; padding: 0.5rem 1rem; text-decoration: none; z-index: 100; border-radius: 0 0 8px 0; }
-        .skip-to-main:focus { top: 0; }
-        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 22, 40, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(167, 139, 250, 0.1); transition: all var(--transition-normal); }
-        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-        .nav-brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
-        .nav-logo { width: 44px; height: 44px; }
-        .nav-brand-text { display: flex; flex-direction: column; }
-        .nav-title { font-family: var(--font-zh-serif); font-size: 1rem !important; font-weight: 600; color: var(--color-text-primary); }
-        .nav-subtitle { font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.05em; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-link { font-family: var(--font-zh-serif); font-size: 0.9375rem; font-weight: 500; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: all var(--transition-normal); }
-        .nav-link:hover { color: var(--color-quantum-purple-light); }
-        .nav-actions { display: flex; align-items: center; gap: 1.5rem; }
-        .lang-switch { display: flex; gap: 0.5rem; }
-        .lang-btn { font-size: 0.875rem; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: rgba(255, 255, 255, 0.6); transition: all var(--transition-normal); }
-        .lang-btn.active { background: rgba(167, 139, 250, 0.2); color: var(--color-quantum-purple-light); }
-        .nav-contact { font-size: 0.875rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: var(--color-text-primary); text-decoration: none; border-radius: 8px; }
-        .page-hero { position: relative; min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 0.7cm; overflow: hidden; }
-        .page-hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
-        .nebula { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float 20s ease-in-out infinite; }
-        .nebula-1 { width: 600px; height: 600px; background: radial-gradient(circle, var(--color-quantum-purple), transparent); top: -200px; left: -100px; }
-        .nebula-2 { width: 500px; height: 500px; background: radial-gradient(circle, var(--color-nebula-cyan), transparent); bottom: -150px; right: -100px; animation-delay: -10s; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.1); } }
-        .page-hero-content { position: relative; z-index: 1; width: 100%; padding: 4rem 2rem; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .zh-page-title { font-family: var(--font-zh-serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; margin-bottom: 1.5rem; text-align: center; background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.5; letter-spacing: 0.05em; }
-        .hero-meta { text-align: center; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; margin-bottom: 2rem; }
-        .hero-intro-card { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 16px; padding: 2rem; max-width: 900px; margin: 0 auto; }
-        .hero-intro-card p { font-size: 1.0625rem; line-height: 2.0; text-align: left; }
-        .main-content { flex: 1; padding: 4rem 0; }
-        .article-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; }
-        .article-actions { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .action-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.3); color: rgba(255, 255, 255, 0.8); border-radius: 6px; cursor: pointer; font-size: 0.875rem; transition: all var(--transition-normal); }
-        .zh-section-title { font-family: var(--font-zh-serif); font-size: 1.875rem; font-weight: 700; margin-bottom: 2rem; margin-top: 3rem; color: var(--color-text-primary); }
-        .zh-section-subtitle { font-family: var(--font-zh-serif); font-size: 1.25rem; font-weight: 400; margin-bottom: 1.5rem; color: var(--color-quantum-purple-light); font-style: italic; }
-        .section-heading { font-family: var(--font-zh-serif); font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; margin-top: 2rem; color: var(--color-nebula-cyan-light); }
-        .article-intro, .article-section, .article-footer { margin-bottom: 2.5rem; }
-        .intro-text p { font-size: 1.0625rem; line-height: 1.9; }
-        .footer-note { background: rgba(124, 58, 237, 0.1); border-left: 3px solid var(--color-quantum-purple); border-radius: 0 8px 8px 0; padding: 1.5rem 1.5rem; margin-top: 3rem; }
-        .footer-note p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.7); }
-        blockquote { border-left: 3px solid var(--color-nebula-cyan); padding: 1rem 1.5rem; margin: 1.5rem 0; background: rgba(6,182,212,0.05); border-radius: 0 8px 8px 0; font-style: italic; color: rgba(255,255,255,0.85); }
-        blockquote p { font-size: 1rem !important; line-height: 1.8 !important; }
-        .highlight-box { background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124,58,237,0.25); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
-        .highlight-box p { font-size: 0.9375rem !important; }
-        .frl-tag { display: inline-block; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; font-size: 0.8125rem; padding: 3px 10px; border-radius: 5px; margin-right: 6px; font-family: monospace; }
-        .principle-tag { display: inline-block; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.35); color: var(--color-quantum-purple-light); font-size: 0.8125rem; padding: 3px 10px; border-radius: 5px; margin-right: 6px; font-family: monospace; }
-        .compass-cta { background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 16px; padding: 2rem; text-align: center; margin-top: 3rem; }
-        .compass-cta-icon { font-size: 2rem; display: block; margin-bottom: 1rem; }
-        .compass-cta-title { font-family: var(--font-zh-serif); font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 1rem; }
-        .compass-cta-desc { color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; }
-        .compass-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; }
-        .related-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(167, 139, 250, 0.1); }
-        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .related-card { display: block; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 16px; padding: 2rem; text-decoration: none; transition: all var(--transition-normal); }
-        .related-card:hover { border-color: rgba(167,139,250,0.5); }
-        .related-card-category { font-size: 0.8rem; color: var(--color-quantum-purple-light); margin-bottom: 0.5rem; }
-        .related-card-title { font-family: var(--font-zh-serif); font-size: 1.1rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.5rem; line-height: 1.5; }
-        .related-card-desc { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
-        .footer { background: rgba(10, 22, 40, 0.95); border-top: 1px solid rgba(167, 139, 250, 0.1); padding: 3rem 0 1rem; margin-top: auto; }
-        .footer-content { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-        .footer-desc { color: rgba(255,255,255,0.6); font-size: 0.875rem; line-height: 1.7; }
-        .footer-col h4 { color: var(--color-text-primary); font-size: 0.9375rem; margin-bottom: 1rem; }
-        .footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.5rem; }
-        .footer-col a:hover { color: var(--color-quantum-purple-light); }
-        .search-section { margin-bottom: 3rem; padding: 2rem; background: rgba(15,23,42,0.4); border: 1px solid rgba(167,139,250,0.15); border-radius: 12px; }
-        .search-header h3 { color: var(--color-text-primary); margin-bottom: 0.5rem; }
-        .search-header p { color: rgba(255,255,255,0.6); font-size: 0.875rem; margin-bottom: 1rem; }
-        .search-input-group { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
-        .search-input { flex: 1; padding: 0.75rem 1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--color-text-primary); font-size: 0.9rem; }
-        .search-btn { padding: 0.75rem 1.5rem; background: var(--color-quantum-purple); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
-        .filter-group { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
-        .filter-label { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.7); }
-        .filter-button { padding: 0.5rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(167,139,250,0.3); border-radius: 6px; color: rgba(255,255,255,0.8); cursor: pointer; font-size: 0.85rem; }
-        .filter-button.active { background: var(--color-quantum-purple); border-color: var(--color-quantum-purple); color: white; }
-        .search-results { margin-top: 1rem; display: none; border: 1px solid rgba(167,139,250,0.25); border-radius: 10px; overflow: hidden; }
-        .search-results.active { display: block; }
-        .newsletter-widget { background: rgba(15,23,42,0.5); border: 1px solid rgba(167,139,250,0.2); border-radius: 12px; padding: 2rem; margin-bottom: 3rem; text-align: center; }
-        .newsletter-widget h3 { color: var(--color-text-primary); margin-bottom: 0.5rem; }
-        .newsletter-widget p { color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; font-size: 0.9rem; }
-        .newsletter-form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 500px; margin: 0 auto; }
-        .newsletter-form input { padding: 0.75rem 1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--color-text-primary); font-size: 0.9rem; }
-        .newsletter-form button { padding: 0.75rem; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
-        @media (max-width: 768px) { .nav-links { display: none; } .footer-content { grid-template-columns: 1fr; } }
-    </style>
-    <!-- ICS-SEO-START -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="前沿AI模型会"评测欺骗"：一个文明正在失去对自身工具的感知能力 - 星际文明学">
-    <meta property="og:description" content="《国际AI安全报告》揭示前沿模型的"评测欺骗"现象，从星际文明学视角看，这是一个文明在抵达关键技术节点之前，其认知工具体系先于被管理对象发生失效的典型信号。">
-    <meta property="og:url" content="https://ics-studies.org/zh/daily-commentary-zh-20260605.html">
-    <meta property="og:site_name" content="星际文明学">
-    <meta property="og:locale" content="zh_CN">
-    <meta property="og:locale:alternate" content="en_US">
-    <meta property="article:published_time" content="2026-06-05">
-    <meta property="article:author" content="星际文明学研究所">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="前沿AI模型会"评测欺骗" - 星际文明学">
-    <meta name="twitter:description" content="当一个文明已无法准确测量自己正在构建之物，大过滤器的逻辑便悄然开始运转。">
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"NewsArticle","headline":"前沿AI模型会"评测欺骗"：一个文明正在失去对自身工具的感知能力","description":"《国际AI安全报告》揭示前沿模型的"评测欺骗"现象，从星际文明学视角看，这是文明认知工具体系先行失效的信号。","datePublished":"2026-06-05","author":{"@type":"Organization","name":"星际文明学研究所"},"publisher":{"@type":"Organization","name":"星际文明学","url":"https://ics-studies.org"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ics-studies.org/zh/daily-commentary-zh-20260605.html"}}
-    </script>
-    <!-- ICS-SEO-END -->
-</head>
-
-<body data-page="daily-commentary" data-lang="zh">
-    <a href="#main-content" class="skip-to-main">跳转到正文</a>
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="首页.html" class="nav-brand">
-                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
-                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
-                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
-                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
-                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s" repeatCount="indefinite" />
-                    </circle>
-                </svg>
-                <div class="nav-brand-text">
-                    <span class="nav-title">星际文明学</span>
-                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
-                </div>
+    
             </a>
             <ul class="nav-links">
                 <li><a href="首页.html" class="nav-link">首页</a></li>
@@ -200,7 +37,6 @@
                 <li><a href="资源.html" class="nav-link">资源</a></li>
                 <li><a href="每日热点评论.html" class="nav-link">新闻</a></li>
                 <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
-                <li><a href="/compass/" class="nav-link">Compass</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="nav-search" aria-label="搜索" onclick="scrollToSearch()">
@@ -385,12 +221,7 @@
 
                     <!-- ======== 正文结束 ======== -->
 
-                    <div class="compass-cta">
-                        <span class="compass-cta-icon">🧭</span>
-                        <h3 class="compass-cta-title">使用 ICS 星际罗盘 进行评估</h3>
-                        <p class="compass-cta-desc">将本文讨论的 ICS 治理框架付诸实践。使用星际罗盘工具，从递归自由度到文明发展指数，对真实场景进行六大核心指标的全面评估。</p>
-                        <a href="/compass/" class="compass-cta-btn"><span>启动星际罗盘</span><span>→</span></a>
-                    </div>
+                    
 
                     <section class="related-section">
                         <h2 class="zh-section-title">相关阅读</h2>

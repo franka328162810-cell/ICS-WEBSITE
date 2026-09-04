@@ -3,7 +3,7 @@
 import re, os
 
 TIERS = ['free', 'pro', 'academic', 'enterprise']
-BASE = os.path.join(os.path.dirname(__file__), '..', 'public', 'compass')
+BASE = os.path.join(os.path.dirname(__file__), '..', 'public', '')
 
 SEARCH_CONTACT_CSS = """
         .nav-search {

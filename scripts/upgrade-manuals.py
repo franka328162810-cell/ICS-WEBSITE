@@ -9,9 +9,9 @@ Upgrade all 4 manual.html files to ICS design system:
 import os
 import re
 
-BASE = r"C:\Users\Administrator\Documents\ics-website\public\compass"
+BASE = r"C:\Users\Administrator\Documents\ics-website\public\"
 
-# ICS Navbar HTML (shared across all compass pages)
+# ICS Navbar HTML (shared across all  pages)
 NAVBAR_HTML = '''
     <!-- ══════════ Navbar ══════════ -->
     <nav class="navbar" id="navbar">
@@ -37,7 +37,7 @@ NAVBAR_HTML = '''
                 <li><a href="/en/resources.html" class="nav-link">Resources</a></li>
                 <li><a href="/en/daily-commentary.html" class="nav-link">News</a></li>
                 <li><a href="/en/ai-assistant.html" class="nav-link">AI Assistant</a></li>
-                <li><a href="/compass/" class="nav-link active">Compass</a></li>
+                <li><a href="" class="nav-link active"></a></li>
             </ul>
             <div class="nav-actions">
                 <div class="lang-switch">
@@ -217,7 +217,7 @@ ICS_STYLE_OVERRIDE = '''
 ICS_FOOTER = '''
     <div class="ics-footer">
         <p>© 2026 <a href="https://ics-studies.org">Interstellar Civilization Studies</a>. All rights reserved.</p>
-        <p style="margin-top:0.5rem"><a href="/compass/">← Back to Compass Editions</a> · <a href="mailto:franka328162810@gmail.com">Contact</a></p>
+        <p style="margin-top:0.5rem"><a href="">← Back to  Editions</a> · <a href="mailto:franka328162810@gmail.com">Contact</a></p>
     </div>
 '''
 

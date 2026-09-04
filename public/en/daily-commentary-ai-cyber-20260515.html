@@ -22,145 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/style-en.css">
-    <style>
-        :root {
-            --color-deep-space: #0a1628;
-            --color-quantum-purple: #7c3aed;
-            --color-quantum-purple-light: #a78bfa;
-            --color-nebula-cyan: #06b6d4;
-            --color-nebula-cyan-light: #22d3ee;
-            --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255,255,255,0.8);
-            --font-en-sans: 'Inter', sans-serif;
-            --font-en-serif: 'Playfair Display', serif;
-            --transition-normal: 0.3s ease;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: 15px; scroll-behavior: smooth; }
-        body { font-family: var(--font-en-sans); font-weight: 300; background: var(--color-deep-space); color: var(--color-text-secondary); line-height: 1.75; min-height: 100vh; display: flex; flex-direction: column; }
-        .skip-to-main { position: absolute; top: -40px; left: 0; background: rgba(167,139,250,1); color: white; padding: 0.5rem 1rem; text-decoration: none; z-index: 100; border-radius: 0 0 8px 0; }
-        .skip-to-main:focus { top: 0; }
-        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(167,139,250,0.1); }
-        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-        .nav-brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
-        .nav-logo { width: 40px; height: 40px; }
-        .nav-brand-text { display: flex; flex-direction: column; }
-        .nav-title { font-family: var(--font-en-serif); font-size: 1rem; font-weight: 600; color: var(--color-text-primary); }
-        .nav-subtitle { font-size: 0.6875rem; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-link { font-size: 0.9rem; font-weight: 400; color: rgba(255,255,255,0.7); text-decoration: none; transition: color var(--transition-normal); }
-        .nav-link:hover { color: var(--color-quantum-purple-light); }
-        .nav-actions { display: flex; align-items: center; gap: 1.5rem; }
-        .lang-switch { display: flex; gap: 0.5rem; }
-        .lang-btn { font-size: 0.875rem; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: rgba(255,255,255,0.6); transition: all var(--transition-normal); }
-        .lang-btn.active { background: rgba(167,139,250,0.2); color: var(--color-quantum-purple-light); }
-        .nav-contact { font-size: 0.875rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: white; text-decoration: none; border-radius: 8px; }
-        .nav-search { background: transparent; border: none; color: rgba(255,255,255,0.6); cursor: pointer; padding: 0.5rem; display: flex; align-items: center; }
-        .nav-search svg { width: 20px; height: 20px; }
-        .page-hero { position: relative; min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 72px; overflow: hidden; }
-        .page-hero-bg { position: absolute; inset: 0; z-index: 0; }
-        .nebula { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float 20s ease-in-out infinite; }
-        .nebula-1 { width: 600px; height: 600px; background: radial-gradient(circle, var(--color-quantum-purple), transparent); top: -200px; left: -100px; }
-        .nebula-2 { width: 500px; height: 500px; background: radial-gradient(circle, var(--color-nebula-cyan), transparent); bottom: -150px; right: -100px; animation-delay: -10s; }
-        @keyframes float { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-30px) scale(1.1); } }
-        .page-hero-content { position: relative; z-index: 1; width: 100%; padding: 4rem 2rem; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .en-page-title { font-family: var(--font-en-serif); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; margin-bottom: 1.5rem; text-align: center; background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.4; }
-        .hero-meta { text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 2rem; }
-        .hero-intro-card { background: rgba(15,23,42,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(167,139,250,0.2); border-radius: 16px; padding: 2.25rem; max-width: 900px; margin: 0 auto; }
-        .hero-intro-card p { font-size: 1.0625rem; line-height: 2.0; }
-        .main-content { flex: 1; padding: 4rem 0; }
-        .article-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; }
-        .article-actions { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .action-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3); color: rgba(255,255,255,0.8); border-radius: 6px; cursor: pointer; font-size: 0.875rem; }
-        .en-section-title { font-family: var(--font-en-serif); font-size: 1.75rem; font-weight: 700; margin-bottom: 1.75rem; margin-top: 3rem; color: var(--color-text-primary); }
-        .section-heading { font-family: var(--font-en-serif); font-size: 1.3rem; font-weight: 600; margin-bottom: 1.25rem; margin-top: 2rem; color: var(--color-nebula-cyan-light); }
-        .article-intro, .article-section, .article-footer { margin-bottom: 2.5rem; }
-        .footer-note { background: rgba(124,58,237,0.1); border-left: 3px solid var(--color-quantum-purple); padding: 1rem 1.5rem; font-size: 0.9rem; font-style: italic; }
-        .ics-metrics-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-        .ics-metrics-table th { background: rgba(124,58,237,0.2); color: var(--color-text-primary); padding: 0.875rem; text-align: left; font-weight: 600; border-bottom: 2px solid var(--color-quantum-purple); }
-        .ics-metrics-table td { padding: 0.875rem; border-bottom: 1px solid rgba(167,139,250,0.2); color: var(--color-text-secondary); vertical-align: top; }
-        .content-card { background: rgba(15,23,42,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(167,139,250,0.2); border-radius: 16px; padding: 2.25rem; margin: 1.5rem 0; }
-        .content-card p { font-size: 1rem; line-height: 1.9; margin-bottom: 1.4rem; }
-        .content-card p:last-child { margin-bottom: 0; }
-        .highlight-box { background: rgba(124,58,237,0.08); border-left: 4px solid var(--color-quantum-purple); border-radius: 8px; padding: 1.5rem 2rem; margin: 2rem 0; }
-        .compass-cta { background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(6,182,212,0.08) 100%); border: 1px solid rgba(167,139,250,0.25); border-radius: 16px; padding: 2.5rem 2rem; margin: 3rem 0; position: relative; overflow: hidden; text-align: center; }
-        .compass-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan)); }
-        .compass-cta-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-        .compass-cta-title { font-family: var(--font-en-serif); font-size: 1.25rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.75rem; }
-        .compass-cta-desc { font-size: 0.9375rem; line-height: 1.8; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 1.5rem; }
-        .compass-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.9375rem; font-weight: 600; }
-        .search-section { background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.12)); border: 2px solid rgba(167,139,250,0.35); border-radius: 12px; padding: 2.5rem 2rem; margin-bottom: 4rem; }
-        .search-header { margin-bottom: 1.5rem; text-align: center; }
-        .search-header h3 { font-size: 1.2rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem; }
-        .search-header p { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
-        .search-controls { display: flex; flex-direction: column; gap: 1.5rem; }
-        .search-input-group { display: flex; gap: 1rem; }
-        .search-input { flex: 1; padding: 0.875rem 1.25rem; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(167,139,250,0.4); border-radius: 8px; color: white; font-size: 0.9rem; outline: none; }
-        .search-btn { padding: 0.875rem 1.5rem; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
-        .filter-group { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
-        .filter-label { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.7); }
-        .filter-button { padding: 0.5rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(167,139,250,0.3); border-radius: 6px; color: rgba(255,255,255,0.8); cursor: pointer; font-size: 0.85rem; }
-        .filter-button.active { background: var(--color-quantum-purple); border-color: var(--color-quantum-purple); color: white; }
-        .search-results { margin-top: 1rem; display: none; border: 1px solid rgba(167,139,250,0.25); border-radius: 10px; overflow: hidden; background: rgba(10,22,40,0.35); }
-        .search-results.active { display: block; }
-        .newsletter-widget { background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2); border-radius: 12px; padding: 2rem; margin-bottom: 3rem; text-align: center; }
-        .newsletter-widget h3 { color: white; margin-bottom: 0.5rem; }
-        .newsletter-form { display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: 1rem auto 0; }
-        .newsletter-form input { padding: 0.75rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(6,182,212,0.3); border-radius: 6px; color: white; font-size: 0.9rem; }
-        .newsletter-form button { padding: 0.75rem; background: var(--color-nebula-cyan); color: #0a1628; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        .related-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(167,139,250,0.1); }
-        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .related-card { display: block; background: rgba(15,23,42,0.6); border: 1px solid rgba(167,139,250,0.2); border-radius: 16px; padding: 2rem; text-decoration: none; color: var(--color-text-secondary); }
-        .related-card-meta { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem; }
-        .related-card-title { font-family: var(--font-en-serif); font-size: 1rem; font-weight: 600; color: white; }
-        .footer { background: rgba(10,22,40,0.95); border-top: 1px solid rgba(167,139,250,0.1); padding: 3rem 0 1rem; margin-top: auto; }
-        .footer-content { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-        .footer-content p { color: rgba(255,255,255,0.6); font-size: 0.875rem; }
-        .footer-col h4 { color: white; margin-bottom: 1rem; font-size: 0.9375rem; }
-        .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; margin-bottom: 0.5rem; }
-        .citation-block { background: rgba(15,23,42,0.8); border: 1px solid rgba(167,139,250,0.3); border-radius: 12px; padding: 1.5rem 2rem; margin-top: 3rem; font-size: 0.875rem; }
-        .citation-block h4 { color: var(--color-quantum-purple-light); margin-bottom: 1rem; }
-        .citation-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.4); color: rgba(255,255,255,0.8); border-radius: 6px; cursor: pointer; font-size: 0.875rem; margin-bottom: 1rem; }
-        #citationBox { display: none; }
-        #citationBox.active { display: block; }
-        .frl-tag { display: inline-block; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; border-radius: 4px; padding: 2px 8px; font-size: 0.8rem; font-weight: 600; margin: 0 2px; }
-        .principle-tag { display: inline-block; background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.4); color: #c4b5fd; border-radius: 4px; padding: 2px 8px; font-size: 0.8rem; font-weight: 600; margin: 0 2px; }
-        .metric-tag { display: inline-block; background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.35); color: #67e8f9; border-radius: 4px; padding: 2px 8px; font-size: 0.8rem; font-weight: 600; margin: 0 2px; }
-        @media (max-width: 768px) { .nav-links { display: none; } .footer-content { grid-template-columns: 1fr; } }
-    </style>
-    <!-- ICS-SEO-START -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="When 'Safe AI' Goes Public: Anthropic's IPO Through a Civilizational Lens - ICS">
-    <meta property="og:description" content="Anthropic filed confidentially for a near-trillion-dollar IPO on June 1, 2026. ICS applies RFP, NRP, REV and the Forbidden Red Lines to interrogate what this means for the civilizational project of building AGI safely.">
-    <meta property="og:url" content="https://ics-studies.org/en/daily-commentary-20260603.html">
-    <meta property="og:site_name" content="Interstellar Civilization Studies">
-    <meta property="article:published_time" content="2026-06-03">
-    <meta property="article:author" content="ICS Research Institute">
-    <meta name="twitter:card" content="summary">
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"NewsArticle","headline":"When 'Safe AI' Goes Public: Anthropic's IPO Through a Civilizational Lens","description":"Anthropic filed confidentially for a near-trillion-dollar IPO. ICS applies RFP, NRP, REV and FRL to interrogate what this means for the civilizational project of building AGI safely.","datePublished":"2026-06-03","author":{"@type":"Organization","name":"ICS Research Institute"},"publisher":{"@type":"Organization","name":"Interstellar Civilization Studies","url":"https://ics-studies.org"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ics-studies.org/en/daily-commentary-20260603.html"}}
-    </script>
-    <!-- ICS-SEO-END -->
-</head>
-
-<body data-page="daily-commentary" data-lang="en">
-    <a href="#main-content" class="skip-to-main">Skip to main content</a>
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
-                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
-                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
-                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
-                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
-                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s" repeatCount="indefinite" />
-                    </circle>
-                </svg>
-                <div class="nav-brand-text">
-                    <span class="nav-title">ICS</span>
-                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
-                </div>
+    
             </a>
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -168,7 +30,6 @@
                 <li><a href="book-overview.html" class="nav-link">Publications</a></li>
                 <li><a href="applications.html" class="nav-link">Resources</a></li>
                 <li><a href="daily-commentary.html" class="nav-link">News</a></li>
-                <li><a href="/compass/" class="nav-link">Compass</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="nav-search" aria-label="Search" onclick="scrollToSearch()">
@@ -424,15 +285,7 @@
 
                     <!-- ===== ARTICLE BODY END ===== -->
 
-                    <div class="compass-cta">
-                        <span class="compass-cta-icon">🧭</span>
-                        <h3 class="compass-cta-title">Evaluate with ICS Compass</h3>
-                        <p class="compass-cta-desc">Apply the ICS governance framework discussed in this article. Use ICS Compass to assess real-world scenarios across all six core indicators — from Recursive Freedom Degree to Civilization Development Index.</p>
-                        <a href="/compass/" class="compass-cta-btn">
-                            <span>Launch ICS Compass</span>
-                            <span>→</span>
-                        </a>
-                    </div>
+                    
 
                     <section class="related-section">
                         <h2 class="en-section-title">Related Articles</h2>

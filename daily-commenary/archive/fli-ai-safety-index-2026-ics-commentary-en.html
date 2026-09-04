@@ -28,149 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/style-en.css">
-    <style>
-        :root {
-            --color-deep-space: #0a1628;
-            --color-quantum-purple: #7c3aed;
-            --color-quantum-purple-light: #a78bfa;
-            --color-nebula-cyan: #06b6d4;
-            --color-nebula-cyan-light: #22d3ee;
-            --color-energy-gold: #f59e0b;
-            --color-energy-gold-light: #fbbf24;
-            --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255,255,255,0.8);
-            --font-en-sans: 'Inter', sans-serif;
-            --font-en-display: 'Orbitron', sans-serif;
-            --transition-normal: 0.3s ease;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
-        body { font-family: var(--font-en-sans); font-weight: 300; background: var(--color-deep-space); color: var(--color-text-secondary); line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
-        .skip-to-main { position: absolute; top: -40px; left: 0; background: rgba(167,139,250,1); color: white; padding: 0.5rem 1rem; text-decoration: none; z-index: 100; border-radius: 0 0 8px 0; }
-        .skip-to-main:focus { top: 0; }
-        .breadcrumb-nav { background: rgba(167,139,250,0.08); padding: 1rem 0; border-bottom: 1px solid rgba(167,139,250,0.1); width: 100%; }
-        .breadcrumb-list { list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
-        .breadcrumb-list li { display: flex; align-items: center; }
-        .breadcrumb-list li:not(:last-child)::after { content: '/'; margin-left: 0.5rem; color: rgba(167,139,250,0.5); }
-        .breadcrumb-list a { color: var(--color-text-primary) !important; text-decoration: none; }
-        .breadcrumb-list a:hover { text-decoration: underline; }
-        .breadcrumb-list span { color: rgba(255,255,255,0.7); }
-        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(167,139,250,0.1); transition: all var(--transition-normal); }
-        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-        .nav-brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
-        .nav-brand-text { display: flex; flex-direction: column; }
-        .nav-title { font-family: var(--font-en-display); font-size: 1rem; font-weight: 600; color: var(--color-text-primary); text-transform: uppercase; letter-spacing: 0.1em; }
-        .nav-subtitle { font-size: 0.625rem; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-link { font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: all var(--transition-normal); }
-        .nav-link:hover { color: var(--color-quantum-purple-light); }
-        .nav-actions { display: flex; align-items: center; gap: 1.5rem; }
-        .lang-switch { display: flex; gap: 0.5rem; }
-        .lang-btn { font-size: 0.875rem; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: rgba(255,255,255,0.6); transition: all var(--transition-normal); }
-        .lang-btn.active { background: rgba(167,139,250,0.2); color: var(--color-quantum-purple-light); }
-        .nav-contact { font-size: 0.875rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan)); color: var(--color-text-primary); text-decoration: none; border-radius: 8px; }
-        .page-hero { position: relative; min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 4rem; overflow: hidden; }
-        .page-hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
-        .nebula { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float 20s ease-in-out infinite; }
-        .nebula-1 { width: 600px; height: 600px; background: radial-gradient(circle, var(--color-quantum-purple), transparent); top: -200px; left: -100px; }
-        .nebula-2 { width: 500px; height: 500px; background: radial-gradient(circle, var(--color-nebula-cyan), transparent); bottom: -150px; right: -100px; animation-delay: -10s; }
-        @keyframes float { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-30px) scale(1.1); } }
-        .page-hero-content { position: relative; z-index: 1; width: 100%; padding: 4rem 2rem; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .en-page-title { font-family: var(--font-en-display); font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 700; margin-bottom: 1.5rem; text-align: center; background: linear-gradient(135deg,#ffffff 0%,var(--color-quantum-purple-light) 50%,var(--color-nebula-cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.3; letter-spacing: 0.04em; text-transform: uppercase; }
-        .hero-meta { text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 2rem; }
-        .hero-intro-card { background: rgba(15,23,42,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(167,139,250,0.2); border-radius: 16px; padding: 2rem; max-width: 900px; margin: 0 auto; }
-        .hero-intro-card p { font-size: 1.0625rem; line-height: 1.8; }
-        .main-content { flex: 1; padding: 4rem 0; }
-        .article-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; }
-        .article-actions { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .action-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3); color: rgba(255,255,255,0.8); border-radius: 6px; cursor: pointer; font-size: 0.875rem; transition: all var(--transition-normal); text-decoration: none; }
-        .action-btn:hover { background: rgba(167,139,250,0.2); }
-        .content-card { background: rgba(15,23,42,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(167,139,250,0.2); border-radius: 16px; padding: 2.5rem; margin: 2rem 0; }
-        .content-card p { font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; }
-        .content-card h2 { font-family: var(--font-en-display); font-size: 1.35rem; font-weight: 700; color: var(--color-text-primary); margin: 2.5rem 0 1rem; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid rgba(167,139,250,0.2); padding-bottom: 0.5rem; }
-        .content-card h3 { font-family: var(--font-en-sans); font-size: 1.05rem; font-weight: 600; color: var(--color-nebula-cyan-light); margin: 2rem 0 0.75rem; }
-        .highlight-box { background: rgba(124,58,237,0.08); border-left: 4px solid var(--color-quantum-purple); border-radius: 8px; padding: 1.5rem 2rem; margin: 2rem 0; }
-        .ics-box { background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
-        .ics-box-title { font-family: var(--font-en-display); font-weight: 700; color: var(--color-quantum-purple-light); margin-bottom: 0.75rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .data-tag { display: inline-block; background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.3); color: var(--color-nebula-cyan-light); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-family: monospace; margin: 0 0.2rem; }
-        .warning-box { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
-        .warning-box-title { font-weight: 700; color: var(--color-energy-gold); margin-bottom: 0.75rem; font-family: var(--font-en-display); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
-        .compass-cta { background: linear-gradient(135deg,rgba(124,58,237,0.12) 0%,rgba(6,182,212,0.08) 100%); border: 1px solid rgba(167,139,250,0.25); border-radius: 16px; padding: 2.5rem 2rem; margin: 3rem 0; position: relative; overflow: hidden; text-align: center; }
-        .compass-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg,var(--color-quantum-purple),var(--color-nebula-cyan)); }
-        .compass-cta-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-        .compass-cta-title { font-family: var(--font-en-display); font-size: 1.25rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
-        .compass-cta-desc { font-size: 0.9375rem; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 1.5rem; }
-        .compass-cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 2rem; background: linear-gradient(135deg,var(--color-quantum-purple),var(--color-nebula-cyan)); color: #fff; text-decoration: none; border-radius: 8px; font-family: var(--font-en-display); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.3s ease; }
-        .compass-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.3); }
-        .search-section { background: linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,182,212,0.12)); border: 2px solid rgba(167,139,250,0.35); border-radius: 12px; padding: 2.5rem 2rem; margin-bottom: 4rem; position: relative; overflow: hidden; }
-        .search-header { margin-bottom: 1.5rem; text-align: center; }
-        .search-header h3 { font-family: var(--font-en-display); font-size: 1.3rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .search-header p { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
-        .search-controls { display: flex; flex-direction: column; gap: 1.5rem; }
-        .search-input-group { display: flex; gap: 1rem; }
-        .search-input { flex: 1; padding: 0.875rem 1.25rem; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(167,139,250,0.4); border-radius: 8px; color: var(--color-text-primary); font-size: 0.9rem; outline: none; }
-        .search-btn { padding: 0.875rem 1.5rem; background: linear-gradient(135deg,var(--color-quantum-purple),var(--color-nebula-cyan)); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
-        .filter-group { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
-        .filter-label { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.7); }
-        .filter-button { padding: 0.5rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(167,139,250,0.3); border-radius: 6px; color: rgba(255,255,255,0.8); cursor: pointer; font-size: 0.85rem; transition: all var(--transition-normal); }
-        .filter-button.active { background: var(--color-quantum-purple); border-color: var(--color-quantum-purple); color: white; }
-        .search-results { margin-top: 1rem; display: none; border: 1px solid rgba(167,139,250,0.25); border-radius: 10px; overflow: hidden; background: rgba(10,22,40,0.35); }
-        .search-results.active { display: block; }
-        .newsletter-widget { background: rgba(15,23,42,0.5); border: 1px solid rgba(6,182,212,0.2); border-radius: 16px; padding: 2rem; margin-bottom: 3rem; }
-        .newsletter-widget h3 { color: var(--color-text-primary); font-family: var(--font-en-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-        .newsletter-widget p { font-size: 0.9rem; margin-bottom: 1.25rem; }
-        .newsletter-form { display: flex; flex-direction: column; gap: 0.75rem; }
-        .newsletter-form input { background: rgba(255,255,255,0.05); border: 1px solid rgba(6,182,212,0.2); border-radius: 8px; padding: 0.75rem 1rem; color: white; font-size: 0.9rem; }
-        .newsletter-form button { padding: 0.875rem; background: linear-gradient(135deg,var(--color-quantum-purple),var(--color-nebula-cyan)); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
-        .related-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(167,139,250,0.1); }
-        .en-section-title { font-family: var(--font-en-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; margin-top: 3rem; color: var(--color-text-primary); text-transform: uppercase; letter-spacing: 0.05em; }
-        .related-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 2rem; margin-top: 2rem; }
-        .related-card { display: block; background: rgba(15,23,42,0.6); border: 1px solid rgba(167,139,250,0.2); border-radius: 16px; padding: 2rem; text-decoration: none; transition: all var(--transition-normal); color: var(--color-text-secondary); }
-        .related-card:hover { border-color: rgba(167,139,250,0.4); transform: translateY(-2px); }
-        .footer { background: rgba(10,22,40,0.95); border-top: 1px solid rgba(167,139,250,0.1); padding: 3rem 0 1rem; margin-top: auto; }
-        .footer-content { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-        .footer-col h4 { color: var(--color-text-primary); font-weight: 600; margin-bottom: 1rem; }
-        .footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 0.5rem; font-size: 0.875rem; transition: color var(--transition-normal); }
-        .footer-col a:hover { color: var(--color-quantum-purple-light); }
-        @media (max-width: 768px) { .nav-links { display: none; } .footer-content { grid-template-columns: 1fr; } }
-    </style>
-    <!-- ICS-SEO-START -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Sprinting Toward the Cliff: FLI AI Safety Index Summer 2026 - Interstellar Civilization Studies">
-    <meta property="og:description" content="No AI lab scored above C+. Four frontier institutions quietly retracted safety pause commitments. ICS analysis through RFP, NRP, REV and FRL-5.">
-    <meta property="og:url" content="https://ics-studies.org/en/fli-ai-safety-index-2026-ics-commentary.html">
-    <meta property="og:site_name" content="Interstellar Civilization Studies">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:locale:alternate" content="zh_CN">
-    <meta property="article:published_time" content="2026-07-22">
-    <meta property="article:author" content="Franka">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Sprinting Toward the Cliff: FLI AI Safety Index Summer 2026 — ICS Commentary">
-    <meta name="twitter:description" content="No AI lab scored above C+. Four frontier institutions retracted safety pause commitments. ICS analysis through RFP, NRP, REV and FRL-5.">
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"NewsArticle","headline":"Sprinting Toward the Cliff: The FLI AI Safety Index Summer 2026 as a Civilizational Alert","description":"FLI AI Safety Index Summer 2026 finds no lab above C+; four institutions retracted safety commitments. ICS framework analysis.","datePublished":"2026-07-22","author":{"@type":"Person","name":"Franka"},"publisher":{"@type":"Organization","name":"Interstellar Civilization Studies","url":"https://ics-studies.org"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ics-studies.org/en/fli-ai-safety-index-2026-ics-commentary.html"}}
-    </script>
-    <!-- ICS-SEO-END -->
-</head>
-
-<body data-page="daily-commentary" data-lang="en">
-    <a href="#main-content" class="skip-to-main">Skip to main content</a>
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
-                <svg class="nav-logo" viewBox="0 0 44 44" fill="none" width="44" height="44">
-                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none"/>
-                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none"/>
-                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)"/>
-                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
-                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s" repeatCount="indefinite"/>
-                    </circle>
-                </svg>
-                <div class="nav-brand-text">
-                    <span class="nav-title">ICS</span>
-                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
-                </div>
+    
             </a>
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -179,7 +37,6 @@
                 <li><a href="applications.html" class="nav-link">Resources</a></li>
                 <li><a href="daily-commentary.html" class="nav-link">News</a></li>
                 <li><a href="ai-assistant.html" class="nav-link">AI Assistant</a></li>
-                <li><a href="/compass/" class="nav-link">Compass</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="nav-search" aria-label="Search" onclick="scrollToSearch()" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.7);padding:0.5rem;">
@@ -385,15 +242,7 @@
 
                     </div>
 
-                    <div class="compass-cta">
-                        <span class="compass-cta-icon">🧭</span>
-                        <h3 class="compass-cta-title">Evaluate with ICS Compass</h3>
-                        <p class="compass-cta-desc">Apply the ICS governance framework discussed in this article. Use ICS Compass to assess real-world scenarios across all six core indicators — from Recursive Freedom Degree to Civilization Development Index.</p>
-                        <a href="/compass/" class="compass-cta-btn">
-                            <span>Launch ICS Compass</span>
-                            <span>→</span>
-                        </a>
-                    </div>
+                    
 
                     <section class="related-section">
                         <h2 class="en-section-title">Related Articles</h2>
