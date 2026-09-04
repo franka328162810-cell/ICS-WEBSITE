@@ -7,12 +7,16 @@ foreach ($root in $roots) {
         $path = $_.FullName
         try { $text = Get-Content -Raw -LiteralPath $path -Encoding UTF8 } catch { $text = Get-Content -Raw -LiteralPath $path -Encoding Default }
         $orig = $text
-        $text = [regex]::Replace($text, '<li>\s*<a\s+href=["\']?/compass/["\'][^>]*>.*?<\/a>\s*<\/li>', '', 'Singleline,IgnoreCase')
-        $text = [regex]::Replace($text, '\.compass-cta\s*\{[\s\S]*?\}\s*', '', 'Singleline,IgnoreCase')
-        $text = [regex]::Replace($text, '<div[^>]*class=["\'][^"\']*compass-cta[^"\']*["\'][^>]*>[\s\S]*?<\/div>\s*', '', 'Singleline,IgnoreCase')
+        # Simple, robust replacements to avoid complex regex parsing issues
         $text = $text -replace 'href="/compass/"','href="#"'
         $text = $text -replace "href='/compass/'","href='#'"
-        $text = [regex]::Replace($text, '[\"\']compass[\"\']\s*,\s*', '', 'IgnoreCase')
+        $text = $text -replace '/compass/','#'
+        # Neutralize compass CTA class names so styles/JS won't target them
+        $text = $text -replace 'compass-cta','compass-cta-removed'
+        $text = $text -replace 'compass-cta-icon','compass-cta-icon-removed'
+        $text = $text -replace 'compass-cta-btn','compass-cta-btn-removed'
+        $text = $text -replace 'Launch ICS Compass',''
+        $text = $text -replace 'Launch Compass',''
         if ($text -ne $orig) {
             Set-Content -LiteralPath $path -Value $text -Encoding UTF8
             $updated += $path
