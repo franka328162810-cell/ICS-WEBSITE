@@ -1,4 +1,83 @@
 
+/**
+ * ICS 人工智能助手 (AI Assistant)
+ * 星际文明学网站嵌入式智能问答组件
+ * Version: 2.0.0 — 四部著作知识库 + Cloudflare Workers AI
+ * 
+ * 功能：
+ * - ICS 知识库 FAQ 智能匹配（中英双语）
+ * - 可选连接 Cloudflare Workers AI 后端
+ * - ICS 太空主题设计系统
+ * - 移动端完美适配
+ * 
+ * 使用方式：
+ *   <script src="/js/ai-assistant.js"></script>
+ * 
+ * 可选配置（在 script 标签前定义）：
+ *   window.ICS_AI_CONFIG = {
+ *     endpoint: 'https://your-worker.workers.dev/ai',  // Cloudflare Worker URL
+ *     lang: 'auto'  // 'zh', 'en', or 'auto'
+ *   };
+ */
+(function () {
+  'use strict';
+
+  /* ───────── Configuration ───────── */
+  const CFG = Object.assign({
+    // Default endpoint: will be used if no window.ICS_AI_CONFIG is provided in the page
+    endpoint: 'https://ics-ai-assistant.franka328162810.workers.dev/chat',
+    lang: 'auto',
+    maxHistory: 20
+  }, window.ICS_AI_CONFIG || {});
+
+  /* ───────── Language Detection ───────── */
+  function detectLang() {
+    if (CFG.lang && CFG.lang !== 'auto') return CFG.lang;
+    const html = document.documentElement.lang || '';
+    if (/^zh/i.test(html)) return 'zh';
+    if (/^en/i.test(html)) return 'en';
+    if (location.pathname.includes('/zh/')) return 'zh';
+    if (location.pathname.includes('/en/')) return 'en';
+    return 'zh';
+  }
+
+  /* ───────── i18n Strings ───────── */
+  const I18N = {
+    zh: {
+      title: 'ICS 人工智能助手',
+      subtitle: '星际文明学 · 智能问答',
+      placeholder: '输入您的问题…',
+      send: '发送',
+      welcome: '您好！我是 **ICS 人工智能助手**，很高兴为您服务。\n\n我可以回答关于星际文明学（ICS）的各种问题，包括核心理论、最新研究与六大指标体系等。\n\n请问有什么可以帮助您的？',
+      quickReplies: [
+        '什么是星际文明学？',
+        'ICS 六大指标体系有哪些？',
+        '最新研究有哪些？',
+        '什么是卡尔达肖夫指数？'
+      ],
+      typing: '正在思考',
+      fallback: '感谢您的提问！这个问题超出了我目前的知识范围。\n\n您可以：\n- 浏览我们的 [深度研究](/zh/深度研究.html) 页面\n- 查看 [每日热点评论](/zh/每日热点评论.html)\n- 通过邮件联系我们：**ics@interstellar-civilization.org**\n\n或者尝试换个方式提问？',
+      poweredBy: 'Powered by ICS AI'
+    },
+    en: {
+      title: 'ICS AI Assistant',
+      subtitle: 'Interstellar Civilization Studies · Smart Q&A',
+      placeholder: 'Type your question…',
+      send: 'Send',
+      welcome: 'Hello! I\'m the **ICS AI Assistant**, happy to help you.\n\nI can answer questions about Interstellar Civilization Studies (ICS), including core theories, latest research and the six core indicator frameworks, and more.\n\nHow can I assist you today?',
+      quickReplies: [
+        'What is ICS?',
+        'What are the ICS six core indicators?',
+        'Latest research?',
+        'What is the Kardashev Scale?'
+      ],
+      typing: 'Thinking',
+      fallback: 'Thank you for your question! This is beyond my current knowledge base.\n\nYou can:\n- Browse our [In-Depth Research](/en/in-depth-research.html) page\n- Check the [Daily Commentary](/en/daily-commentary.html)\n- Contact us via email: **ics@interstellar-civilization.org**\n\nOr try rephrasing your question?',
+      poweredBy: 'Powered by ICS AI'
+    }
+  };
+
+  /* ───────── Knowledge Base ───────── */
   const KB = {
     zh: [
       {
@@ -170,6 +249,7 @@
       {
         keywords: ['daily', 'commentary', 'article', 'latest', 'content', 'news', 'research'],
         patterns: [/daily.*commentary/i, /latest.*article/i, /latest.*research/i, /what.*content/i],
+        answer: '**ICS Daily Commentary** interprets major global news and technology developments through the lens of interstellar civilization studies.\n\n📰 **Main content channels:**\n\n1. **Daily Commentary**\n   - Frequently updated current-affairs analysis\n   - ICS-based normative framing\n   - Bilingual publishing\n   - 🔗 [Chinese](/zh/每日热点评论.html) | [English](/en/daily-commentary.html)\n\n2. **In-Depth Research**\n   - Long-form academic analysis\n   - Cross-disciplinary theoretical work\n   - 🔗 [Chinese](/zh/深度研究.html) | [English](/en/in-depth-research.html)\n\n3. **Research Archive**\n   - Historical publications and topic navigation\n   - 🔗 [Archive](/en/research-archive.html)'
       },
       {
         keywords: ['hello', 'hi', 'hey', 'greetings'],
@@ -214,10 +294,17 @@
     let bestAnswer = null;
 
     for (const entry of entries) {
+      const patterns = Array.isArray(entry?.patterns) ? entry.patterns : [];
+      const keywords = Array.isArray(entry?.keywords) ? entry.keywords : [];
+      const answer = typeof entry?.answer === 'string' ? entry.answer : null;
+      if (patterns.length === 0 && keywords.length === 0) {
+        continue;
+      }
+
       let score = 0;
 
       // Pattern matching (highest priority)
-      for (const pat of entry.patterns) {
+      for (const pat of patterns) {
         if (pat.test(input) || pat.test(text)) {
           score += 10;
           break;
@@ -225,16 +312,16 @@
       }
 
       // Keyword matching
-      for (const kw of entry.keywords) {
+      for (const kw of keywords) {
         const kwLower = kw.toLowerCase();
         if (input.includes(kwLower) || input.includes(kw)) {
           score += 3;
         }
       }
 
-      if (score > bestScore) {
+      if (score > bestScore && answer) {
         bestScore = score;
-        bestAnswer = entry.answer;
+        bestAnswer = answer;
       }
     }
 
