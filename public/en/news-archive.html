@@ -37,7 +37,7 @@
             --color-nebula-cyan-light: #22d3ee;
             --color-energy-gold: #f59e0b;
             --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-secondary: #e2e8f0;
             --font-en-sans: 'Inter', sans-serif;
             --font-en-display: 'Orbitron', sans-serif;
         }
@@ -184,10 +184,10 @@
         .nav-link {
             font-family: var(--font-en-display);
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 400;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            text-transform: uppercase;
+            letter-spacing: 0.1em;
             transition: color 0.3s;
         }
         
@@ -457,7 +457,239 @@
                 height: 10px;
             }
         }
+    
+        /* ================================================================
+           第11批补充：补写 .archive-excerpt（全站无定义，按本页设计语言补）
+           ================================================================ */
+
+        .archive-excerpt {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+            margin: 0 0 0.25rem;
+        }
+
     </style>
+
+<style id="nav-responsive-patch">
+/* ICS 导航响应式补丁 v5：9 项导航 + Launch + 语言切换在 1024px 以上完整显示 */
+/* 关键：.nav-link 取消左右内边距（原 16px×2 每项，9 项浪费 288px）；Launch 永不隐藏，仅逐档缩尺寸 */
+.navbar { padding: 0; }
+.navbar.scrolled { padding: 0; }
+.nav-container { padding: 1rem 2rem; }
+.nav-link {
+  white-space: nowrap;
+  padding: 0.5rem 0 !important;
+  background: none !important;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+.nav-actions { flex-shrink: 0; }
+.nav-brand { flex-shrink: 0; }
+
+/* ── Launch 按钮（第77轮补齐：原为浏览器默认裸链接）── */
+.nav-launch {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  height: 38px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; }
+}
+@media (max-width: 1600px) { .nav-links { gap: 1.7rem; } }
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; letter-spacing: 0.02em; }
+  .nav-actions { gap: 0.75rem; }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.7rem; }
+  .nav-brand-text { display: none; }
+}
+@media (max-width: 1366px) {
+  .nav-links { gap: 1rem; }
+  .nav-link { font-size: 0.75rem; letter-spacing: 0.015em; }
+  .nav-launch { height: 34px; padding: 0 12px; font-size: 0.66rem; }
+  .nav-actions { gap: 0.65rem; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.82rem; }
+  .nav-link { font-size: 0.71rem; letter-spacing: 0.01em; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.62rem; }
+  .nav-actions { gap: 0.55rem; }
+}
+@media (max-width: 1280px) {
+  .nav-links { gap: 0.7rem; }
+  .nav-link { font-size: 0.67rem; letter-spacing: 0.005em; }
+  .nav-launch { height: 30px; padding: 0 9px; font-size: 0.58rem; }
+  .nav-actions { gap: 0.5rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.58rem; }
+  .nav-link { font-size: 0.62rem; letter-spacing: 0; }
+  .nav-launch { height: 28px; padding: 0 7px; font-size: 0.54rem; }
+  .nav-actions { gap: 0.42rem; }
+  .nav-container { padding: 0.9rem 1.15rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.45rem; }
+  .nav-link { font-size: 0.57rem; letter-spacing: -0.005em; }
+  .nav-launch { height: 26px; padding: 0 6px; font-size: 0.5rem; border-radius: 8px; }
+  .nav-actions { gap: 0.35rem; }
+  .nav-search svg { width: 16px; height: 16px; }
+  .lang-btn { padding: 0.26rem 0.4rem; font-size: 0.64rem; }
+  .nav-contact, .nav-cta { padding: 0.46rem 0.7rem; font-size: 0.68rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.32rem; }
+  .nav-link { font-size: 0.53rem; letter-spacing: -0.015em; }
+  .nav-launch { height: 25px; padding: 0 5px; font-size: 0.48rem; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-container { padding: 0.8rem 0.9rem; }
+  .nav-contact, .nav-cta { padding: 0.42rem 0.62rem; font-size: 0.65rem; }
+  .lang-btn { padding: 0.22rem 0.34rem; font-size: 0.6rem; }
+}
+</style>
+  <style id="nav-actions-patch-r78">
+/* ═══ 第78轮补丁A：消除折行 + 取消 .nav-link 左右内边距 ═══ */
+.nav-links {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  list-style: none;
+  min-width: 0;
+}
+.nav-links > li {
+  display: flex;
+  align-items: center;
+  min-height: 0 !important;
+  height: auto !important;
+  flex: 0 0 auto;
+}
+.nav-link {
+  padding: 0.5rem 0 !important;
+  background: none !important;
+  display: inline-block;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+
+
+/* ═══ 第78轮：导航操作区补齐（原缺失 .nav-actions）═══ */
+.nav-actions { display: flex; align-items: center; gap: 1.5rem; flex-shrink: 0; }
+.nav-search {
+  background: none; border: none; color: rgba(255,255,255,0.6);
+  cursor: pointer; padding: 0.5rem; transition: color 0.3s ease;
+  display: flex; align-items: center;
+}
+.nav-search:hover { color: var(--color-quantum-purple-light, #a78bfa); }
+.nav-search svg { width: 20px; height: 20px; }
+.lang-switch { display: flex; gap: 0.5rem; }
+.lang-btn {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.875rem; font-weight: 500;
+  padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none;
+  color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.05em;
+  transition: all 0.3s ease; white-space: nowrap;
+}
+.lang-btn:hover { color: rgba(255,255,255,0.9); }
+.lang-btn.active { background: rgba(167,139,250,0.2); color: var(--color-quantum-purple-light, #a78bfa); }
+.nav-launch {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em;
+  text-transform: uppercase;
+  height: 38px; padding: 0 18px;
+  display: flex; align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff; border-radius: 10px; text-decoration: none;
+  white-space: nowrap; flex-shrink: 0;
+  transition: all 0.3s ease; box-shadow: 0 0 18px rgba(245,158,11,0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245,158,11,0.5); }
+.nav-contact {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-quantum-purple, #7c3aed), var(--color-nebula-cyan, #06b6d4));
+  color: #ffffff; text-decoration: none; text-transform: uppercase;
+  letter-spacing: 0.05em; border-radius: 8px;
+  transition: all 0.3s ease; white-space: nowrap;
+}
+.nav-contact:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(167,139,250,0.3); }
+
+
+/* ═══ 第78轮补丁F：布局硬约束 + 按页字号 ═══ */
+/* 布局硬约束：三区块互不重叠、互不越界 */
+.nav-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+}
+.nav-brand { flex: 0 0 auto !important; }
+.nav-links {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  margin: 0 0.6rem !important;
+}
+.nav-links > li { flex: 0 0 auto !important; min-height: 0 !important; }
+.nav-link { padding: 0.5rem 0 !important; background: none !important; display: inline-block !important; }
+.nav-actions { flex: 0 0 auto !important; margin-left: auto !important; }
+
+/* 按页字号梯度（实测：EN） */
+@media (min-width: 1600px) {
+  .nav-link { font-size: 0.72rem !important; letter-spacing: 0.015em !important; }
+  .nav-links { gap: 0.9rem !important; }
+  .nav-actions { gap: 0.6rem !important; }
+  .nav-launch { height: 34px !important; padding: 0 12px !important; font-size: 0.66rem !important; }
+  .lang-btn { padding: 0.42rem 0.66rem !important; font-size: 0.72rem !important; }
+  .nav-contact { padding: 0.58rem 1rem !important; font-size: 0.76rem !important; }
+  .nav-search svg { width: 18px !important; height: 18px !important; }
+}
+@media (min-width: 1366px) and (max-width: 1599px) {
+  .nav-link { font-size: 0.70rem !important; letter-spacing: 0.012em !important; }
+  .nav-links { gap: 0.8rem !important; }
+  .nav-actions { gap: 0.55rem !important; }
+  .nav-launch { height: 33px !important; padding: 0 11px !important; font-size: 0.64rem !important; }
+  .lang-btn { padding: 0.4rem 0.62rem !important; font-size: 0.7rem !important; }
+  .nav-contact { padding: 0.55rem 0.95rem !important; font-size: 0.73rem !important; }
+  .nav-search svg { width: 17px !important; height: 17px !important; }
+}
+@media (min-width: 1025px) and (max-width: 1365px) {
+  .nav-link { font-size: 0.68rem !important; letter-spacing: 0.008em !important; }
+  .nav-links { gap: 0.68rem !important; }
+  .nav-actions { gap: 0.48rem !important; }
+  .nav-launch { height: 31px !important; padding: 0 9px !important; font-size: 0.62rem !important; }
+  .lang-btn { padding: 0.36rem 0.55rem !important; font-size: 0.66rem !important; }
+  .nav-contact { padding: 0.5rem 0.85rem !important; font-size: 0.68rem !important; }
+  .nav-search svg { width: 16px !important; height: 16px !important; }
+}
+
+@media (max-width: 1024px) {
+  .nav-link { font-size: 0.62rem !important; letter-spacing: 0 !important; }
+  .nav-links { gap: 0.42rem !important; }
+  .nav-actions { gap: 0.35rem !important; }
+  .nav-launch { height: 28px !important; padding: 0 7px !important; font-size: 0.56rem !important; }
+  .lang-btn { padding: 0.3rem 0.44rem !important; font-size: 0.62rem !important; }
+  .nav-contact { padding: 0.44rem 0.7rem !important; font-size: 0.62rem !important; }
+  .nav-search svg { width: 15px !important; height: 15px !important; }
+}
+</style>
 </head>
 
 <body>
@@ -465,7 +697,7 @@
     <a href="#main-content" class="skip-to-main">Skip to main content</a>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/en/index.html" class="nav-brand">
+            <a class='nav-brand' href='/en/'>
                 <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
                     <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
@@ -474,10 +706,30 @@
                 <span class="nav-title">ICS</span>
             </a>
             <ul class="nav-links">
-                <li><a href="/en/index.html" class="nav-link">Home</a></li>
-                <li><a href="/en/daily-commentary.html" class="nav-link">Today</a></li>
-                <li><a href="/en/news-archive.html" class="nav-link active">Archive</a></li>
+                <li><a class="nav-link" href="/en/">Home</a></li>
+                <li><a class="nav-link" href="/en/about">About</a></li>
+                <li><a class="nav-link" href="/en/book-overview">Publications</a></li>
+                <li><a class="nav-link" href="/en/resources">Resources</a></li>
+                <li><a class='nav-link' href='/en/focus-public-edition'>Focus (Public Edition)</a></li>
+                <li><a class='nav-link' href='/en/briefing'>Membership</a></li>
+                <li><a class='nav-link' href='/en/newsletter'>Community</a></li>
+                <li><a class="nav-link" href="/en/in-depth-research">Research</a></li>
+                <li><a class="nav-link" href="/en/ai-assistant">AI Assistant</a></li>
             </ul>
+          <div class="nav-actions">
+    <button class="nav-search" aria-label="Search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+    </svg>
+</button>
+    <div class="lang-switch">
+        <a class='lang-btn active' href='/en/news-archive'>EN</a>
+        <a href="/zh/研究归档.html" class="lang-btn">中文</a>
+    </div>
+    <a class='nav-launch' href='/en/launch'>Launch</a>
+    <a class='nav-contact' href='/en/contact-us'>Contact</a>
+</div>
         </div>
     </nav>
 
@@ -491,7 +743,7 @@
             <nav class="breadcrumb-nav" aria-label="Breadcrumb">
                 <div class="container">
                     <ol class="breadcrumb-list">
-                        <li><a href="/en/index.html">Home</a></li>
+                        <li><a href='/en/'>Home</a></li>
                         <li><span>Commentary Archive</span></li>
                     </ol>
                 </div>
@@ -515,7 +767,7 @@
                         <div class="archive-date">March 25, 2026</div>
                         <h3 class="archive-title">We Owe a Bill That No One Signed</h3>
                         <p class="archive-excerpt">WMO confirms 2015–2025 as the hottest 11 consecutive years on record. An ICS analysis of climate change as intergenerational entropy cost externalization and civilization risk.</p>
-                        <a href="/en/daily/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -524,7 +776,7 @@
                         <div class="archive-date">March 19, 2026</div>
                         <h3 class="archive-title">Not Surpassing — A Threshold</h3>
                         <p class="archive-excerpt">An ICS perspective on GPT-5.4: when AI agents first exceed human professional benchmarks at scale, this is not an endpoint but a civilization-level choice node being silently crossed.</p>
-                        <a href="/en/daily/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -533,7 +785,7 @@
                         <div class="archive-date">March 18, 2026</div>
                         <h3 class="archive-title">Who Authorized Us to Go?</h3>
                         <p class="archive-excerpt">An ICS framework analysis of the civilizational authorization question behind NASA’s Artemis II mission — examining the Artemis Accords’ institutional risks and intergenerational responsibility.</p>
-                        <a href="/en/daily/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -542,7 +794,7 @@
                         <div class="archive-date">March 17, 2026</div>
                         <h3 class="archive-title">Jensen Huang Said “Every Company Will Use AI, Every Nation Will Build AI”</h3>
                         <p class="archive-excerpt">An ICS framework analysis of NVIDIA GTC 2026 keynote: examining civilization-level risks of AI infrastructure concentration, path lock-in, and the silent compression of recursive freedom.</p>
-                        <a href="/en/daily/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -551,7 +803,7 @@
                         <div class="archive-date">March 16, 2026</div>
                         <h3 class="archive-title">We Dumped Garbage Into Space and No One Has to Clean It Up</h3>
                         <p class="archive-excerpt">The 1967 Cold War Outer Space Treaty governs all of space — yet its core terms were never defined, private companies are wholly unbound, and 1.4 million orbital debris fragments go without any cleanup mandate. ICS analyzes the intergenerational justice crisis unfolding overhead.</p>
-                        <a href="/en/daily-commentary-archive/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -560,7 +812,7 @@
                         <div class="archive-date">March 14, 2026</div>
                         <h3 class="archive-title">Bacterial Intelligence Reveals Civilization’s Fate</h3>
                         <p class="archive-excerpt">UT Austin’s Retron gene-editing breakthrough — 3.5 billion years of bacterial defense intelligence applied to precision medicine. ICS lens: RFD leap and CIA-4/5 boundary impact.</p>
-                        <a href="/en/daily-commentary-archive/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -569,7 +821,7 @@
                         <div class="archive-date">March 12, 2026</div>
                         <h3 class="archive-title">The Universe Has Been Talking All Along — Our Ears Were the Problem</h3>
                         <p class="archive-excerpt">SETI research shows stellar space weather has caused long-term blind spots in alien signal detection. Sixty years of silence — not the cosmos going quiet, but systematic flaws in how we’ve been listening.</p>
-                        <a href="/en/daily-commentary-archive/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -578,7 +830,7 @@
                         <div class="archive-date">March 10, 2026</div>
                         <h3 class="archive-title">Earth is Heating Faster—But Our Policy Clock is Stuck in the Last Century</h3>
                         <p class="archive-excerpt">The Potsdam Institute for Climate Impact Research has confirmed—with over 98% statistical confidence—that global warming has entered an accelerating phase since 2015. Through the ICS lens of NRP, REV, and FRL-3, this is not just another climate study.</p>
-                        <a href="/en/daily-commentary-archive/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -587,7 +839,7 @@
                         <div class="archive-date">March 9, 2026</div>
                         <h3 class="archive-title">When AI Company Sues Government</h3>
                         <p class="archive-excerpt">Anthropic sues the Pentagon over AI red lines, igniting a debate: who gets to draw ethical boundaries for intelligence? An ICS perspective on technology, governance, and civilization.</p>
-                        <a href="/en/daily-commentary-archive/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -595,8 +847,8 @@
                     <div class="archive-card">
                         <div class="archive-date">March 8, 2026</div>
                         <h3 class="archive-title">When Carbon-Based Civilizations Write Their Own Upgrade Blueprint</h3>
-                        <p class="archive-excerpt">ICS daily commentary: China's AI five-year plan from the perspective of interstellar civilization studies.</p>
-                        <a href="/en/daily-commentary-archive/"" class="archive-link">Read Full Commentary →</a>
+                        <p class="archive-excerpt">The Stewardship Brief: China's AI five-year plan from the perspective of interstellar civilization studies.</p>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 <div class="archive-item">
@@ -605,7 +857,7 @@
                         <div class="archive-date">March 6, 2026</div>
                         <h3 class="archive-title">Earth is Heating Faster—But Our Policy Clock is Stuck in the Last Century</h3>
                         <p class="archive-excerpt">PIK researchers confirm with 98% significance that global warming has accelerated since 2015, while policy clocks remain frozen. ICS analyzes the climate emergency through a negative entropy and red‑line lens.</p>
-                        <a href="/en/daily-commentary-archive/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
                 
@@ -615,7 +867,7 @@
                         <div class="archive-date">January 15, 2025</div>
                         <h3 class="archive-title">OpenAI Releases GPT-5: A New Milestone in AGI</h3>
                         <p class="archive-excerpt">OpenAI officially released the GPT-5 model today, marking a major breakthrough in the company's journey toward Artificial General Intelligence (AGI)...</p>
-                        <a href="/en/daily-commentary-archive/"" class="archive-link">Read Full Commentary →</a>
+                        <a class='archive-link' href='/en/news-archive'>Read Full Commentary →</a>
                     </div>
                 </div>
             </div>
@@ -639,7 +891,47 @@
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS AI Assistant -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYTdkNDlmNmI4YzhiNmVjYzAzOGY0NCIsImlzc3VlciI6Im5mc2VydmVyIn0.qWSXGKro5gRiLq8OryUbhFv3zhc7ju2X9QaeDutmtqg"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3b7efea4e8af1c4',t:'MTc4OTQ3ODUxNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYmRmYWRmOGI5NzM4NDY3MzQ1YTZiYSIsImlzc3VlciI6Im5mc2VydmVyIn0.xdj6oT1RiBrvD02NxfZ3qz-cFAPPUpXoSKbeWGab3uE"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a43b14f869368ddc',t:'MTc5MDg1MzY2Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"232b9d8552444a2e8f9dcfe63b091169","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 
 </html>

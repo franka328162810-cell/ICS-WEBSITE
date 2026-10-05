@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -7,20 +7,20 @@
     <meta name="theme-color" content="#a78bfa">
     <link rel="manifest" href="/manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>订阅通讯 | 星际文明学</title>
-    <meta name="description" content="订阅星际文明学通讯，获取最新研究进展、学术活动和前沿观点">
+    <title>订阅 ICS 每日简报 | 星际文明学</title>
+    <meta name="description" content="订阅 ICS 每日简报——以前沿科技为对象、以完整规范体系为尺度，给你文明级的判断，而不只是新闻。10 月 23 日上线。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:site_name" content="星际文明学 | ICS">
-    <meta property="og:title" content="订阅通讯 | 星际文明学">
-    <meta property="og:description" content="订阅星际文明学通讯，获取最新研究进展、学术活动和前沿观点">
+    <meta property="og:title" content="订阅 ICS 每日简报 | 星际文明学">
+    <meta property="og:description" content="订阅 ICS 每日简报——以前沿科技为对象、以完整规范体系为尺度，给你文明级的判断，而不只是新闻。10 月 23 日上线。">
     <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpeg">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="订阅通讯 | 星际文明学">
-    <meta name="twitter:description" content="订阅星际文明学通讯，获取最新研究进展、学术活动和前沿观点">
+    <meta name="twitter:title" content="订阅 ICS 每日简报 | 星际文明学">
+    <meta name="twitter:description" content="订阅 ICS 每日简报——以前沿科技为对象、以完整规范体系为尺度，给你文明级的判断，而不只是新闻。10 月 23 日上线。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -784,21 +784,62 @@
                 text-align: center;
             }
 }
-    </style>
+    
+        /* ===== 订阅页新增：徽章 / 定价 / 列表卡 ===== */
+        .badge{display:inline-block;font-size:.68rem;font-weight:500;letter-spacing:.04em;padding:2px 9px;border-radius:999px;margin-left:8px;vertical-align:1.5px;}
+        .badge.paid{background:rgba(160,61,61,.18);color:#f09595;}
+        .badge.free{background:rgba(63,125,78,.18);color:#8bc69a;}
+        .badge.vip{background:rgba(245,158,11,.15);color:var(--color-energy-gold-light);}
+        .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2.5rem 0;align-items:stretch;}
+        .plan-card{background:rgba(15,23,42,.6);backdrop-filter:blur(10px);border:1px solid rgba(167,139,250,.2);border-radius:16px;padding:2rem 1.75rem;display:flex;flex-direction:column;transition:all .3s ease;}
+        .plan-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.5);}
+        .plan-card.featured{border-color:rgba(245,158,11,.5);box-shadow:0 0 30px rgba(245,158,11,.15);}
+        .plan-tag{font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--color-nebula-cyan);margin-bottom:.75rem;text-transform:uppercase;}
+        .plan-price{font-size:2rem;font-weight:700;color:var(--color-text-primary);line-height:1.15;}
+        .plan-price small{font-size:.85rem;font-weight:400;color:rgba(255,255,255,.45);}
+        .plan-note{font-size:.82rem;color:rgba(255,255,255,.55);margin:.7rem 0 1.25rem;line-height:1.75;}
+        .plan-cta{margin-top:auto;display:block;text-align:center;padding:.85rem 1rem;border-radius:10px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s ease;border:1px solid rgba(167,139,250,.4);color:var(--color-text-primary);}
+        .plan-cta:hover{background:rgba(167,139,250,.15);}
+        .plan-cta.primary{background:linear-gradient(135deg,var(--color-energy-gold),var(--color-quantum-purple));border:none;box-shadow:0 6px 20px rgba(245,158,11,.3);color:#fff;}
+        .plan-cta.primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(245,158,11,.4);}
+        .list-card ul{list-style:none;padding:0;margin:0;}
+        .list-card li{font-size:.9rem;color:rgba(255,255,255,.72);padding:.5rem 0;border-bottom:1px solid rgba(167,139,250,.08);line-height:1.7;}
+        .list-card li:last-child{border-bottom:none;}
+        .list-card li b{color:rgba(255,255,255,.92);font-weight:500;}
+        .form-hint{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:1.5rem;}
+        @media(max-width:900px){.plan-grid{grid-template-columns:1fr;}}
+        /* ===== 订阅页新增：作者与著作 ===== */
+        .aw-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0 0;}
+        .aw-head{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem;}
+        .aw-avatar{width:46px;height:46px;flex:0 0 46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-zh-serif);font-size:1.25rem;font-weight:600;color:#0b1220;background:linear-gradient(135deg,var(--color-nebula-cyan),var(--color-quantum-purple));}
+        .aw-avatar.alt{color:#fff;background:linear-gradient(135deg,#06b6d4,#7c3aed);}
+        .aw-name{font-family:var(--font-zh-serif);font-size:1.05rem;font-weight:600;color:var(--color-text-primary);line-height:1.3;}
+        .aw-role{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:.25rem;}
+        .aw-text{font-size:.9rem;line-height:1.85;color:rgba(255,255,255,.72);margin:0 0 .7rem;}
+        .aw-text:last-child{margin-bottom:0;}
+        .aw-text b{color:rgba(255,255,255,.95);font-weight:500;}
+        .aw-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem;margin-top:.35rem;}
+        .aw-metric{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.14);border-radius:12px;padding:.85rem .7rem;text-align:center;}
+        .aw-metric-v{font-family:var(--font-zh-serif);font-size:1.45rem;font-weight:700;color:var(--color-energy-gold-light);line-height:1.15;}
+        .aw-metric-v small{font-size:.7rem;font-weight:400;color:rgba(255,255,255,.5);margin-left:3px;}
+        .aw-metric-l{font-size:.74rem;color:rgba(255,255,255,.55);margin-top:.35rem;}
+        @media(max-width:860px){.aw-grid{grid-template-columns:1fr;}}
+
+</style>
     <!-- ICS-SEO-START -->
-    <link rel="canonical" href="https://ics-studies.org/h/订阅通讯.html">
-    <link rel="alternate" hreflang="en" href="https://ics-studies.org/h/订阅通讯.html">
-    <link rel="alternate" hreflang="zh" href="https://ics-studies.org/h/订阅通讯.html">
-    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/h/订阅通讯.html">
-    <meta name="description" content="">
+    <link rel="canonical" href="https://ics-studies.org/zh/订阅通讯.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/zh/订阅通讯.html">
+    <link rel="alternate" hreflang="zh" href="https://ics-studies.org/zh/订阅通讯.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/zh/订阅通讯.html">
+    <meta name="description" content="订阅 ICS 每日简报。给你文明级的判断，而不只是新闻。以前沿科技为对象、以完整规范体系为尺度——每个工作日，一篇文明级焦点，外加十一个前沿领域的一句话判断。">
 
     <meta property="og:type" content="article">
 
-    <meta property="og:title" content="订阅通讯 | 星际文明学">
+    <meta property="og:title" content="订阅 ICS 每日简报 | 星际文明学">
 
-    <meta property="og:description" content="">
+    <meta property="og:description" content="订阅 ICS 每日简报。给你文明级的判断，而不只是新闻。以前沿科技为对象、以完整规范体系为尺度——每个工作日，一篇文明级焦点，外加十一个前沿领域的一句话判断。">
 
-    <meta property="og:url" content="https://ics-studies.org/h/订阅通讯.html">
+    <meta property="og:url" content="https://ics-studies.org/zh/订阅通讯.html">
     <meta property="og:site_name" content="Interstellar Civilization Studies">
 
     <meta property="og:locale" content="en">
@@ -814,9 +855,9 @@
 
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta name="twitter:title" content="订阅通讯 | 星际文明学">
+    <meta name="twitter:title" content="订阅 ICS 每日简报 | 星际文明学">
 
-    <meta name="twitter:description" content="">
+    <meta name="twitter:description" content="订阅 ICS 每日简报。给你文明级的判断，而不只是新闻。以前沿科技为对象、以完整规范体系为尺度——每个工作日，一篇文明级焦点，外加十一个前沿领域的一句话判断。">
 
     <meta name="twitter:image" content="https://ics-studies.org/images/og-default.jpg">
 
@@ -828,7 +869,7 @@
 
       "@type": "ScholarlyArticle",
 
-      "headline": "订阅通讯 | 星际文明学",
+      "headline": "订阅 ICS 每日简报 | 星际文明学",
 
       "datePublished": "",
 
@@ -836,13 +877,13 @@
 
       "publisher": {"@type": "Organization", "name": "Interstellar Civilization Studies"},
 
-      "description": "",
+      "description": "订阅 ICS 每日简报。给你文明级的判断，而不只是新闻。以前沿科技为对象、以完整规范体系为尺度——每个工作日，一篇文明级焦点，外加十一个前沿领域的一句话判断。",
 
       "mainEntityOfPage": {
 
         "@type": "WebPage",
 
-        "@id": "https://ics-studies.org/h/订阅通讯.html"
+        "@id": "https://ics-studies.org/zh/订阅通讯.html"
 
       }
 
@@ -854,7 +895,7 @@
 </head>
 
 <body>
-    <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="/zh/首页.html" class="nav-brand">
                 <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
@@ -877,7 +918,9 @@
                 <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
                 <li><a href="著作概述.html" class="nav-link">著作</a></li>
                 <li><a href="资源.html" class="nav-link">资源</a></li>
-                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="焦点（公开版）.html" class="nav-link">焦点（公开版）</a></li>
+
+                <li><a href="深度研究.html" class="nav-link">研究</a></li>
                 <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
             </ul>
 
@@ -889,7 +932,7 @@
                     </svg>
                 </button>
                 <div class="lang-switch">
-                    <a href="../en/newsletter.html" class="lang-btn">EN</a>
+                    <a class='lang-btn' href='/en/newsletter'>EN</a>
                     <a href="订阅通讯.html" class="lang-btn active">中文</a>
                 </div>
                 <a href="联系我们.html" class="nav-contact">联系我们</a>
@@ -904,9 +947,13 @@
         </div>
         <div class="page-hero-content">
             <div class="container">
-                <h1 class="zh-page-title">订阅通讯</h1>
+                <h1 class="zh-page-title">订阅 ICS 每日简报</h1>
                 <div class="hero-intro-card">
-                    <p>订阅星际文明学通讯，第一时间获取最新研究进展、学术活动、前沿观点和深度分析。我们承诺保护您的隐私，不会将您的信息用于其他用途。</p>
+                    <p>给你文明级的判断，而不只是新闻。以前沿科技为对象、以完整规范体系为尺度——每个工作日，一篇文明级焦点，外加十一个前沿领域的一句话判断。</p>
+                    <p style="margin-top:1.25rem;"><strong style="color:#fff;font-weight:500;">10 月 23 日正式上线。</strong>现在留下邮箱，开放第一时间通知你。</p>
+                </div>
+                <div style="text-align:center;margin-top:2rem;">
+                    <a href="#subscribe" class="plan-cta primary" style="display:inline-block;padding:1rem 2.5rem;font-size:1rem;">立即订阅 · 免费</a>
                 </div>
             </div>
         </div>
@@ -914,215 +961,167 @@
 
     <main class="main-content">
         <div class="container">
-            <section id="newsletter-benefits">
-                <h2 class="zh-section-title">为什么订阅</h2>
+
+            <section id="positioning">
+                <h2 class="zh-section-title">这是什么</h2>
                 <div class="newsletter-grid">
                     <div class="newsletter-card">
-                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <path d="M16 20 L24 28 L32 20" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
-                            <path d="M16 28 L24 36 L32 28" stroke="rgba(167,139,250,0.8)" stroke-width="2"
-                                fill="none" />
-                        </svg>
-                        <div class="newsletter-card-title">最新研究进展</div>
-                        <div class="newsletter-card-desc">
-                            获取星际文明学领域的最新研究成果、理论突破和学术发现，保持在学科前沿。
-                        </div>
+                        <div class="newsletter-card-title">01 · 体系驱动</div>
+                        <div class="newsletter-card-desc">全球唯一以<b style="color:#fff;font-weight:500;">完整规范体系</b>为框架解读前沿科技的每日简报——新三观、三大原则、六大指标、深不确定性与深时视角。</div>
                     </div>
+                    <div class="newsletter-card">
+                        <div class="newsletter-card-title">02 · 十一个领域</div>
+                        <div class="newsletter-card-desc">每天一个文明级焦点，取自<b style="color:#fff;font-weight:500;">十一个前沿领域</b>——AI、太空、量子、合成生物学、存在性风险等等。</div>
+                    </div>
+                    <div class="newsletter-card">
+                        <div class="newsletter-card-title">03 · 判断而非资讯</div>
+                        <div class="newsletter-card-desc">不只告诉你<b style="color:#fff;font-weight:500;">发生了什么</b>，更告诉你<b style="color:#fff;font-weight:500;">这对人类文明意味着什么、应该怎么办。</b></div>
+                    </div>
+                </div>
+            </section>
 
-                    <div class="newsletter-card">
-                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <rect x="14" y="16" width="20" height="16" rx="2" stroke="rgba(167,139,250,0.8)"
-                                stroke-width="2" fill="none" />
-                            <path d="M18 22 L30 22 M18 26 L26 26" stroke="rgba(6,182,212,1)" stroke-width="2" />
-                        </svg>
-                        <div class="newsletter-card-title">学术活动通知</div>
-                        <div class="newsletter-card-desc">
-                            提前了解国际会议、研讨会、讲座和工作坊等学术活动信息，不错过任何交流机会。
-                        </div>
+            <section id="what-you-get">
+                <h2 class="zh-section-title">你将获得</h2>
+                <div class="newsletter-grid">
+                    <div class="newsletter-card list-card">
+                        <div class="newsletter-card-title">每日 · 文明级焦点</div>
+                        <ul>
+                            <li><b>当日焦点</b> · 1500–2500 字<span class="badge paid">付费</span></li>
+                            <li><b>11 领域速览</b> · 每个领域一句判断<span class="badge paid">付费</span></li>
+                        </ul>
                     </div>
+                    <div class="newsletter-card list-card">
+                        <div class="newsletter-card-title">每周 · 综述与样张</div>
+                        <ul>
+                            <li><b>周度综述</b> · 复盘 + 前瞻<span class="badge paid">付费</span></li>
+                            <li><b>免费深度研究</b> · 6500+ 字<span class="badge free">免费</span></li>
+                            <li><b>免费样张</b> · 每周开放一篇<span class="badge free">免费</span></li>
+                        </ul>
+                    </div>
+                    <div class="newsletter-card list-card">
+                        <div class="newsletter-card-title">每月 · 深度报告</div>
+                        <ul>
+                            <li><b>5000 字专题</b>，锁定一个重点领域<span class="badge vip">独家</span></li>
+                        </ul>
+                    </div>
+                    <div class="newsletter-card list-card">
+                        <div class="newsletter-card-title">每季 · 六大指标评估</div>
+                        <ul>
+                            <li><b>文明级体检</b>，覆盖全部 11 领域<span class="badge vip">独家</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
+            <section id="who">
+                <h2 class="zh-section-title">为谁而写</h2>
+                <div class="newsletter-grid">
                     <div class="newsletter-card">
-                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <path d="M24 12 L24 24 L32 28" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
-                            <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
-                                fill="none" />
-                        </svg>
-                        <div class="newsletter-card-title">前沿观点评论</div>
-                        <div class="newsletter-card-desc">
-                            阅读对AI治理、太空探索、SETI等热点话题的深度分析和专家评论。
-                        </div>
+                        <div class="newsletter-card-title">政策制定者</div>
+                        <div class="newsletter-card-desc">该不该管、怎么管、管了会怎样——原则与指标即政策设计工具。</div>
                     </div>
                     <div class="newsletter-card">
-                        <svg class="newsletter-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <path d="M18 24 L22 28 L30 20" stroke="rgba(6,182,212,1)" stroke-width="2"
-                                fill="none" />
-                            <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
-                                fill="none" />
-                        </svg>
-                        <div class="newsletter-card-title">独家资源获取</div>
-                        <div class="newsletter-card-desc">
-                            优先获取研究报告、白皮书、教学资料等独家学术资源的下载链接。
+                        <div class="newsletter-card-title">投资人</div>
+                        <div class="newsletter-card-desc">长期结构判断与早期信号——普通分析看不到的文明级拐点。</div>
+                    </div>
+                    <div class="newsletter-card">
+                        <div class="newsletter-card-title">高阶研究者</div>
+                        <div class="newsletter-card-desc">横跨哲学、物理、生命科学、认知与治理的跨学科整合视角。</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="author-work">
+                <h2 class="zh-section-title">作者与著作</h2>
+                <div class="aw-grid">
+                    <div class="newsletter-card">
+                        <div class="aw-head">
+                            <div class="aw-avatar">薛</div>
+                            <div>
+                                <div class="aw-name">薛志新</div>
+                                <div class="aw-role">作者 · 星际文明学（ICS）</div>
+                            </div>
+                        </div>
+                        <p class="aw-text"><b>《星际文明的规范性重构：新三观与深不确定性下的治理》</b>——一套面向文明级治理的六卷本规范体系，以新三观、三大原则、六大指标为骨架。</p>
+                        <p class="aw-text">这份每日简报是这套体系的现场应用——每一篇分析都走同一套系统，对照原著核验，从不臆造。</p>
+                    </div>
+                    <div class="newsletter-card">
+                        <div class="aw-head">
+                            <div class="aw-avatar alt">六</div>
+                            <div>
+                                <div class="aw-name">六卷本</div>
+                                <div class="aw-role">第二版 2027 · v2.0.0.0 · 开放研究纲领</div>
+                            </div>
+                        </div>
+                        <div class="aw-metrics">
+                            <div class="aw-metric"><div class="aw-metric-v">468万<small>字</small></div><div class="aw-metric-l">全文字数</div></div>
+                            <div class="aw-metric"><div class="aw-metric-v">180<small>约</small></div><div class="aw-metric-l">定理</div></div>
+                            <div class="aw-metric"><div class="aw-metric-v">120<small>证明</small></div><div class="aw-metric-l">机器验证</div></div>
+                            <div class="aw-metric"><div class="aw-metric-v">6<small>卷</small></div><div class="aw-metric-l">卷数</div></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="newsletter-stats">
-                <h2 class="zh-section-title">通讯数据</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">15,000+</div>
-                        <div class="stat-label">全球订阅者</div>
+            <section id="pricing">
+                <h2 class="zh-section-title">订阅方案</h2>
+                <div class="plan-grid">
+                    <div class="plan-card featured">
+                        <div class="plan-tag">早鸟 · 年付</div>
+                        <div class="plan-price">$99 <small>/ 年</small></div>
+                        <div class="plan-note">创始会员价，比标准年费省 34%。10 月 6 日开放，10 月 23 日前锁定。</div>
+                        <a href="#subscribe" class="plan-cta primary" data-plan="paid">开放时通知我</a>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">打开率</div>
+                    <div class="plan-card">
+                        <div class="plan-tag">标准 · 年付</div>
+                        <div class="plan-price">$150 <small>/ 年</small></div>
+                        <div class="plan-note">完整每日简报：焦点、速览、周度综述、月度深潜与季度评估。</div>
+                        <a href="#subscribe" class="plan-cta" data-plan="paid">开放时通知我</a>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">2次/月</div>
-                        <div class="stat-label">发送频率</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">58国</div>
-                        <div class="stat-label">覆盖国家</div>
+                    <div class="plan-card">
+                        <div class="plan-tag">灵活 · 月付</div>
+                        <div class="plan-price">$15 <small>/ 月</small></div>
+                        <div class="plan-note">同样的完整内容，按月付费、随时可停。</div>
+                        <a href="#subscribe" class="plan-cta" data-plan="paid">开放时通知我</a>
                     </div>
                 </div>
+                <p class="form-hint" style="text-align:center;">30 天无理由退款 · 学术内容永久免费 · 付费订阅 10 月 23 日开放</p>
             </section>
 
-            <section id="newsletter-content">
-                <h2 class="zh-section-title">通讯内容</h2>
-                <div class="content-card">
-                    <h3 class="zh-subsection-title">每期包含</h3>
-                    <ul>
-                        <li><strong>学术前沿：</strong>最新发表的论文摘要、研究方向和理论进展</li>
-                        <li><strong>热点评论：</strong>对当前AI、太空、生物技术等领域重大事件的深度分析</li>
-                        <li><strong>活动预告：</strong>即将举办的会议、讲座、研讨会和工作坊信息</li>
-                        <li><strong>资源推荐：</strong>精选书籍、报告、数据集和工具推荐</li>
-                        <li><strong>社区动态：</strong>全球星际文明学研究网络的最新消息</li>
-                        <li><strong>问答专栏：</strong>回答订阅者提出的学术问题</li>
-                    </ul>
+            <section id="subscribe">
+                <h2 class="zh-section-title">留个邮箱</h2>
+                <form class='newsletter-form' id='newsletterForm' method='POST' name='newsletter-subscribe-zh'>
+                    <input type="hidden" name="form-name" value="newsletter-subscribe-zh">
+                    <input type="hidden" name="plan" id="planField" value="free">
+                    <p style="display:none;"><label>请勿填写此项：<input name="bot-field"></label></p>
 
-                    <h3 class="zh-subsection-title">特别专题</h3>
-                    <p>每季度我们会推出特别专题通讯，深入探讨某一重要议题：</p>
-                    <ul>
-                        <li>宇宙责任伦理学的最新发展</li>
-                        <li>AI治理的国际实践与挑战</li>
-                        <li>太空探索的文明学意义</li>
-                        <li>跨代治理的制度设计</li>
-                        <li>存在风险的评估与应对</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="subscribe-form">
-                <h2 class="zh-section-title">立即订阅</h2>
-                <form class="newsletter-form" id="newsletterForm">
-                    <div class="form-group">
-                        <label class="form-label" for="name">姓名 *</label>
-                        <input type="text" id="name" name="name" class="form-input" required placeholder="请输入您的姓名">
-                    </div>
+                    <p class="form-hint">留下邮箱，你会收到：① 每周免费样张上线提醒；② 付费版 10 月 23 日开放的第一时间通知。</p>
 
                     <div class="form-group">
                         <label class="form-label" for="email">电子邮箱 *</label>
-                        <input type="email" id="email" name="email" class="form-input" required
-                            placeholder="your.email@example.com">
+                        <input type="email" id="email" name="email" class="form-input" required placeholder="your.email@example.com">
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="organization">所属机构</label>
-                        <input type="text" id="organization" name="organization" class="form-input"
-                            placeholder="大学、研究所、公司等（可选）">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="role">身份 *</label>
+                        <label class="form-label" for="role">你是谁 *</label>
                         <select id="role" name="role" class="form-select" required>
-                            <option value="">请选择您的身份</option>
-                            <option value="researcher">研究人员</option>
-                            <option value="student">学生</option>
-                            <option value="educator">教育工作者</option>
-                            <option value="policymaker">政策制定者</option>
-                            <option value="industry">产业从业者</option>
-                            <option value="media">媒体工作者</option>
-                            <option value="enthusiast">爱好者</option>
+                            <option value="">请选择</option>
+                            <option value="policy">政策制定者</option>
+                            <option value="invest">投资人 / 产业从业者</option>
+                            <option value="research">研究者 / 学子</option>
                             <option value="other">其他</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">感兴趣的主题（可多选）</label>
-                        <div class="form-checkbox-group">
-                            <label class="form-checkbox-label">
-                                <input type="checkbox" name="topics" value="theory" class="form-checkbox"><span
-                                    class="form-checkbox-text">理论基础与新三观</span>
-                            </label>
-                            <label class="form-checkbox-label">
-                                <input type="checkbox" name="topics" value="ai-governance" class="form-checkbox">
-                                <span class="form-checkbox-text">AI治理</span>
-                            </label>
-                            <label class="form-checkbox-label">
-                                <input type="checkbox" name="topics" value="space-governance" class="form-checkbox">
-                                <span class="form-checkbox-text">太空治理</span>
-                            </label>
-                            <label class="form-checkbox-label">
-                                <input type="checkbox" name="topics" value="existential-risk" class="form-checkbox">
-                                <span class="form-checkbox-text">存在风险管理</span>
-                            </label>
-                            <label class="form-checkbox-label">
-                                <input type="checkbox" name="topics" value="seti-meti" class="form-checkbox">
-                                <span class="form-checkbox-text">SETI/METI</span>
-                            </label>
-                            <label class="form-checkbox-label">
-                                <input type="checkbox" name="topics" value="intergenerational" class="form-checkbox">
-                                <span class="form-checkbox-text">代际治理</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="frequency">接收频率 *</label>
-                        <select id="frequency" name="frequency" class="form-select" required>
-                            <option value="">请选择接收频率</option>
-                            <option value="biweekly" selected>每两周一次（推荐）</option>
-                            <option value="monthly">每月一次</option>
-                            <option value="quarterly">每季度一次</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="form-submit">订阅通讯</button>
+                    <button type="submit" class="form-submit">订阅</button>
 
                     <div class="success-message" id="successMessage">
-                        <p>✓ 订阅成功！欢迎加入星际文明学社区。您将很快收到确认邮件。</p>
+                        <p>✓ 订阅成功！我们会把每周免费样张与开放通知发到你的邮箱。</p>
                     </div>
                 </form>
 
-                <div class="highlight-box" style="margin-top: 2rem;">
-                    <p><strong>隐私承诺：</strong>我们严格遵守GDPR和相关隐私法规。您的个人信息仅用于发送通讯，不会与第三方共享。您可以随时取消订阅。</p>
-                </div>
-            </section>
-
-            <section id="past-issues">
-                <h2 class="zh-section-title">往期精选</h2>
-                <div class="content-card">
-                    <h3 class="zh-subsection-title">2024年12月刊</h3>
-                    <p><strong>主题：</strong>AI安全治理的全球协调机制</p>
-                    <p>本期深入探讨了多智能审裁院（Multi-Intelligence Tribunal）的理论基础和实践路径，分析了当前AI治理面临的主要挑战，并提出了基于宇宙责任伦理学的解决方案。</p>
-
-                    <h3 class="zh-subsection-title">2024年11月刊</h3>
-                    <p><strong>主题：</strong>太空资源开发的文明学视角</p>
-                    <p>从星际文明学角度审视小行星采矿、月球基地建设等太空资源开发活动，讨论了递归自由原则（RFP）在太空治理中的应用。</p>
-
-                    <h3 class="zh-subsection-title">2024年10月刊</h3>
-                    <p><strong>主题：</strong>SETI信号检测的伦理准备</p>
-                    <p>回顾了近期SETI项目的进展，探讨了人类在接收到地外文明信号时应该如何响应，以及METI（主动向地外文明发送信息）的风险评估框架。</p>
+                <div class="highlight-box" style="max-width:700px;margin:2rem auto 0;">
+                    <p><strong>隐私承诺：</strong>我们遵守 GDPR 及相关隐私法规。你的邮箱仅用于发送简报与通知，不与第三方共享，可随时退订。</p>
                 </div>
             </section>
 
@@ -1131,29 +1130,33 @@
                 <div class="content-card">
                     <h3 class="zh-subsection-title">订阅相关</h3>
                     <p><strong>Q: 订阅是免费的吗？</strong></p>
-                    <p>A: 是的，星际文明学通讯完全免费，我们致力于推动学科知识的开放传播。</p>
+                    <p>A: 分两层。学术内容——每周一篇免费深度研究与一篇免费样张——永久免费；每日完整简报（当日焦点 + 11 领域速览）、周度综述、月度深潜与季度指标评估为付费订阅。</p>
 
-                    <p style="margin-top: 1.5rem;"><strong>Q: 多久会收到一次通讯？</strong></p>
-                    <p>A: 默认每两周发送一次。您可以在订阅时选择每月或每季度接收。</p>
+                    <p style="margin-top:1.5rem;"><strong>Q: 多久收到一次？</strong></p>
+                    <p>A: 每日简报在每个工作日发布；免费样张每周更新一篇。</p>
 
-                    <p style="margin-top: 1.5rem;"><strong>Q: 如何取消订阅？</strong></p>
-                    <p>A: 每封通讯邮件底部都有"取消订阅"链接，点击即可随时退订。</p>
+                    <p style="margin-top:1.5rem;"><strong>Q: 现在能付费订阅吗？</strong></p>
+                    <p>A: 付费订阅 10 月 23 日正式开放。现在留下邮箱，开放时第一时间通知你；早鸟年费 $99 自 10 月 6 日起可锁定。</p>
+
+                    <p style="margin-top:1.5rem;"><strong>Q: 如何取消订阅？</strong></p>
+                    <p>A: 每封邮件底部都有「取消订阅」链接，点击即可随时退订。</p>
 
                     <h3 class="zh-subsection-title">内容相关</h3>
-                    <p><strong>Q: 通讯内容是中英双语的吗？</strong></p>
-                    <p>A: 目前提供中文和英文两个版本，您可以在订阅时选择语言偏好。</p>
+                    <p><strong>Q: 简报是中英双语的吗？</strong></p>
+                    <p>A: 提供中文与英文两个版本，可在订阅时选择语言。</p>
 
-                    <p style="margin-top: 1.5rem;"><strong>Q: 可以查看往期通讯吗？</strong></p>
-                    <p>A: 可以。订阅后您将获得往期通讯存档的访问权限。</p>
+                    <p style="margin-top:1.5rem;"><strong>Q: 免费样张在哪里看？</strong></p>
+                    <p>A: 网站「焦点」页每周展示上周每日文明焦点中的一篇，并保留历史归档。</p>
 
-                    <p style="margin-top: 1.5rem;"><strong>Q: 可以向通讯投稿吗？</strong></p>
-                    <p>A: 欢迎！如果您有高质量的研究成果或深度分析，请发送至 franka328162810@gmail.com。</p>
+                    <p style="margin-top:1.5rem;"><strong>Q: 可以投稿或联系编辑部吗？</strong></p>
+                    <p>A: 欢迎。请发送至 <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>。</p>
                 </div>
             </section>
+
         </div>
     </main>
 
-    <footer class="footer">
+<footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">
@@ -1188,89 +1191,69 @@
             <div class="footer-col">
                 <h4>联系</h4>
                 <a href="联系我们.html">联系我们</a>
-                <a href="联系我们.html">franka328162810@gmail.com</a>
+                <a href="联系我们.html">members@ics-studies.org</a>
                 <a href="订阅通讯.html">订阅通讯</a>
             </div>
         </div>
         <div class="footer-bottom">
             <span class="footer-copyright">© 2026 星际文明学. 保留所有权利.</span>
             <div class="footer-links">
-                <a href="/zh/privacy.html">隐私政策</a>
-                <a href="/zh/terms.html">使用条款</a>
+                <a href='/zh/privacy'>隐私政策</a>
+                <a href='/zh/terms'>使用条款</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Navbar scroll effect
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 0) {
-                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
-            } else {
-                navbar.style.background = 'rgba(10, 22, 40, 0.8)';
-            }
+            navbar.style.background = window.pageYOffset > 0 ? 'rgba(10, 22, 40, 0.95)' : 'rgba(10, 22, 40, 0.8)';
         });
 
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (!target) return;
+                e.preventDefault();
+                const plan = this.getAttribute('data-plan');
+                const planField = document.getElementById('planField');
+                if (plan && planField) planField.value = plan;
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Newsletter form submission
         document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                organization: formData.get('organization'),
-                role: formData.get('role'),
-                topics: formData.getAll('topics'),
-                frequency: formData.get('frequency')
-            };
-
+            const form = this;
+            const btn = form.querySelector('.form-submit');
             const successMessage = document.getElementById('successMessage');
             const messageBody = successMessage.querySelector('p');
-            const result = await window.ICSSubscribe.submit(Object.assign({}, data, {
-                source: document.title,
-                lang: 'zh'
-            }), {
-                lang: 'zh'
-            });
-
-            messageBody.textContent = result.ok
-                ? '\u2713 订阅请求已提交，请留意后续确认邮件。'
-                : result.message;
-            successMessage.classList.add('show');
-
-            if (result.ok) {
-                this.reset();
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = '提交中…';
+            try {
+                const body = new URLSearchParams(new FormData(form)).toString();
+                const res = await fetch(window.location.pathname, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: body
+                });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                messageBody.textContent = '✓ 订阅成功！我们会把每周免费样张与开放通知发到你的邮箱。';
+                successMessage.classList.add('show');
+                form.reset();
+                document.getElementById('planField').value = 'free';
+                setTimeout(() => successMessage.classList.remove('show'), 6000);
+            } catch (err) {
+                form.submit();
+                return;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
             }
-
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 5000);
         });
 
-        // Card hover animation
-        const cards = document.querySelectorAll('.newsletter-card, .stat-card, .content-card');
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        const cards = document.querySelectorAll('.newsletter-card, .plan-card, .content-card');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1284,16 +1267,48 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
-
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         cards.forEach(card => observer.observe(card));
     </script>
-        <script src="/js/subscription.js"></script>
-        <script src="/js/search-redirect.js"></script>
-<script src="/js/mobile-nav.js"></script>
-
-<!-- ICS 人工智能助手 -->
+    <script src="/js/search-redirect.js"></script>
+    <script src="/js/mobile-nav.js"></script>
+    <script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
-</body>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
 
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYTdkNDlmNmI4YzhiNmVjYzAzOGY0NCIsImlzc3VlciI6Im5mc2VydmVyIn0.qWSXGKro5gRiLq8OryUbhFv3zhc7ju2X9QaeDutmtqg"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3b7f02ffb9a907e',t:'MTc4OTQ3ODUyNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

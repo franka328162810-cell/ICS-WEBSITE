@@ -14,6 +14,31 @@
     
     
     <style>
+        :root {
+            /* 第12批-rfd与归档页样式修复：本页原无 :root，为使补入规则中的 var() 生效而新建 */
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e2e8f0;
+            --font-en-sans: 'Inter', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
+            --transition-normal: 0.3s ease;
+            --font-zh-sans: 'Noto Sans SC', sans-serif;
+            --font-zh-serif: 'Noto Serif SC', serif;
+        }
+
+        body {
+            font-family: var(--font-en-sans);
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
         .archive-article {
             max-width: 1000px;
             margin: 80px auto 60px;
@@ -153,21 +178,204 @@
                 line-height: 1.7;
             }
         }
+    
+        /* ================================================================
+           第12批-rfd与归档页样式修复：补齐本页缺失的样式定义
+           原因：本页 HTML 使用了以下 class，但页内 CSS 未定义，
+                 导致相关区块无样式、退化为纯文本竖排
+                 （视觉上如同内容消失、布局塌陷）。
+           来源：多来源解析（四模板 > 中文同构页 > 全站兜底）。
+           ================================================================ */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            height: 64px;
+            background: rgba(10, 22, 40, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-en-display);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            line-height: 1;
+        }
+
+        .nav-subtitle {
+            display: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: nowrap;
+        }
+
+        .nav-link {
+            font-family: var(--font-en-display, 'Orbitron', sans-serif);
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--color-quantum-purple-light);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .nav-link:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            transition: width var(--transition-normal);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.75rem 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+        }
+        .nav-brand:hover {
+            transform: translateX(4px);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width:768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .navbar.scrolled {
+                height: 56px;
+            }
+        }
+        @media (max-width:960px) {
+            .nav-links {
+                display:none;
+            }
+        }
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.875rem 1.25rem;
+            }
+            .nav-title {
+                font-size: 1.25rem;
+            }
+        }
+        .navbar .nav-link {
+            font-size: 0.8125rem !important;
+        }
+
+        .navbar .nav-title {
+            font-size: 0.9rem !important;
+            letter-spacing: 0.05em !important;
+        }
+
+        .navbar .nav-subtitle {
+            font-size: 0.5625rem !important;
+        }
+
+        .navbar .nav-logo {
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            max-width: 44px !important;
+            max-height: 44px !important;
+        }
+
     </style>
     <!-- ICS-SEO-START -->
-    <link rel="canonical" href="https://ics-studies.org/n/articles/trump-anthropic-ban-20250304.html">
-    <link rel="alternate" hreflang="en" href="https://ics-studies.org/n/articles/trump-anthropic-ban-20250304.html">
-    <link rel="alternate" hreflang="zh" href="https://ics-studies.org/n/articles/trump-anthropic-ban-20250304.html">
-    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/n/articles/trump-anthropic-ban-20250304.html">
-    <meta name="description" content="">
+    <link rel="canonical" href="https://ics-studies.org/en/articles/trump-anthropic-ban-20250304.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/articles/trump-anthropic-ban-20250304.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/en/articles/trump-anthropic-ban-20250304.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/articles/trump-anthropic-ban-20250304.html">
+    <meta name="description" content="Trump's Ban on Anthropic: A Civilizational-Level Game at the AI Ethics Frontier - ICS In-Depth Research. The U.S. Department of Defense has made an unprecede…">
 
     <meta property="og:type" content="article">
 
     <meta property="og:title" content="Trump&#39;s Ban on Anthropic: A Civilizational-Level Game at the AI Ethics Frontier - ICS In-Depth Research">
 
-    <meta property="og:description" content="">
+    <meta property="og:description" content="Trump's Ban on Anthropic: A Civilizational-Level Game at the AI Ethics Frontier - ICS In-Depth Research. The U.S. Department of Defense has made an unprecede…">
 
-    <meta property="og:url" content="https://ics-studies.org/n/articles/trump-anthropic-ban-20250304.html">
+    <meta property="og:url" content="https://ics-studies.org/en/articles/trump-anthropic-ban-20250304.html">
     <meta property="og:site_name" content="Interstellar Civilization Studies">
 
     <meta property="og:locale" content="en">
@@ -185,7 +393,7 @@
 
     <meta name="twitter:title" content="Trump&#39;s Ban on Anthropic: A Civilizational-Level Game at the AI Ethics Frontier - ICS In-Depth Research">
 
-    <meta name="twitter:description" content="">
+    <meta name="twitter:description" content="Trump's Ban on Anthropic: A Civilizational-Level Game at the AI Ethics Frontier - ICS In-Depth Research. The U.S. Department of Defense has made an unprecede…">
 
     <meta name="twitter:image" content="https://ics-studies.org/images/og-default.jpg">
 
@@ -205,13 +413,13 @@
 
       "publisher": {"@type": "Organization", "name": "Interstellar Civilization Studies"},
 
-      "description": "",
+      "description": "Trump's Ban on Anthropic: A Civilizational-Level Game at the AI Ethics Frontier - ICS In-Depth Research. The U.S. Department of Defense has made an unprecede…",
 
       "mainEntityOfPage": {
 
         "@type": "WebPage",
 
-        "@id": "https://ics-studies.org/n/articles/trump-anthropic-ban-20250304.html"
+        "@id": "https://ics-studies.org/en/articles/trump-anthropic-ban-20250304.html"
 
       }
 
@@ -220,7 +428,184 @@
     </script>
 
     <!-- ICS-SEO-END -->
-</head>
+  <style id="nav-actions-patch-r78">
+/* ═══ 第78轮补丁A：消除折行 + 取消 .nav-link 左右内边距 ═══ */
+.nav-links {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  list-style: none;
+  min-width: 0;
+}
+.nav-links > li {
+  display: flex;
+  align-items: center;
+  min-height: 0 !important;
+  height: auto !important;
+  flex: 0 0 auto;
+}
+.nav-link {
+  padding: 0.5rem 0 !important;
+  background: none !important;
+  display: inline-block;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+
+
+/* ═══ 第78轮：导航操作区补齐（原缺失 .nav-actions）═══ */
+.nav-actions { display: flex; align-items: center; gap: 1.5rem; flex-shrink: 0; }
+.nav-search {
+  background: none; border: none; color: rgba(255,255,255,0.6);
+  cursor: pointer; padding: 0.5rem; transition: color 0.3s ease;
+  display: flex; align-items: center;
+}
+.nav-search:hover { color: var(--color-quantum-purple-light, #a78bfa); }
+.nav-search svg { width: 20px; height: 20px; }
+.lang-switch { display: flex; gap: 0.5rem; }
+.lang-btn {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.875rem; font-weight: 500;
+  padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none;
+  color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.05em;
+  transition: all 0.3s ease; white-space: nowrap;
+}
+.lang-btn:hover { color: rgba(255,255,255,0.9); }
+.lang-btn.active { background: rgba(167,139,250,0.2); color: var(--color-quantum-purple-light, #a78bfa); }
+.nav-launch {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em;
+  text-transform: uppercase;
+  height: 38px; padding: 0 18px;
+  display: flex; align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff; border-radius: 10px; text-decoration: none;
+  white-space: nowrap; flex-shrink: 0;
+  transition: all 0.3s ease; box-shadow: 0 0 18px rgba(245,158,11,0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245,158,11,0.5); }
+.nav-contact {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-quantum-purple, #7c3aed), var(--color-nebula-cyan, #06b6d4));
+  color: #ffffff; text-decoration: none; text-transform: uppercase;
+  letter-spacing: 0.05em; border-radius: 8px;
+  transition: all 0.3s ease; white-space: nowrap;
+}
+.nav-contact:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(167,139,250,0.3); }
+
+
+/* 深页导航响应式（与全站 v5 同节拍） */
+@media (max-width: 1600px) {
+  .nav-links { gap: 1.7rem; }
+  .nav-link { font-size: 0.875rem; letter-spacing: 0.05em; }
+  .nav-actions { gap: 1.05rem; }
+  .nav-launch { height: 38px; padding: 0 18px; font-size: 0.75rem; }
+}
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; letter-spacing: 0.02em; }
+  .nav-actions { gap: 0.74rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.7rem; }
+}
+@media (max-width: 1366px) {
+  .nav-links { gap: 1rem; }
+  .nav-link { font-size: 0.75rem; letter-spacing: 0.015em; }
+  .nav-actions { gap: 0.62rem; }
+  .nav-launch { height: 34px; padding: 0 12px; font-size: 0.66rem; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.82rem; }
+  .nav-link { font-size: 0.71rem; letter-spacing: 0.01em; }
+  .nav-actions { gap: 0.51rem; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.62rem; }
+}
+@media (max-width: 1280px) {
+  .nav-links { gap: 0.7rem; }
+  .nav-link { font-size: 0.67rem; letter-spacing: 0.005em; }
+  .nav-actions { gap: 0.43rem; }
+  .nav-launch { height: 30px; padding: 0 9px; font-size: 0.58rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.58rem; }
+  .nav-link { font-size: 0.62rem; letter-spacing: 0; }
+  .nav-actions { gap: 0.36rem; }
+  .nav-launch { height: 28px; padding: 0 7px; font-size: 0.54rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.45rem; }
+  .nav-link { font-size: 0.57rem; letter-spacing: -0.005em; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-launch { height: 26px; padding: 0 6px; font-size: 0.5rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.32rem; }
+  .nav-link { font-size: 0.53rem; letter-spacing: -0.015em; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-launch { height: 25px; padding: 0 5px; font-size: 0.48rem; }
+}
+@media (min-width: 1024px) { .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; } }
+
+/* ═══ 第78轮补丁F：布局硬约束 + 按页字号 ═══ */
+/* 布局硬约束：三区块互不重叠、互不越界 */
+.nav-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+}
+.nav-brand { flex: 0 0 auto !important; }
+.nav-links {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  margin: 0 0.6rem !important;
+}
+.nav-links > li { flex: 0 0 auto !important; min-height: 0 !important; }
+.nav-link { padding: 0.5rem 0 !important; background: none !important; display: inline-block !important; }
+.nav-actions { flex: 0 0 auto !important; margin-left: auto !important; }
+
+/* 按页字号梯度（实测：EN） */
+@media (min-width: 1600px) {
+  .nav-link { font-size: 0.78rem !important; letter-spacing: 0.015em !important; }
+  .nav-links { gap: 0.9rem !important; }
+  .nav-actions { gap: 0.6rem !important; }
+  .nav-launch { height: 34px !important; padding: 0 12px !important; font-size: 0.72rem !important; }
+  .lang-btn { padding: 0.42rem 0.66rem !important; font-size: 0.72rem !important; }
+  .nav-contact { padding: 0.58rem 1rem !important; font-size: 0.76rem !important; }
+  .nav-search svg { width: 18px !important; height: 18px !important; }
+}
+@media (min-width: 1366px) and (max-width: 1599px) {
+  .nav-link { font-size: 0.75rem !important; letter-spacing: 0.012em !important; }
+  .nav-links { gap: 0.8rem !important; }
+  .nav-actions { gap: 0.55rem !important; }
+  .nav-launch { height: 33px !important; padding: 0 11px !important; font-size: 0.69rem !important; }
+  .lang-btn { padding: 0.4rem 0.62rem !important; font-size: 0.7rem !important; }
+  .nav-contact { padding: 0.55rem 0.95rem !important; font-size: 0.73rem !important; }
+  .nav-search svg { width: 17px !important; height: 17px !important; }
+}
+@media (min-width: 1025px) and (max-width: 1365px) {
+  .nav-link { font-size: 0.72rem !important; letter-spacing: 0.008em !important; }
+  .nav-links { gap: 0.68rem !important; }
+  .nav-actions { gap: 0.48rem !important; }
+  .nav-launch { height: 31px !important; padding: 0 9px !important; font-size: 0.66rem !important; }
+  .lang-btn { padding: 0.36rem 0.55rem !important; font-size: 0.66rem !important; }
+  .nav-contact { padding: 0.5rem 0.85rem !important; font-size: 0.68rem !important; }
+  .nav-search svg { width: 16px !important; height: 16px !important; }
+}
+
+@media (max-width: 1024px) {
+  .nav-link { font-size: 0.62rem !important; letter-spacing: 0 !important; }
+  .nav-links { gap: 0.42rem !important; }
+  .nav-actions { gap: 0.35rem !important; }
+  .nav-launch { height: 28px !important; padding: 0 7px !important; font-size: 0.56rem !important; }
+  .lang-btn { padding: 0.3rem 0.44rem !important; font-size: 0.62rem !important; }
+  .nav-contact { padding: 0.44rem 0.7rem !important; font-size: 0.62rem !important; }
+  .nav-search svg { width: 15px !important; height: 15px !important; }
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;900&display=swap" rel="stylesheet"></head>
 <body>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -231,10 +616,28 @@
                 </div>
             </a>
             <ul class="nav-links">
-                <li><a href="../../en/" class="nav-link">Home</a></li>
-                <li><a href="../../en/in-depth-research.html" class="nav-link">In-Depth Research</a></li>
-                <li><a href="../../en/research-agenda.html" class="nav-link">Research</a></li>
+                <li><a class="nav-link" href="/en/">Home</a></li>
+                <li><a class="nav-link" href="/en/about">About</a></li>
+                <li><a class="nav-link" href="/en/book-overview">Publications</a></li>
+                <li><a class="nav-link" href="/en/resources">Resources</a></li>
+                <li><a class='nav-link' href='/en/focus-public-edition'>Focus (Public Edition)</a></li>
+                <li><a class="nav-link" href="/en/in-depth-research">Research</a></li>
+                <li><a class="nav-link" href="/en/ai-assistant">AI Assistant</a></li>
             </ul>
+          <div class="nav-actions">
+    <button class="nav-search" aria-label="Search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+    </svg>
+</button>
+    <div class="lang-switch">
+        <a class='lang-btn active' href='/en/articles/trump-anthropic-ban-20250304'>EN</a>
+        <a class='lang-btn' href='/zh/articles/trump-anthropic-ban-20250304'>中文</a>
+    </div>
+    <a class='nav-launch' href='/en/launch'>Launch</a>
+    <a class='nav-contact' href='/en/contact-us'>Contact</a>
+</div>
         </div>
     </nav>
 
@@ -530,7 +933,7 @@
             </section>
 
             <section class="archive-article-footer">
-                <a href="../../en/in-depth-research.html">← Back to In-Depth Research</a>
+                <a href='/en/in-depth-research'>← Back to In-Depth Research</a>
             </section>
         </article>
     </main>
@@ -538,6 +941,46 @@
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS AI Assistant -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYTdkNDlmNmI4YzhiNmVjYzAzOGY0NCIsImlzc3VlciI6Im5mc2VydmVyIn0.qWSXGKro5gRiLq8OryUbhFv3zhc7ju2X9QaeDutmtqg"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3b7efcbfd7cf1c4',t:'MTc4OTQ3ODUwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYmRmYWRmOGI5NzM4NDY3MzQ1YTZiYSIsImlzc3VlciI6Im5mc2VydmVyIn0.xdj6oT1RiBrvD02NxfZ3qz-cFAPPUpXoSKbeWGab3uE"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a43b12eb4f6d8645',t:'MTc5MDg1MzU4Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"232b9d8552444a2e8f9dcfe63b091169","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>

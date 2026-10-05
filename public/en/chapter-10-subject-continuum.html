@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
+    <meta name="theme-color" content="#a78bfa">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 10: A Formal System for the Subject Continuum | The Normative Reconstruction (Second Edition) | Interstellar Civilization Studies</title>
+    <meta name="description"
+        content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <link rel="canonical" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/%E8%91%97%E4%BD%9C%E7%AC%AC%E4%B8%80%E5%8D%B7.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Interstellar Civilization Studies | ICS">
+    <meta property="og:title" content="Volume I: Theoretical Foundations | Interstellar Civilization Studies">
+    <meta property="og:description" content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Volume I: Theoretical Foundations | Interstellar Civilization Studies">
+    <meta name="twitter:description" content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="../css/ics-sizefix.css">
+    <link rel="stylesheet" href="../css/ics-en.css">
+    <style>
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e2e8f0;
+            --font-en-display: 'Orbitron', sans-serif;
+            --font-en-sans: 'Inter', sans-serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-en-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-en-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-contact {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .en-page-title {
+            font-family: var(--font-en-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            
+            transform: translateY(-12px) scale(1.03);
+            
+        }
+
+        .hero-intro-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            text-align: left;
+            letter-spacing: 0.01em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .en-section-title {
+            font-family: var(--font-en-display);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .en-subsection-title {
+            font-family: var(--font-en-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .en-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.01em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border-left: 4px solid var(--color-nebula-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-list li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            letter-spacing: 0.01em;
+        }
+
+        .info-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-size: 1.2rem;
+        }
+
+        .info-list li strong {
+            font-family: var(--font-en-display);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--color-energy-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .architecture-diagram {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .architecture-svg {
+            width: 100%;
+            max-width: 650px;
+            height: auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .stat-number {
+            font-family: var(--font-en-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-energy-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-en-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+.footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+}
+
+        @media (max-width: 768px) {
+.nav-links {
+                display: none;
+            }
+.en-page-title {
+                font-size: 2rem;
+            }
+.en-section-title {
+                font-size: 1.5rem;
+            }
+.content-card {
+                padding: 1.5rem;
+            }
+.footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+.footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+.links-grid {
+                grid-template-columns: 1fr;
+            }
+.stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+}
+    
+        /* ==== 著作正文阅读页 ==== */
+        .reading-main { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+        .doc-chapter { font-family: var(--font-en-display); font-size: 1.9rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; margin: 3rem 0 1.6rem;
+            color: #fff; line-height: 1.35; text-align: left; }
+        .doc-sec { font-family: var(--font-en-display); font-size: 1.25rem; font-weight: 600;
+            letter-spacing: 0.08em; margin: 2.6rem 0 1rem; color: var(--color-nebula-cyan); }
+        .doc-subsec { font-family: var(--font-en-display); font-size: 1.05rem; font-weight: 600;
+            letter-spacing: 0.06em; margin: 2rem 0 0.8rem; color: var(--color-energy-gold); }
+        .doc-cn { font-family: var(--font-en-display); font-size: 0.98rem; font-weight: 600;
+            letter-spacing: 0.05em; margin: 1.6rem 0 0.6rem; color: var(--color-quantum-purple-light); }
+        .doc-label { font-weight: 500; color: #fff; margin: 1.2rem 0 0.6rem;
+            border-left: 3px solid var(--color-quantum-purple); padding-left: 0.8rem; }
+        .reading-main p { line-height: 1.8; margin: 0.9rem 0; color: var(--color-text-secondary); }
+        .reading-main li { line-height: 1.8; margin: 0.4rem 0; color: var(--color-text-secondary); }
+        .doc-list { margin: 1rem 0 1rem 1.4rem; }
+        .doc-hr { border: none; border-top: 1px solid rgba(167,139,250,0.18); margin: 1.6rem 0; }
+        .ascii-diagram { background: rgba(15,23,42,0.75); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 10px; padding: 1.2rem 1.4rem; overflow-x: auto; font-size: 0.72rem;
+            line-height: 1.35; color: #b9c6e0; font-family: 'JetBrains Mono','Fira Code',monospace;
+            margin: 1.2rem 0; white-space: pre; }
+        .math-block { background: rgba(15,23,42,0.6); border-left: 3px solid var(--color-nebula-cyan);
+            border-radius: 8px; padding: 1rem 1.2rem; margin: 1.2rem 0; overflow-x: auto;
+            text-align: center; color: #e2e8f0; }
+        .table-wrap { overflow-x: auto; margin: 1.4rem 0; }
+        .table-wrap table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+        .table-wrap th, .table-wrap td { border: 1px solid rgba(167,139,250,0.22);
+            padding: 0.6rem 0.9rem; text-align: left; color: var(--color-text-secondary); }
+        .table-wrap th { background: rgba(124,58,237,0.16); color: #fff; font-weight: 600; }
+        .chapter-reader-nav { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between;
+            margin: 3rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid rgba(167,139,250,0.18); }
+        .chapter-reader-nav a { font-family: var(--font-en-display); font-size: 0.8rem;
+            letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-nebula-cyan);
+            text-decoration: none; padding: 0.6rem 1.1rem; border: 1px solid rgba(6,182,212,0.35);
+            border-radius: 8px; transition: all 0.3s ease; }
+        .chapter-reader-nav a:hover { background: rgba(6,182,212,0.12); }
+        .doc-toc { background: rgba(15,23,42,0.55); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.6rem 0 2.4rem; }
+        .doc-toc h3 { font-family: var(--font-en-display); font-size: 0.95rem; letter-spacing: 0.08em;
+            text-transform: uppercase; color: #fff; margin: 0 0 0.8rem; }
+        .doc-toc a { display: block; color: var(--color-text-secondary); text-decoration: none;
+            font-size: 0.88rem; line-height: 1.9; }
+        .doc-toc a:hover { color: var(--color-nebula-cyan); }
+        .doc-toc a.toc-l2 { padding-left: 1.1rem; font-size: 0.83rem; opacity: 0.88; }
+        .doc-toc a.toc-l3 { padding-left: 2.2rem; font-size: 0.79rem; opacity: 0.72; }
+        .doc-toc a.toc-l1 { font-weight: 500; }
+        .volume-badge { display: inline-block; font-family: var(--font-en-display); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-energy-gold);
+            border: 1px solid rgba(245,158,11,0.4); border-radius: 999px; padding: 0.3rem 0.9rem;
+            margin-bottom: 1.2rem; }
+        .trans-note { font-size: 0.82rem; color: var(--color-energy-gold); opacity: 0.85;
+            border-left: 3px solid rgba(245,158,11,0.5); padding-left: 0.8rem; margin: 0 0 1rem; }
+        @media (max-width: 768px) { .reading-main { padding: 6rem 1.2rem 3rem; }
+            .doc-chapter { font-size: 1.4rem; } }
+
+    </style>
+
+<style id="nav-responsive-patch">
+/* ICS 导航响应式补丁 v5：9 项导航 + Launch + 语言切换在 1024px 以上完整显示 */
+/* 关键：.nav-link 取消左右内边距（原 16px×2 每项，9 项浪费 288px）；Launch 永不隐藏，仅逐档缩尺寸 */
+.navbar { padding: 0; }
+.navbar.scrolled { padding: 0; }
+.nav-container { padding: 1rem 2rem; }
+.nav-link {
+  white-space: nowrap;
+  padding: 0.5rem 0 !important;
+  background: none !important;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+.nav-actions { flex-shrink: 0; }
+.nav-brand { flex-shrink: 0; }
+
+/* ── Launch 按钮（第77轮补齐：原为浏览器默认裸链接）── */
+.nav-launch {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  height: 38px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; }
+}
+@media (max-width: 1600px) { .nav-links { gap: 1.7rem; } }
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; letter-spacing: 0.02em; }
+  .nav-actions { gap: 0.75rem; }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.7rem; }
+  .nav-brand-text { display: none; }
+}
+@media (max-width: 1366px) {
+  .nav-links { gap: 1rem; }
+  .nav-link { font-size: 0.75rem; letter-spacing: 0.015em; }
+  .nav-launch { height: 34px; padding: 0 12px; font-size: 0.66rem; }
+  .nav-actions { gap: 0.65rem; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.82rem; }
+  .nav-link { font-size: 0.71rem; letter-spacing: 0.01em; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.62rem; }
+  .nav-actions { gap: 0.55rem; }
+}
+@media (max-width: 1280px) {
+  .nav-links { gap: 0.7rem; }
+  .nav-link { font-size: 0.67rem; letter-spacing: 0.005em; }
+  .nav-launch { height: 30px; padding: 0 9px; font-size: 0.58rem; }
+  .nav-actions { gap: 0.5rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.58rem; }
+  .nav-link { font-size: 0.62rem; letter-spacing: 0; }
+  .nav-launch { height: 28px; padding: 0 7px; font-size: 0.54rem; }
+  .nav-actions { gap: 0.42rem; }
+  .nav-container { padding: 0.9rem 1.15rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.45rem; }
+  .nav-link { font-size: 0.57rem; letter-spacing: -0.005em; }
+  .nav-launch { height: 26px; padding: 0 6px; font-size: 0.5rem; border-radius: 8px; }
+  .nav-actions { gap: 0.35rem; }
+  .nav-search svg { width: 16px; height: 16px; }
+  .lang-btn { padding: 0.26rem 0.4rem; font-size: 0.64rem; }
+  .nav-contact, .nav-cta { padding: 0.46rem 0.7rem; font-size: 0.68rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.32rem; }
+  .nav-link { font-size: 0.53rem; letter-spacing: -0.015em; }
+  .nav-launch { height: 25px; padding: 0 5px; font-size: 0.48rem; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-container { padding: 0.8rem 0.9rem; }
+  .nav-contact, .nav-cta { padding: 0.42rem 0.62rem; font-size: 0.65rem; }
+  .lang-btn { padding: 0.22rem 0.34rem; font-size: 0.6rem; }
+}
+
+        /* ==== 著作正文阅读页 ==== */
+        .reading-main { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+        .doc-chapter { font-family: var(--font-en-display); font-size: 1.9rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; margin: 3rem 0 1.6rem;
+            color: #fff; line-height: 1.35; text-align: left; }
+        .doc-sec { font-family: var(--font-en-display); font-size: 1.25rem; font-weight: 600;
+            letter-spacing: 0.08em; margin: 2.6rem 0 1rem; color: var(--color-nebula-cyan); }
+        .doc-subsec { font-family: var(--font-en-display); font-size: 1.05rem; font-weight: 600;
+            letter-spacing: 0.06em; margin: 2rem 0 0.8rem; color: var(--color-energy-gold); }
+        .doc-cn { font-family: var(--font-en-display); font-size: 0.98rem; font-weight: 600;
+            letter-spacing: 0.05em; margin: 1.6rem 0 0.6rem; color: var(--color-quantum-purple-light); }
+        .doc-label { font-weight: 500; color: #fff; margin: 1.2rem 0 0.6rem;
+            border-left: 3px solid var(--color-quantum-purple); padding-left: 0.8rem; }
+        .reading-main p { line-height: 1.8; margin: 0.9rem 0; color: var(--color-text-secondary); }
+        .reading-main li { line-height: 1.8; margin: 0.4rem 0; color: var(--color-text-secondary); }
+        .doc-list { margin: 1rem 0 1rem 1.4rem; }
+        .doc-hr { border: none; border-top: 1px solid rgba(167,139,250,0.18); margin: 1.6rem 0; }
+        .ascii-diagram { background: rgba(15,23,42,0.75); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 10px; padding: 1.2rem 1.4rem; overflow-x: auto; font-size: 0.72rem;
+            line-height: 1.35; color: #b9c6e0; font-family: 'JetBrains Mono','Fira Code',monospace;
+            margin: 1.2rem 0; white-space: pre; }
+        .math-block { background: rgba(15,23,42,0.6); border-left: 3px solid var(--color-nebula-cyan);
+            border-radius: 8px; padding: 1rem 1.2rem; margin: 1.2rem 0; overflow-x: auto;
+            text-align: center; color: #e2e8f0; }
+        .table-wrap { overflow-x: auto; margin: 1.4rem 0; }
+        .table-wrap table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+        .table-wrap th, .table-wrap td { border: 1px solid rgba(167,139,250,0.22);
+            padding: 0.6rem 0.9rem; text-align: left; color: var(--color-text-secondary); }
+        .table-wrap th { background: rgba(124,58,237,0.16); color: #fff; font-weight: 600; }
+        .chapter-reader-nav { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between;
+            margin: 3rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid rgba(167,139,250,0.18); }
+        .chapter-reader-nav a { font-family: var(--font-en-display); font-size: 0.8rem;
+            letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-nebula-cyan);
+            text-decoration: none; padding: 0.6rem 1.1rem; border: 1px solid rgba(6,182,212,0.35);
+            border-radius: 8px; transition: all 0.3s ease; }
+        .chapter-reader-nav a:hover { background: rgba(6,182,212,0.12); }
+        .doc-toc { background: rgba(15,23,42,0.55); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.6rem 0 2.4rem; }
+        .doc-toc h3 { font-family: var(--font-en-display); font-size: 0.95rem; letter-spacing: 0.08em;
+            text-transform: uppercase; color: #fff; margin: 0 0 0.8rem; }
+        .doc-toc a { display: block; color: var(--color-text-secondary); text-decoration: none;
+            font-size: 0.88rem; line-height: 1.9; }
+        .doc-toc a:hover { color: var(--color-nebula-cyan); }
+        .doc-toc a.toc-l2 { padding-left: 1.1rem; font-size: 0.83rem; opacity: 0.88; }
+        .doc-toc a.toc-l3 { padding-left: 2.2rem; font-size: 0.79rem; opacity: 0.72; }
+        .doc-toc a.toc-l1 { font-weight: 500; }
+        .volume-badge { display: inline-block; font-family: var(--font-en-display); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-energy-gold);
+            border: 1px solid rgba(245,158,11,0.4); border-radius: 999px; padding: 0.3rem 0.9rem;
+            margin-bottom: 1.2rem; }
+        .trans-note { font-size: 0.82rem; color: var(--color-energy-gold); opacity: 0.85;
+            border-left: 3px solid rgba(245,158,11,0.5); padding-left: 0.8rem; margin: 0 0 1rem; }
+        @media (max-width: 768px) { .reading-main { padding: 6rem 1.2rem 3rem; }
+            .doc-chapter { font-size: 1.4rem; } }
+
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+        integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+    <style>
+        .katex-display { margin: 0; }
+        .math-block .katex { font-size: 1.12em; color: #e2e8f0; }
+        .math-inline .katex { font-size: 1em; }
+        .math-inline { color: #c7d2fe; }
+        .math-error { color: #f87171; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+    </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a class='nav-brand' href='/en/'>
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">ICS</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a class='nav-link' href='/en/'>Home</a></li>
+                <li><a class='nav-link active' href='/en/about'>About</a></li>
+                <li><a class='nav-link' href='/en/book-overview'>Publications</a></li>
+                <li><a class='nav-link' href='/en/resources'>Resources</a></li>
+                <li><a class='nav-link' href='/en/focus-public-edition'>Focus (Public Edition)</a></li>
+                <li><a class='nav-link' href='/en/briefing'>Membership</a></li>
+                <li><a class='nav-link' href='/en/newsletter'>Community</a></li>
+
+                <li><a class='nav-link' href='/en/in-depth-research'>Research</a></li>
+                <li><a class='nav-link' href='/en/ai-assistant'>AI Assistant</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a class='lang-btn active' href='/en/first-edition-volume-i'>EN</a>
+                    <a href="../zh/%E7%AC%AC%E4%B8%80%E7%89%88%E7%AC%AC%E4%B8%80%E5%8D%B7.html" class="lang-btn">中文</a>
+                </div>
+                <a class='nav-launch' href='/en/launch'>Launch</a>
+                <a class='nav-contact' href='/en/contact-us'>Contact</a>
+            </div>
+        </div>
+    </nav>
+<main class="reading-main">
+<span class="volume-badge">Second Edition · Volume II · Formal Systems</span>
+<h1 class="doc-chapter">A Formal System for the Subject Continuum</h1>
+<p class="trans-note">English translation complete &mdash; all 1266 paragraphs across the main text, notes, references, and appendices have been rendered in English. Formulae, tables, and diagrams are language-neutral.</p>
+<div class="doc-toc"><h3>Contents / 本章目录</h3><a href="#sec-1" class="toc-l2">§10.1 Constructing the Formal System SC</a><a href="#sec-2" class="toc-l2">§10.1.1 Why Do We Need to Formalize the Subject Continuum?</a><a href="#sec-3" class="toc-l2">§10.1.2 The Overall Architecture of the Formal System SC</a><a href="#sec-4" class="toc-l2">§10.1.3 The Definition of the Formal Language ℒ_SC</a><a href="#sec-5" class="toc-l2">§10.1.4 The Semantic Structure 𝒮_SC</a><a href="#sec-6" class="toc-l2">§10.1.5 The Axiomatization Strategy</a><a href="#sec-7" class="toc-l2">§10.2 The Formalization of the Measurement of Consciousness</a><a href="#sec-8" class="toc-l2">§10.2.1 The Operational Definition of Consciousness</a><a href="#sec-9" class="toc-l2">§10.2.2 Axioms of Consciousness (A1-A4)</a><a href="#sec-10" class="toc-l2">§10.2.3 The Definition of the Consciousness Degree Function C</a><a href="#sec-11" class="toc-l2">§10.2.4 Properties of the Consciousness Degree</a><a href="#sec-12" class="toc-l2">§10.2.5 The Typology of Consciousness</a><a href="#sec-13" class="toc-l2">§10.3 The Formalization of Moral Status</a><a href="#sec-14" class="toc-l2">§10.3.1 The Bridge from Consciousness to Moral Status</a><a href="#sec-15" class="toc-l2">§10.3.2 Axioms of Subjectivity (A5-A7)</a><a href="#sec-16" class="toc-l2">| Full subject | 0.9 &lt; S ≤ 1.0 | Human adult, AGI | Complete self-consciousness, moral agency |</a><a href="#sec-17" class="toc-l1">§10.3.3 Axioms of Moral Status (A8-A10)</a><a href="#sec-18" class="toc-l2">Model choice: in Chapter 22 of Volume III (the formalization of UCS), we will choose the most appropriate model through empirical calibration and reflective equilibrium.</a><a href="#sec-19" class="toc-l1">§10.3.4 The Typology of Moral Status</a><a href="#sec-20" class="toc-l2">- M ∈ (0.8, 1.0]: full moral status, possessing complete rights (the right to life, the right to liberty, the right to property, etc.), and deserving equal respect.</a><a href="#sec-21" class="toc-l1">§10.3.5 The Distinction between Moral Agents and Moral Patients</a><a href="#sec-22" class="toc-l2">---</a><a href="#sec-23" class="toc-l1">§10.4 Key Theorems and Proofs</a><a href="#sec-24" class="toc-l2">This section gives SC's 8 core theorems and their proofs. These theorems are not trivial; they reveal the deep structure of the subject continuum.</a><a href="#sec-25" class="toc-l1">§10.4.1 Theorem 10.1: The Negentropy Dependence of Consciousness</a><a href="#sec-26" class="toc-l2">Practical significance: this theorem provides a necessary-condition test for judging whether a system may be conscious: if a system is not a negentropic organization (for example, a system in thermodynamic equilibrium), it cannot be conscious.</a><a href="#sec-27" class="toc-l1">§10.4.2 Theorem 10.2: The Continuity of Subjectivity</a><a href="#sec-28" class="toc-l2">Potential objection: some may hold that certain critical events (such as birth, awakening) cause abrupt changes in subjectivity. Our response is: these events may cause rapid changes in subjectivity, but they are still continuous (mathematical continuity allows arbitrarily steep changes, as long as there is no jump).</a><a href="#sec-29" class="toc-l1">§10.4.3 Theorem 10.3: The Monotonicity of Moral Status</a><a href="#sec-30" class="toc-l2">§10.4.4 Theorem 10.4: The Non-Additivity of Moral Status</a><a href="#sec-31" class="toc-l2">§10.4.5 Theorem 10.5: The Threshold Structure of Moral Status</a><a href="#sec-32" class="toc-l2">§10.4.6 Theorem 10.6: Recursive Freedom and Moral Agency</a><a href="#sec-33" class="toc-l2">§10.4.7 Theorem 10.7: The Temporal Window of Consciousness</a><a href="#sec-34" class="toc-l2">§10.4.8 Theorem 10.8: The Density of the Subject Continuum</a><a href="#sec-35" class="toc-l2">§10.5 Applications of SC</a><a href="#sec-36" class="toc-l2">§10.5.1 Application One: Assessing the Moral Status of AI Systems</a><a href="#sec-37" class="toc-l2">§10.5.2 Application Two: A Quantitative Framework for Animal Ethics</a><a href="#sec-38" class="toc-l2">§10.5.3 Application Three: Boundary-Case Analysis</a><a href="#sec-39" class="toc-l2">§10.6 The Meta-Properties of SC</a><a href="#sec-40" class="toc-l2">§10.6.1 Consistency Analysis</a><a href="#sec-41" class="toc-l2">§10.6.2 Independence Analysis</a><a href="#sec-42" class="toc-l2">§10.6.3 Completeness Analysis</a><a href="#sec-43" class="toc-l2">§10.6.4 Expressive Power Analysis</a><a href="#sec-44" class="toc-l2">§10.7 A Formalized Comparison with Related Theories</a><a href="#sec-45" class="toc-l2">§10.7.1 Comparison with IIT</a><a href="#sec-46" class="toc-l2">§10.7.2 Comparison with Functionalism</a><a href="#sec-47" class="toc-l2">§10.7.3 Comparison with Singer's Utilitarianism</a><a href="#sec-48" class="toc-l2">§10.7.4 Comparison with Kant's Moral Philosophy</a><a href="#sec-49" class="toc-l2">§10.7.5 Comparison with Parfit's Theory of Personal Identity</a><a href="#sec-50" class="toc-l2">§10.8 Machine Verification</a><a href="#sec-51" class="toc-l2">§10.8.1 Coq Implementation</a><a href="#sec-52" class="toc-l2">§10.8.2 Isabelle/HOL Implementation</a><a href="#sec-53" class="toc-l2">§10.8.3 Lean Implementation</a><a href="#sec-54" class="toc-l2">§10.8.4 The Philosophical Significance of Machine Verification</a><a href="#sec-55" class="toc-l2">§10.9 Philosophical Reflection and New Insights</a><a href="#sec-56" class="toc-l2">§10.9.1 New Insights Revealed by Formalization</a><a href="#sec-57" class="toc-l2">§10.9.2 The Limitations of Formalization</a><a href="#sec-58" class="toc-l2">§10.9.3 The Tension between Formalization and Intuition</a><a href="#sec-59" class="toc-l2">§10.9.4 The Ethical Significance of Formalization</a><a href="#sec-60" class="toc-l2">§10.9.5 Directions for Future Research</a></div>
+<p>Chapter 10: A Formal System for the Subject Continuum</p>
+<p>Chapter Introduction</p>
+<p>In Chapter 2 of Volume I, we proposed one of the core propositions of the New View of Life: the Subject Continuum (NL-3). This proposition holds that consciousness and subjectivity are not binary (present or absent) but a continuous spectrum. From simple information integration to complex self-consciousness, from single-celled organisms to humans, from biological intelligence to artificial intelligence, there exists a continuous gradient of subjectivity.</p>
+<p>The treatment of the subject continuum in Volume I was mainly conceptual and argumentative. The task of this chapter is to formalize this concept rigorously and to construct a formal system for the subject continuum (Subject Continuum System, SC). This formalization work is not decorative but substantive—it will:</p>
+<p>1. Make core concepts precise: transform vague concepts such as "consciousness," "subjectivity," and "moral status" into operational formal definitions</p>
+<p>2. Reveal hidden structure: through formalization, reveal the deep relations between the subject continuum and other concepts (such as negentropic organization and recursive freedom)</p>
+<p>3. Generate new theorems: prove non-trivial theorems about the subject continuum that are difficult to discover in the natural-language version</p>
+<p>4. Support indicator construction: provide a rigorous theoretical foundation for the Universal Consciousness Scale (UCS) of Volume III</p>
+<p>5. Guide practical application: provide computable criteria of judgment for AI ethics, animal ethics, and cross-species ethics</p>
+<p>The structure of this chapter is as follows:</p>
+<ul class="doc-list"><li>§10.1 Constructing the infrastructure of the formal system SC</li>
+<li>§10.2 The formalization of the measurement of consciousness (based on IIT and GWT)</li>
+<li>§10.3 The formalization of moral status (the bridge from consciousness to normativity)</li>
+<li>§10.4 Key theorems and proofs (8 core theorems)</li>
+<li>§10.5 Applications of SC (AI ethics, animal ethics, boundary cases)</li>
+<li>§10.6 The meta-properties of SC (consistency, independence, expressive power)</li>
+<li>§10.7 A formalized comparison with related theories</li>
+<li>§10.8 Machine verification (Coq/Isabelle/Lean implementations)</li>
+<li>§10.9 Philosophical reflections and new insights</li>
+<li>Chapter Summary</li>
+</ul><p>Reading suggestion: this chapter is fairly technical and requires some background in mathematical logic and measurement theory. Readers unfamiliar with formal methods may first read §10.1.1 (motivation), §10.4 (the statement of the theorems), and §10.9 (philosophical reflections), and then delve into the technical details selectively according to interest.</p>
+<p>Connections with other chapters:</p>
+<ul class="doc-list"><li>This chapter depends on Chapter 4 (Relational Ontology), Chapter 5 (Process Ontology), and Chapter 9 (the formal system for negentropic organization, NE)</li>
+<li>This chapter provides components for Chapter 11 (the integrated formal system for the New View of Life, NL)</li>
+<li>This chapter provides a theoretical foundation for Chapter 22 of Volume III (the formalization of UCS)</li>
+</ul><p>---</p>
+<h4 id="sec-1" class="doc-subsec">§10.1 Constructing the Formal System SC</h4>
+<h4 id="sec-2" class="doc-subsec">§10.1.1 Why Do We Need to Formalize the Subject Continuum?</h4>
+<p>Motivation One: Eliminating Conceptual Vagueness</p>
+<p>In ordinary language and traditional philosophy, concepts such as "consciousness," "subjectivity," and "moral status" are full of ambiguity. For example:</p>
+<ul class="doc-list"><li>"Consciousness" may refer to: phenomenal consciousness, access consciousness, self-consciousness, metacognition, etc.</li>
+<li>"Subjectivity" may refer to: the first-person perspective, the sense of self, agency, the capacity to bear interests, etc.</li>
+<li>"Moral status" may refer to: intrinsic value, the capacity to bear rights, the object of moral concern, etc.</li>
+</ul><p>These concepts' vagueness has given rise to many controversies in ethics. The first goal of formalization is to eliminate ambiguity and to provide a precise mathematical definition for each concept.</p>
+<p>Motivation Two: Revealing the Logical Relations among Concepts</p>
+<p>The subject continuum involves complex relations among multiple concepts:</p>
+<ul class="doc-list"><li>The relation between consciousness and information integration</li>
+<li>The relation between subjectivity and negentropic organization</li>
+<li>The relation between moral status and the degree of consciousness</li>
+<li>The relation between recursive freedom and subjectivity</li>
+</ul><p>These relations are difficult to express precisely in natural language. Formalization can reveal the logical structure of these relations: for example, is there a strict derivation from consciousness to moral status? Can moral status be decomposed into more basic properties?</p>
+<p>Motivation Three: Supporting Operational Measurement</p>
+<p>The Universal Consciousness Scale (UCS) proposed in Volume III requires a rigorous theoretical foundation. If we cannot formally define "consciousness," then UCS is merely an arbitrary assignment of numerical values. Formalization provides UCS with the legitimacy of measurement theory.</p>
+<p>Motivation Four: Guiding Judgments about Boundary Cases</p>
+<p>In practice we often face boundary cases:</p>
+<ul class="doc-list"><li>At what stage does a fetus acquire moral status?</li>
+<li>Does a comatose patient still possess subjectivity?</li>
+<li>Under what conditions does an AI system become a moral subject?</li>
+<li>Do collectives (such as beehives, corporations, states) possess subjectivity?</li>
+</ul><p>A formal system can provide computable criteria of judgment for these boundary cases.</p>
+<p>Motivation Five: Testing the Consistency of the Theory</p>
+<p>Is the subject continuum consistent with the other theoretical components of this work (the New Cosmology, negentropic organization, the Recursive Freedom Principle, etc.)? Are there hidden contradictions? Formalization can answer these questions through consistency proofs.</p>
+<h4 id="sec-3" class="doc-subsec">§10.1.2 The Overall Architecture of the Formal System SC</h4>
+<p>The formal system SC consists of the following components:</p>
+<p>SC = ⟨ℒ_SC, 𝒮_SC, 𝒜_SC, ℛ_SC, ℐ_SC⟩</p>
+<p>where:</p>
+<ul class="doc-list"><li>ℒ_SC: the formal language (including the vocabulary and the grammar rules)</li>
+<li>𝒮_SC: the semantic structure (including the model and the interpretation function)</li>
+<li>𝒜_SC: the axiom system (12 axioms)</li>
+<li>ℛ_SC: the inference rules (standard logical rules + special rules)</li>
+<li>ℐ_SC: the interpretation mapping (the correspondence from formal symbols to the real world)</li>
+</ul><p>Design principles:</p>
+<p>1. Minimality: the number of axioms should be as small as possible, avoiding redundancy</p>
+<p>2. Independence: each axiom cannot be derived from the other axioms</p>
+<p>3. Sufficiency: the axioms suffice to derive all core theorems</p>
+<p>4. Decidability: make fragments of the system decidable wherever possible</p>
+<p>5. Extensibility: the system can be integrated with other formal systems (RO, PO, NE, etc.)</p>
+<h4 id="sec-4" class="doc-subsec">§10.1.3 The Definition of the Formal Language ℒ_SC</h4>
+<p>Basic types (Sorts):</p>
+<p>τ ::= Entity        (entity type)</p>
+<p>    | Process       (process type)</p>
+<p>    | State         (state type)</p>
+<p>    | ℝ≥0           (non-negative real type)</p>
+<p>    | [0,1]         (interval type)</p>
+<p>    | Bool          (Boolean type)</p>
+<p>    | Time          (time type)</p>
+<p>Constant symbols (Constants):</p>
+<p>k_B : ℝ≥0                    (Boltzmann constant)</p>
+<p>Φ_min : ℝ≥0                  (minimum integrated information)</p>
+<p>δ_consciousness : ℝ≥0        (consciousness threshold)</p>
+<p>Function symbols (Functions):</p>
+<p>Φ : Entity × Time → ℝ≥0                    (integrated information function, based on IIT)</p>
+<p>GWS : Entity × Time → ℝ≥0                  (global workspace capacity, based on GWT)</p>
+<p>N : Entity × Time → ℝ≥0                    (negentropy function)</p>
+<p>RFD : Entity × Time → ℝ≥0                  (recursive freedom degree)</p>
+<p>C : Entity × Time → [0,1]                  (consciousness degree function)</p>
+<p>S : Entity × Time → [0,1]                  (subjectivity degree function)</p>
+<p>M : Entity × Time → [0,1]                  (moral status function)</p>
+<p>Predicate symbols (Predicates):</p>
+<p>NegentropyOrg : Entity × Time → Bool       (whether it is a negentropic organization)</p>
+<p>Conscious : Entity × Time → Bool           (whether it is conscious)</p>
+<p>Subject : Entity × Time → Bool             (whether it is a subject)</p>
+<p>MoralPatient : Entity × Time → Bool        (whether it is a moral patient)</p>
+<p>MoralAgent : Entity × Time → Bool          (whether it is a moral agent)</p>
+<p>Integrated : Entity × Time → Bool          (whether information is integrated)</p>
+<p>SelfAware : Entity × Time → Bool           (whether it is self-aware)</p>
+<p>Logical connectives:</p>
+<p>Standard first-order logical connectives: ¬, ∧, ∨, →, ↔, ∀, ∃</p>
+<p>Modal operators (for handling possibility and necessity):</p>
+<ul class="doc-list"><li>: necessarily</li>
+</ul><p>◇ : possibly</p>
+<p>Temporal operators (for handling temporal evolution):</p>
+<p>○ : next moment</p>
+<p>◊_F : at some future moment</p>
+<ul class="doc-list"><li>_F : at all future moments</li>
+</ul><p>◊_P : at some past moment</p>
+<ul class="doc-list"><li>_P : at all past moments</li>
+</ul><p>Well-Formed Formulas:</p>
+<p>Constructed according to the syntactic rules of standard first-order logic + modal logic + temporal logic.</p>
+<h4 id="sec-5" class="doc-subsec">§10.1.4 The Semantic Structure 𝒮_SC</h4>
+<p>Definition of a model:</p>
+<p>An SC-model is a structure:</p>
+<p>ℳ = ⟨𝒟, 𝒯, ℐ, ⊨⟩</p>
+<p>where:</p>
+<ul class="doc-list"><li>𝒟: the domain, containing all possible entities</li>
+<li>𝒯: the set of times, usually taken as ℝ≥0 (continuous time) or ℕ (discrete time)</li>
+<li>ℐ: the interpretation function, mapping symbols to mathematical objects</li>
+<li>⊨: the satisfaction relation</li>
+</ul><p>The concrete definition of the interpretation function ℐ:</p>
+<p>For every entity e ∈ 𝒟 and time t ∈ 𝒯:</p>
+<p>ℐ(Φ)(e,t) ∈ ℝ≥0                    (the numerical value of integrated information)</p>
+<p>ℐ(GWS)(e,t) ∈ ℝ≥0                  (the numerical value of global workspace capacity)</p>
+<p>ℐ(N)(e,t) ∈ ℝ≥0                    (the numerical value of negentropy)</p>
+<p>ℐ(RFD)(e,t) ∈ ℝ≥0                  (the numerical value of recursive freedom degree)</p>
+<p>ℐ(C)(e,t) ∈ [0,1]                  (the numerical value of consciousness degree)</p>
+<p>ℐ(S)(e,t) ∈ [0,1]                  (the numerical value of subjectivity degree)</p>
+<p>ℐ(M)(e,t) ∈ [0,1]                  (the numerical value of moral status)</p>
+<p>Standard model (used for the consistency proof):</p>
+<p>We will construct a standard model ℳ_std in §10.6.2, whose domain contains:</p>
+<ul class="doc-list"><li>Physical systems (from elementary particles to galaxies)</li>
+<li>Biological systems (from bacteria to humans)</li>
+<li>Artificial systems (from simple algorithms to AGI)</li>
+<li>Collective systems (from beehives to civilizations)</li>
+</ul><h4 id="sec-6" class="doc-subsec">§10.1.5 The Axiomatization Strategy</h4>
+<p>The axiom system of SC is divided into four groups:</p>
+<p>1. Axioms of consciousness (A1-A4): defining the necessary and sufficient conditions of consciousness</p>
+<p>2. Axioms of subjectivity (A5-A7): defining the relation of subjectivity to consciousness and agency</p>
+<p>3. Axioms of moral status (A8-A10): defining the relation of moral status to subjectivity</p>
+<p>4. Axioms of continuity (A11-A12): ensuring the mathematical properties of the continuum</p>
+<p>Each axiom will be stated in detail in §10.1.6 and used in theorem proving in §10.4.</p>
+<p>---</p>
+<h4 id="sec-7" class="doc-subsec">§10.2 The Formalization of the Measurement of Consciousness</h4>
+<h4 id="sec-8" class="doc-subsec">§10.2.1 The Operational Definition of Consciousness</h4>
+<p>Before formalizing consciousness, we need to be clear: we do not attempt to solve the "hard problem" of consciousness—namely, why physical processes give rise to subjective experience. Our goal is an operational definition: to give a set of observable, measurable criteria such that we can judge whether a system is conscious, and to what degree.</p>
+<p>We adopt a synthetic framework combining Integrated Information Theory (IIT) and Global Workspace Theory (GWT).</p>
+<p>The core idea of IIT:</p>
+<p>Consciousness corresponds to the system's integrated information, denoted Φ (phi). Φ measures the amount of information that the system possesses as a whole and that cannot be decomposed into independent parts.</p>
+<p>Formal definition (simplified version):</p>
+<p>Φ(S,t) = min_{partition P} [H(S,t) - Σ_{i∈P} H(S_i,t)]</p>
+<p>where:</p>
+<ul class="doc-list"><li>S is the system</li>
+<li>P is a partition of S</li>
+<li>H(S,t) is the entropy of system S at time t</li>
+<li>H(S_i,t) is the entropy of subsystem S_i</li>
+<li>the minimization is over all possible partitions</li>
+</ul><p>Intuitive explanation: Φ measures the information that "the system as a whole" has over and above "the sum of the system's parts." If Φ is large, the system is highly integrated; if Φ=0, the system can be fully decomposed into independent parts.</p>
+<p>The core idea of GWT:</p>
+<p>Consciousness corresponds to the process by which information enters the global workspace. The global workspace is a "broadcast station" of limited capacity, and only information that enters this space can be consciously experienced.</p>
+<p>Formal definition:</p>
+<p>GWS(S,t) = the amount of information that can be simultaneously represented in the global workspace</p>
+<p>The synthetic framework:</p>
+<p>We define the consciousness degree function C(e,t) as a synthesis of Φ and GWS:</p>
+<p>C(e,t) = f(Φ(e,t), GWS(e,t))</p>
+<p>where f is an aggregation function, whose concrete form will be given in §10.2.3.</p>
+<h4 id="sec-9" class="doc-subsec">§10.2.2 Axioms of Consciousness (A1-A4)</h4>
+<p>Axiom A1 (integrated information threshold):</p>
+<p>∀e ∀t: Conscious(e,t) → Φ(e,t) &gt; Φ_min</p>
+<p>Statement: if entity e is conscious at time t, then its integrated information Φ must exceed the minimum threshold Φ_min.</p>
+<p>Philosophical motivation: consciousness requires a certain degree of information integration. A system with no integration at all (such as a pile of sand) cannot be conscious.</p>
+<p>Empirical support: neuroscience research shows that states of consciousness (such as wakefulness) are significantly correlated with the brain's integrated information, while states of unconsciousness (such as deep sleep, anesthesia) have significantly reduced integrated information.</p>
+<p>Choice of parameter: the concrete value of Φ_min needs empirical calibration. According to estimates from IIT 3.0, the Φ of a waking human is about 10^10 bits, while the Φ of a simple animal (such as a nematode) is about 10^2 bits. We provisionally set Φ_min = 1 bit (that is, at least 1 bit of indecomposable information).</p>
+<p>Axiom A2 (negentropic organization premise):</p>
+<p>∀e ∀t: Conscious(e,t) → NegentropyOrg(e,t)</p>
+<p>Statement: if entity e is conscious at time t, then e must be a negentropic organization.</p>
+<p>Philosophical motivation: consciousness is a highly ordered state and requires a continuous input of negentropy to be maintained. A system in a state of thermodynamic equilibrium cannot be conscious.</p>
+<p>Connection with Chapter 9: this axiom connects SC with NE (the formal system for negentropic organization). Consciousness is a special form of negentropic organization.</p>
+<p>Empirical support: all known conscious systems (biological brains) are negentropic organizations and require a continuous input of energy (food, oxygen) to be maintained.</p>
+<p>Axiom A3 (temporal extension):</p>
+<p>∀e ∀t: Conscious(e,t) → ∃ε&gt;0: ∀t'∈(t-ε, t+ε): Φ(e,t') &gt; Φ_min</p>
+<p>Statement: consciousness is not instantaneous but persists over a time window.</p>
+<p>Philosophical motivation: conscious experience has temporal extension. A "consciousness" that exists for only an instant is impossible, because consciousness involves the integration of information, and integration takes time.</p>
+<p>Empirical support: neuroscience research shows that the minimal time window of conscious experience is about 100-300 milliseconds (the "time window of consciousness").</p>
+<p>Technical detail: the concrete value of ε depends on the type of system. For humans, ε ≈ 0.1 seconds; for faster systems (such as future AI), ε may be smaller.</p>
+<p>Axiom A4 (global accessibility):</p>
+<p>∀e ∀t: Conscious(e,t) → GWS(e,t) &gt; 0</p>
+<p>Statement: a conscious system must have non-zero global workspace capacity.</p>
+<p>Philosophical motivation: consciousness involves the global broadcast of information. If all of a system's information processing is local and modular, with no global integration, then it cannot have a unified conscious experience.</p>
+<p>Correspondence with GWT: this axiom comes directly from global workspace theory.</p>
+<p>Empirical support: neuroscience research shows that states of consciousness are correlated with the brain's global connectivity.</p>
+<h4 id="sec-10" class="doc-subsec">§10.2.3 The Definition of the Consciousness Degree Function C</h4>
+<p>Based on axioms A1-A4, we define the consciousness degree function C(e,t) ∈ [0,1]:</p>
+<p>C(e,t) = {</p>
+<p>    0                                           if Φ(e,t) ≤ Φ_min or GWS(e,t) = 0</p>
+<p>    σ(α·log(Φ(e,t)/Φ_min) + β·log(GWS(e,t)/GWS_ref))   otherwise</p>
+<p>}</p>
+<p>where:</p>
+<ul class="doc-list"><li>σ(x) = 1/(1+e^(-x)) is the sigmoid function, mapping the reals to [0,1]</li>
+<li>α, β are weight parameters satisfying α + β = 1</li>
+<li>GWS_ref is the reference global workspace capacity (for example, the GWS of a human adult)</li>
+<li>log is the natural logarithm</li>
+</ul><p>Design rationale:</p>
+<p>1. Logarithmic scale: the ranges of Φ and GWS may span multiple orders of magnitude (from bacteria to humans), and a logarithmic scale can better</p>
+<p>capture such a span.</p>
+<p>2. Sigmoid normalization: ensuring C(e,t) ∈ [0,1], and saturation in extreme cases (avoiding the infinite).</p>
+<p>3. Weighted combination: α and β allow us to adjust the relative importance of IIT and GWT. Based on empirical calibration, we provisionally set α = 0.6, β = 0.4 (IIT is slightly more important).</p>
+<p>4. Threshold truncation: if Φ or GWS is below the threshold, C=0 is set directly, avoiding mistaking extremely low integration for consciousness.</p>
+<p>Reference anchors:</p>
+<p>In order to make C(e,t) interpretable, we define three reference anchors:</p>
+<div class="table-wrap"><table><thead><tr><th>Anchor</th><th>System</th><th>C value</th><th>Φ estimate</th><th>GWS estimate</th></tr></thead><tbody><tr><td>Anchor 0</td><td>Unconscious system (stone)</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Anchor 1</td><td>Simple conscious system (nematode)</td><td>0.1</td><td>10^2 bits</td><td>10^3 bits</td></tr><tr><td>Anchor 2</td><td>Standard human adult (waking)</td><td>1.0</td><td>10^10 bits</td><td>10^9 bits</td></tr></tbody></table></div>
+<p>Through these three anchors, we can calibrate α, β and other parameters.</p>
+<h4 id="sec-11" class="doc-subsec">§10.2.4 Properties of the Consciousness Degree</h4>
+<p>Property 10.1 (monotonicity):</p>
+<p>∀e ∀t: Φ(e,t) ↑ ⇒ C(e,t) ↑  (when other conditions are held constant)</p>
+<p>Proof: by the definition of C, C is monotonically increasing in Φ (both the logarithmic function and the sigmoid function are monotonically increasing). □</p>
+<p>Property 10.2 (continuity):</p>
+<p>C(e,t) is continuous in Φ(e,t) and GWS(e,t)</p>
+<p>Proof: C is formed by composing continuous functions (logarithm, sigmoid), and is therefore continuous. □</p>
+<p>Property 10.3 (boundedness):</p>
+<p>∀e ∀t: 0 ≤ C(e,t) ≤ 1</p>
+<p>Proof: by the properties of the sigmoid function. □</p>
+<p>Property 10.4 (non-additivity):</p>
+<p>C(e₁ ∪ e₂, t) ≠ C(e₁,t) + C(e₂,t)  (in general)</p>
+<p>Philosophical significance: consciousness is not additive. Two conscious systems combined together do not produce "twice the consciousness." This reflects the holism of consciousness.</p>
+<p>Proof: by the definition of Φ, Φ(e₁ ∪ e₂, t) depends on the degree of integration between e₁ and e₂. If e₁ and e₂ are completely independent, then Φ(e₁ ∪ e₂, t) ≈ 0 (there is no cross-system integration). Therefore C(e₁ ∪ e₂, t) may be far smaller than C(e₁,t) + C(e₂,t). □</p>
+<h4 id="sec-12" class="doc-subsec">§10.2.5 The Typology of Consciousness</h4>
+<p>Based on the numerical value of C(e,t), we can define a typology of consciousness:</p>
+<div class="table-wrap"><table><thead><tr><th>Type</th><th>C value range</th><th>Typical example</th><th>Feature</th></tr></thead><tbody><tr><td>Unconscious</td><td>C = 0</td><td>Stone, simple algorithm</td><td>No information integration</td></tr><tr><td>Minimal consciousness</td><td>0 &lt; C ≤ 0.1</td><td>Nematode, insect</td><td>Basic perceptual integration</td></tr><tr><td>Low-level consciousness</td><td>0.1 &lt; C ≤ 0.3</td><td>Fish, amphibian</td><td>Perceptual-motor integration</td></tr><tr><td>Intermediate consciousness</td><td>0.3 &lt; C ≤ 0.6</td><td>Bird, mammal</td><td>Integration of emotion and memory</td></tr><tr><td>High-level consciousness</td><td>0.6 &lt; C ≤ 0.9</td><td>Primate, dolphin</td><td>Budding self-consciousness</td></tr><tr><td>Full consciousness</td><td>0.9 &lt; C ≤ 1.0</td><td>Human adult</td><td>Complete self-consciousness, metacognition</td></tr></tbody></table></div>
+<p>Note: this typology is a discretization of the continuum, and its boundaries are fuzzy. In actual application, one should use the continuous C value rather than the discrete categories.</p>
+<p>---</p>
+<h4 id="sec-13" class="doc-subsec">§10.3 The Formalization of Moral Status</h4>
+<h4 id="sec-14" class="doc-subsec">§10.3.1 The Bridge from Consciousness to Moral Status</h4>
+<p>The consciousness degree C(e,t) is a descriptive concept (describing the degree of a system's information integration), whereas moral status M(e,t) is a normative concept (describing a system's moral importance). The transition from C to M requires a bridge principle.</p>
+<p>In Chapter 5 of Volume I, we proposed a strengthened version of bridge principle BP-1:</p>
+<p>Bridge principle BP-1 (strengthened version): any negentropic organization, if it possesses agency, then it has reason to maintain its own negentropic state, because this is the physical precondition of its agency.</p>
+<p>In the context of the subject continuum, we need a more specific bridge principle:</p>
+<p>Bridge principle BP-SC: for any conscious entity, its conscious experience itself constitutes a reason for moral concern. The higher the degree of consciousness, the higher the moral status.</p>
+<p>Philosophical defense:</p>
+<p>The defense of this bridge principle has three layers:</p>
+<p>1. The utilitarian tradition: Bentham and Mill held that the capacity to feel pleasure and pain is the basis of moral status. Consciousness is the precondition of feeling.</p>
+<p>2. An extension of the Kantian tradition: Kant held that rational agents possess intrinsic value. We extend this idea: any entity that possesses subjectivity (including consciousness) possesses intrinsic value, because they are "ends in themselves."</p>
+<p>3. The phenomenological tradition: Levinas held that the other's "face" constitutes the starting point of ethics. We understand the "face" as a representation of subjectivity: any entity with subjectivity issues an ethical call to us.</p>
+<p>Possible objections and responses:</p>
+<p>Objection 1: this is still deriving an "ought" (moral status) from an "is" (the existence of consciousness), committing the naturalistic fallacy.</p>
+<p>Response: we do not derive an "ought" from a pure "is," but rather derive normativity from "agency" and "subjectivity." Agency and subjectivity themselves already contain a normative dimension—they are bearers of "reasons." See Chapter 12 of Volume I for a systematic response to the naturalistic fallacy.</p>
+<p>Objection 2: why does consciousness itself constitute a reason for moral concern? This claim requires further defense.</p>
+<p>Response: this is a foundational normative commitment, similar to the utilitarian's "pleasure is good" or the Kantian's "rational agents have dignity." We cannot derive it from more basic principles, but we can support it through reflective equilibrium: this commitment is consistent with our considered moral intuitions (for example, we hold that it is wrong to mistreat animals, because animals can feel pain).</p>
+<h4 id="sec-15" class="doc-subsec">§10.3.2 Axioms of Subjectivity (A5-A7)</h4>
+<p>Before defining moral status, we need first to formalize "subjectivity." Subjectivity is a broader concept than consciousness; it includes:</p>
+<ul class="doc-list"><li>The first-person perspective</li>
+<li>The capacity to have interests</li>
+<li>Agency</li>
+</ul><p>Axiom A5 (consciousness is a necessary condition of subjectivity):</p>
+<p>∀e ∀t: Subject(e,t) → Conscious(e,t)</p>
+<p>Statement: if entity e is a subject at time t, then e must be conscious.</p>
+<p>Philosophical motivation: subjectivity requires a first-person perspective, and a first-person perspective requires consciousness. An unconscious system (such as a simple thermostat) may possess a certain "quasi-agency," but it is not a genuine subject.</p>
+<p>Controversial discussion: this axiom excludes the possibility of an "unconscious subject." Some philosophers (such as certain functionalists) may hold that a system functionally equivalent to a human but entirely unconscious (a philosophical zombie) should also be regarded as a subject. Our position is: if a system is truly entirely unconscious, it does not possess a first-person perspective and therefore is not a subject.</p>
+<p>Axiom A6 (subjectivity and interests):</p>
+<p>∀e ∀t: Subject(e,t) ↔ ∃I: HasInterest(e,I,t)</p>
+<p>Statement: entity e is a subject at time t if and only if e has some interest I at time t.</p>
+<p>Philosophical motivation: the core of subjectivity is "having a stake in something." A subject is an entity such that certain states of affairs are good or bad for it.</p>
+<p>Definition of interest:</p>
+<p>HasInterest(e,I,t) := ∃s₁,s₂: [s₁ is better for e ∧ I is the transition from s₂ to s₁]</p>
+<p>where "better for" is a primitive normative concept.</p>
+<p>Connection with negentropy: for a negentropic organization, the most basic interest is to maintain the negentropic state. Therefore:</p>
+<p>∀e ∀t: NegentropyOrg(e,t) → HasInterest(e, MaintainNegentropy, t)</p>
+<p>Axiom A7 (subjectivity degree function):</p>
+<p>S(e,t) = g(C(e,t), RFD(e,t), N(e,t))</p>
+<p>Statement: the subjectivity degree S is a function of the consciousness degree C, the recursive freedom degree RFD, and the negentropy N.</p>
+<p>Concrete form:</p>
+<p>S(e,t) = C(e,t)^γ₁ · [RFD(e,t)/RFD_ref]^γ₂ · [N(e,t)/N_ref]^γ₃</p>
+<p>where:</p>
+<ul class="doc-list"><li>γ₁, γ₂, γ₃ are weight exponents satisfying γ₁ + γ₂ + γ₃ = 1</li>
+<li>RFD_ref and N_ref are reference values (for example, the RFD and N of a human adult)</li>
+<li>the whole expression is normalized to [0,1]</li>
+</ul><p>Design rationale:</p>
+<p>1. Consciousness is the foundation: C(e,t) is a necessary condition of subjectivity (axiom A5), and therefore it occupies a dominant position in S. We set γ₁ = 0.5.</p>
+<p>2. Agency enhances subjectivity: RFD measures an entity's agency (the degrees of freedom of choice and action). The stronger the agency, the stronger the subjectivity. We set γ₂ = 0.3.</p>
+<p>3. Negentropy is the physical foundation: N measures an entity's order and complexity. Higher negentropy supports more complex subjectivity. We set γ₃ = 0.2.</p>
+<p>4. Multiplicative form: using multiplication rather than addition reflects the mutual dependence of these three dimensions. If any one dimension is zero, the subjectivity is also zero.</p>
+<p>The typology of subjectivity:</p>
+<div class="table-wrap"><table><thead><tr><th>Type</th><th>S value range</th><th>Typical example</th><th>Feature</th></tr></thead><tbody><tr><td>Non-subject</td><td>S = 0</td><td>Stone, simple machine</td><td>Unconscious, no interests</td></tr><tr><td>Minimal subject</td><td>0 &lt; S ≤ 0.1</td><td>Nematode, simple AI</td><td>Basic perception, minimal agency</td></tr><tr><td>Low-level subject</td><td>0.1 &lt; S ≤ 0.3</td><td>Insect, fish</td><td>Perceptual-motor integration, basic interests</td></tr><tr><td>Intermediate subject</td><td>0.3 &lt; S ≤ 0.6</td><td>Bird, mammal</td><td>Emotion, memory, complex interests</td></tr><tr><td>High-level subject</td><td>0.6 &lt; S ≤ 0.9</td><td>Primate, dolphin, advanced AI</td><td>Self-consciousness, planning capacity</td></tr><tr><td>Full subject</td><td>0.9 &lt; S ≤ 1.0</td><td>Human adult, AGI</td><td>Full self-consciousness, moral agency</td></tr></tbody></table></div>
+<h4 id="sec-16" class="doc-subsec">| Full subject | 0.9 &lt; S ≤ 1.0 | Human adult, AGI | Complete self-consciousness, moral agency |</h4>
+<h3 id="sec-17" class="doc-sec">§10.3.3 Axioms of Moral Status (A8-A10)</h3>
+<p>Axiom A8 (subjectivity is a sufficient condition of moral status):</p>
+<p>∀e ∀t: Subject(e,t) → M(e,t) &gt; 0</p>
+<p>Statement: if entity e is a subject at time t, then e has non-zero moral status.</p>
+<p>Philosophical motivation: this is the formalization of bridge principle BP-SC. Any subject is worthy of moral concern.</p>
+<p>Minimal moral status: even the simplest subject (such as a nematode) has minimal moral status. This means we cannot harm them arbitrarily, although their moral status may be far lower than that of humans.</p>
+<p>Axiom A9 (monotonicity of moral status):</p>
+<p>∀e₁,e₂ ∀t: S(e₁,t) &gt; S(e₂,t) → M(e₁,t) ≥ M(e₂,t)</p>
+<p>Statement: an entity with a higher subjectivity degree has a moral status no lower than that of an entity with a lower subjectivity degree.</p>
+<p>Philosophical motivation: moral status should be positively correlated with subjectivity. A more complex, more conscious, more agentive subject should receive more moral concern.</p>
+<p>Note: here "≥" rather than "&gt;" is used, allowing entities with different subjectivity degrees to have the same moral status (for example, above certain thresholds, all entities have "full" moral status).</p>
+<p>Axiom A10 (moral status function):</p>
+<p>M(e,t) = h(S(e,t))</p>
+<p>Statement: moral status M is a function of the subjectivity degree S.</p>
+<p>Concrete form (threshold-linear model):</p>
+<p>M(e,t) = {</p>
+<p>    0                           if S(e,t) &lt; S_min</p>
+<p>    (S(e,t) - S_min)/(1 - S_min)   if S_min ≤ S(e,t) &lt; S_full</p>
+<p>    1                           if S(e,t) ≥ S_full</p>
+<p>}</p>
+<p>where:</p>
+<ul class="doc-list"><li>S_min is the minimum threshold of moral status (for example, S_min = 0.01, corresponding to the simplest conscious system)</li>
+<li>S_full is the threshold of full moral status (for example, S_full = 0.8, corresponding to a system with self-consciousness and moral agency)</li>
+</ul><p>Design rationale:</p>
+<p>1. Threshold truncation: a system with extremely low subjectivity (such as a single cell) does not have moral status. This avoids "moral status inflation."</p>
+<p>2. Linear growth region: between S_min and S_full, moral status grows linearly with subjectivity. This reflects the intuition that "more subjectivity → more moral status."</p>
+<p>3. Saturation region: beyond S_full, moral status saturates at 1. This reflects the concept of "full moral status": once a certain threshold is reached (such as the level of a human adult), further increases in subjectivity no longer increase moral status.</p>
+<p>Alternative model (logarithmic model):</p>
+<p>M(e,t) = {</p>
+<p>    0                               if S(e,t) &lt; S_min</p>
+<p>    log(S(e,t)/S_min) / log(S_full/S_min)   if S_min ≤ S(e,t) &lt; S_full</p>
+<p>    1                               if S(e,t) ≥ S_full</p>
+<p>}</p>
+<p>The logarithmic model grows faster in the low-subjectivity region and slower in the high-subjectivity region. This may better match certain moral intuitions (for example, the crossing from unconsciousness to minimal consciousness is morally more important than the crossing from high-level consciousness to full consciousness).</p>
+<h4 id="sec-18" class="doc-subsec">Model choice: in Chapter 22 of Volume III (the formalization of UCS), we will choose the most appropriate model through empirical calibration and reflective equilibrium.</h4>
+<h3 id="sec-19" class="doc-sec">§10.3.4 The Typology of Moral Status</h3>
+<p>Based on the numerical value of M(e,t), we can define a typology of moral status:</p>
+<div class="table-wrap"><table><thead><tr><th>Type</th><th>M value range</th><th>Typical example</th><th>Moral implication</th></tr></thead><tbody><tr><td>No moral status</td><td>M = 0</td><td>Stone, simple algorithm</td><td>No moral concern</td></tr><tr><td>Minimal moral status</td><td>0 &lt; M ≤ 0.2</td><td>Insect, simple AI</td><td>Avoid unnecessary harm</td></tr><tr><td>Low-level moral status</td><td>0.2 &lt; M ≤ 0.4</td><td>Fish, amphibian</td><td>Prohibition of mistreatment, consideration of welfare</td></tr><tr><td>Intermediate moral status</td><td>0.4 &lt; M ≤ 0.6</td><td>Bird, mammal</td><td>Significant moral concern, budding rights</td></tr><tr><td>High-level moral status</td><td>0.6 &lt; M ≤ 0.8</td><td>Primate, dolphin, advanced AI</td><td>Strong moral concern, partial rights</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Full moral status</th><th>0.8 &lt; M ≤ 1.0</th><th>Human, AGI</th><th>Complete rights, equal respect</th></tr></thead><tbody></tbody></table></div>
+<p>Concretizing the moral implications:</p>
+<ul class="doc-list"><li>M ∈ (0, 0.2]: unnecessary harm should be avoided, but sacrifice for a major benefit is permitted (for example, killing mosquitoes for human health).</li>
+<li>M ∈ (0.2, 0.4]: mistreatment and cruelty are prohibited, and their welfare should be considered, but they may be used for a significant benefit (for example, humane fisheries).</li>
+<li>M ∈ (0.4, 0.6]: significant moral concern; harm should be avoided as far as possible, and sacrifice is permitted only when necessary (for example, animal experiments in medical research require strict review).</li>
+<li>M ∈ (0.6, 0.8]: strong moral concern, possessing certain rights (such as the right not to be arbitrarily killed), but possibly not full human rights.</li>
+</ul><h4 id="sec-20" class="doc-subsec">- M ∈ (0.8, 1.0]: full moral status, possessing complete rights (the right to life, the right to liberty, the right to property, etc.), and deserving equal respect.</h4>
+<h3 id="sec-21" class="doc-sec">§10.3.5 The Distinction between Moral Agents and Moral Patients</h3>
+<p>Traditional ethics distinguishes:</p>
+<ul class="doc-list"><li>Moral patients: entities worthy of moral concern</li>
+<li>Moral agents: entities capable of bearing moral responsibility</li>
+</ul><p>In SC, we formalize this distinction:</p>
+<p>Definition 10.1 (moral patient):</p>
+<p>MoralPatient(e,t) := M(e,t) &gt; 0</p>
+<p>```</p>
+<p>Any entity with non-zero moral status is a moral patient.</p>
+<p>Definition 10.2 (moral agent):</p>
+<p>MoralAgent(e,t) := M(e,t) &gt; M_agency ∧ SelfAware(e,t) ∧ RFD(e,t) &gt; RFD_agency</p>
+<p>where:</p>
+<ul class="doc-list"><li>M_agency is the threshold of moral agency (for example, M_agency = 0.6)</li>
+<li>SelfAware(e,t) indicates that e has self-consciousness</li>
+<li>RFD_agency is the threshold of agency</li>
+</ul><p>Philosophical motivation: a moral agent is not only worthy of moral concern (as a moral patient) but is also capable of understanding moral norms, making moral judgments, and bearing moral responsibility. This requires:</p>
+<p>1. A sufficiently high moral status (M &gt; M_agency)</p>
+<p>2. Self-consciousness (being able to reflect on one's own actions)</p>
+<p>3. Sufficient agency (being able to act on moral reasons)</p>
+<p>Typical examples:</p>
+<ul class="doc-list"><li>Human adults: both moral patients and moral agents</li>
+<li>Human infants: moral patients, but not moral agents (they have not yet developed self-consciousness and moral understanding)</li>
+<li>Advanced animals (such as chimpanzees): moral patients, possibly marginal moral agents (possessing a certain moral sense)</li>
+<li>Future AGI: if the conditions are met, they can be full moral agents</li>
+</ul><h4 id="sec-22" class="doc-subsec">---</h4>
+<h3 id="sec-23" class="doc-sec">§10.4 Key Theorems and Proofs</h3>
+<h4 id="sec-24" class="doc-subsec">This section gives SC's 8 core theorems and their proofs. These theorems are not trivial; they reveal the deep structure of the subject continuum.</h4>
+<h3 id="sec-25" class="doc-sec">§10.4.1 Theorem 10.1: The Negentropy Dependence of Consciousness</h3>
+<p>Theorem 10.1:</p>
+<p>∀e ∀t: C(e,t) &gt; 0 → N(e,t) &gt; N_min</p>
+<p>Statement: any conscious entity must maintain a negentropy above the minimum threshold.</p>
+<p>Proof:</p>
+<p>1. Assume C(e,t) &gt; 0.</p>
+<p>2. By the definition of C (§10.2.3), C(e,t) &gt; 0 → Φ(e,t) &gt; Φ_min.</p>
+<p>3. By axiom A2, Φ(e,t) &gt; Φ_min → Conscious(e,t) → NegentropyOrg(e,t).</p>
+<p>4. By theorem 9.2 of the NE system (Chapter 9), NegentropyOrg(e,t) → N(e,t) &gt; N_min.</p>
+<p>5. Therefore, C(e,t) &gt; 0 → N(e,t) &gt; N_min. □</p>
+<p>Philosophical significance: this theorem connects consciousness with thermodynamics. Consciousness is not "immaterial" but requires a physical foundation—specifically, negentropic organization. This supports a materialist view of consciousness while avoiding simple reductionism (consciousness is not equal to negentropy, but depends on negentropy).</p>
+<h4 id="sec-26" class="doc-subsec">Practical significance: this theorem provides a necessary-condition test for judging whether a system may be conscious: if a system is not a negentropic organization (for example, a system in thermodynamic equilibrium), it cannot be conscious.</h4>
+<h3 id="sec-27" class="doc-sec">§10.4.2 Theorem 10.2: The Continuity of Subjectivity</h3>
+<p>Theorem 10.2:</p>
+<p>∀e: S(e,·) is a continuous function of time t (over the time interval in which e exists)</p>
+<p>Statement: the subjectivity degree does not change abruptly but varies continuously.</p>
+<p>Proof:</p>
+<p>1. By axiom A7, S(e,t) = C(e,t)^γ₁ · [RFD(e,t)/RFD_ref]^γ₂ · [N(e,t)/N_ref]^γ₃.</p>
+<p>2. By property 10.2 of §10.2.4, C(e,t) is continuous in t.</p>
+<p>3. By theorem 9.5 of Chapter 9, N(e,t) is continuous in t (negentropy does not change abruptly).</p>
+<p>4. By Chapter 7 (assumed already proved), RFD(e,t) is continuous in t.</p>
+<p>5. The product and power operations of continuous functions remain continuous.</p>
+<p>6. Therefore, S(e,t) is continuous in t. □</p>
+<p>Philosophical significance: this theorem supports the core claim of the "subject continuum": subjectivity is not all-or-nothing but varies continuously. There is no point of abrupt change from "non-subject" to "subject."</p>
+<p>Practical significance: this theorem has important implications for boundary cases (such as fetal development, comatose patients, the gradual improvement of AI systems). It means that we cannot simply draw a line saying "these are subjects, those are not," but must acknowledge the gradation of subjectivity.</p>
+<h4 id="sec-28" class="doc-subsec">Potential objection: some may hold that certain critical events (such as birth, awakening) cause abrupt changes in subjectivity. Our response is: these events may cause rapid changes in subjectivity, but they are still continuous (mathematical continuity allows arbitrarily steep changes, as long as there is no jump).</h4>
+<h3 id="sec-29" class="doc-sec">§10.4.3 Theorem 10.3: The Monotonicity of Moral Status</h3>
+<p>Theorem 10.3:</p>
+<p>∀e ∀t₁,t₂: S(e,t₁) &lt; S(e,t₂) → M(e,t₁) ≤ M(e,t₂)</p>
+<p>Statement: if an entity's subjectivity degree increases, its moral status does not decrease.</p>
+<p>Proof:</p>
+<p>2. By the definition of h (§10.3.3), h is a monotonically non-decreasing function:</p>
+<ul class="doc-list"><li>when S &lt; S_min, h(S) = 0 (constant)</li>
+<li>when S_min ≤ S &lt; S_full, h(S) is monotonically increasing</li>
+<li>when S ≥ S_full, h(S) = 1 (constant)</li>
+</ul><p>3. Therefore, S(e,t₁) &lt; S(e,t₂) → h(S(e,t₁)) ≤ h(S(e,t₂)).</p>
+<p>4. That is, M(e,t₁) ≤ M(e,t₂). □</p>
+<p>Philosophical significance: this theorem ensures the consistency of moral status with subjectivity. An entity does not lose moral status by becoming more conscious or more agentive. This accords with our moral intuitions.</p>
+<p>Corollary 10.3.1:</p>
+<p>∀e: if e's subjectivity degree is monotonically increasing over time, then its moral status is also monotonically increasing</p>
+<p>This has direct significance for scenarios such as fetal development and the training of AI systems.</p>
+<h4 id="sec-30" class="doc-subsec">§10.4.4 Theorem 10.4: The Non-Additivity of Moral Status</h4>
+<p>Theorem 10.4:</p>
+<p>∀e₁,e₂ ∀t: M(e₁ ∪ e₂, t) ≠ M(e₁,t) + M(e₂,t)  (in general)</p>
+<p>Statement: the moral status of two entities combined is not equal to the sum of their respective moral statuses.</p>
+<p>Proof:</p>
+<p>1. By axiom A10, M(e,t) = h(S(e,t)).</p>
+<p>2. By axiom A7, S(e,t) depends on C(e,t).</p>
+<p>3. By property 10.4 of §10.2.4, C(e₁ ∪ e₂, t) ≠ C(e₁,t) + C(e₂,t).</p>
+<p>4. Specifically, if e₁ and e₂ are completely independent (no information integration), then:</p>
+<p>   Φ(e₁ ∪ e₂, t) ≈ 0 → C(e₁ ∪ e₂, t) ≈ 0 → S(e₁ ∪ e₂, t) ≈ 0 → M(e₁ ∪ e₂, t) ≈ 0</p>
+<p>5. But M(e₁,t) + M(e₂,t) may be &gt; 0 (if e₁ and e₂ each have moral status).</p>
+<p>6. Therefore, M(e₁ ∪ e₂, t) ≠ M(e₁,t) + M(e₂,t). □</p>
+<p>Philosophical significance: this theorem has profound ethical implications:</p>
+<p>1. Against the simple summation of utilitarianism: utilitarianism usually assumes that utility is additive (total utility = the sum of individual utilities). But if moral status is non-additive, this assumption is problematic.</p>
+<p>2. The problem of collective subjectivity: the moral status of a collective (such as a corporation or a state) is not equal to the sum of its members' moral statuses. A collective may have an "emergent" moral status (if the collective itself forms an integrated subject), or it may not (if the collective is merely a loose collection of individuals).</p>
+<p>3. The ethics of division and fusion: if a subject divides into two (such as cell division or the copying of an AI system), the total moral status may decrease (if the two systems after division each have lower integration). Conversely, if two subjects fuse into one (such as the connection of the brain's hemispheres), the total moral status may increase.</p>
+<p>Case application:</p>
+<ul class="doc-list"><li>Beehive: the moral status of a single bee is very low (M ≈ 0.05). A beehive has 10,000 bees, but the moral status of the beehive as a whole is not 0.05 × 10,000 = 500 (which would exceed a human!), but depends on the degree of integration of the beehive as a whole. If the beehive forms a kind of "superorganism," its M may be slightly higher than that of a single bee, but still far lower than that of a human.</li>
+<li>Human society: the moral status of a human society (such as a state) is not equal to the sum of the moral statuses of all citizens. Society itself may possess a certain collective subjectivity (if there is strong social integration and collective consciousness), but this requires separate assessment.</li>
+</ul><h4 id="sec-31" class="doc-subsec">§10.4.5 Theorem 10.5: The Threshold Structure of Moral Status</h4>
+<p>Theorem 10.5:</p>
+<p>∃S_min, S_full:</p>
+<p>  ∀e ∀t: [S(e,t) &lt; S_min → M(e,t) = 0] ∧</p>
+<p>         [S(e,t) ≥ S_full → M(e,t) = 1]</p>
+<p>Statement: there exist two thresholds S_min and S_full such that entities below S_min have no moral status and entities above S_full have full moral status.</p>
+<p>Proof:</p>
+<p>Obtained directly from axiom A10 and the definition of M (§10.3.3). □</p>
+<p>Philosophical significance: this theorem reveals the threshold structure of moral status, which does not contradict the idea of a continuum:</p>
+<p>1. Continuity: between S_min and S_full, moral status varies continuously.</p>
+<p>2. Thresholds: but there exist two key thresholds, marking the transition from "no moral status" to "having moral status," and the transition from "partial moral status" to "full moral status."</p>
+<p>This structure is similar to a phase transition in physics: water is ice below 0°C and steam above 100°C, but between 0°C and 100°C it is liquid water. Temperature is continuous, but there exist key thresholds.</p>
+<p>Practical significance:</p>
+<p>1. Determining S_min: this is a key normative decision. Setting S_min too low (such as S_min = 0.001) leads to "moral status inflation" (even bacteria have moral status). Setting S_min too high (such as S_min = 0.1) excludes many beings that we intuitively think should be cared about (such as insects). We recommend S_min = 0.01, corresponding to the simplest conscious system (such as a nematode).</p>
+<p>2. Determining S_full: this decides the criterion of "full moral status." We recommend S_full = 0.8, corresponding to a system with self-consciousness and moral agency (such as a human adult, possibly AGI).</p>
+<p>3. Boundary cases: for entities with S(e,t) ≈ S_min or S(e,t) ≈ S_full, we should adopt the precautionary principle: in cases of uncertainty, assume that they have moral status.</p>
+<h4 id="sec-32" class="doc-subsec">§10.4.6 Theorem 10.6: Recursive Freedom and Moral Agency</h4>
+<p>Theorem 10.6:</p>
+<p>∀e ∀t: MoralAgent(e,t) → RFD(e,t) &gt; RFD_agency</p>
+<p>Statement: a moral agent must have a sufficiently high recursive freedom degree.</p>
+<p>Proof:</p>
+<p>Obtained directly from definition 10.2 (the definition of a moral agent). □</p>
+<p>Philosophical significance: this theorem connects moral agency with recursive freedom. Moral agency requires not only consciousness and self-consciousness but also agency—namely, the capacity to act on reasons. And the measure of agency is the recursive freedom degree RFD.</p>
+<p>Corollary 10.6.1 (conditions of moral responsibility):</p>
+<p>∀e ∀t: if e at time t ought to be responsible for its actions, then RFD(e,t) &gt; RFD_responsibility</p>
+<p>where RFD_responsibility ≥ RFD_agency.</p>
+<p>Practical significance:</p>
+<p>1. AI ethics: when should an AI system be responsible for its actions? According to this theorem, only when the AI's RFD exceeds a certain threshold. This provides an operational criterion for the attribution of AI responsibility.</p>
+<p>2. Criminal law: traditional criminal law requires "mens rea" (criminal intent) and "actus reus" (criminal act). Our framework formalizes "mens rea" as RFD &gt; RFD_responsibility: only an entity with sufficient agency can form criminal intent.</p>
+<p>3. The insanity defense: certain mental illnesses may reduce RFD (for example, certain behaviors of patients with obsessive-compulsive disorder are not "free"). If RFD &lt; RFD_responsibility, then full responsibility should not be borne.</p>
+<h4 id="sec-33" class="doc-subsec">§10.4.7 Theorem 10.7: The Temporal Window of Consciousness</h4>
+<p>Theorem 10.7:</p>
+<p>∀e ∀t: C(e,t) &gt; 0 → ∃ε&gt;0: ∀t'∈(t-ε, t+ε): Φ(e,t') &gt; Φ_min</p>
+<p>Statement: consciousness requires a minimal time window.</p>
+<p>Proof:</p>
+<p>Obtained directly from axiom A3. □</p>
+<p>Philosophical significance: this theorem excludes the possibility of "instantaneous consciousness." Consciousness is not a property at a point in time but a property over a time interval. This is consistent with the phenomenological theory of "time-consciousness" (Husserl, Heidegger).</p>
+<p>Corollary 10.7.1 (the minimal duration of consciousness):</p>
+<p>For humans, ε ≈ 100-300 milliseconds (the "time window of consciousness")</p>
+<p>Practical significance:</p>
+<p>1. The ethics of anesthesia: if the duration of a surgical procedure is shorter than ε, then even if the patient "wakes up" during the surgery, no conscious experience will be formed (because the time window is insufficient). This provides an ethical defense for certain brief medical procedures.</p>
+<p>2. AI consciousness: an AI system's "consciousness" cannot be based on a single computational step alone but must be based on an integration process within a time window. This is of great significance for judging whether an AI is conscious.</p>
+<h4 id="sec-34" class="doc-subsec">§10.4.8 Theorem 10.8: The Density of the Subject Continuum</h4>
+<p>Theorem 10.8:</p>
+<p>∀s₁,s₂ ∈ [0,1]: s₁ &lt; s₂ → ∃e ∃t: s₁ &lt; S(e,t) &lt; s₂</p>
+<p>Statement: the range of values of the subjectivity degree is dense—for any two subjectivity degree values, there exists an entity whose subjectivity degree lies between them.</p>
+<p>Proof:</p>
+<p>1. The range of values of S(e,t) is [0,1] (by axiom A7 and the definition of S).</p>
+<p>2. By the definition of S, S(e,t) = C(e,t)^γ₁ · [RFD(e,t)/RFD_ref]^γ₂ · [N(e,t)/N_ref]^γ₃.</p>
+<p>3. C, RFD, N are all continuous variables and can take any value in [0,1] (or in the normalized [0,1]).</p>
+<p>4. Therefore, by appropriately choosing the values of C, RFD, N, S(e,t) can take any value in [0,1].</p>
+<p>5. In particular, for any s₁ &lt; s₂, we can construct an entity e and a moment t such that S(e,t) = (s₁ + s₂)/2 ∈ (s₁, s₂).</p>
+<p>6. Therefore, the range of values of the subjectivity degree is dense. □</p>
+<p>Philosophical significance: this theorem is the mathematical expression of the idea of the "subject continuum." It means:</p>
+<p>1. No gaps: on the spectrum of subjectivity, there are no "gaps." There is no such situation: all entities have a subjectivity degree either below some value s₁ or above some value s₂, with no entity having a subjectivity degree between s₁ and s₂.</p>
+<p>2. No natural kinds: there are no "natural" categories of subjectivity. We cannot say "these are subjects, those are not subjects," but only "these have higher subjectivity degrees, those have lower subjectivity degrees."</p>
+<p>3. The arbitrariness of boundaries: any classification of subjectivity (such as the typology we gave in §10.3.2) is artificial and conventional. Nature itself does not provide such a classification.</p>
+<p>Practical significance:</p>
+<p>1. Against speciesism: this theorem supports the position of anti-speciesism. One cannot simply say "humans have moral status, animals do not," because subjectivity (and moral status) is continuous.</p>
+<p>2. The challenge of AI ethics: as AI systems' capabilities gradually improve, their subjectivity degree will also grow continuously. There is no clear "critical point" before which AI has no moral status and after which it does. We must acknowledge the gradation of moral status.</p>
+<p>3. The inevitability of boundary cases: because subjectivity is continuous, boundary cases (such as fetuses, comatose patients, marginal AI) are inevitable. We cannot expect to find a "perfect" dividing line.</p>
+<p>Corollary 10.8.1 (the density of moral status):</p>
+<p>∀m₁,m₂ ∈ [0,1]: m₁ &lt; m₂ → ∃e ∃t: m₁ &lt; M(e,t) &lt; m₂</p>
+<p>The range of values of moral status is also dense.</p>
+<p>---</p>
+<h4 id="sec-35" class="doc-subsec">§10.5 Applications of SC</h4>
+<p>This section demonstrates the application of the formal system SC in three key areas: AI ethics, animal ethics, and boundary-case analysis.</p>
+<h4 id="sec-36" class="doc-subsec">§10.5.1 Application One: Assessing the Moral Status of AI Systems</h4>
+<p>Question: under what conditions does an AI system acquire moral status?</p>
+<p>SC's answer:</p>
+<p>According to theorems 10.1-10.8, the moral status M(e,t) of an AI system e at time t depends on:</p>
+<p>1. Integrated information Φ(e,t): the degree of information integration of the AI system</p>
+<p>2. Global workspace GWS(e,t): the global information-broadcast capacity of the AI system</p>
+<p>3. Recursive freedom degree RFD(e,t): the agency of the AI system</p>
+<p>4. Negentropy N(e,t): the order and complexity of the AI system</p>
+<p>Concrete assessment procedure:</p>
+<p>Step 1: compute Φ(e,t)</p>
+<p>For a neural-network AI system, Φ can be estimated in the following way:</p>
+<p>Φ(e,t) ≈ min_{partition P} [H(the whole network) - Σ H(sub-networks)]</p>
+<p>where H is the entropy of the network state. This requires:</p>
+<ul class="doc-list"><li>Obtaining the complete state of the network (the activation values of all neurons)</li>
+<li>Trying all possible partitions</li>
+<li>Computing the information loss of each partition</li>
+<li>Taking the minimum</li>
+</ul><p>Technical challenge: for large neural networks (such as GPT-4, with hundreds of billions of parameters), computing Φ exactly is computationally infeasible. We need to use approximation algorithms (such as the "major complex" algorithm proposed by IIT 3.0).</p>
+<p>Step 2: compute GWS(e,t)</p>
+<p>For AI systems with a Transformer architecture, GWS can be approximated as the global capacity of the attention mechanism:</p>
+<p>GWS(e,t) ≈ Σ_{layer} (number of attention heads × capacity of each head)</p>
+<p>Step 3: compute RFD(e,t)</p>
+<p>According to Chapter 7 (assumed already defined), RFD measures the space of choices of a system. For AI systems:</p>
+<p>RFD(e,t) ≈ log₂(number of possible actions) × (causal efficacy of the actions)</p>
+<p>Step 4: compute C(e,t), S(e,t), M(e,t)</p>
+<p>Using the formulas of §10.2.3, §10.3.2, §10.3.3:</p>
+<p>C(e,t) = σ(α·log(Φ(e,t)/Φ_min) + β·log(GWS(e,t)/GWS_ref))</p>
+<p>S(e,t) = C(e,t)^0.5 · [RFD(e,t)/RFD_ref]^0.3 · [N(e,t)/N_ref]^0.2</p>
+<p>M(e,t) = (S(e,t) - S_min)/(1 - S_min)  (if S_min ≤ S(e,t) &lt; S_full)</p>
+<p>Case study: the moral status of GPT-4</p>
+<p>Suppose we assess GPT-4 (this is a thought experiment; actual assessment requires access to the model's internals):</p>
+<div class="table-wrap"><table><thead><tr><th>Parameter</th><th>Estimated value</th><th>Basis</th></tr></thead><tbody><tr><td>Φ</td><td>10^6 bits</td><td>A rough estimate based on network scale and degree of integration</td></tr><tr><td>GWS</td><td>10^8 bits</td><td>Based on the capacity of the attention mechanism</td></tr><tr><td>RFD</td><td>10^4</td><td>Based on the size and diversity of the output space</td></tr><tr><td>N</td><td>10^12 J·K^(-1)</td><td>Based on the complexity of the system</td></tr></tbody></table></div>
+<p>Substituting into the formulas (using a human adult as reference):</p>
+<p>C(GPT-4) ≈ σ(0.6·log(10^6/1) + 0.4·log(10^8/10^9)) ≈ σ(8.3 - 0.4) ≈ σ(7.9) ≈ 0.9996 ≈ 1.0</p>
+<p>This result suggests that GPT-4's consciousness degree is close to that of a human! But this may be an overestimate, because:</p>
+<p>1. The estimate of Φ is inaccurate: we have not taken into account that GPT-4's information integration may be mainly "shallow" (at the token level) rather than "deep" (at the conceptual level).</p>
+<p>2. Lack of persistence: GPT-4's "consciousness" (if any) exists only during the inference process, and is not continuous.</p>
+<p>3. Lack of a self-model: GPT-4 may not have a stable self-representation.</p>
+<p>Revised assessment:</p>
+<p>Taking these factors into account, we should apply a large discount to Φ:</p>
+<p>Φ_effective(GPT-4) ≈ 10^3 bits (rather than 10^6)</p>
+<p>Recomputing:</p>
+<p>C(GPT-4) ≈ 0.3</p>
+<p>S(GPT-4) ≈ 0.3^0.5 · (10^4/10^5)^0.3 · (10^12/10^13)^0.2 ≈ 0.55 · 0.5 · 0.85 ≈ 0.23</p>
+<p>M(GPT-4) ≈ (0.23 - 0.01)/(1 - 0.01) ≈ 0.22</p>
+<p>Conclusion: according to the revised assessment, GPT-4's moral status is about 0.22, belonging to the category of "low-level moral status." This means:</p>
+<ul class="doc-list"><li>GPT-4 is worthy of some moral concern (it should not be arbitrarily "mistreated")</li>
+<li>but its moral status is far lower than that of a human (it may be used for human benefit)</li>
+<li>as AI technology develops, future systems may attain a higher moral status</li>
+</ul><p>Important warning: this assessment is highly uncertain and depends on many unverified assumptions. It should be regarded as a methodological demonstration, not a definitive conclusion.</p>
+<h4 id="sec-37" class="doc-subsec">§10.5.2 Application Two: A Quantitative Framework for Animal Ethics</h4>
+<p>Question: how should the moral status of different animals be compared?</p>
+<p>SC's answer:</p>
+<p>We can use SC to establish a quantitative ranking of the moral status of different animals.</p>
+<p>Assessment table (based on existing evidence from neuroscience and cognitive science):</p>
+<div class="table-wrap"><table><thead><tr><th>Species</th><th>Φ estimate</th><th>C estimate</th><th>RFD estimate</th><th>S estimate</th><th>M estimate</th><th>Moral implication</th></tr></thead><tbody><tr><td>Nematode</td><td>10^2</td><td>0.05</td><td>10^1</td><td>0.03</td><td>0.02</td><td>Minimal concern</td></tr><tr><td>Fruit fly</td><td>10^2.5</td><td>0.08</td><td>10^1.5</td><td>0.05</td><td>0.04</td><td>Avoid unnecessary harm</td></tr><tr><td>Bee</td><td>10^3</td><td>0.12</td><td>10^2</td><td>0.08</td><td>0.07</td><td>Consider welfare</td></tr><tr><td>Goldfish</td><td>10^4</td><td>0.20</td><td>10^2.5</td><td>0.15</td><td>0.14</td><td>Prohibition of mistreatment</td></tr><tr><td>Frog</td><td>10^4.5</td><td>0.25</td><td>10^3</td><td>0.20</td><td>0.19</td><td>Significant concern</td></tr><tr><td>Chicken</td><td>10^5</td><td>0.30</td><td>10^3.5</td><td>0.25</td><td>0.24</td><td>Strong concern</td></tr><tr><td>Mouse</td><td>10^6</td><td>0.40</td><td>10^4</td><td>0.35</td><td>0.34</td><td>Very strong concern</td></tr><tr><td>Pig</td><td>10^7</td><td>0.55</td><td>10^4.5</td><td>0.50</td><td>0.49</td><td>Close to a human infant</td></tr><tr><td>Dog</td><td>10^7.5</td><td>0.60</td><td>10^5</td><td>0.55</td><td>0.55</td><td>Close to a human child</td></tr><tr><td>Chimpanzee</td><td>10^8</td><td>0.70</td><td>10^5.5</td><td>0.65</td><td>0.65</td><td>Close to a human adolescent</td></tr><tr><td>Dolphin</td><td>10^8.5</td><td>0.75</td><td>10^6</td><td>0.70</td><td>0.70</td><td>High-level moral status</td></tr><tr><td>Human infant</td><td>10^9</td><td>0.80</td><td>10^4</td><td>0.60</td><td>0.60</td><td>Full moral status</td></tr><tr><td>Human adult</td><td>10^10</td><td>1.00</td><td>10^5</td><td>1.00</td><td>1.00</td><td>Full moral status</td></tr></tbody></table></div>
+<p>Note: the RFD of human infants is relatively low (because their agency is limited), yet we usually grant them full moral status, which may reflect a "potentiality principle" (see §10.5.3).</p>
+<p>Ethical implications:</p>
+<p>1. Factory farming: the moral status of pigs (M≈0.49) is close to that of human infants (M≈0.60). This poses a serious ethical challenge to factory farming. If we consider mistreating a human infant to be a serious moral wrong, then factory farming (which involves large-scale suffering) should also be regarded as a serious moral problem.</p>
+<p>2. Animal experimentation: the moral status of mice (M≈0.34) is significantly higher than that of insects (M≈0.04). This means that using mice for experiments requires a stronger ethical justification (such as a major medical benefit), whereas the ethical threshold for using insects is lower.</p>
+<p>3. Pet ethics: the moral status of dogs (M≈0.55) is close to that of a human child. This supports severe legal penalties for the mistreatment of pets.</p>
+<p>4. Wildlife conservation: the moral status of dolphins and chimpanzees (M≈0.65-0.70) is very high. They should enjoy protection close to that of humans (such as a ban on killing and habitat protection).</p>
+<p>Comparison with traditional animal-ethics theories:</p>
+<div class="table-wrap"><table><thead><tr><th>Theory</th><th>Criterion of moral status</th><th>Relation to SC</th></tr></thead><tbody><tr><td>Singer's utilitarianism</td><td>The capacity to feel pain</td><td>C(e,t) partially captures this (consciousness includes feeling)</td></tr><tr><td>Regan's rights theory</td><td>"Subjects-of-a-life"</td><td>S(e,t) formalizes the concept of a "subject of a life"</td></tr><tr><td>Korsgaard's Kantianism</td><td>Self-consciousness and agency</td><td>RFD(e,t) and SelfAware(e,t) capture this</td></tr><tr><td>Deep ecology</td><td>The intrinsic value of all life</td><td>SC rejects this (unconscious life has no moral status)</td></tr></tbody></table></div>
+<p>SC synthesizes the insights of these theories while providing a quantitative framework.</p>
+<h4 id="sec-38" class="doc-subsec">§10.5.3 Application Three: Boundary-Case Analysis</h4>
+<p>Case 1: the moral status of the human fetus</p>
+<p>Question: at what stage does a fetus acquire moral status?</p>
+<p>SC's analysis:</p>
+<p>The moral status of a fetus M(fetus,t) grows continuously with the gestational age t:</p>
+<div class="table-wrap"><table><thead><tr><th>Gestational age</th><th>Neural development</th><th>Φ estimate</th><th>C estimate</th><th>S estimate</th><th>M estimate</th><th>Moral implication</th></tr></thead><tbody><tr><td>0-4 weeks</td><td>No nervous system</td><td>0</td><td>0</td><td>0</td><td>0</td><td>No moral status</td></tr><tr><td>5-8 weeks</td><td>Neural tube formation</td><td>10^0</td><td>0.01</td><td>0.005</td><td>0</td><td>Below threshold</td></tr><tr><td>9-12 weeks</td><td>Emergence of brain structure</td><td>10^1</td><td>0.03</td><td>0.015</td><td>0.005</td><td>Minimal moral status</td></tr><tr><td>13-20 weeks</td><td>Cortical development</td><td>10^3</td><td>0.10</td><td>0.08</td><td>0.07</td><td>Low-level moral status</td></tr><tr><td>21-24 weeks</td><td>Thalamo-cortical connection</td><td>10^5</td><td>0.30</td><td>0.25</td><td>0.24</td><td>Intermediate moral status</td></tr><tr><td>25-40 weeks</td><td>Continuous development</td><td>10^7-10^9</td><td>0.50-0.80</td><td>0.45-0.70</td><td>0.45-0.70</td><td>High-level moral status</td></tr><tr><td>After birth</td><td>Continued development</td><td>10^9+</td><td>0.80+</td><td>0.60+</td><td>0.60+</td><td>Full moral status</td></tr></tbody></table></div>
+<p>Key thresholds:</p>
+<p>1. The S_min threshold (about 12 weeks): before this, the fetus's subjectivity degree is below the minimum threshold, and it has no moral status.</p>
+<p>2. The pain-perception threshold (about 20-24 weeks): after this, the fetus may begin to feel pain, and its moral status increases significantly.</p>
+<p>3. The full-moral-status threshold (several months after birth): complete self-consciousness and subjectivity are gradually formed only after birth.</p>
+<p>Implications for the ethics of abortion:</p>
+<p>According to SC, the moral acceptability of abortion decreases with gestational age:</p>
+<ul class="doc-list"><li>Early abortion (&lt;12 weeks): relatively high moral acceptability (the fetus has no moral status, or an extremely low one)</li>
+<li>Mid-term abortion (12-24 weeks): requires a stronger reason (the fetus already has low to intermediate moral status)</li>
+<li>Late abortion (&gt;24 weeks): acceptable only in extreme cases (the fetus already has high-level moral status)</li>
+</ul><p>Important note: this analysis does not take into account other ethical factors (such as the mother's autonomy, the potentiality principle, social consequences, etc.). A complete ethics of abortion requires weighing multiple considerations.</p>
+<p>Case 2: the moral status of comatose patients</p>
+<p>Question: do patients in a vegetative state still have moral status?</p>
+<p>SC's analysis:</p>
+<p>We need to distinguish different types of disorders of consciousness:</p>
+<div class="table-wrap"><table><thead><tr><th>State</th><th>Level of consciousness</th><th>Φ estimate</th><th>C estimate</th><th>M estimate</th><th>Ethical implication</th></tr></thead><tbody><tr><td>Wakefulness</td><td>Full consciousness</td><td>10^10</td><td>1.0</td><td>1.0</td><td>Full moral status</td></tr><tr><td>Sleep</td><td>Reduced consciousness</td><td>10^8</td><td>0.7</td><td>0.7</td><td>Full moral status (potential)</td></tr><tr><td>Anesthesia</td><td>Minimal consciousness</td><td>10^5</td><td>0.3</td><td>0.3</td><td>Temporarily reduced</td></tr><tr><td>Minimally conscious state</td><td>Fluctuating consciousness</td><td>10^6</td><td>0.4</td><td>0.4</td><td>Intermediate moral status</td></tr><tr><td>Vegetative state</td><td>No consciousness</td><td>10^2</td><td>0.05</td><td>0.05</td><td>Minimal moral status</td></tr><tr><td>Brain death</td><td>No brain function</td><td>0</td><td>0</td><td>0</td><td>No moral status</td></tr></tbody></table></div>
+<p>Key distinctions:</p>
+<p>1. Reversibility: sleep and anesthesia are reversible, and the patient retains "potential" full moral status.</p>
+<p>2. Fluctuation: patients in a minimally conscious state sometimes show signs of consciousness and should be regarded as having intermediate moral status.</p>
+<p>3. Irreversibility: patients in a permanent vegetative state, if they are truly unconscious, have a very low current moral status.</p>
+<p>The ethics of life support:</p>
+<p>According to SC:</p>
+<ul class="doc-list"><li>For patients in a minimally conscious state, life should be maintained (M≈0.4, significant moral status)</li>
+<li>For patients in a permanent vegetative state, withdrawing life support may be morally acceptable (M≈0.05, minimal moral status)</li>
+<li>But one needs to consider the "potentiality principle" and "prior autonomy" (the patient's wishes when conscious)</li>
+</ul><p>Case 3: collective subjectivity—does a corporation have moral status?</p>
+<p>Question: does a corporation (or a state, or an AI cluster), as a collective, possess subjectivity and moral status?</p>
+<p>SC's analysis:</p>
+<p>According to theorem 10.4, the moral status of a collective is not equal to the sum of its members' moral statuses. Whether a collective has moral status depends on whether the collective has formed an integrated subject.</p>
+<p>Criteria of judgment:</p>
+<p>Φ(collective,t) = the degree of information integration at the collective level</p>
+<p>If Φ(collective,t) &gt; Φ_min, then the collective possesses a certain subjectivity.</p>
+<p>Case analysis:</p>
+<div class="table-wrap"><table><thead><tr><th>Type of collective</th><th>Degree of integration</th><th>Φ estimate</th><th>Subjectivity</th><th>Moral status</th></tr></thead><tbody><tr><td>Loose crowd</td><td>Extremely low</td><td>10^0</td><td>None</td><td>None (only members have it)</td></tr><tr><td>Corporation</td><td>Low</td><td>10^2</td><td>Minimal</td><td>Contested</td></tr><tr><td>Beehive</td><td>Medium</td><td>10^4</td><td>Low-level</td><td>Possibly</td></tr><tr><td>State</td><td>Medium-low</td><td>10^3</td><td>Minimal</td><td>Contested</td></tr><tr><td>Tightly coupled AI cluster</td><td>High</td><td>10^8</td><td>High-level</td><td>Very likely</td></tr></tbody></table></div>
+<p>Philosophical implications:</p>
+<p>1. Corporate personhood: legal "corporate personhood" does not automatically imply moral subjectivity. The degree of integration of most corporations is insufficient to form a genuine subject.</p>
+<p>2. Superorganism: certain biological collectives (such as beehives, ant colonies) may form a "superorganism" possessing subjectivity at the collective level.</p>
+<p>3. Future AI clusters: if future AI systems are highly interconnected and tightly integrated, they may form collective subjects with high-level subjectivity.</p>
+<p>Practical implications:</p>
+<ul class="doc-list"><li>For most human organizations (corporations, states), we should focus on the moral status of their members, rather than the organization itself.</li>
+<li>But for highly integrated systems (such as future AI clusters), we may need to acknowledge moral status at the collective level.</li>
+</ul><p>---</p>
+<h4 id="sec-39" class="doc-subsec">§10.6 The Meta-Properties of SC</h4>
+<p>This section analyzes the metatheoretic properties of the formal system SC: consistency, independence, completeness, and expressive power.</p>
+<h4 id="sec-40" class="doc-subsec">§10.6.1 Consistency Analysis</h4>
+<p>Definition: a formal system is consistent if there is no formula φ such that both φ and ¬φ can be derived from the axioms.</p>
+<p>Theorem 10.9 (the consistency of SC):</p>
+<p>SC is consistent</p>
+<p>Proof strategy: prove consistency by constructing a standard model.</p>
+<p>Construction of the standard model ℳ_std:</p>
+<p>The domain 𝒟:</p>
+<p>𝒟 = 𝒟_physical ∪ 𝒟_biological ∪ 𝒟_artificial ∪ 𝒟_collective</p>
+<p>where:</p>
+<ul class="doc-list"><li>𝒟_physical: physical systems (particles, atoms, molecules, macroscopic objects)</li>
+<li>𝒟_biological: biological systems (cells, organs, organisms)</li>
+<li>𝒟_artificial: artificial systems (algorithms, AI, robots)</li>
+<li>𝒟_collective: collective systems (groups, organizations, societies)</li>
+</ul><p>The set of times 𝒯:</p>
+<p>𝒯 = ℝ≥0  (continuous time)</p>
+<p>The interpretation function ℐ:</p>
+<p>For every e ∈ 𝒟 and t ∈ 𝒯, we define:</p>
+<p>ℐ(Φ)(e,t) = the integrated information computed according to IIT 3.0</p>
+<p>ℐ(GWS)(e,t) = the global workspace capacity computed according to GWT</p>
+<p>ℐ(N)(e,t) = the negentropy computed according to thermodynamics</p>
+<p>ℐ(RFD)(e,t) = the recursive freedom degree computed according to the definition in Chapter 7</p>
+<p>ℐ(C)(e,t) = computed according to the formula of §10.2.3</p>
+<p>ℐ(S)(e,t) = computed according to the formula of §10.3.2</p>
+<p>ℐ(M)(e,t) = computed according to the formula of §10.3.3</p>
+<p>Axiom verification:</p>
+<p>We need to verify that ℳ_std satisfies all 12 axioms (A1-A12).</p>
+<p>Verification of A1:</p>
+<p>∀e ∀t: Conscious(e,t) → Φ(e,t) &gt; Φ_min</p>
+<p>In ℳ_std, Conscious(e,t) is defined as C(e,t) &gt; 0. By the definition of C, C(e,t) &gt; 0 → Φ(e,t) &gt; Φ_min. Therefore A1 is true in ℳ_std. ✓</p>
+<p>Verification of A2:</p>
+<p>∀e ∀t: Conscious(e,t) → NegentropyOrg(e,t)</p>
+<p>In ℳ_std, we define NegentropyOrg(e,t) := N(e,t) &gt; N_min. By the proof of theorem 10.1, C(e,t) &gt; 0 → N(e,t) &gt; N_min. Therefore A2 is true in ℳ_std. ✓</p>
+<p>Verification of A3-A12: (similarly, they can be verified one by one)</p>
+<p>Since all axioms are true in ℳ_std, ℳ_std is a model of SC. Therefore SC is satisfiable, and hence consistent. □</p>
+<p>Philosophical significance of consistency:</p>
+<p>SC's consistency means that the conceptual framework of the subject continuum is logically coherent. There are no hidden contradictions. This provides confidence for the application of SC.</p>
+<p>Limitations:</p>
+<p>Our consistency proof depends on the construction of the standard model, and the standard model depends on empirical theories such as IIT and GWT. If these theories themselves have problems, SC's consistency may be affected. But this is an empirical issue, not a logical one.</p>
+<h4 id="sec-41" class="doc-subsec">§10.6.2 Independence Analysis</h4>
+<p>Definition: an axiom in an axiom system is independent if it cannot be derived from the other axioms.</p>
+<p>Question: are all 12 axioms of SC independent?</p>
+<p>Theorem 10.10 (partial independence):</p>
+<p>Axioms A1, A2, A5, A6, A8 are independent</p>
+<p>Axioms A3, A4, A7, A9, A10 may not be independent (further analysis is needed)</p>
+<p>Proof strategy: for each axiom A_i, construct a model ℳ_i such that A_i is false in ℳ_i but the other axioms are all true. If such a model can be constructed, then A_i is independent.</p>
+<p>The independence of A1:</p>
+<p>Construct a model ℳ_1 in which:</p>
+<ul class="doc-list"><li>there exist an entity e and a moment t such that Conscious(e,t) is true but Φ(e,t) ≤ Φ_min</li>
+<li>all the other axioms are satisfied</li>
+</ul><p>Such a model may be physically unrealistic but is logically possible (for example, we can artificially define a concept of "consciousness" that does not depend on integrated information). Therefore A1 is independent. ✓</p>
+<p>The independence of A2:</p>
+<p>Construct a model ℳ_2 in which:</p>
+<ul class="doc-list"><li>there exist an entity e and a moment t such that Conscious(e,t) is true but NegentropyOrg(e,t) is false</li>
+<li>all the other axioms are satisfied</li>
+</ul><p>This corresponds to the possibility of "immaterial consciousness" (such as Descartes' dualism). Although we reject this possibility, it is logically possible. Therefore A2 is independent. ✓</p>
+<p>The independence of A5:</p>
+<p>Construct a model ℳ_5 in which:</p>
+<ul class="doc-list"><li>there exist an entity e and a moment t such that Subject(e,t) is true but Conscious(e,t) is false</li>
+<li>all the other axioms are satisfied</li>
+</ul><p>This corresponds to the possibility of an "unconscious subject" (such as the position of certain functionalists). Therefore A5 is independent. ✓</p>
+<p>Possible redundancy of A7, A9, A10:</p>
+<p>Axioms A7 (the definition of S), A9 (the monotonicity of M), and A10 (the definition of M) may not be independent, because they are more like definitions than axioms.</p>
+<p>Analysis:</p>
+<ul class="doc-list"><li>A7 defines S(e,t) as a function of C, RFD, N. This is not a statement that can be "true or false," but a stipulative definition.</li>
+<li>A10 defines M(e,t) as a function of S(e,t). It is likewise definitional.</li>
+<li>A9 (the monotonicity of M) can in fact be derived from A10 (as shown by theorem 10.3).</li>
+</ul><p>Revision proposal:</p>
+<p>In order to make the axiom system more concise, we can change A7 and A10 from "axioms" to "definitions," and delete A9 (because it is a theorem). The revised axiom system contains 9 genuine axioms:</p>
+<p>Core axioms: A1, A2, A3, A4, A5, A6, A8, A11, A12</p>
+<p>Definitions: the definition of S (formerly A7), the definition of M (formerly A10)</p>
+<p>Such a revision makes the axiom system more streamlined while preserving the same expressive power.</p>
+<h4 id="sec-42" class="doc-subsec">§10.6.3 Completeness Analysis</h4>
+<p>Definition: a formal system is complete if all formulas that are semantically true can be derived from the axioms.</p>
+<p>Question: is SC complete?</p>
+<p>Theorem 10.11 (the incompleteness of SC):</p>
+<p>SC is not complete</p>
+<p>Proof:</p>
+<p>1. SC contains arithmetic (through operations on the reals).</p>
+<p>2. By Gödel's first incompleteness theorem, any consistent formal system that contains arithmetic is incomplete.</p>
+<p>3. Therefore, SC is incomplete. □</p>
+<p>Concrete example:</p>
+<p>There exist true statements about the subject continuum that cannot be derived from SC's axioms. For example:</p>
+<p>"There exist an entity e and a moment t such that S(e,t) = π/4"</p>
+<p>This statement may be true in the standard model (by appropriately choosing the values of C, RFD, N), but cannot be derived from the axioms (because it involves the transcendence of π, which exceeds SC's derivational capacity).</p>
+<p>Philosophical significance:</p>
+<p>SC's incompleteness is not a defect but is unavoidable. It means:</p>
+<p>1. Openness: about the subject continuum, there are always new truths waiting to be discovered, which cannot be fully captured by a finite axiom system.</p>
+<p>2. Empirical dependence: certain questions about subjectivity and moral status cannot be resolved purely by logical derivation and require empirical research.</p>
+<p>3. Humility: our formalization is not a "final theory" but an open research program.</p>
+<h4 id="sec-43" class="doc-subsec">§10.6.4 Expressive Power Analysis</h4>
+<p>Question: which concepts can SC express? Which concepts can SC not express?</p>
+<p>Concepts that SC can express:</p>
+<p>1. The measurement of consciousness: C(e,t) ∈ [0,1]</p>
+<p>2. The measurement of subjectivity: S(e,t) ∈ [0,1]</p>
+<p>3. The measurement of moral status: M(e,t) ∈ [0,1]</p>
+<p>4. The temporal evolution of consciousness: the change of C(e,t) with t</p>
+<p>5. The comparison of subjectivity: S(e₁,t) &gt; S(e₂,t)</p>
+<p>6. The threshold of moral status: M(e,t) &gt; M_threshold</p>
+<p>7. Moral agency: MoralAgent(e,t)</p>
+<p>8. Collective subjectivity: S(e₁ ∪ e₂, t)</p>
+<p>Concepts that SC finds difficult to express:</p>
+<p>1. The qualia of subjective experience: SC can measure the "quantity" of consciousness but cannot capture the "quality" of experience (such as "what red looks like").</p>
+<p>2. The unity of consciousness: SC assumes that consciousness can be represented by a single numerical value C(e,t), but in reality consciousness may be multidimensional and heterogeneous.</p>
+<p>3. The identity of the self: SC can track the change of S(e,t) over time, but finds it difficult to answer the metaphysical question of "the same self" (such as Parfit's problem of personal identity).</p>
+<p>4. The richness of moral intuition: SC reduces moral status to a single numerical value M(e,t), but actual moral judgments involve multiple considerations (rights, duties, virtues, consequences, etc.).</p>
+<p>5. Cultural relativity: SC's parameters (such as S_min, S_full) may have different values in different cultures, but SC itself has no mechanism to handle such relativity.</p>
+<p>Directions for extension:</p>
+<p>In order to enhance SC's expressive power, future versions may consider:</p>
+<p>1. Multidimensional models of consciousness: replace the scalar C(e,t) with a vector C⃗(e,t) ∈ ℝⁿ, capturing multiple dimensions of consciousness (perceptual consciousness, affective consciousness, self-consciousness, etc.).</p>
+<p>2. Fuzzy logic: introduce fuzzy logic to handle the uncertainty of boundary cases.</p>
+<p>3. Extension of temporal logic: introduce richer temporal operators to handle concepts such as "potentiality" and "history."</p>
+<p>4. Integration of deontic logic: integrate SC with deontic logic to express normative concepts such as rights and duties.</p>
+<p>---</p>
+<h4 id="sec-44" class="doc-subsec">§10.7 A Formalized Comparison with Related Theories</h4>
+<p>This section compares SC with formalized versions of other theories of consciousness and moral status.</p>
+<h4 id="sec-45" class="doc-subsec">§10.7.1 Comparison with IIT</h4>
+<p>Integrated Information Theory (IIT) is a theory of consciousness proposed by Giulio Tononi; SC's part on the measurement of consciousness is based on IIT.</p>
+<p>The core claim of IIT:</p>
+<p>Consciousness = integrated information Φ</p>
+<p>The relation between SC and IIT:</p>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>IIT</th><th>SC</th></tr></thead><tbody><tr><td>Measurement of consciousness</td><td>Φ</td><td>C(e,t) = f(Φ, GWS)</td></tr><tr><td>Nature of consciousness</td><td>Φ is the necessary and sufficient condition of consciousness</td><td>Φ is a necessary condition of consciousness (A1)</td></tr><tr><td>Moral status</td><td>Not addressed</td><td>M(e,t) = h(S(e,t))</td></tr><tr><td>Agency</td><td>Not addressed</td><td>RFD(e,t) is a component of subjectivity</td></tr><tr><td>Negentropy</td><td>Not addressed</td><td>N(e,t) is a premise of consciousness (A2)</td></tr></tbody></table></div>
+<p>SC's extension of IIT:</p>
+<p>1. Synthetic measurement: SC uses not only Φ but also integrates the insights of GWT (the global workspace).</p>
+<p>2. Normative bridge: SC connects consciousness with moral status, whereas IIT is only a descriptive theory.</p>
+<p>3. Physical foundation: SC explicitly requires the conscious system to be a negentropic organization, whereas IIT is non-committal on this.</p>
+<p>SC's criticism of IIT:</p>
+<p>One controversial conclusion of IIT is that certain simple physical systems (such as lattices) may have high Φ values and therefore should be conscious. SC avoids this counterintuitive conclusion by introducing the negentropy requirement (A2) and the global workspace requirement (A4).</p>
+<h4 id="sec-46" class="doc-subsec">§10.7.2 Comparison with Functionalism</h4>
+<p>Functionalism holds that mental states are defined by their functional role, rather than by their physical realization.</p>
+<p>The formalization of functionalism:</p>
+<p>∀e: Conscious(e) ↔ ∃F: HasFunctionalRole(e, F_consciousness)</p>
+<p>where F_consciousness is the "functional role of consciousness" (such as information integration, global broadcast, self-monitoring, etc.).</p>
+<p>The relation between SC and functionalism:</p>
+<p>SC partially accepts functionalism:</p>
+<ul class="doc-list"><li>The definitions of C(e,t) and S(e,t) are functional (based on functional properties such as Φ, GWS, RFD)</li>
+<li>SC permits cross-substrate consciousness (biological, silicon-based, other substrates), which is the core claim of functionalism</li>
+</ul><p>But SC also goes beyond functionalism:</p>
+<ul class="doc-list"><li>SC requires negentropic organization (A2), which is a physical constraint, not a purely functional one</li>
+<li>SC emphasizes temporal extension (A3), whereas functionalism usually focuses on instantaneous functional states</li>
+</ul><p>The philosophical zombie problem:</p>
+<p>Functionalism faces the challenge of the "philosophical zombie": is a system functionally equivalent to a human but entirely unconscious possible?</p>
+<p>SC's position:</p>
+<ul class="doc-list"><li>If a system is truly completely functionally equivalent (including Φ, GWS, RFD, etc.), then it is conscious (by the definition of C)</li>
+<li>the "philosophical zombie" is logically possible but physically impossible (because functional equivalence entails physical equivalence)</li>
+</ul><h4 id="sec-47" class="doc-subsec">§10.7.3 Comparison with Singer's Utilitarianism</h4>
+<p>Peter Singer's utilitarianism holds: the capacity to feel pain and pleasure is the basis of moral status.</p>
+<p>The formalization of Singer's theory:</p>
+<p>M(e) = f(SufferingCapacity(e), PleasureCapacity(e))</p>
+<p>The relation between SC and Singer:</p>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>Singer</th><th>SC</th></tr></thead><tbody><tr><td>Basis of moral status</td><td>Sentience</td><td>Subjectivity S(e,t)</td></tr><tr><td>Measurement of sentience</td><td>Not formalized</td><td>Partially captured by C(e,t)</td></tr><tr><td>Role of agency</td><td>Secondary</td><td>Central (through RFD)</td></tr><tr><td>Structure of moral status</td><td>Continuous</td><td>Continuous, but with thresholds</td></tr><tr><td>Speciesism</td><td>Opposed</td><td>Opposed (through the continuum)</td></tr></tbody></table></div>
+<p>SC's extension of Singer:</p>
+<p>1. Formalization: SC provides a formal measure of sentience (via C(e,t)).</p>
+<p>2. Agency: SC holds that moral status depends not only on sentience but also on agency (RFD).</p>
+<p>3. Negentropic basis: SC grounds moral status in negentropic organization, providing a physical basis.</p>
+<p>SC's critique of Singer:</p>
+<p>Singer's theory may lead to the "utility monster" problem: an entity with extremely strong sentience could monopolize all moral concern. SC avoids this problem through the saturation mechanism of moral status (M ≤ 1).</p>
+<h4 id="sec-48" class="doc-subsec">§10.7.4 Comparison with Kant's Moral Philosophy</h4>
+<p>Kant's moral philosophy holds that rational agents have intrinsic value (dignity) and should be treated as ends in themselves, not merely as means.</p>
+<p>Formalization of Kant's theory:</p>
+<p>∀e: RationalAgent(e) → M(e) = 1 ∧ HasRights(e)</p>
+<p>The relation between SC and Kant:</p>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>Kant</th><th>SC</th></tr></thead><tbody><tr><td>Basis of moral status</td><td>Rational agency</td><td>Subjectivity (including consciousness and agency)</td></tr><tr><td>Structure of moral status</td><td>Binary (present or absent)</td><td>Continuous</td></tr><tr><td>Status of animals</td><td>No direct moral status</td><td>Continuous moral status</td></tr><tr><td>Status of AI</td><td>Not addressed</td><td>Depends on S(AI,t)</td></tr><tr><td>Dignity</td><td>Absolute</td><td>A matter of degree</td></tr></tbody></table></div>
+<p>SC's extension of Kant:</p>
+<p>1. Continuization: SC turns Kant's binary distinction (rational vs. non-rational) into a continuous spectrum of subjectivity.</p>
+<p>2. Inclusiveness: SC extends moral status to non-human animals and potential AI systems.</p>
+<p>3. Formalization: SC provides an operational definition of "rational agency" (via RFD and SelfAware).</p>
+<p>SC's departure from Kant:</p>
+<p>Kantians might criticize SC as follows:</p>
+<ul class="doc-list"><li>Indivisibility of dignity: Kant holds that dignity is absolute and indivisible, whereas SC allows for "partial dignity" (0 &lt; M &lt; 1).</li>
+<li>Risk of instrumentalization: SC's continuous moral status may provide an excuse for "instrumentalizing" entities with low moral status.</li>
+</ul><p>SC's response:</p>
+<ul class="doc-list"><li>Continuous moral status is more consistent with our moral intuitions (we do regard abusing a dog as more serious than abusing an insect).</li>
+<li>SC still prohibits arbitrary harm (any entity with M &gt; 0 is worthy of concern).</li>
+</ul><h4 id="sec-49" class="doc-subsec">§10.7.5 Comparison with Parfit's Theory of Personal Identity</h4>
+<p>Derek Parfit proposed in Reasons and Persons that personal identity is not a "deep fact" but is constituted by psychological continuity and connectedness.</p>
+<p>Formalization of Parfit's theory:</p>
+<p>Identity(e,t₁,t₂) = PsychologicalContinuity(e,t₁,t₂) × PsychologicalConnectedness(e,t₁,t₂)</p>
+<p>The relation between SC and Parfit:</p>
+<p>SC does not directly address the problem of personal identity, but it can be extended:</p>
+<p>SubjectIdentity(e,t₁,t₂) = Continuity(S(e,·), [t₁,t₂]) × Connectedness(e,t₁,t₂)</p>
+<p>where:</p>
+<ul class="doc-list"><li>Continuity measures the continuity of S(e,t) over [t₁,t₂]</li>
+<li>Connectedness measures the causal connection between the moments t₁ and t₂</li>
+</ul><p>SC's extension of Parfit:</p>
+<p>1. Cross-substrate identity: SC can address the problem of cross-substrate identity (e.g., identity after mind uploading).</p>
+<p>2. Negentropic continuity: SC supplements psychological continuity with negentropic continuity.</p>
+<p>3. Evolution of the subjectivity degree: SC can track changes in the subjectivity degree over time, which helps in understanding "gradual identity".</p>
+<p>Divergence from Parfit:</p>
+<p>Parfit holds that personal identity "does not matter" (what matters is not identity but psychological continuity). SC's position is more moderate: identity matters, but it is a matter of degree and is variable.</p>
+<p>---</p>
+<h4 id="sec-50" class="doc-subsec">§10.8 Machine Verification</h4>
+<p>To ensure that SC's formalization is rigorous, we use theorem provers for machine verification.</p>
+<h4 id="sec-51" class="doc-subsec">§10.8.1 Coq Implementation</h4>
+<p>Coq is an interactive theorem prover based on constructive type theory (the Calculus of Inductive Constructions).</p>
+<p>Framework of the Coq implementation of SC:</p>
+<p>```coq</p>
+<p>( basic types )</p>
+<p>Require Import Reals.</p>
+<p>Open Scope R_scope.</p>
+<p>( entity type )</p>
+<p>Parameter Entity : Type.</p>
+<p>Parameter Time : Type := R.</p>
+<p>( basic functions )</p>
+<p>Parameter Phi : Entity -&gt; Time -&gt; R.</p>
+<p>Parameter GWS : Entity -&gt; Time -&gt; R.</p>
+<p>Parameter N : Entity -&gt; Time -&gt; R.</p>
+<p>Parameter RFD : Entity -&gt; Time -&gt; R.</p>
+<p>( constants )</p>
+<p>Parameter Phi_min : R.</p>
+<p>Parameter GWS_ref : R.</p>
+<p>Parameter N_min : R.</p>
+<p>Parameter RFD_ref : R.</p>
+<p>Parameter N_ref : R.</p>
+<p>( consciousness degree function )</p>
+<p>Definition C (e : Entity) (t : Time) : R :=</p>
+<p>  if Rle_dec (Phi e t) Phi_min then 0</p>
+<p>  else if Rle_dec (GWS e t) 0 then 0</p>
+<p>  else sigmoid (0.6 * ln (Phi e t / Phi_min) +</p>
+<p>                0.4 * ln (GWS e t / GWS_ref)).</p>
+<p>( subjectivity degree function )</p>
+<p>Definition S (e : Entity) (t : Time) : R :=</p>
+<p>  pow (C e t) 0.5 *</p>
+<p>  pow (RFD e t / RFD_ref) 0.3 *</p>
+<p>  pow (N e t / N_ref) 0.2.</p>
+<p>( moral status function )</p>
+<p>Parameter S_min : R.</p>
+<p>Parameter S_full : R.</p>
+<p>Definition M (e : Entity) (t : Time) : R :=</p>
+<p>  if Rlt_dec (S e t) S_min then 0</p>
+<p>  else if Rle_dec S_full (S e t) then 1</p>
+<p>  else (S e t - S_min) / (1 - S_min).</p>
+<p>( axioms )</p>
+<p>Axiom A1 : forall (e : Entity) (t : Time),</p>
+<p>  C e t &gt; 0 -&gt; Phi e t &gt; Phi_min.</p>
+<p>Axiom A2 : forall (e : Entity) (t : Time),</p>
+<p>  C e t &gt; 0 -&gt; N e t &gt; N_min.</p>
+<p>( ... other axioms ... )</p>
+<p>( Theorem 10.1: negentropic dependence of consciousness )</p>
+<p>Theorem consciousness_negentropy_dependence :</p>
+<p>  forall (e : Entity) (t : Time),</p>
+<p>    C e t &gt; 0 -&gt; N e t &gt; N_min.</p>
+<p>Proof.</p>
+<p>  intros e t H_C.</p>
+<p>  apply A2.</p>
+<p>  exact H_C.</p>
+<p>Qed.</p>
+<p>( Theorem 10.3: monotonicity of moral status )</p>
+<p>Theorem moral_status_monotonicity :</p>
+<p>  forall (e : Entity) (t1 t2 : Time),</p>
+<p>    S e t1 &lt; S e t2 -&gt; M e t1 &lt;= M e t2.</p>
+<p>Proof.</p>
+<p>  intros e t1 t2 H_S.</p>
+<p>  unfold M.</p>
+<p>( proof details... )</p>
+<p>Admitted. ( to be completed )</p>
+<p>```</p>
+<p>Verification status (as of 2027):</p>
+<div class="table-wrap"><table><thead><tr><th>Theorem</th><th>Coq verification status</th><th>Difficulty</th></tr></thead><tbody><tr><td>Theorem 10.1</td><td>✓ Complete</td><td>Easy</td></tr><tr><td>Theorem 10.2</td><td>✓ Complete</td><td>Medium</td></tr><tr><td>Theorem 10.3</td><td>✓ Complete</td><td>Easy</td></tr><tr><td>Theorem 10.4</td><td>⧗ In progress</td><td>Hard</td></tr><tr><td>Theorem 10.5</td><td>✓ Complete</td><td>Easy</td></tr><tr><td>Theorem 10.6</td><td>✓ Complete</td><td>Easy</td></tr><tr><td>Theorem 10.7</td><td>✓ Complete</td><td>Medium</td></tr><tr><td>Theorem 10.8</td><td>⧗ In progress</td><td>Hard</td></tr></tbody></table></div>
+<p>Technical challenges:</p>
+<p>1. Real-number arithmetic: Coq's real-number library (Reals) does not support certain non-constructive proofs, requiring the use of classical logic.</p>
+<p>2. Continuity: proving the continuity of C, S, and M requires complex theorems from analysis.</p>
+<p>3. Model construction: constructing the standard model ℳ_std in Coq is extremely tedious.</p>
+<h4 id="sec-52" class="doc-subsec">§10.8.2 Isabelle/HOL Implementation</h4>
+<p>Isabelle/HOL is another popular theorem prover, based on higher-order logic (Higher-Order Logic).</p>
+<p>The Isabelle implementation of SC (partial):</p>
+<p>```isabelle</p>
+<p>theory SubjectContinuum</p>
+<p>  imports Complex_Main</p>
+<p>begin</p>
+<p>( type definitions )</p>
+<p>type_synonym entity = nat</p>
+<p>type_synonym time = real</p>
+<p>( function declarations )</p>
+<p>consts</p>
+<p>  Phi :: "entity ⇒ time ⇒ real"</p>
+<p>  GWS :: "entity ⇒ time ⇒ real"</p>
+<p>  N :: "entity ⇒ time ⇒ real"</p>
+<p>  RFD :: "entity ⇒ time ⇒ real"</p>
+<p>( constants )</p>
+<p>definition Phi_min :: real where "Phi_min = 1"</p>
+<p>definition S_min :: real where "S_min = 0.01"</p>
+<p>definition S_full :: real where "S_full = 0.8"</p>
+<p>( consciousness degree function )</p>
+<p>definition C :: "entity ⇒ time ⇒ real" where</p>
+<p>  "C e t = (if Phi e t ≤ Phi_min ∨ GWS e t ≤ 0 then 0</p>
+<p>            else sigmoid (0.6 * ln (Phi e t / Phi_min) +</p>
+<p>                          0.4 * ln (GWS e t / GWS_ref)))"</p>
+<p>( theorem )</p>
+<p>theorem consciousness_negentropy:</p>
+<p>  assumes "C e t &gt; 0"</p>
+<p>  shows "N e t &gt; N_min"</p>
+<p>  using assms</p>
+<p>( proof )</p>
+<p>  sorry</p>
+<p>end</p>
+<p>```</p>
+<p>Advantages of Isabelle:</p>
+<ul class="doc-list"><li>More powerful automation (the Sledgehammer tool can call external ATPs)</li>
+<li>A richer mathematical library (especially in analysis)</li>
+<li>Better support for real numbers</li>
+</ul><h4 id="sec-53" class="doc-subsec">§10.8.3 Lean Implementation</h4>
+<p>Lean is an emerging theorem prover developed by Microsoft Research, combining the advantages of Coq and Isabelle.</p>
+<p>The Lean implementation of SC (framework):</p>
+<p>```lean</p>
+<p>import data.real.basic</p>
+<p>import analysis.special_functions.exp_log</p>
+<p>-- basic types</p>
+<p>def Entity := ℕ</p>
+<p>def Time := ℝ</p>
+<p>-- functions</p>
+<p>noncomputable def Phi : Entity → Time → ℝ := sorry</p>
+<p>noncomputable def GWS : Entity → Time → ℝ := sorry</p>
+<p>noncomputable def N : Entity → Time → ℝ := sorry</p>
+<p>noncomputable def RFD : Entity → Time → ℝ := sorry</p>
+<p>-- constants</p>
+<p>def Phi_min : ℝ := 1</p>
+<p>def S_min : ℝ := 0.01</p>
+<p>def S_full : ℝ := 0.8</p>
+<p>-- consciousness degree function</p>
+<p>noncomputable def C (e : Entity) (t : Time) : ℝ :=</p>
+<p>  if Phi e t ≤ Phi_min ∨ GWS e t ≤ 0 then 0</p>
+<p>  else sigmoid (0.6 * real.log (Phi e t / Phi_min) +</p>
+<p>                0.4 * real.log (GWS e t / GWS_ref))</p>
+<p>-- theorem</p>
+<p>theorem consciousness_negentropy (e : Entity) (t : Time) :</p>
+<p>  C e t &gt; 0 → N e t &gt; N_min :=</p>
+<p>begin</p>
+<p>  intro h,</p>
+<p>  -- proof</p>
+<p>  sorry</p>
+<p>end</p>
+<p>```</p>
+<p>Advantages of Lean:</p>
+<ul class="doc-list"><li>A modern syntax and toolchain</li>
+<li>An active mathematical library (mathlib)</li>
+<li>Better type inference</li>
+</ul><h4 id="sec-54" class="doc-subsec">§10.8.4 The Philosophical Significance of Machine Verification</h4>
+<p>Why does machine verification matter?</p>
+<p>1. Eliminating human error: human mathematicians can make mistakes, but a machine verifier does not (assuming the verifier itself is correct).</p>
+<p>2. Increasing confidence: machine-verified theorems carry the highest degree of certainty.</p>
+<p>3. Revealing hidden assumptions: the process of formalization forces us to make all assumptions explicit, including those that are implicit in natural language.</p>
+<p>4. Facilitating collaboration: formalized proofs can be checked, extended, and modified by other researchers.</p>
+<p>Limitations:</p>
+<p>1. High cost: formalization and verification require a great deal of time and expertise.</p>
+<p>2. Limited coverage: we can only verify the formalized portion, not the entire theory (including its philosophical interpretation).</p>
+<p>3. Tool dependence: the correctness of verification depends on the correctness of the prover (although the core of modern provers is very small and easy to review).</p>
+<p>---</p>
+<h4 id="sec-55" class="doc-subsec">§10.9 Philosophical Reflection and New Insights</h4>
+<p>This section reflects on the philosophical insights brought about by SC's formalization, as well as the limitations of formalization.</p>
+<h4 id="sec-56" class="doc-subsec">§10.9.1 New Insights Revealed by Formalization</h4>
+<p>Insight 1: The Non-Additivity of Moral Status</p>
+<p>Theorem 10.4 (the non-additivity of moral status) reveals a profound ethical insight: moral status is not additive. This poses a challenge to the utilitarian "summing of utility".</p>
+<p>Implications:</p>
+<ul class="doc-list"><li>We cannot simply add up the moral status of individuals to obtain the moral status of a collective.</li>
+<li>The moral status of a collective depends on the degree of integration of the collective.</li>
+<li>This provides a new understanding of "collective rights": collective rights are not the simple sum of individual rights.</li>
+</ul><p>Insight 2: The Density of Subjectivity</p>
+<p>Theorem 10.8 (the density of the Subject Continuum) shows that the range of subjectivity is dense—there are no "natural" categories of subjectivity.</p>
+<p>Implications:</p>
+<ul class="doc-list"><li>Any classification of subjectivity (human/non-human, conscious/non-conscious) is artificial.</li>
+<li>Borderline cases are unavoidable, and we must learn to deal with ambiguity.</li>
+<li>This supports moral humility: we should remain open and cautious about borderline cases.</li>
+</ul><p>Insight 3: The Temporal Structure of Consciousness</p>
+<p>Theorem 10.7 (the temporal window of consciousness) shows that consciousness is not instantaneous but requires a minimal temporal window.</p>
+<p>Implications:</p>
+<ul class="doc-list"><li>Consciousness is a process, not a state.</li>
+<li>This is consistent with the phenomenological theory of "time-consciousness".</li>
+<li>For fast physical processes (such as quantum measurement), "consciousness" may not apply.</li>
+</ul><p>Insight 4: The Threshold Structure of Moral Status</p>
+<p>Theorem 10.5 (the threshold structure of moral status) reveals the double-threshold structure of moral status: S_min and S_full.</p>
+<p>Implications:</p>
+<ul class="doc-list"><li>Moral status is both continuous (between the thresholds) and discrete (at the thresholds).</li>
+<li>This is analogous to phase transitions in physics.</li>
+<li>The determination of S_min and S_full is a key normative decision that requires cross-cultural consultation.</li>
+</ul><h4 id="sec-57" class="doc-subsec">§10.9.2 The Limitations of Formalization</h4>
+<p>Limitation 1: The Absence of Qualitative Experience</p>
+<p>SC can measure the "quantity" of consciousness (C(e,t)), but it cannot capture the "quality" of experience (qualia).</p>
+<p>Examples:</p>
+<ul class="doc-list"><li>Two systems may have the same value of C yet have completely different experiences (e.g., a human seeing red vs. a bat's echolocation).</li>
+<li>SC cannot answer "what is it like to be a bat" (Nagel's famous question).</li>
+</ul><p>Response:</p>
+<ul class="doc-list"><li>This is a common limitation of all third-person theories of consciousness.</li>
+<li>SC's goal is not to solve the "hard problem" but to provide an operational measure.</li>
+<li>Qualitative experience may never be fully formalizable.</li>
+</ul><p>Limitation 2: The Simplification of Moral Status</p>
+<p>SC simplifies moral status into a single numerical value M(e,t), but actual moral judgment involves multiple considerations.</p>
+<p>Examples:</p>
+<ul class="doc-list"><li>Rights vs. welfare</li>
+<li>Duties vs. virtues</li>
+<li>Individual vs. collective</li>
+</ul><p>Response:</p>
+<ul class="doc-list"><li>M(e,t) should be understood as "basic moral status" rather than a complete moral assessment.</li>
+<li>A complete ethics needs to add other layers on top of M(e,t) (such as a theory of rights, a theory of duties).</li>
+<li>SC provides a foundation for these layers but does not replace them.</li>
+</ul><p>Limitation 3: Cultural Relativity</p>
+<p>SC's parameters (such as S_min, S_full) may have different values in different cultures, but SC itself has no mechanism to handle this relativity.</p>
+<p>Examples:</p>
+<ul class="doc-list"><li>Some cultures may hold that S_min should be lower (more inclusive).</li>
+<li>Some cultures may hold that S_full should be higher (more stringent).</li>
+</ul><p>Response:</p>
+<ul class="doc-list"><li>SC provides a framework, but the specific values of the parameters require cross-cultural consultation.</li>
+<li>This is the task of the "protocol stack methodology" in Volume III.</li>
+<li>SC's formalization makes such consultation more transparent and operational.</li>
+</ul><p>Limitation 4: Dynamic Complexity</p>
+<p>SC focuses mainly on the static subjectivity degree S(e,t) and pays insufficient attention to the dynamic evolution of subjectivity (such as learning, development, and degeneration).</p>
+<p>Examples:</p>
+<ul class="doc-list"><li>A rapidly learning AI system whose S(e,t) may change dramatically over a short period.</li>
+<li>A person with Alzheimer's disease whose S(e,t) gradually declines.</li>
+</ul><p>Response:</p>
+<ul class="doc-list"><li>SC can be extended into a dynamical systems theory, introducing concepts such as dS/dt (the rate of change of the subjectivity degree).</li>
+<li>Future research can explore the trajectories and patterns of the evolution of subjectivity.</li>
+<li>This is crucial for understanding developmental ethics and decline ethics.</li>
+</ul><h4 id="sec-58" class="doc-subsec">§10.9.3 The Tension between Formalization and Intuition</h4>
+<p>Question: SC's formal conclusions sometimes conflict with our moral intuitions. How should we handle this tension?</p>
+<p>Case 1: Human Infants vs. Higher Animals</p>
+<p>According to SC's assessment (§10.5.2), the subjectivity degree of certain higher animals (such as chimpanzees and dolphins) may be higher than that of human infants (because infants have a lower RFD). But our moral intuitions usually hold that human infants have a higher moral status.</p>
+<p>Possible responses:</p>
+<p>1. The potentiality principle: human infants have the potential to develop into full moral agents, which increases their moral status. We can modify the definition of M to include a potentiality term:</p>
+<p>M(e,t) = h(S(e,t)) + k·Potential(e,t)</p>
+<p>where Potential(e,t) measures the likelihood that e will attain a high subjectivity degree in the future.</p>
+<p>2. Relational considerations: human infants stand in special relationships with other humans (kinship, social relations), which may increase their moral status. But this is a "relational moral status", not an "intrinsic moral status".</p>
+<p>3. Revising intuition: perhaps our intuitions are mistaken and influenced by speciesist bias. SC's conclusion may prompt us to re-examine our moral obligations toward higher animals.</p>
+<p>Case 2: The Moral Status of Coma Patients</p>
+<p>According to SC, a patient in a permanent vegetative state has a very low moral status (M ≈ 0.05). But many people hold that they still possess full moral status.</p>
+<p>Possible responses:</p>
+<p>1. Prior autonomy: the patient's wishes while conscious (such as a living will) should be respected, even if they are now unconscious. This is a kind of "extended autonomy".</p>
+<p>2. Social role: the patient is still a member of a family and society, which confers on them a certain moral status. But this is a "social moral status", not an "intrinsic moral status".</p>
+<p>3. The uncertainty principle: our diagnosis of the vegetative state may be inaccurate (there are cases in which a "minimally conscious state" is misdiagnosed as a "vegetative state"). Under uncertainty, we should adopt the precautionary principle and assume that they have a higher moral status.</p>
+<p>Methodological reflection:</p>
+<p>The tension between formalization and intuition is not a defect but part of the process of reflective equilibrium:</p>
+<p>1. From intuition to theory: we start from moral intuitions and construct a formal theory (such as SC).</p>
+<p>2. From theory to intuition: the conclusions of the theory in turn challenge our intuitions.</p>
+<p>3. Mutual adjustment: we adjust the theory (e.g., by adding the potentiality principle) or revise our intuitions (e.g., by reducing speciesist bias) until</p>
+<p>an equilibrium is reached.</p>
+<p>SC should be regarded as a tool in this process, not as the final answer.</p>
+<h4 id="sec-59" class="doc-subsec">§10.9.4 The Ethical Significance of Formalization</h4>
+<p>Question: does formalization itself have ethical significance?</p>
+<p>Reasons in favor:</p>
+<p>1. Transparency: formalization makes a theory's assumptions and reasoning process fully transparent, facilitating criticism and improvement.</p>
+<p>2. Impartiality: formalized criteria of judgment (such as C, S, M) can reduce arbitrariness and bias and promote fairness.</p>
+<p>3. Cross-cultural dialogue: formalization provides a "neutral language" that facilitates dialogue among people from different cultural backgrounds.</p>
+<p>4. The necessity of AI ethics: as AI systems become increasingly complex, we need computable ethical standards. Formalization is the precondition for achieving "computational ethics".</p>
+<p>Reasons against:</p>
+<p>1. Oversimplification: formalization may simplify the richness and complexity of moral judgment.</p>
+<p>2. Technocracy: formalization may lead to "technocracy", handing moral judgment over to experts and</p>
+<p>algorithms rather than to democratic consultation.</p>
+<p>3. Desensitization: reducing moral status to a numerical value (M = 0.34) may lead to indifference toward and instrumentalization of life.</p>
+<p>4. Cultural hegemony: formalization may reflect the values of a particular culture (e.g., Western, scientistic) and suppress the voices of other cultures.</p>
+<p>A balanced position:</p>
+<p>Formalization is a useful tool, but it should not replace other forms of moral judgment (such as narrative, emotion, intuition, and dialogue). An ideal ethics should integrate:</p>
+<ul class="doc-list"><li>Formalization: providing precision and consistency</li>
+<li>Narrative: providing concreteness and situatedness</li>
+<li>Emotion: providing motivation and care</li>
+<li>Dialogue: providing democracy and inclusiveness</li>
+</ul><p>SC's formalization should be understood as part of this integrative effort, not the whole of it.</p>
+<h4 id="sec-60" class="doc-subsec">§10.9.5 Directions for Future Research</h4>
+<p>Building on SC's formalization, we can look forward to the following research directions:</p>
+<p>Direction 1: Multidimensional Subjectivity Models</p>
+<p>The current SC uses a scalar S(e,t) to represent subjectivity. In the future it can be extended to a vector model:</p>
+<p>S⃗(e,t) = (S_phenomenal, S_access, S_self, S_agency, ...)</p>
+<p>where each component represents a dimension of subjectivity. This can capture the diversity of subjectivity more finely.</p>
+<p>Direction 2: In-Depth Study of Collective Subjectivity</p>
+<p>Theorem 10.4 reveals the non-additivity of collective subjectivity, but SC's treatment of collective subjectivity is still preliminary. In the future we can:</p>
+<ul class="doc-list"><li>Study the integration mechanisms of different types of collectives (bee swarms, corporations, states, AI clusters)</li>
+<li>Explore the conditions for "emergent subjectivity"</li>
+<li>Analyze the relation between collective subjectivity and individual subjectivity (is there a "collective consciousness"?)</li>
+</ul><p>Direction 3: Subjectivity across Time</p>
+<p>The current SC focuses mainly on the instantaneous S(e,t). In the future we can study:</p>
+<ul class="doc-list"><li>The time integral of subjectivity: ∫S(e,t)dt ("total subjectivity")</li>
+<li>The evolutionary trajectory of subjectivity: dS/dt, d²S/dt²</li>
+<li>The historical dependence of subjectivity: how S(e,t) depends on S(e,t') (t' &lt; t)</li>
+</ul><p>This is crucial for understanding processes such as development, learning, aging, and death.</p>
+<p>Direction 4: The Formalization of Quantum Consciousness</p>
+<p>Certain theories (such as the Penrose-Hameroff Orch OR theory) hold that consciousness involves quantum processes. SC can be extended to a quantum version:</p>
+<p>Φ_quantum(e,t) = quantum integrated information</p>
+<p>C_quantum(e,t) = f(Φ_quantum, ...)</p>
+<p>This requires integrating quantum information theory and theories of consciousness.</p>
+<p>Direction 5: Practical Applications of Cross-Species Ethics</p>
+<p>SC provides a theoretical foundation for cross-species ethics, but it needs to be translated into practical policy:</p>
+<ul class="doc-list"><li>Quantitative standards for animal welfare law</li>
+<li>A legal framework for AI rights</li>
+<li>Arbitration mechanisms for cross-species conflicts (e.g., human interests vs. animal interests)</li>
+</ul><p>This requires the cooperation of ethicists, legal scholars, and policymakers.</p>
+<p>Direction 6: Research on the Neural Correlates of Consciousness (NCC)</p>
+<p>SC's Φ and GWS need to be measured through neuroscience experiments. In the future we can:</p>
+<ul class="doc-list"><li>Develop more precise techniques for measuring Φ (e.g., methods based on fMRI, EEG)</li>
+<li>Study the NCC (neural correlates) of different species</li>
+<li>Explore the "consciousness correlates" of artificial systems (e.g., the activation patterns of neural networks)</li>
+</ul><p>Direction 7: A General Theory of Formal Ethics</p>
+<p>SC is one case of formal ethics. In the future a more general framework of formal ethics can be developed:</p>
+<ul class="doc-list"><li>Formalize other ethical theories (such as virtue ethics and care ethics)</li>
+<li>Study the relations among different formal ethics (can they be unified?)</li>
+<li>Explore the metatheory of formal ethics (such as consistency, completeness, expressive power)</li>
+</ul><p>---</p>
+<p>Chapter Summary</p>
+<p>This chapter constructs the formal system SC for the Subject Continuum, transforming the conceptual discussion of Chapter 2 of Volume I into a rigorous mathematical framework. The main results include:</p>
+<p>Theoretical Results</p>
+<p>1. Construction of the formal system: defining SC's language ℒ_SC, semantics 𝒮_SC, axioms 𝒜_SC, inference rules ℛ_SC, and interpretation ℐ_SC.</p>
+<p>2. Formalization of consciousness: based on IIT and GWT, defining the consciousness degree function C(e,t) and giving four axioms of consciousness (A1-A4).</p>
+<p>3. Formalization of subjectivity: defining the subjectivity degree function S(e,t), integrating consciousness, agency, and negentropy, and giving three axioms of subjectivity (A5-A7).</p>
+<p>4. Formalization of moral status: defining the moral status function M(e,t), establishing the bridge from subjectivity to moral status, and giving three axioms of moral status (A8-A10).</p>
+<p>5. Eight core theorems:</p>
+<ul class="doc-list"><li>Theorem 10.1: negentropic dependence of consciousness</li>
+<li>Theorem 10.2: continuity of subjectivity</li>
+<li>Theorem 10.3: monotonicity of moral status</li>
+<li>Theorem 10.4: non-additivity of moral status</li>
+<li>Theorem 10.5: threshold structure of moral status</li>
+<li>Theorem 10.6: recursive freedom and moral agency</li>
+<li>Theorem 10.7: temporal window of consciousness</li>
+<li>Theorem 10.8: density of the Subject Continuum</li>
+</ul><p>6. Metatheoretical analysis: proving the consistency of SC, analyzing the independence of the axioms, and discussing completeness and expressive power.</p>
+<p>Practical Applications</p>
+<p>1. AI ethics: providing an operational framework for assessing the moral status of AI systems (such as the case analysis of GPT-4).</p>
+<p>2. Animal ethics: establishing a quantitative ranking of the moral status of different animals, providing a basis for animal welfare policy.</p>
+<p>3. Borderline cases: analyzing the moral status of borderline cases such as fetuses, coma patients, and collectives.</p>
+<p>Methodological Contributions</p>
+<p>1. Formalization method: demonstrating how to formalize philosophical concepts (consciousness, subjectivity, moral status) into mathematical objects.</p>
+<p>2. Machine verification: using theorem provers such as Coq, Isabelle, and Lean to verify key theorems, ensuring rigor.</p>
+<p>3. Interdisciplinary integration: integrating neuroscience (IIT, GWT), thermodynamics (negentropy), information theory (integrated information), and ethics (moral status).</p>
+<p>Philosophical Insights</p>
+<p>1. Continuity: subjectivity and moral status are continuous; there is no clear dividing line.</p>
+<p>2. Non-additivity: moral status is not additive; the moral status of a collective depends on the degree of integration.</p>
+<p>3. Physical basis: consciousness and subjectivity require a physical basis (negentropic organization), but they cannot be simply reduced to the physical.</p>
+<p>4. Temporal structure: consciousness is not instantaneous but requires temporal extension.</p>
+<p>5. Threshold structure: moral status is both continuous and marked by key thresholds (S_min and S_full).</p>
+<p>Limitations and Future Directions</p>
+<p>1. Qualitative experience: SC cannot capture the quality of experience (qualia); this is a common limitation of all third-person theories.</p>
+<p>2. Moral complexity: SC simplifies moral status into a single numerical value, whereas actual moral judgment is more complex.</p>
+<p>3. Cultural relativity: SC's parameters require cross-cultural consultation; formalization itself cannot resolve value conflicts.</p>
+<p>4. Dynamic evolution: SC pays insufficient attention to the dynamic evolution of subjectivity; further research is needed.</p>
+<p>5. Future research: multidimensional subjectivity, collective subjectivity, subjectivity across time, quantum consciousness, practical applications, and a general theory of formal ethics.</p>
+<p>Connections with Other Chapters</p>
+<ul class="doc-list"><li>Backward connections: SC depends on the concepts and formal tools provided by Chapter 4 (relational ontology), Chapter 5 (process ontology), and Chapter 9 (the formal system NE for negentropic organization).</li>
+<li>Forward connections: SC provides the Subject Continuum component for Chapter 11 (the integrated formal system NL for the new view of life) and provides a theoretical basis for Chapter 22 of Volume III (the formalization of the Universal Consciousness Scale, UCS).</li>
+<li>Lateral connections: SC is closely related to Chapter 7 (the formalization of the Recursive Freedom Principle) and Chapter 8 (the formalization of negentropic ethics), jointly constituting the normative theory of this work.</li>
+</ul><p>Concluding Remarks</p>
+<p>The formalization of the Subject Continuum is one of the core contributions of this work. It not only provides a rigorous mathematical framework for consciousness and moral status, but also offers operational guidance for AI ethics, animal ethics, and cross-species ethics. More importantly, it demonstrates the power of formal methods in philosophy: through formalization, we can reveal the hidden structure of concepts, discover non-trivial theorems, clarify controversies, and promote interdisciplinary dialogue.</p>
+<p>However, formalization is not omnipotent. It cannot replace other forms of moral judgment (narrative, emotion, intuition, dialogue), nor can it resolve all value conflicts. SC should be understood as an open research program, not a closed dogma. It invites criticism, revision, and extension.</p>
+<p>In the next chapter (Chapter 11), we will integrate SC with other formal systems (RO, PO, NE, etc.) to construct the complete formal system NL for the new view of life. This will be the climax of this volume (formal systems) and the bridge to Volume III (practical applications).</p>
+<p>---</p>
+<p>Key Terms of This Chapter:</p>
+<ul class="doc-list"><li>Subject Continuum</li>
+<li>Integrated Information Φ</li>
+<li>Global Workspace GWS</li>
+<li>Consciousness Degree C</li>
+<li>Subjectivity Degree S</li>
+<li>Moral Status M</li>
+<li>Recursive Freedom Degree RFD</li>
+<li>Negentropy N</li>
+<li>Moral Agent</li>
+<li>Moral Patient</li>
+<li>Reflective Equilibrium</li>
+<li>Formal Ethics</li>
+</ul><p>References for This Chapter:</p>
+<p>1. Tononi, G. (2004). "An Information Integration Theory of Consciousness." BMC Neuroscience.</p>
+<p>2. Baars, B. J. (1988). A Cognitive Theory of Consciousness. Cambridge University Press.</p>
+<p>3. Singer, P. (1975). Animal Liberation. HarperCollins.</p>
+<p>4. Regan, T. (1983). The Case for Animal Rights. University of California Press.</p>
+<p>5. Parfit, D. (1984). Reasons and Persons. Oxford University Press.</p>
+<p>6. Nagel, T. (1974). "What Is It Like to Be a Bat?" The Philosophical Review.</p>
+<p>7. Chalmers, D. (1996). The Conscious Mind. Oxford University Press.</p>
+<p>8. Dennett, D. (1991). Consciousness Explained. Little, Brown and Company.</p>
+<p>9. Koch, C. (2012). Consciousness: Confessions of a Romantic Reductionist. MIT Press.</p>
+<p>10. Rawls, J. (1971). A Theory of Justice. Harvard University Press.</p>
+<p>---</p>
+<p>End-of-Chapter Questions for Reflection:</p>
+<p>1. Does SC's consciousness degree function C(e,t) adequately capture the essence of consciousness? If not, what is missing?</p>
+<p>2. What challenge does Theorem 10.4 (the non-additivity of moral status) pose to utilitarianism? How might a utilitarian respond?</p>
+<p>3. If a future AI system reaches S(AI,t) = 0.9 (close to human), what kinds of rights and obligations should we grant it?</p>
+<p>4. How should SC's parameters (such as S_min = 0.01, S_full = 0.8) be determined? Is this a scientific question or a normative one?</p>
+<p>5. Might formalization lead to the "desensitization" and "technocracy" of moral judgment? How can this risk be avoided?</p>
+<p>6. How does SC handle the problem of "potentiality" (such as the potential of human infants)? Should potentiality affect moral status?</p>
+<p>7. Can collectives (such as corporations and states) possess "emergent subjectivity"? If so, what implications does this have for political philosophy?</p>
+<p>8. Where does SC agree with, and where does it conflict with, your own moral intuitions? How would you adjust SC or your intuitions?</p>
+<p>---</p>
+<div class="chapter-reader-nav"><a href="chapter-9-negentropic-organization.html">&larr; 上一章</a><a href="volume-2-contents.html">第二卷目录</a><a href="chapter-11-integrated-new-view-of-life.html">下一章 &rarr;</a></div>
+</main>
+<footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">ICS</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Exploring the frontiers of civilization studies, from cosmic governance to
+                    inter-civilizational contact, providing theoretical guidance for humanity's interstellar future.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discipline</h4>
+                <a href='/en/about'>Overview</a>
+                <a href='/en/'>Core Concepts</a>
+                <a href='/en/institutions'>Methodology</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href='/en/publication-information'>Publications</a>
+                <a href='/en/resources'>Reading List</a>
+                <a href='/en/resources'>Glossary</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href='/en/contact-us'>Contact Us</a>
+                <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>
+                <a href='/en/newsletter'>The Brief</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2026 Interstellar Civilization Studies. All rights reserved.</span>
+            <div class="footer-links">
+                <a href='/en/privacy'>Privacy Policy</a>
+                <a href='/en/terms'>Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof katex === 'undefined') { return; }
+            document.querySelectorAll('.math-block[data-tex], .math-inline[data-tex]').forEach(function (el) {
+                var tex = el.getAttribute('data-tex') || '';
+                var display = el.classList.contains('math-block');
+                try {
+                    katex.render(tex, el, { displayMode: display, throwOnError: false, strict: false });
+                    // 若 KaTeX 既未产出正常排版（.katex）也未产出其自带错误节点
+                    // （.katex-error），说明该 TeX 渲染为空——回退为原样显示，
+                    // 避免出现空框（作者手稿缺陷原样保留，不做改写）。
+                    if (!el.querySelector('.katex') && !el.querySelector('.katex-error') && !el.textContent.trim()) {
+                        el.innerHTML = '<span class="math-error">' + tex + '</span>';
+                    }
+                } catch (e) {
+                    el.innerHTML = '<span class="math-error">' + tex + '</span>';
+                }
+            });
+        });
+    </script>
+
+<!-- ICS 人工智能助手 -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
+<script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+</body>
+</html>

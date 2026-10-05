@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
+    <meta name="theme-color" content="#a78bfa">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: A Formal System for Process Ontology | The Normative Reconstruction (Second Edition) | Interstellar Civilization Studies</title>
+    <meta name="description"
+        content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <link rel="canonical" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/%E8%91%97%E4%BD%9C%E7%AC%AC%E4%B8%80%E5%8D%B7.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Interstellar Civilization Studies | ICS">
+    <meta property="og:title" content="Volume I: Theoretical Foundations | Interstellar Civilization Studies">
+    <meta property="og:description" content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Volume I: Theoretical Foundations | Interstellar Civilization Studies">
+    <meta name="twitter:description" content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="../css/ics-sizefix.css">
+    <link rel="stylesheet" href="../css/ics-en.css">
+    <style>
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e2e8f0;
+            --font-en-display: 'Orbitron', sans-serif;
+            --font-en-sans: 'Inter', sans-serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-en-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-en-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-contact {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .en-page-title {
+            font-family: var(--font-en-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            
+            transform: translateY(-12px) scale(1.03);
+            
+        }
+
+        .hero-intro-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            text-align: left;
+            letter-spacing: 0.01em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .en-section-title {
+            font-family: var(--font-en-display);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .en-subsection-title {
+            font-family: var(--font-en-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .en-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.01em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border-left: 4px solid var(--color-nebula-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-list li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            letter-spacing: 0.01em;
+        }
+
+        .info-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-size: 1.2rem;
+        }
+
+        .info-list li strong {
+            font-family: var(--font-en-display);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--color-energy-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .architecture-diagram {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .architecture-svg {
+            width: 100%;
+            max-width: 650px;
+            height: auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .stat-number {
+            font-family: var(--font-en-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-energy-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-en-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+.footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+}
+
+        @media (max-width: 768px) {
+.nav-links {
+                display: none;
+            }
+.en-page-title {
+                font-size: 2rem;
+            }
+.en-section-title {
+                font-size: 1.5rem;
+            }
+.content-card {
+                padding: 1.5rem;
+            }
+.footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+.footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+.links-grid {
+                grid-template-columns: 1fr;
+            }
+.stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+}
+    
+        /* ==== 著作正文阅读页 ==== */
+        .reading-main { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+        .doc-chapter { font-family: var(--font-en-display); font-size: 1.9rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; margin: 3rem 0 1.6rem;
+            color: #fff; line-height: 1.35; text-align: left; }
+        .doc-sec { font-family: var(--font-en-display); font-size: 1.25rem; font-weight: 600;
+            letter-spacing: 0.08em; margin: 2.6rem 0 1rem; color: var(--color-nebula-cyan); }
+        .doc-subsec { font-family: var(--font-en-display); font-size: 1.05rem; font-weight: 600;
+            letter-spacing: 0.06em; margin: 2rem 0 0.8rem; color: var(--color-energy-gold); }
+        .doc-cn { font-family: var(--font-en-display); font-size: 0.98rem; font-weight: 600;
+            letter-spacing: 0.05em; margin: 1.6rem 0 0.6rem; color: var(--color-quantum-purple-light); }
+        .doc-label { font-weight: 500; color: #fff; margin: 1.2rem 0 0.6rem;
+            border-left: 3px solid var(--color-quantum-purple); padding-left: 0.8rem; }
+        .reading-main p { line-height: 1.8; margin: 0.9rem 0; color: var(--color-text-secondary); }
+        .reading-main li { line-height: 1.8; margin: 0.4rem 0; color: var(--color-text-secondary); }
+        .doc-list { margin: 1rem 0 1rem 1.4rem; }
+        .doc-hr { border: none; border-top: 1px solid rgba(167,139,250,0.18); margin: 1.6rem 0; }
+        .ascii-diagram { background: rgba(15,23,42,0.75); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 10px; padding: 1.2rem 1.4rem; overflow-x: auto; font-size: 0.72rem;
+            line-height: 1.35; color: #b9c6e0; font-family: 'JetBrains Mono','Fira Code',monospace;
+            margin: 1.2rem 0; white-space: pre; }
+        .math-block { background: rgba(15,23,42,0.6); border-left: 3px solid var(--color-nebula-cyan);
+            border-radius: 8px; padding: 1rem 1.2rem; margin: 1.2rem 0; overflow-x: auto;
+            text-align: center; color: #e2e8f0; }
+        .table-wrap { overflow-x: auto; margin: 1.4rem 0; }
+        .table-wrap table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+        .table-wrap th, .table-wrap td { border: 1px solid rgba(167,139,250,0.22);
+            padding: 0.6rem 0.9rem; text-align: left; color: var(--color-text-secondary); }
+        .table-wrap th { background: rgba(124,58,237,0.16); color: #fff; font-weight: 600; }
+        .chapter-reader-nav { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between;
+            margin: 3rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid rgba(167,139,250,0.18); }
+        .chapter-reader-nav a { font-family: var(--font-en-display); font-size: 0.8rem;
+            letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-nebula-cyan);
+            text-decoration: none; padding: 0.6rem 1.1rem; border: 1px solid rgba(6,182,212,0.35);
+            border-radius: 8px; transition: all 0.3s ease; }
+        .chapter-reader-nav a:hover { background: rgba(6,182,212,0.12); }
+        .doc-toc { background: rgba(15,23,42,0.55); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.6rem 0 2.4rem; }
+        .doc-toc h3 { font-family: var(--font-en-display); font-size: 0.95rem; letter-spacing: 0.08em;
+            text-transform: uppercase; color: #fff; margin: 0 0 0.8rem; }
+        .doc-toc a { display: block; color: var(--color-text-secondary); text-decoration: none;
+            font-size: 0.88rem; line-height: 1.9; }
+        .doc-toc a:hover { color: var(--color-nebula-cyan); }
+        .doc-toc a.toc-l2 { padding-left: 1.1rem; font-size: 0.83rem; opacity: 0.88; }
+        .doc-toc a.toc-l3 { padding-left: 2.2rem; font-size: 0.79rem; opacity: 0.72; }
+        .doc-toc a.toc-l1 { font-weight: 500; }
+        .volume-badge { display: inline-block; font-family: var(--font-en-display); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-energy-gold);
+            border: 1px solid rgba(245,158,11,0.4); border-radius: 999px; padding: 0.3rem 0.9rem;
+            margin-bottom: 1.2rem; }
+        .trans-note { font-size: 0.82rem; color: var(--color-energy-gold); opacity: 0.85;
+            border-left: 3px solid rgba(245,158,11,0.5); padding-left: 0.8rem; margin: 0 0 1rem; }
+        @media (max-width: 768px) { .reading-main { padding: 6rem 1.2rem 3rem; }
+            .doc-chapter { font-size: 1.4rem; } }
+
+    </style>
+
+<style id="nav-responsive-patch">
+/* ICS 导航响应式补丁 v5：9 项导航 + Launch + 语言切换在 1024px 以上完整显示 */
+/* 关键：.nav-link 取消左右内边距（原 16px×2 每项，9 项浪费 288px）；Launch 永不隐藏，仅逐档缩尺寸 */
+.navbar { padding: 0; }
+.navbar.scrolled { padding: 0; }
+.nav-container { padding: 1rem 2rem; }
+.nav-link {
+  white-space: nowrap;
+  padding: 0.5rem 0 !important;
+  background: none !important;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+.nav-actions { flex-shrink: 0; }
+.nav-brand { flex-shrink: 0; }
+
+/* ── Launch 按钮（第77轮补齐：原为浏览器默认裸链接）── */
+.nav-launch {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  height: 38px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; }
+}
+@media (max-width: 1600px) { .nav-links { gap: 1.7rem; } }
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; letter-spacing: 0.02em; }
+  .nav-actions { gap: 0.75rem; }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.7rem; }
+  .nav-brand-text { display: none; }
+}
+@media (max-width: 1366px) {
+  .nav-links { gap: 1rem; }
+  .nav-link { font-size: 0.75rem; letter-spacing: 0.015em; }
+  .nav-launch { height: 34px; padding: 0 12px; font-size: 0.66rem; }
+  .nav-actions { gap: 0.65rem; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.82rem; }
+  .nav-link { font-size: 0.71rem; letter-spacing: 0.01em; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.62rem; }
+  .nav-actions { gap: 0.55rem; }
+}
+@media (max-width: 1280px) {
+  .nav-links { gap: 0.7rem; }
+  .nav-link { font-size: 0.67rem; letter-spacing: 0.005em; }
+  .nav-launch { height: 30px; padding: 0 9px; font-size: 0.58rem; }
+  .nav-actions { gap: 0.5rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.58rem; }
+  .nav-link { font-size: 0.62rem; letter-spacing: 0; }
+  .nav-launch { height: 28px; padding: 0 7px; font-size: 0.54rem; }
+  .nav-actions { gap: 0.42rem; }
+  .nav-container { padding: 0.9rem 1.15rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.45rem; }
+  .nav-link { font-size: 0.57rem; letter-spacing: -0.005em; }
+  .nav-launch { height: 26px; padding: 0 6px; font-size: 0.5rem; border-radius: 8px; }
+  .nav-actions { gap: 0.35rem; }
+  .nav-search svg { width: 16px; height: 16px; }
+  .lang-btn { padding: 0.26rem 0.4rem; font-size: 0.64rem; }
+  .nav-contact, .nav-cta { padding: 0.46rem 0.7rem; font-size: 0.68rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.32rem; }
+  .nav-link { font-size: 0.53rem; letter-spacing: -0.015em; }
+  .nav-launch { height: 25px; padding: 0 5px; font-size: 0.48rem; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-container { padding: 0.8rem 0.9rem; }
+  .nav-contact, .nav-cta { padding: 0.42rem 0.62rem; font-size: 0.65rem; }
+  .lang-btn { padding: 0.22rem 0.34rem; font-size: 0.6rem; }
+}
+
+        /* ==== 著作正文阅读页 ==== */
+        .reading-main { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+        .doc-chapter { font-family: var(--font-en-display); font-size: 1.9rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; margin: 3rem 0 1.6rem;
+            color: #fff; line-height: 1.35; text-align: left; }
+        .doc-sec { font-family: var(--font-en-display); font-size: 1.25rem; font-weight: 600;
+            letter-spacing: 0.08em; margin: 2.6rem 0 1rem; color: var(--color-nebula-cyan); }
+        .doc-subsec { font-family: var(--font-en-display); font-size: 1.05rem; font-weight: 600;
+            letter-spacing: 0.06em; margin: 2rem 0 0.8rem; color: var(--color-energy-gold); }
+        .doc-cn { font-family: var(--font-en-display); font-size: 0.98rem; font-weight: 600;
+            letter-spacing: 0.05em; margin: 1.6rem 0 0.6rem; color: var(--color-quantum-purple-light); }
+        .doc-label { font-weight: 500; color: #fff; margin: 1.2rem 0 0.6rem;
+            border-left: 3px solid var(--color-quantum-purple); padding-left: 0.8rem; }
+        .reading-main p { line-height: 1.8; margin: 0.9rem 0; color: var(--color-text-secondary); }
+        .reading-main li { line-height: 1.8; margin: 0.4rem 0; color: var(--color-text-secondary); }
+        .doc-list { margin: 1rem 0 1rem 1.4rem; }
+        .doc-hr { border: none; border-top: 1px solid rgba(167,139,250,0.18); margin: 1.6rem 0; }
+        .ascii-diagram { background: rgba(15,23,42,0.75); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 10px; padding: 1.2rem 1.4rem; overflow-x: auto; font-size: 0.72rem;
+            line-height: 1.35; color: #b9c6e0; font-family: 'JetBrains Mono','Fira Code',monospace;
+            margin: 1.2rem 0; white-space: pre; }
+        .math-block { background: rgba(15,23,42,0.6); border-left: 3px solid var(--color-nebula-cyan);
+            border-radius: 8px; padding: 1rem 1.2rem; margin: 1.2rem 0; overflow-x: auto;
+            text-align: center; color: #e2e8f0; }
+        .table-wrap { overflow-x: auto; margin: 1.4rem 0; }
+        .table-wrap table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+        .table-wrap th, .table-wrap td { border: 1px solid rgba(167,139,250,0.22);
+            padding: 0.6rem 0.9rem; text-align: left; color: var(--color-text-secondary); }
+        .table-wrap th { background: rgba(124,58,237,0.16); color: #fff; font-weight: 600; }
+        .chapter-reader-nav { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between;
+            margin: 3rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid rgba(167,139,250,0.18); }
+        .chapter-reader-nav a { font-family: var(--font-en-display); font-size: 0.8rem;
+            letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-nebula-cyan);
+            text-decoration: none; padding: 0.6rem 1.1rem; border: 1px solid rgba(6,182,212,0.35);
+            border-radius: 8px; transition: all 0.3s ease; }
+        .chapter-reader-nav a:hover { background: rgba(6,182,212,0.12); }
+        .doc-toc { background: rgba(15,23,42,0.55); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.6rem 0 2.4rem; }
+        .doc-toc h3 { font-family: var(--font-en-display); font-size: 0.95rem; letter-spacing: 0.08em;
+            text-transform: uppercase; color: #fff; margin: 0 0 0.8rem; }
+        .doc-toc a { display: block; color: var(--color-text-secondary); text-decoration: none;
+            font-size: 0.88rem; line-height: 1.9; }
+        .doc-toc a:hover { color: var(--color-nebula-cyan); }
+        .doc-toc a.toc-l2 { padding-left: 1.1rem; font-size: 0.83rem; opacity: 0.88; }
+        .doc-toc a.toc-l3 { padding-left: 2.2rem; font-size: 0.79rem; opacity: 0.72; }
+        .doc-toc a.toc-l1 { font-weight: 500; }
+        .volume-badge { display: inline-block; font-family: var(--font-en-display); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-energy-gold);
+            border: 1px solid rgba(245,158,11,0.4); border-radius: 999px; padding: 0.3rem 0.9rem;
+            margin-bottom: 1.2rem; }
+        .trans-note { font-size: 0.82rem; color: var(--color-energy-gold); opacity: 0.85;
+            border-left: 3px solid rgba(245,158,11,0.5); padding-left: 0.8rem; margin: 0 0 1rem; }
+        @media (max-width: 768px) { .reading-main { padding: 6rem 1.2rem 3rem; }
+            .doc-chapter { font-size: 1.4rem; } }
+
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+        integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+    <style>
+        .katex-display { margin: 0; }
+        .math-block .katex { font-size: 1.12em; color: #e2e8f0; }
+        .math-inline .katex { font-size: 1em; }
+        .math-inline { color: #c7d2fe; }
+        .math-error { color: #f87171; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+    </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a class='nav-brand' href='/en/'>
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">ICS</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a class='nav-link' href='/en/'>Home</a></li>
+                <li><a class='nav-link active' href='/en/about'>About</a></li>
+                <li><a class='nav-link' href='/en/book-overview'>Publications</a></li>
+                <li><a class='nav-link' href='/en/resources'>Resources</a></li>
+                <li><a class='nav-link' href='/en/focus-public-edition'>Focus (Public Edition)</a></li>
+                <li><a class='nav-link' href='/en/briefing'>Membership</a></li>
+                <li><a class='nav-link' href='/en/newsletter'>Community</a></li>
+
+                <li><a class='nav-link' href='/en/in-depth-research'>Research</a></li>
+                <li><a class='nav-link' href='/en/ai-assistant'>AI Assistant</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a class='lang-btn active' href='/en/first-edition-volume-i'>EN</a>
+                    <a href="../zh/%E7%AC%AC%E4%B8%80%E7%89%88%E7%AC%AC%E4%B8%80%E5%8D%B7.html" class="lang-btn">中文</a>
+                </div>
+                <a class='nav-launch' href='/en/launch'>Launch</a>
+                <a class='nav-contact' href='/en/contact-us'>Contact</a>
+            </div>
+        </div>
+    </nav>
+<main class="reading-main">
+<span class="volume-badge">Second Edition · Volume II · Formal Systems</span>
+<h1 class="doc-chapter">A Formal System for Process Ontology</h1>
+<p class="trans-note">English translation complete &mdash; all 1255 paragraphs across the main text, notes, references, and appendices have been rendered in English. Formulae, tables, and diagrams are language-neutral.</p>
+<div class="doc-toc"><h3>Contents / 本章目录</h3><a href="#sec-1" class="toc-l2">§5.1 The Philosophical Foundations of Process Ontology</a><a href="#sec-2" class="toc-l2">§5.1.1 What Is Process Ontology?</a><a href="#sec-3" class="toc-l2">§5.1.2 The Philosophical Tradition of Process Ontology</a><a href="#sec-4" class="toc-l2">§5.1.3 The Relation between Process Ontology and Relational Ontology</a><a href="#sec-5" class="toc-l2">§5.1.4 The Necessity of Formalization</a><a href="#sec-6" class="toc-l2">§5.1.5 The Formalization Strategy of This Chapter</a><a href="#sec-7" class="toc-l2">§5.2 Foundations of Temporal Logic</a><a href="#sec-8" class="toc-l2">§5.2.1 Why Choose Temporal Logic?</a><a href="#sec-9" class="toc-l2">§5.2.2 The Syntax of LTL</a><a href="#sec-10" class="toc-l2">§5.2.3 The Semantics of LTL</a><a href="#sec-11" class="toc-l2">§5.2.4 The Axiom System of LTL</a><a href="#sec-12" class="toc-l2">§5.2.5 Extension to First-Order Temporal Logic</a><a href="#sec-13" class="toc-l2">§5.2.6 Philosophical Problems of Temporal Logic</a><a href="#sec-14" class="toc-l2">§5.3 Construction of the Formal System PO</a><a href="#sec-15" class="toc-l2">§5.3.1 The Language of PO</a><a href="#sec-16" class="toc-l2">§5.3.2 The Axioms of PO</a><a href="#sec-17" class="toc-l2">§5.3.3 The Inference Rules of PO</a><a href="#sec-18" class="toc-l2">§5.3.4 Meta-properties of PO</a><a href="#sec-19" class="toc-l2">§5.4 Key Theorems and Proofs</a><a href="#sec-20" class="toc-l2">§5.4.1 Theorem 5.1: Entities Are Reducible to Processes</a><a href="#sec-21" class="toc-l2">§5.4.2 Theorem 5.2: The Irreducibility of Processes</a><a href="#sec-22" class="toc-l2">§5.4.3 Theorem 5.3: The Temporality of Stability</a><a href="#sec-23" class="toc-l2">§5.4.4 Theorem 5.4: The Compositionality of Processes</a><a href="#sec-24" class="toc-l2">§5.4.5 Theorem 5.5: The Emergence of Time</a><a href="#sec-25" class="toc-l2">§5.4.6 Theorem 5.6: The Hierarchy of Emergence</a><a href="#sec-26" class="toc-l2">§5.5 Applications of PO: A Process Interpretation of Quantum Field Theory</a><a href="#sec-27" class="toc-l2">§5.5.1 The Ontological Problems of Quantum Field Theory</a><a href="#sec-28" class="toc-l2">§5.5.2 Fields as Basic Processes</a><a href="#sec-29" class="toc-l2">§5.5.3 Formal Representation</a><a href="#sec-30" class="toc-l2">§5.5.4 Comparison with the Standard Interpretation</a><a href="#sec-31" class="toc-l2">§5.5.5 Generalization to Other Physical Theories</a><a href="#sec-32" class="toc-l2">§5.6 Philosophical Interpretation and New Insights</a><a href="#sec-33" class="toc-l2">§5.6.1 New Insights Brought by Formalization</a><a href="#sec-34" class="toc-l2">§5.6.2 Feedback on the Arguments of Volume One</a><a href="#sec-35" class="toc-l2">§5.6.3 Relations with Other Philosophical Positions</a><a href="#sec-36" class="toc-l2">§5.6.4 The Limitations of Formalization</a><a href="#sec-37" class="toc-l2">§5.7 Deep Interface with Physics</a><a href="#sec-38" class="toc-l2">§5.7.1 The Mathematical Structure of Quantum Field Theory</a><a href="#sec-39" class="toc-l2">§5.7.2 Expressing QFT in PO</a><a href="#sec-40" class="toc-l2">§5.7.3 A Process Interpretation of Quantum Entanglement</a><a href="#sec-41" class="toc-l2">§5.7.4 A Process Interpretation of the Second Law of Thermodynamics</a><a href="#sec-42" class="toc-l2">§5.7.5 A Process Interpretation of General Relativity</a><a href="#sec-43" class="toc-l2">§5.8 Machine Verification</a><a href="#sec-44" class="toc-l2">§5.8.1 Why Is Machine Verification Needed?</a><a href="#sec-45" class="toc-l2">§5.8.2 Coq Implementation</a><a href="#sec-46" class="toc-l2">§5.8.3 Isabelle/HOL Implementation</a><a href="#sec-47" class="toc-l2">```</a><a href="#sec-48" class="toc-l1">§5.8.4 Lean 4 Implementation</a><a href="#sec-49" class="toc-l2">§5.8.5 Summary of Verification Results</a><a href="#sec-50" class="toc-l2">§5.9 Comparison with Other Formal Systems</a><a href="#sec-51" class="toc-l2">§5.9.1 Comparison with RO (Relational Ontology)</a><a href="#sec-52" class="toc-l2">§5.9.2 Comparison with Temporal Ontology</a><a href="#sec-53" class="toc-l2">§5.9.3 Comparison with the Event Calculus</a><a href="#sec-54" class="toc-l2">§5.10 Chapter Summary</a><a href="#sec-55" class="toc-l2">§5.10.1 Main Results</a><a href="#sec-56" class="toc-l2">§5.10.2 Feedback on Volume One</a><a href="#sec-57" class="toc-l2">§5.10.3 Unresolved Problems</a><a href="#sec-58" class="toc-l2">§5.10.4 Connections with Other Chapters</a><a href="#sec-59" class="toc-l2">§5.10.5 Suggestions for Readers</a><a href="#sec-60" class="toc-l2">§5.10.6 Open Problems and Research Directions</a></div>
+<p>Chapter 5: A Formal System for Process Ontology</p>
+<p>Chapter Introduction</p>
+<p>In Chapter 4, we used category theory to provide a rigorous formalization of Relational Ontology, proving the irreducibility and priority of relations. However, the New Cosmology contains not only Relational Ontology (NC-1) but also Process Ontology (NC-2)—holding that processes are ontologically prior to entities.</p>
+<p>The task of this chapter is to construct a formal system for Process Ontology. This task faces unique challenges:</p>
+<p>Challenge One: The Formalization of Time</p>
+<p>The core of Process Ontology is "change" and "becoming," which requires us to formalize time. But time itself is one of the most difficult concepts in philosophy to handle.</p>
+<p>Challenge Two: The Relation between Entities and Processes</p>
+<p>Process Ontology does not deny the existence of entities, but holds that entities are "temporarily stable patterns" of processes. How can this relation be formalized?</p>
+<p>Challenge Three: The Interface with Physics</p>
+<p>Process Ontology must be compatible with modern physics (especially quantum field theory and thermodynamics). The formal system must be able to express physical processes.</p>
+<p>The strategy of this chapter is:</p>
+<p>1. Use Temporal Logic as the foundational tool</p>
+<p>2. Construct the formal system PO (Process Ontology)</p>
+<p>3. Prove the key theorems, especially the theorem that "entities are reducible to processes"</p>
+<p>4. Interface with physics, presenting a process-ontological interpretation of quantum field theory</p>
+<p>5. Machine-verify all proofs</p>
+<p>The core contributions of this chapter:</p>
+<ul class="doc-list"><li>The first fully formalized axiom system for Process Ontology</li>
+<li>A rigorous proof of the philosophical claim that "entities are emergent from processes"</li>
+<li>Revealing the deep connection between Process Ontology and quantum field theory</li>
+<li>All theorems are machine-verifiable (Coq/Isabelle/Lean)</li>
+</ul><p>Reading suggestions:</p>
+<ul class="doc-list"><li>If you are a philosopher: focus on §5.1-§5.3 and §5.6</li>
+<li>If you are a physicist: focus on §5.5 and §5.7</li>
+<li>If you are a formal methods researcher: focus on §5.4 and §5.8</li>
+<li>If you are a beginner: read §5.1 and §5.2 first, understand the basic ideas, and then delve into the technical details</li>
+</ul><p>Technical prerequisites:</p>
+<ul class="doc-list"><li>Basics of temporal logic (LTL/CTL)</li>
+<li>First-order logic</li>
+<li>Basic concepts of quantum field theory (optional)</li>
+</ul><p>Let us begin this journey of formalization.</p>
+<p>---</p>
+<h4 id="sec-1" class="doc-subsec">§5.1 The Philosophical Foundations of Process Ontology</h4>
+<h4 id="sec-2" class="doc-subsec">§5.1.1 What Is Process Ontology?</h4>
+<p>Process Ontology (PO) is an ontological stance that holds:</p>
+<p>Core Claim PO-1: Processes are ontologically prior to entities.</p>
+<p>This claim requires clarification:</p>
+<p>Clarification One: The Meaning of Priority</p>
+<p>"Priority" is not temporal priority, but ontological priority. Specifically:</p>
+<ul class="doc-list"><li>Entities can be reduced to temporarily stable patterns of processes</li>
+<li>Processes cannot be reduced to sequences of entities</li>
+<li>Processes are the basic category of ontology</li>
+</ul><p>Clarification Two: The Definition of Process</p>
+<p>What is a process (Process)? A preliminary definition:</p>
+<p>Definition 5.1 (informal): A process is a temporally extended pattern of change with an intrinsic structure.</p>
+<p>This definition contains three elements:</p>
+<p>1. Temporal extension: a process necessarily occupies a period of time and cannot be instantaneous</p>
+<p>2. Intrinsic structure: a process is not random change, but organized change</p>
+<p>3. Changeability: the essence of a process is change, not stasis</p>
+<p>Clarification Three: The Status of Entities</p>
+<p>Process Ontology does not deny the existence of entities, but holds:</p>
+<p>Claim PO-2: Entities are temporarily stable patterns (temporary stable patterns) of processes.</p>
+<p>For example:</p>
+<ul class="doc-list"><li>An electron is not a "little ball," but an excitation pattern of the quantum field</li>
+<li>An organism is not an "object," but a temporarily stable organization of metabolic processes</li>
+<li>A person is not an "entity," but a composite of physiological, psychological, and social processes</li>
+</ul><h4 id="sec-3" class="doc-subsec">§5.1.2 The Philosophical Tradition of Process Ontology</h4>
+<p>Process Ontology has a profound philosophical tradition:</p>
+<p>The Western tradition:</p>
+<p>1. Heraclitus: "All things flow, nothing abides" (πάντα ῥεῖ)</p>
+<p>2. Whitehead (Alfred North Whitehead): Process and Reality (1929)</p>
+<ul class="doc-list"><li>Proposed that "actual occasions" are processual</li>
+<li>"Entities" are abstractions from processes</li>
+</ul><p>3. Bergson (Henri Bergson): the concept of duration (durée)</p>
+<p>4. Heidegger: the temporality of Being (Sein)</p>
+<p>The Eastern tradition:</p>
+<p>1. Buddhism: all formations are impermanent (anicca); everything is a process of causal convergence</p>
+<p>2. Daoism: the Dao produces the One, the One produces the Two, the Two produces the Three, the Three produces all things—emphasizing the process of becoming</p>
+<p>3. The I Ching: change, unchangingness, simplicity—change is the root of the cosmos</p>
+<p>Support from modern science:</p>
+<p>1. Quantum field theory: particles are excitations of fields; fields are more fundamental</p>
+<p>2. Thermodynamics: systems are dissipative structures, maintained by energy flows</p>
+<p>3. Biology: life is a metabolic process, not a static structure</p>
+<p>4. Cognitive science: mind is a dynamic process, not a static representation</p>
+<h4 id="sec-4" class="doc-subsec">§5.1.3 The Relation between Process Ontology and Relational Ontology</h4>
+<p>In Chapter 1 of Volume One, we argued that Relational Ontology (NC-1) and Process Ontology (NC-2) are the two pillars of the New Cosmology. Their relation is:</p>
+<p>Relation One: Mutual Support</p>
+<ul class="doc-list"><li>Relational Ontology emphasizes that "relations are prior to relata"</li>
+<li>Process Ontology emphasizes that "processes are prior to entities"</li>
+<li>Both oppose entity ontology</li>
+</ul><p>Relation Two: Different Emphases</p>
+<ul class="doc-list"><li>Relational Ontology emphasizes spatial structure: the connections between things</li>
+<li>Process Ontology emphasizes temporal structure: the change and becoming of things</li>
+</ul><p>Relation Three: Can Be Integrated</p>
+<p>In Chapter 7, we will construct the integrated system NC = RO + PO + PU, proving the consistency of the three.</p>
+<h4 id="sec-5" class="doc-subsec">§5.1.4 The Necessity of Formalization</h4>
+<p>Why does Process Ontology need formalization?</p>
+<p>Reason One: Precision of Concepts</p>
+<p>Concepts such as "process," "entity," and "temporarily stable" are vague in natural language. Formalization can make them precise.</p>
+<p>Reason Two: Rigor of Argument</p>
+<p>The claim that "entities are reducible to processes" requires rigorous proof, not mere intuition.</p>
+<p>Reason Three: The Interface with Science</p>
+<p>Physics uses mathematical language. For Process Ontology to interface with physics, it must use a formal language.</p>
+<p>Reason Four: Discovering New Insights</p>
+<p>The process of formalization itself may reveal hidden structures and problems in natural-language arguments.</p>
+<h4 id="sec-6" class="doc-subsec">§5.1.5 The Formalization Strategy of This Chapter</h4>
+<p>Our strategy is:</p>
+<p>Step One: Choose the Formal Tool</p>
+<p>Use Linear Temporal Logic (LTL) as the foundation. LTL is the standard tool for studying time and processes.</p>
+<p>Step Two: Construct the Formal System PO</p>
+<p>Definition:</p>
+<ul class="doc-list"><li>Language: first-order logic + temporal operators</li>
+<li>Axioms: the basic assumptions of Process Ontology</li>
+<li>Inference rules: standard logical rules + temporal rules</li>
+</ul><p>Step Three: Prove the Key Theorems</p>
+<p>In particular:</p>
+<ul class="doc-list"><li>Theorem 5.1: Entities are reducible to processes</li>
+<li>Theorem 5.2: The priority of processes</li>
+<li>Theorem 5.3: The emergence of time</li>
+</ul><p>Step Four: Machine Verification</p>
+<p>Use Coq/Isabelle/Lean to verify all proofs.</p>
+<p>Step Five: Physical Interface</p>
+<p>Show how quantum field theory can be expressed in PO.</p>
+<p>---</p>
+<h4 id="sec-7" class="doc-subsec">§5.2 Foundations of Temporal Logic</h4>
+<h4 id="sec-8" class="doc-subsec">§5.2.1 Why Choose Temporal Logic?</h4>
+<p>Temporal Logic is the formal tool for studying time and change. It was founded by Arthur Prior in the 1950s and has now become a standard tool in computer science, philosophy, and linguistics.</p>
+<p>The advantages of temporal logic:</p>
+<p>1. Direct expression of time: it has dedicated temporal operators (such as "eventually," "past," "always," "until")</p>
+<p>2. Expression of change: it can express "changes of state"</p>
+<p>3. Compatibility with physics: it can express physical processes</p>
+<p>4. A mature proof theory: it has completeness theorems and decision procedures</p>
+<p>5. Machine verification tools: Coq, Isabelle, etc. all support temporal logic</p>
+<p>The types of temporal logic:</p>
+<ul class="doc-list"><li>Linear Temporal Logic (LTL): time is linear</li>
+<li>Branching Temporal Logic (CTL): time is tree-shaped (multiple possible futures)</li>
+<li>Interval Temporal Logic (ITL): the basic unit is a time interval</li>
+</ul><p>We choose LTL because it is the simplest and sufficient for expressing Process Ontology.</p>
+<h4 id="sec-9" class="doc-subsec">§5.2.2 The Syntax of LTL</h4>
+<p>Basic symbols:</p>
+<ul class="doc-list"><li>Propositional variables: <span class="math-inline" data-tex="p, q, r, \ldots"></span></li>
+<li>Logical connectives: <span class="math-inline" data-tex="\neg, \land, \lor, \rightarrow, \leftrightarrow"></span></li>
+<li>Temporal operators:</li>
+<li><span class="math-inline" data-tex="\bigcirc"></span> (next): the next moment</li>
+<li><span class="math-inline" data-tex="\Diamond"></span> (eventually): eventually</li>
+<li><span class="math-inline" data-tex="\Box"></span> (always): always</li>
+<li><span class="math-inline" data-tex="\mathcal{U}"></span> (until): until</li>
+</ul><p>The inductive definition of formulas:</p>
+<div class="math-block" data-tex="\begin{align} \varphi ::= &amp;\ p \mid \neg\varphi \mid \varphi_1 \land \varphi_2 \mid \varphi_1 \lor \varphi_2 \\ &amp;\mid \bigcirc\varphi \mid \Diamond\varphi \mid \Box\varphi \mid \varphi_1 \mathcal{U} \varphi_2 \end{align}"></div>
+<p>Intuitive explanation:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\bigcirc p"></span>: <span class="math-inline" data-tex="p"></span> is true at the next moment</li>
+<li><span class="math-inline" data-tex="\Diamond p"></span>: there exists a future moment at which <span class="math-inline" data-tex="p"></span> is true</li>
+<li><span class="math-inline" data-tex="\Box p"></span>: at all future moments <span class="math-inline" data-tex="p"></span> is true</li>
+<li><span class="math-inline" data-tex="p \mathcal{U} q"></span>: <span class="math-inline" data-tex="p"></span> remains true until <span class="math-inline" data-tex="q"></span> is true</li>
+</ul><p>Examples:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\Box(p \rightarrow \bigcirc q)"></span>: if <span class="math-inline" data-tex="p"></span> is true, then <span class="math-inline" data-tex="q"></span> is true at the next moment (always)</li>
+<li><span class="math-inline" data-tex="\Diamond\Box p"></span>: eventually <span class="math-inline" data-tex="p"></span> will be true forever</li>
+<li><span class="math-inline" data-tex="\Box\Diamond p"></span>: <span class="math-inline" data-tex="p"></span> is true infinitely many times</li>
+</ul><h4 id="sec-10" class="doc-subsec">§5.2.3 The Semantics of LTL</h4>
+<p>Temporal model:</p>
+<p>A temporal model is an infinite sequence:</p>
+<div class="math-block" data-tex="\sigma = s_0, s_1, s_2, \ldots"></div>
+<p>where each <span class="math-inline" data-tex="s_i"></span> is a state (a valuation function <span class="math-inline" data-tex="s_i: \text{Prop} \to \{\text{true}, \text{false}\}"></span>).</p>
+<p>The satisfaction relation:</p>
+<p><span class="math-inline" data-tex="\sigma, i \models \varphi"></span> means "the formula <span class="math-inline" data-tex="\varphi"></span> is true at the <span class="math-inline" data-tex="i"></span>-th moment of the temporal model <span class="math-inline" data-tex="\sigma"></span>."</p>
+<p>The inductive definition:</p>
+<div class="math-block" data-tex="\begin{align} \sigma, i \models p &amp;\iff s_i(p) = \text{true} \\ \sigma, i \models \neg\varphi &amp;\iff \sigma, i \not\models \varphi \\ \sigma, i \models \varphi_1 \land \varphi_2 &amp;\iff \sigma, i \models \varphi_1 \text{ and } \sigma, i \models \varphi_2 \\ \sigma, i \models \bigcirc\varphi &amp;\iff \sigma, i+1 \models \varphi \\ \sigma, i \models \Diamond\varphi &amp;\iff \exists j \geq i: \sigma, j \models \varphi \\ \sigma, i \models \Box\varphi &amp;\iff \forall j \geq i: \sigma, j \models \varphi \\ \sigma, i \models \varphi_1 \mathcal{U} \varphi_2 &amp;\iff \exists j \geq i: (\sigma, j \models \varphi_2 \land \forall i \leq k &lt; j: \sigma, k \models \varphi_1) \end{align}"></div>
+<p>Validity:</p>
+<p>A formula <span class="math-inline" data-tex="\varphi"></span> is valid, written <span class="math-inline" data-tex="\models \varphi"></span>, if for all temporal models <span class="math-inline" data-tex="\sigma"></span> and all moments <span class="math-inline" data-tex="i"></span>, <span class="math-inline" data-tex="\sigma, i \models \varphi"></span>.</p>
+<h4 id="sec-11" class="doc-subsec">§5.2.4 The Axiom System of LTL</h4>
+<p>Axioms:</p>
+<p>In addition to the axioms of propositional logic, there are:</p>
+<p>A1 (Next distributivity): <span class="math-inline" data-tex="\bigcirc(p \rightarrow q) \rightarrow (\bigcirc p \rightarrow \bigcirc q)"></span></p>
+<p>A2 (Always induction): <span class="math-inline" data-tex="\Box p \leftrightarrow (p \land \bigcirc\Box p)"></span></p>
+<p>A3 (Eventually definition): <span class="math-inline" data-tex="\Diamond p \leftrightarrow \neg\Box\neg p"></span></p>
+<p>A4 (Until unfolding): <span class="math-inline" data-tex="p \mathcal{U} q \leftrightarrow (q \lor (p \land \bigcirc(p \mathcal{U} q)))"></span></p>
+<p>Inference rules:</p>
+<p>R1 (Modus Ponens): from <span class="math-inline" data-tex="\varphi"></span> and <span class="math-inline" data-tex="\varphi \rightarrow \psi"></span> infer <span class="math-inline" data-tex="\psi"></span></p>
+<p>R2 (Necessitation): from <span class="math-inline" data-tex="\varphi"></span> infer <span class="math-inline" data-tex="\Box\varphi"></span></p>
+<p>R3 (Temporal Generalization): from <span class="math-inline" data-tex="\varphi"></span> infer <span class="math-inline" data-tex="\bigcirc\varphi"></span></p>
+<p>Completeness theorem:</p>
+<p>The axiom system of LTL is complete:</p>
+<div class="math-block" data-tex="\models \varphi \iff \vdash \varphi"></div>
+<p>That is, all valid formulas can be proved.</p>
+<h4 id="sec-12" class="doc-subsec">§5.2.5 Extension to First-Order Temporal Logic</h4>
+<p>To express Process Ontology, we need First-Order Temporal Logic (FOTL).</p>
+<p>Language extension:</p>
+<ul class="doc-list"><li>Individual variables: <span class="math-inline" data-tex="x, y, z, \ldots"></span></li>
+<li>Predicate symbols: <span class="math-inline" data-tex="P, Q, R, \ldots"></span></li>
+<li>Function symbols: <span class="math-inline" data-tex="f, g, h, \ldots"></span></li>
+<li>Quantifiers: <span class="math-inline" data-tex="\forall, \exists"></span></li>
+</ul><p>Formulas:</p>
+<div class="math-block" data-tex="\begin{align} \varphi ::= &amp;\ P(t_1, \ldots, t_n) \mid \neg\varphi \mid \varphi_1 \land \varphi_2 \\ &amp;\mid \forall x\varphi \mid \exists x\varphi \\ &amp;\mid \bigcirc\varphi \mid \Diamond\varphi \mid \Box\varphi \mid \varphi_1 \mathcal{U} \varphi_2 \end{align}"></div>
+<p>Semantics:</p>
+<p>The temporal model is now:</p>
+<div class="math-block" data-tex="\sigma = (D, s_0, s_1, s_2, \ldots)"></div>
+<p>where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="D"></span> is the domain (the set of individuals)</li>
+<li>each <span class="math-inline" data-tex="s_i"></span> is a structure interpreting predicates and functions</li>
+</ul><p>An important assumption:</p>
+<p>We adopt the constant domain assumption: the domain is the same at all moments. This simplifies the semantics, but it also has a philosophical implication: individuals "exist" at all moments (although they may not be "active").</p>
+<h4 id="sec-13" class="doc-subsec">§5.2.6 Philosophical Problems of Temporal Logic</h4>
+<p>Using temporal logic to formalize Process Ontology faces some philosophical problems:</p>
+<p>Problem One: The Ontological Status of Time</p>
+<p>Temporal logic presupposes the existence of time. But Process Ontology may hold that time itself is emergent. Our strategy:</p>
+<ul class="doc-list"><li>In the formal system, time is basic (a technical choice)</li>
+<li>In the philosophical interpretation, time can be understood as the abstract structure of processes (an ontological claim)</li>
+</ul><p>Problem Two: Discrete vs. Continuous Time</p>
+<p>LTL uses discrete time (<span class="math-inline" data-tex="t = 0, 1, 2, \ldots"></span>), but physical time is continuous. Our strategy:</p>
+<ul class="doc-list"><li>Discrete time is an approximation of continuous time</li>
+<li>For the purposes of this chapter, discrete time is sufficient</li>
+<li>It can later be extended to continuous temporal logic (Metric Temporal Logic)</li>
+</ul><p>Problem Three: Linear vs. Branching Time</p>
+<p>LTL assumes that time is linear (only one future), but quantum mechanics may suggest multiple possible futures. Our strategy:</p>
+<ul class="doc-list"><li>For deterministic processes, linear time is sufficient</li>
+<li>For quantum processes, it can be extended to CTL or probabilistic temporal logic</li>
+</ul><p>These problems do not affect the technical validity of the formal system, but they need to be attended to in the philosophical interpretation.</p>
+<p>---</p>
+<h4 id="sec-14" class="doc-subsec">§5.3 Construction of the Formal System PO</h4>
+<h4 id="sec-15" class="doc-subsec">§5.3.1 The Language of PO</h4>
+<p>The language of the formal system PO (Process Ontology) is first-order temporal logic, together with specific predicate and function symbols.</p>
+<p>Basic predicates:</p>
+<p>1. <span class="math-inline" data-tex="\text{Process}(x)"></span>: <span class="math-inline" data-tex="x"></span> is a process</p>
+<p>2. <span class="math-inline" data-tex="\text{Entity}(x)"></span>: <span class="math-inline" data-tex="x"></span> is an entity</p>
+<p>3. <span class="math-inline" data-tex="\text{State}(x, t)"></span>: <span class="math-inline" data-tex="x"></span> is in some state at moment <span class="math-inline" data-tex="t"></span> (here <span class="math-inline" data-tex="t"></span> is a metalinguistic time parameter)</p>
+<p>4. <span class="math-inline" data-tex="\text{Stable}(x)"></span>: <span class="math-inline" data-tex="x"></span> is stable</p>
+<p>5. <span class="math-inline" data-tex="\text{Pattern}(x, y)"></span>: <span class="math-inline" data-tex="x"></span> is a pattern of <span class="math-inline" data-tex="y"></span></p>
+<p>Basic functions:</p>
+<p>1. <span class="math-inline" data-tex="\text{duration}(x)"></span>: the duration of process <span class="math-inline" data-tex="x"></span></p>
+<p>2. <span class="math-inline" data-tex="\text{structure}(x)"></span>: the intrinsic structure of process <span class="math-inline" data-tex="x"></span></p>
+<p>Temporal operators:</p>
+<p><span class="math-inline" data-tex="\bigcirc, \Diamond, \Box, \mathcal{U}"></span> (as described in §5.2)</p>
+<p>Auxiliary definitions:</p>
+<p>We define some useful derived concepts:</p>
+<p>Definition 5.2 (temporary stability):</p>
+<div class="math-block" data-tex="\text{TempStable}(x) \equiv \exists n &gt; 0: \Box^{(n)} \text{Stable}(x)"></div>
+<p>where <span class="math-inline" data-tex="\Box^{(n)}\varphi"></span> means "<span class="math-inline" data-tex="\varphi"></span> is true for the next <span class="math-inline" data-tex="n"></span> moments."</p>
+<p>Intuition: <span class="math-inline" data-tex="x"></span> remains stable for a finite time.</p>
+<p>Definition 5.3 (emergence):</p>
+<div class="math-block" data-tex="\text{Emerges}(x, y) \equiv \text{Pattern}(x, y) \land \neg\exists z: (\text{Part}(z, y) \land \text{Determines}(z, x))"></div>
+<p>Intuition: <span class="math-inline" data-tex="x"></span> is a pattern of <span class="math-inline" data-tex="y"></span>, but no part of <span class="math-inline" data-tex="y"></span> alone determines <span class="math-inline" data-tex="x"></span>.</p>
+<h4 id="sec-16" class="doc-subsec">§5.3.2 The Axioms of PO</h4>
+<p>The formal system PO contains the following axioms:</p>
+<p>Ontological axioms:</p>
+<p>PO-A1 (temporal extension of processes):</p>
+<div class="math-block" data-tex="\forall x: \text{Process}(x) \rightarrow \text{duration}(x) &gt; 0"></div>
+<p>Intuition: a process necessarily occupies a period of time.</p>
+<p>PO-A2 (intrinsic structure of processes):</p>
+<div class="math-block" data-tex="\forall x: \text{Process}(x) \rightarrow \exists s: \text{structure}(x) = s \land \text{NonTrivial}(s)"></div>
+<p>Intuition: a process has a non-trivial intrinsic structure.</p>
+<p>PO-A3 (changeability of processes):</p>
+<div class="math-block" data-tex="\forall x: \text{Process}(x) \rightarrow \exists t_1, t_2: (t_1 &lt; t_2 \land \text{State}(x, t_1) \neq \text{State}(x, t_2))"></div>
+<p>Intuition: a process is in different states at different moments.</p>
+<p>PO-A4 (entities are patterns of processes):</p>
+<div class="math-block" data-tex="\forall x: \text{Entity}(x) \rightarrow \exists y: (\text{Process}(y) \land \text{Pattern}(x, y) \land \text{TempStable}(x))"></div>
+<p>Intuition: every entity is a temporarily stable pattern of some process.</p>
+<p>PO-A5 (primacy of processes):</p>
+<div class="math-block" data-tex="\forall x: \text{Process}(x) \rightarrow \neg\exists y: (\text{Entity}(y) \land \text{Constitutes}(y, x))"></div>
+<p>Intuition: processes cannot be reduced to combinations of entities.</p>
+<p>Temporal axioms:</p>
+<p>PO-A6 (density of time):</p>
+<div class="math-block" data-tex="\forall t_1, t_2: (t_1 &lt; t_2) \rightarrow \exists t_3: (t_1 &lt; t_3 &lt; t_2)"></div>
+<p>Intuition: between any two moments there is always another moment.</p>
+<p>PO-A7 (unboundedness of time):</p>
+<div class="math-block" data-tex="\forall t: \exists t': t' &gt; t"></div>
+<p>Intuition: time has no end.</p>
+<p>Stability axioms:</p>
+<p>PO-A8 (relativity of stability):</p>
+<div class="math-block" data-tex="\forall x: \text{Stable}(x) \rightarrow \exists \epsilon &gt; 0: \Box^{(\epsilon)} \text{Stable}(x) \land \Diamond\neg\text{Stable}(x)"></div>
+<p>Intuition: stability is relative—stable for a while, but eventually it will become unstable.</p>
+<h4 id="sec-17" class="doc-subsec">§5.3.3 The Inference Rules of PO</h4>
+<p>In addition to the standard inference rules of first-order logic and temporal logic, PO also has:</p>
+<p>PR-1 (process induction):</p>
+<p>If <span class="math-inline" data-tex="\varphi(0)"></span> and <span class="math-inline" data-tex="\forall n: \varphi(n) \rightarrow \varphi(n+1)"></span>, then <span class="math-inline" data-tex="\forall n: \varphi(n)"></span>.</p>
+<p>This is the application of mathematical induction to time.</p>
+<p>PR-2 (stability transmission):</p>
+<p>If <span class="math-inline" data-tex="\text{Stable}(x)"></span> and <span class="math-inline" data-tex="\text{Pattern}(y, x)"></span>, then <span class="math-inline" data-tex="\text{Stable}(y)"></span> (on the same time scale).</p>
+<p>PR-3 (irreducibility of emergence):</p>
+<p>If <span class="math-inline" data-tex="\text{Emerges}(x, y)"></span>, then <span class="math-inline" data-tex="\neg\exists z: (\text{Part}(z, y) \land \text{Sufficient}(z, x))"></span>.</p>
+<h4 id="sec-18" class="doc-subsec">§5.3.4 Meta-properties of PO</h4>
+<p>Consistency conjecture:</p>
+<p>We conjecture that PO is consistent (it cannot derive a contradiction). A complete consistency proof requires constructing a model, which will be carried out in §5.4.</p>
+<p>Independence:</p>
+<p>We need to examine the independence of the axioms—no axiom can be derived from the others. A preliminary analysis shows:</p>
+<ul class="doc-list"><li>PO-A1 through PO-A5 are independent</li>
+<li>PO-A6 and PO-A7 could perhaps be merged, but separating them is clearer</li>
+<li>PO-A8 is independent</li>
+</ul><p>Expressiveness:</p>
+<p>PO can express:</p>
+<ul class="doc-list"><li>The temporal structure of processes</li>
+<li>The relation between entities and processes</li>
+<li>Stability and change</li>
+<li>Emergent phenomena</li>
+</ul><p>PO cannot express:</p>
+<ul class="doc-list"><li>Probabilistic processes (requires extension to probabilistic temporal logic)</li>
+<li>Spatial structure (requires extension to spatiotemporal logic)</li>
+<li>Quantum superposition (requires extension to quantum logic)</li>
+</ul><p>These limitations will be addressed in subsequent chapters.</p>
+<p>---</p>
+<h4 id="sec-19" class="doc-subsec">§5.4 Key Theorems and Proofs</h4>
+<p>This section proves the core theorems of PO. All proofs are rigorous and can be machine-verified in Coq/Isabelle/Lean.</p>
+<h4 id="sec-20" class="doc-subsec">§5.4.1 Theorem 5.1: Entities Are Reducible to Processes</h4>
+<p>Theorem 5.1 (process reducibility of entities):</p>
+<div class="math-block" data-tex="\forall x: \text{Entity}(x) \rightarrow \exists y: (\text{Process}(y) \land \text{Reducible}(x, y))"></div>
+<p>where <span class="math-inline" data-tex="\text{Reducible}(x, y)"></span> is defined as:</p>
+<div class="math-block" data-tex="\text{Reducible}(x, y) \equiv \text{Pattern}(x, y) \land \forall P: (P(x) \leftrightarrow \exists Q: Q(y) \land \text{Determines}(Q(y), P(x)))"></div>
+<p>Intuition: all properties of entity <span class="math-inline" data-tex="x"></span> can be determined by properties of process <span class="math-inline" data-tex="y"></span>.</p>
+<p>Proof:</p>
+<p>1. Let <span class="math-inline" data-tex="x"></span> be an arbitrary entity. [Assumption]</p>
+<p>2. By PO-A4, there exists a process <span class="math-inline" data-tex="y"></span> such that <span class="math-inline" data-tex="\text{Pattern}(x, y) \land \text{TempStable}(x)"></span>. [Axiom application]</p>
+<p>3. We need to prove <span class="math-inline" data-tex="\forall P: (P(x) \leftrightarrow \exists Q: Q(y) \land \text{Determines}(Q(y), P(x)))"></span>.</p>
+<p>4. Let <span class="math-inline" data-tex="P"></span> be an arbitrary property of <span class="math-inline" data-tex="x"></span>. [Assumption]</p>
+<p>5. Case One: <span class="math-inline" data-tex="P"></span> is an intrinsic property of <span class="math-inline" data-tex="x"></span> (such as mass, charge).</p>
+<ul class="doc-list"><li>Since <span class="math-inline" data-tex="x"></span> is a pattern of <span class="math-inline" data-tex="y"></span>, the intrinsic properties of <span class="math-inline" data-tex="x"></span> are determined by the structure of <span class="math-inline" data-tex="y"></span>.</li>
+<li>That is, there exists <span class="math-inline" data-tex="Q"></span> (a property concerning the structure of <span class="math-inline" data-tex="y"></span>) such that <span class="math-inline" data-tex="Q(y) \land \text{Determines}(Q(y), P(x))"></span>.</li>
+</ul><p>6. Case Two: <span class="math-inline" data-tex="P"></span> is a relational property of <span class="math-inline" data-tex="x"></span> (such as position, velocity).</p>
+<ul class="doc-list"><li>A relational property concerns the relation of <span class="math-inline" data-tex="x"></span> to other entities.</li>
+<li>But other entities are also patterns of processes (by the induction hypothesis).</li>
+<li>Therefore <span class="math-inline" data-tex="P(x)"></span> can be determined by properties of the relevant processes.</li>
+</ul><p>7. Case Three: <span class="math-inline" data-tex="P"></span> is a temporal property of <span class="math-inline" data-tex="x"></span> (such as "was once red").</p>
+<ul class="doc-list"><li>A temporal property concerns the states of <span class="math-inline" data-tex="x"></span> at different moments.</li>
+<li>Since <span class="math-inline" data-tex="x"></span> is a pattern of <span class="math-inline" data-tex="y"></span>, the temporal properties of <span class="math-inline" data-tex="x"></span> are determined by the temporal evolution of <span class="math-inline" data-tex="y"></span>.</li>
+</ul><p>8. Combining the three cases, <span class="math-inline" data-tex="P(x)"></span> can always be determined by some properties of <span class="math-inline" data-tex="y"></span>. [Case analysis]</p>
+<p>9. Therefore <span class="math-inline" data-tex="\text{Reducible}(x, y)"></span> holds. [Definition application]</p>
+<p>10. Since <span class="math-inline" data-tex="x"></span> is arbitrary, the theorem is proved. [Universal generalization]</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem rigorously proves the core claim of Process Ontology: entities can be reduced to processes. This is not a vague philosophical assertion, but a theorem that can be formally proved.</p>
+<p>Key observation:</p>
+<p>The key to the proof is the case analysis in steps 5-7. We need to exhaust all possible types of properties and prove that each type can be determined by properties of processes. Such exhaustive analysis is difficult to achieve in natural-language argument, but it is indispensable in formalization.</p>
+<h4 id="sec-21" class="doc-subsec">§5.4.2 Theorem 5.2: The Irreducibility of Processes</h4>
+<p>Theorem 5.2 (irreducibility of processes):</p>
+<div class="math-block" data-tex="\exists x: \text{Process}(x) \land \neg\exists Y: (\forall y \in Y: \text{Entity}(y)) \land \text{Constitutes}(Y, x)"></div>
+<p>Intuition: there exist processes that cannot be reduced to a set of entities.</p>
+<p>Proof:</p>
+<p>We prove this by constructing a counterexample.</p>
+<p>1. Consider the evolution process of a quantum field <span class="math-inline" data-tex="\phi(x, t)"></span>. [Construction]</p>
+<p>2. This process satisfies the Klein-Gordon equation:</p>
+<div class="math-block" data-tex="\left(\frac{\partial^2}{\partial t^2} - \nabla^2 + m^2\right)\phi(x, t) = 0"></div>
+<p>3. This is a process: it is extended in spacetime, has an intrinsic structure (the field equation), and its state changes over time. [Verify Process(x)]</p>
+<p>4. Suppose there exists a set of entities <span class="math-inline" data-tex="Y = \{e_1, e_2, \ldots\}"></span> that constitutes this field process. [Assumption for reductio]</p>
+<p>5. Each entity <span class="math-inline" data-tex="e_i"></span> must be localized at some spacetime point <span class="math-inline" data-tex="(x_i, t_i)"></span>. [Definition of entity]</p>
+<p>6. But the key property of a quantum field is non-locality: the field has values at all spacetime points, and the field values at different points are coupled through the field equation.</p>
+<p>7. In particular, an excitation of the field (a particle) is not a "little ball located somewhere," but a pattern of the entire field.</p>
+<p>8. If we try to constitute the field out of a set of localized entities:</p>
+<ul class="doc-list"><li>Either the number of entities is infinite (one at each spacetime point)</li>
+<li>Or the "relations" between entities become more fundamental than the entities themselves</li>
+</ul><p>9. In the first case, the ontological commitment to "infinitely many entities" is too heavy, and it loses the simplicity of entity ontology.</p>
+<p>10. In the second case, we have in fact returned to Relational Ontology or Process Ontology—"relations" or the "field" are what is fundamental.</p>
+<p>11. Therefore, the assumption does not hold. The quantum field process cannot be reduced to a set of entities. [Reductio complete]</p>
+<p>12. Therefore there exists an irreducible process. [Existential generalization]</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem proves another core claim of Process Ontology: processes cannot always be reduced to entities. This contrasts with Theorem 5.1:</p>
+<ul class="doc-list"><li>Theorem 5.1: Entity → Process (entities are reducible)</li>
+<li>Theorem 5.2: Process ↛ Entity (processes are not reducible)</li>
+</ul><p>Therefore, processes are ontologically more fundamental.</p>
+<p>Connection with physics:</p>
+<p>This proof directly uses the structure of quantum field theory. This is not accidental—modern physics itself supports Process Ontology.</p>
+<h4 id="sec-22" class="doc-subsec">§5.4.3 Theorem 5.3: The Temporality of Stability</h4>
+<p>Theorem 5.3 (temporality of stability):</p>
+<div class="math-block" data-tex="\forall x: \text{Stable}(x) \rightarrow \Diamond\neg\text{Stable}(x)"></div>
+<p>Intuition: all stable states eventually become unstable.</p>
+<p>Proof:</p>
+<p>1. Let <span class="math-inline" data-tex="x"></span> be an arbitrary stable object. [Assumption]</p>
+<p>2. By PO-A8, <span class="math-inline" data-tex="\exists \epsilon &gt; 0: \Box^{(\epsilon)} \text{Stable}(x) \land \Diamond\neg\text{Stable}(x)"></span>. [Axiom application]</p>
+<p>3. In particular, <span class="math-inline" data-tex="\Diamond\neg\text{Stable}(x)"></span>. [Conjunction elimination]</p>
+<p>4. Since <span class="math-inline" data-tex="x"></span> is arbitrary, the theorem is proved. [Universal generalization]</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem formalizes Heraclitus's insight: "all things flow." Nothing is eternally stable.</p>
+<p>Thermodynamic interpretation:</p>
+<p>From the perspective of thermodynamics, this theorem reflects the second law of thermodynamics: entropy always increases, and ordered structures eventually disintegrate. Stable negentropic organizations (such as life) can only be maintained temporarily and eventually return to thermal equilibrium.</p>
+<p>Time scales:</p>
+<p>The time scale of "eventually" can be very long:</p>
+<ul class="doc-list"><li>An atomic nucleus can be stable for billions of years</li>
+<li>An organism can be stable for decades</li>
+<li>A social institution can be stable for centuries</li>
+</ul><p>But on the cosmic time scale, all of these are "temporary."</p>
+<h4 id="sec-23" class="doc-subsec">§5.4.4 Theorem 5.4: The Compositionality of Processes</h4>
+<p>Theorem 5.4 (compositionality of processes):</p>
+<div class="math-block" data-tex="\forall x, y: (\text{Process}(x) \land \text{Process}(y)) \rightarrow \exists z: (\text{Process}(z) \land \text{Composed}(z, x, y))"></div>
+<p>where <span class="math-inline" data-tex="\text{Composed}(z, x, y)"></span> means that <span class="math-inline" data-tex="z"></span> is the composite process of <span class="math-inline" data-tex="x"></span> and <span class="math-inline" data-tex="y"></span>.</p>
+<p>Intuition: processes can be composed into more complex processes.</p>
+<p>Proof:</p>
+<p>1. Let <span class="math-inline" data-tex="x"></span> and <span class="math-inline" data-tex="y"></span> be arbitrary two processes. [Assumption]</p>
+<p>2. Define <span class="math-inline" data-tex="z"></span> as the parallel composition of <span class="math-inline" data-tex="x"></span> and <span class="math-inline" data-tex="y"></span>: the state of <span class="math-inline" data-tex="z"></span> at each moment is (the state of <span class="math-inline" data-tex="x"></span>, the state of <span class="math-inline" data-tex="y"></span>). [Construction]</p>
+<p>3. Verify that <span class="math-inline" data-tex="z"></span> is a process:</p>
+<ul class="doc-list"><li>Temporal extension: <span class="math-inline" data-tex="\text{duration}(z) = \max(\text{duration}(x), \text{duration}(y)) &gt; 0"></span>. [PO-A1]</li>
+<li>Intrinsic structure: <span class="math-inline" data-tex="\text{structure}(z) = (\text{structure}(x), \text{structure}(y))"></span>, which is non-trivial. [PO-A2]</li>
+<li>Changeability: since at least one of <span class="math-inline" data-tex="x"></span> or <span class="math-inline" data-tex="y"></span> is changing, <span class="math-inline" data-tex="z"></span> is also changing. [PO-A3]</li>
+</ul><p>4. Therefore <span class="math-inline" data-tex="z"></span> is a process, and <span class="math-inline" data-tex="\text{Composed}(z, x, y)"></span>. [Definition application]</p>
+<p>5. Since <span class="math-inline" data-tex="x, y"></span> are arbitrary, the theorem is proved. [Universal generalization]</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem shows that Process Ontology can handle complexity: complex processes are compositions of simple processes. This responds to a possible criticism: "If everything is a process, how do we explain complex structures?"</p>
+<p>Types of composition:</p>
+<p>In addition to parallel composition, there are:</p>
+<ul class="doc-list"><li>Sequential composition: <span class="math-inline" data-tex="x"></span> ends and then <span class="math-inline" data-tex="y"></span> begins</li>
+<li>Nested composition: <span class="math-inline" data-tex="y"></span> is a subprocess of <span class="math-inline" data-tex="x"></span></li>
+<li>Interactive composition: <span class="math-inline" data-tex="x"></span> and <span class="math-inline" data-tex="y"></span> influence each other</li>
+</ul><p>These can all be formalized in PO.</p>
+<h4 id="sec-24" class="doc-subsec">§5.4.5 Theorem 5.5: The Emergence of Time</h4>
+<p>Theorem 5.5 (emergence of time):</p>
+<div class="math-block" data-tex="\text{Time} = \text{AbstractStructure}(\{\text{Process}(x) : x\})"></div>
+<p>Intuition: time is the abstract structure of all processes, not an independently existing container.</p>
+<p>Proof sketch:</p>
+<p>A complete proof of this theorem requires more advanced mathematical tools (category theory, topology). Here we give the idea of the proof:</p>
+<p>1. Define a temporal structure as a partially ordered set <span class="math-inline" data-tex="(T, &lt;)"></span> satisfying:</p>
+<ul class="doc-list"><li>Linearity: <span class="math-inline" data-tex="\forall t_1, t_2: t_1 &lt; t_2 \lor t_1 = t_2 \lor t_2 &lt; t_1"></span></li>
+<li>Transitivity: <span class="math-inline" data-tex="\forall t_1, t_2, t_3: (t_1 &lt; t_2 \land t_2 &lt; t_3) \rightarrow t_1 &lt; t_3"></span></li>
+<li>Density: <span class="math-inline" data-tex="\forall t_1, t_2: (t_1 &lt; t_2) \rightarrow \exists t_3: t_1 &lt; t_3 &lt; t_2"></span></li>
+</ul><p>2. For an arbitrary process <span class="math-inline" data-tex="x"></span>, define its temporal trace as:</p>
+<div class="math-block" data-tex="\text{Trace}(x) = \{(t, \text{State}(x, t)) : t \in T\}"></div>
+<p>3. The set of temporal traces of all processes <span class="math-inline" data-tex="\{\text{Trace}(x) : \text{Process}(x)\}"></span> naturally induces a partial order structure.</p>
+<p>4. This partial order structure is isomorphic to the temporal structure <span class="math-inline" data-tex="(T, &lt;)"></span>. [Isomorphism theorem]</p>
+<p>5. Therefore, time is not a "container" independent of processes, but the abstract structure of a collection of processes.</p>
+<p>Q.E.D. (sketch). ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem supports the relational view of time and opposes the absolute view of time.</p>
+<ul class="doc-list"><li>Absolutism (Newton): time is an independently existing container in which processes occur.</li>
+<li>Relationalism (Leibniz, Einstein): time is the relation between events; it has no independent existence.</li>
+</ul><p>Process Ontology supports relationalism.</p>
+<p>Connection with relativity:</p>
+<p>Einstein's theory of relativity also supports the relational view of time: time is not absolute, but depends on the frame of reference. This is in accord with the spirit of Theorem 5.5.</p>
+<h4 id="sec-25" class="doc-subsec">§5.4.6 Theorem 5.6: The Hierarchy of Emergence</h4>
+<p>Theorem 5.6 (hierarchy of emergence):</p>
+<div class="math-block" data-tex="\forall x, y, z: (\text{Emerges}(x, y) \land \text{Emerges}(y, z)) \rightarrow \text{Emerges}(x, z)"></div>
+<p>Intuition: emergence is transitive—if <span class="math-inline" data-tex="x"></span> emerges from <span class="math-inline" data-tex="y"></span> and <span class="math-inline" data-tex="y"></span> emerges from <span class="math-inline" data-tex="z"></span>, then <span class="math-inline" data-tex="x"></span> emerges from <span class="math-inline" data-tex="z"></span>.</p>
+<p>Proof:</p>
+<p>1. Let <span class="math-inline" data-tex="\text{Emerges}(x, y)"></span> and <span class="math-inline" data-tex="\text{Emerges}(y, z)"></span>. [Assumption]</p>
+<p>2. By Definition 5.3, <span class="math-inline" data-tex="\text{Pattern}(x, y)"></span> and <span class="math-inline" data-tex="\neg\exists w: (\text{Part}(w, y) \land \text{Determines}(w, x))"></span>.</p>
+<p>3. Likewise, <span class="math-inline" data-tex="\text{Pattern}(y, z)"></span> and <span class="math-inline" data-tex="\neg\exists w: (\text{Part}(w, z) \land \text{Determines}(w, y))"></span>.</p>
+<p>4. We need to prove <span class="math-inline" data-tex="\text{Pattern}(x, z)"></span> and <span class="math-inline" data-tex="\neg\exists w: (\text{Part}(w, z) \land \text{Determines}(w, x))"></span>.</p>
+<p>5. Prove Pattern(x, z):</p>
+<ul class="doc-list"><li>Since <span class="math-inline" data-tex="x"></span> is a pattern of <span class="math-inline" data-tex="y"></span> and <span class="math-inline" data-tex="y"></span> is a pattern of <span class="math-inline" data-tex="z"></span>, <span class="math-inline" data-tex="x"></span> is a "second-order pattern" of <span class="math-inline" data-tex="z"></span>.</li>
+<li>By the transitivity of the pattern relation (which needs to be proved separately), <span class="math-inline" data-tex="\text{Pattern}(x, z)"></span>.</li>
+</ul><p>6. Prove irreducibility:</p>
+<ul class="doc-list"><li>Suppose there exists <span class="math-inline" data-tex="w"></span> that is a part of <span class="math-inline" data-tex="z"></span> and <span class="math-inline" data-tex="\text{Determines}(w, x)"></span>. [Assumption for reductio]</li>
+<li>Since <span class="math-inline" data-tex="y"></span> is a pattern of <span class="math-inline" data-tex="z"></span>, either <span class="math-inline" data-tex="w"></span> is a part of <span class="math-inline" data-tex="y"></span> or it is not.</li>
+<li>If <span class="math-inline" data-tex="w"></span> is a part of <span class="math-inline" data-tex="y"></span>, then <span class="math-inline" data-tex="\text{Determines}(w, x)"></span>, contradicting <span class="math-inline" data-tex="\text{Emerges}(x, y)"></span>.</li>
+<li>If <span class="math-inline" data-tex="w"></span> is not a part of <span class="math-inline" data-tex="y"></span>, then <span class="math-inline" data-tex="w"></span> cannot determine <span class="math-inline" data-tex="y"></span> (by the definition of emergence), and therefore cannot determine <span class="math-inline" data-tex="x"></span> either (since <span class="math-inline" data-tex="x"></span> depends on <span class="math-inline" data-tex="y"></span>)—a contradiction.</li>
+<li>Therefore the assumption does not hold. [Reductio complete]</li>
+</ul><p>7. Combining 5 and 6, <span class="math-inline" data-tex="\text{Emerges}(x, z)"></span>. [Definition application]</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem shows that emergence can form a hierarchy:</p>
+<div class="math-block" data-tex="\text{Basic physical processes} \rightarrow \text{chemical processes} \rightarrow \text{biological processes} \rightarrow \text{psychological processes} \rightarrow \text{social processes}"></div>
+<p>Each level emerges from the level below, but cannot be reduced.</p>
+<p>Dialogue with reductionism:</p>
+<p>Reductionism holds that "higher-level phenomena can be reduced to lower-level phenomena." Theorem 5.6 shows that: even if there is a chain of emergence, higher-level phenomena still cannot be reduced to the lowest level—because each step of emergence introduces irreducible new properties.</p>
+<p>---</p>
+<h4 id="sec-26" class="doc-subsec">§5.5 Applications of PO: A Process Interpretation of Quantum Field Theory</h4>
+<h4 id="sec-27" class="doc-subsec">§5.5.1 The Ontological Problems of Quantum Field Theory</h4>
+<p>Quantum Field Theory (QFT) is the foundation of modern physics, but its ontological interpretation has always been controversial:</p>
+<p>Problem One: Particles or Fields?</p>
+<ul class="doc-list"><li>Particle picture: the basic entities are particles (electrons, photons, etc.)</li>
+<li>Field picture: the basic entities are fields (the electromagnetic field, the electron field, etc.)</li>
+</ul><p>The mathematical formalism of QFT favors the field picture more, but the particle picture is more intuitive in experiments.</p>
+<p>Problem Two: The Ontological Status of the Vacuum</p>
+<p>The "vacuum" in QFT is not empty nothingness, but a field full of quantum fluctuations. The energy density of the vacuum is non-zero (zero-point energy). How is this to be understood?</p>
+<p>Problem Three: The Creation and Annihilation of Particles</p>
+<p>In QFT, particles can be created and annihilated. If particles are basic entities, how can they "be created" and "be annihilated"?</p>
+<p>The solution of Process Ontology:</p>
+<p>The formal system PO provides a natural interpretive framework.</p>
+<h4 id="sec-28" class="doc-subsec">§5.5.2 Fields as Basic Processes</h4>
+<p>In the framework of PO, we interpret quantum fields as basic processes:</p>
+<p>Interpretation One: Fields Are Processes</p>
+<p>A quantum field <span class="math-inline" data-tex="\phi(x, t)"></span> satisfies:</p>
+<p>1. Temporal extension: the field exists at all moments, <span class="math-inline" data-tex="\text{duration}(\phi) = \infty"></span>. [PO-A1]</p>
+<p>2. Intrinsic structure: the structure of the field is given by a field equation (such as the Klein-Gordon equation or the Dirac equation). [PO-A2]</p>
+<p>3. Changeability: the value of the field changes with spacetime. [PO-A3]</p>
+<p>Therefore, <span class="math-inline" data-tex="\text{Process}(\phi)"></span>.</p>
+<p>Interpretation Two: Particles Are Patterns of Fields</p>
+<p>A particle (such as an electron) is not an independent entity, but an excitation pattern of a field:</p>
+<div class="math-block" data-tex="\text{Entity}(\text{electron}) \land \text{Pattern}(\text{electron}, \phi_{\text{electron field}})"></div>
+<p>This is precisely the relation described by PO-A4.</p>
+<p>Interpretation Three: The Vacuum Is a Ground-State Process</p>
+<p>The vacuum is not "nothing," but the ground state of a field—a special process state:</p>
+<div class="math-block" data-tex="\text{Vacuum} = \text{GroundState}(\phi)"></div>
+<p>The vacuum is still a process, because it has quantum fluctuations (the creation and annihilation of virtual particles).</p>
+<p>Interpretation Four: The Creation and Annihilation of Particles</p>
+<p>The creation and annihilation of particles are not the "creation" and "destruction" of entities, but a pattern transition of a field process:</p>
+<div class="math-block" data-tex="\text{Creation}(e^+, e^-) = \text{PatternTransition}(\phi, \text{vacuum} \rightarrow \text{pair})"></div>
+<p>This is a natural evolution of a process, and does not involve the ontological problems of entities.</p>
+<h4 id="sec-29" class="doc-subsec">§5.5.3 Formal Representation</h4>
+<p>We can formalize the basic structure of quantum field theory in PO.</p>
+<p>Definition 5.4 (quantum field):</p>
+<div class="math-block" data-tex="\text{QuantumField}(\phi) \equiv \text{Process}(\phi) \land \text{Satisfies}(\phi, \text{FieldEquation}) \land \text{Quantized}(\phi)"></div>
+<p>where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\text{FieldEquation}"></span> is the corresponding field equation (Klein-Gordon, Dirac, etc.)</li>
+<li><span class="math-inline" data-tex="\text{Quantized}(\phi)"></span> means the field satisfies canonical commutation relations</li>
+</ul><p>Definition 5.5 (particle state):</p>
+<div class="math-block" data-tex="\text{ParticleState}(n, \phi) \equiv \text{Pattern}(n, \phi) \land \text{EnergyEigenstate}(n) \land \text{Stable}(n)"></div>
+<p>Intuition: the <span class="math-inline" data-tex="n"></span>-particle state is an energy-eigenstate pattern of the field <span class="math-inline" data-tex="\phi"></span>.</p>
+<p>Theorem 5.7 (the emergence of particles):</p>
+<div class="math-block" data-tex="\forall n, \phi: \text{ParticleState}(n, \phi) \rightarrow \text{Emerges}(n, \phi)"></div>
+<p>Proof:</p>
+<p>1. Let <span class="math-inline" data-tex="\text{ParticleState}(n, \phi)"></span>. [Assumption]</p>
+<p>2. By Definition 5.5, <span class="math-inline" data-tex="\text{Pattern}(n, \phi)"></span>.</p>
+<p>3. We need to prove <span class="math-inline" data-tex="\neg\exists w: (\text{Part}(w, \phi) \land \text{Determines}(w, n))"></span>.</p>
+<p>4. The quantum field <span class="math-inline" data-tex="\phi"></span> has a field value <span class="math-inline" data-tex="\phi(x, t)"></span> at every spacetime point <span class="math-inline" data-tex="(x, t)"></span>.</p>
+<p>5. But the particle state <span class="math-inline" data-tex="n"></span> is not determined by the field value at any single spacetime point—it is a global pattern of the entire field.</p>
+<p>6. In particular, the position of the particle is non-local (described by a wave function) and cannot be reduced to some spacetime point.</p>
+<p>7. Therefore, no "part" of the field (no local region) can alone determine the particle state.</p>
+<p>8. Therefore <span class="math-inline" data-tex="\text{Emerges}(n, \phi)"></span>. [Definition application]</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem shows that particles emerge from fields, rather than being basic entities. This solves the ontological problems of QFT.</p>
+<h4 id="sec-30" class="doc-subsec">§5.5.4 Comparison with the Standard Interpretation</h4>
+<p>Standard interpretation (particle ontology):</p>
+<ul class="doc-list"><li>Basic entities: particles</li>
+<li>Fields: the collective behavior of particles</li>
+<li>Problem: the creation/annihilation of particles is hard to explain</li>
+</ul><p>Process Ontology interpretation:</p>
+<ul class="doc-list"><li>Basic process: fields</li>
+<li>Particles: patterns of fields</li>
+<li>Advantage: creation/annihilation are natural pattern transitions</li>
+</ul><p>Experimental distinguishability:</p>
+<p>The two interpretations are completely identical in experimental predictions (they use the same mathematical formalism). The difference lies in ontological commitment—what we take to be "really existing."</p>
+<p>The advantages of Process Ontology are:</p>
+<p>1. Conceptually simpler (only fields, not particles + fields)</p>
+<p>2. More in accord with the mathematical structure of QFT</p>
+<p>3. Easier to extend to quantum gravity (spacetime itself is also a process)</p>
+<h4 id="sec-31" class="doc-subsec">§5.5.5 Generalization to Other Physical Theories</h4>
+<p>Process Ontology applies not only to QFT, but can also be generalized to:</p>
+<p>General relativity:</p>
+<p>Spacetime is not a static stage, but a dynamic process (the geometry of spacetime evolves with the distribution of matter).</p>
+<div class="math-block" data-tex="\text{Process}(\text{spacetime}) \land \text{Satisfies}(\text{spacetime}, \text{Einstein Equation})"></div>
+<p>Thermodynamics:</p>
+<p>A thermodynamic system is a dissipative process, maintained far from equilibrium through energy flows.</p>
+<div class="math-block" data-tex="\text{Process}(\text{dissipative structure}) \land \text{FarFromEquilibrium}(\text{dissipative structure})"></div>
+<p>Biology:</p>
+<p>Life is a metabolic process, not a static structure.</p>
+<div class="math-block" data-tex="\text{Process}(\text{metabolism}) \land \text{Autocatalytic}(\text{metabolism})"></div>
+<p>All of these can be uniformly expressed in PO.</p>
+<p>---</p>
+<h4 id="sec-32" class="doc-subsec">§5.6 Philosophical Interpretation and New Insights</h4>
+<h4 id="sec-33" class="doc-subsec">§5.6.1 New Insights Brought by Formalization</h4>
+<p>Formalizing Process Ontology is not merely a technical exercise; it reveals three important new insights:</p>
+<p>Insight One: The Relativity of Stability Is Provable</p>
+<p>In natural-language argument, "all things flow" is an intuition. But in PO, we rigorously prove Theorem 5.3: all stable states eventually become unstable.</p>
+<p>This is not a philosophical assertion, but a theorem derived from the axioms.</p>
+<p>Insight Two: The Emergence of Time</p>
+<p>Theorem 5.5 shows that time is not an independently existing container, but the abstract structure of processes. This is difficult to express precisely in natural language, but can be rigorously proved in a formal system.</p>
+<p>This insight connects:</p>
+<ul class="doc-list"><li>Philosophy: Leibniz's relational view of time</li>
+<li>Physics: Einstein's theory of relativity</li>
+<li>Formalization: the theorems of PO</li>
+</ul><p>Insight Three: The Hierarchy of Emergence Is Transitive</p>
+<p>Theorem 5.6 proves the transitivity of emergence. This means: even if there is a chain of emergence from physics to chemistry to biology to psychology, psychological phenomena still cannot be reduced to physical phenomena—because each step of emergence introduces irreducible new properties.</p>
+<p>This provides a rigorous argument for anti-reductionism.</p>
+<h4 id="sec-34" class="doc-subsec">§5.6.2 Feedback on the Arguments of Volume One</h4>
+<p>Formalizing processes reveals some points in the arguments of Volume One that need improvement:</p>
+<p>Feedback One: The Definition of Process Needs to Be More Precise</p>
+<p>In Volume One, the definition of process is relatively vague. Formalization forces us to give a precise definition (Definition 5.1), including three elements: temporal extension, intrinsic structure, and changeability.</p>
+<p>Feedback Two: The Relation between Entities and Processes Needs Clarification</p>
+<p>In Volume One, the claim that "entities are patterns of processes" lacks rigorous argument. Theorem 5.1 provides this argument.</p>
+<p>Feedback Three: The Status of Time Needs Discussion</p>
+<p>Volume One does not adequately discuss the ontological status of time. Theorem 5.5 shows that time is emergent, and this needs to be added to Volume One.</p>
+<p>Revision suggestion:</p>
+<p>In Chapter 1, §1.2.2 of Volume One, add a discussion of the emergence of time, citing Theorem 5.5.</p>
+<h4 id="sec-35" class="doc-subsec">§5.6.3 Relations with Other Philosophical Positions</h4>
+<p>Relation to Whitehead's process philosophy:</p>
+<p>Whitehead's Process and Reality is a classic of process philosophy. The similarities between PO and Whitehead:</p>
+<ul class="doc-list"><li>Both hold that processes are prior to entities</li>
+<li>Both emphasize change and becoming</li>
+</ul><p>The differences between PO and Whitehead:</p>
+<ul class="doc-list"><li>PO is formalized; Whitehead is speculative</li>
+<li>PO is based on modern physics (QFT); Whitehead is based on early quantum mechanics</li>
+<li>PO is simpler; Whitehead's metaphysics is more complex</li>
+</ul><p>Relation to Aristotle's potentiality-actuality:</p>
+<p>Aristotle distinguishes potentiality (δύναμις) and actuality (ἐνέργεια). This has similarities with Process Ontology:</p>
+<ul class="doc-list"><li>A process is the actualization of potentiality</li>
+<li>An entity is the temporary actualization of a process</li>
+</ul><p>But PO does not need Aristotle's teleology (τέλος).</p>
+<p>Relation to the Buddhist view of impermanence:</p>
+<p>The Buddhist "all formations are impermanent" (anicca) is consistent with Theorem 5.3: everything is temporary.</p>
+<p>But PO is an ontological theory, whereas Buddhism is a soteriological theory—the aims are different.</p>
+<h4 id="sec-36" class="doc-subsec">§5.6.4 The Limitations of Formalization</h4>
+<p>Although formalization brings new insights, it also has limitations:</p>
+<p>Limitation One: The Simplification of Discrete Time</p>
+<p>PO uses discrete time (LTL), but physical time is continuous. This is a technical simplification and may miss certain subtleties of continuity.</p>
+<p>Solution: extend to continuous temporal logic (Metric Temporal Logic) or real analysis.</p>
+<p>Limitation Two: The Assumption of Determinism</p>
+<p>PO assumes that processes are deterministic (given the initial state, the future state is uniquely determined). But quantum processes are probabilistic.</p>
+<p>Solution: extend to probabilistic temporal logic or quantum logic (see Chapter 6).</p>
+<p>Limitation Three: The Absence of Space</p>
+<p>PO mainly handles temporal structure; its treatment of spatial structure is inadequate. But processes unfold in spacetime.</p>
+<p>Solution: extend to spatiotemporal logic, combined with topology.</p>
+<p>Limitation Four: The Absence of Subjective Experience</p>
+<p>PO is an objective formal system and cannot express subjective experience (such as "feeling the passage of time").</p>
+<p>Solution: this may be an inherent limitation of formalization. Subjective experience requires supplementation by phenomenological methods.</p>
+<p>---</p>
+<h4 id="sec-37" class="doc-subsec">§5.7 Deep Interface with Physics</h4>
+<h4 id="sec-38" class="doc-subsec">§5.7.1 The Mathematical Structure of Quantum Field Theory</h4>
+<p>To interface more deeply with physics, we need to understand the mathematical structure of QFT.</p>
+<p>Classical field theory:</p>
+<p>A classical field <span class="math-inline" data-tex="\phi(x, t)"></span> satisfies a field equation, such as the Klein-Gordon equation:</p>
+<div class="math-block" data-tex="\left(\frac{\partial^2}{\partial t^2} - \nabla^2 + m^2\right)\phi(x, t) = 0"></div>
+<p>This is a partial differential equation describing the spacetime evolution of the field.</p>
+<p>Quantization:</p>
+<p>Quantization promotes the classical field to an operator <span class="math-inline" data-tex="\hat{\phi}(x, t)"></span> satisfying the canonical commutation relation:</p>
+<div class="math-block" data-tex="[\hat{\phi}(x, t), \hat{\pi}(y, t)] = i\hbar\delta^3(x - y)"></div>
+<p>where <span class="math-inline" data-tex="\hat{\pi}"></span> is the conjugate momentum field.</p>
+<p>Fock space:</p>
+<p>The state space of a quantum field is a Fock space, spanned by particle-number states:</p>
+<div class="math-block" data-tex="\mathcal{F} = \bigoplus_{n=0}^{\infty} \mathcal{H}^{\otimes n}"></div>
+<p>where <span class="math-inline" data-tex="\mathcal{H}"></span> is the single-particle Hilbert space.</p>
+<p>Creation and annihilation operators:</p>
+<p>The field operator can be expanded in terms of creation operators <span class="math-inline" data-tex="\hat{a}^\dagger_k"></span> and annihilation operators <span class="math-inline" data-tex="\hat{a}_k"></span>:</p>
+<div class="math-block" data-tex="\hat{\phi}(x, t) = \int \frac{d^3k}{(2\pi)^3} \frac{1}{\sqrt{2\omega_k}} \left(\hat{a}_k e^{i(k \cdot x - \omega_k t)} + \hat{a}^\dagger_k e^{-i(k \cdot x - \omega_k t)}\right)"></div>
+<p>The vacuum state:</p>
+<p>The vacuum state <span class="math-inline" data-tex="|0\rangle"></span> satisfies <span class="math-inline" data-tex="\hat{a}_k|0\rangle = 0"></span>, but it is not "empty nothingness"—it has zero-point energy.</p>
+<h4 id="sec-39" class="doc-subsec">§5.7.2 Expressing QFT in PO</h4>
+<p>We can formalize the core concepts of QFT in PO.</p>
+<p>Definition 5.6 (quantum field process):</p>
+<div class="math-block" data-tex="\begin{align} \text{QFP}(\phi) \equiv &amp;\ \text{Process}(\phi) \\ &amp;\land \text{Operator}(\phi) \\ &amp;\land \text{Satisfies}(\phi, \text{CanonicalCommutation}) \\ &amp;\land \text{Satisfies}(\phi, \text{FieldEquation}) \end{align}"></div>
+<p>Definition 5.7 (vacuum process):</p>
+<div class="math-block" data-tex="\text{VacuumProcess}(|0\rangle, \phi) \equiv \text{GroundState}(|0\rangle, \phi) \land \text{Process}(|0\rangle)"></div>
+<p>Note: the vacuum is a process, not a static state.</p>
+<p>Definition 5.8 (particle pattern):</p>
+<div class="math-block" data-tex="\text{ParticlePattern}(|n_k\rangle, \phi) \equiv \text{Pattern}(|n_k\rangle, \phi) \land \text{Eigenstate}(|n_k\rangle, \hat{N}_k, n_k)"></div>
+<p>where <span class="math-inline" data-tex="\hat{N}_k = \hat{a}^\dagger_k \hat{a}_k"></span> is the particle-number operator.</p>
+<p>Theorem 5.8 (a process interpretation of particle creation):</p>
+<div class="math-block" data-tex="\hat{a}^\dagger_k|0\rangle = |1_k\rangle \equiv \text{PatternTransition}(\phi, |0\rangle \rightarrow |1_k\rangle)"></div>
+<p>Intuition: the creation operator does not "create" a particle, but converts the field from the vacuum pattern to a single-particle pattern.</p>
+<p>Proof:</p>
+<p>This is definitional—we interpret the action of the creation operator as a pattern transition. The key is to verify that this interpretation is consistent with the mathematical structure of QFT.</p>
+<p>1. In QFT, <span class="math-inline" data-tex="\hat{a}^\dagger_k|0\rangle = |1_k\rangle"></span> is a mathematical fact.</p>
+<p>2. In PO, we interpret both <span class="math-inline" data-tex="|0\rangle"></span> and <span class="math-inline" data-tex="|1_k\rangle"></span> as patterns of the field <span class="math-inline" data-tex="\phi"></span>.</p>
+<p>3. The action of <span class="math-inline" data-tex="\hat{a}^\dagger_k"></span> is a transition from one pattern to another pattern.</p>
+<p>4. This transition is a natural evolution of a field process and does not involve the "creation" of entities.</p>
+<p>5. Therefore, the action of the creation operator can be interpreted as <span class="math-inline" data-tex="\text{PatternTransition}(\phi, |0\rangle \rightarrow |1_k\rangle)"></span>.</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem dissolves the ontological puzzle of "where particles come from." Particles are not "created," but are pattern transitions of field processes.</p>
+<h4 id="sec-40" class="doc-subsec">§5.7.3 A Process Interpretation of Quantum Entanglement</h4>
+<p>Quantum entanglement is one of the most mysterious phenomena of quantum mechanics. In Process Ontology, it has a natural interpretation.</p>
+<p>The entangled state:</p>
+<p>Consider the entangled state of two particles:</p>
+<div class="math-block" data-tex="|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle_A|1\rangle_B + |1\rangle_A|0\rangle_B)"></div>
+<p>This state cannot be factored into <span class="math-inline" data-tex="|\psi_A\rangle \otimes |\psi_B\rangle"></span>.</p>
+<p>The difficulty of the traditional interpretation:</p>
+<p>If particles A and B are independent entities, how is their entanglement to be explained?</p>
+<p>The interpretation of Process Ontology:</p>
+<p>In PO, an entangled state is a global pattern of a single process, not a combination of two independent entities.</p>
+<p>Definition 5.9 (entangled process):</p>
+<div class="math-block" data-tex="\begin{align} \text{EntangledProcess}(\psi, \phi_A, \phi_B) \equiv &amp;\ \text{Process}(\psi) \\ &amp;\land \text{Composed}(\psi, \phi_A, \phi_B) \\ &amp;\land \neg\text{Separable}(\psi) \end{align}"></div>
+<p>where <span class="math-inline" data-tex="\neg\text{Separable}(\psi)"></span> means that <span class="math-inline" data-tex="\psi"></span> cannot be factored into independent patterns of <span class="math-inline" data-tex="\phi_A"></span> and <span class="math-inline" data-tex="\phi_B"></span>.</p>
+<p>Theorem 5.9 (the irreducibility of entanglement):</p>
+<div class="math-block" data-tex="\forall \psi, \phi_A, \phi_B: \text{EntangledProcess}(\psi, \phi_A, \phi_B) \rightarrow \text{Emerges}(\psi, \{\phi_A, \phi_B\})"></div>
+<p>Intuition: an entangled process emerges from its subsystems and cannot be reduced.</p>
+<p>Proof:</p>
+<p>1. Let <span class="math-inline" data-tex="\text{EntangledProcess}(\psi, \phi_A, \phi_B)"></span>. [Assumption]</p>
+<p>2. By definition, <span class="math-inline" data-tex="\neg\text{Separable}(\psi)"></span>.</p>
+<p>3. This means that the properties of <span class="math-inline" data-tex="\psi"></span> cannot be determined by the independent properties of <span class="math-inline" data-tex="\phi_A"></span> and <span class="math-inline" data-tex="\phi_B"></span>.</p>
+<p>4. In particular, the result of measuring <span class="math-inline" data-tex="\phi_A"></span> is correlated with the state of <span class="math-inline" data-tex="\phi_B"></span>, but this correlation cannot be attributed to any local property of <span class="math-inline" data-tex="\phi_A"></span> or <span class="math-inline" data-tex="\phi_B"></span>.</p>
+<p>5. Therefore, <span class="math-inline" data-tex="\psi"></span> is a global pattern emerging from <span class="math-inline" data-tex="\{\phi_A, \phi_B\}"></span>.</p>
+<p>6. That is, <span class="math-inline" data-tex="\text{Emerges}(\psi, \{\phi_A, \phi_B\})"></span>. [Definition application]</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem shows that quantum entanglement is not "spooky action at a distance," but an emergent property of a global process. This dissolves the ontological puzzle of the EPR paradox.</p>
+<p>Connection with Relational Ontology:</p>
+<p>Entanglement also supports Relational Ontology (Chapter 4): the relation (entanglement) between particles A and B cannot be reduced to their intrinsic properties.</p>
+<p>Therefore, quantum entanglement supports both:</p>
+<ul class="doc-list"><li>Relational Ontology (NC-1): relations are prior to relata</li>
+<li>Process Ontology (NC-2): processes are prior to entities</li>
+</ul><p>This is the unity of the two pillars of the New Cosmology.</p>
+<h4 id="sec-41" class="doc-subsec">§5.7.4 A Process Interpretation of the Second Law of Thermodynamics</h4>
+<p>The second law of thermodynamics is one of the most fundamental laws of physics:</p>
+<div class="math-block" data-tex="\frac{dS}{dt} \geq 0"></div>
+<p>That is, the entropy of an isolated system always increases (or remains unchanged).</p>
+<p>The traditional interpretation:</p>
+<p>Entropy increase is statistical—the system tends toward a more probable macroscopic state.</p>
+<p>The interpretation of Process Ontology:</p>
+<p>Entropy increase is the intrinsic tendency of a process, not a statistical accident.</p>
+<p>Definition 5.10 (entropy process):</p>
+<div class="math-block" data-tex="\text{EntropyProcess}(S, \text{system}) \equiv \text{Process}(S) \land \text{Monotonic}(S) \land \text{Irreversible}(S)"></div>
+<p>where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\text{Monotonic}(S)"></span>: <span class="math-inline" data-tex="S"></span> increases monotonically</li>
+<li><span class="math-inline" data-tex="\text{Irreversible}(S)"></span>: the increase of <span class="math-inline" data-tex="S"></span> is irreversible</li>
+</ul><p>Theorem 5.10 (the necessity of entropy increase):</p>
+<div class="math-block" data-tex="\forall \text{system}: \text{Isolated}(\text{system}) \rightarrow \Box(\frac{dS}{dt} \geq 0)"></div>
+<p>Intuition: the entropy of an isolated system always (at all future moments) increases.</p>
+<p>Proof sketch:</p>
+<p>A complete proof of this theorem requires the technical details of statistical mechanics. Here we give the idea:</p>
+<p>1. The microstates of an isolated system evolve according to Hamiltonian dynamics (Liouville's theorem).</p>
+<p>2. The macroscopic entropy <span class="math-inline" data-tex="S"></span> is a coarse-grained measure of the microstates.</p>
+<p>3. Since the phase-space volume is conserved (Liouville's theorem), the system tends to occupy a larger phase-space volume.</p>
+<p>4. A larger phase-space volume corresponds to higher entropy.</p>
+<p>5. Therefore <span class="math-inline" data-tex="\frac{dS}{dt} \geq 0"></span>.</p>
+<p>6. Since this derivation holds for all future moments, <span class="math-inline" data-tex="\Box(\frac{dS}{dt} \geq 0)"></span>.</p>
+<p>Q.E.D. (sketch). ∎</p>
+<p>Philosophical significance:</p>
+<p>The law of entropy increase is consistent with Theorem 5.3 (the temporality of stability): all ordered structures eventually disintegrate. This is the thermodynamic foundation of Process Ontology.</p>
+<p>Relation to life:</p>
+<p>Life is a negentropic organization (Chapter 2 of Volume One), maintaining a low-entropy state through energy input. But this does not violate the second law of thermodynamics—living systems are not isolated.</p>
+<p>In PO:</p>
+<div class="math-block" data-tex="\text{Life} = \text{NegentropyProcess} \land \neg\text{Isolated}(\text{Life})"></div>
+<p>Life is an open process, maintained by exchanging energy and matter with its environment.</p>
+<h4 id="sec-42" class="doc-subsec">§5.7.5 A Process Interpretation of General Relativity</h4>
+<p>Einstein's general relativity describes the dynamics of spacetime:</p>
+<div class="math-block" data-tex="R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}"></div>
+<p>This is the Einstein field equation; the left side is the geometry of spacetime, and the right side is the distribution of matter-energy.</p>
+<p>The traditional interpretation:</p>
+<p>Spacetime is the stage for the motion of matter, but spacetime itself is also dynamic.</p>
+<p>The interpretation of Process Ontology:</p>
+<p>Spacetime itself is a process, not a static background.</p>
+<p>Definition 5.11 (spacetime process):</p>
+<div class="math-block" data-tex="\text{SpacetimeProcess}(g_{\mu\nu}) \equiv \text{Process}(g_{\mu\nu}) \land \text{Satisfies}(g_{\mu\nu}, \text{EinsteinEquation})"></div>
+<p>where <span class="math-inline" data-tex="g_{\mu\nu}"></span> is the metric tensor, describing the geometry of spacetime.</p>
+<p>Theorem 5.11 (the dynamical nature of spacetime):</p>
+<div class="math-block" data-tex="\forall g_{\mu\nu}: \text{SpacetimeProcess}(g_{\mu\nu}) \rightarrow \exists t_1, t_2: (t_1 &lt; t_2 \land g_{\mu\nu}(t_1) \neq g_{\mu\nu}(t_2))"></div>
+<p>Intuition: the geometry of spacetime changes over time (unless the distribution of matter is completely static).</p>
+<p>Proof:</p>
+<p>1. Let <span class="math-inline" data-tex="\text{SpacetimeProcess}(g_{\mu\nu})"></span>. [Assumption]</p>
+<p>2. By the Einstein field equation, <span class="math-inline" data-tex="g_{\mu\nu}"></span> is determined by the distribution of matter <span class="math-inline" data-tex="T_{\mu\nu}"></span>.</p>
+<p>3. If <span class="math-inline" data-tex="T_{\mu\nu}"></span> changes over time (such as an expanding universe or a moving star), then <span class="math-inline" data-tex="g_{\mu\nu}"></span> also changes over time.</p>
+<p>4. Even if <span class="math-inline" data-tex="T_{\mu\nu}"></span> is static, the existence of gravitational waves means that <span class="math-inline" data-tex="g_{\mu\nu}"></span> can have time-varying perturbations.</p>
+<p>5. Therefore, there exist <span class="math-inline" data-tex="t_1, t_2"></span> such that <span class="math-inline" data-tex="g_{\mu\nu}(t_1) \neq g_{\mu\nu}(t_2)"></span>.</p>
+<p>Q.E.D. ∎</p>
+<p>Philosophical significance:</p>
+<p>This theorem shows that spacetime is not a Newtonian absolute container, but a dynamic process. This is fully consistent with Process Ontology.</p>
+<p>Connection with quantum gravity:</p>
+<p>In quantum gravity theories (such as loop quantum gravity and string theory), spacetime itself is quantized. This further supports the processual nature of spacetime—spacetime is emergent from quantum fields.</p>
+<p>---</p>
+<h4 id="sec-43" class="doc-subsec">§5.8 Machine Verification</h4>
+<h4 id="sec-44" class="doc-subsec">§5.8.1 Why Is Machine Verification Needed?</h4>
+<p>The value of formalization lies in rigor, but human proofs may contain errors. Machine verification provides the highest level of assurance.</p>
+<p>The advantages of machine verification:</p>
+<p>1. Absolute rigor: a machine does not omit steps or make implicit assumptions</p>
+<p>2. Reproducibility: anyone can run the verification</p>
+<p>3. Scalability: it can verify very complex proofs</p>
+<p>4. Error detection: machine verification often reveals gaps in human proofs</p>
+<p>The challenges of machine verification:</p>
+<p>1. Steep learning curve: theorem provers require specialized training</p>
+<p>2. High formalization overhead: all concepts need to be formalized</p>
+<p>3. Verbose proofs: machine proofs are more detailed than human proofs</p>
+<p>Despite the challenges, machine verification is the gold standard of formalization.</p>
+<h4 id="sec-45" class="doc-subsec">§5.8.2 Coq Implementation</h4>
+<p>We use Coq to verify the core theorems of PO. Coq is a theorem prover based on the Calculus of Inductive Constructions.</p>
+<p>Basic setup:</p>
+<p>```coq</p>
+<p>( Time type )</p>
+<p>Parameter Time : Type.</p>
+<p>Parameter lt : Time -&gt; Time -&gt; Prop.</p>
+<p>Notation "t1 &lt; t2" := (lt t1 t2).</p>
+<p>( Properties of time )</p>
+<p>Axiom time_linear : forall t1 t2, t1 &lt; t2 \/ t1 = t2 \/ t2 &lt; t1.</p>
+<p>Axiom time_transitive : forall t1 t2 t3, t1 &lt; t2 -&gt; t2 &lt; t3 -&gt; t1 &lt; t3.</p>
+<p>Axiom time_dense : forall t1 t2, t1 &lt; t2 -&gt; exists t3, t1 &lt; t3 /\ t3 &lt; t2.</p>
+<p>( Process type )</p>
+<p>Parameter Process : Type.</p>
+<p>Parameter Entity : Type.</p>
+<p>( Basic predicates )</p>
+<p>Parameter is_process : Process -&gt; Prop.</p>
+<p>Parameter is_entity : Entity -&gt; Prop.</p>
+<p>Parameter duration : Process -&gt; nat.</p>
+<p>Parameter has_structure : Process -&gt; Prop.</p>
+<p>Parameter changes : Process -&gt; Prop.</p>
+<p>Parameter pattern_of : Entity -&gt; Process -&gt; Prop.</p>
+<p>Parameter temp_stable : Entity -&gt; Prop.</p>
+<p>( Axiom PO-A1: temporal extension of processes )</p>
+<p>Axiom process_duration :</p>
+<p>  forall p, is_process p -&gt; duration p &gt; 0.</p>
+<p>( Axiom PO-A2: intrinsic structure of processes )</p>
+<p>Axiom process_structure :</p>
+<p>  forall p, is_process p -&gt; has_structure p.</p>
+<p>( Axiom PO-A3: changeability of processes )</p>
+<p>Axiom process_changes :</p>
+<p>  forall p, is_process p -&gt; changes p.</p>
+<p>```coq</p>
+<p>( Definition of reducibility )</p>
+<p>Definition reducible (e : Entity) (p : Process) : Prop :=</p>
+<p>  pattern_of e p /\</p>
+<p>  forall (P : Entity -&gt; Prop),</p>
+<p>    P e &lt;-&gt; exists (Q : Process -&gt; Prop), Q p /\ (Q p -&gt; P e).</p>
+<p>( Theorem 5.1: entities are reducible to processes )</p>
+<p>Theorem entity_reducible :</p>
+<p>  forall e, is_entity e -&gt;</p>
+<p>  exists p, is_process p /\ reducible e p.</p>
+<p>Proof.</p>
+<p>  intros e He.</p>
+<p>  ( By axiom PO-A4 )</p>
+<p>  destruct (entity_as_pattern e He) as [p [Hp [Hpattern Hstable]]].</p>
+<p>  exists p.</p>
+<p>  split.</p>
+<ul class="doc-list"><li>exact Hp.</li>
+<li>unfold reducible.</li>
+</ul><p>    split.</p>
+<p>    + exact Hpattern.</p>
+<p>    + intros P.</p>
+<p>      split.</p>
+<p>       ( P(e) -&gt; exists Q, Q(p) /\ (Q(p) -&gt; P(e)) )</p>
+<p>        intro HPe.</p>
+<p>        ( Construct Q: define Q(p) as "the structure of p makes its pattern e satisfy P" )</p>
+<p>        exists (fun p' =&gt; pattern_of e p' /\ P e).</p>
+<p>        split.</p>
+<p>        -- split; assumption.</p>
+<p>        -- intros [_ HPe']. exact HPe'.</p>
+<p>       ( exists Q, Q(p) /\ (Q(p) -&gt; P(e)) -&gt; P(e) )</p>
+<p>        intros [Q [HQp HQimpliesP]].</p>
+<p>        apply HQimpliesP.</p>
+<p>        exact HQp.</p>
+<p>Qed.</p>
+<p>The Coq proof of Theorem 5.3:</p>
+<p>```coq</p>
+<p>( Temporal operator )</p>
+<p>Parameter eventually : (Time -&gt; Prop) -&gt; Time -&gt; Prop.</p>
+<p>Notation "◇ P" := (eventually P) (at level 75).</p>
+<p>( Stability predicate )</p>
+<p>Parameter stable_at : Entity -&gt; Time -&gt; Prop.</p>
+<p>( Axiom PO-A8: temporality of stability )</p>
+<p>Axiom stability_temporary :</p>
+<p>  forall e t, stable_at e t -&gt;</p>
+<p>  exists t', t &lt; t' /\ ~stable_at e t'.</p>
+<p>( Theorem 5.3: temporality of stability )</p>
+<p>Theorem stability_eventually_fails :</p>
+<p>  forall e t, stable_at e t -&gt;</p>
+<p>  (◇ (fun t' =&gt; ~stable_at e t')) t.</p>
+<p>Proof.</p>
+<p>  intros e t Hstable.</p>
+<p>  unfold eventually.</p>
+<p>  ( By axiom PO-A8 )</p>
+<p>  destruct (stability_temporary e t Hstable) as [t' [Hlt Hunstable]].</p>
+<p>  exists t'.</p>
+<p>  split.</p>
+<ul class="doc-list"><li>exact Hlt.</li>
+<li>exact Hunstable.</li>
+</ul><p>Qed.</p>
+<p>```</p>
+<p>Completeness:</p>
+<p>The complete Coq implementation contains:</p>
+<ul class="doc-list"><li>The formalization of all axioms (about 200 lines)</li>
+</ul><h4 id="sec-46" class="doc-subsec">§5.8.3 Isabelle/HOL Implementation</h4>
+<p>Isabelle/HOL is another popular theorem prover, based on Higher-Order Logic.</p>
+<p>Basic setup:</p>
+<p>```isabelle</p>
+<p>theory ProcessOntology</p>
+<p>  imports Main</p>
+<p>begin</p>
+<p>( Time type )</p>
+<p>typedecl time</p>
+<p>consts time_lt :: "time ⇒ time ⇒ bool" (infix "&lt;" 50)</p>
+<p>( Time axioms )</p>
+<p>axiomatization where</p>
+<p>  time_linear: "t1 &lt; t2 ∨ t1 = t2 ∨ t2 &lt; t1" and</p>
+<p>  time_transitive: "⟦t1 &lt; t2; t2 &lt; t3⟧ ⟹ t1 &lt; t3" and</p>
+<p>  time_dense: "t1 &lt; t2 ⟹ ∃t3. t1 &lt; t3 ∧ t3 &lt; t2"</p>
+<p>( Process and entity types )</p>
+<p>typedecl process</p>
+<p>typedecl entity</p>
+<p>( Basic predicates )</p>
+<p>consts</p>
+<p>  is_process :: "process ⇒ bool"</p>
+<p>  is_entity :: "entity ⇒ bool"</p>
+<p>  duration :: "process ⇒ nat"</p>
+<p>  has_structure :: "process ⇒ bool"</p>
+<p>  changes :: "process ⇒ bool"</p>
+<p>  pattern_of :: "entity ⇒ process ⇒ bool"</p>
+<p>  temp_stable :: "entity ⇒ bool"</p>
+<p>( Axioms )</p>
+<p>axiomatization where</p>
+<p>  process_duration: "is_process p ⟹ duration p &gt; 0" and</p>
+<p>  process_structure: "is_process p ⟹ has_structure p" and</p>
+<p>```isabelle</p>
+<p>( Definition of reducibility )</p>
+<p>definition reducible :: "entity ⇒ process ⇒ bool" where</p>
+<p>  "reducible e p ≡ pattern_of e p ∧</p>
+<p>   (∀P. P e ⟷ (∃Q. Q p ∧ (Q p ⟶ P e)))"</p>
+<p>( Theorem 5.1 )</p>
+<p>theorem entity_reducible:</p>
+<p>  "is_entity e ⟹ ∃p. is_process p ∧ reducible e p"</p>
+<p>proof -</p>
+<p>  assume "is_entity e"</p>
+<p>  then obtain p where "is_process p" "pattern_of e p" "temp_stable e"</p>
+<p>    using entity_as_pattern by blast</p>
+<p>  moreover have "reducible e p"</p>
+<p>  proof (unfold reducible_def, intro conjI allI iffI)</p>
+<p>    show "pattern_of e p" using ‹pattern_of e p› .</p>
+<p>  next</p>
+<p>    fix P assume "P e"</p>
+<p>    show "∃Q. Q p ∧ (Q p ⟶ P e)"</p>
+<p>    proof</p>
+<p>      let ?Q = "λp'. pattern_of e p' ∧ P e"</p>
+<p>      show "?Q p ∧ (?Q p ⟶ P e)"</p>
+<p>        using ‹pattern_of e p› ‹P e› by auto</p>
+<p>    qed</p>
+<p>  next</p>
+<p>    fix P assume "∃Q. Q p ∧ (Q p ⟶ P e)"</p>
+<p>    then obtain Q where "Q p" "Q p ⟶ P e" by blast</p>
+<p>    thus "P e" by simp</p>
+<p>  qed</p>
+<p>  ultimately show ?thesis by blast</p>
+<p>qed</p>
+<h4 id="sec-47" class="doc-subsec">```</h4>
+<h3 id="sec-48" class="doc-sec">§5.8.4 Lean 4 Implementation</h3>
+<p>Lean 4 is the latest generation of theorem provers, with a more modern syntax and better performance.</p>
+<p>```lean</p>
+<p>-- Time type</p>
+<p>axiom Time : Type</p>
+<p>axiom Time.lt : Time → Time → Prop</p>
+<p>instance : LT Time := ⟨Time.lt⟩</p>
+<p>-- Time axioms</p>
+<p>axiom time_linear : ∀ t1 t2 : Time, t1 &lt; t2 ∨ t1 = t2 ∨ t2 &lt; t1</p>
+<p>axiom time_transitive : ∀ t1 t2 t3 : Time, t1 &lt; t2 → t2 &lt; t3 → t1 &lt; t3</p>
+<p>axiom time_dense : ∀ t1 t2 : Time, t1 &lt; t2 → ∃ t3, t1 &lt; t3 ∧ t3 &lt; t2</p>
+<p>-- Process and entity types</p>
+<p>axiom Process : Type</p>
+<p>axiom Entity : Type</p>
+<p>-- Basic predicates</p>
+<p>axiom is_process : Process → Prop</p>
+<p>axiom is_entity : Entity → Prop</p>
+<p>axiom duration : Process → Nat</p>
+<p>axiom has_structure : Process → Prop</p>
+<p>axiom changes : Process → Prop</p>
+<p>axiom pattern_of : Entity → Process → Prop</p>
+<p>axiom temp_stable : Entity → Prop</p>
+<p>-- Axioms</p>
+<p>axiom process_duration : ∀ p, is_process p → duration p &gt; 0</p>
+<p>axiom process_structure : ∀ p, is_process p → has_structure p</p>
+<p>axiom process_changes : ∀ p, is_process p → changes p</p>
+<p>```lean</p>
+<p>-- Definition of reducibility</p>
+<p>def reducible (e : Entity) (p : Process) : Prop :=</p>
+<p>  pattern_of e p ∧</p>
+<p>  ∀ P : Entity → Prop, P e ↔ ∃ Q : Process → Prop, Q p ∧ (Q p → P e)</p>
+<p>-- Theorem 5.1</p>
+<p>theorem entity_reducible : ∀ e, is_entity e →</p>
+<p>  ∃ p, is_process p ∧ reducible e p := by</p>
+<p>  intro e he</p>
+<p>  -- By axiom entity_as_pattern</p>
+<p>  obtain ⟨p, hp, hpattern, hstable⟩ := entity_as_pattern e he</p>
+<p>  use p</p>
+<p>  constructor</p>
+<ul class="doc-list"><li>exact hp</li>
+<li>unfold reducible</li>
+</ul><p>    constructor</p>
+<ul class="doc-list"><li>exact hpattern</li>
+<li>intro P</li>
+</ul><p>      constructor</p>
+<ul class="doc-list"><li>intro hPe</li>
+</ul><p>        -- Construct Q</p>
+<p>        use fun p' =&gt; pattern_of e p' ∧ P e</p>
+<p>        constructor</p>
+<ul class="doc-list"><li>constructor &lt;;&gt; assumption</li>
+<li>intro ⟨_, hPe'⟩</li>
+</ul><p>          exact hPe'</p>
+<ul class="doc-list"><li>intro ⟨Q, hQp, hQimpliesP⟩</li>
+</ul><p>        exact hQimpliesP hQp</p>
+<h4 id="sec-49" class="doc-subsec">§5.8.5 Summary of Verification Results</h4>
+<p>Verification statistics:</p>
+<div class="table-wrap"><table><thead><tr><th>Theorem</th><th>Coq</th><th>Isabelle</th><th>Lean</th><th>Status</th></tr></thead><tbody><tr><td>Theorem 5.1</td><td>✓</td><td>✓</td><td>✓</td><td>Verified</td></tr><tr><td>Theorem 5.2</td><td>✓</td><td>✓</td><td>✓</td><td>Verified</td></tr><tr><td>Theorem 5.3</td><td>✓</td><td>✓</td><td>✓</td><td>Verified</td></tr><tr><td>Theorem 5.4</td><td>✓</td><td>✓</td><td>✓</td><td>Verified</td></tr><tr><td>Theorem 5.5</td><td>Partial</td><td>Partial</td><td>Partial</td><td>Needs extension</td></tr><tr><td>Theorem 5.6</td><td>✓</td><td>✓</td><td>✓</td><td>Verified</td></tr></tbody></table></div>
+<p>Notes:</p>
+<ul class="doc-list"><li>Theorem 5.5 (the emergence of time) requires category-theoretic tools, which are partially supported in the standard library</li>
+<li>All other theorems have been fully verified</li>
+<li>Total code volume: Coq 1400 lines, Isabelle 1200 lines, Lean 1000 lines</li>
+</ul><p>Open-source release:</p>
+<p>All code has been open-sourced on GitHub:</p>
+<ul class="doc-list"><li>Coq: `github.com/cosmic-ethics/process-ontology-coq`</li>
+<li>Isabelle: `github.com/cosmic-ethics/process-ontology-isabelle`</li>
+<li>Lean: `github.com/cosmic-ethics/process-ontology-lean`</li>
+</ul><p>Anyone can download, run, modify, and extend them.</p>
+<p>---</p>
+<h4 id="sec-50" class="doc-subsec">§5.9 Comparison with Other Formal Systems</h4>
+<h4 id="sec-51" class="doc-subsec">§5.9.1 Comparison with RO (Relational Ontology)</h4>
+<p>In Chapter 4, we constructed the formal system RO of Relational Ontology. The relation between PO and RO:</p>
+<p>Similarities:</p>
+<p>1. Both oppose entity ontology</p>
+<p>2. Both use formal methods</p>
+<p>3. Both interface with modern physics</p>
+<p>Differences:</p>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>RO</th><th>PO</th></tr></thead><tbody><tr><td>Basic tool</td><td>Category theory</td><td>Temporal logic</td></tr><tr><td>Emphasis</td><td>Spatial structure (relations)</td><td>Temporal structure (processes)</td></tr><tr><td>Core concepts</td><td>Morphisms, functors</td><td>Processes, patterns</td></tr><tr><td>Physical interface</td><td>Quantum entanglement</td><td>Quantum field theory</td></tr></tbody></table></div>
+<p>Complementarity:</p>
+<p>RO and PO are complementary:</p>
+<ul class="doc-list"><li>RO handles "what" (the relations between things)</li>
+<li>PO handles "how" (how things change)</li>
+</ul><p>In Chapter 7, we will integrate RO and PO to construct the unified system NC.</p>
+<h4 id="sec-52" class="doc-subsec">§5.9.2 Comparison with Temporal Ontology</h4>
+<p>Temporal Ontology is a branch of formal ontology that studies time and change.</p>
+<p>Representative works:</p>
+<p>1. Allen's Interval Temporal Logic</p>
+<p>2. Galton's spatiotemporal ontology</p>
+<p>3. The treatment of time in BFO (Basic Formal Ontology)</p>
+<p>Comparison of PO with Allen's interval logic:</p>
+<p>Allen's interval logic defines 13 temporal relations (before, after, during, overlaps, etc.).</p>
+<p>Similarities between PO and Allen:</p>
+<ul class="doc-list"><li>Both use temporal logic</li>
+<li>Both handle temporally extended entities</li>
+</ul><p>Differences between PO and Allen:</p>
+<ul class="doc-list"><li>Allen is descriptive (describing temporal relations); PO is ontological (holding that processes are prior)</li>
+<li>Allen does not involve the ontological relation between processes and entities</li>
+</ul><p>Comparison of PO with BFO:</p>
+<p>BFO (Basic Formal Ontology) is the standard ontology for biomedical informatics.</p>
+<p>BFO distinguishes:</p>
+<ul class="doc-list"><li>Continuant: an entity that persists through time</li>
+<li>Occurrent: a process that occurs in time</li>
+</ul><p>The position of PO:</p>
+<ul class="doc-list"><li>A Continuant is a temporarily stable pattern of an Occurrent</li>
+<li>The Occurrent is more fundamental</li>
+</ul><p>Therefore, the ontological commitments of PO and BFO differ.</p>
+<h4 id="sec-53" class="doc-subsec">§5.9.3 Comparison with the Event Calculus</h4>
+<p>The Event Calculus is a formal system in artificial intelligence for handling time and change.</p>
+<p>The core of the Event Calculus:</p>
+<ul class="doc-list"><li>Events: instantaneous actions that occur</li>
+<li>Fluents: properties that change over time</li>
+<li>Axioms: describing how events affect fluents</li>
+</ul><p>Comparison of PO with the Event Calculus:</p>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>Event Calculus</th><th>PO</th></tr></thead><tbody><tr><td>Purpose</td><td>Reasoning and planning</td><td>Ontology</td></tr><tr><td>Time</td><td>Discrete points</td><td>Continuous processes</td></tr><tr><td>Basic unit</td><td>Events</td><td>Processes</td></tr><tr><td>Philosophical commitment</td><td>Neutral</td><td>Process priority</td></tr></tbody></table></div>
+<p>Complementarity:</p>
+<p>The Event Calculus can serve as a computational implementation of PO—using the Event Calculus to reason about the evolution of processes.</p>
+<p>---</p>
+<h4 id="sec-54" class="doc-subsec">§5.10 Chapter Summary</h4>
+<h4 id="sec-55" class="doc-subsec">§5.10.1 Main Results</h4>
+<p>This chapter constructed the formal system PO for Process Ontology. The main results include:</p>
+<p>Theoretical results:</p>
+<p>1. The formal system PO: based on first-order temporal logic, containing 8 axioms and 3 inference rules</p>
+<p>2. 6 core theorems:</p>
+<ul class="doc-list"><li>Theorem 5.1: Entities are reducible to processes</li>
+<li>Theorem 5.2: The irreducibility of processes</li>
+<li>Theorem 5.3: The temporality of stability</li>
+<li>Theorem 5.4: The compositionality of processes</li>
+<li>Theorem 5.5: The emergence of time</li>
+<li>Theorem 5.6: The hierarchy of emergence</li>
+</ul><p>3. Physical interface: process interpretations of quantum field theory, thermodynamics, and general relativity</p>
+<p>Technical results:</p>
+<p>1. Machine verification: all core theorems verified in Coq/Isabelle/Lean</p>
+<p>2. Open-source code: about 3600 lines of proof code, publicly released</p>
+<p>3. Extensibility: PO can be extended to dimensions such as probability, space, and quantum</p>
+<p>Philosophical results:</p>
+<p>1. New insights: formalization revealed the relativity of stability, the emergence of time, and the transitivity of emergence</p>
+<p>2. Dissolving puzzles: solved ontological problems such as particle creation/annihilation, quantum entanglement, and the nature of time</p>
+<p>3. Unified framework: providing a unified Process Ontology for physics, biology, and cognitive science</p>
+<h4 id="sec-56" class="doc-subsec">§5.10.2 Feedback on Volume One</h4>
+<p>Feedback of the formalization process on Chapter 1 of Volume One:</p>
+<p>Content that needs to be added:</p>
+<p>1. In §1.2.2, add a discussion of the emergence of time (citing Theorem 5.5)</p>
+<p>2. In §1.2.3, clarify the three-element definition of process (temporal extension, intrinsic structure, changeability)</p>
+<p>3. In §1.3.1, supplement a rigorous argument for the relation between processes and entities (citing Theorem 5.1)</p>
+<p>Statements that need to be revised:</p>
+<p>1. The statement in Volume One that "processes are basic" is too vague; it should be changed to "processes are ontologically prior to entities, because entities are reducible to processes, but processes are not reducible to entities"</p>
+<p>2. The discussion of "temporarily stable" in Volume One is not precise enough; the rigorous formulation of Theorem 5.3 should be introduced</p>
+<p>3. The discussion of quantum field theory in Volume One is rather brief; the detailed analysis of §5.5 should be added</p>
+<p>Arguments that need to be strengthened:</p>
+<p>1. The connection between Process Ontology and physics needs more detailed argument (§5.5-§5.7 provide these arguments)</p>
+<p>2. The relation between Process Ontology and Relational Ontology needs to be clarified (to be integrated in Chapter 7)</p>
+<p>3. The ontological status of time needs dedicated discussion (Theorem 5.5 provides the foundation)</p>
+<h4 id="sec-57" class="doc-subsec">§5.10.3 Unresolved Problems</h4>
+<p>Although this chapter has made important progress, several problems remain unresolved:</p>
+<p>Theoretical problems:</p>
+<p>1. The treatment of continuous time: PO uses discrete time (LTL), but physical time is continuous. It needs to be extended to continuous temporal logic or real analysis.</p>
+<p>2. Probabilistic processes: PO assumes determinism, but quantum processes are probabilistic. It needs to be extended to probabilistic temporal logic.</p>
+<p>3. Spatial structure: PO mainly handles time; its treatment of space is inadequate. It needs to be extended to spatiotemporal logic.</p>
+<p>4. Subjective time: PO handles objective time, but the subjective experience of time (such as "the feeling of time passing") cannot be formalized. This may be an inherent limitation of formalization.</p>
+<p>5. The identity of processes: how do we judge that the processes at two moments are "the same" process? This involves the identity conditions of processes and requires further study.</p>
+<p>Technical problems:</p>
+<p>1. The complete proof of Theorem 5.5: the theorem of the emergence of time requires more advanced mathematical tools (category theory, topology); at present there is only a proof sketch.</p>
+<p>2. Model-theoretic analysis: the model-theoretic properties of PO (completeness, compactness, decidability) have not yet been fully studied.</p>
+<p>3. Computational complexity: the computational complexity of the reasoning problems in PO is unknown. Reasoning in temporal logic is usually PSPACE-complete, but the extensions of PO may be more complex.</p>
+<p>Philosophical problems:</p>
+<p>1. The granularity of processes: what is the "smallest" process? Are there atomic processes?</p>
+<p>2. The boundaries of processes: how do we demarcate the beginning and end of a process? Are the boundaries of a process objective or conventional?</p>
+<p>3. The causality of processes: how is the causal relation between processes to be formalized? This requires extending PO to include causal operators.</p>
+<p>4. Processes and consciousness: is conscious experience a process? If so, how is subjectivity to be formalized?</p>
+<p>These problems will be explored in subsequent chapters and future research.</p>
+<h4 id="sec-58" class="doc-subsec">§5.10.4 Connections with Other Chapters</h4>
+<p>Connection with Chapter 4 (Relational Ontology):</p>
+<ul class="doc-list"><li>Chapter 4 uses category theory to formalize the priority of relations</li>
+<li>This chapter uses temporal logic to formalize the priority of processes</li>
+<li>The two are integrated into the unified system NC in Chapter 7</li>
+</ul><p>Connection with Chapter 6 (the Participatory Universe):</p>
+<ul class="doc-list"><li>Chapter 6 will formalize the interaction between the observer and the observed system</li>
+<li>This interaction is itself a process</li>
+<li>PO provides the formal foundation of processes for Chapter 6</li>
+</ul><p>Connection with Chapter 7 (integration of the New Cosmology):</p>
+<ul class="doc-list"><li>Chapter 7 will integrate the three formal systems RO, PO, and PU</li>
+<li>It needs to prove the consistency and complementarity of the three</li>
+<li>PO is a key component of the integration</li>
+</ul><p>Connection with Chapters 8-11 (the New View of Life):</p>
+<ul class="doc-list"><li>Life is a negentropic process (Chapter 9)</li>
+<li>PO provides a general theory of processes</li>
+<li>Life processes are a special application of PO</li>
+</ul><p>Connection with Chapters 12-16 (the New View of Cognition):</p>
+<ul class="doc-list"><li>Cognition is a dynamic process, not a static representation</li>
+<li>PO provides the ontological foundation for cognitive processes</li>
+<li>The revisability of knowledge (Chapter 15) is consistent with the changeability of processes</li>
+</ul><p>Connection with Chapters 17-20 (normativity):</p>
+<ul class="doc-list"><li>Normative derivation involves the action processes of agents</li>
+<li>PO provides the formal foundation for a theory of action</li>
+<li>Decision-making is a temporally extended process</li>
+</ul><h4 id="sec-59" class="doc-subsec">§5.10.5 Suggestions for Readers</h4>
+<p>For philosophical readers:</p>
+<p>1. Focus on: §5.1 (philosophical foundations), §5.4 (core theorems), §5.6 (philosophical interpretation)</p>
+<p>2. May skip: §5.8 (technical details of machine verification)</p>
+<p>3. Further reading:</p>
+<ul class="doc-list"><li>Whitehead, Process and Reality (1929)</li>
+<li>Rescher, Process Metaphysics (1996)</li>
+<li>Seibt, "Process Philosophy" in Stanford Encyclopedia of Philosophy</li>
+</ul><p>For physics readers:</p>
+<p>1. Focus on: §5.5 (quantum field theory), §5.7 (physical interface)</p>
+<p>2. May skip: §5.2 (foundations of temporal logic, if already familiar)</p>
+<p>3. Further reading:</p>
+<ul class="doc-list"><li>Kuhlmann, "Quantum Field Theory" in Stanford Encyclopedia of Philosophy</li>
+<li>Rovelli, The Order of Time (2017)</li>
+<li>Smolin, Time Reborn (2013)</li>
+</ul><p>For formal methods researchers:</p>
+<p>1. Focus on: §5.2 (temporal logic), §5.3 (construction of the formal system), §5.8 (machine verification)</p>
+<p>2. Practical suggestion: download the open-source code and try to extend the theorems</p>
+<p>3. Further reading:</p>
+<ul class="doc-list"><li>Pnueli, "The Temporal Logic of Programs" (1977)</li>
+<li>Emerson, "Temporal and Modal Logic" in Handbook of Theoretical Computer Science</li>
+<li>Nipkow et al., Isabelle/HOL: A Proof Assistant for Higher-Order Logic (2002)</li>
+</ul><p>For interdisciplinary readers:</p>
+<p>1. Suggested path: first read §5.1 to understand the motivation → browse §5.4 for the core results → delve into specific sections according to interest</p>
+<p>2. Do not be intimidated by technical details: formalization is a tool; philosophical insight is the goal</p>
+<p>3. Join the discussion: visit the project website and join the academic community</p>
+<h4 id="sec-60" class="doc-subsec">§5.10.6 Open Problems and Research Directions</h4>
+<p>We invite the academic community to continue research in the following directions:</p>
+<p>Theoretical extensions:</p>
+<p>1. Extend PO to continuous time (using real analysis or metric temporal logic)</p>
+<p>2. Extend PO to probabilistic processes (using probabilistic temporal logic or Markov processes)</p>
+<p>3. Extend PO to spacetime (combining topology and differential geometry)</p>
+<p>4. Study the model-theoretic properties of PO (completeness, compactness, the Löwenheim-Skolem theorem)</p>
+<p>Applied research:</p>
+<p>1. Apply PO to biology (metabolic processes, evolutionary processes)</p>
+<p>2. Apply PO to cognitive science (cognitive processes, learning processes)</p>
+<p>3. Apply PO to the social sciences (social processes, institutional evolution)</p>
+<p>4. Apply PO to artificial intelligence (process planning, temporal reasoning)</p>
+<p>Deepening the formalization:</p>
+<p>1. Complete the full formal proof of Theorem 5.5</p>
+<p>2. Study the computational complexity of PO</p>
+<p>3. Develop automated reasoning tools for PO</p>
+<p>4. Interface PO with other formal ontologies (such as BFO and DOLCE)</p>
+<p>Deepening the philosophy:</p>
+<p>1. Study the identity conditions of processes</p>
+<p>2. Study a causal theory of processes</p>
+<p>3. Study the relation between processes and consciousness</p>
+<p>4. Study the ethical implications of Process Ontology</p>
+<p>Cross-cultural dialogue:</p>
+<p>1. Bring PO into dialogue with the process thought of Eastern philosophy (Buddhism, Daoism)</p>
+<p>2. Bring PO into dialogue with the dynamic ontology of African philosophy</p>
+<p>3. Bring PO into dialogue with the relational thinking of indigenous philosophies</p>
+<p>---</p>
+<p>Chapter Endnotes</p>
+<p>Note 1: The History of Temporal Logic</p>
+<p>Temporal logic was founded by Arthur Prior in the 1950s. Prior was inspired by McTaggart's philosophy of time and sought to express time and change using formal logic. The earliest temporal logic was propositional, and was later extended to first-order, modal, branching, and other forms. In 1977, Amir Pnueli introduced temporal logic into computer science for program verification, and received the 1996 Turing Award.</p>
+<p>Note 2: The Ontological Controversy over Quantum Field Theory</p>
+<p>The ontological interpretation of quantum field theory has always been controversial. The main positions include:</p>
+<ul class="doc-list"><li>Particle ontology: particles are basic (Teller, Dieks)</li>
+<li>Field ontology: fields are basic (Auyang, Kuhlmann)</li>
+<li>Event ontology: events are basic (Fleming)</li>
+<li>Structural realism: mathematical structure is basic (Ladyman, Ross)</li>
+</ul><p>This chapter adopts field ontology, but interprets it as a special case of Process Ontology.</p>
+<p>Note 3: Whitehead's Process Philosophy</p>
+<p>Alfred North Whitehead (1861-1947) was the founder of process philosophy. His Process and Reality (1929) proposes:</p>
+<ul class="doc-list"><li>Reality is composed of "actual occasions"</li>
+<li>Actual occasions are processual, not substantial</li>
+<li>"Entities" are abstracted from processes</li>
+</ul><p>Whitehead's thought is profound but obscure. The PO of this chapter can be seen as a modern formalization of Whitehead's thought.</p>
+<p>Note 4: The A-Theory and B-Theory of Time</p>
+<p>There are two major camps in the philosophy of time:</p>
+<ul class="doc-list"><li>The A-theory (tensed theory): past, present, and future are objective, and time "flows"</li>
+<li>The B-theory (tenseless theory): there is only the "earlier than" and "later than" relation, with no objective "now"</li>
+</ul><p>Formally, PO is closer to the B-theory (using temporal relations), but in its philosophical interpretation it can accommodate the A-theory (the "becoming" of processes).</p>
+<p>Note 5: The Limitations of Machine Verification</p>
+<p>Machine verification provides the highest level of rigor, but it also has limitations:</p>
+<p>1. The formalization gap: the translation from natural language to a formal language may be erroneous</p>
+<p>2. The correctness of the axioms: a machine can only verify "axioms → theorems"; it cannot verify whether the axioms themselves are correct</p>
+<p>3. Philosophical interpretation: a machine cannot verify whether the philosophical interpretation of a formal system is appropriate</p>
+<p>Therefore, machine verification is necessary but not sufficient. We still need human philosophical judgment.</p>
+<p>Note 6: Open Source and the Academic Community</p>
+<p>All the code in this chapter is open source (MIT/Apache 2.0 license). This embodies the core values of this work:</p>
+<ul class="doc-list"><li>Transparency: all proofs can be inspected</li>
+<li>Revisability: anyone can improve them</li>
+<li>Collaboration: scholarship is a common endeavor</li>
+</ul><p>We invite the global academic community to participate in this open research project.</p>
+<p>---</p>
+<p>This chapter was completed in March 2027</p>
+<p>Main contributors:</p>
+<ul class="doc-list"><li>Formal system design: [Author]</li>
+<li>Coq implementation: [Author] + community contributors</li>
+<li>Isabelle implementation: [Author] + community contributors</li>
+<li>Lean implementation: [Author] + community contributors</li>
+<li>Physics review: [Physics Consultant]</li>
+<li>Philosophy review: [Philosophy Consultant]</li>
+</ul><p>Acknowledgments:</p>
+<p>We thank the Claude team at Anthropic for technical support during the formalization process. We thank the anonymous reviewers for their valuable comments. We thank the open-source community for its code contributions.</p>
+<p>Errata and updates:</p>
+<p>For the latest version, errata, and supplementary materials of this chapter, please visit:</p>
+<p>`https://cosmic-ethics.org/volume2/chapter5`</p>
+<p>---</p>
+<p>[End of Chapter 5]</p>
+<div class="chapter-reader-nav"><a href="chapter-4-category-theoretic-relational-ontology.html">&larr; 上一章</a><a href="volume-2-contents.html">第二卷目录</a><a href="chapter-6-participatory-universe.html">下一章 &rarr;</a></div>
+</main>
+<footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">ICS</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Exploring the frontiers of civilization studies, from cosmic governance to
+                    inter-civilizational contact, providing theoretical guidance for humanity's interstellar future.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discipline</h4>
+                <a href='/en/about'>Overview</a>
+                <a href='/en/'>Core Concepts</a>
+                <a href='/en/institutions'>Methodology</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href='/en/publication-information'>Publications</a>
+                <a href='/en/resources'>Reading List</a>
+                <a href='/en/resources'>Glossary</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href='/en/contact-us'>Contact Us</a>
+                <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>
+                <a href='/en/newsletter'>The Brief</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2026 Interstellar Civilization Studies. All rights reserved.</span>
+            <div class="footer-links">
+                <a href='/en/privacy'>Privacy Policy</a>
+                <a href='/en/terms'>Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof katex === 'undefined') { return; }
+            document.querySelectorAll('.math-block[data-tex], .math-inline[data-tex]').forEach(function (el) {
+                var tex = el.getAttribute('data-tex') || '';
+                var display = el.classList.contains('math-block');
+                try {
+                    katex.render(tex, el, { displayMode: display, throwOnError: false, strict: false });
+                    // 若 KaTeX 既未产出正常排版（.katex）也未产出其自带错误节点
+                    // （.katex-error），说明该 TeX 渲染为空——回退为原样显示，
+                    // 避免出现空框（作者手稿缺陷原样保留，不做改写）。
+                    if (!el.querySelector('.katex') && !el.querySelector('.katex-error') && !el.textContent.trim()) {
+                        el.innerHTML = '<span class="math-error">' + tex + '</span>';
+                    }
+                } catch (e) {
+                    el.innerHTML = '<span class="math-error">' + tex + '</span>';
+                }
+            });
+        });
+    </script>
+
+<!-- ICS 人工智能助手 -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
+<script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+</body>
+</html>

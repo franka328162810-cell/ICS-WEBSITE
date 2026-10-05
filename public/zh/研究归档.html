@@ -638,7 +638,7 @@
         const searchIndexZh = [
             { title: '当AI成为黑箱武器：Anthropic Mythos事件的星际文明学分析', category: 'AI治理', date: '2026-04-18', url: '深度研究.html', keywords: ['Anthropic', 'Mythos', 'AI治理', '递归自由度', '黑箱'] },
             { title: '当末日时钟停在89秒：AI存在风险的全球治理危机与文明可能性空间的正在收窄', category: '存在风险', date: '2026-04-12', url: 'research-archive/深度研究-存在风险-2026Q2.html', keywords: ['末日时钟', 'FRL-5', 'CSIA', '深时'] },
-            { title: '深度研究：特朗普封杀Anthropic', category: 'AI治理', date: '2026-03-04', url: 'articles/trump-anthropic-ban-20250304.html', keywords: ['Anthropic', 'AI治理', '伦理红线', '特朗普'] },
+            { title: 'AI安全治理：当OpenAI亲手按下Astra 6.1的删除键', category: 'AI治理', date: '2026-10-03', url: '深度研究.html', keywords: ['AI安全治理', '欺骗性对齐', 'pacing the frontier', '嵌入式第三方评估', 'FRL红线'] },
             { title: '我们欠了一笔没有人签字确认的账单', category: '气候变化', date: '2026-03-25', url: 'daily/20260325-climate-bill.html', keywords: ['气候', '全球变暖', '跨代债务'] },
             { title: '太空治理', category: '太空治理', date: '2025-01-01', url: '太空治理.html', keywords: ['太空治理', '制度', '火星'] },
             { title: '细菌的智慧，照见文明的命运', category: '生命科学', date: '2026-03-14', url: 'daily-commentary-archive/bacterial-intelligence-2026-03-14.html', keywords: ['Retron', '基因编辑', '生命科学'] }
@@ -663,6 +663,14 @@
                         keywords: Array.isArray(item.keywords) ? item.keywords : []
                     }));
                 if (zhItems.length > 0) runtimeSearchIndexZh = zhItems;
+                // 远端索引就绪后：若输入框仍有查询或筛选激活，用更完整索引重跑一次
+                if (typeof performSearch === 'function') {
+                    const _si = document.getElementById('searchInput');
+                    if (_si && (_si.value.trim() || document.querySelector('.filter-button.active'))) {
+                        performSearch();
+                    }
+                }
+
             } catch (_) {
                 // 保持本地回退索引
             }
@@ -805,7 +813,42 @@
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS 人工智能助手 -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
 </body>
 
 </html>

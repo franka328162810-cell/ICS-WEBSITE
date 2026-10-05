@@ -779,7 +779,9 @@
                 <li><a href="/en/about.html" class="nav-link active">About</a></li>
                 <li><a href="/en/book-overview.html" class="nav-link">Publications</a></li>
                 <li><a href="/en/resources.html" class="nav-link">Resources</a></li>
-                <li><a href="/en/daily-commentary.html" class="nav-link">News</a></li>
+                <li><a href="focus-public-edition.html" class="nav-link">Focus (Public Edition)</a></li>
+
+                <li><a href="/en/in-depth-research.html" class="nav-link">Research</a></li>
                 <li><a href="/en/ai-assistant.html" class="nav-link">AI Assistant</a></li>
             </ul>
 
@@ -1200,7 +1202,7 @@
             <div class="footer-col">
                 <h4>Contact</h4>
                 <a href="/en/contact-us.html">Contact Us</a>
-                <a href="/en/contact-us.html">franka328162810@gmail.com</a>
+                <a href="/en/contact-us.html">members@ics-studies.org</a>
                 <a href="/en/newsletter.html">Newsletter</a>
             </div>
         </div>
@@ -1227,7 +1229,42 @@
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS AI Assistant -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
 </body>
 
 </html>

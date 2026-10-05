@@ -202,6 +202,27 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
         }
+        .nav-launch {
+            font-family: var(--font-cn-sans);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            height: 42px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-launch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+        }
+
 
         .page-hero {
             position: relative;
@@ -702,7 +723,9 @@
                 <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
                 <li><a href="著作概述.html" class="nav-link">著作</a></li>
                 <li><a href="资源.html" class="nav-link">资源</a></li>
-                <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+                <li><a href="焦点（公开版）.html" class="nav-link">焦点（公开版）</a></li>
+
+                <li><a href="深度研究.html" class="nav-link">研究</a></li>
                 <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
             </ul>
 
@@ -717,6 +740,7 @@
                     <a href="../en/contact-us.html" class="lang-btn">EN</a>
                     <a href="联系我们.html" class="lang-btn active">中文</a>
                 </div>
+                <a href="launch.html" class="nav-launch">预告</a>
                 <a href="联系我们.html" class="nav-contact">联系我们</a>
             </div>
         </div>
@@ -752,7 +776,7 @@
                         </svg>
                         <div class="contact-card-title">电子邮件</div>
                         <div class="contact-card-content">
-                            <a href="mailto:franka328162810@gmail.com">franka328162810@gmail.com</a>
+                            <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>
                             <p style="margin-top: 1rem; font-size: 0.9375rem; color: rgba(255,255,255,0.6);">
                                 我们通常在48小时内回复邮件
                             </p>
@@ -873,7 +897,7 @@
                 </form>
 
                 <div class="highlight-box" style="margin-top: 2rem;">
-                    <p><strong>注意：</strong>此表单将直接发送至 franka328162810@gmail.com。提交前请确认信息准确无误。我们承诺保护您的个人信息，不会用于其他用途。</p>
+                    <p><strong>注意：</strong>此表单将直接发送至 members@ics-studies.org。提交前请确认信息准确无误。我们承诺保护您的个人信息，不会用于其他用途。</p>
                 </div>
             </section>
 
@@ -956,7 +980,7 @@
             <div class="footer-col">
                 <h4>联系</h4>
                 <a href="联系我们.html">联系我们</a>
-                <a href="mailto:franka328162810@gmail.com">franka328162810@gmail.com</a>
+                <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>
                 <a href="订阅通讯.html">订阅通讯</a>
             </div>
         </div>
@@ -1005,7 +1029,7 @@
             const message = document.getElementById('message').value;
 
             // Construct mailto link
-            const mailtoLink = `mailto:franka328162810@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+            const mailtoLink = `mailto:members@ics-studies.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
                 `姓名: ${name}\n` +
                 `邮箱: ${email}\n` +
                 `机构: ${organization || '未提供'}\n\n` +
@@ -1016,7 +1040,7 @@
             window.location.href = mailtoLink;
 
             // Show confirmation message
-            alert('正在打开您的邮件客户端...\n\n如果未自动打开，请手动发送邮件至：franka328162810@gmail.com');
+            alert('正在打开您的邮件客户端...\n\n如果未自动打开，请手动发送邮件至：members@ics-studies.org');
         });
 
         // Card hover animation
@@ -1047,7 +1071,42 @@
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS 人工智能助手 -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
 </body>
 
 </html>

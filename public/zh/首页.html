@@ -10,8 +10,8 @@
     <title>星际文明学 | ICS</title>
     <meta name="description" content="星际文明学（ICS）- 探索宇宙文明的规范性基础">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-    <link rel="canonical" href="https://ics-studies.org/zh/首页.html">
-    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/首页.html">
+    <link rel="canonical" href="https://ics-studies.org/zh/">
+    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/">
     <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/index.html">
     <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/index.html">
     <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
     <meta property="og:site_name" content="星际文明学 | ICS">
     <meta property="og:title" content="星际文明学 | ICS">
     <meta property="og:description" content="星际文明学（ICS）- 探索宇宙文明的规范性基础">
-    <meta property="og:url" content="https://ics-studies.org/zh/首页.html">
+    <meta property="og:url" content="https://ics-studies.org/zh/%E9%A6%96%E9%A1%B5.html">
     <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -59,7 +59,7 @@
             --font-cn-sans: 'Noto Sans SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 
             --font-en-display: 'Orbitron', sans-serif;
-            --font-en-title: 'Space Grotesk', sans-serif;
+            --font-en-title: 'Orbitron', sans-serif;
             --font-en-body: 'Inter', sans-serif;
 
             --radius-sm: 8px;
@@ -300,6 +300,27 @@
         .nav-contact:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(124, 58, 237, 0.5);
+        }
+
+        .nav-launch {
+            font-family: var(--font-cn-sans);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            height: 42px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-launch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
         }
 
         /* ==========================================
@@ -1643,7 +1664,7 @@
           "sameAs": [],
           "contactPoint": {
             "@type": "ContactPoint",
-            "email": "ics@interstellar-civilization.org",
+            "email": "members@ics-studies.org",
             "contactType": "general inquiry"
           }
         },
@@ -1673,11 +1694,86 @@
       ]
     }
     </script>
+
+<style id="nav-responsive-patch">
+/* ICS 导航响应式补丁 v5：9 项导航 + 预告 + 语言切换在 1024px 以上完整显示 */
+.navbar { padding: 0; }
+.navbar.scrolled { padding: 0; }
+.nav-container { padding: 1rem 2rem; }
+.nav-link { white-space: nowrap; }
+.nav-actions { flex-shrink: 0; }
+.nav-brand { flex-shrink: 0; }
+
+/* ── 预告按钮（第77轮补齐：原为浏览器默认裸链接）── */
+.nav-launch {
+  font-family: var(--font-zh-sans, 'Noto Sans SC', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  height: 38px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; }
+}
+@media (max-width: 1600px) { .nav-links { gap: 1.7rem; } }
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.8rem; letter-spacing: 0.03em; }
+  .nav-actions { gap: 0.75rem; }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.76rem; }
+  .nav-brand-text { display: none; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.85rem; }
+  .nav-link { font-size: 0.74rem; letter-spacing: 0.02em; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.7rem; }
+  .nav-actions { gap: 0.55rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.65rem; }
+  .nav-link { font-size: 0.68rem; letter-spacing: 0.01em; }
+  .nav-launch { height: 29px; padding: 0 8px; font-size: 0.64rem; }
+  .nav-actions { gap: 0.45rem; }
+  .nav-container { padding: 0.9rem 1.15rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.5rem; }
+  .nav-link { font-size: 0.63rem; letter-spacing: 0; }
+  .nav-launch { height: 27px; padding: 0 7px; font-size: 0.6rem; }
+  .nav-actions { gap: 0.38rem; }
+  .nav-search svg { width: 17px; height: 17px; }
+  .lang-btn { padding: 0.26rem 0.4rem; font-size: 0.66rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.36rem; }
+  .nav-link { font-size: 0.58rem; letter-spacing: -0.01em; }
+  .nav-launch { height: 25px; padding: 0 6px; font-size: 0.55rem; }
+  .nav-actions { gap: 0.32rem; }
+  .nav-container { padding: 0.85rem 1rem; }
+  .nav-contact, .nav-cta { padding: 0.44rem 0.65rem; font-size: 0.68rem; }
+  .lang-btn { padding: 0.22rem 0.34rem; font-size: 0.62rem; }
+}
+</style>
 </head>
+<body>
 ========================================== -->
 <nav class="navbar" id="navbar">
     <div class="nav-container">
-        <a href="首页.html" class="nav-brand">
+        <a class='nav-brand' href='/zh/'>
             <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
                 <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                 <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
@@ -1694,11 +1790,15 @@
         </a>
 
         <ul class="nav-links">
-            <li><a href="首页.html" class="nav-link active">首页</a></li>
+            <li><a class='nav-link active' href='/zh/'>首页</a></li>
             <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
             <li><a href="著作概述.html" class="nav-link">著作</a></li>
             <li><a href="资源.html" class="nav-link">资源</a></li>
-            <li><a href="每日热点评论.html" class="nav-link">每日热点评论</a></li>
+            <li><a href="焦点（公开版）.html" class="nav-link">焦点（公开版）</a></li>
+                <li><a class='nav-link' href='/zh/briefing'>会员</a></li>
+                <li><a class="nav-link" href="订阅通讯.html">社区</a></li>
+
+            <li><a href="深度研究.html" class="nav-link">研究</a></li>
             <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
         </ul>
 
@@ -1711,9 +1811,10 @@
                 </svg>
             </button>
             <div class="lang-switch">
-                <a href="../en/index.html" class="lang-btn">EN</a>
-                <a href="首页.html" class="lang-btn active">中文</a>
+                <a class='lang-btn' href='/en/'>EN</a>
+                <a class='lang-btn active' href='/zh/'>中文</a>
             </div>
+            <a class='nav-launch' href='/zh/launch'>预告</a>
             <a href="联系我们.html" class="nav-contact">联系我们</a>
         </div>
     </div>
@@ -2248,11 +2349,11 @@
                     <div class="book-cover">
                         <div class="book-inner-border"></div>
                         <div class="book-content">
-                            <div class="book-series">跨学科奠基之作 · 四卷本</div>
+                            <div class="book-series">跨学科奠基之作 · 六卷本</div>
                             <div class="book-title-area">
-                                <div class="book-title-main">星际文明的<br>规范性基础</div>
+                                <div class="book-title-main">星际文明的<br>规范性重构</div>
                                 <div class="book-divider"></div>
-                                <div class="book-subtitle">新三观与深度不确定性下的治理</div>
+                                <div class="book-subtitle">新三观与深不确定性下的治理</div>
                             </div>
                             <div class="book-author">
                                 <span class="book-author-name">薛志新 著</span>
@@ -2264,13 +2365,15 @@
             </div>
             <div class="book-info">
                 <h2 class="section-title-inline">奠基之作</h2>
-                <p>一部开创性的跨学科学术巨著，四卷本。系统构建了面向深度时间尺度与多元智慧主体的规范性理论框架。提出"新三观"作为理论基础，推导出递归自由原则、负熵责任原则、可逆性原则三大核心规范，并确立禁忌红线作为绝对约束。
+                <p>一部跨学科的学术体系，六卷本，<strong>468 万字</strong>（第二版 2027 修订版 · v2.0.0.0）。系统构建了面向深度时间尺度与多元智慧主体的规范性理论框架，并将"新三观"从哲学命题贯通至可操作的形式化系统、指标体系、技术实现与应用对话。原始手稿本已就绪，第二版将于 2027 年确定出版方式与具体出版时间。
                 </p>
                 <div class="book-volumes">
-                    <a href="专著第一卷.html" class="volume-item"><span>第一卷：理论基础</span></a>
-                    <a href="专著第二卷.html" class="volume-item"><span>第二卷：制度框架</span></a>
-                    <a href="专著第三卷.html" class="volume-item"><span>第三卷：验证与展望</span></a>
-                    <a href="专著第四卷.html" class="volume-item"><span>第四卷：附录与资源</span></a>
+                    <a href="专著第一卷.html" class="volume-item"><span>第一卷：哲学基础</span></a>
+                    <a href="专著第二卷.html" class="volume-item"><span>第二卷：形式化系统</span></a>
+                    <a href="专著第三卷.html" class="volume-item"><span>第三卷：指标与制度</span></a>
+                    <a href="专著第四卷.html" class="volume-item"><span>第四卷：技术实现</span></a>
+                    <a href="专著第五卷.html" class="volume-item"><span>第五卷：应用与对话</span></a>
+                    <a href="专著第六卷.html" class="volume-item"><span>附录卷：工具与资源</span></a>
                 </div>
             </div>
             <a href="著作概述.html" class="btn-primary">查看详情 →</a>
@@ -2289,12 +2392,12 @@
             <p class="section-subtitle">新闻评论与专业研究</p>
         </div>
         <div class="news-grid">
-            <a href="每日热点评论.html" class="unified-card">
+            <a href="焦点（公开版）.html" class="unified-card">
                 <div class="card-header-bar"></div>
                 <div class="card-body">
-                    <span class="card-tag">评论</span>
-                    <h3 class="card-title">宇宙安全规程，终于想起来要更新了</h3>
-                    <p class="card-text">2026‑04‑10 SETI后检测协议分析，点击阅读全文。</p>
+                    <span class="card-tag">焦点</span>
+                    <h3 class="card-title">焦点（公开版）</h3>
+                    <p class="card-text">每日文明级前沿事件判断与深度分析，公开版每周一期。</p>
                 </div>
             </a>
 
@@ -2302,8 +2405,8 @@
                 <div class="card-header-bar"></div>
                 <div class="card-body">
                     <span class="card-tag">研究</span>
-                    <h3 class="card-title">当AI开始自己做决定：智能体纪元的文明级拐点</h3>
-                    <p class="card-text">最新深度研究文章——点击阅读完整分析。</p>
+                    <h3 class="card-title">深度研究</h3>
+                    <p class="card-text">每周深度研究与专题分析，点击进入。</p>
                 </div>
             </a>
 
@@ -2410,7 +2513,7 @@
         <div class="footer-col">
             <h4>学科</h4>
             <a href="关于星际文明学.html">概述</a>
-            <a href="首页.html">核心概念</a>
+            <a href='/zh/'>核心概念</a>
             <a href="制度设计.html">方法论</a>
         </div>
         <div class="footer-col">
@@ -2422,15 +2525,15 @@
         <div class="footer-col">
             <h4>联系</h4>
             <a href="联系我们.html">联系我们</a>
-            <a href="联系我们.html">franka328162810@gmail.com</a>
-            <a href="订阅通讯.html">订阅通讯</a>
+            <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>
+            <a href="订阅通讯.html">简报订阅</a>
         </div>
     </div>
     <div class="footer-bottom">
         <span class="footer-copyright">© 2026 星际文明学. 保留所有权利.</span>
         <div class="footer-links">
-            <a href="/zh/privacy.html">隐私政策</a>
-                <a href="/zh/terms.html">使用条款</a>
+            <a href='/zh/privacy'>隐私政策</a>
+                <a href='/zh/terms'>使用条款</a>
         </div>
     </div>
 </footer>
@@ -2438,7 +2541,7 @@
 <!-- ==========================================
          JavaScript
          ========================================== -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // 生成星星和流星
     function createStars() {
         const starfield = document.getElementById('starfield');
@@ -2594,7 +2697,47 @@
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS 人工智能助手 -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYjI4MTZjNmNkNzFjMjZjNmMxNjA0MiIsImlzc3VlciI6Im5mc2VydmVyIn0.c5zOJ46OSKD8FanVXnFL2rpAq75TRB5X6w6drwqKaPY"></script>
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYmRmYWRmOGI5NzM4NDY3MzQ1YTZiYSIsImlzc3VlciI6Im5mc2VydmVyIn0.xdj6oT1RiBrvD02NxfZ3qz-cFAPPUpXoSKbeWGab3uE"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a43b1bd699ccf5de',t:'MTc5MDg1Mzk0Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"232b9d8552444a2e8f9dcfe63b091169","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3f1b8cf2a74d5a7',t:'MTc5MDA4NDQzMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>

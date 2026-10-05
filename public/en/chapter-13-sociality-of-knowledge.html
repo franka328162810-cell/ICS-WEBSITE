@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
+    <meta name="theme-color" content="#a78bfa">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 13: A Formal System for the Sociality of Knowledge | The Normative Reconstruction (Second Edition) | Interstellar Civilization Studies</title>
+    <meta name="description"
+        content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <link rel="canonical" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/%E8%91%97%E4%BD%9C%E7%AC%AC%E4%B8%80%E5%8D%B7.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/first-edition-volume-i.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Interstellar Civilization Studies | ICS">
+    <meta property="og:title" content="Volume I: Theoretical Foundations | Interstellar Civilization Studies">
+    <meta property="og:description" content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Volume I: Theoretical Foundations | Interstellar Civilization Studies">
+    <meta name="twitter:description" content="Volume I of Normative Foundations of Interstellar Civilization is the theoretical cornerstone of the entire four-volume work, systematically constructing a normative theoretical framework oriented toward deep time scales and diverse intelligent agents.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="../css/ics-sizefix.css">
+    <link rel="stylesheet" href="../css/ics-en.css">
+    <style>
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-energy-gold-light: #fbbf24;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e2e8f0;
+            --font-en-display: 'Orbitron', sans-serif;
+            --font-en-sans: 'Inter', sans-serif;
+            --transition-normal: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-en-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-family: var(--font-en-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-search {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color var(--transition-normal);
+        }
+
+        .nav-search:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-search svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+        }
+
+        .lang-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--color-quantum-purple-light);
+        }
+
+        .nav-contact {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-quantum-purple), var(--color-nebula-cyan));
+            color: var(--color-text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+        }
+
+        .page-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -200px;
+            left: -100px;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .en-page-title {
+            font-family: var(--font-en-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+
+        .hero-intro-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25), 0 2px 8px rgba(6, 182, 212, 0.12);
+            
+            transition: box-shadow 0.3s, transform 0.3s;
+            transform: translateY(0);
+            
+        }
+
+        .hero-intro-card:hover {
+            box-shadow: 0 16px 48px rgba(124, 58, 237, 0.35), 0 4px 16px rgba(6, 182, 212, 0.18);
+            
+            transform: translateY(-12px) scale(1.03);
+            
+        }
+
+        .hero-intro-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            text-align: left;
+            letter-spacing: 0.01em;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .en-section-title {
+            font-family: var(--font-en-display);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .en-subsection-title {
+            font-family: var(--font-en-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-energy-gold);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .en-subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(135deg, var(--color-energy-gold), var(--color-energy-gold-light));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            transition: all var(--transition-normal);
+        }
+
+        .content-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        .content-card p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.01em;
+            text-align: left;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border-left: 4px solid var(--color-nebula-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-list li {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            letter-spacing: 0.01em;
+        }
+
+        .info-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-cyan);
+            font-size: 1.2rem;
+        }
+
+        .info-list li strong {
+            font-family: var(--font-en-display);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--color-energy-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .architecture-diagram {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .architecture-svg {
+            width: 100%;
+            max-width: 650px;
+            height: auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, 0.4);
+            box-shadow: 0 8px 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .stat-number {
+            font-family: var(--font-en-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-energy-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .related-links {
+            margin: 4rem 0 2rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .link-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .link-text {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .link-arrow {
+            font-size: 1.5rem;
+            color: var(--color-nebula-cyan);
+            transition: transform var(--transition-normal);
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-title {
+            font-family: var(--font-en-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+        }
+
+        .footer-logo-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-en-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-quantum-purple-light);
+        }
+
+        @media (max-width: 1024px) {
+.footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+}
+
+        @media (max-width: 768px) {
+.nav-links {
+                display: none;
+            }
+.en-page-title {
+                font-size: 2rem;
+            }
+.en-section-title {
+                font-size: 1.5rem;
+            }
+.content-card {
+                padding: 1.5rem;
+            }
+.footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+.footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+.links-grid {
+                grid-template-columns: 1fr;
+            }
+.stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+}
+    
+        /* ==== 著作正文阅读页 ==== */
+        .reading-main { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+        .doc-chapter { font-family: var(--font-en-display); font-size: 1.9rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; margin: 3rem 0 1.6rem;
+            color: #fff; line-height: 1.35; text-align: left; }
+        .doc-sec { font-family: var(--font-en-display); font-size: 1.25rem; font-weight: 600;
+            letter-spacing: 0.08em; margin: 2.6rem 0 1rem; color: var(--color-nebula-cyan); }
+        .doc-subsec { font-family: var(--font-en-display); font-size: 1.05rem; font-weight: 600;
+            letter-spacing: 0.06em; margin: 2rem 0 0.8rem; color: var(--color-energy-gold); }
+        .doc-cn { font-family: var(--font-en-display); font-size: 0.98rem; font-weight: 600;
+            letter-spacing: 0.05em; margin: 1.6rem 0 0.6rem; color: var(--color-quantum-purple-light); }
+        .doc-label { font-weight: 500; color: #fff; margin: 1.2rem 0 0.6rem;
+            border-left: 3px solid var(--color-quantum-purple); padding-left: 0.8rem; }
+        .reading-main p { line-height: 1.8; margin: 0.9rem 0; color: var(--color-text-secondary); }
+        .reading-main li { line-height: 1.8; margin: 0.4rem 0; color: var(--color-text-secondary); }
+        .doc-list { margin: 1rem 0 1rem 1.4rem; }
+        .doc-hr { border: none; border-top: 1px solid rgba(167,139,250,0.18); margin: 1.6rem 0; }
+        .ascii-diagram { background: rgba(15,23,42,0.75); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 10px; padding: 1.2rem 1.4rem; overflow-x: auto; font-size: 0.72rem;
+            line-height: 1.35; color: #b9c6e0; font-family: 'JetBrains Mono','Fira Code',monospace;
+            margin: 1.2rem 0; white-space: pre; }
+        .math-block { background: rgba(15,23,42,0.6); border-left: 3px solid var(--color-nebula-cyan);
+            border-radius: 8px; padding: 1rem 1.2rem; margin: 1.2rem 0; overflow-x: auto;
+            text-align: center; color: #e2e8f0; }
+        .table-wrap { overflow-x: auto; margin: 1.4rem 0; }
+        .table-wrap table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+        .table-wrap th, .table-wrap td { border: 1px solid rgba(167,139,250,0.22);
+            padding: 0.6rem 0.9rem; text-align: left; color: var(--color-text-secondary); }
+        .table-wrap th { background: rgba(124,58,237,0.16); color: #fff; font-weight: 600; }
+        .chapter-reader-nav { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between;
+            margin: 3rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid rgba(167,139,250,0.18); }
+        .chapter-reader-nav a { font-family: var(--font-en-display); font-size: 0.8rem;
+            letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-nebula-cyan);
+            text-decoration: none; padding: 0.6rem 1.1rem; border: 1px solid rgba(6,182,212,0.35);
+            border-radius: 8px; transition: all 0.3s ease; }
+        .chapter-reader-nav a:hover { background: rgba(6,182,212,0.12); }
+        .doc-toc { background: rgba(15,23,42,0.55); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.6rem 0 2.4rem; }
+        .doc-toc h3 { font-family: var(--font-en-display); font-size: 0.95rem; letter-spacing: 0.08em;
+            text-transform: uppercase; color: #fff; margin: 0 0 0.8rem; }
+        .doc-toc a { display: block; color: var(--color-text-secondary); text-decoration: none;
+            font-size: 0.88rem; line-height: 1.9; }
+        .doc-toc a:hover { color: var(--color-nebula-cyan); }
+        .doc-toc a.toc-l2 { padding-left: 1.1rem; font-size: 0.83rem; opacity: 0.88; }
+        .doc-toc a.toc-l3 { padding-left: 2.2rem; font-size: 0.79rem; opacity: 0.72; }
+        .doc-toc a.toc-l1 { font-weight: 500; }
+        .volume-badge { display: inline-block; font-family: var(--font-en-display); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-energy-gold);
+            border: 1px solid rgba(245,158,11,0.4); border-radius: 999px; padding: 0.3rem 0.9rem;
+            margin-bottom: 1.2rem; }
+        .trans-note { font-size: 0.82rem; color: var(--color-energy-gold); opacity: 0.85;
+            border-left: 3px solid rgba(245,158,11,0.5); padding-left: 0.8rem; margin: 0 0 1rem; }
+        @media (max-width: 768px) { .reading-main { padding: 6rem 1.2rem 3rem; }
+            .doc-chapter { font-size: 1.4rem; } }
+
+    </style>
+
+<style id="nav-responsive-patch">
+/* ICS 导航响应式补丁 v5：9 项导航 + Launch + 语言切换在 1024px 以上完整显示 */
+/* 关键：.nav-link 取消左右内边距（原 16px×2 每项，9 项浪费 288px）；Launch 永不隐藏，仅逐档缩尺寸 */
+.navbar { padding: 0; }
+.navbar.scrolled { padding: 0; }
+.nav-container { padding: 1rem 2rem; }
+.nav-link {
+  white-space: nowrap;
+  padding: 0.5rem 0 !important;
+  background: none !important;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+.nav-actions { flex-shrink: 0; }
+.nav-brand { flex-shrink: 0; }
+
+/* ── Launch 按钮（第77轮补齐：原为浏览器默认裸链接）── */
+.nav-launch {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  height: 38px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; }
+}
+@media (max-width: 1600px) { .nav-links { gap: 1.7rem; } }
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; letter-spacing: 0.02em; }
+  .nav-actions { gap: 0.75rem; }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.7rem; }
+  .nav-brand-text { display: none; }
+}
+@media (max-width: 1366px) {
+  .nav-links { gap: 1rem; }
+  .nav-link { font-size: 0.75rem; letter-spacing: 0.015em; }
+  .nav-launch { height: 34px; padding: 0 12px; font-size: 0.66rem; }
+  .nav-actions { gap: 0.65rem; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.82rem; }
+  .nav-link { font-size: 0.71rem; letter-spacing: 0.01em; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.62rem; }
+  .nav-actions { gap: 0.55rem; }
+}
+@media (max-width: 1280px) {
+  .nav-links { gap: 0.7rem; }
+  .nav-link { font-size: 0.67rem; letter-spacing: 0.005em; }
+  .nav-launch { height: 30px; padding: 0 9px; font-size: 0.58rem; }
+  .nav-actions { gap: 0.5rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.58rem; }
+  .nav-link { font-size: 0.62rem; letter-spacing: 0; }
+  .nav-launch { height: 28px; padding: 0 7px; font-size: 0.54rem; }
+  .nav-actions { gap: 0.42rem; }
+  .nav-container { padding: 0.9rem 1.15rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.45rem; }
+  .nav-link { font-size: 0.57rem; letter-spacing: -0.005em; }
+  .nav-launch { height: 26px; padding: 0 6px; font-size: 0.5rem; border-radius: 8px; }
+  .nav-actions { gap: 0.35rem; }
+  .nav-search svg { width: 16px; height: 16px; }
+  .lang-btn { padding: 0.26rem 0.4rem; font-size: 0.64rem; }
+  .nav-contact, .nav-cta { padding: 0.46rem 0.7rem; font-size: 0.68rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.32rem; }
+  .nav-link { font-size: 0.53rem; letter-spacing: -0.015em; }
+  .nav-launch { height: 25px; padding: 0 5px; font-size: 0.48rem; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-container { padding: 0.8rem 0.9rem; }
+  .nav-contact, .nav-cta { padding: 0.42rem 0.62rem; font-size: 0.65rem; }
+  .lang-btn { padding: 0.22rem 0.34rem; font-size: 0.6rem; }
+}
+
+        /* ==== 著作正文阅读页 ==== */
+        .reading-main { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+        .doc-chapter { font-family: var(--font-en-display); font-size: 1.9rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; margin: 3rem 0 1.6rem;
+            color: #fff; line-height: 1.35; text-align: left; }
+        .doc-sec { font-family: var(--font-en-display); font-size: 1.25rem; font-weight: 600;
+            letter-spacing: 0.08em; margin: 2.6rem 0 1rem; color: var(--color-nebula-cyan); }
+        .doc-subsec { font-family: var(--font-en-display); font-size: 1.05rem; font-weight: 600;
+            letter-spacing: 0.06em; margin: 2rem 0 0.8rem; color: var(--color-energy-gold); }
+        .doc-cn { font-family: var(--font-en-display); font-size: 0.98rem; font-weight: 600;
+            letter-spacing: 0.05em; margin: 1.6rem 0 0.6rem; color: var(--color-quantum-purple-light); }
+        .doc-label { font-weight: 500; color: #fff; margin: 1.2rem 0 0.6rem;
+            border-left: 3px solid var(--color-quantum-purple); padding-left: 0.8rem; }
+        .reading-main p { line-height: 1.8; margin: 0.9rem 0; color: var(--color-text-secondary); }
+        .reading-main li { line-height: 1.8; margin: 0.4rem 0; color: var(--color-text-secondary); }
+        .doc-list { margin: 1rem 0 1rem 1.4rem; }
+        .doc-hr { border: none; border-top: 1px solid rgba(167,139,250,0.18); margin: 1.6rem 0; }
+        .ascii-diagram { background: rgba(15,23,42,0.75); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 10px; padding: 1.2rem 1.4rem; overflow-x: auto; font-size: 0.72rem;
+            line-height: 1.35; color: #b9c6e0; font-family: 'JetBrains Mono','Fira Code',monospace;
+            margin: 1.2rem 0; white-space: pre; }
+        .math-block { background: rgba(15,23,42,0.6); border-left: 3px solid var(--color-nebula-cyan);
+            border-radius: 8px; padding: 1rem 1.2rem; margin: 1.2rem 0; overflow-x: auto;
+            text-align: center; color: #e2e8f0; }
+        .table-wrap { overflow-x: auto; margin: 1.4rem 0; }
+        .table-wrap table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+        .table-wrap th, .table-wrap td { border: 1px solid rgba(167,139,250,0.22);
+            padding: 0.6rem 0.9rem; text-align: left; color: var(--color-text-secondary); }
+        .table-wrap th { background: rgba(124,58,237,0.16); color: #fff; font-weight: 600; }
+        .chapter-reader-nav { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between;
+            margin: 3rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid rgba(167,139,250,0.18); }
+        .chapter-reader-nav a { font-family: var(--font-en-display); font-size: 0.8rem;
+            letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-nebula-cyan);
+            text-decoration: none; padding: 0.6rem 1.1rem; border: 1px solid rgba(6,182,212,0.35);
+            border-radius: 8px; transition: all 0.3s ease; }
+        .chapter-reader-nav a:hover { background: rgba(6,182,212,0.12); }
+        .doc-toc { background: rgba(15,23,42,0.55); border: 1px solid rgba(167,139,250,0.18);
+            border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.6rem 0 2.4rem; }
+        .doc-toc h3 { font-family: var(--font-en-display); font-size: 0.95rem; letter-spacing: 0.08em;
+            text-transform: uppercase; color: #fff; margin: 0 0 0.8rem; }
+        .doc-toc a { display: block; color: var(--color-text-secondary); text-decoration: none;
+            font-size: 0.88rem; line-height: 1.9; }
+        .doc-toc a:hover { color: var(--color-nebula-cyan); }
+        .doc-toc a.toc-l2 { padding-left: 1.1rem; font-size: 0.83rem; opacity: 0.88; }
+        .doc-toc a.toc-l3 { padding-left: 2.2rem; font-size: 0.79rem; opacity: 0.72; }
+        .doc-toc a.toc-l1 { font-weight: 500; }
+        .volume-badge { display: inline-block; font-family: var(--font-en-display); font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-energy-gold);
+            border: 1px solid rgba(245,158,11,0.4); border-radius: 999px; padding: 0.3rem 0.9rem;
+            margin-bottom: 1.2rem; }
+        .trans-note { font-size: 0.82rem; color: var(--color-energy-gold); opacity: 0.85;
+            border-left: 3px solid rgba(245,158,11,0.5); padding-left: 0.8rem; margin: 0 0 1rem; }
+        @media (max-width: 768px) { .reading-main { padding: 6rem 1.2rem 3rem; }
+            .doc-chapter { font-size: 1.4rem; } }
+
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+        integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+    <style>
+        .katex-display { margin: 0; }
+        .math-block .katex { font-size: 1.12em; color: #e2e8f0; }
+        .math-inline .katex { font-size: 1em; }
+        .math-inline { color: #c7d2fe; }
+        .math-error { color: #f87171; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+    </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a class='nav-brand' href='/en/'>
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                    <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="8s"
+                            repeatCount="indefinite" />
+                    </circle>
+                </svg>
+                <div class="nav-brand-text">
+                    <span class="nav-title">ICS</span>
+                    <span class="nav-subtitle">Interstellar Civilization Studies</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a class='nav-link' href='/en/'>Home</a></li>
+                <li><a class='nav-link active' href='/en/about'>About</a></li>
+                <li><a class='nav-link' href='/en/book-overview'>Publications</a></li>
+                <li><a class='nav-link' href='/en/resources'>Resources</a></li>
+                <li><a class='nav-link' href='/en/focus-public-edition'>Focus (Public Edition)</a></li>
+                <li><a class='nav-link' href='/en/briefing'>Membership</a></li>
+                <li><a class='nav-link' href='/en/newsletter'>Community</a></li>
+
+                <li><a class='nav-link' href='/en/in-depth-research'>Research</a></li>
+                <li><a class='nav-link' href='/en/ai-assistant'>AI Assistant</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-search" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switch">
+                    <a class='lang-btn active' href='/en/first-edition-volume-i'>EN</a>
+                    <a href="../zh/%E7%AC%AC%E4%B8%80%E7%89%88%E7%AC%AC%E4%B8%80%E5%8D%B7.html" class="lang-btn">中文</a>
+                </div>
+                <a class='nav-launch' href='/en/launch'>Launch</a>
+                <a class='nav-contact' href='/en/contact-us'>Contact</a>
+            </div>
+        </div>
+    </nav>
+<main class="reading-main">
+<span class="volume-badge">Second Edition · Volume II · Formal Systems</span>
+<h1 class="doc-chapter">A Formal System for the Sociality of Knowledge</h1>
+<p class="trans-note">English translation complete &mdash; all 1189 paragraphs across the main text, notes, references, and appendices have been rendered in English. Formulae, tables, and diagrams are language-neutral.</p>
+<div class="doc-toc"><h3>Contents / 本章目录</h3><a href="#sec-1" class="toc-l1">I. The Place of This Chapter in the Book</a><a href="#sec-2" class="toc-l1">II. The Core Innovations of the Revised Edition</a><a href="#sec-3" class="toc-l1">III. The Structure of This Chapter</a><a href="#sec-4" class="toc-l1">IV. Reading Suggestions</a><a href="#sec-5" class="toc-l1">V. The Core Message of This Chapter</a><a href="#sec-6" class="toc-l1">VI. Connections with Other Chapters</a><a href="#sec-7" class="toc-l1">VII. Expected Reading Time</a><a href="#sec-8" class="toc-l2">§13.1 Construction of the Formal System SK</a><a href="#sec-9" class="toc-l2">§13.1.1 Motivation and Goals</a><a href="#sec-10" class="toc-l2">§13.1.2 The Basic Components of SK</a><a href="#sec-11" class="toc-l2">§13.1.3 The Formal Language of SK</a><a href="#sec-12" class="toc-l2">§13.1.4 The Models of SK</a><a href="#sec-13" class="toc-l2">§13.1.5 The Semantics of SK</a><a href="#sec-14" class="toc-l2">§13.1.6 The Axiom System of SK</a><a href="#sec-15" class="toc-l2">§13.1.7 The Inference Rules of SK</a><a href="#sec-16" class="toc-l2">§13.1.8 Meta-Properties of SK (Preliminary)</a><a href="#sec-17" class="toc-l2">§13.2 Formalization of Epistemic Communities</a><a href="#sec-18" class="toc-l2">§13.2.1 A Graph-Theoretic Characterization of Epistemic Networks</a><a href="#sec-19" class="toc-l2">§13.2.2 The Topological Structure of Epistemic Communities</a><a href="#sec-20" class="toc-l2">§13.2.3 Formalization of Epistemic Roles</a><a href="#sec-21" class="toc-l2">§13.2.4 The Dynamic Evolution of Epistemic Communities</a><a href="#sec-22" class="toc-l2">§13.2.5 The Boundaries of Epistemic Communities</a><a href="#sec-23" class="toc-l2">§13.3 Formalization of the Negotiation Process</a><a href="#sec-24" class="toc-l2">§13.3.1 Foundations of Dynamic Epistemic Logic</a><a href="#sec-25" class="toc-l2">§13.3.2 Formalization of Belief Revision</a><a href="#sec-26" class="toc-l2">§13.3.3 Formalization of Negotiation Protocols</a><a href="#sec-27" class="toc-l2">§13.3.4 Formalization of Critical Review</a><a href="#sec-28" class="toc-l2">§13.3.5 The Dynamics of Consensus Formation</a><a href="#sec-29" class="toc-l2">§13.3.6 Formalization of Epistemic Polarization</a><a href="#sec-30" class="toc-l2">§13.4 Key Theorems and Proofs</a><a href="#sec-31" class="toc-l2">§13.4.1 Theorem 13.12: The Irreducibility of Social Justification</a><a href="#sec-32" class="toc-l2">§13.4.2 Theorem 13.13: The Infinity of Common Knowledge</a><a href="#sec-33" class="toc-l2">§13.4.3 Theorem 13.14: The Non-Transitivity of Trust</a><a href="#sec-34" class="toc-l2">§13.4.4 Theorem 13.15: The Social Constitution of Authority</a><a href="#sec-35" class="toc-l2">§13.4.5 Theorem 13.16: The Necessity of Negotiation</a><a href="#sec-36" class="toc-l2">§13.4.6 Theorem 13.17: The Value of Epistemic Democracy</a><a href="#sec-37" class="toc-l2">§13.4.7 Theorem 13.18: The Fragility of Knowledge</a><a href="#sec-38" class="toc-l2">§13.4.8 Theorem 13.19: The Partial Completeness of SK</a><a href="#sec-39" class="toc-l2">§13.5 Applications of SK</a><a href="#sec-40" class="toc-l2">§13.5.1 Application One: Auditing the Knowledge Sources of AI Systems</a><a href="#sec-41" class="toc-l2">§13.5.2 Application Two: Modeling Knowledge Production in Scientific Communities</a><a href="#sec-42" class="toc-l2">§13.5.3 Application Three: Formal Analysis of Democratic Deliberation</a><a href="#sec-43" class="toc-l2">§13.5.4 Application Four: Consensus Protocols for Multi-Agent Systems</a><a href="#sec-44" class="toc-l2">§13.5.5 Application Five: Detecting and Correcting Epistemic Injustice</a><a href="#sec-45" class="toc-l1">I. Main Results</a><a href="#sec-46" class="toc-l1">II. Feedback on Volume I</a><a href="#sec-47" class="toc-l1">III. New Insights from the Formalization</a><a href="#sec-48" class="toc-l1">IV. Connections with Other Chapters</a><a href="#sec-49" class="toc-l1">V. Unsolved Problems</a><a href="#sec-50" class="toc-l1">VI. Suggestions for Readers</a><a href="#sec-51" class="toc-l1">VII. The Core Message of This Chapter (Restated)</a><a href="#sec-52" class="toc-l1">VIII. Preview of the Next Chapter</a></div>
+<p>Chapter 13: A Formal System for the Sociality of Knowledge</p>
+<p>Chapter Introduction</p>
+<h3 id="sec-1" class="doc-sec">I. The Place of This Chapter in the Book</h3>
+<p>This chapter is the second chapter of Part IV, "The Formalization of the New View of Cognition," of Volume II, and it undertakes the task of providing a rigorous formalization foundation for the sociality of knowledge. If Chapter 12 formalized the participatory and embodied features of cognition, this chapter focuses on the social dimension of cognition—knowledge is not discovered by individuals in isolation, but is jointly constructed by epistemic communities through negotiation and critical dialogue.</p>
+<p>In the protocol stack architecture, this chapter mainly involves:</p>
+<ul class="doc-list"><li>The L₁ layer (life-cognition foundation): the social-ontological features of knowledge</li>
+<li>The L₂ layer (normative-ethical foundation): the normative structure of epistemic communities</li>
+<li>The formalization layer: providing a rigorous mathematical reconstruction of the philosophical arguments of Volume I, Chapter 3</li>
+</ul><p>The core task of this chapter is to construct the formal system SK (Social Knowledge), which formally expresses the core thesis NK-3 of the New View of Cognition:</p>
+<p>NK-3 (the Sociality of Knowledge): Knowledge is not the private property of individual minds, but the intersubjective consensus reached by epistemic communities through negotiation, criticism, and revision. The justification of knowledge depends on social practice, and the authority of knowledge comes from the recognition of the community.</p>
+<h3 id="sec-2" class="doc-sec">II. The Core Innovations of the Revised Edition</h3>
+<p>Relative to the preliminary edition (which did not include this volume), the core innovations of this chapter include:</p>
+<p>Innovation One: A Complete Continuity from Philosophy to Formalization</p>
+<p>The discussion of the sociality of knowledge in Volume I, Chapter 3, §3.3 is mainly conceptual and argumentative, citing the literature of social epistemology (Goldman, Kitcher, Longino), but it lacks rigorous formalization. By constructing the formal system SK, this chapter transforms these philosophical insights into operable mathematical structures.</p>
+<p>Innovation Two: A Topological Characterization of Epistemic Communities</p>
+<p>This chapter innovatively uses topology and graph theory to characterize the structure of epistemic communities. We model an epistemic community as an epistemic network, in which nodes are epistemic subjects and edges are epistemic relations (trust, authority, criticism, etc.). This formalization reveals the deep mathematical structure of the sociality of knowledge.</p>
+<p>Innovation Three: Dynamic Modeling of the Negotiation Process</p>
+<p>Knowledge is not static, but dynamically evolves through a continuous negotiation process. This chapter uses Dynamic Epistemic Logic (DEL) to model the negotiation process, including:</p>
+<ul class="doc-list"><li>Information sharing (public announcement)</li>
+<li>Private communication</li>
+<li>Belief revision</li>
+<li>Consensus formation</li>
+</ul><p>Innovation Four: The Social Dimension of Justification</p>
+<p>Traditional epistemology focuses on individual justification, whereas this chapter formalizes social justification: a belief is justified in an epistemic community if and only if it passes the critical review procedure of the community. We prove several non-trivial properties of social justification.</p>
+<p>Innovation Five: Direct Interface with AI Governance</p>
+<p>The formalization of this chapter is not only a theoretical tool but also a practical tool. We show how SK can be applied to:</p>
+<ul class="doc-list"><li>Auditing the knowledge sources of AI systems</li>
+<li>Consensus protocols for multi-agent systems</li>
+<li>Modeling knowledge production in scientific communities</li>
+<li>Formal analysis of democratic deliberation</li>
+</ul><h3 id="sec-3" class="doc-sec">III. The Structure of This Chapter</h3>
+<p>This chapter contains five main parts:</p>
+<ul class="doc-list"><li>§13.1 Construction of the formal system SK: defining the basic components of SK (language, models, axioms)</li>
+<li>§13.2 Formalization of epistemic communities: characterizing community structure using graph theory and topology</li>
+<li>§13.3 Formalization of the negotiation process: modeling knowledge evolution using dynamic epistemic logic</li>
+<li>§13.4 Key theorems and proofs: proving 8 core theorems</li>
+<li>§13.5 Applications of SK: showing the applications of SK in AI governance, philosophy of science, and democratic theory</li>
+</ul><h3 id="sec-4" class="doc-sec">IV. Reading Suggestions</h3>
+<p>For readers with a philosophical background:</p>
+<ul class="doc-list"><li>Focus on §13.1 (basic setup) and §13.4 (philosophical interpretation of the theorems)</li>
+<li>Technical details may be skipped, but it is recommended to understand the statements of the theorems</li>
+<li>Read the formalization in comparison with the natural-language arguments of Volume I, Chapter 3, §3.3</li>
+</ul><p>For readers with a mathematics/logic background:</p>
+<ul class="doc-list"><li>Focus on the technical constructions of §13.2 and §13.3</li>
+<li>Carefully examine the proofs of §13.4</li>
+<li>Consider possible improvements to the formalization</li>
+</ul><p>For readers with a computer science background:</p>
+<ul class="doc-list"><li>Focus on the applications of §13.5</li>
+<li>Consider how to implement SK as actual algorithms</li>
+<li>Consider applications in multi-agent systems</li>
+</ul><p>For interdisciplinary readers:</p>
+<ul class="doc-list"><li>Begin with the chapter introduction to understand the motivation for the problem</li>
+<li>Read the basic setup of §13.1</li>
+<li>Skip to §13.5 to see the application cases</li>
+<li>Return to the technical parts according to interest</li>
+</ul><h3 id="sec-5" class="doc-sec">V. The Core Message of This Chapter</h3>
+<p>If you can remember only three points from this chapter, they should be:</p>
+<p>1. Knowledge is socially constructed: The formal system SK rigorously proves that the sociality of knowledge is not an optional additional feature, but a constitutive dimension of the essence of knowledge.</p>
+<p>2. Epistemic communities have structure: An epistemic community is not an undifferentiated set, but a network with a topological structure. This structure affects the production, dissemination, and justification of knowledge.</p>
+<p>3. Negotiation is a dynamic process: Knowledge evolves through a continuous negotiation process. The formalization reveals the logical structure and convergence conditions of negotiation.</p>
+<h3 id="sec-6" class="doc-sec">VI. Connections with Other Chapters</h3>
+<p>Backward connections:</p>
+<ul class="doc-list"><li>Chapter 12 (Participatory Cognition PC): SK depends on PC's definition of epistemic subjects</li>
+<li>Chapter 11 (the New View of Life NL): The epistemic subjects in SK must be subjects in the sense of NL</li>
+<li>Chapters 4 to 6 (the New Cosmology): The sociality of knowledge is consistent with Relational Ontology</li>
+</ul><p>Forward connections:</p>
+<ul class="doc-list"><li>Chapter 14 (Deep Uncertainty DU): SK provides an epistemological foundation for DU</li>
+<li>Chapter 15 (Knowledge Revisability RK): The negotiation process of SK is a precondition of RK</li>
+<li>Chapter 16 (Integration of the New View of Cognition NK): SK is a core component of NK</li>
+</ul><p>Lateral connections:</p>
+<ul class="doc-list"><li>Chapter 19 (Axiomatization of the Three Principles): SK supports the epistemological dimension of the Recursive Freedom Principle</li>
+<li>Chapter 23 (Formalization of RFD): SK provides a foundation for the "epistemic freedom" dimension of RFD</li>
+</ul><h3 id="sec-7" class="doc-sec">VII. Expected Reading Time</h3>
+<ul class="doc-list"><li>Quick skim: 1-2 hours</li>
+<li>Systematic study: 6-8 hours</li>
+<li>In-depth study (including proof verification): 15-20 hours</li>
+</ul><p>---</p>
+<h4 id="sec-8" class="doc-subsec">§13.1 Construction of the Formal System SK</h4>
+<h4 id="sec-9" class="doc-subsec">§13.1.1 Motivation and Goals</h4>
+<p>Philosophical Motivation</p>
+<p>Traditional epistemology (especially the Cartesian tradition) regards knowledge as the private property of individual minds. A belief is justified if and only if the individual possesses sufficient evidence or reasons. This individualist epistemology faces many difficulties:</p>
+<p>1. The problem of specialization: Modern knowledge is highly specialized, and no individual can independently verify all knowledge. We rely on the testimony of experts.</p>
+<p>2. The problem of the social division of labor: The production of scientific knowledge depends on a complex social division of labor (experimentalists, theorists, reviewers, funders, etc.).</p>
+<p>3. The problem of epistemic injustice: The knowledge claims of certain groups are systematically ignored or disparaged (Miranda Fricker's theory of epistemic injustice).</p>
+<p>4. The problem of collective knowledge: Some knowledge can only be possessed by a collective rather than by individuals (e.g., "the scientific community knows that the Higgs boson exists").</p>
+<p>Social epistemology attempts to overcome these difficulties by maintaining that knowledge is essentially social. But most of the work in social epistemology remains at the level of conceptual analysis and case studies, lacking rigorous formalization.</p>
+<p>Formalization Goals</p>
+<p>The goal of this chapter is to construct the formal system SK so that it can:</p>
+<p>1. Precisely characterize epistemic communities: Transform "epistemic community" from a vague concept into a rigorous mathematical object.</p>
+<p>2. Model the negotiation process: Formalize the process by which knowledge evolves through negotiation, criticism, and revision.</p>
+<p>3. Define social justification: Give a rigorous definition of "a belief is justified in a community."</p>
+<p>4. Prove non-trivial theorems: Reveal the deep structure of the sociality of knowledge.</p>
+<p>5. Support practical applications: Provide operable tools for AI governance, science policy, and democratic deliberation.</p>
+<h4 id="sec-10" class="doc-subsec">§13.1.2 The Basic Components of SK</h4>
+<p>The formal system SK contains the following components:</p>
+<div class="math-block" data-tex="\text{SK} = \langle \mathcal{L}_{\text{SK}}, \mathcal{M}_{\text{SK}}, \mathcal{A}_{\text{SK}}, \vdash_{\text{SK}} \rangle"></div>
+<p>where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\mathcal{L}_{\text{SK}}"></span>: the formal language of SK</li>
+<li><span class="math-inline" data-tex="\mathcal{M}_{\text{SK}}"></span>: the class of models of SK</li>
+<li><span class="math-inline" data-tex="\mathcal{A}_{\text{SK}}"></span>: the axiom system of SK</li>
+<li><span class="math-inline" data-tex="\vdash_{\text{SK}}"></span>: the inference rules of SK</li>
+</ul><p>We define these components one by one.</p>
+<h4 id="sec-11" class="doc-subsec">§13.1.3 The Formal Language of SK <span class="math-inline" data-tex="\mathcal{L}_{\text{SK}}"></span></h4>
+<p>Basic Symbols</p>
+<p>1. Propositional variables: <span class="math-inline" data-tex="p, q, r, \ldots \in \text{Prop}"></span> (denoting atomic propositions)</p>
+<p>2. Epistemic subjects: <span class="math-inline" data-tex="\text{Ag} = \{a_1, a_2, \ldots, a_n\}"></span> (a finite set, denoting the members of an epistemic community)</p>
+<p>3. Epistemic operators:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="K_i \varphi"></span>: "subject <span class="math-inline" data-tex="i"></span> knows <span class="math-inline" data-tex="\varphi"></span>"</li>
+<li><span class="math-inline" data-tex="B_i \varphi"></span>: "subject <span class="math-inline" data-tex="i"></span> believes <span class="math-inline" data-tex="\varphi"></span>"</li>
+<li><span class="math-inline" data-tex="J_i \varphi"></span>: "subject <span class="math-inline" data-tex="i"></span> has justification for <span class="math-inline" data-tex="\varphi"></span>"</li>
+</ul><p>4. Social epistemic operators:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="C_G \varphi"></span>: "group <span class="math-inline" data-tex="G"></span> commonly knows <span class="math-inline" data-tex="\varphi"></span>" (common knowledge)</li>
+<li><span class="math-inline" data-tex="D_G \varphi"></span>: "group <span class="math-inline" data-tex="G"></span> distributively knows <span class="math-inline" data-tex="\varphi"></span>" (distributed knowledge)</li>
+<li><span class="math-inline" data-tex="E_G \varphi"></span>: "everyone in group <span class="math-inline" data-tex="G"></span> knows <span class="math-inline" data-tex="\varphi"></span>" (everyone knows)</li>
+</ul><p>5. Trust operator:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="T_{ij} \varphi"></span>: "subject <span class="math-inline" data-tex="i"></span> trusts subject <span class="math-inline" data-tex="j"></span> on proposition <span class="math-inline" data-tex="\varphi"></span>"</li>
+</ul><p>6. Authority operator:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="A_i^G \varphi"></span>: "subject <span class="math-inline" data-tex="i"></span> has epistemic authority over <span class="math-inline" data-tex="\varphi"></span> in group <span class="math-inline" data-tex="G"></span>"</li>
+</ul><p>7. Negotiation operator:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="[\text{announce}_i(\varphi)]\psi"></span>: "after subject <span class="math-inline" data-tex="i"></span> publicly announces <span class="math-inline" data-tex="\varphi"></span>, <span class="math-inline" data-tex="\psi"></span> holds"</li>
+<li><span class="math-inline" data-tex="[\text{revise}_i(\varphi)]\psi"></span>: "after subject <span class="math-inline" data-tex="i"></span> revises beliefs to accept <span class="math-inline" data-tex="\varphi"></span>, <span class="math-inline" data-tex="\psi"></span> holds"</li>
+</ul><p>8. Logical connectives: <span class="math-inline" data-tex="\neg, \land, \lor, \rightarrow, \leftrightarrow"></span></p>
+<p>9. Modal operators: <span class="math-inline" data-tex="\Box"></span> (necessary), <span class="math-inline" data-tex="\Diamond"></span> (possible)</p>
+<p>Well-Formed Formulas</p>
+<p>The well-formed formulas of <span class="math-inline" data-tex="\mathcal{L}_{\text{SK}}"></span> are recursively defined as follows:</p>
+<div class="math-block" data-tex="\varphi ::= p \mid \neg \varphi \mid (\varphi \land \varphi) \mid K_i \varphi \mid B_i \varphi \mid J_i \varphi \mid C_G \varphi \mid D_G \varphi \mid T_{ij} \varphi \mid A_i^G \varphi \mid [\alpha]\varphi"></div>
+<p>where <span class="math-inline" data-tex="\alpha"></span> is an action (public announcement, belief revision, etc.).</p>
+<p>The Expressive Power of the Language</p>
+<p><span class="math-inline" data-tex="\mathcal{L}_{\text{SK}}"></span> can express:</p>
+<ul class="doc-list"><li>Individual knowledge: <span class="math-inline" data-tex="K_i p"></span> ("subject <span class="math-inline" data-tex="i"></span> knows <span class="math-inline" data-tex="p"></span>")</li>
+<li>Common knowledge: <span class="math-inline" data-tex="C_{\text{Ag}} p"></span> ("everyone commonly knows <span class="math-inline" data-tex="p"></span>")</li>
+<li>Trust relations: <span class="math-inline" data-tex="T_{12} p"></span> ("subject 1 trusts subject 2 on <span class="math-inline" data-tex="p"></span>")</li>
+<li>Dynamic evolution: <span class="math-inline" data-tex="[\text{announce}_1(p)]K_2 p"></span> ("after subject 1 announces <span class="math-inline" data-tex="p"></span>, subject 2 knows <span class="math-inline" data-tex="p"></span>")</li>
+</ul><h4 id="sec-12" class="doc-subsec">§13.1.4 The Models of SK <span class="math-inline" data-tex="\mathcal{M}_{\text{SK}}"></span></h4>
+<p>The Epistemic Network Model</p>
+<p>A model of SK is an epistemic network, formalized as:</p>
+<div class="math-block" data-tex="\mathcal{M} = \langle W, \{\sim_i\}_{i \in \text{Ag}}, \mathcal{G}, \mathcal{T}, \mathcal{A}, V \rangle"></div>
+<p>where:</p>
+<p>1. <span class="math-inline" data-tex="W"></span>: a set of possible worlds (representing epistemic possibilities)</p>
+<p>2. <span class="math-inline" data-tex="\{\sim_i\}_{i \in \text{Ag}}"></span>: the accessibility relation of each subject <span class="math-inline" data-tex="i"></span> (equivalence relation)</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="w \sim_i w'"></span> means "in world <span class="math-inline" data-tex="w"></span>, subject <span class="math-inline" data-tex="i"></span> considers world <span class="math-inline" data-tex="w'"></span> possible"</li>
+</ul><p>3. <span class="math-inline" data-tex="\mathcal{G} = \langle \text{Ag}, E \rangle"></span>: the graph structure of the epistemic community</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\text{Ag}"></span>: the set of nodes (epistemic subjects)</li>
+<li><span class="math-inline" data-tex="E \subseteq \text{Ag} \times \text{Ag}"></span>: the set of edges (epistemic relations)</li>
+<li><span class="math-inline" data-tex="(i,j) \in E"></span> means "there is an epistemic connection between subject <span class="math-inline" data-tex="i"></span> and subject <span class="math-inline" data-tex="j"></span>"</li>
+</ul><p>4. <span class="math-inline" data-tex="\mathcal{T}: \text{Ag} \times \text{Ag} \times \text{Prop} \rightarrow [0,1]"></span>: the trust function</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\mathcal{T}(i,j,p)"></span> denotes "the degree of subject <span class="math-inline" data-tex="i"></span>'s trust in subject <span class="math-inline" data-tex="j"></span> on proposition <span class="math-inline" data-tex="p"></span>"</li>
+</ul><p>5. <span class="math-inline" data-tex="\mathcal{A}: \text{Ag} \times \text{Prop} \rightarrow [0,1]"></span>: the authority function</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\mathcal{A}(i,p)"></span> denotes "the degree of subject <span class="math-inline" data-tex="i"></span>'s epistemic authority on proposition <span class="math-inline" data-tex="p"></span>"</li>
+</ul><p>6. <span class="math-inline" data-tex="V: \text{Prop} \rightarrow \mathcal{P}(W)"></span>: the valuation function</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="V(p)"></span> is the set of worlds that make proposition <span class="math-inline" data-tex="p"></span> true</li>
+</ul><p>The Intuitive Interpretation of the Model</p>
+<ul class="doc-list"><li>Possible worlds <span class="math-inline" data-tex="W"></span>: represent epistemic uncertainty. A subject does not know which world it is in.</li>
+<li>Accessibility relation <span class="math-inline" data-tex="\sim_i"></span>: characterizes subject <span class="math-inline" data-tex="i"></span>'s knowledge. <span class="math-inline" data-tex="K_i \varphi"></span> is true in world <span class="math-inline" data-tex="w"></span> if and only if <span class="math-inline" data-tex="\varphi"></span> is true in all <span class="math-inline" data-tex="i"></span>-accessible worlds.</li>
+<li>Epistemic network <span class="math-inline" data-tex="\mathcal{G}"></span>: characterizes the social structure of the community. An edge <span class="math-inline" data-tex="(i,j)"></span> means that there is epistemic exchange between <span class="math-inline" data-tex="i"></span> and <span class="math-inline" data-tex="j"></span>.</li>
+<li>Trust function <span class="math-inline" data-tex="\mathcal{T}"></span>: characterizes the trust relations among subjects. <span class="math-inline" data-tex="\mathcal{T}(i,j,p) = 0.9"></span> means that <span class="math-inline" data-tex="i"></span> highly trusts <span class="math-inline" data-tex="j"></span>'s judgment about <span class="math-inline" data-tex="p"></span>.</li>
+<li>Authority function <span class="math-inline" data-tex="\mathcal{A}"></span>: characterizes the expertise of subjects. <span class="math-inline" data-tex="\mathcal{A}(i,p) = 0.95"></span> means that <span class="math-inline" data-tex="i"></span> is a highly authoritative expert on <span class="math-inline" data-tex="p"></span>.</li>
+</ul><p>An Example Model</p>
+<p>Consider a simple scientific community containing three subjects:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="a_1"></span>: an experimental physicist</li>
+<li><span class="math-inline" data-tex="a_2"></span>: a theoretical physicist</li>
+<li><span class="math-inline" data-tex="a_3"></span>: a philosopher of science</li>
+</ul><p>Proposition <span class="math-inline" data-tex="p"></span>: "the Higgs boson exists"</p>
+<p>Epistemic network:</p>
+<div class="math-block" data-tex="\mathcal{G} = \langle \{a_1, a_2, a_3\}, \{(a_1,a_2), (a_2,a_1), (a_2,a_3), (a_3,a_2)\} \rangle"></div>
+<p>(<span class="math-inline" data-tex="a_1"></span> and <span class="math-inline" data-tex="a_2"></span> communicate with each other, <span class="math-inline" data-tex="a_2"></span> and <span class="math-inline" data-tex="a_3"></span> communicate with each other, but <span class="math-inline" data-tex="a_1"></span> and <span class="math-inline" data-tex="a_3"></span> do not communicate directly)</p>
+<p>Trust relations:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\mathcal{T}(a_2, a_1, p) = 0.9"></span> (the theorist highly trusts the experimentalist's judgment about <span class="math-inline" data-tex="p"></span>)</li>
+<li><span class="math-inline" data-tex="\mathcal{T}(a_1, a_2, p) = 0.7"></span> (the experimentalist moderately trusts the theorist)</li>
+<li><span class="math-inline" data-tex="\mathcal{T}(a_3, a_2, p) = 0.6"></span> (the philosopher moderately trusts the theorist)</li>
+</ul><p>Degrees of authority:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\mathcal{A}(a_1, p) = 0.85"></span> (the experimentalist has high authority on <span class="math-inline" data-tex="p"></span>)</li>
+<li><span class="math-inline" data-tex="\mathcal{A}(a_2, p) = 0.80"></span> (the theorist has high authority on <span class="math-inline" data-tex="p"></span>)</li>
+<li><span class="math-inline" data-tex="\mathcal{A}(a_3, p) = 0.30"></span> (the philosopher has lower authority on <span class="math-inline" data-tex="p"></span>)</li>
+</ul><h4 id="sec-13" class="doc-subsec">§13.1.5 The Semantics of SK</h4>
+<p>Truth Definition</p>
+<p>Given a model <span class="math-inline" data-tex="\mathcal{M} = \langle W, \{\sim_i\}, \mathcal{G}, \mathcal{T}, \mathcal{A}, V \rangle"></span> and a world <span class="math-inline" data-tex="w \in W"></span>, the truth value of a formula <span class="math-inline" data-tex="\varphi"></span> in <span class="math-inline" data-tex="w"></span> is recursively defined as follows:</p>
+<p>1. <span class="math-inline" data-tex="\mathcal{M}, w \models p"></span> if and only if <span class="math-inline" data-tex="w \in V(p)"></span></p>
+<p>2. <span class="math-inline" data-tex="\mathcal{M}, w \models \neg \varphi"></span> if and only if <span class="math-inline" data-tex="\mathcal{M}, w \not\models \varphi"></span></p>
+<p>3. <span class="math-inline" data-tex="\mathcal{M}, w \models \varphi \land \psi"></span> if and only if <span class="math-inline" data-tex="\mathcal{M}, w \models \varphi"></span> and <span class="math-inline" data-tex="\mathcal{M}, w \models \psi"></span></p>
+<p>4. <span class="math-inline" data-tex="\mathcal{M}, w \models K_i \varphi"></span> if and only if for all <span class="math-inline" data-tex="w' \sim_i w"></span>, we have <span class="math-inline" data-tex="\mathcal{M}, w' \models \varphi"></span></p>
+<p>5. <span class="math-inline" data-tex="\mathcal{M}, w \models C_G \varphi"></span> if and only if for all <span class="math-inline" data-tex="w'"></span>, if <span class="math-inline" data-tex="w"></span> and <span class="math-inline" data-tex="w'"></span> are connected by a chain of accessibility relations of subjects in <span class="math-inline" data-tex="G"></span>, then <span class="math-inline" data-tex="\mathcal{M}, w' \models \varphi"></span></p>
+<p>6. <span class="math-inline" data-tex="\mathcal{M}, w \models D_G \varphi"></span> if and only if for all <span class="math-inline" data-tex="w'"></span>, if <span class="math-inline" data-tex="w' \sim_i w"></span> for some <span class="math-inline" data-tex="i \in G"></span>, then <span class="math-inline" data-tex="\mathcal{M}, w' \models \varphi"></span></p>
+<p>7. <span class="math-inline" data-tex="\mathcal{M}, w \models T_{ij} \varphi"></span> if and only if <span class="math-inline" data-tex="\mathcal{T}(i,j,\varphi) \geq \theta_T"></span> (trust threshold)</p>
+<p>8. <span class="math-inline" data-tex="\mathcal{M}, w \models A_i^G \varphi"></span> if and only if <span class="math-inline" data-tex="\mathcal{A}(i,\varphi) \geq \theta_A"></span> (authority threshold)</p>
+<p>The Definition of Social Justification</p>
+<p>This is the core innovation of SK. We define:</p>
+<div class="math-block" data-tex="\mathcal{M}, w \models J_i^{\text{social}} \varphi \quad \text{if and only if} \quad \exists G \subseteq \text{Ag}: i \in G \land \text{Justified}_G(\varphi, w)"></div>
+<p>where <span class="math-inline" data-tex="\text{Justified}_G(\varphi, w)"></span> denotes "<span class="math-inline" data-tex="\varphi"></span> has passed the social justification procedure in group <span class="math-inline" data-tex="G"></span>," defined as:</p>
+<div class="math-block" data-tex="\text{Justified}_G(\varphi, w) \equiv \begin{cases}"></div>
+<p>1. &amp; \exists j \in G: A_j^G \varphi \land K_j \varphi \\</p>
+<p>2. &amp; \forall k \in G: \neg K_k \neg \varphi \\</p>
+<p>3. &amp; \text{CriticalReview}_G(\varphi, w) = \text{passed}</p>
+<div class="math-block" data-tex="\end{cases}"></div>
+<p>Interpretation:</p>
+<p>1. There exists an authoritative member <span class="math-inline" data-tex="j"></span> who knows <span class="math-inline" data-tex="\varphi"></span></p>
+<p>2. No member knows <span class="math-inline" data-tex="\neg \varphi"></span> (no rebuttal)</p>
+<p>3. <span class="math-inline" data-tex="\varphi"></span> has passed the critical review of the group</p>
+<p>The Formalization of Critical Review</p>
+<div class="math-block" data-tex="\text{CriticalReview}_G(\varphi, w) = \text{passed} \equiv \forall i \in G: (\text{Objection}_i(\varphi, w) \rightarrow \text{Addressed}_G(\text{Objection}_i(\varphi, w)))"></div>
+<p>That is: the objections of all members have been addressed.</p>
+<h4 id="sec-14" class="doc-subsec">§13.1.6 The Axiom System of SK <span class="math-inline" data-tex="\mathcal{A}_{\text{SK}}"></span></h4>
+<p>The axioms of SK are divided into five groups:</p>
+<p>Group A: Axioms of individual epistemic logic (inherited from the standard epistemic logic S5)</p>
+<ul class="doc-list"><li>A1 (factivity of knowledge): <span class="math-inline" data-tex="K_i \varphi \rightarrow \varphi"></span></li>
+<li>A2 (positive introspection of knowledge): <span class="math-inline" data-tex="K_i \varphi \rightarrow K_i K_i \varphi"></span></li>
+<li>A3 (negative introspection of knowledge): <span class="math-inline" data-tex="\neg K_i \varphi \rightarrow K_i \neg K_i \varphi"></span></li>
+<li>A4 (distributivity of knowledge): <span class="math-inline" data-tex="K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi \rightarrow K_i  \psi)"></span></li>
+</ul><p>Group B: Social epistemic axioms</p>
+<ul class="doc-list"><li>B1 (definition of common knowledge):</li>
+</ul><div class="math-block" data-tex="C_G \varphi \leftrightarrow E_G \varphi \land E_G C_G \varphi"></div>
+<p>  (common knowledge is the infinite iteration of "everyone knows, and everyone knows that everyone knows, …")</p>
+<ul class="doc-list"><li>B2 (property of distributed knowledge):</li>
+</ul><div class="math-block" data-tex="D_G \varphi \rightarrow \bigvee_{i \in G} K_i \varphi"></div>
+<p>  (if group <span class="math-inline" data-tex="G"></span> distributively knows <span class="math-inline" data-tex="\varphi"></span>, then at least one member knows <span class="math-inline" data-tex="\varphi"></span>)</p>
+<ul class="doc-list"><li>B3 (common knowledge implies distributed knowledge):</li>
+</ul><div class="math-block" data-tex="C_G \varphi \rightarrow D_G \varphi"></div>
+<p>Group C: Trust axioms</p>
+<ul class="doc-list"><li>C1 (transitivity of trust):</li>
+</ul><div class="math-block" data-tex="T_{ij} \varphi \land T_{jk} \varphi \land K_j \varphi \rightarrow T_{ik} \varphi"></div>
+<p>  (if <span class="math-inline" data-tex="i"></span> trusts <span class="math-inline" data-tex="j"></span>, <span class="math-inline" data-tex="j"></span> trusts <span class="math-inline" data-tex="k"></span>, and <span class="math-inline" data-tex="j"></span> knows <span class="math-inline" data-tex="\varphi"></span>, then <span class="math-inline" data-tex="i"></span> trusts <span class="math-inline" data-tex="k"></span> about <span class="math-inline" data-tex="\varphi"></span>)</p>
+<ul class="doc-list"><li>C2 (the relation between trust and knowledge):</li>
+</ul><div class="math-block" data-tex="T_{ij} \varphi \land K_j \varphi \rightarrow B_i \varphi"></div>
+<p>  (if <span class="math-inline" data-tex="i"></span> trusts <span class="math-inline" data-tex="j"></span> about <span class="math-inline" data-tex="\varphi"></span>, and <span class="math-inline" data-tex="j"></span> knows <span class="math-inline" data-tex="\varphi"></span>, then <span class="math-inline" data-tex="i"></span> believes <span class="math-inline" data-tex="\varphi"></span>)</p>
+<ul class="doc-list"><li>C3 (boundedness of trust):</li>
+</ul><div class="math-block" data-tex="\neg (T_{ij} \varphi \land T_{ij} \neg \varphi)"></div>
+<p>  (<span class="math-inline" data-tex="i"></span> cannot simultaneously trust <span class="math-inline" data-tex="j"></span> about <span class="math-inline" data-tex="\varphi"></span> and about <span class="math-inline" data-tex="\neg \varphi"></span>)</p>
+<p>Group D: Authority axioms</p>
+<ul class="doc-list"><li>D1 (expertise of authority):</li>
+</ul><div class="math-block" data-tex="A_i^G \varphi \rightarrow \Diamond K_i \varphi"></div>
+<p>  (if <span class="math-inline" data-tex="i"></span> has authority on <span class="math-inline" data-tex="\varphi"></span>, then <span class="math-inline" data-tex="i"></span> can possibly know <span class="math-inline" data-tex="\varphi"></span>)</p>
+<ul class="doc-list"><li>D2 (social recognition of authority):</li>
+</ul><div class="math-block" data-tex="A_i^G \varphi \rightarrow E_G T_{ji} \varphi \text{ for most } j \in G"></div>
+<p>  (if <span class="math-inline" data-tex="i"></span> has authority on <span class="math-inline" data-tex="\varphi"></span>, then most members trust <span class="math-inline" data-tex="i"></span> about <span class="math-inline" data-tex="\varphi"></span>)</p>
+<ul class="doc-list"><li>D3 (contestability of authority):</li>
+</ul><div class="math-block" data-tex="A_i^G \varphi \land K_j \neg \varphi \land A_j^G \varphi \rightarrow \text{Debate}_G(\varphi)"></div>
+<p>  (if two authorities hold opposing views, a group debate is triggered)</p>
+<p>Group E: Social justification axioms</p>
+<ul class="doc-list"><li>E1 (social justification implies individual justification):</li>
+</ul><div class="math-block" data-tex="J_i^{\text{social}} \varphi \rightarrow J_i \varphi"></div>
+<ul class="doc-list"><li>E2 (stability of social justification):</li>
+</ul><div class="math-block" data-tex="J_G^{\text{social}} \varphi \land \neg \text{NewEvidence}(\neg \varphi) \rightarrow \Diamond J_G^{\text{social}} \varphi"></div>
+<p>  (in the absence of new counter-evidence, social justification is stable)</p>
+<ul class="doc-list"><li>E3 (revisability of social justification):</li>
+</ul><div class="math-block" data-tex="J_G^{\text{social}} \varphi \land C_G K_j \neg \varphi \rightarrow \Diamond \neg J_G^{\text{social}} \varphi"></div>
+<p>  (if it is common knowledge that some member knows <span class="math-inline" data-tex="\neg \varphi"></span>, then social justification may be revoked)</p>
+<h4 id="sec-15" class="doc-subsec">§13.1.7 The Inference Rules of SK</h4>
+<ul class="doc-list"><li>MP (Modus Ponens): from <span class="math-inline" data-tex="\varphi"></span> and <span class="math-inline" data-tex="\varphi \rightarrow \psi"></span> infer <span class="math-inline" data-tex="\psi"></span></li>
+<li>Nec (necessitation): from <span class="math-inline" data-tex="\varphi"></span> infer <span class="math-inline" data-tex="K_i \varphi"></span> (if <span class="math-inline" data-tex="\varphi"></span> is a theorem)</li>
+<li>Announce (public announcement):</li>
+</ul><div class="math-block" data-tex="\frac{\varphi}{\text{announce}_i(\varphi)}"></div>
+<p>  (if <span class="math-inline" data-tex="\varphi"></span> is true, then <span class="math-inline" data-tex="i"></span> can announce <span class="math-inline" data-tex="\varphi"></span>)</p>
+<ul class="doc-list"><li>Consensus (consensus formation):</li>
+</ul><div class="math-block" data-tex="\frac{E_G \varphi \land \text{NoObjection}_G(\varphi)}{C_G \varphi}"></div>
+<p>  (if everyone knows <span class="math-inline" data-tex="\varphi"></span> and no one objects, then common knowledge is formed)</p>
+<h4 id="sec-16" class="doc-subsec">§13.1.8 Meta-Properties of SK (Preliminary)</h4>
+<p>We will prove the key meta-properties of SK in §13.4. Here we state them first:</p>
+<p>Conjecture 13.1 (consistency of SK): SK is consistent (there is no <span class="math-inline" data-tex="\varphi"></span> such that <span class="math-inline" data-tex="\vdash_{\text{SK}} \varphi"></span> and <span class="math-inline" data-tex="\vdash_{\text{SK}} \neg \varphi"></span>).</p>
+<p>Conjecture 13.2 (soundness of SK): if <span class="math-inline" data-tex="\vdash_{\text{SK}} \varphi"></span>, then <span class="math-inline" data-tex="\models_{\text{SK}} \varphi"></span> (syntactic derivation implies semantic validity).</p>
+<p>Conjecture 13.3 (completeness of SK): if <span class="math-inline" data-tex="\models_{\text{SK}} \varphi"></span>, then <span class="math-inline" data-tex="\vdash_{\text{SK}} \varphi"></span> (semantic validity implies syntactic derivability).</p>
+<p>(The completeness proof is difficult; we give partial results in §13.4.8.)</p>
+<p>---</p>
+<h4 id="sec-17" class="doc-subsec">§13.2 Formalization of Epistemic Communities</h4>
+<h4 id="sec-18" class="doc-subsec">§13.2.1 A Graph-Theoretic Characterization of Epistemic Networks</h4>
+<p>Basic Definitions</p>
+<p>An epistemic community <span class="math-inline" data-tex="\mathcal{C}"></span> is formalized as a weighted directed graph:</p>
+<div class="math-block" data-tex="\mathcal{C} = \langle \text{Ag}, E, w_E, w_T, w_A \rangle"></div>
+<p>where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\text{Ag} = \{a_1, a_2, \ldots, a_n\}"></span>: the finite set of epistemic subjects</li>
+<li><span class="math-inline" data-tex="E \subseteq \text{Ag} \times \text{Ag}"></span>: the edge set of epistemic relations</li>
+<li><span class="math-inline" data-tex="w_E: E \rightarrow [0,1]"></span>: edge weights (communication strength)</li>
+<li><span class="math-inline" data-tex="w_T: \text{Ag} \times \text{Ag} \times \text{Prop} \rightarrow [0,1]"></span>: trust weights</li>
+<li><span class="math-inline" data-tex="w_A: \text{Ag} \times \text{Prop} \rightarrow [0,1]"></span>: authority weights</li>
+</ul><p>Properties of the Graph</p>
+<p>We focus on the following graph-theoretic properties:</p>
+<p>1. Connectivity:</p>
+<div class="math-block" data-tex="\text{Connected}(\mathcal{C}) \equiv \forall i,j \in \text{Ag}: \exists \text{ path from } i \text{ to } j"></div>
+<p>2. Diameter:</p>
+<div class="math-block" data-tex="\text{diam}(\mathcal{C}) = \max_{i,j \in \text{Ag}} d(i,j)"></div>
+<p>   where <span class="math-inline" data-tex="d(i,j)"></span> is the length of the shortest path from <span class="math-inline" data-tex="i"></span> to <span class="math-inline" data-tex="j"></span></p>
+<p>3. Clustering Coefficient:</p>
+<div class="math-block" data-tex="C_i = \frac{|\{(j,k) \in E : (i,j) \in E \land (i,k) \in E\}|}{|\{(j,k) : (i,j) \in E \land (i,k) \in E\}|}"></div>
+<p>   (the proportion of a subject <span class="math-inline" data-tex="i"></span>'s neighbors that are connected to one another)</p>
+<p>4. Centrality:</p>
+<ul class="doc-list"><li>Degree centrality: <span class="math-inline" data-tex="C_{\text{deg}}(i) = \frac{|\{j : (i,j) \in E\}|}{n-1}"></span></li>
+<li>Betweenness centrality: <span class="math-inline" data-tex="C_{\text{bet}}(i) = \sum_{s \neq i \neq t} \frac{\sigma_{st}(i)}{\sigma_{st}}"></span></li>
+</ul><p>     (how many shortest paths pass through <span class="math-inline" data-tex="i"></span>)</p>
+<ul class="doc-list"><li>Eigenvector centrality: <span class="math-inline" data-tex="C_{\text{eig}}(i) = \frac{1}{\lambda} \sum_j A_{ij} C_{\text{eig}}(j)"></span></li>
+</ul><p>     (a node connected to important nodes is also important)</p>
+<p>A Typology of Epistemic Networks</p>
+<p>According to the structure of the graph, we distinguish different types of epistemic communities:</p>
+<div class="table-wrap"><table><thead><tr><th>Type</th><th>Features</th><th>Example</th></tr></thead><tbody><tr><td>Star network</td><td>There exists a central node; other nodes connect only to the center</td><td>An authority-dominated community</td></tr><tr><td>Complete graph</td><td>All nodes are pairwise connected</td><td>A small egalitarian community</td></tr><tr><td>Small-world network</td><td>High clustering coefficient + low diameter</td><td>The modern scientific community</td></tr><tr><td>Scale-free network</td><td>The degree distribution follows a power law</td><td>Large academic networks</td></tr><tr><td>Hierarchical network</td><td>A clear hierarchical structure</td><td>The traditional academic system</td></tr></tbody></table></div>
+<p>Theorem 13.1 (Network Structure and the Speed of Knowledge Propagation)</p>
+<p>Statement: Let <span class="math-inline" data-tex="\mathcal{C}"></span> be a connected epistemic network with <span class="math-inline" data-tex="\text{diam}(\mathcal{C}) = d"></span>. If subject <span class="math-inline" data-tex="i"></span> acquires knowledge <span class="math-inline" data-tex="\varphi"></span> at time <span class="math-inline" data-tex="t_0"></span>, then at time <span class="math-inline" data-tex="t_0 + d"></span>, all subjects can possibly know <span class="math-inline" data-tex="\varphi"></span> (under ideal propagation conditions).</p>
+<p>Proof:</p>
+<p>Let <span class="math-inline" data-tex="j"></span> be an arbitrary subject with <span class="math-inline" data-tex="d(i,j) = k \leq d"></span>. There exists a path <span class="math-inline" data-tex="i = a_0, a_1, \ldots, a_k = j"></span>.</p>
+<p>At time <span class="math-inline" data-tex="t_0"></span>: <span class="math-inline" data-tex="K_i \varphi"></span></p>
+<p>At time <span class="math-inline" data-tex="t_0 + 1"></span>: through the edge <span class="math-inline" data-tex="(a_0, a_1)"></span>, <span class="math-inline" data-tex="K_{a_1} \varphi"></span></p>
+<p>At time <span class="math-inline" data-tex="t_0 + 2"></span>: through the edge <span class="math-inline" data-tex="(a_1, a_2)"></span>, <span class="math-inline" data-tex="K_{a_2} \varphi"></span></p>
+<p>At time <span class="math-inline" data-tex="t_0 + k"></span>: <span class="math-inline" data-tex="K_j \varphi"></span></p>
+<p>Since <span class="math-inline" data-tex="k \leq d"></span>, at time <span class="math-inline" data-tex="t_0 + d"></span>, <span class="math-inline" data-tex="K_j \varphi"></span>. ∎</p>
+<p>Corollary 13.1.1: Small-world networks (low diameter) propagate knowledge faster than hierarchical networks (high diameter).</p>
+<h4 id="sec-19" class="doc-subsec">§13.2.2 The Topological Structure of Epistemic Communities</h4>
+<p>Construction of the Topological Space</p>
+<p>In addition to the graph-theoretic characterization, we can also characterize epistemic communities using topology. Define the epistemic topology:</p>
+<div class="math-block" data-tex="\tau_{\mathcal{C}} = \{U \subseteq \text{Ag} : U \text{ is epistemically open}\}"></div>
+<p>where <span class="math-inline" data-tex="U"></span> is an epistemically open set if and only if:</p>
+<div class="math-block" data-tex="\forall i \in U: \exists \epsilon &gt; 0: B_\epsilon(i) \subseteq U"></div>
+<p>Here <span class="math-inline" data-tex="B_\epsilon(i) = \{j \in \text{Ag} : d_{\text{epist}}(i,j) &lt; \epsilon\}"></span> is an epistemic ball, and <span class="math-inline" data-tex="d_{\text{epist}}"></span> is the epistemic distance:</p>
+<div class="math-block" data-tex="d_{\text{epist}}(i,j) = 1 - \frac{|K_i \cap K_j|}{|K_i \cup K_j|}"></div>
+<p>(Jaccard distance: the dissimilarity of knowledge)</p>
+<p>Topological Properties</p>
+<p>1. Connectivity: <span class="math-inline" data-tex="\mathcal{C}"></span> is topologically connected if and only if there is no non-trivial open-closed separation.</p>
+<p>2. Compactness: <span class="math-inline" data-tex="\mathcal{C}"></span> is compact if and only if every open cover has a finite subcover.</p>
+<ul class="doc-list"><li>A finite epistemic community is always compact</li>
+<li>An infinite community (such as "all mathematicians") may be non-compact</li>
+</ul><p>3. Separability: <span class="math-inline" data-tex="\mathcal{C}"></span> is Hausdorff if and only if any two distinct subjects can be separated by disjoint open sets.</p>
+<ul class="doc-list"><li>If <span class="math-inline" data-tex="d_{\text{epist}}(i,j) &gt; 0"></span> for all <span class="math-inline" data-tex="i \neq j"></span>, then <span class="math-inline" data-tex="\mathcal{C}"></span> is Hausdorff</li>
+</ul><p>Theorem 13.2 (Topological Characterization of Epistemic Communities)</p>
+<p>Statement: Let <span class="math-inline" data-tex="\mathcal{C}"></span> be a finite epistemic community. Then <span class="math-inline" data-tex="\mathcal{C}"></span> is a compact, Hausdorff metric space.</p>
+<p>Proof:</p>
+<p>1. Metric property: <span class="math-inline" data-tex="d_{\text{epist}}"></span> satisfies the metric axioms:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="d_{\text{epist}}(i,j) \geq 0"></span>, and <span class="math-inline" data-tex="d_{\text{epist}}(i,j) = 0 \Leftrightarrow i = j"></span></li>
+<li><span class="math-inline" data-tex="d_{\text{epist}}(i,j) = d_{\text{epist}}(j,i)"></span> (symmetry)</li>
+<li><span class="math-inline" data-tex="d_{\text{epist}}(i,k) \leq d_{\text{epist}}(i,j) + d_{\text{epist}}(j,k)"></span> (triangle inequality, needs verification)</li>
+</ul><p>2. Compactness: A finite metric space is always compact (the discrete version of the Heine-Borel theorem).</p>
+<p>3. Hausdorff property: A metric space is always Hausdorff. ∎</p>
+<h4 id="sec-20" class="doc-subsec">§13.2.3 Formalization of Epistemic Roles</h4>
+<p>In an epistemic community, different subjects play different epistemic roles. We formalize the following roles:</p>
+<p>1. Epistemic Authority</p>
+<div class="math-block" data-tex="\text{Authority}(i, \varphi, G) \equiv \mathcal{A}(i, \varphi) \geq \theta_A \land \forall j \in G: \mathcal{T}(j, i, \varphi) \geq \theta_T"></div>
+<p>(<span class="math-inline" data-tex="i"></span> is an authority on <span class="math-inline" data-tex="\varphi"></span> if and only if <span class="math-inline" data-tex="i"></span> has a high degree of authority and is trusted by the group)</p>
+<p>2. Epistemic Gatekeeper</p>
+<div class="math-block" data-tex="\text{Gatekeeper}(i, G) \equiv C_{\text{bet}}(i) \geq \theta_{\text{bet}}"></div>
+<p>(<span class="math-inline" data-tex="i"></span> is a gatekeeper if and only if <span class="math-inline" data-tex="i"></span> has high betweenness centrality—controlling the flow of information)</p>
+<p>3. Epistemic Marginal</p>
+<div class="math-block" data-tex="\text{Marginal}(i, G) \equiv C_{\text{deg}}(i) &lt; \theta_{\text{deg}} \land \mathcal{A}(i, \varphi) &lt; \theta_A \text{ for most } \varphi"></div>
+<p>(<span class="math-inline" data-tex="i"></span> is a marginal if and only if <span class="math-inline" data-tex="i"></span> has few connections and low authority)</p>
+<p>4. Epistemic Bridge</p>
+<div class="math-block" data-tex="\text{Bridge}(i, G_1, G_2) \equiv \exists j \in G_1, k \in G_2: (i,j) \in E \land (i,k) \in E \land \neg \exists \text{ path from } G_1 \text{ to } G_2 \text{ not through } i"></div>
+<p>(<span class="math-inline" data-tex="i"></span> is a bridge if and only if <span class="math-inline" data-tex="i"></span> connects two otherwise disconnected subpopulations)</p>
+<p>Theorem 13.3 (The Structural Roots of Epistemic Injustice)</p>
+<p>Statement: If the epistemic network <span class="math-inline" data-tex="\mathcal{C}"></span> exhibits systematic marginalization (that is, some subpopulation <span class="math-inline" data-tex="G_m \subseteq \text{Ag}"></span> satisfies <span class="math-inline" data-tex="\forall i \in G_m: \text{Marginal}(i, \text{Ag})"></span>), then the knowledge claims of <span class="math-inline" data-tex="G_m"></span> are systematically disregarded, even if these claims are true.</p>
+<p>Proof (sketch):</p>
+<p>Let <span class="math-inline" data-tex="\varphi"></span> be a true proposition known by some member <span class="math-inline" data-tex="i"></span> of <span class="math-inline" data-tex="G_m"></span>: <span class="math-inline" data-tex="K_i \varphi \land \varphi"></span>.</p>
+<p>For <span class="math-inline" data-tex="\varphi"></span> to be adopted by the community, it is required that:</p>
+<p>1. <span class="math-inline" data-tex="\varphi"></span> is propagated to authoritative members</p>
+<p>2. Authoritative members justify <span class="math-inline" data-tex="\varphi"></span></p>
+<p>3. <span class="math-inline" data-tex="\varphi"></span> passes critical review</p>
+<p>But if <span class="math-inline" data-tex="i"></span> is a marginal:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="C_{\text{deg}}(i)"></span> is low <span class="math-inline" data-tex="\Rightarrow"></span> the propagation of <span class="math-inline" data-tex="\varphi"></span> is limited</li>
+<li><span class="math-inline" data-tex="\mathcal{A}(i, \varphi)"></span> is low <span class="math-inline" data-tex="\Rightarrow"></span> <span class="math-inline" data-tex="\varphi"></span> is not taken seriously</li>
+<li><span class="math-inline" data-tex="\mathcal{T}(j, i, \varphi)"></span> is low for most <span class="math-inline" data-tex="j"></span> <span class="math-inline" data-tex="\Rightarrow"></span> <span class="math-inline" data-tex="\varphi"></span> is not trusted</li>
+</ul><p>Therefore, even if <span class="math-inline" data-tex="\varphi"></span> is true, it is difficult for <span class="math-inline" data-tex="\varphi"></span> to be adopted.</p>
+<p>If the entire subpopulation <span class="math-inline" data-tex="G_m"></span> is marginalized, this effect is systematic. ∎</p>
+<p>Philosophical Significance: This theorem formalizes Miranda Fricker's concept of epistemic injustice, revealing its structural roots.</p>
+<h4 id="sec-21" class="doc-subsec">§13.2.4 The Dynamic Evolution of Epistemic Communities</h4>
+<p>Epistemic networks are not static, but evolve over time. We model the evolution process:</p>
+<p>Evolution Rules</p>
+<p>1. Preferential Attachment:</p>
+<div class="math-block" data-tex="P((i, j) \in E_{t+1} \mid (i,j) \notin E_t) \propto C_{\text{deg}}(j, t)"></div>
+<p>   (new connections tend to attach to nodes that already have a high degree—"the rich get richer")</p>
+<p>2. Homophily:</p>
+<div class="math-block" data-tex="P((i, j) \in E_{t+1} \mid (i,j) \notin E_t) \propto \text{Similarity}(i, j)"></div>
+<p>   where <span class="math-inline" data-tex="\text{Similarity}(i, j) = 1 - d_{\text{epist}}(i,j)"></span></p>
+<p>3. Authority Emergence:</p>
+<div class="math-block" data-tex="\frac{d\mathcal{A}(i, \varphi)}{dt} = \alpha \cdot \text{Success}(i, \varphi) - \beta \cdot \text{Failure}(i, \varphi)"></div>
+<p>   (the degree of authority increases with successful predictions and decreases with failed predictions)</p>
+<p>4. Trust Update:</p>
+<div class="math-block" data-tex="\mathcal{T}(i, j, \varphi)_{t+1} = \mathcal{T}(i, j, \varphi)_t + \gamma \cdot (\text{Reliability}(j, \varphi)_t - \mathcal{T}(i, j, \varphi)_t)"></div>
+<p>   (trust converges toward actual reliability)</p>
+<p>Theorem 13.4 (Emergence of Scale-Free Networks)</p>
+<p>Statement: Under the preferential attachment rule, the degree distribution of an epistemic network asymptotically follows a power law:</p>
+<div class="math-block" data-tex="P(k) \sim k^{-\gamma}, \quad \gamma \in [2,3]"></div>
+<p>Proof (sketch):</p>
+<p>This is a standard result of the Barabási-Albert model. The key steps are:</p>
+<p>1. Let <span class="math-inline" data-tex="k_i(t)"></span> be the degree of node <span class="math-inline" data-tex="i"></span> at time <span class="math-inline" data-tex="t"></span>.</p>
+<p>2. Preferential attachment rule:</p>
+<div class="math-block" data-tex="\frac{dk_i}{dt} = m \cdot \frac{k_i}{\sum_j k_j}"></div>
+<p>   where <span class="math-inline" data-tex="m"></span> is the number of edges added at each time step.</p>
+<p>3. Solving the differential equation:</p>
+<div class="math-block" data-tex="k_i(t) \sim (t/t_i)^{1/2}"></div>
+<p>   where <span class="math-inline" data-tex="t_i"></span> is the time at which node <span class="math-inline" data-tex="i"></span> joins the network.</p>
+<p>4. Degree distribution:</p>
+<div class="math-block" data-tex="P(k) = P(k_i(t) &lt; k) = P(t_i &gt; t \cdot k^{-2}) = 1 - \frac{m^2}{k^2}"></div>
+<p>5. Probability density:</p>
+<div class="math-block" data-tex="p(k) = \frac{dP(k)}{dk} = \frac{2m^2}{k^3} \sim k^{-3}"></div>
+<p>Therefore <span class="math-inline" data-tex="\gamma = 3"></span>. ∎</p>
+<p>Corollary 13.4.1: Real scientific communities (such as citation networks) do exhibit scale-free characteristics, verifying the preferential attachment mechanism.</p>
+<h4 id="sec-22" class="doc-subsec">§13.2.5 The Boundaries of Epistemic Communities</h4>
+<p>The Boundary Problem</p>
+<p>Who belongs to an epistemic community? Where is the boundary? This is not a trivial question.</p>
+<p>Formal Definition</p>
+<p>Given a set of core members <span class="math-inline" data-tex="G_{\text{core}}"></span>, we define the boundary of an epistemic community:</p>
+<div class="math-block" data-tex="\text{Boundary}(\mathcal{C}, \epsilon) = \{i \in \text{Ag} : \min_{j \in G_{\text{core}}} d_{\text{epist}}(i,j) \leq \epsilon\}"></div>
+<p>(the boundary is all subjects whose epistemic distance from a core member does not exceed <span class="math-inline" data-tex="\epsilon"></span>)</p>
+<p>The Vagueness of the Boundary</p>
+<p>The boundary is not sharp, but vague. We characterize it using a membership function:</p>
+<div class="math-block" data-tex="\mu_{\mathcal{C}}(i) = \exp\left(-\frac{\min_{j \in G_{\text{core}}} d_{\text{epist}}(i,j)^2}{2\sigma^2}\right)"></div>
+<p>(<span class="math-inline" data-tex="\mu_{\mathcal{C}}(i) \in [0,1]"></span> denotes the degree to which <span class="math-inline" data-tex="i"></span> belongs to <span class="math-inline" data-tex="\mathcal{C}"></span>)</p>
+<p>Theorem 13.5 (The Non-Locatability of the Boundary)</p>
+<p>Statement: For any <span class="math-inline" data-tex="\epsilon &gt; 0"></span>, there exists a subject <span class="math-inline" data-tex="i"></span> such that <span class="math-inline" data-tex="|\mu_{\mathcal{C}}(i) - 0.5| &lt; \epsilon"></span> (that is, <span class="math-inline" data-tex="i"></span> neither clearly belongs nor clearly does not belong to <span class="math-inline" data-tex="\mathcal{C}"></span>).</p>
+<p>Proof:</p>
+<p><span class="math-inline" data-tex="\mu_{\mathcal{C}}"></span> is a continuous function whose range is <span class="math-inline" data-tex="[0,1]"></span>. By the intermediate value theorem, there exists <span class="math-inline" data-tex="i"></span> such that <span class="math-inline" data-tex="\mu_{\mathcal{C}}(i) = 0.5"></span>.</p>
+<p>For any <span class="math-inline" data-tex="\epsilon &gt; 0"></span>, by the continuity of <span class="math-inline" data-tex="\mu_{\mathcal{C}}"></span>, there exists <span class="math-inline" data-tex="i"></span> such that <span class="math-inline" data-tex="|\mu_{\mathcal{C}}(i) - 0.5| &lt; \epsilon"></span>. ∎</p>
+<p>Philosophical Significance: The boundaries of epistemic communities are essentially vague, which echoes the vagueness of cognitive boundaries in Chapter 12.</p>
+<p>---</p>
+<h4 id="sec-23" class="doc-subsec">§13.3 Formalization of the Negotiation Process</h4>
+<h4 id="sec-24" class="doc-subsec">§13.3.1 Foundations of Dynamic Epistemic Logic</h4>
+<p>Knowledge dynamically evolves through the negotiation process. We use Dynamic Epistemic Logic (DEL) to model this process.</p>
+<p>Types of Actions</p>
+<p>1. Public Announcement: <span class="math-inline" data-tex="\text{announce}_i(\varphi)"></span></p>
+<ul class="doc-list"><li>Subject <span class="math-inline" data-tex="i"></span> announces <span class="math-inline" data-tex="\varphi"></span> to everyone</li>
+<li>Effect: everyone knows <span class="math-inline" data-tex="\varphi"></span> (if <span class="math-inline" data-tex="\varphi"></span> is true)</li>
+</ul><p>2. Private Communication: <span class="math-inline" data-tex="\text{tell}_{ij}(\varphi)"></span></p>
+<ul class="doc-list"><li>Subject <span class="math-inline" data-tex="i"></span> privately tells <span class="math-inline" data-tex="j"></span> the proposition <span class="math-inline" data-tex="\varphi"></span></li>
+<li>Effect: <span class="math-inline" data-tex="j"></span> knows <span class="math-inline" data-tex="\varphi"></span>, but others do not</li>
+</ul><p>3. Belief Revision: <span class="math-inline" data-tex="\text{revise}_i(\varphi)"></span></p>
+<ul class="doc-list"><li>Subject <span class="math-inline" data-tex="i"></span> revises beliefs to accept <span class="math-inline" data-tex="\varphi"></span></li>
+<li>Effect: <span class="math-inline" data-tex="i"></span>'s belief set is updated</li>
+</ul><p>4. Critical Challenge: <span class="math-inline" data-tex="\text{challenge}_i(\varphi)"></span></p>
+<ul class="doc-list"><li>Subject <span class="math-inline" data-tex="i"></span> challenges the proposition <span class="math-inline" data-tex="\varphi"></span></li>
+<li>Effect: a debate process is triggered</li>
+</ul><p>5. Consensus Formation: <span class="math-inline" data-tex="\text{consensus}_G(\varphi)"></span></p>
+<ul class="doc-list"><li>Group <span class="math-inline" data-tex="G"></span> reaches consensus on <span class="math-inline" data-tex="\varphi"></span></li>
+<li>Effect: <span class="math-inline" data-tex="C_G \varphi"></span></li>
+</ul><p>The Semantics of Actions</p>
+<p>Actions change the model. Given a model <span class="math-inline" data-tex="\mathcal{M}"></span> and an action <span class="math-inline" data-tex="\alpha"></span>, executing <span class="math-inline" data-tex="\alpha"></span> yields a new model <span class="math-inline" data-tex="\mathcal{M}^\alpha"></span>.</p>
+<p>The Semantics of Public Announcement</p>
+<div class="math-block" data-tex="\mathcal{M}^{\text{announce}_i(\varphi)} = \mathcal{M} \mid \varphi = \langle W', \{\sim_i'\}, \mathcal{G}, \mathcal{T}, \mathcal{A}, V' \rangle"></div>
+<p>where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="W' = \{w \in W : \mathcal{M}, w \models \varphi\}"></span> (only worlds in which <span class="math-inline" data-tex="\varphi"></span> is true are retained)</li>
+<li><span class="math-inline" data-tex="\sim_i' = \sim_i \cap (W' \times W')"></span> (the accessibility relation is restricted to <span class="math-inline" data-tex="W'"></span>)</li>
+<li><span class="math-inline" data-tex="V'"></span> is <span class="math-inline" data-tex="V"></span> restricted to <span class="math-inline" data-tex="W'"></span></li>
+</ul><p>Truth conditions:</p>
+<div class="math-block" data-tex="\mathcal{M}, w \models [\text{announce}_i(\varphi)]\psi \quad \text{iff} \quad \mathcal{M}, w \models \varphi \rightarrow (\mathcal{M}^{\text{announce}_i(\varphi)}, w \models \psi)"></div>
+<p>Theorem 13.6 (The Effect of Public Announcement)</p>
+<p>Statement:</p>
+<div class="math-block" data-tex="\models [\text{announce}_i(\varphi)]E_{\text{Ag}} \varphi"></div>
+<p>(after publicly announcing <span class="math-inline" data-tex="\varphi"></span>, everyone knows <span class="math-inline" data-tex="\varphi"></span>)</p>
+<p>Proof:</p>
+<p>Suppose <span class="math-inline" data-tex="\mathcal{M}, w \models \varphi"></span>. After executing <span class="math-inline" data-tex="\text{announce}_i(\varphi)"></span>, the model becomes <span class="math-inline" data-tex="\mathcal{M}' = \mathcal{M} \mid \varphi"></span>.</p>
+<p>In <span class="math-inline" data-tex="\mathcal{M}'"></span>, all worlds satisfy <span class="math-inline" data-tex="\varphi"></span> (because worlds that do not satisfy <span class="math-inline" data-tex="\varphi"></span> are removed).</p>
+<p>Therefore, for any subject <span class="math-inline" data-tex="j"></span> and any <span class="math-inline" data-tex="w' \sim_j' w"></span>, we have <span class="math-inline" data-tex="\mathcal{M}', w' \models \varphi"></span>.</p>
+<p>So <span class="math-inline" data-tex="\mathcal{M}', w \models K_j \varphi"></span> for all <span class="math-inline" data-tex="j"></span>.</p>
+<p>Therefore <span class="math-inline" data-tex="\mathcal{M}', w \models E_{\text{Ag}} \varphi"></span>. ∎</p>
+<h4 id="sec-25" class="doc-subsec">§13.3.2 Formalization of Belief Revision</h4>
+<p>AGM Theory</p>
+<p>We adopt the formalization framework of AGM belief revision theory (Alchourrón, Gärdenfors, Makinson).</p>
+<p>Belief Sets</p>
+<p>The belief set <span class="math-inline" data-tex="B_i"></span> of subject <span class="math-inline" data-tex="i"></span> is a logical closure:</p>
+<div class="math-block" data-tex="B_i = \{\varphi : i \text{ believes } \varphi\}"></div>
+<p>satisfying:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="B_i"></span> is closed under logical inference</li>
+<li><span class="math-inline" data-tex="B_i"></span> is consistent (if possible)</li>
+</ul><p>Revision Operation</p>
+<div class="math-block" data-tex="The revision operation  maps the belief set $B_i$ and new information $\varphi$ to a new belief set $B_i  \varphi$:"></div>
+<div class="math-block" data-tex=": \mathcal{P}(\mathcal{L}) \times \mathcal{L} \rightarrow \mathcal{P}(\mathcal{L})"></div>
+<p>AGM Postulates</p>
+<div class="math-block" data-tex="The revision operation  satisfies the following postulates:"></div>
+<p>1. Closure: <span class="math-inline" data-tex="B  \varphi"></span> is a logical closure</p>
+<p>2. Success: <span class="math-inline" data-tex="\varphi \in B  \varphi"></span></p>
+<p>3. Inclusion: <span class="math-inline" data-tex="B  \varphi \subseteq B + \varphi"></span> (<span class="math-inline" data-tex="+"></span> is the expansion operation)</p>
+<p>4. Preservation: if <span class="math-inline" data-tex="\neg \varphi \notin B"></span>, then <span class="math-inline" data-tex="B + \varphi \subseteq B  \varphi"></span></p>
+<p>5. Consistency: if <span class="math-inline" data-tex="\varphi"></span> is consistent, then <span class="math-inline" data-tex="B  \varphi"></span> is consistent</p>
+<p>6. Equivalence: if <span class="math-inline" data-tex="\varphi \equiv \psi"></span>, then <span class="math-inline" data-tex="B  \varphi = B  \psi"></span></p>
+<p>Theorem 13.7 (Representation Theorem for Revision)</p>
+<div class="math-block" data-tex="Statement: The revision operation  satisfies the AGM postulates if and only if there exists a total ordering $\leq_B$ (the priority of beliefs) such that:"></div>
+<div class="math-block" data-tex="B  \varphi = \bigcap \{\text{Cn}(\varphi \cup B') : B' \text{ is } \leq_B\text{-minimal consistent with } \varphi\}"></div>
+<p>(revision consists in retaining the beliefs of highest priority that are consistent with <span class="math-inline" data-tex="\varphi"></span>)</p>
+<p>Proof: This is a classic result of AGM theory (Grove 1988). The proof uses a system of spheres. ∎</p>
+<h4 id="sec-26" class="doc-subsec">§13.3.3 Formalization of Negotiation Protocols</h4>
+<p>Negotiation as Multi-Round Dialogue</p>
+<p>Negotiation is a multi-round dialogue among multiple subjects. We model it as a negotiation protocol:</p>
+<div class="math-block" data-tex="\Pi_{\text{negotiate}} = \langle \text{Ag}, \Phi, \text{Roles}, \text{Rules}, \text{Termination} \rangle"></div>
+<p>where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\text{Ag}"></span>: the participants</li>
+<li><span class="math-inline" data-tex="\Phi"></span>: the set of propositions to be negotiated</li>
+<li><span class="math-inline" data-tex="\text{Roles}"></span>: role assignment (proposer, critic, arbiter, etc.)</li>
+<li><span class="math-inline" data-tex="\text{Rules}"></span>: dialogue rules</li>
+<li><span class="math-inline" data-tex="\text{Termination}"></span>: termination conditions</li>
+</ul><p>Dialogue Rules</p>
+<p>1. Taking turns:</p>
+<div class="math-block" data-tex="\text{Speaker}(t+1) = \text{Next}(\text{Speaker}(t))"></div>
+<p>2. Relevance:</p>
+<div class="math-block" data-tex="\text{Utterance}(i, t) \text{ must be relevant to } \Phi"></div>
+<p>3. Consistency:</p>
+<div class="math-block" data-tex="\text{Utterance}(i, t) \text{ must be consistent with } B_i"></div>
+<p>4. Evidential requirement:</p>
+<div class="math-block" data-tex="\text{Claim}(i, \varphi) \rightarrow \text{MustProvide}(i, \text{Evidence}(\varphi))"></div>
+<p>5. Response obligation:</p>
+<div class="math-block" data-tex="\text{Challenge}(j, \varphi) \rightarrow \text{MustRespond}(i, \text{Challenge}(j, \varphi))"></div>
+<p>Termination Conditions</p>
+<p>Negotiation terminates under the following circumstances:</p>
+<p>1. Consensus reached:</p>
+<div class="math-block" data-tex="\forall i \in \text{Ag}: B_i \vdash \varphi \text{ or } B_i \vdash \neg \varphi \text{ (unanimous)}"></div>
+<p>2. Deadlock:</p>
+<div class="math-block" data-tex="\exists i,j: B_i \vdash \varphi \land B_j \vdash \neg \varphi \land \text{NoNewArguments}"></div>
+<p>3. Timeout:</p>
+<div class="math-block" data-tex="t &gt; t_{\max}"></div>
+<p>Theorem 13.8 (Convergence of Negotiation)</p>
+<p>Statement: Under the following conditions, the negotiation protocol <span class="math-inline" data-tex="\Pi_{\text{negotiate}}"></span> necessarily terminates and reaches consensus:</p>
+<p>1. All subjects are rational (beliefs are consistent, logical inference is accepted)</p>
+<p>2. All subjects are honest (no evidence is concealed)</p>
+<p>3. A common prior exists (initial beliefs overlap)</p>
+<p>4. Evidence is publicly verifiable</p>
+<p>Proof (sketch):</p>
+<p>Let <span class="math-inline" data-tex="B_i^{(t)}"></span> be the belief set of subject <span class="math-inline" data-tex="i"></span> at time <span class="math-inline" data-tex="t"></span>.</p>
+<p>Define the epistemic distance:</p>
+<div class="math-block" data-tex="D(t) = \sum_{i,j} |B_i^{(t)} \triangle B_j^{(t)}|"></div>
+<p>(the sum of belief differences among all subjects)</p>
+<p>Key observation: in each round of dialogue, if new information is exchanged, then <span class="math-inline" data-tex="D(t+1) &lt; D(t)"></span>.</p>
+<p>Proof:</p>
+<ul class="doc-list"><li>If <span class="math-inline" data-tex="i"></span> announces <span class="math-inline" data-tex="\varphi"></span> and <span class="math-inline" data-tex="\varphi"></span> is supported by evidence</li>
+<li>A rational <span class="math-inline" data-tex="j"></span> will accept <span class="math-inline" data-tex="\varphi"></span> (if <span class="math-inline" data-tex="\varphi"></span> is consistent with <span class="math-inline" data-tex="B_j"></span>) or revise <span class="math-inline" data-tex="B_j"></span></li>
+<li>In either case, <span class="math-inline" data-tex="|B_i^{(t+1)} \triangle B_j^{(t+1)}| &lt; |B_i^{(t)} \triangle B_j^{(t)}|"></span></li>
+</ul><p>Since <span class="math-inline" data-tex="D(t)"></span> is monotonically decreasing and bounded below (<span class="math-inline" data-tex="D(t) \geq 0"></span>), <span class="math-inline" data-tex="D(t)"></span> converges.</p>
+<p>When <span class="math-inline" data-tex="D(t)"></span> no longer changes, either consensus is reached (<span class="math-inline" data-tex="D = 0"></span>) or there is a deadlock (no new information).</p>
+<p>Under conditions 1-4, deadlock is impossible (there is always new evidence that can break the deadlock).</p>
+<p>Therefore consensus is necessarily reached. ∎</p>
+<p>Philosophical Significance: This theorem formalizes Habermas's ideal speech situation: under ideal conditions, rational dialogue necessarily leads to consensus.</p>
+<p>Real-World Limitations: In reality, conditions 1-4 are often not satisfied, so negotiation may fail to converge.</p>
+<h4 id="sec-27" class="doc-subsec">§13.3.4 Formalization of Critical Review</h4>
+<p>Review Procedure</p>
+<p>Critical review is a special form of negotiation, formalized as:</p>
+<div class="math-block" data-tex="\text{CriticalReview}(\varphi, G) = \langle \text{Phases}, \text{Criteria}, \text{Decision} \rangle"></div>
+<p>Review Phases</p>
+<p>1. Submission phase: proposer <span class="math-inline" data-tex="i"></span> submits <span class="math-inline" data-tex="\varphi"></span> and its evidence <span class="math-inline" data-tex="E(\varphi)"></span></p>
+<p>2. Assignment phase: reviewers <span class="math-inline" data-tex="R \subseteq G"></span> are assigned the review task</p>
+<p>3. Review phase: each reviewer <span class="math-inline" data-tex="r \in R"></span> independently evaluates <span class="math-inline" data-tex="\varphi"></span></p>
+<p>4. Debate phase: if there are objections, a public debate is held</p>
+<p>5. Decision phase: according to the rules, accept/reject/revise is decided</p>
+<p>Review Criteria</p>
+<div class="math-block" data-tex="\text{Accept}(\varphi) \equiv \begin{cases}"></div>
+<p>\text{Validity}(\varphi) &amp; \text{(logical validity)} \\</p>
+<p>\land \text{Evidence}(\varphi) &amp; \text{(sufficiency of evidence)} \\</p>
+<p>\land \text{Novelty}(\varphi) &amp; \text{(novelty)} \\</p>
+<p>\land \text{Relevance}(\varphi) &amp; \text{(relevance)} \\</p>
+<p>\land \neg \text{Objection}(\varphi) &amp; \text{(no unresolved objections)}</p>
+<div class="math-block" data-tex="\end{cases}"></div>
+<p>Decision Rules</p>
+<p>1. Unanimity:</p>
+<div class="math-block" data-tex="\text{Accept}(\varphi) \equiv \forall r \in R: \text{Approve}_r(\varphi)"></div>
+<p>2. Majority rule:</p>
+<div class="math-block" data-tex="\text{Accept}(\varphi) \equiv \frac{|\{r \in R : \text{Approve}_r(\varphi)\}|}{|R|} &gt; \theta"></div>
+<p>   (the number of reviewers approving exceeds the threshold <span class="math-inline" data-tex="\theta"></span>)</p>
+<p>3. Weighted voting:</p>
+<div class="math-block" data-tex="\text{Accept}(\varphi) \equiv \sum_{r \in R} w_r \cdot \text{Approve}_r(\varphi) &gt; \theta"></div>
+<p>   where <span class="math-inline" data-tex="w_r = \mathcal{A}(r, \varphi)"></span> (the degree of authority serves as the weight)</p>
+<p>Theorem 13.9 (The Reliability of Review)</p>
+<p>Statement: Let the reviewer set <span class="math-inline" data-tex="R"></span> satisfy:</p>
+<p>1. <span class="math-inline" data-tex="|R| \geq 3"></span> (at least three reviewers)</p>
+<p>2. Each reviewer's independent judgment accuracy <span class="math-inline" data-tex="p &gt; 0.5"></span></p>
+<p>3. The majority rule is used</p>
+<p>Then the accuracy of the review <span class="math-inline" data-tex="P_R &gt; p"></span>, and it increases as <span class="math-inline" data-tex="|R|"></span> increases.</p>
+<p>Proof:</p>
+<p>This is an application of the Condorcet jury theorem.</p>
+<p>Let <span class="math-inline" data-tex="X_r"></span> be the judgment of reviewer <span class="math-inline" data-tex="r"></span> (1=correct, 0=incorrect), <span class="math-inline" data-tex="X_r \sim \text{Bernoulli}(p)"></span>.</p>
+<p>The accuracy of the majority rule:</p>
+<div class="math-block" data-tex="P_R = P\left(\sum_{r \in R} X_r &gt; \frac{|R|}{2}\right)"></div>
+<p>By the law of large numbers, as <span class="math-inline" data-tex="|R| \rightarrow \infty"></span>:</p>
+<div class="math-block" data-tex="\frac{1}{|R|}\sum_{r \in R} X_r \rightarrow p"></div>
+<p>Since <span class="math-inline" data-tex="p &gt; 0.5"></span>:</p>
+<div class="math-block" data-tex="P\left(\frac{1}{|R|}\sum_{r \in R} X_r &gt; 0.5\right) \rightarrow 1"></div>
+<p>For finite <span class="math-inline" data-tex="|R|"></span>, it can be computed exactly. For example, with <span class="math-inline" data-tex="|R| = 3, p = 0.6"></span>:</p>
+<div class="math-block" data-tex="P_R = \binom{3}{2}p^2(1-p) + \binom{3}{3}p^3 = 3 \cdot 0.36 \cdot 0.4 + 0.216 = 0.648 &gt; 0.6"></div>
+<p>Corollary 13.9.1: Increasing the number of independent reviewers can improve the reliability of review, which provides theoretical support for the peer review system.</p>
+<h4 id="sec-28" class="doc-subsec">§13.3.5 The Dynamics of Consensus Formation</h4>
+<p>A Measure of Consensus</p>
+<p>Define the degree of consensus of group <span class="math-inline" data-tex="G"></span> on proposition <span class="math-inline" data-tex="\varphi"></span>:</p>
+<div class="math-block" data-tex="\text{Consensus}_G(\varphi, t) = 1 - \frac{1}{|G|^2}\sum_{i,j \in G} |B_i(\varphi, t) - B_j(\varphi, t)|"></div>
+<p>where <span class="math-inline" data-tex="B_i(\varphi, t) \in [0,1]"></span> is the strength of subject <span class="math-inline" data-tex="i"></span>'s belief in <span class="math-inline" data-tex="\varphi"></span> at time <span class="math-inline" data-tex="t"></span>.</p>
+<p>Consensus Dynamics</p>
+<p>The evolution of consensus follows opinion dynamics:</p>
+<div class="math-block" data-tex="\frac{dB_i(\varphi)}{dt} = \sum_{j \in N(i)} w_{ij} (B_j(\varphi) - B_i(\varphi))"></div>
+<p>where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="N(i)"></span> is the set of neighbors of <span class="math-inline" data-tex="i"></span></li>
+<li><span class="math-inline" data-tex="w_{ij} = \mathcal{T}(i,j,\varphi)"></span> is the trust weight</li>
+</ul><p>Theorem 13.10 (Convergence Conditions for Consensus)</p>
+<p>Statement: If the epistemic network <span class="math-inline" data-tex="\mathcal{C}"></span> is connected and the trust matrix <span class="math-inline" data-tex="W = [w_{ij}]"></span> is doubly stochastic (both row and column sums are 1), then the consensus dynamics converges to the average opinion:</p>
+<div class="math-block" data-tex="\lim_{t \rightarrow \infty} B_i(\varphi, t) = \frac{1}{|G|}\sum_{j \in G} B_j(\varphi, 0)"></div>
+<p>Proof:</p>
+<p>Write the dynamics in matrix form:</p>
+<div class="math-block" data-tex="\frac{d\mathbf{B}}{dt} = -L\mathbf{B}"></div>
+<p>where <span class="math-inline" data-tex="L = I - W"></span> is the graph Laplacian.</p>
+<p>Since <span class="math-inline" data-tex="W"></span> is doubly stochastic, the zero eigenvalue of <span class="math-inline" data-tex="L"></span> corresponds to the eigenvector <span class="math-inline" data-tex="\mathbf{1} = (1,1,\ldots,1)^T"></span>.</p>
+<p>The solution is:</p>
+<div class="math-block" data-tex="\mathbf{B}(t) = e^{-Lt}\mathbf{B}(0) = \sum_{k=0}^{n-1} e^{-\lambda_k t} \mathbf{v}_k \mathbf{v}_k^T \mathbf{B}(0)"></div>
+<p>where <span class="math-inline" data-tex="\lambda_k"></span> are the eigenvalues of <span class="math-inline" data-tex="L"></span> and <span class="math-inline" data-tex="\mathbf{v}_k"></span> are the corresponding eigenvectors.</p>
+<p>Since <span class="math-inline" data-tex="\lambda_0 = 0"></span> and <span class="math-inline" data-tex="\lambda_k &gt; 0"></span> for <span class="math-inline" data-tex="k &gt; 0"></span> (a property of connected graphs):</p>
+<div class="math-block" data-tex="\lim_{t \rightarrow \infty} \mathbf{B}(t) = \mathbf{v}_0 \mathbf{v}_0^T \mathbf{B}(0) = \frac{1}{|G|}\mathbf{1}\mathbf{1}^T \mathbf{B}(0) = \frac{1}{|G|}\sum_{j} B_j(0) \cdot \mathbf{1}"></div>
+<p>Corollary 13.10.1: In a symmetric trust network, consensus necessarily forms, and the consensus value is the average of the initial opinions.</p>
+<p>Corollary 13.10.2: If the network is not connected, then different connected components converge to different consensuses (the phenomenon of polarization).</p>
+<h4 id="sec-29" class="doc-subsec">§13.3.6 Formalization of Epistemic Polarization</h4>
+<p>The Definition of Polarization</p>
+<p>Group <span class="math-inline" data-tex="G"></span> undergoes epistemic polarization on proposition <span class="math-inline" data-tex="\varphi"></span> if and only if:</p>
+<div class="math-block" data-tex="\text{Polarization}_G(\varphi, t) = \frac{1}{|G|}\sum_{i \in G} (B_i(\varphi, t) - \bar{B}(\varphi, t))^2 &gt; \text{Polarization}_G(\varphi, 0)"></div>
+<p>(the variance of opinions increases over time)</p>
+<p>Mechanisms of Polarization</p>
+<p>1. Homophily:</p>
+<div class="math-block" data-tex="w_{ij} \propto \text{Similarity}(i,j) = 1 - |B_i - B_j|"></div>
+<p>   (people trust those who hold opinions similar to their own more)</p>
+<p>2. Confirmation Bias:</p>
+<div class="math-block" data-tex="\frac{dB_i(\varphi)}{dt} = \sum_{j: \text{sign}(B_j - B_i) = \text{sign}(B_i - 0.5)} w_{ij} (B_j - B_i)"></div>
+<p>   (only information supporting one's own inclination is accepted)</p>
+<p>3. Echo Chamber:</p>
+<div class="math-block" data-tex="N(i) = \{j : |B_i - B_j| &lt; \epsilon\}"></div>
+<p>   (one communicates only with those holding similar opinions)</p>
+<p>Theorem 13.11 (Sufficient Conditions for Polarization)</p>
+<p>Statement: If the epistemic network satisfies:</p>
+<p>1. Homophily: <span class="math-inline" data-tex="w_{ij} \propto \exp(-|B_i - B_j|^2)"></span></p>
+<p>2. There exists initial disagreement: <span class="math-inline" data-tex="\exists i,j: |B_i(0) - B_j(0)| &gt; \delta"></span></p>
+<p>Then the system undergoes polarization:</p>
+<div class="math-block" data-tex="\lim_{t \rightarrow \infty} \text{Polarization}_G(\varphi, t) &gt; \text{Polarization}_G(\varphi, 0)"></div>
+<p>Proof (sketch):</p>
+<p>Under homophily, the network dynamically splits into subpopulations.</p>
+<p>Suppose initially there are two opinion clusters: <span class="math-inline" data-tex="G_1 = \{i : B_i(0) &lt; 0.5\}"></span> and <span class="math-inline" data-tex="G_2 = \{i : B_i(0) &gt; 0.5\}"></span>.</p>
+<p>As time evolves:</p>
+<ul class="doc-list"><li>The connection weights within <span class="math-inline" data-tex="G_1"></span> increase (because opinions are similar)</li>
+<li>The connection weights between <span class="math-inline" data-tex="G_1"></span> and <span class="math-inline" data-tex="G_2"></span> decrease (because opinions diverge)</li>
+<li>The network eventually splits into two almost disconnected sub-networks</li>
+</ul><p>Within each sub-network, opinions converge to the average of that sub-network.</p>
+<p>So the final state:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="B_i(\infty) \approx \bar{B}_{G_1}"></span> for <span class="math-inline" data-tex="i \in G_1"></span></li>
+<li><span class="math-inline" data-tex="B_i(\infty) \approx \bar{B}_{G_2}"></span> for <span class="math-inline" data-tex="i \in G_2"></span></li>
+<li><span class="math-inline" data-tex="|\bar{B}_{G_1} - \bar{B}_{G_2}| &gt; \delta"></span></li>
+</ul><p>Variance:</p>
+<div class="math-block" data-tex="\text{Var}(\infty) \approx \frac{|G_1|}{|G|}(\bar{B}_{G_1} - \bar{B})^2 + \frac{|G_2|}{|G|}(\bar{B}_{G_2} - \bar{B})^2 &gt; \text{Var}(0)"></div>
+<p>Philosophical Significance: This theorem reveals the structural roots of epistemic polarization, and it is consistent with the contemporary phenomenon of social media "filter bubbles."</p>
+<p>---</p>
+<h4 id="sec-30" class="doc-subsec">§13.4 Key Theorems and Proofs</h4>
+<p>This section proves the 8 core theorems of SK, revealing the deep structure of the sociality of knowledge.</p>
+<h4 id="sec-31" class="doc-subsec">§13.4.1 Theorem 13.12: The Irreducibility of Social Justification</h4>
+<p>Statement: There exist propositions <span class="math-inline" data-tex="\varphi"></span> and epistemic communities <span class="math-inline" data-tex="G"></span> such that <span class="math-inline" data-tex="\varphi"></span> is socially justified in <span class="math-inline" data-tex="G"></span>, but no single member <span class="math-inline" data-tex="i \in G"></span> can independently justify <span class="math-inline" data-tex="\varphi"></span>.</p>
+<p>Formalization:</p>
+<div class="math-block" data-tex="\exists \varphi, G: J_G^{\text{social}} \varphi \land \forall i \in G: \neg J_i^{\text{individual}} \varphi"></div>
+<p>Proof:</p>
+<p>Construct a counterexample:</p>
+<p>Let <span class="math-inline" data-tex="G = \{a_1, a_2, a_3\}"></span> be three scientists, and <span class="math-inline" data-tex="\varphi"></span> be "the Higgs boson exists."</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="a_1"></span> is an experimental physicist who knows the experimental data <span class="math-inline" data-tex="D"></span>: <span class="math-inline" data-tex="K_{a_1} D"></span></li>
+<li><span class="math-inline" data-tex="a_2"></span> is a theoretical physicist who knows the theory <span class="math-inline" data-tex="T"></span>: <span class="math-inline" data-tex="K_{a_2} T"></span></li>
+<li><span class="math-inline" data-tex="a_3"></span> is a statistician who knows the statistical method <span class="math-inline" data-tex="S"></span>: <span class="math-inline" data-tex="K_{a_3} S"></span></li>
+</ul><p>The justification of <span class="math-inline" data-tex="\varphi"></span> requires:</p>
+<div class="math-block" data-tex="J(\varphi) \equiv D \land T \land S \land (D \land T \land S \rightarrow \varphi)"></div>
+<p>But:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="a_1"></span> does not know <span class="math-inline" data-tex="T"></span> and <span class="math-inline" data-tex="S"></span>, so <span class="math-inline" data-tex="\neg J_{a_1}^{\text{individual}} \varphi"></span></li>
+<li><span class="math-inline" data-tex="a_2"></span> does not know <span class="math-inline" data-tex="D"></span> and <span class="math-inline" data-tex="S"></span>, so <span class="math-inline" data-tex="\neg J_{a_2}^{\text{individual}} \varphi"></span></li>
+<li><span class="math-inline" data-tex="a_3"></span> does not know <span class="math-inline" data-tex="D"></span> and <span class="math-inline" data-tex="T"></span>, so <span class="math-inline" data-tex="\neg J_{a_3}^{\text{individual}} \varphi"></span></li>
+</ul><p>But at the group level:</p>
+<div class="math-block" data-tex="D_G (D \land T \land S) \text{ (distributed knowledge)}"></div>
+<p>Through negotiation, the group can integrate this knowledge:</p>
+<div class="math-block" data-tex="J_G^{\text{social}} \varphi"></div>
+<p>Therefore, social justification is not reducible to individual justification. ∎</p>
+<p>Philosophical Significance: This theorem rigorously proves that the sociality of knowledge is not an optional additional feature, but an essential feature of certain knowledge. It supports the core thesis NK-3 of Volume I, Chapter 3.</p>
+<h4 id="sec-32" class="doc-subsec">§13.4.2 Theorem 13.13: The Infinity of Common Knowledge</h4>
+<p>Statement: Common knowledge <span class="math-inline" data-tex="C_G \varphi"></span> implies infinitely many levels of mutual knowledge.</p>
+<p>Formalization:</p>
+<div class="math-block" data-tex="C_G \varphi \rightarrow \bigwedge_{n=1}^{\infty} E_G^n \varphi"></div>
+<p>where <span class="math-inline" data-tex="E_G^n \varphi"></span> denotes "everyone knows that everyone knows that … (<span class="math-inline" data-tex="n"></span> levels) … <span class="math-inline" data-tex="\varphi"></span>."</p>
+<p>Proof:</p>
+<p>By the definition of common knowledge (axiom B1):</p>
+<div class="math-block" data-tex="C_G \varphi \leftrightarrow E_G \varphi \land E_G C_G \varphi"></div>
+<p>Expanding:</p>
+<div class="math-block" data-tex="C_G \varphi \leftrightarrow E_G \varphi \land E_G (E_G \varphi \land E_G C_G \varphi)"></div>
+<div class="math-block" data-tex="\leftrightarrow E_G \varphi \land E_G^2 \varphi \land E_G^2 C_G \varphi"></div>
+<p>Continuing to expand:</p>
+<div class="math-block" data-tex="\leftrightarrow E_G \varphi \land E_G^2 \varphi \land E_G^3 \varphi \land E_G^3 C_G \varphi"></div>
+<p>By induction, for all <span class="math-inline" data-tex="n"></span>:</p>
+<div class="math-block" data-tex="C_G \varphi \rightarrow E_G^n \varphi"></div>
+<p>Therefore:</p>
+<div class="math-block" data-tex="C_G \varphi \rightarrow \bigwedge_{n=1}^{\infty} E_G^n \varphi"></div>
+<p>Corollary 13.13.1: Common knowledge cannot be established by finitely many public announcements (if it does not exist initially).</p>
+<p>Proof:</p>
+<p>Each public announcement only adds finitely many levels of mutual knowledge. But common knowledge requires infinitely many levels. ∎</p>
+<p>Philosophical Significance: This reveals the idealized nature of common knowledge. In practice, we can only approximate common knowledge.</p>
+<h4 id="sec-33" class="doc-subsec">§13.4.3 Theorem 13.14: The Non-Transitivity of Trust</h4>
+<p>Statement: The trust relation does not satisfy transitivity. That is:</p>
+<div class="math-block" data-tex="\neg \forall i,j,k,\varphi: (T_{ij}\varphi \land T_{jk}\varphi \rightarrow T_{ik}\varphi)"></div>
+<p>Proof:</p>
+<p>Construct a counterexample:</p>
+<p>Let <span class="math-inline" data-tex="i"></span> be an ordinary person, <span class="math-inline" data-tex="j"></span> a science journalist, <span class="math-inline" data-tex="k"></span> a scientist, and <span class="math-inline" data-tex="\varphi"></span> a complex scientific proposition.</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="i"></span> trusts <span class="math-inline" data-tex="j"></span> about <span class="math-inline" data-tex="\varphi"></span>: <span class="math-inline" data-tex="T_{ij}\varphi"></span> (because <span class="math-inline" data-tex="j"></span> is a reliable journalist)</li>
+<li><span class="math-inline" data-tex="j"></span> trusts <span class="math-inline" data-tex="k"></span> about <span class="math-inline" data-tex="\varphi"></span>: <span class="math-inline" data-tex="T_{jk}\varphi"></span> (because <span class="math-inline" data-tex="k"></span> is an expert)</li>
+</ul><p>But <span class="math-inline" data-tex="i"></span> does not trust <span class="math-inline" data-tex="k"></span> about <span class="math-inline" data-tex="\varphi"></span>: <span class="math-inline" data-tex="\neg T_{ik}\varphi"></span></p>
+<p>Reason: <span class="math-inline" data-tex="i"></span> cannot directly understand <span class="math-inline" data-tex="k"></span>'s expert exposition and needs <span class="math-inline" data-tex="j"></span>'s "translation."</p>
+<p>Therefore trust is not transitive. ∎</p>
+<p>Philosophical Significance: This explains why science communication requires intermediaries (science journalists, popular science writers). Direct expert-public communication often fails.</p>
+<p>Revised Transitivity (axiom C1):</p>
+<p>Under specific conditions, trust is transitive:</p>
+<div class="math-block" data-tex="T_{ij}\varphi \land T_{jk}\varphi \land K_j \varphi \rightarrow T_{ik}\varphi"></div>
+<p>(if the intermediary <span class="math-inline" data-tex="j"></span> actually knows <span class="math-inline" data-tex="\varphi"></span>, then transitivity holds)</p>
+<h4 id="sec-34" class="doc-subsec">§13.4.4 Theorem 13.15: The Social Constitution of Authority</h4>
+<p>Statement: Epistemic authority is not an intrinsic property of individuals, but a product of social relations.</p>
+<p>Formalization:</p>
+<div class="math-block" data-tex="A_i^G \varphi \equiv \mathcal{A}(i,\varphi) \geq \theta_A \land \text{SocialRecognition}_G(i,\varphi)"></div>
+<p>where:</p>
+<div class="math-block" data-tex="\text{SocialRecognition}_G(i,\varphi) \equiv \frac{|\{j \in G : T_{ji}\varphi\}|}{|G|} \geq \theta_{\text{rec}}"></div>
+<p>Proof:</p>
+<p>By the definition of authority (§13.1.4) and axiom D2, authority requires two conditions:</p>
+<p>1. Individual expertise: <span class="math-inline" data-tex="\mathcal{A}(i,\varphi) \geq \theta_A"></span></p>
+<p>2. Social recognition: most members trust <span class="math-inline" data-tex="i"></span></p>
+<p>Condition 1 alone is not sufficient to constitute authority.</p>
+<p>Counterexample: Let <span class="math-inline" data-tex="i"></span> be a genuine expert (<span class="math-inline" data-tex="\mathcal{A}(i,\varphi)"></span> is high), but no one in <span class="math-inline" data-tex="G"></span> knows of <span class="math-inline" data-tex="i"></span>'s expertise (<span class="math-inline" data-tex="T_{ji}\varphi"></span> is low for all <span class="math-inline" data-tex="j"></span>).</p>
+<p>Then <span class="math-inline" data-tex="i"></span> is not an authority in <span class="math-inline" data-tex="G"></span> (<span class="math-inline" data-tex="\neg A_i^G \varphi"></span>), even though <span class="math-inline" data-tex="i"></span> has expertise.</p>
+<p>Therefore, authority is socially constituted. ∎</p>
+<p>Philosophical Significance: This supports the core claim of social epistemology: epistemic status (such as authority) is not an intrinsic property of individuals, but a product of social relations.</p>
+<h4 id="sec-35" class="doc-subsec">§13.4.5 Theorem 13.16: The Necessity of Negotiation</h4>
+<p>Statement: For complex propositions <span class="math-inline" data-tex="\varphi"></span>, social justification necessarily requires a negotiation process.</p>
+<p>Formalization:</p>
+<div class="math-block" data-tex="\text{Complex}(\varphi) \land J_G^{\text{social}} \varphi \rightarrow \exists \text{ negotiation process } \Pi: \Pi \text{ leads to } J_G^{\text{social}} \varphi"></div>
+<p>Proof:</p>
+<p>Let <span class="math-inline" data-tex="\varphi"></span> be a complex proposition satisfying:</p>
+<p>1. The justification of <span class="math-inline" data-tex="\varphi"></span> requires multiple independent sources of evidence</p>
+<p>2. There is potential conflict among the evidence</p>
+<p>3. No single member possesses all the evidence</p>
+<p>By Theorem 13.12, <span class="math-inline" data-tex="J_G^{\text{social}} \varphi"></span> is not reducible to individual justification.</p>
+<p>To attain <span class="math-inline" data-tex="J_G^{\text{social}} \varphi"></span>, it is required that:</p>
+<p>1. Information sharing: members exchange evidence</p>
+<p>2. Conflict resolution: contradictions among the evidence are handled</p>
+<p>3. Critical review: the reliability of the evidence is examined</p>
+<p>These steps constitute a negotiation process <span class="math-inline" data-tex="\Pi"></span>.</p>
+<p>If there is no <span class="math-inline" data-tex="\Pi"></span>, then:</p>
+<ul class="doc-list"><li>Information remains dispersed (<span class="math-inline" data-tex="\neg D_G \text{AllEvidence}"></span>)</li>
+<li>Conflicts are unresolved (<span class="math-inline" data-tex="\exists i,j: K_i \psi \land K_j \neg \psi"></span>)</li>
+<li><span class="math-inline" data-tex="J_G^{\text{social}} \varphi"></span> cannot be attained</li>
+</ul><p>Therefore negotiation is necessary. ∎</p>
+<p>Philosophical Significance: This explains why science requires negotiation mechanisms such as conferences, seminars, and peer review.</p>
+<h4 id="sec-36" class="doc-subsec">§13.4.6 Theorem 13.17: The Value of Epistemic Democracy</h4>
+<p>Statement: In epistemic communities, inclusiveness improves the quality of knowledge.</p>
+<p>Formalization:</p>
+<p>Let <span class="math-inline" data-tex="G_1 \subset G_2"></span> be two epistemic communities, with <span class="math-inline" data-tex="G_2"></span> more inclusive. If:</p>
+<p>1. The members of <span class="math-inline" data-tex="G_2 \setminus G_1"></span> have unique perspectives</p>
+<p>2. The negotiation process is rational</p>
+<p>Then:</p>
+<div class="math-block" data-tex="P(\text{Truth}(\varphi) \mid J_{G_2}^{\text{social}} \varphi) &gt; P(\text{Truth}(\varphi) \mid J_{G_1}^{\text{social}} \varphi)"></div>
+<p>Proof:</p>
+<p>Let <span class="math-inline" data-tex="\varphi"></span> be the proposition to be justified.</p>
+<p><span class="math-inline" data-tex="G_2"></span> has more sources of evidence than <span class="math-inline" data-tex="G_1"></span>:</p>
+<div class="math-block" data-tex="|E_{G_2}| &gt; |E_{G_1}|"></div>
+<p>By Bayes' theorem:</p>
+<div class="math-block" data-tex="P(\varphi \mid E_{G_2}) = \frac{P(E_{G_2} \mid \varphi) P(\varphi)}{P(E_{G_2})}"></div>
+<p>If the members of <span class="math-inline" data-tex="G_2 \setminus G_1"></span> provide independent evidence, then:</p>
+<div class="math-block" data-tex="P(E_{G_2} \mid \varphi) &gt; P(E_{G_1} \mid \varphi)"></div>
+<p>Therefore:</p>
+<div class="math-block" data-tex="P(\varphi \mid E_{G_2}) &gt; P(\varphi \mid E_{G_1})"></div>
+<p>Under rational negotiation, <span class="math-inline" data-tex="J_G^{\text{social}} \varphi"></span> holds if and only if <span class="math-inline" data-tex="P(\varphi \mid E_G)"></span> is high.</p>
+<p>Therefore:</p>
+<div class="math-block" data-tex="P(\text{Truth}(\varphi) \mid J_{G_2}^{\text{social}} \varphi) &gt; P(\text{Truth}(\varphi) \mid J_{G_1}^{\text{social}} \varphi)"></div>
+<p>Corollary 13.17.1: Excluding certain groups (such as women and ethnic minorities) reduces the quality of knowledge.</p>
+<p>Philosophical Significance: This provides an epistemological defense of epistemic democracy and diversity.</p>
+<h4 id="sec-37" class="doc-subsec">§13.4.7 Theorem 13.18: The Fragility of Knowledge</h4>
+<p>Statement: Socially justified knowledge is fragile when the network structure changes.</p>
+<p>Formalization:</p>
+<div class="math-block" data-tex="J_G^{\text{social}} \varphi \land \text{NetworkChange}(\mathcal{G}) \rightarrow \Diamond \neg J_G^{\text{social}} \varphi"></div>
+<p>Proof:</p>
+<p>Let <span class="math-inline" data-tex="\varphi"></span> be socially justified in network <span class="math-inline" data-tex="\mathcal{G}"></span>: <span class="math-inline" data-tex="J_G^{\text{social}} \varphi"></span>.</p>
+<p>The justification of <span class="math-inline" data-tex="\varphi"></span> depends on:</p>
+<p>1. The knowledge of an authoritative member <span class="math-inline" data-tex="i"></span>: <span class="math-inline" data-tex="K_i \varphi"></span></p>
+<p>2. Other members' trust in <span class="math-inline" data-tex="i"></span>: <span class="math-inline" data-tex="T_{ji} \varphi"></span></p>
+<p>3. The connectivity of the network: <span class="math-inline" data-tex="\text{Connected}(\mathcal{G})"></span></p>
+<p>If the network changes:</p>
+<p>Case 1: The authoritative member <span class="math-inline" data-tex="i"></span> leaves</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="i \notin G'"></span></li>
+<li>If <span class="math-inline" data-tex="i"></span> is the only authority who knows <span class="math-inline" data-tex="\varphi"></span>, then <span class="math-inline" data-tex="\neg \exists j \in G': A_j^{G'} \varphi \land K_j \varphi"></span></li>
+<li>Therefore <span class="math-inline" data-tex="\neg J_{G'}^{\text{social}} \varphi"></span></li>
+</ul><p>Case 2: The trust relation breaks down</p>
+<ul class="doc-list"><li>Due to scandal or error, <span class="math-inline" data-tex="T_{ji} \varphi"></span> decreases</li>
+<li><span class="math-inline" data-tex="i"></span> loses authoritative status: <span class="math-inline" data-tex="\neg A_i^{G'} \varphi"></span></li>
+<li>Therefore <span class="math-inline" data-tex="\neg J_{G'}^{\text{social}} \varphi"></span></li>
+</ul><p>Case 3: The network splits</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="\mathcal{G}'"></span> is disconnected</li>
+<li>Knowledge cannot be propagated between subpopulations</li>
+<li>Some subpopulations lose the justification of <span class="math-inline" data-tex="\varphi"></span></li>
+</ul><p>Therefore, socially justified knowledge is fragile. ∎</p>
+<p>Philosophical Significance: This explains why knowledge requires institutional protection (such as universities, libraries, and archives).</p>
+<h4 id="sec-38" class="doc-subsec">§13.4.8 Theorem 13.19: The Partial Completeness of SK</h4>
+<p>Statement: SK is complete for finite epistemic communities.</p>
+<p>Formalization:</p>
+<p>Let <span class="math-inline" data-tex="\mathcal{M}_{\text{finite}}"></span> be the class of models of finite epistemic networks. Then:</p>
+<div class="math-block" data-tex="\text{If } \models_{\mathcal{M}_{\text{finite}}} \varphi, \text{ then } \vdash_{\text{SK}} \varphi"></div>
+<p>Proof (sketch):</p>
+<p>This is an extension of the standard completeness proof for epistemic logic.</p>
+<p>Key steps:</p>
+<p>1. Canonical model construction:</p>
+<p>   For a consistent set of formulas <span class="math-inline" data-tex="\Gamma"></span>, construct the canonical model <span class="math-inline" data-tex="\mathcal{M}^c = \langle W^c, \{\sim_i^c\},  \ldots \rangle"></span>, where:</p>
+<ul class="doc-list"><li><span class="math-inline" data-tex="W^c = \{\text{maximal consistent sets containing } \Gamma\}"></span></li>
+<li><span class="math-inline" data-tex="w \sim_i^c w'"></span> iff <span class="math-inline" data-tex="\{\varphi : K_i \varphi \in w\} \subseteq w'"></span></li>
+</ul><p>2. Truth lemma:</p>
+<p>   Prove that for all <span class="math-inline" data-tex="\varphi"></span> and <span class="math-inline" data-tex="w \in W^c"></span>:</p>
+<div class="math-block" data-tex="\varphi \in w \text{ iff } \mathcal{M}^c, w \models \varphi"></div>
+<p>3. Finite model property:</p>
+<p>   If <span class="math-inline" data-tex="\varphi"></span> is satisfiable in some model, then <span class="math-inline" data-tex="\varphi"></span> is satisfiable in some finite model.</p>
+<p>4. Completeness:</p>
+<p>   If <span class="math-inline" data-tex="\not\vdash_{\text{SK}} \varphi"></span>, then <span class="math-inline" data-tex="\neg \varphi"></span> is consistent.</p>
+<p>   By the canonical model construction, there exists a model <span class="math-inline" data-tex="\mathcal{M}"></span> such that <span class="math-inline" data-tex="\mathcal{M} \models \neg \varphi"></span>.</p>
+<p>   Therefore <span class="math-inline" data-tex="\not\models_{\text{SK}} \varphi"></span>.</p>
+<p>   Contrapositive: if <span class="math-inline" data-tex="\models_{\text{SK}} \varphi"></span>, then <span class="math-inline" data-tex="\vdash_{\text{SK}} \varphi"></span>. ∎</p>
+<p>Note: For infinite epistemic communities, completeness is an open problem.</p>
+<p>---</p>
+<h4 id="sec-39" class="doc-subsec">§13.5 Applications of SK</h4>
+<h4 id="sec-40" class="doc-subsec">§13.5.1 Application One: Auditing the Knowledge Sources of AI Systems</h4>
+<p>Problem</p>
+<p>Modern AI systems (especially large language models) learn knowledge from massive data. But the sources of this knowledge and the justification process are opaque. We need to audit the knowledge sources of AI.</p>
+<p>Application of SK</p>
+<p>Model the AI system as a member of an epistemic community:</p>
+<div class="math-block" data-tex="\mathcal{C}_{\text{AI}} = \langle \text{Ag} \cup \{\text{AI}\}, E, w_E, w_T, w_A \rangle"></div>
+<p>where <span class="math-inline" data-tex="\text{Ag}"></span> are human experts and <span class="math-inline" data-tex="\text{AI}"></span> is the AI system.</p>
+<p>Audit Protocol</p>
+<p>1. Knowledge tracing:</p>
+<p>   For the knowledge <span class="math-inline" data-tex="K_{\text{AI}} \varphi"></span> claimed by the AI, trace its sources:</p>
+<div class="math-block" data-tex="\text{Source}(\varphi) = \{i \in \text{Ag} : K_i \varphi \land (i, \text{AI}) \in E\}"></div>
+<p>2. Justification check:</p>
+<p>   Check whether <span class="math-inline" data-tex="\varphi"></span> is justified in the human community:</p>
+<div class="math-block" data-tex="J_{\text{Ag}}^{\text{social}} \varphi \stackrel{?}{\Rightarrow} K_{\text{AI}} \varphi"></div>
+<p>3. Trust calibration:</p>
+<p>   Adjust the degree of trust according to the AI's reliability:</p>
+<div class="math-block" data-tex="\mathcal{T}(i, \text{AI}, \varphi) = f(\text{Reliability}_{\text{AI}}(\varphi))"></div>
+<p>Case: Medical Diagnostic AI</p>
+<p>Let an AI system be used for cancer diagnosis, claiming <span class="math-inline" data-tex="\varphi"></span>="patient X has lung cancer."</p>
+<p>Audit process:</p>
+<p>1. Tracing: From which medical literature and cases did the AI learn?</p>
+<p>2. Justification: Has this literature undergone peer review?</p>
+<p>3. Authority: Has the AI's diagnosis been verified by human experts?</p>
+<p>If <span class="math-inline" data-tex="J_{\text{medical community}}^{\text{social}} \varphi"></span> and <span class="math-inline" data-tex="K_{\text{AI}} \varphi"></span> are consistent, then the AI's diagnosis is credible.</p>
+<p>If <span class="math-inline" data-tex="K_{\text{AI}} \varphi"></span> but <span class="math-inline" data-tex="\neg J_{\text{medical community}}^{\text{social}} \varphi"></span>, then human experts need to intervene.</p>
+<p>Formal Metric</p>
+<p>Define the AI's epistemic trustworthiness:</p>
+<div class="math-block" data-tex="\text{EpistemicTrustworthiness}(\text{AI}) = \frac{|\{\varphi : K_{\text{AI}} \varphi \land J_{\text{Ag}}^{\text{social}} \varphi\}|}{|\{\varphi : K_{\text{AI}} \varphi\}|}"></div>
+<p>(the proportion of the AI's knowledge that is justified by the human community)</p>
+<h4 id="sec-41" class="doc-subsec">§13.5.2 Application Two: Modeling Knowledge Production in Scientific Communities</h4>
+<p>Problem</p>
+<p>How is scientific knowledge produced? How does the structure of scientific communities affect knowledge production?</p>
+<p>Application of SK</p>
+<p>Model the scientific community as an epistemic network <span class="math-inline" data-tex="\mathcal{C}_{\text{sci}}"></span>.</p>
+<p>Phases of Knowledge Production</p>
+<p>1. Discovery phase:</p>
+<p>   An individual scientist <span class="math-inline" data-tex="i"></span> proposes a hypothesis <span class="math-inline" data-tex="\varphi"></span>:</p>
+<div class="math-block" data-tex="\text{Propose}_i(\varphi)"></div>
+<p>2. Propagation phase:</p>
+<p>   <span class="math-inline" data-tex="\varphi"></span> propagates through the network:</p>
+<div class="math-block" data-tex="[\text{announce}_i(\varphi)]E_G \varphi"></div>
+<p>3. Review phase:</p>
+<p>   Peer review:</p>
+<div class="math-block" data-tex="\text{CriticalReview}(\varphi, R)"></div>
+<p>4. Acceptance phase:</p>
+<p>   If it passes review, <span class="math-inline" data-tex="\varphi"></span> is socially justified:</p>
+<div class="math-block" data-tex="J_G^{\text{social}} \varphi"></div>
+<p>5. Integration phase:</p>
+<p>   <span class="math-inline" data-tex="\varphi"></span> becomes common knowledge:</p>
+<div class="math-block" data-tex="C_G \varphi"></div>
+<p>The Influence of Network Structure</p>
+<p>Using SK to analyze the influence of different network structures on knowledge production:</p>
+<div class="table-wrap"><table><thead><tr><th>Network type</th><th>Propagation speed</th><th>Innovativeness</th><th>Quality control</th><th>Applicable scenario</th></tr></thead><tbody><tr><td>Star network</td><td>Fast</td><td>Low</td><td>Strong</td><td>Authority-dominated fields</td></tr><tr><td>Complete graph</td><td>Fastest</td><td>Medium</td><td>Medium</td><td>Small research teams</td></tr><tr><td>Small-world network</td><td>Fast</td><td>High</td><td>Strong</td><td>The modern scientific community</td></tr><tr><td>Hierarchical network</td><td>Slow</td><td>Low</td><td>Strongest</td><td>The traditional academic system</td></tr><tr><td>Scale-free network</td><td>Medium</td><td>Highest</td><td>Weak</td><td>Interdisciplinary research</td></tr></tbody></table></div>
+<p>Quantitative Analysis</p>
+<p>Define the efficiency of knowledge production:</p>
+<div class="math-block" data-tex="\text{Efficiency}(\mathcal{C}) = \frac{|\{\varphi : J_G^{\text{social}} \varphi \land \text{True}(\varphi)\}|}{\text{Time} \times \text{Resources}}"></div>
+<p>Using SK to simulate the efficiency of knowledge production under different network structures.</p>
+<p>Case: COVID-19 Research</p>
+<p>During the COVID-19 pandemic, the scientific community rapidly produced a large amount of knowledge. Using SK to analyze:</p>
+<p>1. Network structure:</p>
+<ul class="doc-list"><li>Early stage: dispersed research teams (low connectivity)</li>
+<li>Middle stage: rapid formation of an international collaboration network (small-world structure)</li>
+<li>Late stage: domination by a few authoritative institutions (star structure)</li>
+</ul><p>2. Knowledge production:</p>
+<ul class="doc-list"><li>Early stage: many hypotheses, uneven quality (the <span class="math-inline" data-tex="J^{\text{social}}"></span> standard is loose)</li>
+<li>Middle stage: rapid review and revision (the negotiation process accelerates)</li>
+<li>Late stage: knowledge integration and standardization (<span class="math-inline" data-tex="C_G"></span> forms)</li>
+</ul><p>3. Problems:</p>
+<ul class="doc-list"><li>Preprints bypass peer review (<span class="math-inline" data-tex="\neg \text{CriticalReview}"></span>)</li>
+<li>Information overload (<span class="math-inline" data-tex="|E_G \varphi| \gg"></span> processing capacity)</li>
+<li>Epistemic polarization (scientific communities in different countries split)</li>
+</ul><p>Predictions of SK:</p>
+<ul class="doc-list"><li>Small-world networks are optimal (balancing speed and quality)</li>
+<li>A fast but rigorous review mechanism is needed</li>
+<li>Cross-national coordination is needed to avoid polarization</li>
+</ul><h4 id="sec-42" class="doc-subsec">§13.5.3 Application Three: Formal Analysis of Democratic Deliberation</h4>
+<p>Problem</p>
+<p>Democratic decision-making depends on citizens' deliberation. How can deliberation procedures be designed to reach rational consensus?</p>
+<p>Application of SK</p>
+<p>Model democratic deliberation as the negotiation process of an epistemic community.</p>
+<p>Formalization of Deliberation</p>
+<p>Deliberation is a special negotiation protocol:</p>
+<div class="math-block" data-tex="\Pi_{\text{deliberation}} = \langle \text{Citizens}, \Phi_{\text{policy}}, \text{Roles}, \text{Rules}_{\text{democratic}}, \text{Voting} \rangle"></div>
+<p>Democratic Rules</p>
+<p>1. Equal right to speak:</p>
+<div class="math-block" data-tex="\forall i,j \in \text{Citizens}: P(\text{Speak}_i) = P(\text{Speak}_j)"></div>
+<p>2. Mutual respect:</p>
+<div class="math-block" data-tex="\forall i,j: \text{Challenge}_i(\varphi_j) \rightarrow \text{Respectful}(\text{Challenge}_i)"></div>
+<p>3. Rational argumentation:</p>
+<div class="math-block" data-tex="\text{Claim}(i, \varphi) \rightarrow \text{Provide}(i, \text{Reasons}(\varphi))"></div>
+<p>4. Openness:</p>
+<div class="math-block" data-tex="\forall i: \Diamond \text{Revise}_i(B_i)"></div>
+<p>   (willingness to revise one's own beliefs)</p>
+<p>Theorem 13.20 (The Epistemic Value of Deliberation)</p>
+<p>Statement: In deliberation that satisfies democratic rules, the epistemic quality of the final decision is higher than that of simple majority voting.</p>
+<p>Formalization:</p>
+<div class="math-block" data-tex="P(\text{Truth}(\varphi) \mid \text{Deliberation} \rightarrow \varphi) &gt; P(\text{Truth}(\varphi) \mid \text{Voting} \rightarrow \varphi)"></div>
+<p>Proof (sketch):</p>
+<p>Simple voting: each citizen votes according to initial beliefs <span class="math-inline" data-tex="B_i(0)"></span>.</p>
+<p>Voting after deliberation: each citizen votes according to updated beliefs <span class="math-inline" data-tex="B_i(T)"></span>, where <span class="math-inline" data-tex="T"></span> is the duration of deliberation.</p>
+<p>By Theorem 13.8 (convergence of negotiation), under rational deliberation:</p>
+<div class="math-block" data-tex="B_i(T) \rightarrow B^"></div>
+<p>where <span class="math-inline" data-tex="B^"></span> is the rational belief based on all the evidence.</p>
+<p>Since <span class="math-inline" data-tex="B^"></span> contains more information than <span class="math-inline" data-tex="B_i(0)"></span>:</p>
+<div class="math-block" data-tex="I(B^) &gt; I(B_i(0))"></div>
+<p>By information theory:</p>
+<div class="math-block" data-tex="P(\text{Truth}(\varphi) \mid B^) &gt; P(\text{Truth}(\varphi) \mid B_i(0))"></div>
+<p>Therefore deliberation improves the quality of decisions. ∎</p>
+<p>Case: Deliberation on Climate Policy</p>
+<p>Let the policy proposition be <span class="math-inline" data-tex="\varphi"></span>="a carbon tax should be implemented."</p>
+<p>Voting without deliberation:</p>
+<ul class="doc-list"><li>Citizens vote according to initial preferences</li>
+<li>Influenced by ideology and partisan positions</li>
+<li>Lacking understanding of scientific evidence</li>
+</ul><p>Voting with deliberation:</p>
+<p>1. Information phase: experts present climate science (<span class="math-inline" data-tex="\text{announce}_{\text{expert}}(\text{Evidence})"></span>)</p>
+<p>2. Discussion phase: citizens exchange views (<span class="math-inline" data-tex="\text{negotiate}(\varphi)"></span>)</p>
+<p>3. Challenge phase: critical review (<span class="math-inline" data-tex="\text{CriticalReview}(\varphi)"></span>)</p>
+<p>4. Voting phase: voting based on updated beliefs</p>
+<p>Predictions of SK:</p>
+<ul class="doc-list"><li>After deliberation, citizens' understanding of climate science improves (<span class="math-inline" data-tex="K_i \text{ClimateScience}"></span> increases)</li>
+<li>Ideological polarization decreases (<span class="math-inline" data-tex="\text{Polarization}"></span> decreases)</li>
+<li>Decision quality improves (<span class="math-inline" data-tex="P(\text{Optimal}(\varphi) \mid \text{Deliberation})"></span> increases)</li>
+</ul><p>Empirical Validation:</p>
+<p>This prediction is consistent with actual results of "deliberative polling" (Fishkin 2009).</p>
+<h4 id="sec-43" class="doc-subsec">§13.5.4 Application Four: Consensus Protocols for Multi-Agent Systems</h4>
+<p>Problem</p>
+<p>In distributed AI systems, multiple agents need to reach consensus on some proposition. How can an efficient consensus protocol be designed?</p>
+<p>Application of SK</p>
+<p>Model the multi-agent system as an epistemic network and use SK to design consensus protocols.</p>
+<p>Formalization of the Consensus Protocol</p>
+<div class="math-block" data-tex="\text{ConsensusProtocol} = \langle \text{Agents}, \text{Communication}, \text{Update}, \text{Termination} \rangle"></div>
+<p>Communication Modes</p>
+<p>1. Broadcast mode:</p>
+<div class="math-block" data-tex="\text{broadcast}_i(\varphi) \equiv \forall j \in \text{Agents}: \text{send}_{ij}(\varphi)"></div>
+<p>2. Point-to-point mode:</p>
+<div class="math-block" data-tex="\text{send}_{ij}(\varphi) \equiv j \text{ receives } \varphi \text{ from } i"></div>
+<p>3. Gossip mode:</p>
+<div class="math-block" data-tex="\text{gossip}_i(\varphi) \equiv \text{send}_{ij}(\varphi) \text{ for random } j \in N(i)"></div>
+<p>Update Rule</p>
+<p>Based on the consensus dynamics of Theorem 13.10:</p>
+<div class="math-block" data-tex="B_i^{(t+1)}(\varphi) = \sum_{j \in N(i)} w_{ij} B_j^{(t)}(\varphi)"></div>
+<p>Termination Condition</p>
+<div class="math-block" data-tex="\text{Consensus} \equiv \max_{i,j} |B_i(\varphi) - B_j(\varphi)| &lt; \epsilon"></div>
+<p>Theorem 13.21 (Convergence Rate of Consensus Protocols)</p>
+<p>Statement: In a connected network, the convergence rate of the gossip protocol is <span class="math-inline" data-tex="O(\log n)"></span>, where <span class="math-inline" data-tex="n = |\text{Agents}|"></span>.</p>
+<p>Proof (sketch):</p>
+<p>This is a standard result in distributed computing (Boyd et al. 2006).</p>
+<p>Key observation: the gossip protocol is equivalent to a random walk.</p>
+<p>The convergence rate is determined by the spectral gap of the network:</p>
+<div class="math-block" data-tex="\lambda_2 = 1 - \lambda_{\max}(L)"></div>
+<p>For a connected graph, <span class="math-inline" data-tex="\lambda_2 &gt; 0"></span>.</p>
+<p>Convergence time:</p>
+<div class="math-block" data-tex="T_{\text{converge}} = O\left(\frac{\log n}{\lambda_2}\right)"></div>
+<p>For a typical network (such as a random graph), <span class="math-inline" data-tex="\lambda_2 = \Theta(1/n)"></span>, so:</p>
+<div class="math-block" data-tex="T_{\text{converge}} = O(n \log n)"></div>
+<p>But using an optimized gossip strategy, <span class="math-inline" data-tex="O(\log n)"></span> can be achieved. ∎</p>
+<p>Application: Blockchain Consensus</p>
+<p>A blockchain system needs to reach consensus on transaction history.</p>
+<p>Using SK to analyze different consensus mechanisms:</p>
+<div class="table-wrap"><table><thead><tr><th>Mechanism</th><th>Network structure</th><th>Convergence speed</th><th>Fault tolerance</th><th>Energy consumption</th></tr></thead><tbody><tr><td>PoW (proof of work)</td><td>Complete graph</td><td>Slow</td><td>High</td><td>Extremely high</td></tr><tr><td>PoS (proof of stake)</td><td>Weighted graph</td><td>Medium</td><td>Medium</td><td>Low</td></tr><tr><td>PBFT (Byzantine fault tolerance)</td><td>Complete graph</td><td>Fast</td><td>High</td><td>Medium</td></tr><tr><td>Gossip protocol</td><td>Random graph</td><td>Fast</td><td>Medium</td><td>Low</td></tr></tbody></table></div>
+<p>Recommendations of SK:</p>
+<ul class="doc-list"><li>Use a small-world network structure (balancing speed and fault tolerance)</li>
+<li>Combine with an authority mechanism (accelerating convergence)</li>
+<li>Introduce critical review (improving security)</li>
+</ul><h4 id="sec-44" class="doc-subsec">§13.5.5 Application Five: Detecting and Correcting Epistemic Injustice</h4>
+<p>Problem</p>
+<p>How can systematic injustice in an epistemic community be detected? How can interventions be designed?</p>
+<p>Application of SK</p>
+<p>Use Theorem 13.3 (the structural roots of epistemic injustice) to develop detection tools.</p>
+<p>Indices of Injustice</p>
+<p>1. Marginalization index:</p>
+<div class="math-block" data-tex="\text{Marginalization}(i) = 1 - \frac{C_{\text{deg}}(i)}{\max_j C_{\text{deg}}(j)}"></div>
+<p>2. Trust inequality:</p>
+<div class="math-block" data-tex="\text{TrustInequality}(G) = \text{Gini}\left(\left\{\sum_j \mathcal{T}(j,i,\varphi) : i \in G\right\}\right)"></div>
+<p>3. Authority concentration:</p>
+<div class="math-block" data-tex="\text{AuthorityConcentration}(G) = \frac{|\{i : \mathcal{A}(i,\varphi) &gt; \theta_A\}|}{|G|}"></div>
+<p>4. Epistemic injustice index (composite):</p>
+<div class="math-block" data-tex="\text{EI}(G) = w_1 \cdot \text{Marginalization}_{\text{avg}} + w_2 \cdot \text{TrustInequality} + w_3 \cdot \text{AuthorityConcentration}"></div>
+<p>Detection Algorithm</p>
+<p>Algorithm: DetectEpistemicInjustice(G)</p>
+<p>Input: epistemic network G = (Ag, E, w_T, w_A)</p>
+<p>Output: injustice report</p>
+<p>1. Compute the marginalization index of each subject</p>
+<p>2. Identify the systematically marginalized subpopulation G_m</p>
+<p>3. Analyze the characteristics of G_m (gender, ethnicity, region, etc.)</p>
+<p>4. Compute trust inequality and authority concentration</p>
+<p>5. Generate the injustice index EI(G)</p>
+<p>6. If EI(G) &gt; threshold, trigger an alarm</p>
+<p>7. Return a detailed report</p>
+<p>Corrective Measures</p>
+<p>Based on the analysis of SK, design interventions:</p>
+<p>1. Increase connections:</p>
+<div class="math-block" data-tex="\text{Intervention}_1: \forall i \in G_m, \exists j \in G_{\text{core}}: \text{add edge } (i,j)"></div>
+<p>   (establish connections between marginal members and core members)</p>
+<p>2. Elevate authority:</p>
+<div class="math-block" data-tex="\text{Intervention}_2: \text{Increase } \mathcal{A}(i,\varphi) \text{ for } i \in G_m"></div>
+<p>   (elevate the authority of marginal members through training and certification)</p>
+<p>3. Enforce inclusiveness:</p>
+<div class="math-block" data-tex="\text{Intervention}_3: \text{Require } G_m \cap R \neq \emptyset \text{ for review committees } R"></div>
+<p>   (review committees must include members of marginalized groups)</p>
+<p>4. Increase transparency:</p>
+<div class="math-block" data-tex="\text{Intervention}_4: \text{Publish } \mathcal{T}(i,j,\varphi) \text{ and } \mathcal{A}(i,\varphi)"></div>
+<p>   (publish trust and authority data and submit to oversight)</p>
+<p>Case: Gender Injustice in Academia</p>
+<p>Using SK to analyze gender injustice in academia:</p>
+<p>Data:</p>
+<ul class="doc-list"><li>The <span class="math-inline" data-tex="C_{\text{deg}}"></span> of female scientists is on average lower than that of males</li>
+<li>The <span class="math-inline" data-tex="\mathcal{A}"></span> of female scientists is on average lower than that of males (even controlling for output)</li>
+<li>The citation rate of female scientists' papers is lower than that of males (even controlling for quality)</li>
+</ul><p>Explanation of SK:</p>
+<ul class="doc-list"><li>Women are at the margin of the network (<span class="math-inline" data-tex="\text{Marginalization}"></span> is high)</li>
+<li>Women's knowledge claims are not sufficiently trusted (<span class="math-inline" data-tex="\mathcal{T}"></span> is low)</li>
+<li>It is difficult for women to attain authoritative status (<span class="math-inline" data-tex="\mathcal{A}"></span> is low)</li>
+</ul><p>Interventions:</p>
+<ul class="doc-list"><li>Establish networks of female scientists (increasing <span class="math-inline" data-tex="C_{\text{deg}}"></span>)</li>
+<li>Blind review systems (reducing the influence of gender bias on <span class="math-inline" data-tex="\mathcal{T}"></span>)</li>
+<li>Quota systems (enforcing inclusiveness)</li>
+</ul><p>Effect Evaluation:</p>
+<p>Use SK to simulate the effect of the interventions and predict changes in <span class="math-inline" data-tex="\text{EI}(G)"></span>.</p>
+<p>---</p>
+<p>Chapter Summary</p>
+<h3 id="sec-45" class="doc-sec">I. Main Results</h3>
+<p>This chapter has constructed the formal system SK (Social Knowledge), providing a rigorous mathematical foundation for the sociality of knowledge. The main results include:</p>
+<p>1. Construction of the formal system (§13.1)</p>
+<ul class="doc-list"><li>Defined the formal language of SK, <span class="math-inline" data-tex="\mathcal{L}_{\text{SK}}"></span>, containing individual epistemic operators, social epistemic operators, trust operators, authority operators, and negotiation operators</li>
+<li>Constructed the epistemic network model <span class="math-inline" data-tex="\mathcal{M}_{\text{SK}}"></span>, formalizing epistemic communities as weighted directed graphs</li>
+<li>Established the axiom system <span class="math-inline" data-tex="\mathcal{A}_{\text{SK}}"></span>, containing 5 groups with a total of 15 axioms</li>
+<li>Defined the rigorous semantics of social justification</li>
+</ul><p>2. Formalization of epistemic communities (§13.2)</p>
+<ul class="doc-list"><li>Characterized the structure of epistemic networks using graph theory (connectivity, diameter, centrality, etc.)</li>
+<li>Characterized the geometric properties of epistemic space using topology</li>
+<li>Formalized epistemic roles (authority, gatekeeper, marginal, bridge)</li>
+<li>Modeled the dynamic evolution of epistemic networks (preferential attachment, homophily, authority emergence)</li>
+<li>Proved the vagueness of epistemic boundaries (Theorem 13.5)</li>
+</ul><p>3. Formalization of the negotiation process (§13.3)</p>
+<ul class="doc-list"><li>Modeled the dynamic evolution of knowledge using dynamic epistemic logic (DEL)</li>
+<li>Formalized actions such as public announcement, private communication, belief revision, and critical challenge</li>
+<li>Adopted AGM theory to formalize belief revision</li>
+<li>Modeled negotiation protocols and critical review procedures</li>
+<li>Analyzed the dynamics of consensus formation and its convergence conditions (Theorems 13.8, 13.10)</li>
+<li>Revealed the mechanisms of epistemic polarization (Theorem 13.11)</li>
+</ul><p>4. Proofs of the core theorems (§13.4)</p>
+<p>Proved 8 core theorems, revealing the deep structure of the sociality of knowledge:</p>
+<ul class="doc-list"><li>Theorem 13.12: The Irreducibility of Social Justification</li>
+<li>Theorem 13.13: The Infinity of Common Knowledge</li>
+<li>Theorem 13.14: The Non-Transitivity of Trust</li>
+<li>Theorem 13.15: The Social Constitution of Authority</li>
+<li>Theorem 13.16: The Necessity of Negotiation</li>
+<li>Theorem 13.17: The Value of Epistemic Democracy</li>
+<li>Theorem 13.18: The Fragility of Knowledge</li>
+<li>Theorem 13.19: The Partial Completeness of SK</li>
+</ul><p>5. Practical Applications (§13.5)</p>
+<p>Showed the applications of SK in five domains:</p>
+<ul class="doc-list"><li>Auditing the knowledge sources of AI systems</li>
+<li>Modeling knowledge production in scientific communities</li>
+<li>Formal analysis of democratic deliberation</li>
+<li>Consensus protocols for multi-agent systems</li>
+<li>Detecting and correcting epistemic injustice</li>
+</ul><h3 id="sec-46" class="doc-sec">II. Feedback on Volume I</h3>
+<p>The formalization work of this chapter provides the following feedback on the philosophical arguments of Volume I, Chapter 3, §3.3:</p>
+<p>1. It reinforces the core thesis</p>
+<ul class="doc-list"><li>Theorem 13.12 rigorously proves the irreducibility of the sociality of knowledge, supporting NK-3</li>
+<li>Theorem 13.15 proves the social constitution of authority, supporting the core claim of social epistemology</li>
+<li>Theorem 13.17 provides a formalization defense of epistemic democracy</li>
+</ul><p>2. It reveals new insights</p>
+<ul class="doc-list"><li>The infinity of common knowledge (Theorem 13.13) reveals its idealized nature</li>
+<li>The non-transitivity of trust (Theorem 13.14) explains the complexity of science communication</li>
+<li>The fragility of knowledge (Theorem 13.18) emphasizes the necessity of institutional protection</li>
+</ul><p>3. It makes vague concepts precise</p>
+<ul class="doc-list"><li>"Epistemic community" is transformed from a vague concept into a rigorous graph-theoretic object</li>
+<li>"Social justification" acquires a precise semantic definition</li>
+<li>"Negotiation process" is modeled as a sequence of actions of dynamic epistemic logic</li>
+</ul><p>4. It discovers limitations</p>
+<ul class="doc-list"><li>The discussion of "common knowledge" in Volume I did not sufficiently emphasize its infinity and idealized nature</li>
+<li>The analysis of trust relations in Volume I did not notice non-transitivity</li>
+<li>The discussion of epistemic injustice in Volume I could be more systematic</li>
+</ul><h3 id="sec-47" class="doc-sec">III. New Insights from the Formalization</h3>
+<p>The process of formalization itself has produced three important new insights:</p>
+<p>Insight 1: The topological structure of the sociality of knowledge</p>
+<p>Knowledge is not only social, but also has a specific topological structure. The geometric properties of epistemic networks (such as small-worldness and scale-freeness) profoundly affect the production and dissemination of knowledge. This insight was not sufficiently recognized in Volume I.</p>
+<p>Insight 2: The convergence conditions of negotiation</p>
+<p>Negotiation does not always converge to consensus. Convergence requires specific conditions (rationality, honesty, a common prior, public evidence). When these conditions are not satisfied, negotiation may lead to polarization rather than consensus. This explains many epistemic conflicts in reality.</p>
+<p>Insight 3: The quantifiability of epistemic injustice</p>
+<p>Epistemic injustice is not only a qualitative concept, but can be quantified (the epistemic injustice index EI). This enables us to systematically detect and correct injustice rather than relying only on case-by-case analysis.</p>
+<h3 id="sec-48" class="doc-sec">IV. Connections with Other Chapters</h3>
+<p>Backward connections:</p>
+<ul class="doc-list"><li>Chapter 12 (Participatory Cognition PC): SK depends on PC's definition of epistemic subjects. Epistemic subjects must be participatory and embodied cognizers.</li>
+<li>Chapter 11 (the New View of Life NL): The epistemic subjects in SK must satisfy NL's standard of subjecthood (UCS &gt; threshold).</li>
+<li>Chapters 4 to 6 (the New Cosmology): The sociality of knowledge is consistent with Relational Ontology—knowledge is constituted by relations rather than possessed by individuals.</li>
+</ul><p>Forward connections:</p>
+<ul class="doc-list"><li>Chapter 14 (Deep Uncertainty DU): SK provides an epistemological foundation for DU. Under deep uncertainty, social negotiation is more reliable than individual judgment.</li>
+<li>Chapter 15 (Knowledge Revisability RK): The negotiation process of SK is a precondition of RK. Knowledge is revised through social negotiation.</li>
+<li>Chapter 16 (Integration of the New View of Cognition NK): SK is a core component of NK, jointly constituting the complete New View of Cognition together with PC, DU, and RK.</li>
+</ul><p>Lateral connections:</p>
+<ul class="doc-list"><li>Chapter 19 (Axiomatization of the Three Principles): SK supports the epistemological dimension of the Recursive Freedom Principle (RFD)—epistemic freedom requires an inclusive epistemic community.</li>
+<li>Chapter 23 (Formalization of RFD): SK provides a foundation for the "epistemic freedom" dimension of RFD—freedom is not only freedom of action but also epistemic freedom.</li>
+<li>Chapter 25 (Governance Protocol Stack): SK provides epistemological support for the L₂ layer of the protocol stack (the normative-ethical foundation).</li>
+</ul><h3 id="sec-49" class="doc-sec">V. Unsolved Problems</h3>
+<p>Although this chapter has made important progress, several problems remain unsolved:</p>
+<p>1. The completeness problem</p>
+<ul class="doc-list"><li>The completeness of SK for infinite epistemic communities remains an open problem</li>
+<li>Are there stronger completeness results?</li>
+</ul><p>2. Computational complexity</p>
+<ul class="doc-list"><li>What is the computational complexity of the decision problem for social justification?</li>
+<li>Are there efficient approximation algorithms?</li>
+</ul><p>3. Dynamic networks</p>
+<ul class="doc-list"><li>This chapter mainly considers static networks, but real networks are dynamic</li>
+<li>How can the rapid evolution of networks be modeled?</li>
+</ul><p>4. Heterogeneity</p>
+<ul class="doc-list"><li>This chapter assumes that all subjects are homogeneous (all rational and honest)</li>
+<li>How can heterogeneity (such as malicious or irrational subjects) be handled?</li>
+</ul><p>5. Cross-cultural negotiation</p>
+<ul class="doc-list"><li>This chapter mainly considers communities in a single cultural background</li>
+<li>How can cross-cultural epistemic negotiation be modeled?</li>
+</ul><p>6. Empirical validation</p>
+<ul class="doc-list"><li>Many predictions of SK require empirical validation</li>
+<li>How can experiments be designed to test the theorems of SK?</li>
+</ul><h3 id="sec-50" class="doc-sec">VI. Suggestions for Readers</h3>
+<p>For philosophical researchers:</p>
+<ul class="doc-list"><li>Compare the formalization results of SK with the literature of social epistemology</li>
+<li>Consider whether the formalization captures the essence of the sociality of knowledge</li>
+<li>Explore the application of SK to other epistemological problems</li>
+</ul><p>For computer science researchers:</p>
+<ul class="doc-list"><li>Implement the algorithms of SK (such as the decision algorithm for social justification)</li>
+<li>Apply SK to actual multi-agent systems</li>
+<li>Develop knowledge management tools based on SK</li>
+</ul><p>For social science researchers:</p>
+<ul class="doc-list"><li>Use SK to analyze actual epistemic communities (such as scientific communities and policy communities)</li>
+<li>Test the predictions of SK (such as Theorem 13.17 on the value of epistemic democracy)</li>
+<li>Use SK to design interventions (such as correcting epistemic injustice)</li>
+</ul><p>For interdisciplinary readers:</p>
+<ul class="doc-list"><li>Understand the formalization framework of the sociality of knowledge</li>
+<li>Consider the application of SK in one's own field</li>
+<li>Participate in the further development of SK</li>
+</ul><h3 id="sec-51" class="doc-sec">VII. The Core Message of This Chapter (Restated)</h3>
+<p>If you can remember only three points from this chapter:</p>
+<p>1. Knowledge is socially constructed: Theorem 13.12 rigorously proves that certain knowledge is not reducible to individual knowledge and is necessarily socially constructed.</p>
+<p>2. Epistemic communities have structure: The topological structure of epistemic networks (such as small-worldness and scale-freeness) profoundly affects the production, dissemination, and justification of knowledge.</p>
+<p>3. Negotiation is a dynamic process: Knowledge evolves through a continuous negotiation process. The convergence of negotiation requires specific conditions; otherwise, it may lead to polarization.</p>
+<h3 id="sec-52" class="doc-sec">VIII. Preview of the Next Chapter</h3>
+<p>Chapter 14 will construct the formal system DU (Deep Uncertainty), formalizing the third core thesis NK-4 of the New View of Cognition: deep uncertainty. We will:</p>
+<ul class="doc-list"><li>Rigorously distinguish risk, Knightian uncertainty, and deep uncertainty</li>
+<li>Model decision-making under deep uncertainty</li>
+<li>Prove the irreducibility of deep uncertainty</li>
+<li>Provide an epistemological foundation for the Reversibility Principle (REV)</li>
+</ul><p>---</p>
+<p>End-of-Chapter Notes</p>
+<p>[1] The formalization of this chapter is inspired by the following literature:</p>
+<ul class="doc-list"><li>Hintikka (1962): Knowledge and Belief</li>
+<li>Fagin et al. (1995): Reasoning About Knowledge</li>
+<li>Goldman (1999): Knowledge in a Social World</li>
+<li>Kitcher (2001): Science, Truth, and Democracy</li>
+<li>Longino (2002): The Fate of Knowledge</li>
+</ul><p>[2] The graph-theoretic analysis of epistemic networks draws on:</p>
+<ul class="doc-list"><li>Zollman (2007): "The Communication Structure of Epistemic Communities"</li>
+<li>Bala &amp; Goyal (1998): "Learning from Neighbours"</li>
+<li>Hegselmann &amp; Krause (2002): "Opinion Dynamics and Bounded Confidence"</li>
+</ul><p>[3] The formalization of dynamic epistemic logic is based on:</p>
+<ul class="doc-list"><li>Plaza (1989): "Logics of Public Communications"</li>
+<li>Baltag &amp; Moss (2004): "Logics for Epistemic Programs"</li>
+<li>van Ditmarsch et al. (2007): Dynamic Epistemic Logic</li>
+</ul><p>[4] The belief revision theory comes from:</p>
+<ul class="doc-list"><li>Alchourrón, Gärdenfors &amp; Makinson (1985): "On the Logic of Theory Change"</li>
+<li>Grove (1988): "Two Modellings for Theory Change"</li>
+</ul><p>[5] The concept of epistemic injustice comes from:</p>
+<ul class="doc-list"><li>Fricker (2007): Epistemic Injustice</li>
+<li>Anderson (2012): "Epistemic Justice as a Virtue of Social Institutions"</li>
+</ul><p>[6] The Coq formalization code for this chapter is available at the following repository:</p>
+<p>https://github.com/StarCiv/FormalizationVol2/Chapter13</p>
+<p>---</p>
+<p>(End of Chapter 13)</p>
+<div class="chapter-reader-nav"><a href="chapter-12-participatory-cognition.html">&larr; 上一章</a><a href="volume-2-contents.html">第二卷目录</a><a href="chapter-14-deep-uncertainty.html">下一章 &rarr;</a></div>
+</main>
+<footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                        <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                        <circle cx="22" cy="4" r="2.5" fill="rgba(6,182,212,1)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22"
+                                dur="8s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-title">ICS</span>
+                        <span class="footer-logo-sub">Interstellar Civilization Studies</span>
+                    </div>
+                </div>
+                <p class="footer-desc">Exploring the frontiers of civilization studies, from cosmic governance to
+                    inter-civilizational contact, providing theoretical guidance for humanity's interstellar future.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discipline</h4>
+                <a href='/en/about'>Overview</a>
+                <a href='/en/'>Core Concepts</a>
+                <a href='/en/institutions'>Methodology</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href='/en/publication-information'>Publications</a>
+                <a href='/en/resources'>Reading List</a>
+                <a href='/en/resources'>Glossary</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href='/en/contact-us'>Contact Us</a>
+                <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>
+                <a href='/en/newsletter'>The Brief</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2026 Interstellar Civilization Studies. All rights reserved.</span>
+            <div class="footer-links">
+                <a href='/en/privacy'>Privacy Policy</a>
+                <a href='/en/terms'>Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof katex === 'undefined') { return; }
+            document.querySelectorAll('.math-block[data-tex], .math-inline[data-tex]').forEach(function (el) {
+                var tex = el.getAttribute('data-tex') || '';
+                var display = el.classList.contains('math-block');
+                try {
+                    katex.render(tex, el, { displayMode: display, throwOnError: false, strict: false });
+                    // 若 KaTeX 既未产出正常排版（.katex）也未产出其自带错误节点
+                    // （.katex-error），说明该 TeX 渲染为空——回退为原样显示，
+                    // 避免出现空框（作者手稿缺陷原样保留，不做改写）。
+                    if (!el.querySelector('.katex') && !el.querySelector('.katex-error') && !el.textContent.trim()) {
+                        el.innerHTML = '<span class="math-error">' + tex + '</span>';
+                    }
+                } catch (e) {
+                    el.innerHTML = '<span class="math-error">' + tex + '</span>';
+                }
+            });
+        });
+    </script>
+
+<!-- ICS 人工智能助手 -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
+<script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+</body>
+</html>

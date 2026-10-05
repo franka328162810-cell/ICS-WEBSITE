@@ -1,0 +1,754 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
+    <meta name="theme-color" content="#a78bfa">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日热点评论归档 | 星际文明研究所</title>
+    <meta name="description" content="ICS每日热点评论的历史存档，涵盖科技与文明发展的深度思考">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="星际文明学 | ICS">
+    <meta property="og:title" content="每日热点评论归档 | 星际文明研究所">
+    <meta property="og:description" content="ICS每日热点评论的历史存档，涵盖科技与文明发展的深度思考">
+    <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="每日热点评论归档 | 星际文明研究所">
+    <meta name="twitter:description" content="ICS每日热点评论的历史存档，涵盖科技与文明发展的深度思考">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-deep-space: #0a1628;
+            --color-quantum-purple: #7c3aed;
+            --color-quantum-purple-light: #a78bfa;
+            --color-nebula-cyan: #06b6d4;
+            --color-nebula-cyan-light: #22d3ee;
+            --color-energy-gold: #f59e0b;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e2e8f0;
+            --font-zh-sans: 'Noto Sans SC', sans-serif;
+            --font-en-display: 'Orbitron', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 14px !important;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-zh-sans);
+            font-weight: 300;
+            background: var(--color-deep-space);
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .nav-title {
+            font-family: var(--font-en-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-link {
+            font-family: var(--font-zh-sans);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--color-quantum-purple-light);
+        }
+        
+        .page-hero {
+            position: relative;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+        
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+        
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .nebula-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--color-quantum-purple), transparent);
+            top: -100px;
+            left: -100px;
+        }
+        
+        .nebula-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--color-nebula-cyan), transparent);
+            bottom: -50px;
+            right: -50px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+        
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .page-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-quantum-purple-light) 50%, var(--color-nebula-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 4rem 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .archive-intro {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .archive-intro p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.9;
+        }
+        
+        .archive-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .archive-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--color-quantum-purple) 0%, transparent 100%);
+        }
+        
+        .archive-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .archive-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: 50%;
+            padding-right: 2rem;
+        }
+        
+        .archive-item:nth-child(even) {
+            margin-left: 50%;
+            margin-right: 0;
+            padding-left: 2rem;
+        }
+        
+        .archive-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--color-quantum-purple);
+            border-radius: 50%;
+            border: 3px solid var(--color-deep-space);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+        }
+        
+        .archive-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .archive-card:hover {
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+            transform: translateY(-4px);
+        }
+        
+        .archive-date {
+            font-family: var(--font-zh-sans);
+            font-size: 0.95rem;
+            color: var(--color-nebula-cyan);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .archive-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        
+        .archive-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(167, 139, 250, 0.15);
+            color: var(--color-quantum-purple-light);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+        
+        .archive-link:hover {
+            background: rgba(167, 139, 250, 0.25);
+            transform: translateX(4px);
+        }
+        
+        .footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            padding: 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+            
+            .page-hero {
+                padding: 8rem 2rem 6rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-container {
+                padding: 0.875rem 1.25rem;
+            }
+            
+            .nav-logo {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .nav-title {
+                font-size: 1.25rem;
+            }
+            
+            .page-title {
+                font-size: 1.625rem;
+                line-height: 1.3;
+            }
+            
+            .page-hero {
+                padding: 7rem 1.25rem 5rem;
+            }
+            
+            .archive-timeline {
+                padding: 2rem 1rem;
+            }
+            
+            .archive-timeline::before {
+                left: 15px;
+            }
+            
+            .archive-item {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-left: 50px !important;
+            }
+            
+            .archive-dot {
+                left: 15px;
+                width: 10px;
+                height: 10px;
+            }
+        }
+    </style>
+    <!-- ICS-SEO-START -->
+    <link rel="canonical" href="https://ics-studies.org/zh/每日热点评论归档.html">
+    <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/news-archive.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/每日热点评论归档.html">
+    <link rel="alternate" hreflang="x-default" href="https://ics-studies.org/en/news-archive.html">
+    <meta name="description" content="每日热点评论归档 | 星际文明研究所。GPT-5.4在OSWorld-V以75%得分首次系统性超越人类基准（72.4%），同周白宫发布不设监管机构的AI治理框架。ICS框架从RFD、FRL-5、NL-3视角分析这场文明级时间赛跑。">
+
+    <meta property="og:type" content="article">
+
+    <meta property="og:title" content="每日热点评论归档 | 星际文明研究所">
+
+    <meta property="og:description" content="每日热点评论归档 | 星际文明研究所。GPT-5.4在OSWorld-V以75%得分首次系统性超越人类基准（72.4%），同周白宫发布不设监管机构的AI治理框架。ICS框架从RFD、FRL-5、NL-3视角分析这场文明级时间赛跑。">
+
+    <meta property="og:url" content="https://ics-studies.org/zh/每日热点评论归档.html">
+    <meta property="og:site_name" content="Interstellar Civilization Studies">
+
+    <meta property="og:locale" content="en">
+
+    <meta property="og:locale:alternate" content="zh">
+    <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
+
+    <meta property="og:image:width" content="1200">
+
+    <meta property="og:image:height" content="630">
+
+    <meta property="og:image:type" content="image/jpeg">
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="每日热点评论归档 | 星际文明研究所">
+
+    <meta name="twitter:description" content="每日热点评论归档 | 星际文明研究所。GPT-5.4在OSWorld-V以75%得分首次系统性超越人类基准（72.4%），同周白宫发布不设监管机构的AI治理框架。ICS框架从RFD、FRL-5、NL-3视角分析这场文明级时间赛跑。">
+
+    <meta name="twitter:image" content="https://ics-studies.org/images/og-default.jpg">
+
+    <script type="application/ld+json">
+
+    {
+
+      "@context": "https://schema.org",
+
+      "@type": "ScholarlyArticle",
+
+      "headline": "每日热点评论归档 | 星际文明研究所",
+
+      "datePublished": "",
+
+      "author": {"@type": "Organization", "name": "ICS Research Institute"},
+
+      "publisher": {"@type": "Organization", "name": "Interstellar Civilization Studies"},
+
+      "description": "每日热点评论归档 | 星际文明研究所。GPT-5.4在OSWorld-V以75%得分首次系统性超越人类基准（72.4%），同周白宫发布不设监管机构的AI治理框架。ICS框架从RFD、FRL-5、NL-3视角分析这场文明级时间赛跑。",
+
+      "mainEntityOfPage": {
+
+        "@type": "WebPage",
+
+        "@id": "https://ics-studies.org/zh/每日热点评论归档.html"
+
+      }
+
+    }
+
+    </script>
+
+    <!-- ICS-SEO-END -->
+  <style id="nav-actions-patch-r78">
+/* ═══ 第78轮补丁A：消除折行 + 取消 .nav-link 左右内边距 ═══ */
+.nav-links {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  list-style: none;
+  min-width: 0;
+}
+.nav-links > li {
+  display: flex;
+  align-items: center;
+  min-height: 0 !important;
+  height: auto !important;
+  flex: 0 0 auto;
+}
+.nav-link {
+  padding: 0.5rem 0 !important;
+  background: none !important;
+  display: inline-block;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+
+
+/* ═══ 第78轮：导航操作区补齐（原缺失 .nav-actions）═══ */
+.nav-actions { display: flex; align-items: center; gap: 1.5rem; flex-shrink: 0; }
+.nav-search {
+  background: none; border: none; color: rgba(255,255,255,0.6);
+  cursor: pointer; padding: 0.5rem; transition: color 0.3s ease;
+  display: flex; align-items: center;
+}
+.nav-search:hover { color: var(--color-quantum-purple-light, #a78bfa); }
+.nav-search svg { width: 20px; height: 20px; }
+.lang-switch { display: flex; gap: 0.5rem; }
+.lang-btn {
+  font-family: var(--font-zh-sans, 'Noto Sans SC', sans-serif);
+  font-size: 0.875rem; font-weight: 500;
+  padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none;
+  color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.05em;
+  transition: all 0.3s ease; white-space: nowrap;
+}
+.lang-btn:hover { color: rgba(255,255,255,0.9); }
+.lang-btn.active { background: rgba(167,139,250,0.2); color: var(--color-quantum-purple-light, #a78bfa); }
+.nav-launch {
+  font-family: var(--font-zh-sans, 'Noto Sans SC', sans-serif);
+  font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em;
+    height: 38px; padding: 0 18px;
+  display: flex; align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff; border-radius: 10px; text-decoration: none;
+  white-space: nowrap; flex-shrink: 0;
+  transition: all 0.3s ease; box-shadow: 0 0 18px rgba(245,158,11,0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245,158,11,0.5); }
+.nav-contact {
+  font-family: var(--font-zh-sans, 'Noto Sans SC', sans-serif);
+  font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-quantum-purple, #7c3aed), var(--color-nebula-cyan, #06b6d4));
+  color: #ffffff; text-decoration: none; text-transform: uppercase;
+  letter-spacing: 0.05em; border-radius: 8px;
+  transition: all 0.3s ease; white-space: nowrap;
+}
+.nav-contact:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(167,139,250,0.3); }
+
+
+/* 深页导航响应式（与全站 v5 同节拍） */
+@media (max-width: 1600px) {
+  .nav-links { gap: 1.7rem; }
+  .nav-link { font-size: 0.875rem; letter-spacing: 0.05em; }
+  .nav-actions { gap: 1.05rem; }
+  .nav-launch { height: 38px; padding: 0 18px; font-size: 0.8125rem; }
+}
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.8rem; letter-spacing: 0.03em; }
+  .nav-actions { gap: 0.74rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.76rem; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.85rem; }
+  .nav-link { font-size: 0.74rem; letter-spacing: 0.02em; }
+  .nav-actions { gap: 0.53rem; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.7rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.65rem; }
+  .nav-link { font-size: 0.68rem; letter-spacing: 0.01em; }
+  .nav-actions { gap: 0.4rem; }
+  .nav-launch { height: 29px; padding: 0 8px; font-size: 0.64rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.5rem; }
+  .nav-link { font-size: 0.63rem; letter-spacing: 0; }
+  .nav-actions { gap: 0.31rem; }
+  .nav-launch { height: 27px; padding: 0 7px; font-size: 0.6rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.36rem; }
+  .nav-link { font-size: 0.58rem; letter-spacing: -0.01em; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-launch { height: 25px; padding: 0 6px; font-size: 0.55rem; }
+}
+@media (min-width: 1024px) { .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; } }
+
+/* ═══ 第78轮补丁F：布局硬约束 + 按页字号 ═══ */
+/* 布局硬约束：三区块互不重叠、互不越界 */
+.nav-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+}
+.nav-brand { flex: 0 0 auto !important; }
+.nav-links {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  margin: 0 0.6rem !important;
+}
+.nav-links > li { flex: 0 0 auto !important; min-height: 0 !important; }
+.nav-link { padding: 0.5rem 0 !important; background: none !important; display: inline-block !important; }
+.nav-actions { flex: 0 0 auto !important; margin-left: auto !important; }
+
+/* 按页字号梯度（实测：ZH） */
+@media (min-width: 1600px) {
+  .nav-link { font-size: 0.84rem !important; letter-spacing: 0.015em !important; }
+  .nav-links { gap: 0.9rem !important; }
+  .nav-actions { gap: 0.6rem !important; }
+  .nav-launch { height: 34px !important; padding: 0 12px !important; font-size: 0.78rem !important; }
+  .lang-btn { padding: 0.42rem 0.66rem !important; font-size: 0.72rem !important; }
+  .nav-contact { padding: 0.58rem 1rem !important; font-size: 0.76rem !important; }
+  .nav-search svg { width: 18px !important; height: 18px !important; }
+}
+@media (min-width: 1366px) and (max-width: 1599px) {
+  .nav-link { font-size: 0.80rem !important; letter-spacing: 0.012em !important; }
+  .nav-links { gap: 0.8rem !important; }
+  .nav-actions { gap: 0.55rem !important; }
+  .nav-launch { height: 33px !important; padding: 0 11px !important; font-size: 0.74rem !important; }
+  .lang-btn { padding: 0.4rem 0.62rem !important; font-size: 0.7rem !important; }
+  .nav-contact { padding: 0.55rem 0.95rem !important; font-size: 0.73rem !important; }
+  .nav-search svg { width: 17px !important; height: 17px !important; }
+}
+@media (min-width: 1025px) and (max-width: 1365px) {
+  .nav-link { font-size: 0.76rem !important; letter-spacing: 0.008em !important; }
+  .nav-links { gap: 0.68rem !important; }
+  .nav-actions { gap: 0.48rem !important; }
+  .nav-launch { height: 31px !important; padding: 0 9px !important; font-size: 0.70rem !important; }
+  .lang-btn { padding: 0.36rem 0.55rem !important; font-size: 0.66rem !important; }
+  .nav-contact { padding: 0.5rem 0.85rem !important; font-size: 0.68rem !important; }
+  .nav-search svg { width: 16px !important; height: 16px !important; }
+}
+
+@media (max-width: 1024px) {
+  .nav-link { font-size: 0.62rem !important; letter-spacing: 0 !important; }
+  .nav-links { gap: 0.42rem !important; }
+  .nav-actions { gap: 0.35rem !important; }
+  .nav-launch { height: 28px !important; padding: 0 7px !important; font-size: 0.56rem !important; }
+  .lang-btn { padding: 0.3rem 0.44rem !important; font-size: 0.62rem !important; }
+  .nav-contact { padding: 0.44rem 0.7rem !important; font-size: 0.62rem !important; }
+  .nav-search svg { width: 15px !important; height: 15px !important; }
+}
+</style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
+                    <circle cx="22" cy="22" r="5" fill="rgba(167,139,250,0.9)" />
+                </svg>
+                <span class="nav-title">ICS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="首页.html" class="nav-link">首页</a></li>
+                <li><a href="关于星际文明学.html" class="nav-link">关于</a></li>
+                <li><a href="著作概述.html" class="nav-link">出版物</a></li>
+                <li><a href="资源.html" class="nav-link">资源</a></li>
+                <li><a href="焦点（公开版）.html" class="nav-link active">焦点（公开版）</a></li>
+                <li><a class='nav-link' href='/zh/briefing'>会员</a></li>
+                <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
+            </ul>
+          <div class="nav-actions">
+    <button class="nav-search" aria-label="搜索">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+    </svg>
+</button>
+    <div class="lang-switch">
+        <a class='lang-btn' href='/en/focus/'>EN</a>
+        <a href="/zh/每日热点评论归档.html" class="lang-btn active">中文</a>
+    </div>
+    <a class='nav-launch' href='/zh/launch'>预告</a>
+    <a href="/zh/联系我们.html" class="nav-contact">联系我们</a>
+</div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="nebula nebula-1"></div>
+            <div class="nebula nebula-2"></div>
+        </div>
+        <div class="page-hero-content">
+            <h1 class="page-title">评论历史归档</h1>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="archive-intro">
+                <p>📚 浏览星际文明研究所过往的观点评论。每条评论都连接前沿新闻与长期思考。</p>
+            </div>
+
+            <div class="archive-timeline" id="archiveTimeline">
+                <!-- 归档内容将由脚本插入 -->
+                <div class="archive-item">
+                    <div class="archive-dot"></div>
+                    <div class="archive-card">
+                        <div class="archive-date">2026年3月27日</div>
+                        <h3 class="archive-title">当AI开始替代同事，谁来替代边界？——GPT-5.4与白宫AI治理框架的双重冲击</h3>
+                        <p class="archive-excerpt">GPT-5.4在OSWorld-V以75%得分首次系统性超越人类基准（72.4%），同周白宫发布不设监管机构的AI治理框架。ICS框架从RFD、FRL-5、NL-3视角分析这场文明级时间赛跑。</p>
+                        <a href="/">阅读完整评论 →</a>
+                    </div>
+                </div>
+                <div class="archive-item">
+                    <div class="archive-dot"></div>
+                    <div class="archive-card">
+                        <div class="archive-date">2025年1月15日</div>
+                        <h3 class="archive-title">OpenAI发布GPT-5：通用人工智能的新里程碑</h3>
+                        <p class="archive-excerpt">OpenAI官方发布了最新的GPT-5大型语言模型，标志着通用人工智能领域取得新的突破。</p>
+                        <a href="/">阅读完整评论 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-copyright">© 2026 星际文明研究所。保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 从文件自动生成归档列表（简化版用于静态生成）
+        document.addEventListener('DOMContentLoaded', function() {
+            const timeline = document.getElementById('archiveTimeline');
+            // 归档项目将在网站生成时填充
+        });
+    </script>
+        <script src="/js/search-redirect.js"></script>
+<script src="/js/mobile-nav.js"></script>
+
+<!-- ICS 人工智能助手 -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
+<script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYTdkNDlmNmI4YzhiNmVjYzAzOGY0NCIsImlzc3VlciI6Im5mc2VydmVyIn0.qWSXGKro5gRiLq8OryUbhFv3zhc7ju2X9QaeDutmtqg"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3b7f02a0d0976ff',t:'MTc4OTQ3ODUyNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYmRmYWRmOGI5NzM4NDY3MzQ1YTZiYSIsImlzc3VlciI6Im5mc2VydmVyIn0.xdj6oT1RiBrvD02NxfZ3qz-cFAPPUpXoSKbeWGab3uE"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a43b18a74c2ca4bf',t:'MTc5MDg1MzgxNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"232b9d8552444a2e8f9dcfe63b091169","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+
+</html>

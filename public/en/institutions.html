@@ -53,7 +53,7 @@
 
             
             --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-secondary: #e2e8f0;
             --color-text-tertiary: rgba(255, 255, 255, 0.6);
 
             
@@ -180,9 +180,8 @@
         .nav-link {
             font-family: var(--font-en-display);
             font-size: 0.875rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: 0.1em;
             color: rgba(255, 255, 255, 0.75);
             padding: 8px 0;
             position: relative;
@@ -925,13 +924,107 @@
             }
 }
     </style>
+
+<style id="nav-responsive-patch">
+/* ICS 导航响应式补丁 v5：9 项导航 + Launch + 语言切换在 1024px 以上完整显示 */
+/* 关键：.nav-link 取消左右内边距（原 16px×2 每项，9 项浪费 288px）；Launch 永不隐藏，仅逐档缩尺寸 */
+.navbar { padding: 0; }
+.navbar.scrolled { padding: 0; }
+.nav-container { padding: 1rem 2rem; }
+.nav-link {
+  white-space: nowrap;
+  padding: 0.5rem 0 !important;
+  background: none !important;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+.nav-actions { flex-shrink: 0; }
+.nav-brand { flex-shrink: 0; }
+
+/* ── Launch 按钮（第77轮补齐：原为浏览器默认裸链接）── */
+.nav-launch {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  height: 38px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; }
+}
+@media (max-width: 1600px) { .nav-links { gap: 1.7rem; } }
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; letter-spacing: 0.02em; }
+  .nav-actions { gap: 0.75rem; }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.7rem; }
+  .nav-brand-text { display: none; }
+}
+@media (max-width: 1366px) {
+  .nav-links { gap: 1rem; }
+  .nav-link { font-size: 0.75rem; letter-spacing: 0.015em; }
+  .nav-launch { height: 34px; padding: 0 12px; font-size: 0.66rem; }
+  .nav-actions { gap: 0.65rem; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.82rem; }
+  .nav-link { font-size: 0.71rem; letter-spacing: 0.01em; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.62rem; }
+  .nav-actions { gap: 0.55rem; }
+}
+@media (max-width: 1280px) {
+  .nav-links { gap: 0.7rem; }
+  .nav-link { font-size: 0.67rem; letter-spacing: 0.005em; }
+  .nav-launch { height: 30px; padding: 0 9px; font-size: 0.58rem; }
+  .nav-actions { gap: 0.5rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.58rem; }
+  .nav-link { font-size: 0.62rem; letter-spacing: 0; }
+  .nav-launch { height: 28px; padding: 0 7px; font-size: 0.54rem; }
+  .nav-actions { gap: 0.42rem; }
+  .nav-container { padding: 0.9rem 1.15rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.45rem; }
+  .nav-link { font-size: 0.57rem; letter-spacing: -0.005em; }
+  .nav-launch { height: 26px; padding: 0 6px; font-size: 0.5rem; border-radius: 8px; }
+  .nav-actions { gap: 0.35rem; }
+  .nav-search svg { width: 16px; height: 16px; }
+  .lang-btn { padding: 0.26rem 0.4rem; font-size: 0.64rem; }
+  .nav-contact, .nav-cta { padding: 0.46rem 0.7rem; font-size: 0.68rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.32rem; }
+  .nav-link { font-size: 0.53rem; letter-spacing: -0.015em; }
+  .nav-launch { height: 25px; padding: 0 5px; font-size: 0.48rem; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-container { padding: 0.8rem 0.9rem; }
+  .nav-contact, .nav-cta { padding: 0.42rem 0.62rem; font-size: 0.65rem; }
+  .lang-btn { padding: 0.22rem 0.34rem; font-size: 0.6rem; }
+}
+</style>
 </head>
 
 <body data-page="institutional-design" data-lang="en">
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="/en/index.html" class="nav-brand">
+            <a class='nav-brand' href='/en/'>
                 <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
                     <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
@@ -948,12 +1041,16 @@
             </a>
 
             <ul class="nav-links">
-                <li><a href="/en/index.html" class="nav-link">Home</a></li>
-                <li><a href="/en/about.html" class="nav-link active">About</a></li>
-                <li><a href="/en/book-overview.html" class="nav-link">Publications</a></li>
-                <li><a href="/en/resources.html" class="nav-link">Resources</a></li>
-                <li><a href="/en/daily-commentary.html" class="nav-link">News</a></li>
-                <li><a href="/en/ai-assistant.html" class="nav-link">AI Assistant</a></li>
+                <li><a class='nav-link' href='/en/'>Home</a></li>
+                <li><a class='nav-link active' href='/en/about'>About</a></li>
+                <li><a class='nav-link' href='/en/book-overview'>Publications</a></li>
+                <li><a class='nav-link' href='/en/resources'>Resources</a></li>
+                <li><a class='nav-link' href='/en/focus-public-edition'>Focus (Public Edition)</a></li>
+                <li><a class='nav-link' href='/en/briefing'>Membership</a></li>
+                <li><a class='nav-link' href='/en/newsletter'>Community</a></li>
+
+                <li><a class='nav-link' href='/en/in-depth-research'>Research</a></li>
+                <li><a class='nav-link' href='/en/ai-assistant'>AI Assistant</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -964,10 +1061,11 @@
                     </svg>
                 </button>
                 <div class="lang-switch">
-                    <a href="institutions.html" class="lang-btn active">EN</a>
+                    <a class='lang-btn active' href='/en/institutions'>EN</a>
                     <a href="../zh/制度设计.html" class="lang-btn">中文</a>
                 </div>
-                <a href="/en/contact-us.html" class="nav-contact">Contact</a>
+                <a class='nav-launch' href='/en/launch'>Launch</a>
+                <a class='nav-contact' href='/en/contact-us'>Contact</a>
             </div>
         </div>
     </nav>
@@ -1288,15 +1386,15 @@
             <div class="related-links">
                 <h3 class="en-subsection-title">Related Links</h3>
                 <div class="links-grid">
-                    <a href="normative-principles.html" class="link-item">
+                    <a class='link-item' href='/en/normative-principles'>
                         <span class="link-text">Normative Principles</span>
                         <span class="link-arrow">→</span>
                     </a>
-                    <a href=" metrics.html" class="link-item">
+                    <a class='link-item' href='/en/metrics'>
                         <span class="link-text">Metrics System</span>
                         <span class="link-arrow">→</span>
                     </a>
-                    <a href="/en/applications.html" class="link-item">
+                    <a class='link-item' href='/en/applications'>
                         <span class="link-text">Application Domains</span>
                         <span class="link-arrow">→</span>
                     </a>
@@ -1329,34 +1427,34 @@
             </div>
             <div class="footer-col">
                 <h4>Discipline</h4>
-                <a href="/en/about.html">Overview</a>
-                <a href="/en/index.html">Core Concepts</a>
-                <a href="institutions.html">Methodology</a>
+                <a href='/en/about'>Overview</a>
+                <a href='/en/'>Core Concepts</a>
+                <a href='/en/institutions'>Methodology</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
-                <a href="publication-information.html">Publications</a>
-                <a href="/en/resources.html">Reading List</a>
-                <a href="/en/resources.html">Glossary</a>
+                <a href='/en/publication-information'>Publications</a>
+                <a href='/en/resources'>Reading List</a>
+                <a href='/en/resources'>Glossary</a>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <a href="/en/contact-us.html">Contact Us</a>
-                <a href="/en/contact-us.html">franka328162810@gmail.com</a>
-                <a href="/en/newsletter.html">Newsletter</a>
+                <a href='/en/contact-us'>Contact Us</a>
+                <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>
+                <a href='/en/newsletter'>The Brief</a>
             </div>
         </div>
         <div class="footer-bottom">
             <span class="footer-copyright">© 2026 Interstellar Civilization Studies. All rights reserved.</span>
             <div class="footer-links">
-                <a href="/en/privacy.html">Privacy Policy</a>
-                <a href="/en/terms.html">Terms of Service</a>
+                <a href='/en/privacy'>Privacy Policy</a>
+                <a href='/en/terms'>Terms of Service</a>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navigation Scroll Effect
         const navbar = document.getElementById('navbar');
         let lastScroll = 0;
@@ -1406,11 +1504,13 @@
             observer.observe(section);
         });
 
-        // Search Button Placeholderdocument.querySelector('.nav-search').addEventListener('click', function () {
+        // Search Button Placeholder
+        document.querySelector('.nav-search').addEventListener('click', function () {
         alert('Search functionality coming soon');
         });
 
-        // Table Row Highlightdocument.querySelectorAll('.modern-table tbody tr').forEach(row => {
+        // Table Row Highlight
+        document.querySelectorAll('.modern-table tbody tr').forEach(row => {
         row.addEventListener('click', function () {
             document.querySelectorAll('.modern-table tbody tr').forEach(r => {
                 r.style.background = '';
@@ -1437,7 +1537,47 @@
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS AI Assistant -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYTdkNDlmNmI4YzhiNmVjYzAzOGY0NCIsImlzc3VlciI6Im5mc2VydmVyIn0.qWSXGKro5gRiLq8OryUbhFv3zhc7ju2X9QaeDutmtqg"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3b7efe32b3ccd83',t:'MTc4OTQ3ODUxMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYmRmYWRmOGI5NzM4NDY3MzQ1YTZiYSIsImlzc3VlciI6Im5mc2VydmVyIn0.xdj6oT1RiBrvD02NxfZ3qz-cFAPPUpXoSKbeWGab3uE"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a43b147d1b41feb9',t:'MTc5MDg1MzY0Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"232b9d8552444a2e8f9dcfe63b091169","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 
 </html>

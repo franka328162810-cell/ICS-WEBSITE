@@ -7,9 +7,9 @@
     <meta name="theme-color" content="#a78bfa">
     <link rel="manifest" href="/manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Overview | Interstellar Civilization Studies</title>
+    <title>Publications | Interstellar Civilization Studies</title>
     <meta name="description"
-        content="Overview of 'Normative Foundations of Interstellar Civilization', including book introduction, author profile, writing background, and core contributions">
+        content="The complete publication record of Interstellar Civilization Studies: The Normative Reconstruction of Interstellar Civilization (Second Edition, 2027) — a six-volume, 4.68-million-character scholarly system — and its predecessor, The Normative Foundations of Interstellar Civilization (First Edition, 2026, four volumes, Zenodo preprint).">
     <link rel="canonical" href="https://ics-studies.org/en/book-overview.html">
     <link rel="alternate" hreflang="en" href="https://ics-studies.org/en/book-overview.html">
     <link rel="alternate" hreflang="zh-CN" href="https://ics-studies.org/zh/%E8%91%97%E4%BD%9C%E6%A6%82%E8%BF%B0.html">
@@ -17,15 +17,15 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Interstellar Civilization Studies | ICS">
-    <meta property="og:title" content="Book Overview | Interstellar Civilization Studies">
-    <meta property="og:description" content="Overview of">
+    <meta property="og:title" content="Publications | Interstellar Civilization Studies">
+    <meta property="og:description" content="The complete publication record of Interstellar Civilization Studies: The Normative Reconstruction of Interstellar Civilization (Second Edition, 2027) — a six-volume, 4.68-million-character scholarly system — and its predecessor, The Normative Foundations of Interstellar Civilization (First Edition, 2026, four volumes, Zenodo preprint).">
     <meta property="og:image" content="https://ics-studies.org/images/og-default.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpeg">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Book Overview | Interstellar Civilization Studies">
-    <meta name="twitter:description" content="Overview of">
+    <meta name="twitter:title" content="Publications | Interstellar Civilization Studies">
+    <meta name="twitter:description" content="The complete publication record of Interstellar Civilization Studies: The Normative Reconstruction of Interstellar Civilization (Second Edition, 2027) — a six-volume, 4.68-million-character scholarly system — and its predecessor, The Normative Foundations of Interstellar Civilization (First Edition, 2026, four volumes, Zenodo preprint).">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -36,6 +36,10 @@
     <link rel="stylesheet" href="../css/ics-en.css">
     <style>
         :root {
+            /* P1-9 收尾：补齐历史遗留的悬空设计令牌 */
+            --radius-md: 12px;
+            --shadow-glow: 0 4px 20px rgba(124, 58, 237, 0.4);
+
             --color-deep-space: #0a1628;
             --color-quantum-purple: #7c3aed;
             --color-quantum-purple-light: #a78bfa;
@@ -44,7 +48,7 @@
             --color-energy-gold: #f59e0b;
             --color-energy-gold-light: #fbbf24;
             --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-secondary: #e2e8f0;
             --font-en-sans: 'Inter', sans-serif;
             --font-en-display: 'Orbitron', sans-serif;
             --transition-normal: 0.3s ease;
@@ -134,11 +138,10 @@
         .nav-link {
             font-family: var(--font-en-display);
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 400;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
             transition: color var(--transition-normal);
         }
 
@@ -212,6 +215,28 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
         }
+        .nav-launch {
+            font-family: var(--font-en-display);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            height: 42px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-launch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+        }
+
 
         .page-hero {
             position: relative;
@@ -707,12 +732,259 @@
             }
 }
     </style>
+
+<style id="nav-responsive-patch">
+/* ICS 导航响应式补丁 v5：9 项导航 + Launch + 语言切换在 1024px 以上完整显示 */
+/* 关键：.nav-link 取消左右内边距（原 16px×2 每项，9 项浪费 288px）；Launch 永不隐藏，仅逐档缩尺寸 */
+.navbar { padding: 0; }
+.navbar.scrolled { padding: 0; }
+.nav-container { padding: 1rem 2rem; }
+.nav-link {
+  white-space: nowrap;
+  padding: 0.5rem 0 !important;
+  background: none !important;
+}
+.nav-link:hover, .nav-link.active { background: none !important; }
+.nav-actions { flex-shrink: 0; }
+.nav-brand { flex-shrink: 0; }
+
+/* ── Launch 按钮（第77轮补齐：原为浏览器默认裸链接）── */
+.nav-launch {
+  font-family: var(--font-en-display, 'Orbitron', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  height: 38px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; }
+}
+@media (max-width: 1600px) { .nav-links { gap: 1.7rem; } }
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; letter-spacing: 0.02em; }
+  .nav-actions { gap: 0.75rem; }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.7rem; }
+  .nav-brand-text { display: none; }
+}
+@media (max-width: 1366px) {
+  .nav-links { gap: 1rem; }
+  .nav-link { font-size: 0.75rem; letter-spacing: 0.015em; }
+  .nav-launch { height: 34px; padding: 0 12px; font-size: 0.66rem; }
+  .nav-actions { gap: 0.65rem; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.82rem; }
+  .nav-link { font-size: 0.71rem; letter-spacing: 0.01em; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.62rem; }
+  .nav-actions { gap: 0.55rem; }
+}
+@media (max-width: 1280px) {
+  .nav-links { gap: 0.7rem; }
+  .nav-link { font-size: 0.67rem; letter-spacing: 0.005em; }
+  .nav-launch { height: 30px; padding: 0 9px; font-size: 0.58rem; }
+  .nav-actions { gap: 0.5rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.58rem; }
+  .nav-link { font-size: 0.62rem; letter-spacing: 0; }
+  .nav-launch { height: 28px; padding: 0 7px; font-size: 0.54rem; }
+  .nav-actions { gap: 0.42rem; }
+  .nav-container { padding: 0.9rem 1.15rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.45rem; }
+  .nav-link { font-size: 0.57rem; letter-spacing: -0.005em; }
+  .nav-launch { height: 26px; padding: 0 6px; font-size: 0.5rem; border-radius: 8px; }
+  .nav-actions { gap: 0.35rem; }
+  .nav-search svg { width: 16px; height: 16px; }
+  .lang-btn { padding: 0.26rem 0.4rem; font-size: 0.64rem; }
+  .nav-contact, .nav-cta { padding: 0.46rem 0.7rem; font-size: 0.68rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.32rem; }
+  .nav-link { font-size: 0.53rem; letter-spacing: -0.015em; }
+  .nav-launch { height: 25px; padding: 0 5px; font-size: 0.48rem; }
+  .nav-actions { gap: 0.3rem; }
+  .nav-container { padding: 0.8rem 0.9rem; }
+  .nav-contact, .nav-cta { padding: 0.42rem 0.62rem; font-size: 0.65rem; }
+  .lang-btn { padding: 0.22rem 0.34rem; font-size: 0.6rem; }
+}
+
+        /* ===== 专著页新增组件（对齐 网站策划.docx 设计规范） ===== */
+        .ed-badge {
+            display: inline-block;
+            font-family: var(--font-en-body);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-energy-gold-light);
+            border: 1px solid rgba(245, 158, 11, 0.34);
+            background: rgba(245, 158, 11, 0.08);
+            border-radius: 999px;
+            padding: 0.28rem 0.8rem;
+            margin-left: 0.6rem;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .ed-badge--prev {
+            color: var(--color-nebula-cyan-light);
+            border-color: rgba(34, 211, 238, 0.3);
+            background: rgba(6, 182, 212, 0.07);
+        }
+
+        .section-lead {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 1.75rem;
+            max-width: 860px;
+        }
+
+        .vol-link {
+            color: var(--color-quantum-purple-light);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .vol-link:hover {
+            color: var(--color-nebula-cyan-light);
+            text-decoration: underline;
+        }
+
+        .vol-meta {
+            display: block;
+            margin-top: 0.65rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .new-tag {
+            display: inline-block;
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-energy-gold-light);
+            border: 1px solid rgba(245, 158, 11, 0.34);
+            background: rgba(245, 158, 11, 0.08);
+            border-radius: 4px;
+            padding: 0.1rem 0.42rem;
+            margin-left: 0.4rem;
+            vertical-align: 1px;
+        }
+
+        .cite-block {
+            border-left: 3px solid var(--color-energy-gold);
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 4px;
+            padding: 1rem 1.25rem;
+            margin-top: 0.6rem;
+        }
+
+        .cite-block p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin: 0;
+            word-break: break-word;
+        }
+
+        .cite-block a {
+            color: var(--color-energy-gold-light);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .cite-block a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight-box--notice {
+            border-left-color: var(--color-nebula-cyan);
+            background: rgba(6, 182, 212, 0.06);
+        }
+
+        .layer-flow {
+            margin-top: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.35rem;
+        }
+
+        .layer-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.9rem;
+            border: 1px solid rgba(167, 139, 250, 0.16);
+            background: rgba(124, 58, 237, 0.06);
+            border-radius: 8px;
+            padding: 0.7rem 1rem;
+        }
+
+        .layer-tag {
+            font-family: var(--font-en-title);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-quantum-purple-light);
+            min-width: 1.9rem;
+        }
+
+        .layer-name {
+            font-size: 0.94rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .layer-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .layer-arrow {
+            text-align: center;
+            color: rgba(167, 139, 250, 0.5);
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            .layer-row {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .ed-badge {
+                display: block;
+                margin: 0.5rem 0 0 0;
+                width: fit-content;
+            }
+        }
+</style>
 </head>
 
 <body>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="/en/index.html" class="nav-brand">
+            <a class='nav-brand' href='/en/'>
                 <svg class="nav-logo" viewBox="0 0 44 44" fill="none">
                     <circle cx="22" cy="22" r="20" stroke="rgba(167,139,250,0.25)" stroke-width="1" fill="none" />
                     <circle cx="22" cy="22" r="13" stroke="rgba(6,182,212,0.2)" stroke-width="1" fill="none" />
@@ -729,12 +1001,16 @@
             </a>
 
             <ul class="nav-links">
-                <li><a href="/en/index.html" class="nav-link">Home</a></li>
-                <li><a href="/en/about.html" class="nav-link active">About</a></li>
-                <li><a href="/en/book-overview.html" class="nav-link">Publications</a></li>
-                <li><a href="/en/resources.html" class="nav-link">Resources</a></li>
-                <li><a href="/en/daily-commentary.html" class="nav-link">News</a></li>
-                <li><a href="/en/ai-assistant.html" class="nav-link">AI Assistant</a></li>
+                <li><a class='nav-link' href='/en/'>Home</a></li>
+                <li><a class='nav-link' href='/en/about'>About</a></li>
+                <li><a class='nav-link active' href='/en/book-overview'>Publications</a></li>
+                <li><a class='nav-link' href='/en/resources'>Resources</a></li>
+                <li><a class='nav-link' href='/en/focus-public-edition'>Focus (Public Edition)</a></li>
+                <li><a class='nav-link' href='/en/briefing'>Membership</a></li>
+                <li><a class='nav-link' href='/en/newsletter'>Community</a></li>
+
+                <li><a class='nav-link' href='/en/in-depth-research'>Research</a></li>
+                <li><a class='nav-link' href='/en/ai-assistant'>AI Assistant</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -745,10 +1021,11 @@
                     </svg>
                 </button>
                 <div class="lang-switch">
-                    <a href="/en/book-overview.html" class="lang-btn active">EN</a>
-                    <a href="../zh/著作概述.html" class="lang-btn">中文</a>
+                    <a class='lang-btn active' href='/en/book-overview'>EN</a>
+                    <a href="../zh/%E8%91%97%E4%BD%9C%E6%A6%82%E8%BF%B0.html" class="lang-btn">中文</a>
                 </div>
-                <a href="/en/contact-us.html" class="nav-contact">Contact</a>
+                <a class='nav-launch' href='/en/launch'>Launch</a>
+                <a class='nav-contact' href='/en/contact-us'>Contact</a>
             </div>
         </div>
     </nav>
@@ -760,12 +1037,16 @@
         </div>
         <div class="page-hero-content">
             <div class="container">
-                <h1 class="en-page-title">Book Overview</h1>
+                <h1 class="en-page-title">Publications</h1>
                 <div class="hero-intro-card">
-                    <p>"Normative Foundations of Interstellar Civilization" is a groundbreaking work that fills the
-                        theoretical gap in interstellar civilization studies, proposing a complete framework from
-                        ontological reconstruction to institutional design, with direct policy implications for urgent
-                        contemporary issues such as AI governance, space governance, and intergenerational justice.</p>
+                    <p>Interstellar Civilization Studies publishes one continuously revised scholarly system. Its
+                        current form is <em>The Normative Reconstruction of Interstellar Civilization</em> (Second
+                        Edition, 2027 revision, v2.0.0.0) — a six-volume work of <strong>4.68 million
+                        characters</strong> that carries the discipline from philosophical foundations through formal
+                        systems, indicators and institutions, technical implementation, and application, to a closing
+                        appendix volume. Its predecessor, <em>The Normative Foundations of Interstellar
+                        Civilization</em> (First Edition, 2026, four volumes), remains publicly archived as a Zenodo
+                        preprint and is documented in full below.</p>
                 </div>
             </div>
         </div>
@@ -773,286 +1054,336 @@
 
     <main class="main-content">
         <div class="container">
-            <section id="book-intro">
-                <h2 class="en-section-title">Book Introduction</h2>
+            <!-- ============ 当前版本 ============ -->
+            <section id="current-edition">
+                <h2 class="en-section-title">Current Edition</h2>
 
                 <div class="content-card">
-                    <p>Human civilization is experiencing a historic convergence of three pressures: artificial
-                        intelligence approaching the technological singularity of general intelligence, space
-                        exploration transitioning from state action to commercial competition, and global risks such as
-                        climate change approaching critical thresholds. These three pressures amplify each other,
-                        pushing humanity toward a fundamental question: under conditions of deep uncertainty, what could
-                        possibly become the norms for a world containing multiple intelligent agents, spanning
-                        interstellar scales, and affecting the deep future?</p>
-
-                    <p>"Normative Foundations of Interstellar Civilization" directly confronts this challenge, proposing
-                        a complete framework from ontological reconstruction to institutional design.</p>
+                    <h3 class="en-subsection-title">The Normative Reconstruction of Interstellar Civilization
+                        <span class="ed-badge">Second Edition · 2027 Revision · v2.0.0.0</span></h3>
+                    <p><em>New Three Views and Governance under Deep Uncertainty.</em> The Second Edition is the
+                        current scholarly form of Interstellar Civilization Studies. It expands the First Edition from
+                        four volumes to six, repairing five structural weaknesses identified in the year following
+                        first publication, and adds a formal-systems layer and a technical-implementation layer that
+                        were not present before.</p>
+                    <p>It is a complete path from philosophical foundations to technical implementation — a
+                        continuously revised scholarly system whose theorems, indicators and open problems are all
+                        published, including the parts that remain unresolved.</p>
                 </div>
+
+                <div class="highlight-box">
+                    <p><strong>Two ways of counting the same work.</strong> The work is recorded at
+                        <strong>4.68 million characters</strong> — the standardised character count used by the
+                        National Copyright Protection Center (China) for copyright registration and bibliographic
+                        cataloguing. This is a legal and cataloguing figure, not the familiar "word count" of ordinary
+                        reading. The internal reading-length estimate used throughout the volumes is approximately
+                        2.8 million characters. Both figures are correct; they measure different things.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">Scope at a Glance</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Figure</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Volumes</td>
+                                <td>Six (five volumes + appendix volume)</td>
+                            </tr>
+                            <tr>
+                                <td>Characters (standardised)</td>
+                                <td>4.68 million</td>
+                            </tr>
+                            <tr>
+                                <td>Pages</td>
+                                <td>Approximately 2,800</td>
+                            </tr>
+                            <tr>
+                                <td>Chapters</td>
+                                <td>104 chapters across seven parts, plus 18 appendices</td>
+                            </tr>
+                            <tr>
+                                <td>Formal systems</td>
+                                <td>27 independent formal systems</td>
+                            </tr>
+                            <tr>
+                                <td>Theorems / machine-verified proofs</td>
+                                <td>Approximately 180 / approximately 120</td>
+                            </tr>
+                            <tr>
+                                <td>Version</td>
+                                <td>v2.0.0.0 (Second Edition, 2027 revision)</td>
+                            </tr>
+                            <tr>
+                                <td>Author</td>
+                                <td>Xue Zhixin (薛志新)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============ 六卷本 ============ -->
+            <section id="six-volumes">
+                <h2 class="en-section-title">The Six Volumes</h2>
+
+                <p class="section-lead">The six volumes form a single logical progression: from philosophy, through
+                    formal proof and operationalisation, into engineering, testing, and finally the supporting
+                    apparatus. Volume names link to their individual introductions.</p>
 
                 <div class="innovation-grid">
                     <div class="innovation-card">
-                        <svg class="innovation-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <path d="M24 8 L24 24 L32 32" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
-                            <circle cx="24" cy="24" r="3" fill="rgba(167,139,250,0.9)" />
-                        </svg>
-                        <div class="innovation-card-title">Theoretical Innovation: New Three Views Framework</div>
-                        <div class="innovation-card-desc">Proposes the "New Three Views"—New Cosmology, New Biology, and
-                            New Epistemology—as the theoretical core. New Cosmology argues that the universe is
-                            relational, processual, and participatory; New Biology argues that life is cross-substrate,
-                            a continuum sustained by negentropy flow; New Epistemology argues that cognition is
-                            participatory construction, "cognition is intervention." The three views mutually support
-                            each other, providing an onto-epistemological foundation for normative derivation.
-                        </div>
+                        <div class="innovation-card-icon">I</div>
+                        <h3 class="innovation-card-title"><a class='vol-link' href='/en/work-volume-1'>Philosophical
+                                Foundations</a></h3>
+                        <p class="innovation-card-desc">Establishes the ontological, epistemological and normative
+                            foundations of the discipline. Presents the New Three Views (New Cosmology, New Life
+                            View, New Cognition), derives the three normative principles, and engages the principal
+                            criticisms. <span class="vol-meta">14 chapters · approx. 450 pages · substantially
+                                revised</span></p>
                     </div>
-
                     <div class="innovation-card">
-                        <svg class="innovation-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <rect x="12" y="16" width="24" height="4" rx="2" fill="rgba(6,182,212,1)" />
-                            <rect x="12" y="22" width="24" height="4" rx="2" fill="rgba(167,139,250,0.8)" />
-                            <rect x="12" y="28" width="24" height="4" rx="2" fill="rgba(6,182,212,0.6)" />
-                        </svg>
-                        <div class="innovation-card-title">Methodological Innovation: Protocol Stack Governance</div>
-                        <div class="innovation-card-desc">
-                            Borrowing from computer science's protocol stack model, proposes a five-layer governance
-                            architecture (L₀ Physical Constraints Layer → L₁ Onto-Epistemological Layer → L₂ Normative
-                            Principles Layer → L₃ Institutional Design Layer → L₄ Operational Protocol Layer), plus a
-                            versioned rollback loop. This architecture achieves unity between "principle stability" and
-                            "operational flexibility," providing a new paradigm for long-term governance under deep
-                            uncertainty.
-                        </div>
+                        <div class="innovation-card-icon">II</div>
+                        <h3 class="innovation-card-title"><a class='vol-link' href='/en/work-volume-2'>Formal
+                                Systems</a></h3>
+                        <p class="innovation-card-desc">Supplies rigorous formal support for the claims of the whole
+                            work: 27 independent formal systems, approximately 180 theorems and approximately 120
+                            non-trivial machine-verified proofs. <span class="vol-meta">27 chapters · approx. 500
+                                pages · newly written</span></p>
                     </div>
-
                     <div class="innovation-card">
-                        <svg class="innovation-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <path d="M16 28 L20 24 L24 26 L28 20 L32 24" stroke="rgba(6,182,212,1)" stroke-width="2"
-                                fill="none" />
-                            <circle cx="20" cy="24" r="2" fill="rgba(167,139,250,0.9)" />
-                            <circle cx="24" cy="26" r="2" fill="rgba(167,139,250,0.9)" />
-                            <circle cx="28" cy="20" r="2" fill="rgba(167,139,250,0.9)" />
-                        </svg>
-                        <div class="innovation-card-title">Tool Innovation: Indicator System</div>
-                        <div class="innovation-card-desc">
-                            Transforms abstract principles into six measurable indicators: UCS (Universal Consciousness
-                            Scale) measures agent qualification, RFD (Recursive Freedom Degree) measures action's impact
-                            on possibility space, CRV (Commitment Reversibility & Verifiability) measures commitment
-                            verifiability, CDI (Civilization Development Index) measures civilization development level,
-                            MBCL (Memetic Biosafety Level) measures information risk, and CSIA (Cosmic System Impact
-                            Assessment) provides a comprehensive assessment framework.
-                        </div>
+                        <div class="innovation-card-icon">III</div>
+                        <h3 class="innovation-card-title"><a class='vol-link' href='/en/work-volume-3'>Indicators and
+                                Institutions</a></h3>
+                        <p class="innovation-card-desc">Turns theory into operation: a measurement-theoretic
+                            foundation, the six-indicator system (UCS, RFD, CRV, CDI, MBCL, CSIA), the protocol-stack
+                            methodology, core governance institutions, and a legal-implementation path.
+                            <span class="vol-meta">22 chapters · approx. 480 pages · moderately revised</span></p>
                     </div>
-
                     <div class="innovation-card">
-                        <svg class="innovation-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <path d="M18 24 L22 
-28 L30 20" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
-                            <circle cx="24" cy="24" r="10" stroke="rgba(167,139,250,0.8)" stroke-width="2"
-                                fill="none" />
-                        </svg>
-                        <div class="innovation-card-title">Testing Innovation: Stress Tests & Simulation</div>
-                        <div class="innovation-card-desc">
-                            Systematically tests theoretical robustness through four extreme scenarios (AGI
-                            breakthrough, First Contact, ecological tipping point, intergenerational justice extreme
-                            scenarios), and provides technical specifications for simulation frameworks, enabling theory
-                            to be tested in computer simulations.
-                        </div>
+                        <div class="innovation-card-icon">IV</div>
+                        <h3 class="innovation-card-title"><a class='vol-link' href='/en/work-volume-4'>Technical
+                                Implementation</a></h3>
+                        <p class="innovation-card-desc">Engineering follows philosophy: open-source toolkits for
+                            indicator computation, a normative decision-support system, AI-alignment applications,
+                            simulation and verification platforms, and the surrounding community ecosystem.
+                            <span class="vol-meta">23 chapters · approx. 520 pages · newly written</span></p>
                     </div>
-
                     <div class="innovation-card">
-                        <svg class="innovation-card-icon" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="22" stroke="rgba(167,139,250,0.3)" stroke-width="2"
-                                fill="rgba(167,139,250,0.1)" />
-                            <circle cx="18" cy="24" r="4" stroke="rgba(6,182,212,1)" stroke-width="2" fill="none" />
-                            <circle cx="30" cy="24" r="4" stroke="rgba(167,139,250,0.8)" stroke-width="2" fill="none" />
-                            <path d="M22 24 L26 24" stroke="rgba(6,182,212,1)" stroke-width="2" />
-                        </svg>
-                        <div class="innovation-card-title">Academic Dialogue: International Frontier Engagement</div>
-                        <div class="innovation-card-desc">
-                            Engages in deep dialogue with international frontiers including longtermism (MacAskill,
-                            Ord), AI ethics (Russell, Christiano, Bengio), international space law (Masson-Zwaan,
-                            Tronchetti), and existential risk research (Bostrom, Hanson), clarifying the book's position
-                            in the academic landscape.
-                        </div>
+                        <div class="innovation-card-icon">V</div>
+                        <h3 class="innovation-card-title"><a class='vol-link' href='/en/work-volume-5'>Applications
+                                and Dialogue</a></h3>
+                        <p class="innovation-card-desc">Puts the framework under stress: four extreme scenarios and
+                            their combinations, dialogue with longtermism, AI-safety research and international space
+                            law, followed by the open research agenda. <span class="vol-meta">18 chapters · approx.
+                                450 pages · lightly revised</span></p>
                     </div>
-                </div>
-
-                <div class="highlight-box">
-                    <p>The book contains approximately 1.2 million words, 27 main chapters plus 10 technical appendices.
-                        It is a groundbreaking work that fills the theoretical gap in "Interstellar Civilization
-                        Studies," with direct policy implications for urgent contemporary issues such as AI governance,
-                        space governance, and intergenerational justice.</p>
-                </div>
-
-                <div class="content-card">
-                    <h3 class="en-subsection-title">Relationship Between New and Old Three Views</h3>
-                    <p>The book explicitly demonstrates the relationship between the New Three Views and the traditional
-                        "Old Three Views" (worldview, outlook on life, values) as "dimensional expansion" rather than
-                        replacement—at the terrestrial scale and within human society, the Old Three Views remain valid;
-                        the New Three Views are their extension at interstellar scales and in multi-intelligent agent
-                        contexts.</p>
+                    <div class="innovation-card">
+                        <div class="innovation-card-icon">VI</div>
+                        <h3 class="innovation-card-title"><a class='vol-link' href='/en/work-volume-6'>Appendix Volume
+                                — Tools and Resources</a></h3>
+                        <p class="innovation-card-desc">The supporting apparatus: core terminology, symbols and
+                            theorems; comparative tables; teaching and reading resources; and the revision log.
+                            <span class="vol-meta">18 appendices · approx. 400 pages · expanded</span></p>
+                    </div>
                 </div>
             </section>
 
-            <section id="author-intro">
-                <h2 class="en-section-title">Author Introduction</h2>
+            <!-- ============ 逻辑结构 ============ -->
+            <section id="logical-structure">
+                <h2 class="en-section-title">Logical Structure</h2>
 
                 <div class="content-card">
-                    <p>Author Xue Zhixin is an independent scholar and entrepreneur. After graduating from university,
-                        he entered clinical work as a gastroenterologist, during which he also served as a university
-                        English and pharmacology teacher. This combination of "medicine + language + pharmacology"
-                        already foreshadowed the author's later cross-disciplinary integrative thinking. After being
-                        promoted to attending physician, he transitioned to a foreign pharmaceutical company for
-                        biopharmaceutical R&D. This shift moved the author from "treating diseases" to "creating
-                        therapeutic means," expanding his perspective from individual patients to the entire
-                        biopharmaceutical industry chain.</p>
-
-                    <p>Thirty years ago, as a principal founding partner, he established a biotechnology investment
-                        firm, engaging in angel, venture, and risk-stage investments in related high-tech projects,
-                        deeply participating in the early development of China's life sciences industry. Subsequently,
-                        the ecological construction investment company he founded was also one of China's earliest
-                        enterprises implementing long-cycle projects addressing climate change. His entrepreneurial
-                        experience not only gave the author a deep understanding of how technology, capital, and
-                        institutions interact in the real world, but this focus on long-term, systemic risks also
-                        foreshadowed his later theoretical interest in "interstellar civilization" and "deep-time
-                        responsibility."</p>
-                </div>
-            </section>
-
-            <section id="writing-background">
-                <h2 class="en-section-title">Writing Background</h2>
-
-                <div class="content-card">
-                    <h3 class="en-subsection-title">The Starting Point of Life Experience</h3>
-                    <p>Before graduating from university, the author was diagnosed with malignant tumor and underwent
-                        resection surgery. For a young person about to enter the medical profession, this experience had
-                        a dual impact: as a patient, he faced the possibility of death; as a future doctor, he
-                        experienced the boundaries of medicine.</p>
-
-                    <p>After recovery, the author transformed this into a lifelong starting point for inquiry. More
-                        importantly, this experience prompted him to pursue fundamental questions that transcend the
-                        scope of medicine. Thus, the author began a long journey of intellectual exploration.</p>
+                    <h3 class="en-subsection-title">From Principles to Engineering</h3>
+                    <p>Volume I provides the conceptual framework and normative principles. Volumes II and III develop
+                        them in parallel — Volume II supplies formal proof, Volume III supplies operational
+                        translation. Volume IV converges both into executable engineering. Volume V tests the result
+                        against extreme scenarios and external criticism. The appendix volume holds the supporting
+                        material.</p>
+                    <div class="layer-flow">
+                        <div class="layer-row"><span class="layer-tag">I</span><span class="layer-name">Philosophical
+                                Foundations</span><span class="layer-desc">Conceptual framework and normative
+                                principles</span></div>
+                        <div class="layer-arrow">↓</div>
+                        <div class="layer-row"><span class="layer-tag">II</span><span class="layer-name">Formal
+                                Systems</span><span class="layer-desc">Formal support and machine
+                                verification</span></div>
+                        <div class="layer-row"><span class="layer-tag">III</span><span class="layer-name">Indicators
+                                and Institutions</span><span class="layer-desc">Operational translation into metrics
+                                and institutions</span></div>
+                        <div class="layer-arrow">↓</div>
+                        <div class="layer-row"><span class="layer-tag">IV</span><span class="layer-name">Technical
+                                Implementation</span><span class="layer-desc">Engineering into open-source
+                                tools</span></div>
+                        <div class="layer-arrow">↓</div>
+                        <div class="layer-row"><span class="layer-tag">V</span><span class="layer-name">Applications
+                                and Dialogue</span><span class="layer-desc">Stress testing and external
+                                dialogue</span></div>
+                        <div class="layer-arrow">↓</div>
+                        <div class="layer-row"><span class="layer-tag">VI</span><span class="layer-name">Appendix
+                                Volume</span><span class="layer-desc">Tools, resources and revision
+                                record</span></div>
+                    </div>
                 </div>
 
                 <div class="content-card">
-                    <h3 class="en-subsection-title">The Journey of Intellectual Exploration</h3>
-                    <p>The author first started from his specialty in biology, attempting to find answers in the latest
-                        advances in life sciences. However, he quickly realized that pure scientific description cannot
-                        answer normative questions of "what ought to be." Thus, he turned to Eastern wisdom, beginning
-                        more than a decade of Buddhist practice. In Buddhism, he found a way of thinking that transcends
-                        binary opposition, an attitude toward life facing impermanence, and a cosmology that integrates
-                        the individual into a larger whole. This period of practice profoundly shaped the author's
-                        thinking, with its influence visible throughout the monograph—such as the emphasis on
-                        "relationality," the claim that "process" takes priority over "entity," and the preference for
-                        "continuum" thinking.</p>
-
-                    <p>However, more than twenty years ago, the author made an important intellectual turn—abandoning
-                        Buddhism and entering the fields of philosophy of science and philosophy of mind. This turn was
-                        not a negation of Buddhism, but stemmed from his judgment of the times: humanity is becoming a
-                        trans-stellar species, breakthroughs in AI and other technologies herald the coming
-                        "singularity," and traditional wisdom traditions—whether Eastern or Western—need to be
-                        re-examined and transformed in new contexts. He realized that facing this unprecedented future
-                        requires a normative framework that can dialogue with modern science, be shared by different
-                        civilizations, and be transformed into operational institutions.</p>
-
-                    <p>In the past decade or so, the author has continuously tracked frontier developments in physics,
-                        complex systems science, consciousness science, ethics, international law, and other fields,
-                        maintaining dialogue with the international academic community. He has integrated his background
-                        in biology, Buddhist practice, entrepreneurial experience, and investment practice into a unique
-                        perspective, attempting to answer the question he began asking in his youth—only now, the scale
-                        of this question has expanded from "individual life" to "interstellar civilization."</p>
-                </div>
-
-                <div class="content-card">
-                    <h3 class="en-subsection-title">Manifestation of Intellectual Integration</h3>
-                    <p>The "New Three Views" framework proposed in the book embodies the author's unique intellectual
-                        integration:</p>
-                    <ul>
-                        <li>The emphasis on "participatory universe" in New Cosmology has both the scientific foundation
-                            of quantum mechanics and the intellectual resonance of Buddhist "dependent origination and
-                            emptiness"</li>
-                        <li>The discussion of "cross-substrate life" and "negentropy flow" in New Biology stems from his
-                            scientific literacy as a scholar with a biology background</li>
-                        <li>The claim "cognition is intervention" in New Epistemology integrates his understanding of
-                            the Buddhist "mindfulness" tradition and contemporary embodied cognitive science</li>
+                    <h3 class="en-subsection-title">Reading Paths</h3>
+                    <p>The work is designed to be entered from more than one direction. Five paths are recommended
+                        according to background and purpose.</p>
+                    <ul class="info-list">
+                        <li><strong>Complete sequential reading</strong> — Volume I → II → III → IV → V → Appendix.
+                            Approximately 200 hours.</li>
+                        <li><strong>Philosophy-first</strong> — Volume I → Volume V, Part II → Volume II (selective) →
+                            Appendix. Approximately 80 hours.</li>
+                        <li><strong>Technology-first</strong> — Volume I (introduction and Part II) → Volume II →
+                            Volume IV → Volume III. Approximately 100 hours.</li>
+                        <li><strong>Policy-first</strong> — Volume I (introduction) → Volume III → Volume V, Part I →
+                            Appendix. Approximately 60 hours.</li>
+                        <li><strong>Rapid overview</strong> — Volume I introduction + the opening guide of each volume
+                            + the closing summary. Approximately 20 hours.</li>
                     </ul>
-
-                    <p>The "protocol stack" governance methodology embodies the practical wisdom of an entrepreneur—the
-                        author knows well that no matter how good an idea is, if it cannot be transformed into
-                        operational institutions, it can only remain on paper.</p>
-                </div>
-
-                <div class="highlight-box">
-                    <p>In a sense, "Normative Foundations of Interstellar Civilization" is not just an academic work,
-                        but also a "book of life." It is a cancer survivor's deep response to the meaning of life—when
-                        you have faced death, you will more seriously pursue the question: why does life exist? It is
-                        also a cross-disciplinary scholar's theoretical exploration—when you have crossed the boundaries
-                        of medicine, business, investment, Buddhism, and philosophy, you will more eagerly seek a
-                        framework that can integrate all of this. However, it is even more an entrepreneur's
-                        responsibility for the future of human civilization—when you have personally participated in
-                        climate change response practices, you will more clearly realize: the decisions and actions of
-                        our generation will affect the fate of countless future generations. As stated in the book:
-                        "Freedom is the guardianship of possibility."</p>
-                </div>
-
-                <div class="content-card">
-                    <p>The author has practiced this statement throughout his life—constantly crossing boundaries,
-                        keeping possibilities open, and transforming personal life experience into reflection on human
-                        civilization. In an era of deep uncertainty, he attempts to leave for the future a "protocol
-                        stack" that can be revised, developed, and transcended.</p>
                 </div>
             </section>
 
-            <section id="core-contributions">
-                <h2 class="en-section-title">Core Contributions</h2>
+            <!-- ============ 与第一版的关系 ============ -->
+            <section id="revision">
+                <h2 class="en-section-title">Relationship to the First Edition</h2>
 
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Contribution</th>
-                            <th>Content</th>
-                            <th>Relationship to Existing Traditions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Physical Foundation</td>
-                            <td>Systematic integration of thermodynamics, information theory, etc.</td>
-                            <td>More systematic than existing traditions</td>
-                        </tr>
-                        <tr>
-                            <td>Three Views Unity</td>
-                            <td>Unification of cosmology, biology, and epistemology</td>
-                            <td>Existing traditions rarely integrate</td>
-                        </tr>
-                        <tr>
-                            <td>Normative Derivation</td>
-                            <td>Systematic derivation from ontology to normative principles</td>
-                            <td>Existing traditions rarely systematically derive</td>
-                        </tr>
-                        <tr>
-                            <td>Operationalization</td>
-                            <td>Measurable indicator system</td>
-                            <td>Metaphysical traditions rarely operationalize</td>
-                        </tr>
-                        <tr>
-                            <td>Interstellar Perspective</td>
-                            <td>Cross-substrate life, multi-intelligent agents</td>
-                            <td>Existing traditions rarely consider</td>
-                        </tr>
-                        <tr>
-                            <td>Institutional Integration</td>
-                            <td>Integration of philosophical framework and institutional design</td>
-                            <td>Existing traditions rarely integrate</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="content-card">
+                    <p>The First Edition of 2026 established the discipline: the New Three Views, the three normative
+                        principles, the six indicators and the protocol-stack methodology. In the year of academic
+                        dialogue that followed, five structural weaknesses were identified and openly recorded:
+                        gaps in the argumentative chain, formalism that risked becoming decorative, circular
+                        co-definition among the three views, a thin measurement-theoretic basis, and insufficient
+                        contact with AI engineering practice.</p>
+                    <p>The Second Edition is a targeted repair rather than a rebuilding. Over 80% of the First
+                        Edition's content is retained; the core conclusions are unchanged; what changed is the rigour
+                        of the argumentative path. Each revision is annotated with its reason and with a
+                        correspondence to the First Edition, so that the two can be read side by side.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">Volume Structure: Four Volumes to Six</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>First Edition (2026)</th>
+                                <th>Second Edition (2027)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>I. Theoretical Foundations</td>
+                                <td>I. Philosophical Foundations</td>
+                            </tr>
+                            <tr>
+                                <td>II. Operational Framework</td>
+                                <td>II. Formal Systems <span class="new-tag">new</span> · III. Indicators and
+                                    Institutions</td>
+                            </tr>
+                            <tr>
+                                <td>—</td>
+                                <td>IV. Technical Implementation <span class="new-tag">new</span></td>
+                            </tr>
+                            <tr>
+                                <td>III. Validation and Prospects</td>
+                                <td>V. Applications and Dialogue</td>
+                            </tr>
+                            <tr>
+                                <td>IV. Appendices and Resources</td>
+                                <td>Appendix Volume — Tools and Resources</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============ 第一版 ============ -->
+            <section id="first-edition">
+                <h2 class="en-section-title">First Edition (2026)</h2>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">The Normative Foundations of Interstellar Civilization
+                        <span class="ed-badge ed-badge--prev">First Edition · 2026 · v1.0.0.0</span></h3>
+                    <p><em>New Three Views and Governance under Deep Uncertainty.</em> A four-volume work of
+                        approximately 2.56 million characters, and the founding text of Interstellar Civilization
+                        Studies. It proposed the New Three Views as the theoretical foundation, derived three core
+                        norms, and established the forbidden red lines as absolute constraints.</p>
+                    <p>The First Edition remains publicly archived. It is retained here in full as part of the
+                        discipline's documented record, and its individual volumes can be read from the links
+                        below.</p>
+                    <ul class="info-list">
+                        <li><a class='vol-link' href='/en/first-edition-volume-i'>Volume I: Theoretical Foundations</a></li>
+                        <li><a class='vol-link' href='/en/first-edition-volume-ii'>Volume II: Operational Framework</a></li>
+                        <li><a class='vol-link' href='/en/first-edition-volume-iii'>Volume III: Validation and
+                                Prospects</a></li>
+                        <li><a class='vol-link' href='/en/first-edition-volume-iv'>Volume IV: Appendices and Resources</a>
+                        </li>
+                    </ul>
+                    <p style="margin-top:1.25rem;"><a class='vol-link' href='/en/first-edition'>&rarr; First Edition archive page (with Zenodo record)</a></p>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">Preprint Record (Zenodo)</h3>
+                    <p>The First Edition preprint is published on the Zenodo preprint platform. This is the
+                        authoritative citable record for the 2026 edition.</p>
+                    <div class="cite-block">
+                        <p>Xue, Z. (2026). <em>Normative Foundations of Interstellar Civilizations</em> (Preliminary
+                            Edition, Four Volumes) (Version v1.0.0.0). Zenodo.
+                            <a href="https://doi.org/10.5281/zenodo.21979098" target="_blank"
+                                rel="noopener">https://doi.org/10.5281/zenodo.21979098</a></p>
+                    </div>
+                </div>
+
+                <div class="highlight-box highlight-box--notice">
+                    <p><strong>Publication schedule for the Second Edition.</strong> The Second Edition (2027
+                        revision) is complete as a manuscript. Its publication route and specific publication date
+                        will be confirmed and announced in <strong>2027</strong>. No publisher, ISBN or release date
+                        is fixed at this time, and the text remains an open research programme accepting continuous
+                        scholarly revision.</p>
+                </div>
+            </section>
+
+            <!-- ============ 作者 ============ -->
+            <section id="author-intro">
+                <h2 class="en-section-title">Author</h2>
+
+                <div class="content-card">
+                    <h3 class="en-subsection-title">Xue Zhixin (薛志新)</h3>
+                    <p>Xue Zhixin is an independent scholar and entrepreneur, and the author of the six-volume
+                        <em>Normative Reconstruction</em> and its four-volume predecessor. Trained in medicine and
+                        clinical practice, he later worked in biopharmaceutical R&amp;D and spent three decades as a
+                        founder and investor in biotechnology and long-horizon ecological projects.</p>
+                    <p>He is also the founding editor of <em>The Stewardship Brief</em> (今日文明简报), the
+                        civilisational-intelligence brief that reads frontier technology through the framework set out
+                        in these volumes.</p>
+                </div>
+            </section>
+
+            <!-- ============ 相关链接 ============ -->
+            <section class="related-links">
+                <h2 class="en-section-title">Related Links</h2>
+                <div class="innovation-grid">
+                    <div class="innovation-card">
+                        <h3 class="innovation-card-title"><a class='vol-link' href='/en/book-overview'>Publications</a>
+                        </h3>
+                        <p class="innovation-card-desc">This page — the full publication record of the discipline.</p>
+                    </div>
+                    <div class="innovation-card">
+                        <h3 class="innovation-card-title"><a class='vol-link'
+                                href='/en/publication-information'>Publication Information</a></h3>
+                        <p class="innovation-card-desc">Print status, pre-order channels and reviewer evaluations.</p>
+                    </div>
+                    <div class="innovation-card">
+                        <h3 class="innovation-card-title"><a class='vol-link' href='/en/briefing'>The Stewardship
+                                Brief</a></h3>
+                        <p class="innovation-card-desc">The daily brief built on this framework.</p>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -1080,33 +1411,33 @@
             </div>
             <div class="footer-col">
                 <h4>Discipline</h4>
-                <a href="/en/about.html">Overview</a>
-                <a href="/en/index.html">Core Concepts</a>
-                <a href="institutions.html">Methodology</a>
+                <a href='/en/about'>Overview</a>
+                <a href='/en/'>Core Concepts</a>
+                <a href='/en/institutions'>Methodology</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
-                <a href="publication-information.html">Publications</a>
-                <a href="/en/resources.html">Reading List</a>
-                <a href="/en/resources.html">Glossary</a>
+                <a href='/en/publication-information'>Publications</a>
+                <a href='/en/resources'>Reading List</a>
+                <a href='/en/resources'>Glossary</a>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <a href="/en/contact-us.html">Contact Us</a>
-                <a href="/en/contact-us.html">franka328162810@gmail.com</a>
-                <a href="/en/newsletter.html">Newsletter</a>
+                <a href='/en/contact-us'>Contact Us</a>
+                <a href="mailto:members@ics-studies.org">members@ics-studies.org</a>
+                <a href='/en/newsletter'>The Brief</a>
             </div>
         </div>
         <div class="footer-bottom">
             <span class="footer-copyright">© 2026 Interstellar Civilization Studies. All rights reserved.</span>
             <div class="footer-links">
-                <a href="/en/privacy.html">Privacy Policy</a>
-                <a href="/en/terms.html">Terms of Service</a>
+                <a href='/en/privacy'>Privacy Policy</a>
+                <a href='/en/terms'>Terms of Service</a>
             </div>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
@@ -1159,7 +1490,47 @@
 <script src="/js/mobile-nav.js"></script>
 
 <!-- ICS AI Assistant -->
+<script>window.ICS_AI_CONFIG={endpoint:'https://ics-ai-assistant.franka328162810.workers.dev/chat',lang:'auto'};</script>
 <script src="/js/ai-assistant.js"></script>
-</body>
+<script>
+/* ICS: 反邮箱混淆兜底（Cloudflare Scrape Shield 不可关闭时的还原脚本） */
+(function(){
+  function decode(h){
+    try{
+      var r='',k=parseInt(h.substr(0,2),16);
+      for(var i=2;i<h.length;i+=2){ r+=String.fromCharCode(parseInt(h.substr(i,2),16)^k); }
+      return r;
+    }catch(e){ return ''; }
+  }
+  function fix(){
+    var els=document.querySelectorAll('[data-cfemail]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], email=decode(el.getAttribute('data-cfemail'));
+      if(!email) continue;
+      el.textContent=email;
+      el.removeAttribute('data-cfemail');
+      el.classList.remove('__cf_email__');
+      var a=el.closest('a');
+      if(a && (a.getAttribute('href')||'').indexOf('/cdn-cgi/l/email-protection')===0){
+        a.setAttribute('href','mailto:'+email);
+      }
+    }
+    var html=document.body?document.body.innerHTML:'';
+    if(html.indexOf('[email\u00a0protected]')!==-1){
+      document.body.innerHTML=html.split('[email\u00a0protected]').join('members@ics-studies.org');
+    }
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fix); }
+  else { fix(); }
+  window.addEventListener('load',function(){ setTimeout(fix,300); setTimeout(fix,1200); });
+})();
+</script>
+
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYTdkNDlmNmI4YzhiNmVjYzAzOGY0NCIsImlzc3VlciI6Im5mc2VydmVyIn0.qWSXGKro5gRiLq8OryUbhFv3zhc7ju2X9QaeDutmtqg"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3b7efccbdf29f1e',t:'MTc4OTQ3ODUwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYmRmYWRmOGI5NzM4NDY3MzQ1YTZiYSIsImlzc3VlciI6Im5mc2VydmVyIn0.xdj6oT1RiBrvD02NxfZ3qz-cFAPPUpXoSKbeWGab3uE"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"232b9d8552444a2e8f9dcfe63b091169","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a43b12f32b6d9f84',t:'MTc5MDg1MzU4Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 </html>

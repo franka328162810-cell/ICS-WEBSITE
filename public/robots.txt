@@ -22,57 +22,29 @@
 # ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF
 # RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT
 # AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
-#
-# BEGIN Cloudflare Managed content
 
+# ============================================================
+# 全局规则：允许搜索 + 允许 AI 搜索引用（ai-input），禁止 AI 训练（ai-train）
+# ============================================================
 User-agent: *
-Content-Signal: search=yes, ai-train=no
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 Disallow: /admin/
 
+# ---- 非目标 / 纯训练爬虫（保持禁止）----
 User-agent: Amazonbot
 Disallow: /
 
 User-agent: Applebot-Extended
 Disallow: /
 
-User-agent: Bytespider
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: ClaudeBot
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /
-
-User-agent: cohere-ai
-Disallow: /
-
-User-agent: Diffbot
-Disallow: /
-
 User-agent: FacebookBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: GPTBot
 Disallow: /
 
 User-agent: omgili
 Disallow: /
 
 User-agent: Omgilibot
-Disallow: /
-
-User-agent: PerplexityBot
 Disallow: /
 
 User-agent: YouBot
@@ -96,22 +68,22 @@ Disallow: /
 User-agent: DataForSeoBot
 Disallow: /
 
-User-agent: SeznamBot
-Disallow: /
-
-# END Cloudflare Managed content
+# ---- 搜索引擎与 AI 搜索爬虫 ----
+# 以下爬虫均继承上方 User-agent: * 的 Allow: / 规则（search=yes, ai-input=yes），
+# 故不再单独 Disallow，允许其抓取全站内容用于搜索引用：
+#   Googlebot / Bingbot / Baiduspider / Sogou / Yandex / SeznamBot
+#   GPTBot (OpenAI) / ChatGPT-User / ClaudeBot / Claude-Web (Anthropic)
+#   PerplexityBot / Google-Extended (Gemini) / CCBot (Common Crawl)
+#   Bytespider (字节) / cohere-ai / Diffbot
+# 注意：训练仍通过 Content-Signal: ai-train=no 明确保留（禁止）。
 
 # Sitemap for SEO (English & Chinese)
 Sitemap: https://ics-studies.org/sitemap.xml
 
 # Language-specific notices
-# 中文页面 (Chinese pages) 
+# 中文页面 (Chinese pages)
 User-agent: Baiduspider
-Allow: /zh/
+Allow: /
 
 User-agent: Sogou
-Allow: /zh/
-
-User-agent: *
-Content-Signal: search=yes, ai-train=no
 Allow: /
