@@ -53,7 +53,7 @@
 
             
             --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255, 255, 255, 0.8);
+            --color-text-secondary: #e2e8f0;
             --color-text-tertiary: rgba(255, 255, 255, 0.6);
 
             
@@ -998,6 +998,80 @@
             }
 }
     </style>
+
+<style id="nav-responsive-patch">
+/* ICS 导航响应式补丁 v5：9 项导航 + 预告 + 语言切换在 1024px 以上完整显示 */
+.navbar { padding: 0; }
+.navbar.scrolled { padding: 0; }
+.nav-container { padding: 1rem 2rem; }
+.nav-link { white-space: nowrap; }
+.nav-actions { flex-shrink: 0; }
+.nav-brand { flex-shrink: 0; }
+
+/* ── 预告按钮（第77轮补齐：原为浏览器默认裸链接）── */
+.nav-launch {
+  font-family: var(--font-zh-sans, 'Noto Sans SC', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  height: 38px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.3);
+}
+.nav-launch:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex !important; flex-shrink: 1; min-width: 0; }
+}
+@media (max-width: 1600px) { .nav-links { gap: 1.7rem; } }
+@media (max-width: 1440px) {
+  .nav-links { gap: 1.2rem; }
+  .nav-link { font-size: 0.8rem; letter-spacing: 0.03em; }
+  .nav-actions { gap: 0.75rem; }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-launch { height: 36px; padding: 0 14px; font-size: 0.76rem; }
+  .nav-brand-text { display: none; }
+}
+@media (max-width: 1320px) {
+  .nav-links { gap: 0.85rem; }
+  .nav-link { font-size: 0.74rem; letter-spacing: 0.02em; }
+  .nav-launch { height: 32px; padding: 0 10px; font-size: 0.7rem; }
+  .nav-actions { gap: 0.55rem; }
+}
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.65rem; }
+  .nav-link { font-size: 0.68rem; letter-spacing: 0.01em; }
+  .nav-launch { height: 29px; padding: 0 8px; font-size: 0.64rem; }
+  .nav-actions { gap: 0.45rem; }
+  .nav-container { padding: 0.9rem 1.15rem; }
+}
+@media (max-width: 1080px) {
+  .nav-links { gap: 0.5rem; }
+  .nav-link { font-size: 0.63rem; letter-spacing: 0; }
+  .nav-launch { height: 27px; padding: 0 7px; font-size: 0.6rem; }
+  .nav-actions { gap: 0.38rem; }
+  .nav-search svg { width: 17px; height: 17px; }
+  .lang-btn { padding: 0.26rem 0.4rem; font-size: 0.66rem; }
+}
+@media (max-width: 1024px) {
+  .nav-links { gap: 0.36rem; }
+  .nav-link { font-size: 0.58rem; letter-spacing: -0.01em; }
+  .nav-launch { height: 25px; padding: 0 6px; font-size: 0.55rem; }
+  .nav-actions { gap: 0.32rem; }
+  .nav-container { padding: 0.85rem 1rem; }
+  .nav-contact, .nav-cta { padding: 0.44rem 0.65rem; font-size: 0.68rem; }
+  .lang-btn { padding: 0.22rem 0.34rem; font-size: 0.62rem; }
+}
+</style>
 </head>
 
 <body data-page="dialogue" data-lang="zh">
@@ -1021,14 +1095,16 @@
             </a>
 
             <ul class="nav-links">
-                <li><a href="首页.html" class="nav-link active">首页</a></li>
-                <li><a href="关于星际文明学.html" class="nav-link">关于星际文明学</a></li>
-                <li><a href="著作概述.html" class="nav-link">著作</a></li>
-                <li><a href="资源.html" class="nav-link">资源</a></li>
-                <li><a href="焦点（公开版）.html" class="nav-link">焦点（公开版）</a></li>
+                <li><a class='nav-link active' href='/zh/%E9%A6%96%E9%A1%B5'>首页</a></li>
+                <li><a class='nav-link' href='/zh/%E5%85%B3%E4%BA%8E%E6%98%9F%E9%99%85%E6%96%87%E6%98%8E%E5%AD%A6'>关于星际文明学</a></li>
+                <li><a class='nav-link' href='/zh/%E8%91%97%E4%BD%9C%E6%A6%82%E8%BF%B0'>著作</a></li>
+                <li><a class='nav-link' href='/zh/%E8%B5%84%E6%BA%90'>资源</a></li>
+                <li><a class='nav-link' href='/zh/%E7%84%A6%E7%82%B9%EF%BC%88%E5%85%AC%E5%BC%80%E7%89%88%EF%BC%89'>焦点（公开版）</a></li>
+                <li><a class='nav-link' href='/zh/briefing'>会员</a></li>
+                <li><a class='nav-link' href='/zh/%E8%AE%A2%E9%98%85%E9%80%9A%E8%AE%AF'>社区</a></li>
 
-                <li><a href="深度研究.html" class="nav-link">研究</a></li>
-                <li><a href="人工智能助手.html" class="nav-link">AI助手</a></li>
+                <li><a class='nav-link' href='/zh/%E6%B7%B1%E5%BA%A6%E7%A0%94%E7%A9%B6'>研究</a></li>
+                <li><a class='nav-link' href='/zh/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8A%A9%E6%89%8B'>AI助手</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -1040,9 +1116,10 @@
                 </button>
                 <div class="lang-switch">
                     <a class='lang-btn' href='/en/academic-dialogue'>EN</a>
-                    <a href="学术对话.html" class="lang-btn active">中文</a>
+                    <a class='lang-btn active' href='/zh/%E5%AD%A6%E6%9C%AF%E5%AF%B9%E8%AF%9D'>中文</a>
                 </div>
-                <a href="联系我们.html" class="nav-contact">联系我们</a>
+                <a class='nav-launch' href='/zh/launch'>预告</a>
+                <a class='nav-contact' href='/zh/%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC'>联系我们</a>
             </div>
         </div>
     </nav>
@@ -1349,28 +1426,28 @@
             <div class="key-concepts-section">
                 <h2 class="key-concepts-title">关键概念高亮</h2>
                 <div class="key-concepts-grid">
-                    <a href="学术对话.html" class="concept-button">
+                    <a class='concept-button' href='/zh/%E5%AD%A6%E6%9C%AF%E5%AF%B9%E8%AF%9D'>
                         <div class="concept-content">
                             <div class="concept-label">学术对话</div>
                             <div class="concept-desc">ICS与其他传统的互动</div>
                         </div>
                         <!-- <div class="concept-icon">→</div> -->
                     </a>
-                    <a href="与长期主义的对话.html" class="concept-button">
+                    <a class='concept-button' href='/zh/%E4%B8%8E%E9%95%BF%E6%9C%9F%E4%B8%BB%E4%B9%89%E7%9A%84%E5%AF%B9%E8%AF%9D'>
                         <div class="concept-content">
                             <div class="concept-label">批判性盟友</div>
                             <div class="concept-desc">ICS与长期主义的关系模式</div>
                         </div>
                         <!-- <div class="concept-icon">→</div> -->
                     </a>
-                    <a href="与人工智能安全研究的对话.html" class="concept-button">
+                    <a class='concept-button' href='/zh/%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6%E7%9A%84%E5%AF%B9%E8%AF%9D'>
                         <div class="concept-content">
                             <div class="concept-label">互补性</div>
                             <div class="concept-desc">ICS与AI安全、空间法的关系</div>
                         </div>
                         <!-- <div class="concept-icon">→</div> -->
                     </a>
-                    <a href="关于星际文明学.html" class="concept-button">
+                    <a class='concept-button' href='/zh/%E5%85%B3%E4%BA%8E%E6%98%9F%E9%99%85%E6%96%87%E6%98%8E%E5%AD%A6'>
                         <div class="concept-content">
                             <div class="concept-label">跨界节点</div>
                             <div class="concept-desc">ICS在学术生态中的定位</div>
@@ -1384,27 +1461,27 @@
             <div class="related-links">
                 <h3 class="zh-subsection-title">相关链接</h3>
                 <div class="links-grid">
-                    <a href="与长期主义的对话.html" class="link-item">
+                    <a class='link-item' href='/zh/%E4%B8%8E%E9%95%BF%E6%9C%9F%E4%B8%BB%E4%B9%89%E7%9A%84%E5%AF%B9%E8%AF%9D'>
                         <span class="link-text">与长期主义的对话</span>
                         <span class="link-arrow">→</span>
                     </a>
-                    <a href="与人工智能安全研究的对话.html" class="link-item">
+                    <a class='link-item' href='/zh/%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6%E7%9A%84%E5%AF%B9%E8%AF%9D'>
                         <span class="link-text">与AI安全研究的对话</span>
                         <span class="link-arrow">→</span>
                     </a>
-                    <a href="与国际空间法的对话.html" class="link-item">
+                    <a class='link-item' href='/zh/%E4%B8%8E%E5%9B%BD%E9%99%85%E7%A9%BA%E9%97%B4%E6%B3%95%E7%9A%84%E5%AF%B9%E8%AF%9D'>
                         <span class="link-text">与国际空间法的对话</span>
                         <span class="link-arrow">→</span>
                     </a>
-                    <a href="与环境伦理学的对话.html" class="link-item">
+                    <a class='link-item' href='/zh/%E4%B8%8E%E7%8E%AF%E5%A2%83%E4%BC%A6%E7%90%86%E5%AD%A6%E7%9A%84%E5%AF%B9%E8%AF%9D'>
                         <span class="link-text">与环境伦理学的对话</span>
                         <span class="link-arrow">→</span>
                     </a>
-                    <a href="关于星际文明学.html" class="link-item">
+                    <a class='link-item' href='/zh/%E5%85%B3%E4%BA%8E%E6%98%9F%E9%99%85%E6%96%87%E6%98%8E%E5%AD%A6'>
                         <span class="link-text">关于星际文明学</span>
                         <span class="link-arrow">→</span>
                     </a>
-                    <a href="研究议程.html" class="link-item">
+                    <a class='link-item' href='/zh/%E7%A0%94%E7%A9%B6%E8%AE%AE%E7%A8%8B'>
                         <span class="link-text">研究议程</span>
                         <span class="link-arrow">→</span>
                     </a>
@@ -1436,21 +1513,21 @@
             </div>
             <div class="footer-col">
                 <h4>学科</h4>
-                <a href="关于星际文明学.html">概述</a>
-                <a href="首页.html">核心概念</a>
-                <a href="制度设计.html">方法论</a>
+                <a href='/zh/%E5%85%B3%E4%BA%8E%E6%98%9F%E9%99%85%E6%96%87%E6%98%8E%E5%AD%A6'>概述</a>
+                <a href='/zh/%E9%A6%96%E9%A1%B5'>核心概念</a>
+                <a href='/zh/%E5%88%B6%E5%BA%A6%E8%AE%BE%E8%AE%A1'>方法论</a>
             </div>
             <div class="footer-col">
                 <h4>资源</h4>
-                <a href="出版信息.html">出版物</a>
-                <a href="资源.html">阅读清单</a>
-                <a href="资源.html">术语表</a>
+                <a href='/zh/%E5%87%BA%E7%89%88%E4%BF%A1%E6%81%AF'>出版物</a>
+                <a href='/zh/%E8%B5%84%E6%BA%90'>阅读清单</a>
+                <a href='/zh/%E8%B5%84%E6%BA%90'>术语表</a>
             </div>
             <div class="footer-col">
                 <h4>联系</h4>
-                <a href="联系我们.html">联系我们</a>
-                <a href="联系我们.html">members@ics-studies.org</a>
-                <a href="订阅通讯.html">订阅通讯</a>
+                <a href='/zh/%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC'>联系我们</a>
+                <a href="/cdn-cgi/l/email-protection#96fbf3fbf4f3e4e5d6fff5e5bbe5e2e3f2fff3e5b8f9e4f1"><span class="__cf_email__" data-cfemail="a3cec6cec1c6d1d0e3cac0d08ed0d7d6c7cac6d08dccd1c4">[email&#160;protected]</span></a>
+                <a href='/zh/%E8%AE%A2%E9%98%85%E9%80%9A%E8%AE%AF'>简报订阅</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1463,7 +1540,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navigation Scroll Effect
         const navbar = document.getElementById('navbar');
         let lastScroll = 0;
@@ -1895,6 +1972,11 @@ black !important;
 
 
 <script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYTdkNDlmNmI4YzhiNmVjYzAzOGY0NCIsImlzc3VlciI6Im5mc2VydmVyIn0.qWSXGKro5gRiLq8OryUbhFv3zhc7ju2X9QaeDutmtqg"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3b7f0207a3d907e',t:'MTc4OTQ3ODUyMg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3b7f0207a3d907e',t:'MTc4OTQ3ODUyMg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYmRmYWRmOGI5NzM4NDY3MzQ1YTZiYSIsImlzc3VlciI6Im5mc2VydmVyIn0.xdj6oT1RiBrvD02NxfZ3qz-cFAPPUpXoSKbeWGab3uE"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"232b9d8552444a2e8f9dcfe63b091169","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a43b17efca1cd0dd',t:'MTc5MDg1Mzc4OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="40d99467-6241-4ab8-88ba-ea11ea023808" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNDBkOTk0NjctNjI0MS00YWI4LTg4YmEtZWExMWVhMDIzODA4IiwiYWNjb3VudF9pZCI6IjY5YTI0ODNkYmNjZmFhOGIxMWUwZjkzMCIsImRlcGxveV9pZCI6IjZhYzM5N2Y5MmE5MmE5ZTA0YTU1MTRiOCIsImlzc3VlciI6Im5mc2VydmVyIn0.MwVmyJrt7CTY8P8Pae0GQvP3aSV-q5CrnSj1bgo58wk"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a469c4669de4e568',t:'MTc5MTM0MzE5Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 </html>page
